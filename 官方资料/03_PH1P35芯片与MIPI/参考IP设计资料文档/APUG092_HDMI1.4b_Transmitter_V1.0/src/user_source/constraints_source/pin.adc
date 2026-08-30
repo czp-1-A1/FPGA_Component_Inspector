@@ -1,0 +1,15 @@
+set_pin_assignment	{ I_sys_clk }	{ LOCATION = N18; IOSTANDARD = LVCMOS33;}
+
+set_pin_assignment	{ O_tmds_ch0_p }	{ LOCATION = D10; IOSTANDARD = LVDS18; }
+set_pin_assignment	{ O_tmds_ch1_p }	{ LOCATION = D9;  IOSTANDARD = LVDS18; }
+set_pin_assignment	{ O_tmds_ch2_p }	{ LOCATION = C8;  IOSTANDARD = LVDS18; }
+set_pin_assignment	{ O_tmds_clk_p }	{ LOCATION = E11; IOSTANDARD = LVDS18; }
+
+set_pin_assignment	{ I_i2s_BCLK }	{ LOCATION = F8; IOSTANDARD = LVCMOS18;} #J8 pin 4
+set_pin_assignment	{ I_i2s_LRCK }	{ LOCATION = E9; IOSTANDARD = LVCMOS18;} #J8 pin 6
+set_pin_assignment	{ I_i2s_DOUT }	{ LOCATION = A8; IOSTANDARD = LVCMOS18;} #J8 pin 8
+
+set_pin_assignment	{ I_key_in }	{ LOCATION = E8; IOSTANDARD = LVCMOS18;}
+
+set_pin_assignment	{ O_ddc_scl }	{ LOCATION = E12; IOSTANDARD = LVCMOS18;}
+set_pin_assignment	{ IO_ddc_sda }	{ LOCATION = E13; IOSTANDARD = LVCMOS18; }

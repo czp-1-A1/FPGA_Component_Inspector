@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>国产FPGA载带元件智检仪——系统框架与团队协作</title>
+  <style>
+    :root {
+      --navy: #12355b;
+      --navy-2: #1d4f7a;
+      --blue: #2878bd;
+      --blue-soft: #eaf4fd;
+      --purple: #7652b5;
+      --purple-soft: #f1ecfa;
+      --green: #268b6a;
+      --green-soft: #e9f7f1;
+      --orange: #ed7d31;
+      --orange-soft: #fff1e7;
+      --red: #c43e35;
+      --ink: #172b3a;
+      --muted: #617483;
+      --line: #cbd8e2;
+      --panel: #f6f9fb;
+      --white: #ffffff;
+      --shadow: 0 14px 40px rgba(18, 53, 91, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #dfe9f1;
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+    }
+
+    button { font: inherit; }
+
+    .deck {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: clamp(34px, 4.2vh, 62px) clamp(46px, 5vw, 92px) clamp(70px, 8vh, 104px);
+      background:
+        linear-gradient(90deg, rgba(40,120,189,.055) 1px, transparent 1px),
+        linear-gradient(rgba(40,120,189,.045) 1px, transparent 1px),
+        var(--white);
+      background-size: 48px 48px;
+      overflow: hidden;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      animation: slideIn .28s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { opacity: .4; transform: translateX(14px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide.active { animation: none; }
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 9px;
+      background: linear-gradient(90deg, var(--navy), var(--blue) 58%, var(--orange) 58%, var(--orange) 68%, #dbe7ef 68%);
+    }
+
+    .eyebrow {
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-size: clamp(14px, 1.2vw, 20px);
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 1120px;
+      margin-bottom: 22px;
+      color: var(--navy);
+      font-size: clamp(42px, 4.6vw, 76px);
+      line-height: 1.16;
+      letter-spacing: -.03em;
+    }
+
+    h2 {
+      margin-bottom: clamp(18px, 2.6vh, 30px);
+      color: var(--navy);
+      font-size: clamp(32px, 3.2vw, 52px);
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: clamp(20px, 1.7vw, 28px);
+      line-height: 1.25;
+    }
+
+    .subtitle {
+      max-width: 1120px;
+      color: var(--muted);
+      font-size: clamp(20px, 1.8vw, 30px);
+      line-height: 1.55;
+    }
+
+    .accent { color: var(--orange); }
+    .strong { color: var(--navy); font-weight: 700; }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .page-kicker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      height: 34px;
+      border-radius: 17px;
+      color: var(--white);
+      background: var(--navy);
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .content-fill {
+      flex: 1;
+      min-height: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      align-items: center;
+      gap: clamp(30px, 5vw, 80px);
+      flex: 1;
+      min-height: 0;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 30px 0 34px;
+    }
+
+    .tag {
+      padding: 10px 17px;
+      border: 1px solid #a8c8df;
+      border-radius: 999px;
+      color: var(--navy);
+      background: rgba(234,244,253,.86);
+      font-size: clamp(16px, 1.25vw, 21px);
+      font-weight: 700;
+    }
+
+    .hero-flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: clamp(22px, 2vw, 34px);
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .hero-flow .arrow { color: var(--orange); }
+
+    .tape-visual {
+      position: relative;
+      min-height: 330px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #f6dba7, #eebf68);
+      box-shadow: var(--shadow);
+      transform: rotate(-3deg);
+      overflow: hidden;
+    }
+
+    .tape-visual::before,
+    .tape-visual::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 31px;
+      background: radial-gradient(circle at 18px 50%, #fff 0 7px, #9a6c2d 8px 9px, transparent 10px) 0 0 / 46px 31px repeat-x;
+    }
+    .tape-visual::before { top: 18px; }
+    .tape-visual::after { bottom: 18px; }
+
+    .pockets {
+      position: absolute;
+      inset: 72px 28px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 17px;
+      align-items: center;
+    }
+
+    .pocket {
+      aspect-ratio: .8;
+      display: grid;
+      place-items: center;
+      border: 3px solid rgba(92,60,20,.46);
+      border-radius: 15px;
+      background: rgba(255,255,255,.34);
+      box-shadow: inset 0 6px 15px rgba(99,62,18,.14);
+    }
+
+    .component {
+      width: 62%;
+      aspect-ratio: 1.55;
+      position: relative;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #dbe3e7, #82909a);
+      border: 3px solid #43515b;
+      box-shadow: 0 5px 10px rgba(0,0,0,.18);
+    }
+
+    .component::after {
+      content: "";
+      position: absolute;
+      right: 8%;
+      top: 0;
+      bottom: 0;
+      width: 16%;
+      background: #e6eef2;
+    }
+
+    .pocket.ng {
+      border-color: var(--red);
+      box-shadow: inset 0 0 0 4px rgba(196,62,53,.16), 0 0 0 5px rgba(196,62,53,.18);
+    }
+    .pocket.ng .component { transform: rotate(180deg); }
+
+    .ng-label {
+      position: absolute;
+      right: 7%;
+      top: 8%;
+      padding: 7px 12px;
+      border-radius: 8px;
+      color: white;
+      background: var(--red);
+      font-weight: 700;
+      transform: rotate(3deg);
+    }
+
+    .svg-wrap {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .svg-wrap svg {
+      display: block;
+      width: 100%;
+      max-height: 100%;
+    }
+
+    .svg-title { font-size: 26px; font-weight: 700; fill: var(--navy); }
+    .svg-label { font-size: 23px; font-weight: 700; fill: var(--ink); }
+    .svg-sub { font-size: 17px; fill: var(--muted); }
+    .svg-mini { font-size: 15px; fill: var(--muted); }
+    .svg-white { fill: #fff; }
+    .svg-line { stroke: var(--navy-2); stroke-width: 3; fill: none; }
+    .svg-dash { stroke: var(--muted); stroke-width: 2.2; stroke-dasharray: 7 7; fill: none; }
+
+    .key-message {
+      margin-top: 14px;
+      padding: 12px 20px;
+      border-left: 6px solid var(--orange);
+      background: var(--orange-soft);
+      color: var(--navy);
+      font-size: clamp(19px, 1.55vw, 27px);
+      font-weight: 700;
+    }
+
+    .ng-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(12px, 1.3vw, 22px);
+      align-content: center;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .step {
+      position: relative;
+      min-height: clamp(116px, 15vh, 166px);
+      padding: 18px 18px 16px 58px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(246,249,251,.92);
+    }
+
+    .step::after {
+      content: "→";
+      position: absolute;
+      right: -20px;
+      top: 42%;
+      z-index: 2;
+      color: var(--orange);
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .step:nth-child(4)::after,
+    .step:last-child::after { display: none; }
+
+    .step-no {
+      position: absolute;
+      left: 15px;
+      top: 16px;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: var(--navy);
+      font-weight: 700;
+    }
+
+    .step h3 { color: var(--navy); }
+    .step p { margin: 0; color: var(--muted); font-size: clamp(15px, 1.1vw, 19px); line-height: 1.48; }
+    .step.warn { border-color: #edaa7e; background: var(--orange-soft); }
+    .step.warn .step-no { background: var(--orange); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(18px, 2vw, 30px);
+      flex: 1;
+      min-height: 0;
+    }
+
+    .team {
+      padding: clamp(18px, 2.2vw, 30px);
+      border-radius: 20px;
+      background: white;
+      box-shadow: var(--shadow);
+      border-top: 8px solid;
+      overflow: hidden;
+    }
+
+    .team-a { border-color: var(--blue); background: linear-gradient(180deg, var(--blue-soft), white 38%); }
+    .team-b { border-color: var(--purple); background: linear-gradient(180deg, var(--purple-soft), white 38%); }
+    .team-c { border-color: var(--green); background: linear-gradient(180deg, var(--green-soft), white 38%); }
+    .team-a h3 { color: var(--blue); }
+    .team-b h3 { color: var(--purple); }
+    .team-c h3 { color: var(--green); }
+
+    .team-role {
+      margin-bottom: 17px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.15vw, 20px);
+      font-weight: 700;
+    }
+
+    .team-section {
+      margin-top: 15px;
+      padding-top: 13px;
+      border-top: 1px solid var(--line);
+    }
+
+    .team-section strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--navy);
+      font-size: clamp(16px, 1.15vw, 20px);
+    }
+
+    .team-section p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.05vw, 18px);
+      line-height: 1.55;
+    }
+
+    .handoff-layout {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: clamp(16px, 2vh, 26px);
+      flex: 1;
+      min-height: 0;
+    }
+
+    .lane {
+      display: grid;
+      grid-template-columns: 1fr 56px 1.08fr 56px 1fr;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lane-node {
+      min-height: 78px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 14px;
+      text-align: center;
+      font-size: clamp(16px, 1.2vw, 21px);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .lane-node small { margin-top: 4px; font-size: .78em; font-weight: 500; }
+    .lane-arrow { text-align: center; color: var(--orange); font-size: 32px; font-weight: 700; }
+    .lane-b { background: var(--purple-soft); color: #56358e; border: 1px solid #cfc0e9; }
+    .lane-a { background: var(--blue-soft); color: #15588b; border: 1px solid #b9d6ea; }
+    .lane-c { background: var(--green-soft); color: #176b50; border: 1px solid #b8ddcf; }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      align-self: end;
+    }
+
+    .principle {
+      padding: 14px 14px;
+      border-top: 4px solid var(--navy);
+      background: var(--panel);
+      color: var(--navy);
+      text-align: center;
+      font-size: clamp(15px, 1.05vw, 19px);
+      font-weight: 700;
+    }
+
+    .current-task {
+      grid-column: 1 / -1;
+      margin-top: 4px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      color: var(--white);
+      background: linear-gradient(90deg, var(--navy), var(--navy-2));
+      text-align: center;
+      font-size: clamp(19px, 1.45vw, 25px);
+      font-weight: 700;
+    }
+
+    .controls {
+      position: fixed;
+      left: 50%;
+      bottom: 15px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1px solid rgba(18,53,91,.17);
+      border-radius: 15px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 7px 25px rgba(18,53,91,.16);
+      transform: translateX(-50%);
+      backdrop-filter: blur(8px);
+    }
+
+    .controls button {
+      min-width: 42px;
+      height: 36px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 9px;
+      color: var(--navy);
+      background: #edf3f7;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .controls button:hover { background: #dceaf3; }
+    .controls button:focus-visible { outline: 3px solid rgba(237,125,49,.5); outline-offset: 2px; }
+    .controls button:disabled { opacity: .38; cursor: default; }
+
+    .counter {
+      min-width: 74px;
+      color: var(--navy);
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 49;
+      height: 5px;
+      background: #cbd8e2;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 16.6667%;
+      background: var(--orange);
+      transition: width .2s ease;
+    }
+
+    .footer-note {
+      position: absolute;
+      right: clamp(46px, 5vw, 92px);
+      bottom: 32px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1100px), (max-height: 700px) {
+      .slide { padding-top: 30px; padding-bottom: 66px; }
+      .team { padding: 17px; }
+      .team-section { margin-top: 9px; padding-top: 9px; }
+      .step { min-height: 105px; padding-top: 14px; padding-bottom: 12px; }
+      .tape-visual { min-height: 265px; }
+      .controls { bottom: 9px; }
+    }
+
+    @media (max-width: 820px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .tape-visual { display: none; }
+      .team-grid { grid-template-columns: 1fr; overflow-y: auto; padding-right: 6px; }
+      .ng-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); overflow-y: auto; }
+      .step:nth-child(2n)::after { display: none; }
+      .lane { grid-template-columns: 1fr 34px 1fr 34px 1fr; }
+      .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .footer-note { display: none; }
+    }
+
+    @media print {
+      @page { size: 13.333in 7.5in; margin: 0; }
+      html, body { width: auto; height: auto; overflow: visible; background: white; }
+      .deck { width: auto; height: auto; }
+      .slide,
+      .slide.active {
+        display: flex !important;
+        position: relative;
+        width: 13.333in;
+        height: 7.5in;
+        padding: .42in .62in .5in;
+        break-after: page;
+        page-break-after: always;
+        animation: none;
+      }
+      .slide:last-child { break-after: auto; page-break-after: auto; }
+      .controls, .progress-track { display: none !important; }
+      .footer-note { bottom: .2in; right: .5in; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-label="国产FPGA载带元件智检仪系统框架与团队协作演示稿">
+    <section class="slide active" data-title="项目是什么" aria-label="第1页 项目是什么">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">队内系统说明 · 6页速览</div>
+          <h1>国产FPGA载带元件智检仪</h1>
+          <p class="subtitle">在元件<span class="strong">装入载带后、透明盖带封合前</span>，利用国产FPGA完成逐穴视觉检测、缺陷定位和运动闭环。</p>
+          <div class="tag-row">
+            <span class="tag">封盖前检测</span>
+            <span class="tag">逐穴编号</span>
+            <span class="tag">低延迟处理</span>
+            <span class="tag">NG持续跟踪</span>
+          </div>
+          <div class="hero-flow" aria-label="实时检测到结果处理流程">
+            <span>实时检测</span><span class="arrow">→</span>
+            <span>缺陷定位</span><span class="arrow">→</span>
+            <span>精准停靠</span><span class="arrow">→</span>
+            <span>二次复检</span>
+          </div>
+        </div>
+        <div class="tape-visual" aria-label="载带上四个穴位，其中一个极性反向为NG">
+          <div class="pockets">
+            <div class="pocket"><div class="component"></div></div>
+            <div class="pocket"><div class="component"></div></div>
+            <div class="pocket ng"><div class="component"></div></div>
+            <div class="pocket"><div class="component"></div></div>
+          </div>
+          <div class="ng-label">NG · 极性反向</div>
+        </div>
+      </div>
+      <div class="footer-note">系统框架与团队协作</div>
+    </section>
+
+    <section class="slide" data-title="整机怎么工作" aria-label="第2页 整机怎么工作">
+      <div class="title-row"><span class="page-kicker">02</span><h2>整机怎么工作</h2></div>
+      <div class="svg-wrap content-fill">
+        <svg viewBox="0 0 1500 700" role="img" aria-labelledby="machine-title machine-desc">
+          <title id="machine-title">载带智检仪整机工作流程</title>
+          <desc id="machine-desc">送料机构让载带经过摄像头，FPGA处理图像并将结果送到显示器，同时控制电机驱动器。</desc>
+          <defs>
+            <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#1d4f7a"></polygon>
+            </marker>
+            <marker id="arrow2o" markerWidth="10" markerHeight="10" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#ed7d31"></polygon>
+            </marker>
+            <filter id="shadow2" x="-10%" y="-10%" width="120%" height="130%">
+              <feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#12355b" flood-opacity=".12"/>
+            </filter>
+          </defs>
+
+          <rect x="55" y="235" width="225" height="150" rx="22" fill="#fff1e7" stroke="#ed7d31" stroke-width="3" filter="url(#shadow2)"/>
+          <text x="168" y="293" text-anchor="middle" class="svg-label">连续载带</text>
+          <text x="168" y="330" text-anchor="middle" class="svg-sub">大量穴位＋定位孔</text>
+          <text x="168" y="360" text-anchor="middle" class="svg-sub">元件已装入、尚未封盖</text>
+
+          <rect x="345" y="235" width="220" height="150" rx="22" fill="#e9f7f1" stroke="#268b6a" stroke-width="3" filter="url(#shadow2)"/>
+          <text x="455" y="293" text-anchor="middle" class="svg-label">送料机构</text>
+          <text x="455" y="330" text-anchor="middle" class="svg-sub">导轨＋送料轮</text>
+          <text x="455" y="360" text-anchor="middle" class="svg-sub">保持节距与位置稳定</text>
+
+          <rect x="635" y="88" width="235" height="135" rx="22" fill="#f1ecfa" stroke="#7652b5" stroke-width="3" filter="url(#shadow2)"/>
+          <text x="752" y="145" text-anchor="middle" class="svg-label">SC500CS摄像头</text>
+          <text x="752" y="181" text-anchor="middle" class="svg-sub">固定镜头＋稳定补光</text>
+
+          <rect x="635" y="257" width="235" height="170" rx="22" fill="#eaf4fd" stroke="#2878bd" stroke-width="4" filter="url(#shadow2)"/>
+          <text x="752" y="318" text-anchor="middle" class="svg-title">PH1P35 FPGA</text>
+          <text x="752" y="357" text-anchor="middle" class="svg-sub">采集 · 检测 · 编号</text>
+          <text x="752" y="388" text-anchor="middle" class="svg-sub">显示 · 跟踪 · 控制</text>
+
+          <rect x="955" y="115" width="220" height="140" rx="22" fill="#f6f9fb" stroke="#12355b" stroke-width="3" filter="url(#shadow2)"/>
+          <text x="1065" y="172" text-anchor="middle" class="svg-label">HDMI显示器</text>
+          <text x="1065" y="209" text-anchor="middle" class="svg-sub">框、编号、类型、统计</text>
+
+          <rect x="955" y="340" width="220" height="140" rx="22" fill="#e9f7f1" stroke="#268b6a" stroke-width="3" filter="url(#shadow2)"/>
+          <text x="1065" y="397" text-anchor="middle" class="svg-label">电机驱动器</text>
+          <text x="1065" y="434" text-anchor="middle" class="svg-sub">STEP / DIR / ENABLE</text>
+
+          <rect x="1245" y="340" width="205" height="140" rx="22" fill="#e9f7f1" stroke="#268b6a" stroke-width="3" filter="url(#shadow2)"/>
+          <text x="1347" y="397" text-anchor="middle" class="svg-label">送料电机</text>
+          <text x="1347" y="434" text-anchor="middle" class="svg-sub">运行 · 减速 · 停车</text>
+
+          <path d="M280 310 H345" class="svg-line" marker-end="url(#arrow2)"/>
+          <path d="M565 310 H635" class="svg-line" marker-end="url(#arrow2)"/>
+          <path d="M752 223 V257" class="svg-line" marker-end="url(#arrow2)"/>
+          <path d="M870 306 C920 306 912 185 955 185" class="svg-line" marker-end="url(#arrow2)"/>
+          <path d="M870 380 H955" class="svg-line" marker-end="url(#arrow2)"/>
+          <path d="M1175 410 H1245" class="svg-line" marker-end="url(#arrow2)"/>
+          <path d="M1347 480 C1347 585 455 585 455 385" stroke="#ed7d31" stroke-width="4" fill="none" marker-end="url(#arrow2o)"/>
+
+          <text x="605" y="294" text-anchor="end" class="svg-mini">载带经过检测区</text>
+          <text x="899" y="176" class="svg-mini">结果画面</text>
+          <text x="892" y="369" class="svg-mini">控制信号</text>
+          <text x="887" y="620" text-anchor="middle" font-size="22" font-weight="700" fill="#ed7d31">电机带动送料机构，形成闭环</text>
+        </svg>
+      </div>
+      <div class="key-message">FPGA不只“看图”：它同时完成图像检测、穴位编号、结果显示和运动控制。</div>
+    </section>
+
+    <section class="slide" data-title="RTL架构" aria-label="第3页 FPGA内部RTL架构">
+      <div class="title-row"><span class="page-kicker">03</span><h2>FPGA内部RTL架构</h2></div>
+      <div class="svg-wrap content-fill">
+        <svg viewBox="0 0 1580 720" role="img" aria-labelledby="rtl-title rtl-desc">
+          <title id="rtl-title">design_top_wrapper内部主要RTL模块</title>
+          <desc id="rtl-desc">视频链路从摄像头经过MIPI、解包、ISP、DDR、OSD到HDMI。检测链路从ISP经过定位孔、跟踪、ROI、特征和判定，再进入缺陷队列与运动控制。</desc>
+          <defs>
+            <marker id="arrow3" markerWidth="9" markerHeight="9" refX="8.5" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#1d4f7a"/></marker>
+            <marker id="arrow3o" markerWidth="9" markerHeight="9" refX="8.5" refY="3.5" orient="auto"><polygon points="0 0, 9 3.5, 0 7" fill="#ed7d31"/></marker>
+          </defs>
+
+          <rect x="18" y="20" width="1544" height="670" rx="22" fill="#ffffff" stroke="#9db4c5" stroke-width="3"/>
+          <rect x="18" y="20" width="1544" height="54" rx="22" fill="#12355b"/>
+          <rect x="18" y="50" width="1544" height="24" fill="#12355b"/>
+          <text x="790" y="57" text-anchor="middle" font-size="27" font-weight="700" class="svg-white">design_top_wrapper · A组唯一集成</text>
+
+          <rect x="55" y="96" width="1470" height="75" rx="15" fill="#f6f9fb" stroke="#cbd8e2" stroke-width="2"/>
+          <text x="80" y="124" class="svg-mini">基础控制</text>
+          <rect x="230" y="110" width="220" height="46" rx="10" fill="#eaf4fd" stroke="#2878bd" stroke-width="2"/>
+          <text x="340" y="140" text-anchor="middle" class="svg-label">clock_reset</text>
+          <rect x="555" y="110" width="250" height="46" rx="10" fill="#eaf4fd" stroke="#2878bd" stroke-width="2"/>
+          <text x="680" y="140" text-anchor="middle" class="svg-label">config_registers</text>
+          <rect x="910" y="110" width="220" height="46" rx="10" fill="#eaf4fd" stroke="#2878bd" stroke-width="2"/>
+          <text x="1020" y="140" text-anchor="middle" class="svg-label">camera_cfg</text>
+
+          <text x="55" y="216" class="svg-mini">视频链路 · 官方Lab 1为底座</text>
+          <g>
+            <rect x="55" y="237" width="180" height="74" rx="13" fill="#e5e7eb" stroke="#6b7780" stroke-width="2"/>
+            <text x="145" y="269" text-anchor="middle" class="svg-label">mipi_rx</text><text x="145" y="294" text-anchor="middle" class="svg-mini">官方IP</text>
+            <rect x="270" y="237" width="180" height="74" rx="13" fill="#e5e7eb" stroke="#6b7780" stroke-width="2"/>
+            <text x="360" y="269" text-anchor="middle" class="svg-label">csi_unpack</text><text x="360" y="294" text-anchor="middle" class="svg-mini">RAW10解包</text>
+            <rect x="485" y="237" width="180" height="74" rx="13" fill="#eaf4fd" stroke="#2878bd" stroke-width="2"/>
+            <text x="575" y="269" text-anchor="middle" class="svg-label">isp_simple</text><text x="575" y="294" text-anchor="middle" class="svg-mini">精简ISP</text>
+            <rect x="700" y="237" width="220" height="74" rx="13" fill="#e5e7eb" stroke="#6b7780" stroke-width="2"/>
+            <text x="810" y="269" text-anchor="middle" class="svg-label">ddr_framebuffer</text><text x="810" y="294" text-anchor="middle" class="svg-mini">官方DDR IP</text>
+            <rect x="955" y="237" width="190" height="74" rx="13" fill="#eaf4fd" stroke="#2878bd" stroke-width="2"/>
+            <text x="1050" y="269" text-anchor="middle" class="svg-label">osd_overlay</text><text x="1050" y="294" text-anchor="middle" class="svg-mini">轻量OSD</text>
+            <rect x="1180" y="237" width="180" height="74" rx="13" fill="#e5e7eb" stroke="#6b7780" stroke-width="2"/>
+            <text x="1270" y="269" text-anchor="middle" class="svg-label">hdmi_tx</text><text x="1270" y="294" text-anchor="middle" class="svg-mini">官方IP/HDL</text>
+            <rect x="1395" y="237" width="110" height="74" rx="13" fill="#f6f9fb" stroke="#12355b" stroke-width="2"/>
+            <text x="1450" y="282" text-anchor="middle" class="svg-label">显示器</text>
+          </g>
+          <path d="M235 274 H270 M450 274 H485 M665 274 H700 M920 274 H955 M1145 274 H1180 M1360 274 H1395" class="svg-line" marker-end="url(#arrow3)"/>
+
+          <rect x="55" y="355" width="1070" height="220" rx="18" fill="#f1ecfa" stroke="#7652b5" stroke-width="3"/>
+          <text x="80" y="389" font-size="23" font-weight="700" fill="#67419f">vision_top · 自研检测链路</text>
+          <g>
+            <rect x="80" y="430" width="180" height="88" rx="13" fill="#ffffff" stroke="#7652b5" stroke-width="2"/>
+            <text x="170" y="466" text-anchor="middle" class="svg-label">hole_detector</text><text x="170" y="494" text-anchor="middle" class="svg-mini">定位孔</text>
+            <rect x="290" y="430" width="190" height="88" rx="13" fill="#ffffff" stroke="#7652b5" stroke-width="2"/>
+            <text x="385" y="466" text-anchor="middle" class="svg-label">pocket_tracker</text><text x="385" y="494" text-anchor="middle" class="svg-mini">编号与相位</text>
+            <rect x="510" y="430" width="180" height="88" rx="13" fill="#ffffff" stroke="#7652b5" stroke-width="2"/>
+            <text x="600" y="466" text-anchor="middle" class="svg-label">roi_generator</text><text x="600" y="494" text-anchor="middle" class="svg-mini">动态ROI</text>
+            <rect x="720" y="430" width="190" height="88" rx="13" fill="#ffffff" stroke="#7652b5" stroke-width="2"/>
+            <text x="815" y="466" text-anchor="middle" class="svg-label">feature_accum</text><text x="815" y="494" text-anchor="middle" class="svg-mini">面积/中心/角度/极性</text>
+            <rect x="940" y="430" width="160" height="88" rx="13" fill="#ffffff" stroke="#7652b5" stroke-width="2"/>
+            <text x="1020" y="466" text-anchor="middle" class="svg-label">decision</text><text x="1020" y="494" text-anchor="middle" class="svg-mini">OK / NG</text>
+          </g>
+          <path d="M260 474 H290 M480 474 H510 M690 474 H720 M910 474 H940" class="svg-line" marker-end="url(#arrow3)"/>
+          <path d="M575 311 V392 H170 V430" class="svg-line" marker-end="url(#arrow3)"/>
+
+          <rect x="1165" y="355" width="340" height="220" rx="18" fill="#e9f7f1" stroke="#268b6a" stroke-width="3"/>
+          <text x="1190" y="389" font-size="23" font-weight="700" fill="#176b50">缺陷与运动控制</text>
+          <rect x="1200" y="430" width="270" height="62" rx="13" fill="#ffffff" stroke="#268b6a" stroke-width="2"/>
+          <text x="1335" y="468" text-anchor="middle" class="svg-label">defect_fifo</text>
+          <rect x="1200" y="512" width="270" height="62" rx="13" fill="#ffffff" stroke="#268b6a" stroke-width="2"/>
+          <text x="1335" y="550" text-anchor="middle" class="svg-label">motion_controller</text>
+          <path d="M1335 492 V512" class="svg-line" marker-end="url(#arrow3)"/>
+          <path d="M1100 474 H1200" stroke="#ed7d31" stroke-width="3.5" fill="none" marker-end="url(#arrow3o)"/>
+          <path d="M1020 430 V340 H1050 V311" stroke="#ed7d31" stroke-width="3.5" fill="none" marker-end="url(#arrow3o)"/>
+          <path d="M1335 430 V333 H1110 V311" class="svg-dash" marker-end="url(#arrow3)"/>
+
+          <rect x="170" y="613" width="1240" height="48" rx="11" fill="#fff1e7" stroke="#ed7d31" stroke-width="2"/>
+          <text x="790" y="644" text-anchor="middle" font-size="21" font-weight="700" fill="#b9571e">Lab 1作为工程底座 ｜ Lab 2/3只参考接口和思路 ｜ 自研轻量检测与OSD</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="slide" data-title="NG处理闭环" aria-label="第4页 一个NG怎么被处理">
+      <div class="title-row"><span class="page-kicker">04</span><h2>一个NG是怎么被处理的</h2></div>
+      <div class="key-message" style="margin-top:0;margin-bottom:18px">关键：<span class="accent">检测到NG不立即停车</span>，先记住它的穴位编号，等它到达处置位置再停。</div>
+      <div class="ng-grid">
+        <article class="step"><span class="step-no">1</span><h3>定位孔</h3><p>检测规则定位孔，建立载带运动基准。</p></article>
+        <article class="step"><span class="step-no">2</span><h3>连续编号</h3><p>为每个穴位分配唯一编号。</p></article>
+        <article class="step"><span class="step-no">3</span><h3>逐穴检测</h3><p>判断空穴、偏位、旋转和极性。</p></article>
+        <article class="step warn"><span class="step-no">4</span><h3>写入NG队列</h3><p>保存编号、类型和目标处置位置。</p></article>
+        <article class="step"><span class="step-no">5</span><h3>继续跟踪</h3><p>按照定位孔更新剩余孔数。</p></article>
+        <article class="step"><span class="step-no">6</span><h3>减速停车</h3><p>到达处置区前减速，并准确停靠。</p></article>
+        <article class="step"><span class="step-no">7</span><h3>异常处置</h3><p>对当前穴位补料、转向或摆正。</p></article>
+        <article class="step warn"><span class="step-no">8</span><h3>二次复检</h3><p>通过则继续运行；不通过则保持停车。</p></article>
+      </div>
+    </section>
+
+    <section class="slide" data-title="三组分工" aria-label="第5页 三个人加三个AI怎么分工">
+      <div class="title-row"><span class="page-kicker">05</span><h2>三个人＋三个AI怎么分工</h2></div>
+      <div class="team-grid">
+        <article class="team team-a">
+          <h3>A组 · FPGA与系统集成</h3>
+          <div class="team-role">1人＋AI-A｜唯一系统集成人</div>
+          <div class="team-section"><strong>负责</strong><p>Lab 1底座、RTL、顶层、时钟复位、资源时序、最终bitstream。</p></div>
+          <div class="team-section"><strong>交付</strong><p>可编译工程、仿真、资源/时序报告、上板版本。</p></div>
+          <div class="team-section"><strong>不越界</strong><p>不自行决定视觉阈值，也不自行决定机械电气参数。</p></div>
+        </article>
+
+        <article class="team team-b">
+          <h3>B组 · 视觉与独立测试</h3>
+          <div class="team-role">1人＋AI-B｜算法定义与验收</div>
+          <div class="team-section"><strong>负责</strong><p>元件、镜头、光源、离线算法、定点金标准和测试数据。</p></div>
+          <div class="team-section"><strong>交付</strong><p>公式、位宽、阈值、测试向量、期望结果和准确率报告。</p></div>
+          <div class="team-section"><strong>不越界</strong><p>不直接修改FPGA顶层、引脚约束和电机电路。</p></div>
+        </article>
+
+        <article class="team team-c">
+          <h3>C组 · 机械与硬件</h3>
+          <div class="team-role">1人＋AI-C｜实物结构与停车验收</div>
+          <div class="team-section"><strong>负责</strong><p>导轨、送料、电机驱动、补光、传感器、接线和结构安全。</p></div>
+          <div class="team-section"><strong>交付</strong><p>接口电平、脉冲数、速度、减速距离、BOM和装配资料。</p></div>
+          <div class="team-section"><strong>不越界</strong><p>不修改视觉编号逻辑，不直接改变检测算法接口。</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="slide" data-title="三组如何对接" aria-label="第6页 三组如何对接">
+      <div class="title-row"><span class="page-kicker">06</span><h2>三组如何对接</h2></div>
+      <div class="handoff-layout">
+        <div class="lane" aria-label="视觉算法对接流程">
+          <div class="lane-node lane-b">B组算法交付包<small>公式 · 位宽 · 阈值 · 测试向量</small></div>
+          <div class="lane-arrow">→</div>
+          <div class="lane-node lane-a">A组实现并上板<small>RTL · 仿真 · 资源 · 时序</small></div>
+          <div class="lane-arrow">→</div>
+          <div class="lane-node lane-b">B组独立验收<small>对照金标准，不通过则退回</small></div>
+        </div>
+
+        <div class="lane" aria-label="机械硬件对接流程">
+          <div class="lane-node lane-c">C组硬件接口包<small>电平 · 脉冲 · 速度 · 减速距离</small></div>
+          <div class="lane-arrow">→</div>
+          <div class="lane-node lane-a">A组实现运动控制<small>跟踪 · 减速 · 停车 · 继续</small></div>
+          <div class="lane-arrow">→</div>
+          <div class="lane-node lane-c">C组实物验收<small>送料稳定 · 停车精度 · 安全</small></div>
+        </div>
+
+        <div class="principles">
+          <div class="principle">唯一系统集成人</div>
+          <div class="principle">接口先于代码</div>
+          <div class="principle">无证据不合并</div>
+          <div class="principle">稳定版优先</div>
+          <div class="current-task">当前共同任务：先复现并跑稳官方 Lab 1 的 SC500 → MIPI → DDR2 → HDMI 链路</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="controls" aria-label="演示控制">
+    <button type="button" id="prevBtn" aria-label="上一页">←</button>
+    <span class="counter" id="counter" aria-live="polite">1 / 6</span>
+    <button type="button" id="nextBtn" aria-label="下一页">→</button>
+    <button type="button" id="fullscreenBtn" aria-label="全屏演示">全屏</button>
+    <button type="button" id="printBtn" aria-label="打印或导出PDF">打印</button>
+  </nav>
+  <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+
+  <script>
+    (() => {
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+      const printBtn = document.getElementById('printBtn');
+      const counter = document.getElementById('counter');
+      const progressBar = document.getElementById('progressBar');
+      let current = 0;
+
+      const indexFromHash = () => {
+        const match = location.hash.match(/^#slide-(\d+)$/);
+        if (!match) return 0;
+        return Math.min(slides.length - 1, Math.max(0, Number(match[1]) - 1));
+      };
+
+      const show = (index, updateHash = true) => {
+        current = Math.min(slides.length - 1, Math.max(0, index));
+        slides.forEach((slide, i) => {
+          const active = i === current;
+          slide.classList.toggle('active', active);
+          slide.setAttribute('aria-hidden', String(!active));
+        });
+        counter.textContent = `${current + 1} / ${slides.length}`;
+        progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === slides.length - 1;
+        document.title = `${slides[current].dataset.title}｜国产FPGA载带元件智检仪`;
+        if (updateHash) history.replaceState(null, '', `#slide-${current + 1}`);
+      };
+
+      prevBtn.addEventListener('click', () => show(current - 1));
+      nextBtn.addEventListener('click', () => show(current + 1));
+      printBtn.addEventListener('click', () => window.print());
+
+      fullscreenBtn.addEventListener('click', async () => {
+        try {
+          if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen();
+          } else {
+            await document.exitFullscreen();
+          }
+        } catch (error) {
+          console.warn('当前浏览器未允许全屏：', error);
+        }
+      });
+
+      document.addEventListener('fullscreenchange', () => {
+        fullscreenBtn.textContent = document.fullscreenElement ? '退出全屏' : '全屏';
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (['ArrowRight', 'PageDown', ' '].includes(event.key)) {
+          event.preventDefault();
+          show(current + 1);
+        } else if (['ArrowLeft', 'PageUp'].includes(event.key)) {
+          event.preventDefault();
+          show(current - 1);
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          show(0);
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          show(slides.length - 1);
+        }
+      });
+
+      window.addEventListener('hashchange', () => show(indexFromHash(), false));
+      show(indexFromHash(), false);
+    })();
+  </script>
+</body>
+</html>

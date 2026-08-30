@@ -1,0 +1,62 @@
+set_pin_assignment	{ clk_25 }	{ LOCATION = D19; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment	{ key1 }	{ LOCATION = B20; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment	{ key2 }	{ LOCATION = A22; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+
+set_pin_assignment	{ phy1_rgmii_rx_clk }		{ LOCATION = K21; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; }
+set_pin_assignment	{ phy1_rgmii_rx_ctl }		{ LOCATION = J21; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; }
+set_pin_assignment	{ phy1_rgmii_rx_data[0] }	{ LOCATION = H18; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; }
+set_pin_assignment	{ phy1_rgmii_rx_data[1] }	{ LOCATION = J18; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; }
+set_pin_assignment	{ phy1_rgmii_rx_data[2] }	{ LOCATION = J16; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; }
+set_pin_assignment	{ phy1_rgmii_rx_data[3] }	{ LOCATION = J15; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; }
+set_pin_assignment	{ phy1_rgmii_tx_clk }		{ LOCATION = M21; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 16; SLEWRATE = FAST; OUTDEL = 3;}
+set_pin_assignment	{ phy1_rgmii_tx_ctl }		{ LOCATION = K18; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; }
+set_pin_assignment	{ phy1_rgmii_tx_data[0] }	{ LOCATION = L15; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; }
+set_pin_assignment	{ phy1_rgmii_tx_data[1] }	{ LOCATION = K16; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; }
+set_pin_assignment	{ phy1_rgmii_tx_data[2] }	{ LOCATION = K17; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; }
+set_pin_assignment	{ phy1_rgmii_tx_data[3] }	{ LOCATION = H19; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; }
+
+set_pin_assignment	{ led[0] }	{ LOCATION = A20; IOSTANDARD = LVCMOS33; }
+set_pin_assignment	{ led[1] }	{ LOCATION = A19; IOSTANDARD = LVCMOS33; }
+set_pin_assignment	{ led[2] }	{ LOCATION = B19; IOSTANDARD = LVCMOS33; }
+set_pin_assignment	{ led[3] }	{ LOCATION = A18; IOSTANDARD = LVCMOS33; }
+
+#set_pin_assignment	{ phy2_rgmii_rx_clk }		{ LOCATION = J23; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; }
+#set_pin_assignment	{ phy2_rgmii_rx_ctl }		{ LOCATION = J19; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; INDEL = 8; }
+#set_pin_assignment	{ phy2_rgmii_rx_data[0] }	{ LOCATION = E25; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; INDEL = 8; }
+#set_pin_assignment	{ phy2_rgmii_rx_data[1] }	{ LOCATION = H22; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; INDEL = 8; }
+#set_pin_assignment	{ phy2_rgmii_rx_data[2] }	{ LOCATION = D25; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; INDEL = 8; }
+#set_pin_assignment	{ phy2_rgmii_rx_data[3] }	{ LOCATION = H23; IOSTANDARD = LVCMOS25; PULLTYPE = NONE; INDEL = 8; }
+#set_pin_assignment	{ phy2_rgmii_tx_clk }		{ LOCATION = H21; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; }
+#set_pin_assignment	{ phy2_rgmii_tx_ctl }		{ LOCATION = F24; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; OUTDEL = 1;}
+#set_pin_assignment	{ phy2_rgmii_tx_data[0] }	{ LOCATION = J24; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; OUTDEL = 1; }
+#set_pin_assignment	{ phy2_rgmii_tx_data[1] }	{ LOCATION = L19; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; OUTDEL = 1; }
+#set_pin_assignment	{ phy2_rgmii_tx_data[2] }	{ LOCATION = H24; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; OUTDEL = 1; }
+#set_pin_assignment	{ phy2_rgmii_tx_data[3] }	{ LOCATION = G24; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; OUTDEL = 1; }
+
+set_pin_assignment	{ phy_reset }	{ LOCATION = M15; IOSTANDARD = LVCMOS25; DRIVESTRENGTH = 16; SLEWRATE = FAST; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
