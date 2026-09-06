@@ -1,0 +1,5342 @@
+{
+  "format_version": "1.0",
+  "purpose": "AI-readable, loss-preserving conversion of the source PPTX",
+  "fidelity_rules": [
+    "Do not silently reconcile conflicting numbers or wording from different slides.",
+    "Semantic text removes layout-only line wrapping/spaces but preserves wording, numbers, units, capitalization, URLs and explicit punctuation as far as practical.",
+    "Raw slide shape/table/relationship data is included for auditability.",
+    "Visual-only information is described where important; all original media and embedded OLE objects are bundled unchanged.",
+    "When a diagram relation is visually ambiguous, the annotation uses “connected” rather than inventing a direction."
+  ],
+  "source": {
+    "original_filename": "8fe41f2c-14e8-4e7b-8596-ecaf69626912.pptx",
+    "sha256": "80a35371a96a6dd7f9745432e575fa9b4d7dc09409e180da934f0149c1a1e061",
+    "slide_count": 29,
+    "slide_size_emu": [
+      12192000,
+      6858000
+    ],
+    "core_properties": {
+      "title": "PowerPoint 演示文稿",
+      "subject": "",
+      "author": "Microsoft Office User",
+      "keywords": "",
+      "comments": "",
+      "category": "",
+      "created": "2021-11-06T05:42:00",
+      "modified": "2026-08-24T10:01:38",
+      "last_modified_by": "WPS_1681392381",
+      "revision": 235
+    },
+    "visible_branding_and_footer": [
+      "标题页与结束页包含“安路科技 / ANLOGIC”品牌标识。",
+      "多页可见版权页脚：“©2025 Anlogic Infotech, all rights reserved”。"
+    ]
+  },
+  "known_source_inconsistencies_or_ambiguous_strings": [
+    {
+      "topic": "LUT数量",
+      "slide_4": "38,189 个 LUT",
+      "slide_8": "LUTs 38184",
+      "handling": "两处均按原文保留，不判断哪一个正确。"
+    },
+    {
+      "topic": "供电字段",
+      "slide_8": "②12DC-5V：5V、3.3V、2.5V、1.2V电路系统",
+      "handling": "按原表文本保留，不擅自改为“12V DC-5V”等其他写法。"
+    },
+    {
+      "topic": "摄像头连接口字段",
+      "slide_11": "连接口：24P-FPC24,；另有“连接口 24P-FPC”",
+      "handling": "按原表保留，未合并/纠错。"
+    },
+    {
+      "topic": "例程路径",
+      "slide_12": "lab_ex_2026_nosoft",
+      "handling": "PPT表格单元格文本本身为该连续字符串；版面显示时换行。"
+    },
+    {
+      "topic": "地址",
+      "slide_29": "上海市浦东新区中科路1867号C座8/11-12层",
+      "handling": "斜杠和楼层写法原样保留。"
+    },
+    {
+      "topic": "版权年份与文档日期",
+      "footer": "©2025",
+      "slide_1_date": "2026.09.05",
+      "handling": "两者同时保留，不推断冲突。"
+    }
+  ],
+  "slides": [
+    {
+      "slide": 1,
+      "semantic": {
+        "title": "FPGA创新设计竞赛赛题解析",
+        "items": [
+          "安路赛道——选题二",
+          "2026.09.05"
+        ]
+      },
+      "visual_annotations": [
+        "左上角为“安路科技 / ANLOGIC”标识；右侧为红/深蓝几何装饰。"
+      ],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide1.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout1.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1708260,
+            "top": 1706693,
+            "width": 5315204,
+            "height": 1279068
+          },
+          "text": "FPGA创新设计竞赛赛题解析",
+          "paragraphs": [
+            {
+              "text": "FPGA创新设计竞赛赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1708259,
+            "top": 2985761,
+            "width": 3236784,
+            "height": 461665
+          },
+          "text": "安路赛道——选题二",
+          "paragraphs": [
+            {
+              "text": "安路赛道——选题二",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 8",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1708259,
+            "top": 5362963,
+            "width": 1495922,
+            "height": 307777
+          },
+          "text": "2026.09.05",
+          "paragraphs": [
+            {
+              "text": "2026.09.05",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "semantic": {
+        "title": "CONTENTS",
+        "items": [
+          "Part 01：选题方向",
+          "Part 02：竞赛技术平台",
+          "Part 03：赛题解析",
+          "Part 04：技术支持与技术资源"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout3.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "组合 8",
+          "shape_type": "GROUP (6)",
+          "bbox_emu": {
+            "left": 3539126,
+            "top": 2164637,
+            "width": 7382585,
+            "height": 2528727
+          },
+          "children": [
+            {
+              "path": "1/1",
+              "name": "组合 6",
+              "shape_type": "GROUP (6)",
+              "bbox_emu": {
+                "left": 3539126,
+                "top": 1504002,
+                "width": 3862516,
+                "height": 921153
+              },
+              "children": [
+                {
+                  "path": "1/1/1",
+                  "name": "矩形 3",
+                  "shape_type": "AUTO_SHAPE (1)",
+                  "bbox_emu": {
+                    "left": 3539126,
+                    "top": 2025045,
+                    "width": 3862516,
+                    "height": 400110
+                  },
+                  "text": "选题方向",
+                  "paragraphs": [
+                    {
+                      "text": "选题方向",
+                      "level": 0,
+                      "bullet": null
+                    }
+                  ]
+                },
+                {
+                  "path": "1/1/2",
+                  "name": "矩形 5",
+                  "shape_type": "AUTO_SHAPE (1)",
+                  "bbox_emu": {
+                    "left": 3539126,
+                    "top": 1504002,
+                    "width": 1479316,
+                    "height": 523220
+                  },
+                  "text": "Part 01",
+                  "paragraphs": [
+                    {
+                      "text": "Part 01",
+                      "level": 0,
+                      "bullet": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "1/2",
+              "name": "组合 7",
+              "shape_type": "GROUP (6)",
+              "bbox_emu": {
+                "left": 3539126,
+                "top": 3111576,
+                "width": 3862516,
+                "height": 921153
+              },
+              "children": [
+                {
+                  "path": "1/2/1",
+                  "name": "矩形 14",
+                  "shape_type": "AUTO_SHAPE (1)",
+                  "bbox_emu": {
+                    "left": 3539126,
+                    "top": 3632619,
+                    "width": 3862516,
+                    "height": 400110
+                  },
+                  "text": "竞赛技术平台",
+                  "paragraphs": [
+                    {
+                      "text": "竞赛技术平台",
+                      "level": 0,
+                      "bullet": null
+                    }
+                  ]
+                },
+                {
+                  "path": "1/2/2",
+                  "name": "矩形 15",
+                  "shape_type": "AUTO_SHAPE (1)",
+                  "bbox_emu": {
+                    "left": 3539126,
+                    "top": 3111576,
+                    "width": 1479316,
+                    "height": 523220
+                  },
+                  "text": "Part 02",
+                  "paragraphs": [
+                    {
+                      "text": "Part 02",
+                      "level": 0,
+                      "bullet": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "1/3",
+              "name": "组合 4",
+              "shape_type": "GROUP (6)",
+              "bbox_emu": {
+                "left": 7059195,
+                "top": 1504002,
+                "width": 3862516,
+                "height": 921153
+              },
+              "children": [
+                {
+                  "path": "1/3/1",
+                  "name": "矩形 16",
+                  "shape_type": "AUTO_SHAPE (1)",
+                  "bbox_emu": {
+                    "left": 3539126,
+                    "top": 5240193,
+                    "width": 3862516,
+                    "height": 400110
+                  },
+                  "text": "赛题解析",
+                  "paragraphs": [
+                    {
+                      "text": "赛题解析",
+                      "level": 0,
+                      "bullet": null
+                    }
+                  ]
+                },
+                {
+                  "path": "1/3/2",
+                  "name": "矩形 17",
+                  "shape_type": "AUTO_SHAPE (1)",
+                  "bbox_emu": {
+                    "left": 3539126,
+                    "top": 4719150,
+                    "width": 1479316,
+                    "height": 523220
+                  },
+                  "text": "Part 03",
+                  "paragraphs": [
+                    {
+                      "text": "Part 03",
+                      "level": 0,
+                      "bullet": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "1/4",
+              "name": "组合 2",
+              "shape_type": "GROUP (6)",
+              "bbox_emu": {
+                "left": 7059195,
+                "top": 3111576,
+                "width": 3862516,
+                "height": 921153
+              },
+              "children": [
+                {
+                  "path": "1/4/1",
+                  "name": "矩形 18",
+                  "shape_type": "AUTO_SHAPE (1)",
+                  "bbox_emu": {
+                    "left": 7615007,
+                    "top": 2025045,
+                    "width": 3862516,
+                    "height": 400110
+                  },
+                  "text": "技术支持与技术资源",
+                  "paragraphs": [
+                    {
+                      "text": "技术支持与技术资源",
+                      "level": 0,
+                      "bullet": null
+                    }
+                  ]
+                },
+                {
+                  "path": "1/4/2",
+                  "name": "矩形 19",
+                  "shape_type": "AUTO_SHAPE (1)",
+                  "bbox_emu": {
+                    "left": 7615007,
+                    "top": 1504002,
+                    "width": 1479316,
+                    "height": 523220
+                  },
+                  "text": "Part 04",
+                  "paragraphs": [
+                    {
+                      "text": "Part 04",
+                      "level": 0,
+                      "bullet": null
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "semantic": {
+        "title": "Part 01 选题方向",
+        "items": []
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [
+        {
+          "shape_name": "备注占位符 2",
+          "text": "logo2.png"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide2.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout4.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "矩形 1",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 980480,
+            "top": 2577313,
+            "width": 2339102,
+            "height": 646331
+          },
+          "text": "选题方向",
+          "paragraphs": [
+            {
+              "text": "选题方向",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 2",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 971772,
+            "top": 1731281,
+            "width": 1852367,
+            "height": 646331
+          },
+          "text": "Part 01",
+          "paragraphs": [
+            {
+              "text": "Part 01",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "灯片编号占位符 3",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "semantic": {
+        "title": "选题二：基于安路FPGA的实时数字图像处理系统｜赛题简介",
+        "items": [
+          "本赛题基于FPGA的视频图像处理系统，具备低延迟、高实时性的特点，适用于智能视觉、工业检测、无人系统及嵌入式应用等多种应用场景。",
+          "比赛要求使用定制开发板，主芯片为安路科技PH1P35MDG324，内置42,432个DFF和38,189个LUT，具备强大的逻辑处理能力。通过该开发板，参赛者将设计完整的高清视频图像采集、处理与显示架构，涵盖MIPI视频流输入解码、视频数据缓存、图像信号处理及HDMI高清显示等环节，实现低延迟、实时、稳定的视频流采集、处理与输出。系统支持高清视频图像处理与显示场景，可进行边缘提取、画面卡通化、目标检测、ISP图像增强等算法优化，结合摄像头、矩阵键盘、语音、AD/DA以及机电联动控制等外设模块，完成具有实际意义的创新应用设计。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide3.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 2033703,
+            "width": 8454315,
+            "height": 4049955
+          },
+          "text": "本赛题基于FPGA的视频图像处理系统，具备低延迟、高实时性的特点，适用于智能视觉、工业检测、无人系统及嵌入式应用等多种应用场景。\n比赛要求使用定制开发板，主芯片为安路科技PH1P35MDG324，内置42,432个DFF和38,189个LUT，具备强大的逻辑处理能力。通过该开发板，参赛者将设计完整的高清视频图像采集、处理与显示架构，涵盖MIPI视频流输入解码、视频数据缓存、图像信号处理及 HDMI高清显示等环节，实现低延迟、实时、稳定的视频流采集、处理与输出。系统支持高清视频图像处理与显示场景，可进行边缘提取、画面卡通化、目标检测、ISP 图像增强等算法优化，结合摄像头、矩阵键盘、语音、AD/DA 以及机电联动控制等外设模块，完成具有实际意义的创新应用设计。\n",
+          "paragraphs": [
+            {
+              "text": "本赛题基于FPGA的视频图像处理系统，具备低延迟、高实时性的特点，适用于智能视觉、工业检测、无人系统及嵌入式应用等多种应用场景。",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "比赛要求使用定制开发板，主芯片为安路科技PH1P35MDG324，内置42,432个DFF和38,189个LUT，具备强大的逻辑处理能力。通过该开发板，参赛者将设计完整的高清视频图像采集、处理与显示架构，涵盖MIPI视频流输入解码、视频数据缓存、图像信号处理及 HDMI高清显示等环节，实现低延迟、实时、稳定的视频流采集、处理与输出。系统支持高清视频图像处理与显示场景，可进行边缘提取、画面卡通化、目标检测、ISP 图像增强等算法优化，结合摄像头、矩阵键盘、语音、AD/DA 以及机电联动控制等外设模块，完成具有实际意义的创新应用设计。",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "赛题简介",
+          "paragraphs": [
+            {
+              "text": "赛题简介",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 9297895,
+            "height": 523220
+          },
+          "text": "选题二：基于安路FPGA的实时数字图像处理系统",
+          "paragraphs": [
+            {
+              "text": "选题二：基于安路FPGA的实时数字图像处理系统",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "semantic": {
+        "title": "基础要求",
+        "items": [
+          "1. 实现视频采集与显示功能：使用MIPI摄像头采集视频数据，并通过HDMI接口实现视频实时输出显示；",
+          "2. 实现基础图像处理功能：在FPGA端完成至少一种图像处理算法（如边缘检测、灰度变换或二值化等），并输出处理后视频；",
+          "3. 实现图像处理结果显示：处理后的视频需稳定输出至HDMI显示设备，画面连续，无明显异常；",
+          "4. 实现信息叠加功能：在输出视频画面中叠加简单图形或文字信息（OSD），并包含“安路”标识Logo。",
+          "注：基础要求重点考察系统完整性与稳定性，算法复杂度不作强制要求。",
+          "基础要求在最终设计上必须实现至少3条。",
+          "使用开发板必须是HX1P35A开发板。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide4.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 2173400,
+            "width": 9799021,
+            "height": 4296176
+          },
+          "text": "实现视频采集与显示功能：使用MIPI摄像头采集视频数据，并通过HDMI接口实现视频实时输出显示；\n实现基础图像处理功能：在FPGA端完成至少一种图像处理算法（如边缘检测、灰度变换或二值化等），并输出处理后视频；\n实现图像处理结果显示：处理后的视频需稳定输出至HDMI显示设备，画面连续，无明显异常；\n实现信息叠加功能：在输出视频画面中叠加简单图形或文字信息（OSD），并包含“安路”标识Logo。\n注：基础要求重点考察系统完整性与稳定性，算法复杂度不作强制要求。\n\n基础要求在最终设计上必须实现至少3条。\n使用开发板必须是HX1P35A开发板。",
+          "paragraphs": [
+            {
+              "text": "实现视频采集与显示功能：使用MIPI摄像头采集视频数据，并通过HDMI接口实现视频实时输出显示；",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "实现基础图像处理功能：在FPGA端完成至少一种图像处理算法（如边缘检测、灰度变换或二值化等），并输出处理后视频；",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "实现图像处理结果显示：处理后的视频需稳定输出至HDMI显示设备，画面连续，无明显异常；",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "实现信息叠加功能：在输出视频画面中叠加简单图形或文字信息（OSD），并包含“安路”标识Logo。\n注：基础要求重点考察系统完整性与稳定性，算法复杂度不作强制要求。",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "基础要求在最终设计上必须实现至少3条。",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "使用开发板必须是HX1P35A开发板。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "基础要求",
+          "paragraphs": [
+            {
+              "text": "基础要求",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8984130,
+            "height": 523220
+          },
+          "text": "选题二：基于安路FPGA的实时数字图像处理系统",
+          "paragraphs": [
+            {
+              "text": "选题二：基于安路FPGA的实时数字图像处理系统",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "semantic": {
+        "title": "扩展要求",
+        "items": [
+          "1. 实现视频图像风格化处理或视觉增强功能，如边缘提取与区域填充（卡通化处理）等；",
+          "2. 实现基于视频内容的目标检测与识别功能，对简单目标（如几何形状或特定物体）进行识别，并在输出画面中叠加检测结果与文字说明；",
+          "3. 面向实际应用场景进行系统设计，如结合移动平台（智能小车等），根据视频识别结果实现外部控制；",
+          "4. 优化系统性能，在保证功能实现的前提下，提高处理实时性，降低资源占用；",
+          "5. 自主创意：开展其他基于视频图像处理的创新设计，在系统稳定运行基础上实现功能扩展。",
+          "赛题网址：http://www.fpgachina.cn/download?value=11",
+          "扩展要求在最终设计中只要求至少实现1条。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 770367,
+            "top": 1625103,
+            "width": 9799021,
+            "height": 4496231
+          },
+          "text": "实现视频图像风格化处理或视觉增强功能，如边缘提取与区域填充（卡通化处理）等；\n实现基于视频内容的目标检测与识别功能，对简单目标（如几何形状或特定物体）进行识别，并在输出画面中叠加检测结果与文字说明；\n面向实际应用场景进行系统设计，如结合移动平台（智能小车等），根据视频识别结果实现外部控制；\n优化系统性能，在保证功能实现的前提下，提高处理实时性，降低资源占用；\n自主创意：开展其他基于视频图像处理的创新设计，在系统稳定运行基础上实现功能扩展。\n赛题网址：http://www.fpgachina.cn/download?value=11\n\n扩展要求在最终设计中只要求至少实现1条",
+          "paragraphs": [
+            {
+              "text": "实现视频图像风格化处理或视觉增强功能，如边缘提取与区域填充（卡通化处理）等；",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "实现基于视频内容的目标检测与识别功能，对简单目标（如几何形状或特定物体）进行识别，并在输出画面中叠加检测结果与文字说明；",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "面向实际应用场景进行系统设计，如结合移动平台（智能小车等），根据视频识别结果实现外部控制；",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "优化系统性能，在保证功能实现的前提下，提高处理实时性，降低资源占用；",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "自主创意：开展其他基于视频图像处理的创新设计，在系统稳定运行基础上实现功能扩展。",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "赛题网址：http://www.fpgachina.cn/download?value=11",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "扩展要求在最终设计中只要求至少实现1条",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "扩展要求",
+          "paragraphs": [
+            {
+              "text": "扩展要求",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 9217213,
+            "height": 523220
+          },
+          "text": "选题二：基于安路FPGA的实时数字图像处理系统",
+          "paragraphs": [
+            {
+              "text": "选题二：基于安路FPGA的实时数字图像处理系统",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "semantic": {
+        "title": "Part 02 竞赛硬件资源",
+        "items": []
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [
+        {
+          "shape_name": "备注占位符 2",
+          "text": "logo2.png"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide6.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout4.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "矩形 1",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 980480,
+            "top": 2577313,
+            "width": 3416320,
+            "height": 646331
+          },
+          "text": "竞赛硬件资源",
+          "paragraphs": [
+            {
+              "text": "竞赛硬件资源",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 2",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 971772,
+            "top": 1731281,
+            "width": 1869423,
+            "height": 646331
+          },
+          "text": "Part 02",
+          "paragraphs": [
+            {
+              "text": "Part 02",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "灯片编号占位符 3",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "semantic": {
+        "title": "竞赛技术平台｜HX1P35A开发板",
+        "items": []
+      },
+      "visual_annotations": [
+        "右侧为 HX1P35A V1.0 开发板实物照片（原始资产：image7.jpeg）。"
+      ],
+      "tables": [
+        [
+          [
+            "硬件参数配置",
+            ""
+          ],
+          [
+            "FPGA",
+            "安路PH1P系列PH1P35MDG324"
+          ],
+          [
+            "LUTs",
+            "38184"
+          ],
+          [
+            "DFFs",
+            "42432"
+          ],
+          [
+            "dis-RAM",
+            "507Kbit"
+          ],
+          [
+            "ERAM",
+            "2160Kbit"
+          ],
+          [
+            "MIPI",
+            "2"
+          ],
+          [
+            "其他资源",
+            "DSP:40,PLL:6,TVS:6:MCU:1"
+          ],
+          [
+            "调试下载方式",
+            "板载AL-LINK-FT下载器,Type-C接口"
+          ],
+          [
+            "供电方式",
+            "①板载USB口5V供电、②12DC-5V：5V、3.3V、2.5V、1.2V电路系统"
+          ]
+        ]
+      ],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId3",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide7.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "image",
+          "target": "../media/image7.jpeg",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "HX1P35A开发板",
+          "paragraphs": [
+            {
+              "text": "HX1P35A开发板",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "竞赛技术平台",
+          "paragraphs": [
+            {
+              "text": "竞赛技术平台",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "表格 2",
+          "shape_type": "TABLE (19)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1733244,
+            "width": 6114527,
+            "height": 4165400
+          },
+          "table": [
+            [
+              "硬件参数配置",
+              ""
+            ],
+            [
+              "FPGA",
+              "安路PH1P系列PH1P35MDG324"
+            ],
+            [
+              "LUTs",
+              "38184"
+            ],
+            [
+              "DFFs",
+              "42432"
+            ],
+            [
+              "dis-RAM",
+              "507Kbit"
+            ],
+            [
+              "ERAM",
+              "2160Kbit"
+            ],
+            [
+              "MIPI",
+              "2"
+            ],
+            [
+              "其他资源",
+              "DSP:40,PLL:6,TVS:6:MCU:1"
+            ],
+            [
+              "调试下载方式",
+              "板载AL-LINK-FT下载器,Type-C接口"
+            ],
+            [
+              "供电方式",
+              "①板载USB口5V供电、②12DC-5V：5V、3.3V、2.5V、1.2V电路系统"
+            ]
+          ]
+        },
+        {
+          "path": "5",
+          "name": "图片 4",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 7243779,
+            "top": 2278381,
+            "width": 4592319,
+            "height": 3018238
+          },
+          "relationship_id": "rId1"
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "semantic": {
+        "title": "竞赛技术平台｜HX1P35A开发板",
+        "items": []
+      },
+      "visual_annotations": [
+        "右侧为同一 HX1P35A V1.0 开发板实物照片（image7.jpeg）。"
+      ],
+      "tables": [
+        [
+          [
+            "硬件参数配置",
+            ""
+          ],
+          [
+            "人机互换信号",
+            "4组输入按键 "
+          ],
+          [
+            "",
+            "4组拨码开关"
+          ],
+          [
+            "",
+            "1组控制蜂鸣器开关"
+          ],
+          [
+            "",
+            "1组切换数码管和双色LED开关"
+          ],
+          [
+            "显示信号",
+            "4组LED发光管"
+          ],
+          [
+            "",
+            "1组电源显示LED"
+          ],
+          [
+            "",
+            "1组配置信号显示LED"
+          ],
+          [
+            "",
+            "8组数码管"
+          ],
+          [
+            "",
+            "8组双色16个LED"
+          ],
+          [
+            "通信接口",
+            "USB转UART"
+          ],
+          [
+            "",
+            "千兆以太网口"
+          ],
+          [
+            "",
+            "蜂鸣器"
+          ]
+        ]
+      ],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId3",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide8.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "image",
+          "target": "../media/image7.jpeg",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "HX1P35A开发板",
+          "paragraphs": [
+            {
+              "text": "HX1P35A开发板",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "竞赛技术平台",
+          "paragraphs": [
+            {
+              "text": "竞赛技术平台",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "表格 6",
+          "shape_type": "TABLE (19)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1804519,
+            "width": 6114526,
+            "height": 4345345
+          },
+          "table": [
+            [
+              "硬件参数配置",
+              ""
+            ],
+            [
+              "人机互换信号",
+              "4组输入按键 "
+            ],
+            [
+              "",
+              "4组拨码开关"
+            ],
+            [
+              "",
+              "1组控制蜂鸣器开关"
+            ],
+            [
+              "",
+              "1组切换数码管和双色LED开关"
+            ],
+            [
+              "显示信号",
+              "4组LED发光管"
+            ],
+            [
+              "",
+              "1组电源显示LED"
+            ],
+            [
+              "",
+              "1组配置信号显示LED"
+            ],
+            [
+              "",
+              "8组数码管"
+            ],
+            [
+              "",
+              "8组双色16个LED"
+            ],
+            [
+              "通信接口",
+              "USB转UART"
+            ],
+            [
+              "",
+              "千兆以太网口"
+            ],
+            [
+              "",
+              "蜂鸣器"
+            ]
+          ]
+        },
+        {
+          "path": "5",
+          "name": "图片 4",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 7243779,
+            "top": 2278381,
+            "width": 4592319,
+            "height": 3018238
+          },
+          "relationship_id": "rId1"
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "semantic": {
+        "title": "竞赛技术平台｜HX1P35A开发板",
+        "items": []
+      },
+      "visual_annotations": [
+        "右侧为同一 HX1P35A V1.0 开发板实物照片（image7.jpeg）。"
+      ],
+      "tables": [
+        [
+          [
+            "硬件参数配置",
+            ""
+          ],
+          [
+            "存储器",
+            "掉电配置Qspi Flash 128MB"
+          ],
+          [
+            "",
+            "SPI Flash 64MB"
+          ],
+          [
+            "",
+            "TF卡槽，可接插TF卡存储器"
+          ],
+          [
+            "视频处理接口",
+            "输出：HDMI 1个，可作为视频信号输出"
+          ],
+          [
+            "",
+            "专用MIPI输入：FPC40芯接口一个"
+          ],
+          [
+            "用户外扩GPIO",
+            "2组40PinDC3接口(多达72组扩展IO)供用户外扩\n可扩展LCD、ADC、DAC、摄像头模块、电机、        HDMI输入模块、交通灯、点阵、键盘、语音处理等。"
+          ],
+          [
+            "时钟源",
+            "50M有源时钟"
+          ],
+          [
+            "配件",
+            "DC12V/1A电源适配器、USB数据线、杜邦线若干个"
+          ]
+        ]
+      ],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId3",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide9.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "image",
+          "target": "../media/image7.jpeg",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "表格 2",
+          "shape_type": "TABLE (19)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1707116,
+            "width": 6114526,
+            "height": 4842849
+          },
+          "table": [
+            [
+              "硬件参数配置",
+              ""
+            ],
+            [
+              "存储器",
+              "掉电配置Qspi Flash 128MB"
+            ],
+            [
+              "",
+              "SPI Flash 64MB"
+            ],
+            [
+              "",
+              "TF卡槽，可接插TF卡存储器"
+            ],
+            [
+              "视频处理接口",
+              "输出：HDMI 1个，可作为视频信号输出"
+            ],
+            [
+              "",
+              "专用MIPI输入：FPC40芯接口一个"
+            ],
+            [
+              "用户外扩GPIO",
+              "2组40PinDC3接口(多达72组扩展IO)供用户外扩\n可扩展LCD、ADC、DAC、摄像头模块、电机、        HDMI输入模块、交通灯、点阵、键盘、语音处理等。"
+            ],
+            [
+              "时钟源",
+              "50M有源时钟"
+            ],
+            [
+              "配件",
+              "DC12V/1A电源适配器、USB数据线、杜邦线若干个"
+            ]
+          ]
+        },
+        {
+          "path": "2",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "HX1P35A开发板",
+          "paragraphs": [
+            {
+              "text": "HX1P35A开发板",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "竞赛技术平台",
+          "paragraphs": [
+            {
+              "text": "竞赛技术平台",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "图片 6",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 7243779,
+            "top": 2278381,
+            "width": 4592319,
+            "height": 3018238
+          },
+          "relationship_id": "rId1"
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "semantic": {
+        "title": "竞赛扩展外设｜SC500CS摄像头（参赛者自购）",
+        "items": []
+      },
+      "visual_annotations": [
+        "右侧两张 SC500CS 摄像头模块照片，分别展示正面镜头/软排线和背面/接口（image8.jpeg、image9.jpeg）。"
+      ],
+      "tables": [
+        [
+          [
+            "硬件参数配置",
+            ""
+          ],
+          [
+            "摄像头：详细请参考数据手册",
+            "Smartsens:SC500CS"
+          ],
+          [
+            "",
+            "应用：智能家用、移动、视频会议等"
+          ],
+          [
+            "",
+            "像素：500万"
+          ],
+          [
+            "",
+            "像素阵列：2600H x 1952V"
+          ],
+          [
+            "",
+            "最大图像传输速率：\n2592H x 1944V@30fps 10bit"
+          ],
+          [
+            "",
+            "输出接口：10/8-bit 2Lane MIPI"
+          ],
+          [
+            "",
+            "连接口：24P-FPC24,"
+          ],
+          [
+            "连接口",
+            "24P-FPC"
+          ],
+          [
+            "板和摄像头连接线",
+            "提供40P转24P FPC软线"
+          ]
+        ]
+      ],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId4",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide10.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId3",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "image",
+          "target": "../media/image9.jpeg",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "image",
+          "target": "../media/image8.jpeg",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "表格 2",
+          "shape_type": "TABLE (19)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1707116,
+            "width": 6114526,
+            "height": 4843323
+          },
+          "table": [
+            [
+              "硬件参数配置",
+              ""
+            ],
+            [
+              "摄像头：详细请参考数据手册",
+              "Smartsens:SC500CS"
+            ],
+            [
+              "",
+              "应用：智能家用、移动、视频会议等"
+            ],
+            [
+              "",
+              "像素：500万"
+            ],
+            [
+              "",
+              "像素阵列：2600H x 1952V"
+            ],
+            [
+              "",
+              "最大图像传输速率：\n2592H x 1944V@30fps 10bit"
+            ],
+            [
+              "",
+              "输出接口：10/8-bit 2Lane MIPI"
+            ],
+            [
+              "",
+              "连接口：24P-FPC24,"
+            ],
+            [
+              "连接口",
+              "24P-FPC"
+            ],
+            [
+              "板和摄像头连接线",
+              "提供40P转24P FPC软线"
+            ]
+          ]
+        },
+        {
+          "path": "2",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "SC500CS摄像头(参赛者自购）",
+          "paragraphs": [
+            {
+              "text": "SC500CS摄像头(参赛者自购）",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "竞赛扩展外设",
+          "paragraphs": [
+            {
+              "text": "竞赛扩展外设",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "图片 3",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 7419953,
+            "top": 1990895,
+            "width": 3637280,
+            "height": 1264920
+          },
+          "relationship_id": "rId1"
+        },
+        {
+          "path": "6",
+          "name": "图片 4",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 7419953,
+            "top": 4249079,
+            "width": 3549015,
+            "height": 1321435
+          },
+          "relationship_id": "rId2"
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "semantic": {
+        "title": "技术支持｜HX1P35A开发板",
+        "items": [
+          "根据上述硬件资源，提供如下技术支持：",
+          "1）开发板的使用手册；",
+          "2）开发板的原理图；",
+          "3）开发板的基础实验，包括接口例程；",
+          "4）提供相关调试软件；",
+          "5）提供参赛样例，并配有样例解析。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [
+        [
+          [
+            "例程路径\nlab_ex_2026_nosoft\n",
+            "例程描述"
+          ],
+          [
+            "lab_ex_1",
+            "使用 MIPI 摄像头实现图像采集，存储至片内集成 DDR 中，并通过 HDMI 接口驱动显示屏，实现原始图像实时显示。"
+          ],
+          [
+            "lab_ex_2",
+            "使用 MIPI 摄像头实现图像采集，对采集到的图像进行边缘检测算法处理，存储至片内集成 DDR 中，并通过 HDMI 接口驱动显示屏，实现边缘检测图像实时显示。"
+          ],
+          [
+            "lab_ex_3",
+            "使用 MIPI 摄像头实现图像采集，存储至片内集成 DDR 中，并通过 HDMI 接口驱动显示屏，在实时显示的图像上叠加了安路 Logo 与运行计数器，实现带叠加信息的图像实时显示。"
+          ]
+        ]
+      ],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId3",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide11.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "tags",
+          "target": "../tags/tag1.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680721,
+            "top": 2173400,
+            "width": 3918174,
+            "height": 3034420
+          },
+          "text": "根据上述硬件资源，提供如下技术支持：\n1）开发板的使用手册；\n2）开发板的原理图；\n3）开发板的基础实验，包括接口例程；\n4）提供相关调试软件；\n5）提供参赛样例，并配有样例解析。",
+          "paragraphs": [
+            {
+              "text": "根据上述硬件资源，提供如下技术支持：",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "1）开发板的使用手册；",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "2）开发板的原理图；",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "3）开发板的基础实验，包括接口例程；",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "4）提供相关调试软件；",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "5）提供参赛样例，并配有样例解析。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "HX1P35A开发板",
+          "paragraphs": [
+            {
+              "text": "HX1P35A开发板",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "技术支持",
+          "paragraphs": [
+            {
+              "text": "技术支持",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "表格 2",
+          "shape_type": "TABLE (19)",
+          "bbox_emu": {
+            "left": 4366260,
+            "top": 1229995,
+            "width": 7499350,
+            "height": 5120640
+          },
+          "table": [
+            [
+              "例程路径\nlab_ex_2026_nosoft\n",
+              "例程描述"
+            ],
+            [
+              "lab_ex_1",
+              "使用 MIPI 摄像头实现图像采集，存储至片内集成 DDR 中，并通过 HDMI 接口驱动显示屏，实现原始图像实时显示。"
+            ],
+            [
+              "lab_ex_2",
+              "使用 MIPI 摄像头实现图像采集，对采集到的图像进行边缘检测算法处理，存储至片内集成 DDR 中，并通过 HDMI 接口驱动显示屏，实现边缘检测图像实时显示。"
+            ],
+            [
+              "lab_ex_3",
+              "使用 MIPI 摄像头实现图像采集，存储至片内集成 DDR 中，并通过 HDMI 接口驱动显示屏，在实时显示的图像上叠加了安路 Logo 与运行计数器，实现带叠加信息的图像实时显示。"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "semantic": {
+        "title": "Part 03 赛题解析",
+        "items": []
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [
+        {
+          "shape_name": "备注占位符 2",
+          "text": "logo2.png"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide12.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout4.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "矩形 1",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 980480,
+            "top": 2577313,
+            "width": 2339102,
+            "height": 646331
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 2",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 971772,
+            "top": 1731281,
+            "width": 1869423,
+            "height": 646331
+          },
+          "text": "Part 03",
+          "paragraphs": [
+            {
+              "text": "Part 03",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "灯片编号占位符 3",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "semantic": {
+        "title": "赛题解析｜选题优势",
+        "items": [
+          "本项目选用安路 FPGA 开发板作为核心平台，具备 MIPI 视频输入、DDR2 图像缓存、HDMI 高清输出以及多种外设扩展能力，适合构建低延迟、实时性强的视频图像处理系统。项目围绕摄像头图像采集、ISP 基础处理、帧缓存管理和 HDMI 显示输出展开，设计并实现从 MIPI 视频流接收、RAW10 数据解包、图像预处理到高清显示的完整硬件处理链路。",
+          "系统支持针对视频图像处理与传输场景进行开发，包括 ISP 图像信号处理、压缩与解压缩（有损或无损）、图像检测与处理等算法优化，适合不同基础的同学上手实践。无论是初学者还是具备一定经验的选手，都能在这里找到合适的切入点。",
+          "开发板配备了2组2x20 DC3接口和多达72组扩展IO，便于外接多种模块，如LCD显示屏、ADC/DAC转换器、摄像头、电机、HDMI输入模块、交通灯、点阵屏、键盘、语音处理模块等，充分满足拓展功能或自制PCB的需求，满足高水平同学完成更复杂的任务挑战的需求。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide13.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 2173400,
+            "width": 9799021,
+            "height": 4049955
+          },
+          "text": "本项目选用安路 FPGA 开发板作为核心平台，具备 MIPI 视频输入、DDR2 图像缓存、HDMI 高清输出以及多种外设扩展能力，适合构建低延迟、实时性强的视频图像处理系统。项目围绕摄像头图像采集、ISP 基础处理、帧缓存管理和 HDMI 显示输出展开，设计并实现从 MIPI 视频流接收、RAW10 数据解包、图像预处理到高清显示的完整硬件处理链路。\n系统支持针对视频图像处理与传输场景进行开发，包括ISP图像信号处理、压缩与解压缩（有损或无损）、图像检测与处理等算法优化，适合不同基础的同学上手实践。无论是初学者还是具备一定经验的选手，都能在这里找到合适的切入点。\n开发板配备了2组2x20 DC3接口和多达72组扩展IO，便于外接多种模块，如LCD显示屏、ADC/DAC转换器、摄像头、电机、HDMI输入模块、交通灯、点阵屏、键盘、语音处理模块等，充分满足拓展功能或自制PCB的需求，满足高水平同学完成更复杂的任务挑战的需求。",
+          "paragraphs": [
+            {
+              "text": "本项目选用安路 FPGA 开发板作为核心平台，具备 MIPI 视频输入、DDR2 图像缓存、HDMI 高清输出以及多种外设扩展能力，适合构建低延迟、实时性强的视频图像处理系统。项目围绕摄像头图像采集、ISP 基础处理、帧缓存管理和 HDMI 显示输出展开，设计并实现从 MIPI 视频流接收、RAW10 数据解包、图像预处理到高清显示的完整硬件处理链路。",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "系统支持针对视频图像处理与传输场景进行开发，包括ISP图像信号处理、压缩与解压缩（有损或无损）、图像检测与处理等算法优化，适合不同基础的同学上手实践。无论是初学者还是具备一定经验的选手，都能在这里找到合适的切入点。",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "开发板配备了2组2x20 DC3接口和多达72组扩展IO，便于外接多种模块，如LCD显示屏、ADC/DAC转换器、摄像头、电机、HDMI输入模块、交通灯、点阵屏、键盘、语音处理模块等，充分满足拓展功能或自制PCB的需求，满足高水平同学完成更复杂的任务挑战的需求。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "选题优势",
+          "paragraphs": [
+            {
+              "text": "选题优势",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "semantic": {
+        "title": "赛题解析｜选题优势",
+        "items": [
+          "本赛题为同学们提供了丰富的例程资源，能够有效支撑大家完成赛题的基础要求，确保每位参赛同学在比赛结束时都能呈现出一个相对完整、功能丰富的作品。具体资料可通过相关链接自行下载。",
+          "初学者易完赛，易获奖。",
+          "同时可以部分实现的扩展要求，可以通过同学们的丰富想象，呈现令人惊艳的参赛作品。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide14.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1196490,
+            "top": 2250344,
+            "width": 9799021,
+            "height": 1834092
+          },
+          "text": "本赛题为同学们提供了丰富的例程资源，能够有效支撑大家完成赛题的基础要求，确保每位参赛同学在比赛结束时都能呈现出一个相对完整、功能丰富的作品。具体资料可通过相关链接自行下载。\n初学者易完赛，易获奖。\n同时可以部分实现的扩展要求，可以通过同学们的丰富想象，呈现令人惊艳的参赛作品。",
+          "paragraphs": [
+            {
+              "text": "本赛题为同学们提供了丰富的例程资源，能够有效支撑大家完成赛题的基础要求，确保每位参赛同学在比赛结束时都能呈现出一个相对完整、功能丰富的作品。具体资料可通过相关链接自行下载。",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "初学者易完赛，易获奖。",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "同时可以部分实现的扩展要求，可以通过同学们的丰富想象，呈现令人惊艳的参赛作品。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "选题优势",
+          "paragraphs": [
+            {
+              "text": "选题优势",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "semantic": {
+        "title": "基本要求1、3——通过MIPI摄像头实现视频采集与HDMI稳定实时显示",
+        "items": [
+          "通过 MIPI 摄像头采集 RAW10 视频流至 FPGA 的 MIPI DPHY RX 模块，数据经 CSI 解包、ISP 图像处理和 DDR2 帧缓存后传输至 HDMI 显示模块，由 HDMI TX 实时输出至显示器，实现视频数据的实时采集、缓存、处理与高清显示。"
+        ]
+      },
+      "visual_annotations": [
+        "“要求一实现思路示意图”（image10.emf / diagrams_png/image10.png）：MIPI摄像头 --FPC连接--> MIPI接口 CSI-2/D-PHY -> FPGA；FPGA 与 时钟/PLL、DDR2 相连；FPGA --HDMI/TMDS输出--> HDMI显示器。",
+        "“要求一实现思路系统框图”（image11.emf / diagrams_png/image11.png）：MIPI摄像头 -> MIPI PHY -> CSI/RAW10解包 -> ISP处理 -> 写FIFO -> DDR帧缓存 -> 读FIFO -> HDMI输出 -> 显示器。PLL/时钟向多个处理模块提供时钟；虚线分区标注“视频采集与预处理”“DDR帧缓存系统”，右侧为“视频输出”。"
+      ],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId7",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide15.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId6",
+          "type": "vmlDrawing",
+          "target": "../drawings/vmlDrawing1.vml",
+          "target_mode": null
+        },
+        {
+          "id": "rId5",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId4",
+          "type": "image",
+          "target": "../media/image11.emf",
+          "target_mode": null
+        },
+        {
+          "id": "rId3",
+          "type": "oleObject",
+          "target": "../embeddings/oleObject2.bin",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "image",
+          "target": "../media/image10.emf",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "oleObject",
+          "target": "../embeddings/oleObject1.bin",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 2198445,
+            "top": 5271035,
+            "width": 7795110,
+            "height": 1198880
+          },
+          "text": "通过 MIPI 摄像头采集 RAW10 视频流至 FPGA 的 MIPI DPHY RX 模块，数据经 CSI 解包、ISP 图像处理和 DDR2 帧缓存后传输至 HDMI 显示模块，由 HDMI TX 实时输出至显示器，实现视频数据的实时采集、缓存、处理与高清显示。",
+          "paragraphs": [
+            {
+              "text": "通过 MIPI 摄像头采集 RAW10 视频流至 FPGA 的 MIPI DPHY RX 模块，数据经 CSI 解包、ISP 图像处理和 DDR2 帧缓存后传输至 HDMI 显示模块，由 HDMI TX 实时输出至显示器，实现视频数据的实时采集、缓存、处理与高清显示。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 9906000,
+            "height": 829945
+          },
+          "text": "基本要求１、3——通过 MIPI 摄像头实现视频采集与 HDMI 稳定实时显示",
+          "paragraphs": [
+            {
+              "text": "基本要求１、3——通过 MIPI 摄像头实现视频采集与 HDMI 稳定实时显示",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "Rectangle 2",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 345440,
+            "top": 1798320,
+            "width": 12192000,
+            "height": 0
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "6",
+          "name": "Rectangle 4",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 5638800,
+            "top": 1901277,
+            "width": 12192000,
+            "height": 0
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "7",
+          "name": "组合 19",
+          "shape_type": "GROUP (6)",
+          "bbox_emu": {
+            "left": 132080,
+            "top": 1649594,
+            "width": 11828145,
+            "height": 3172281
+          },
+          "children": [
+            {
+              "path": "7/1",
+              "name": "对象 12",
+              "shape_type": "EMBEDDED_OLE_OBJECT (7)",
+              "bbox_emu": {
+                "left": 132080,
+                "top": 1844040,
+                "width": 5619681,
+                "height": 2655117
+              },
+              "relationship_id": "rId1"
+            },
+            {
+              "path": "7/2",
+              "name": "对象 14",
+              "shape_type": "EMBEDDED_OLE_OBJECT (7)",
+              "bbox_emu": {
+                "left": 5842000,
+                "top": 1649594,
+                "width": 6118225,
+                "height": 2849563
+              },
+              "relationship_id": "rId3"
+            },
+            {
+              "path": "7/3",
+              "name": "文本框 16",
+              "shape_type": "TEXT_BOX (17)",
+              "bbox_emu": {
+                "left": 1578950,
+                "top": 4544876,
+                "width": 3193710,
+                "height": 276999
+              },
+              "text": "要求一实现思路示意图",
+              "paragraphs": [
+                {
+                  "text": "要求一实现思路示意图",
+                  "level": 0,
+                  "bullet": null
+                }
+              ]
+            },
+            {
+              "path": "7/4",
+              "name": "文本框 18",
+              "shape_type": "TEXT_BOX (17)",
+              "bbox_emu": {
+                "left": 7419342,
+                "top": 4509807,
+                "width": 3120230,
+                "height": 276999
+              },
+              "text": "要求一实现思路系统框图",
+              "paragraphs": [
+                {
+                  "text": "要求一实现思路系统框图",
+                  "level": 0,
+                  "bullet": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 17,
+      "semantic": {
+        "title": "基本要求2——通过FPGA实现一种图像处理方法（如边缘检测）",
+        "items": [
+          "通过 MIPI 2-lane 摄像头采集 RAW10 视频流至 FPGA 的 MIPI DPHY RX 模块，数据经 CSI解包、ISP 基础处理和 edge_detect_96 边缘检测后写入 DDR2 帧缓存，再由 HDMI 显示模块实时输出至显示器，实现 1024×600 分辨率下的视频边缘提取与黑白二值化显示。"
+        ]
+      },
+      "visual_annotations": [
+        "“要求二实现思路示意图”（image12.emf / diagrams_png/image12.png）：MIPI摄像头 --FPC连接--> MIPI接口 CSI-2/D-PHY -> FPGA；FPGA 与 时钟/PLL、DDR2 相连；FPGA --HDMI/TMDS输出--> HDMI显示器。",
+        "“要求二实现思路系统框图”（image13.emf / diagrams_png/image13.png）：MIPI摄像头 -> MIPI D_PHY_RX -> CSI-2解包 -> RAW10解包 -> AXI Stream -> ISP处理[Demosaic -> AWB -> 边缘检测 -> 96转128] -> 写FIFO -> DDR2帧缓存 -> 读FIFO -> HDMI输出 -> HDMI显示器。链路标注包含“MIPI CSI-2”“96-bit RGB”“二值边缘图”“128-bit视频流”“TMDS”；PLL/时钟连接到主要模块。"
+      ],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId7",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide16.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId6",
+          "type": "vmlDrawing",
+          "target": "../drawings/vmlDrawing2.vml",
+          "target_mode": null
+        },
+        {
+          "id": "rId5",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId4",
+          "type": "image",
+          "target": "../media/image13.emf",
+          "target_mode": null
+        },
+        {
+          "id": "rId3",
+          "type": "oleObject",
+          "target": "../embeddings/oleObject4.bin",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "image",
+          "target": "../media/image12.emf",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "oleObject",
+          "target": "../embeddings/oleObject3.bin",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1802653,
+            "top": 5351824,
+            "width": 8604026,
+            "height": 1198880
+          },
+          "text": "通过 MIPI 2-lane 摄像头采集 RAW10 视频流至 FPGA 的 MIPI DPHY RX 模块，数据经 CSI解包、ISP 基础处理和 edge_detect_96 边缘检测后写入 DDR2 帧缓存，再由 HDMI 显示模块实时输出至显示器，实现 1024×600 分辨率下的视频边缘提取与黑白二值化显示。",
+          "paragraphs": [
+            {
+              "text": "通过 MIPI 2-lane 摄像头采集 RAW10 视频流至 FPGA 的 MIPI DPHY RX 模块，数据经 CSI解包、ISP 基础处理和 edge_detect_96 边缘检测后写入 DDR2 帧缓存，再由 HDMI 显示模块实时输出至显示器，实现 1024×600 分辨率下的视频边缘提取与黑白二值化显示。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 10847892,
+            "height": 460375
+          },
+          "text": "基本要求2——通过 FPGA 实现一种图像处理方法（如边缘检测）",
+          "paragraphs": [
+            {
+              "text": "基本要求2——通过 FPGA 实现一种图像处理方法（如边缘检测）",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "Rectangle 2",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 112144,
+            "top": 1739759,
+            "width": 12192000,
+            "height": 0
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "6",
+          "name": "Rectangle 4",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 5745193,
+            "top": 2464162,
+            "width": 12192000,
+            "height": 0
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "7",
+          "name": "组合 9",
+          "shape_type": "GROUP (6)",
+          "bbox_emu": {
+            "left": 104206,
+            "top": 1881257,
+            "width": 11843905,
+            "height": 3155338
+          },
+          "children": [
+            {
+              "path": "7/1",
+              "name": "文本框 15",
+              "shape_type": "TEXT_BOX (17)",
+              "bbox_emu": {
+                "left": 2162246,
+                "top": 4759595,
+                "width": 2481831,
+                "height": 277000
+              },
+              "text": "要求二实现思路示意图",
+              "paragraphs": [
+                {
+                  "text": "要求二实现思路示意图",
+                  "level": 0,
+                  "bullet": null
+                }
+              ]
+            },
+            {
+              "path": "7/2",
+              "name": "文本框 16",
+              "shape_type": "TEXT_BOX (17)",
+              "bbox_emu": {
+                "left": 7547925,
+                "top": 4750685,
+                "width": 2809270,
+                "height": 276999
+              },
+              "text": "要求二实现思路系统框图",
+              "paragraphs": [
+                {
+                  "text": "要求二实现思路系统框图",
+                  "level": 0,
+                  "bullet": null
+                }
+              ]
+            },
+            {
+              "path": "7/3",
+              "name": "对象 3",
+              "shape_type": "EMBEDDED_OLE_OBJECT (7)",
+              "bbox_emu": {
+                "left": 104206,
+                "top": 1881257,
+                "width": 6103938,
+                "height": 2887663
+              },
+              "relationship_id": "rId1"
+            },
+            {
+              "path": "7/4",
+              "name": "对象 10",
+              "shape_type": "EMBEDDED_OLE_OBJECT (7)",
+              "bbox_emu": {
+                "left": 5836236,
+                "top": 2641870,
+                "width": 6111875,
+                "height": 2117725
+              },
+              "relationship_id": "rId3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 18,
+      "semantic": {
+        "title": "基本要求4——使用FPGA开发板在输出视频画面中叠加简单图形或文字信息（OSD），并包含“安路”标识Logo。",
+        "items": [
+          "通过 MIPI 摄像头采集1024×600视频流至 FPGA，数据经 ISP 基础处理和 DDR2 帧缓存后传输至HDMI显示链路，由 hdmi_mixer 叠加 Logo、文字标签和帧计数等 OSD 信息，最终通过 HDMI 实时输出至显示器，实现视频采集、图像处理、OSD 叠加与高清显示。"
+        ]
+      },
+      "visual_annotations": [
+        "“要求四实现思路示意图”（image14.emf / diagrams_png/image14.png）：MIPI摄像头 --FPC连接--> MIPI接口 CSI-2/D-PHY -> FPGA；FPGA 与 时钟/PLL、DDR2 相连；FPGA --HDMI/TMDS输出--> HDMI显示器。",
+        "“要求四实现思路系统框图”（image15.emf / diagrams_png/image15.png）：MIPI摄像头 -> MIPI D_PHY_RX -> CSI-2解包 -> RAW10解包 -> AXI Stream -> ISP处理[Demosaic -> AWB -> 96转128] -> 写FIFO -> DDR2帧缓存 -> 读FIFO -> HDMI/OSD输出[VTC -> video_out读数 -> hdmi_mixer OSD叠加 -> HDMI TX] -> HDMI显示器。anlogic_logo_rom 向 video_out/OSD链路提供 Logo 数据，osd_char_lib 向 hdmi_mixer 提供字符数据；链路还标注“MIPI CSI-2”“96-bit RGB”“视频读出”“128-bit视频流”“TMDS”。"
+      ],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId7",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide17.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId6",
+          "type": "vmlDrawing",
+          "target": "../drawings/vmlDrawing3.vml",
+          "target_mode": null
+        },
+        {
+          "id": "rId5",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId4",
+          "type": "image",
+          "target": "../media/image15.emf",
+          "target_mode": null
+        },
+        {
+          "id": "rId3",
+          "type": "oleObject",
+          "target": "../embeddings/oleObject6.bin",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "image",
+          "target": "../media/image14.emf",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "oleObject",
+          "target": "../embeddings/oleObject5.bin",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1793986,
+            "top": 5409140,
+            "width": 8980405,
+            "height": 1198880
+          },
+          "text": "通过 MIPI 摄像头采集1024×600视频流至 FPGA，数据经 ISP 基础处理和 DDR2 帧缓存后传输至HDMI显示链路，由 hdmi_mixer 叠加 Logo、文字标签和帧计数等 OSD 信息，最终通过 HDMI 实时输出至显示器，实现视频采集、图像处理、OSD 叠加与高清显示。",
+          "paragraphs": [
+            {
+              "text": "通过 MIPI 摄像头采集1024×600视频流至 FPGA，数据经 ISP 基础处理和 DDR2 帧缓存后传输至HDMI显示链路，由 hdmi_mixer 叠加 Logo、文字标签和帧计数等 OSD 信息，最终通过 HDMI 实时输出至显示器，实现视频采集、图像处理、OSD 叠加与高清显示。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 10847892,
+            "height": 829945
+          },
+          "text": "基本要求4——使用 FPGA 开发板在输出视频画面中叠加简单图形或文字信息（OSD），并包含“安路”标识 Logo。",
+          "paragraphs": [
+            {
+              "text": "基本要求4——使用 FPGA 开发板在输出视频画面中叠加简单图形或文字信息（OSD），并包含“安路”标识 Logo。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "组合 10",
+          "shape_type": "GROUP (6)",
+          "bbox_emu": {
+            "left": 1501877,
+            "top": 4881679,
+            "width": 8639344,
+            "height": 342064
+          },
+          "children": [
+            {
+              "path": "5/1",
+              "name": "文本框 4",
+              "shape_type": "TEXT_BOX (17)",
+              "bbox_emu": {
+                "left": 1042552,
+                "top": 3818584,
+                "width": 1998735,
+                "height": 171403
+              },
+              "text": "要求四实现思路示意图",
+              "paragraphs": [
+                {
+                  "text": "要求四实现思路示意图",
+                  "level": 0,
+                  "bullet": null
+                }
+              ]
+            },
+            {
+              "path": "5/2",
+              "name": "文本框 9",
+              "shape_type": "TEXT_BOX (17)",
+              "bbox_emu": {
+                "left": 5308649,
+                "top": 3858846,
+                "width": 1998735,
+                "height": 171403
+              },
+              "text": "要求四实现思路系统框图",
+              "paragraphs": [
+                {
+                  "text": "要求四实现思路系统框图",
+                  "level": 0,
+                  "bullet": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "6",
+          "name": "Rectangle 2",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 94891,
+            "top": 1952803,
+            "width": 12192000,
+            "height": 0
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "7",
+          "name": "对象 12",
+          "shape_type": "EMBEDDED_OLE_OBJECT (7)",
+          "bbox_emu": {
+            "left": 94891,
+            "top": 2501563,
+            "width": 4986067,
+            "height": 2358818
+          },
+          "relationship_id": "rId1"
+        },
+        {
+          "path": "8",
+          "name": "Rectangle 4",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 5993171,
+            "top": 1914702,
+            "width": 12192000,
+            "height": 0
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "9",
+          "name": "对象 14",
+          "shape_type": "EMBEDDED_OLE_OBJECT (7)",
+          "bbox_emu": {
+            "left": 5377651,
+            "top": 1896869,
+            "width": 6392884,
+            "height": 3064262
+          },
+          "relationship_id": "rId3"
+        }
+      ]
+    },
+    {
+      "slide": 19,
+      "semantic": {
+        "title": "涉及IP核、参考设计",
+        "items": [
+          "基本要求以及例程中涉及的安路IP核。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [
+        [
+          [
+            "IP核或相关工程",
+            "参考手册"
+          ],
+          [
+            "MIPI D-PHY RX / MIPI Camera Reference Design",
+            "APUG010_Local bus总线的SDRAM读写v1.1.pdf"
+          ],
+          [
+            "APUG092_HDMI1.4b_Transmitter_V1.0",
+            "APUG011_基于ERAM接口实现的高性能SDRAM读写v1.2.pdf"
+          ],
+          [
+            "DDR2 / PH1P DDR Memory Controller",
+            "APUG013_UDP_Communication_Protocol_Reference_Design_v1.3.pdf"
+          ],
+          [
+            "Soft_fifo",
+            "IPUG012_Soft_FIFO用户手册.pdf"
+          ]
+        ]
+      ],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide18.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1890725,
+            "width": 3918174,
+            "height": 418320
+          },
+          "text": "基本要求以及例程中涉及的安路IP核。",
+          "paragraphs": [
+            {
+              "text": "基本要求以及例程中涉及的安路IP核。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "涉及IP核、参考设计",
+          "paragraphs": [
+            {
+              "text": "涉及IP核、参考设计",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "表格 3",
+          "shape_type": "TABLE (19)",
+          "bbox_emu": {
+            "left": 689983,
+            "top": 2435225,
+            "width": 10812034,
+            "height": 3572457
+          },
+          "table": [
+            [
+              "IP核或相关工程",
+              "参考手册"
+            ],
+            [
+              "MIPI D-PHY RX / MIPI Camera Reference Design",
+              "APUG010_Local bus总线的SDRAM读写v1.1.pdf"
+            ],
+            [
+              "APUG092_HDMI1.4b_Transmitter_V1.0",
+              "APUG011_基于ERAM接口实现的高性能SDRAM读写v1.2.pdf"
+            ],
+            [
+              "DDR2 / PH1P DDR Memory Controller",
+              "APUG013_UDP_Communication_Protocol_Reference_Design_v1.3.pdf"
+            ],
+            [
+              "Soft_fifo",
+              "IPUG012_Soft_FIFO用户手册.pdf"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 20,
+      "semantic": {
+        "title": "扩展要求1——视频图像风格化/视觉增强",
+        "items": [
+          "在基础图像处理链路上增加边缘提取、区域填充或颜色量化，让画面效果更直观。"
+        ]
+      },
+      "visual_annotations": [
+        "推荐链路图：MIPI输入 -> RAW10解包 -> ISP基础处理 -> 边缘检测 -> 区域填充/颜色量化 -> DDR2帧缓存 -> HDMI显示。",
+        "效果图示例含三张图片（image16.jpeg、image17.jpeg、image18.jpeg），依次标注“输入图像”“边缘提取”“扩展效果”。"
+      ],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId4",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId3",
+          "type": "image",
+          "target": "../media/image18.jpeg",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "image",
+          "target": "../media/image17.jpeg",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "image",
+          "target": "../media/image16.jpeg",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "TextBox 2",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 732028,
+            "top": 982472,
+            "width": 10607040,
+            "height": 475615
+          },
+          "text": "扩展要求1——视频图像风格化/视觉增强",
+          "paragraphs": [
+            {
+              "text": "扩展要求1——视频图像风格化/视觉增强",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "TextBox 3",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 1065657,
+            "top": 5705602,
+            "width": 10698480,
+            "height": 337185
+          },
+          "text": "在基础图像处理链路上增加边缘提取、区域填充或颜色量化，让画面效果更直观。",
+          "paragraphs": [
+            {
+              "text": "在基础图像处理链路上增加边缘提取、区域填充或颜色量化，让画面效果更直观。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "Rounded Rectangle 15",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 732155,
+            "top": 1783080,
+            "width": 10880725,
+            "height": 3720465
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "TextBox 16",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 1092962,
+            "top": 1938528,
+            "width": 5349240,
+            "height": 352425
+          },
+          "text": "推荐实现链路",
+          "paragraphs": [
+            {
+              "text": "推荐实现链路",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "Rectangle 17",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1065530,
+            "top": 2606040,
+            "width": 685800,
+            "height": 658368
+          },
+          "text": "MIPI\n输入",
+          "paragraphs": [
+            {
+              "text": "MIPI\n输入",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "6",
+          "name": "Rectangle 18",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1824482,
+            "top": 2606040,
+            "width": 685800,
+            "height": 658368
+          },
+          "text": "RAW10\n解包",
+          "paragraphs": [
+            {
+              "text": "RAW10\n解包",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "7",
+          "name": "Connector 19",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 1751330,
+            "top": 2935224,
+            "width": 73152,
+            "height": 0
+          }
+        },
+        {
+          "path": "8",
+          "name": "Rectangle 20",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 2583433,
+            "top": 2606040,
+            "width": 685800,
+            "height": 658368
+          },
+          "text": "ISP\n基础处理",
+          "paragraphs": [
+            {
+              "text": "ISP\n基础处理",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "9",
+          "name": "Connector 21",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 2510282,
+            "top": 2935224,
+            "width": 73151,
+            "height": 0
+          }
+        },
+        {
+          "path": "10",
+          "name": "Rectangle 22",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 3342386,
+            "top": 2606040,
+            "width": 685800,
+            "height": 658368
+          },
+          "text": "边缘\n检测",
+          "paragraphs": [
+            {
+              "text": "边缘\n检测",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "11",
+          "name": "Connector 23",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 3269233,
+            "top": 2935224,
+            "width": 73153,
+            "height": 0
+          }
+        },
+        {
+          "path": "12",
+          "name": "Rectangle 24",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 4101338,
+            "top": 2606040,
+            "width": 685800,
+            "height": 658368
+          },
+          "text": "区域填充/\n颜色量化",
+          "paragraphs": [
+            {
+              "text": "区域填充/\n颜色量化",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "13",
+          "name": "Connector 25",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 4028186,
+            "top": 2935224,
+            "width": 73152,
+            "height": 0
+          }
+        },
+        {
+          "path": "14",
+          "name": "Rectangle 26",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 4860290,
+            "top": 2606040,
+            "width": 685800,
+            "height": 658368
+          },
+          "text": "DDR2\n帧缓存",
+          "paragraphs": [
+            {
+              "text": "DDR2\n帧缓存",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "15",
+          "name": "Connector 27",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 4787138,
+            "top": 2935224,
+            "width": 73152,
+            "height": 0
+          }
+        },
+        {
+          "path": "16",
+          "name": "Rectangle 28",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 5619242,
+            "top": 2606040,
+            "width": 685800,
+            "height": 658368
+          },
+          "text": "HDMI\n显示",
+          "paragraphs": [
+            {
+              "text": "HDMI\n显示",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "17",
+          "name": "Connector 29",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 5546090,
+            "top": 2935224,
+            "width": 73152,
+            "height": 0
+          }
+        },
+        {
+          "path": "18",
+          "name": "TextBox 5",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 1097280,
+            "top": 3429000,
+            "width": 1493520,
+            "height": 337185
+          },
+          "text": "效果图示例",
+          "paragraphs": [
+            {
+              "text": "效果图示例",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "19",
+          "name": "TextBox 7",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 2848610,
+            "top": 5119751,
+            "width": 1298448,
+            "height": 201168
+          },
+          "text": "输入图像",
+          "paragraphs": [
+            {
+              "text": "输入图像",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "20",
+          "name": "TextBox 9",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 4933315,
+            "top": 5119751,
+            "width": 1298448,
+            "height": 201168
+          },
+          "text": "边缘提取",
+          "paragraphs": [
+            {
+              "text": "边缘提取",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "21",
+          "name": "TextBox 11",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 7082790,
+            "top": 5119751,
+            "width": 1298448,
+            "height": 201168
+          },
+          "text": "扩展效果",
+          "paragraphs": [
+            {
+              "text": "扩展效果",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "22",
+          "name": "Connector 12",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 4498721,
+            "top": 4412488,
+            "width": 128016,
+            "height": 0
+          }
+        },
+        {
+          "path": "23",
+          "name": "Connector 13",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 6608826,
+            "top": 4412488,
+            "width": 128016,
+            "height": 0
+          }
+        },
+        {
+          "path": "24",
+          "name": "Picture 33",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 2510155,
+            "top": 3520440,
+            "width": 1975485,
+            "height": 1599565
+          },
+          "relationship_id": "rId1"
+        },
+        {
+          "path": "25",
+          "name": "Picture 34",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 4626610,
+            "top": 3520440,
+            "width": 1974850,
+            "height": 1599565
+          },
+          "relationship_id": "rId2"
+        },
+        {
+          "path": "26",
+          "name": "Picture 35",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 6744335,
+            "top": 3520440,
+            "width": 1974850,
+            "height": 1599565
+          },
+          "relationship_id": "rId3"
+        },
+        {
+          "path": "27",
+          "name": "矩形 4",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 21,
+      "semantic": {
+        "title": "扩展要求2——目标检测与识别",
+        "items": [
+          "优先选择颜色块、几何形状等可由硬件流水线稳定处理的目标，并叠加检测结果。"
+        ]
+      },
+      "visual_annotations": [
+        "检测效果示例（image19.jpeg）中可见英文叠加：“FPGA Object Detection & Recognition”“Status: Running”“Count: 2”，并标注红色圆形“Circle (120,80)”和绿色三角形“Triangle (320,160)”。",
+        "推荐链路图：MIPI输入 -> ISP预处理 -> 颜色/形状特征提取 -> 阈值判定 -> 连通域/坐标计算 -> OSD结果叠加 -> HDMI显示；图中另有 DDR2帧缓存连接在处理链路下方，并以虚线框列出检测结果“类别 / 坐标 / 数量”。"
+      ],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "image",
+          "target": "../media/image19.jpeg",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "TextBox 2",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 658368,
+            "top": 864997,
+            "width": 10607040,
+            "height": 475615
+          },
+          "text": "扩展要求2——目标检测与识别",
+          "paragraphs": [
+            {
+              "text": "扩展要求2——目标检测与识别",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "TextBox 3",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 932942,
+            "top": 5609082,
+            "width": 10698480,
+            "height": 337185
+          },
+          "text": "优先选择颜色块、几何形状等可由硬件流水线稳定处理的目标，并叠加检测结果。",
+          "paragraphs": [
+            {
+              "text": "优先选择颜色块、几何形状等可由硬件流水线稳定处理的目标，并叠加检测结果。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "Rounded Rectangle 4",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 658495,
+            "top": 1783080,
+            "width": 10671175,
+            "height": 3642995
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "TextBox 5",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 841375,
+            "top": 1956943,
+            "width": 4480560,
+            "height": 368300
+          },
+          "text": "检测效果图示例",
+          "paragraphs": [
+            {
+              "text": "检测效果图示例",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "Picture 31",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 1196975,
+            "top": 2350770,
+            "width": 3750945,
+            "height": 2787015
+          },
+          "relationship_id": "rId1"
+        },
+        {
+          "path": "6",
+          "name": "TextBox 11",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 5925312,
+            "top": 1938528,
+            "width": 5349240,
+            "height": 352425
+          },
+          "text": "推荐实现链路",
+          "paragraphs": [
+            {
+              "text": "推荐实现链路",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "7",
+          "name": "Rectangle 12",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 5897880,
+            "top": 2532888,
+            "width": 694944,
+            "height": 713232
+          },
+          "text": "MIPI\n输入",
+          "paragraphs": [
+            {
+              "text": "MIPI\n输入",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "8",
+          "name": "Rectangle 13",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 6665976,
+            "top": 2532888,
+            "width": 694944,
+            "height": 713232
+          },
+          "text": "ISP\n预处理",
+          "paragraphs": [
+            {
+              "text": "ISP\n预处理",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "9",
+          "name": "Connector 14",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 6592824,
+            "top": 2889504,
+            "width": 73152,
+            "height": 0
+          }
+        },
+        {
+          "path": "10",
+          "name": "Rectangle 15",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 7434072,
+            "top": 2532888,
+            "width": 694944,
+            "height": 713232
+          },
+          "text": "颜色/形状\n特征提取",
+          "paragraphs": [
+            {
+              "text": "颜色/形状\n特征提取",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "11",
+          "name": "Connector 16",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 7360920,
+            "top": 2889504,
+            "width": 73152,
+            "height": 0
+          }
+        },
+        {
+          "path": "12",
+          "name": "Rectangle 17",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 8202168,
+            "top": 2532888,
+            "width": 694944,
+            "height": 713232
+          },
+          "text": "阈值\n判定",
+          "paragraphs": [
+            {
+              "text": "阈值\n判定",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "13",
+          "name": "Connector 18",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 8129016,
+            "top": 2889504,
+            "width": 73152,
+            "height": 0
+          }
+        },
+        {
+          "path": "14",
+          "name": "Rectangle 19",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 8970264,
+            "top": 2532888,
+            "width": 694944,
+            "height": 713232
+          },
+          "text": "连通域/\n坐标计算",
+          "paragraphs": [
+            {
+              "text": "连通域/\n坐标计算",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "15",
+          "name": "Connector 20",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 8897112,
+            "top": 2889504,
+            "width": 73152,
+            "height": 0
+          }
+        },
+        {
+          "path": "16",
+          "name": "Rectangle 21",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 9738360,
+            "top": 2532888,
+            "width": 694944,
+            "height": 713232
+          },
+          "text": "OSD\n结果叠加",
+          "paragraphs": [
+            {
+              "text": "OSD\n结果叠加",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "17",
+          "name": "Connector 22",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 9665208,
+            "top": 2889504,
+            "width": 73152,
+            "height": 0
+          }
+        },
+        {
+          "path": "18",
+          "name": "Rectangle 23",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 10506456,
+            "top": 2532888,
+            "width": 694944,
+            "height": 713232
+          },
+          "text": "HDMI\n显示",
+          "paragraphs": [
+            {
+              "text": "HDMI\n显示",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "19",
+          "name": "Connector 24",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 10433304,
+            "top": 2889504,
+            "width": 73152,
+            "height": 0
+          }
+        },
+        {
+          "path": "20",
+          "name": "Rectangle 25",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 7456170,
+            "top": 3794760,
+            "width": 692785,
+            "height": 683260
+          },
+          "text": "DDR2\n帧缓存",
+          "paragraphs": [
+            {
+              "text": "DDR2\n帧缓存",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "21",
+          "name": "Connector 27",
+          "shape_type": "LINE (9)",
+          "bbox_emu": {
+            "left": 7781290,
+            "top": 3245993,
+            "width": 0,
+            "height": 548640
+          }
+        },
+        {
+          "path": "22",
+          "name": "Rounded Rectangle 28",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 8321040,
+            "top": 3703320,
+            "width": 2468880,
+            "height": 777240
+          },
+          "text": "检测结果\n类别 / 坐标 / 数量",
+          "paragraphs": [
+            {
+              "text": "检测结果\n类别 / 坐标 / 数量",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "23",
+          "name": "矩形 9",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 22,
+      "semantic": {
+        "title": "赛题解析｜扩展要求3/4/5",
+        "items": [
+          "扩展要求3——面向实际应用场景进行系统设计:结合智能小车、电机、交通灯、语音等外设，让图像识别结果产生控制动作。",
+          "扩展要求4——优化系统性能:围绕实时性、资源占用、低功耗、稳定性进行优化，强调工程质量。",
+          "扩展要求5——自主创意:围绕视频处理、交互控制和场景应用自由发挥，但必须建立在稳定系统之上。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide19.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "Rounded Rectangle 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 540230,
+            "top": 1445453,
+            "width": 11111541,
+            "height": 1023559
+          },
+          "text": "扩展要求3——面向实际应用场景进行系统设计:结合智能小车、电机、交通灯、语音等外设，让图像识别结果产生控制动作。",
+          "paragraphs": [
+            {
+              "text": "扩展要求3——面向实际应用场景进行系统设计:结合智能小车、电机、交通灯、语音等外设，让图像识别结果产生控制动作。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "Rounded Rectangle 10",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 540231,
+            "top": 2878502,
+            "width": 11111540,
+            "height": 1143000
+          },
+          "text": "扩展要求4——优化系统性能:围绕实时性、资源占用、低功耗、稳定性进行优化，强调工程质量。",
+          "paragraphs": [
+            {
+              "text": "扩展要求4——优化系统性能:围绕实时性、资源占用、低功耗、稳定性进行优化，强调工程质量。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "Rounded Rectangle 14",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 540230,
+            "top": 4430993,
+            "width": 11111541,
+            "height": 1143000
+          },
+          "text": "扩展要求5——自主创意:围绕视频处理、交互控制和场景应用自由发挥，但必须建立在稳定系统之上。",
+          "paragraphs": [
+            {
+              "text": "扩展要求5——自主创意:围绕视频处理、交互控制和场景应用自由发挥，但必须建立在稳定系统之上。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 23,
+      "semantic": {
+        "title": "进阶要求1——多算法切换与状态显示",
+        "items": [
+          "可尝试通过按键实现多种图像处理算法的实时切换，并在画面中显示当前算法状态，力求切换平稳。",
+          "摄像头输出的 RAW10 原始图像先经过去马赛克处理，将原始 Bayer 格式数据还原为 RGB 彩色图像；随后通过自动白平衡调整红、绿、蓝三个颜色通道的比例，改善画面偏色问题，为后续边缘检测、卡通化处理或 HDMI 显示提供更正常的图像输入。"
+        ]
+      },
+      "visual_annotations": [
+        "系统图（image20.png）：MIPI摄像头（1024×600 / RAW10） -> MIPI接收/图像采集 -> ISP处理（demosaic + AWB） -> 风格化处理/视觉增强（边缘提取、区域填充、卡通化处理） -> HDMI输出控制 -> HDMI接口 -> HDMI显示器。DDR2帧缓存连接到处理系统；I2C配置连接摄像头；按键控制向风格化/视觉增强模块提供“模式切换 / 参数调节”。"
+      ],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId3",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide20.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "image",
+          "target": "../media/image20.png",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 941426,
+            "width": 10623774,
+            "height": 1198880
+          },
+          "text": "进阶要求１——多算法切换与状态显示：可尝试通过按键实现多种图像处理算法的实时切换，并在画面中显示当前算法状态，力求切换平稳。",
+          "paragraphs": [
+            {
+              "text": "进阶要求１——多算法切换与状态显示：可尝试通过按键实现多种图像处理算法的实时切换，并在画面中显示当前算法状态，力求切换平稳。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "组合 10",
+          "shape_type": "GROUP (6)",
+          "bbox_emu": {
+            "left": 1794622,
+            "top": 2296434,
+            "width": 8604026,
+            "height": 4051775
+          },
+          "children": [
+            {
+              "path": "4/1",
+              "name": "组合 6",
+              "shape_type": "GROUP (6)",
+              "bbox_emu": {
+                "left": 1793987,
+                "top": 4152746,
+                "width": 8604026,
+                "height": 1643013
+              },
+              "children": [
+                {
+                  "path": "4/1/1",
+                  "name": "文本框 3",
+                  "shape_type": "TEXT_BOX (17)",
+                  "bbox_emu": {
+                    "left": 4395752,
+                    "top": 4152746,
+                    "width": 3193710,
+                    "height": 276999
+                  },
+                  "text": "要求一实现思路示意图",
+                  "paragraphs": [
+                    {
+                      "text": "要求一实现思路示意图",
+                      "level": 0,
+                      "bullet": null
+                    }
+                  ]
+                },
+                {
+                  "path": "4/1/2",
+                  "name": "矩形 13",
+                  "shape_type": "AUTO_SHAPE (1)",
+                  "bbox_emu": {
+                    "left": 1793987,
+                    "top": 4596879,
+                    "width": 8604026,
+                    "height": 1198880
+                  },
+                  "text": "摄像头输出的 RAW10 原始图像先经过去马赛克处理，将原始 Bayer 格式数据还原为 RGB 彩色图像；随后通过自动白平衡调整红、绿、蓝三个颜色通道的比例，改善画面偏色问题，为后续边缘检测、卡通化处理或 HDMI 显示提供更正常的图像输入。",
+                  "paragraphs": [
+                    {
+                      "text": "摄像头输出的 RAW10 原始图像先经过去马赛克处理，将原始 Bayer 格式数据还原为 RGB 彩色图像；随后通过自动白平衡调整红、绿、蓝三个颜色通道的比例，改善画面偏色问题，为后续边缘检测、卡通化处理或 HDMI 显示提供更正常的图像输入。",
+                      "level": 0,
+                      "bullet": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "4/2",
+              "name": "图片 9",
+              "shape_type": "PICTURE (13)",
+              "bbox_emu": {
+                "left": 2707157,
+                "top": 1743984,
+                "width": 6533070,
+                "height": 2408761
+              },
+              "relationship_id": "rId1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 24,
+      "semantic": {
+        "title": "进阶要求2——目标跟踪与信息标注",
+        "items": [
+          "探索对画面中特定颜色或形状目标的动态跟踪，在输出视频上叠加跟踪标识或坐标信息。",
+          "FPGA 通过 MIPI/CSI 接口接收摄像头图像数据，经图像采集与预处理后进入目标检测与识别模块，对画面中的几何形状或特定物体进行识别。识别结果由结果叠加模块添加检测框、类别标签和置信度信息，最后通过 HDMI 接口实时输出至显示器。以太网接口可用于上位机配置与状态监控。"
+        ]
+      },
+      "visual_annotations": [
+        "系统图（image21.png）：摄像头（MIPI/CSI） -> 图像采集 -> 预处理（缩放/降噪/颜色转换） -> 目标检测与识别（算法处理） -> 结果叠加（框/标签/置信度） -> 视频输出 -> HDMI接口 -> 显示器/显示屏。FPGA 与 SDRAM（帧缓存/模型参数存储）双向连接；可选以太网接口与上位机/网络进行配置与监控。示例显示器中标注“Circle 0.97”“Triangle 0.95”。"
+      ],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId3",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide21.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "image",
+          "target": "../media/image21.png",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 860747,
+            "width": 11511280,
+            "height": 829945
+          },
+          "text": "进阶要求2——目标跟踪与信息标注：探索对画面中特定颜色或形状目标的动态跟踪，在输出视频上叠加跟踪标识或坐标信息。",
+          "paragraphs": [
+            {
+              "text": "进阶要求2——目标跟踪与信息标注：探索对画面中特定颜色或形状目标的动态跟踪，在输出视频上叠加跟踪标识或坐标信息。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 13",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1793987,
+            "top": 5128004,
+            "width": 8604026,
+            "height": 1568450
+          },
+          "text": "FPGA 通过 MIPI/CSI 接口接收摄像头图像数据，经图像采集与预处理后进入目标检测与识别模块，对画面中的几何形状或特定物体进行识别。识别结果由结果叠加模块添加检测框、类别标签和置信度信息，最后通过 HDMI 接口实时输出至显示器。以太网接口可用于上位机配置与状态监控。",
+          "paragraphs": [
+            {
+              "text": "FPGA 通过 MIPI/CSI 接口接收摄像头图像数据，经图像采集与预处理后进入目标检测与识别模块，对画面中的几何形状或特定物体进行识别。识别结果由结果叠加模块添加检测框、类别标签和置信度信息，最后通过 HDMI 接口实时输出至显示器。以太网接口可用于上位机配置与状态监控。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "图片 4",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 2199736,
+            "top": 1729996,
+            "width": 7491110,
+            "height": 3398008
+          },
+          "relationship_id": "rId1"
+        }
+      ]
+    },
+    {
+      "slide": 25,
+      "semantic": {
+        "title": "赛题解析｜进阶要求3/4/5",
+        "items": [
+          "进阶要求3——处理延迟可视化：鼓励设计延迟测量方案，将采集到显示的延迟进行可视化（如帧计数），以体现系统实时性；",
+          "进阶要求4——运动目标检测：尝试用硬件逻辑实现帧差法等运动检测，并叠加运动区域提示或计数；",
+          "进阶要求5——图像质量自动调节：可探索自动曝光、白平衡或直方图均衡等 ISP 处理，提升画面适应能力。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide22.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "Rounded Rectangle 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 540230,
+            "top": 1445453,
+            "width": 11111541,
+            "height": 1023559
+          },
+          "text": "进阶要求3——处理延迟可视化：鼓励设计延迟测量方案，将采集到显示的延迟进行可视化（如帧计数），以体现系统实时性；",
+          "paragraphs": [
+            {
+              "text": "进阶要求3——处理延迟可视化：鼓励设计延迟测量方案，将采集到显示的延迟进行可视化（如帧计数），以体现系统实时性；",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "Rounded Rectangle 10",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 540231,
+            "top": 2878502,
+            "width": 11111540,
+            "height": 1143000
+          },
+          "text": "进阶要求4——运动目标检测：尝试用硬件逻辑实现帧差法等运动检测，并叠加运动区域提示或计数；",
+          "paragraphs": [
+            {
+              "text": "进阶要求4——运动目标检测：尝试用硬件逻辑实现帧差法等运动检测，并叠加运动区域提示或计数；",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "Rounded Rectangle 14",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 540230,
+            "top": 4430993,
+            "width": 11111541,
+            "height": 1143000
+          },
+          "text": "进阶要求5——图像质量自动调节：可探索自动曝光、白平衡或直方图均衡等 ISP 处理，提升画面适应能力。",
+          "paragraphs": [
+            {
+              "text": "进阶要求5——图像质量自动调节：可探索自动曝光、白平衡或直方图均衡等 ISP 处理，提升画面适应能力。",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 26,
+      "semantic": {
+        "title": "赛题注意事项",
+        "items": [
+          "1. 赛题二所用开发板必须为HX1P35A开发板。",
+          "2. 最终提交设计必须固化在开发板上，上电即可运行，无需再使用PC下载。",
+          "3. 最终已实现的基础要求、扩展要求、进阶要求必须整合为完整的最终设计，在测试时不能通过多次加载固化镜像以单独实现基础要求、扩展要求和进阶要求。",
+          "4. 最终设计应该具有实用性。",
+          "5. 扩展要求3、4、5为启发性要求，为扩展要求的设计提供一些思路以及方向。",
+          "6. 赛题最终评测不依据使用资源的大小，推荐以优化的逻辑和最低的功耗来实现最终的设计。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide23.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1727124,
+            "width": 9799021,
+            "height": 3446145
+          },
+          "text": "赛题二所用开发板必须为HX1P35A开发板。\n最终提交设计必须固化在开发板上，上电即可运行，无需再使用PC下载。\n最终已实现的基础要求、扩展要求、进阶要求必须整合为完整的最终设计，在测试时不能通过多次加载固化镜像以单独实现基础要求、扩展要求和进阶要求。\n最终设计应该具有实用性。\n扩展要求3、4、5为启发性要求，为扩展要求的设计提供一些思路以及方向。\n赛题最终评测不依据使用资源的大小，推荐以优化的逻辑和最低的功耗来实现最终的设计。",
+          "paragraphs": [
+            {
+              "text": "赛题二所用开发板必须为HX1P35A开发板。",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "最终提交设计必须固化在开发板上，上电即可运行，无需再使用PC下载。",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "最终已实现的基础要求、扩展要求、进阶要求必须整合为完整的最终设计，在测试时不能通过多次加载固化镜像以单独实现基础要求、扩展要求和进阶要求。",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "最终设计应该具有实用性。",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "扩展要求3、4、5为启发性要求，为扩展要求的设计提供一些思路以及方向。",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            },
+            {
+              "text": "赛题最终评测不依据使用资源的大小，推荐以优化的逻辑和最低的功耗来实现最终的设计。",
+              "level": 0,
+              "bullet": {
+                "kind": "auto-number",
+                "type": "arabicPeriod",
+                "startAt": null
+              }
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "赛题注意事项",
+          "paragraphs": [
+            {
+              "text": "赛题注意事项",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "赛题解析",
+          "paragraphs": [
+            {
+              "text": "赛题解析",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 27,
+      "semantic": {
+        "title": "Part 04 技术支持与技术资源",
+        "items": []
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [
+        {
+          "shape_name": "备注占位符 2",
+          "text": "logo2.png"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide24.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout4.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "矩形 1",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 980480,
+            "top": 2577313,
+            "width": 5032147,
+            "height": 646331
+          },
+          "text": "技术支持与技术资源",
+          "paragraphs": [
+            {
+              "text": "技术支持与技术资源",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 2",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 971772,
+            "top": 1731281,
+            "width": 1869423,
+            "height": 646331
+          },
+          "text": "Part 04",
+          "paragraphs": [
+            {
+              "text": "Part 04",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "灯片编号占位符 3",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 28,
+      "semantic": {
+        "title": "技术支持与技术资源",
+        "items": [
+          "竞赛技术交流",
+          "QQ群：1050628457",
+          "板卡资料下载",
+          "通过百度网盘分享的文件：HX1P35A_Contest_202606",
+          "https://pan.baidu.com/s/12hjB7BiAxT3CIVqzh4Amnw  提取码：Q614",
+          "板卡获取途径（该标题下在本页未见进一步可读文本）。"
+        ]
+      },
+      "visual_annotations": [],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId2",
+          "type": "notesSlide",
+          "target": "../notesSlides/notesSlide25.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout5.xml",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "矩形 6",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1864453,
+            "width": 9799021,
+            "height": 418320
+          },
+          "text": "QQ群：1050628457",
+          "paragraphs": [
+            {
+              "text": "QQ群：1050628457",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "矩形 7",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 1049006,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "竞赛技术交流",
+          "paragraphs": [
+            {
+              "text": "竞赛技术交流",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "4",
+          "name": "矩形 5",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1092199,
+            "top": 140708,
+            "width": 8598647,
+            "height": 523220
+          },
+          "text": "技术支持与技术资源",
+          "paragraphs": [
+            {
+              "text": "技术支持与技术资源",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "5",
+          "name": "矩形 2",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 801490,
+            "top": 3399436,
+            "width": 9799021,
+            "height": 418191
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "6",
+          "name": "矩形 3",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 2636555,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "板卡资料下载",
+          "paragraphs": [
+            {
+              "text": "板卡资料下载",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "7",
+          "name": "矩形 10",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 680720,
+            "top": 4747324,
+            "width": 7513021,
+            "height": 461665
+          },
+          "text": "板卡获取途径",
+          "paragraphs": [
+            {
+              "text": "板卡获取途径",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "8",
+          "name": "文本框 4",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 801370,
+            "top": 3225165,
+            "width": 8183245,
+            "height": 622300
+          },
+          "text": "通过百度网盘分享的文件：HX1P35A_Contest_202606\n\nhttps://pan.baidu.com/s/12hjB7BiAxT3CIVqzh4Amnw  提取码：Q614 \n",
+          "paragraphs": [
+            {
+              "text": "通过百度网盘分享的文件：HX1P35A_Contest_202606",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "https://pan.baidu.com/s/12hjB7BiAxT3CIVqzh4Amnw  提取码：Q614 ",
+              "level": 0,
+              "bullet": null
+            },
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slide": 29,
+      "semantic": {
+        "title": "Thanks｜欢迎各位同学选择选题二",
+        "items": [
+          "上海市浦东新区中科路1867号C座8/11-12层",
+          "www.anlogic.com",
+          "021-61633787"
+        ]
+      },
+      "visual_annotations": [
+        "左上角为“安路科技 / ANLOGIC”标识；底部配有位置、网站/网络、电话等图标资产（image22.png、image23.png、image24.png；具体图标与文本的对应关系以原幻灯片布局为准）。"
+      ],
+      "tables": [],
+      "speaker_notes": [],
+      "relationships": [
+        {
+          "id": "rId4",
+          "type": "slideLayout",
+          "target": "../slideLayouts/slideLayout6.xml",
+          "target_mode": null
+        },
+        {
+          "id": "rId3",
+          "type": "image",
+          "target": "../media/image24.png",
+          "target_mode": null
+        },
+        {
+          "id": "rId2",
+          "type": "image",
+          "target": "../media/image23.png",
+          "target_mode": null
+        },
+        {
+          "id": "rId1",
+          "type": "image",
+          "target": "../media/image22.png",
+          "target_mode": null
+        }
+      ],
+      "shapes": [
+        {
+          "path": "1",
+          "name": "灯片编号占位符 3",
+          "shape_type": "PLACEHOLDER (14)",
+          "bbox_emu": {
+            "left": 9448800,
+            "top": 6492875,
+            "width": 2743200,
+            "height": 365125
+          },
+          "text": "",
+          "paragraphs": [
+            {
+              "text": "",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "2",
+          "name": "文本框 4",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 3077172,
+            "top": 6359829,
+            "width": 2662908,
+            "height": 246221
+          },
+          "text": "上海市浦东新区中科路1867号C座8/11-12层",
+          "paragraphs": [
+            {
+              "text": "上海市浦东新区中科路1867号C座8/11-12层",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "3",
+          "name": "图片 5",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 7216374,
+            "top": 6354494,
+            "width": 211822,
+            "height": 210724
+          },
+          "relationship_id": "rId1"
+        },
+        {
+          "path": "4",
+          "name": "图片 6",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 2844339,
+            "top": 6356669,
+            "width": 232833,
+            "height": 206375
+          },
+          "relationship_id": "rId2"
+        },
+        {
+          "path": "5",
+          "name": "图片 7",
+          "shape_type": "PICTURE (13)",
+          "bbox_emu": {
+            "left": 5710059,
+            "top": 6354494,
+            "width": 272006,
+            "height": 210724
+          },
+          "relationship_id": "rId3"
+        },
+        {
+          "path": "6",
+          "name": "文本框 8",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 5984696,
+            "top": 6359829,
+            "width": 1261884,
+            "height": 246221
+          },
+          "text": "www.anlogic.com",
+          "paragraphs": [
+            {
+              "text": "www.anlogic.com",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "7",
+          "name": "文本框 9",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 7428196,
+            "top": 6359829,
+            "width": 1005403,
+            "height": 246221
+          },
+          "text": "021-61633787",
+          "paragraphs": [
+            {
+              "text": "021-61633787",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "8",
+          "name": "文本框 10",
+          "shape_type": "TEXT_BOX (17)",
+          "bbox_emu": {
+            "left": 1672045,
+            "top": 2336390,
+            "width": 6674095,
+            "height": 707886
+          },
+          "text": "欢迎各位同学选择选题二",
+          "paragraphs": [
+            {
+              "text": "欢迎各位同学选择选题二",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        },
+        {
+          "path": "9",
+          "name": "矩形 11",
+          "shape_type": "AUTO_SHAPE (1)",
+          "bbox_emu": {
+            "left": 1763970,
+            "top": 1550517,
+            "width": 2709418,
+            "height": 707886
+          },
+          "text": "Thanks",
+          "paragraphs": [
+            {
+              "text": "Thanks",
+              "level": 0,
+              "bullet": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
