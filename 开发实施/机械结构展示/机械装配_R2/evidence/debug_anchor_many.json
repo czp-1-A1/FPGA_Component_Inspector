@@ -1,0 +1,6 @@
+{
+  "isError": false,
+  "text": [
+    "{\n    \"error\": \"Traceback (most recent call last):\\n  File \\\"<string>\\\", line 187, in <module>\\n  File \\\"<string>\\\", line 183, in run\\n  File \\\"<string>\\\", line 85, in anchor\\n  File \\\"C:\\\\Users/dell/AppData/Local/Autodesk/webdeploy/production/61bf25b220a2d0307c84c301e65a59ac225d9a1e/Api/Python/packages\\\\adsk\\\\fusion.py\\\", line 66430, in addDistanceDimension\\n    return _fusion.SketchDimensions_addDistanceDimension(self, pointOne, pointTwo, orientation, textPoint, isDriving)\\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nRuntimeError: 3 : VCS_SKETCH_OVER_CONSTRAINTS - 草图几何图元被过约束\\n\",\n    \"success\": false\n}"
+  ]
+}

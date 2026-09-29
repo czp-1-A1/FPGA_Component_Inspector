@@ -1,0 +1,100 @@
+{
+  "removed": [
+    "P01_对称托臂_槽56_R2a_待实测:1",
+    "P02_加宽四点承托块:1",
+    "S01_承托软垫_现场裁切:1",
+    "P03_LF_上防脱及X止挡:1",
+    "P03_LB_上防脱及X止挡:1",
+    "P03_RF_上防脱及X止挡:1",
+    "P03_RB_上防脱及X止挡:1",
+    "H_CAM_PAD_9_Bolt_M4x65:1",
+    "H_CAM_PAD_9_Nut_M4:1",
+    "H_CAM_PAD_9_Washer_head_M4:1",
+    "H_CAM_PAD_9_Washer_nut_M4:1",
+    "H_CAM_PAD_21_Bolt_M4x65:1",
+    "H_CAM_PAD_21_Nut_M4:1",
+    "H_CAM_PAD_21_Washer_head_M4:1",
+    "H_CAM_PAD_21_Washer_nut_M4:1",
+    "P01_对称托臂_槽56_R2a_待实测:2",
+    "P02_加宽四点承托块:2",
+    "P02_加宽四点承托块:3",
+    "P02_加宽四点承托块:4",
+    "S01_承托软垫_现场裁切:2",
+    "S01_承托软垫_现场裁切:3",
+    "S01_承托软垫_现场裁切:4",
+    "H_CAM_PAD_9_Bolt_M4x65:2",
+    "H_CAM_PAD_9_Bolt_M4x65:3",
+    "H_CAM_PAD_9_Bolt_M4x65:4",
+    "H_CAM_PAD_9_Nut_M4:2",
+    "H_CAM_PAD_9_Nut_M4:3",
+    "H_CAM_PAD_9_Nut_M4:4",
+    "H_CAM_PAD_9_Washer_head_M4:2",
+    "H_CAM_PAD_9_Washer_head_M4:3",
+    "H_CAM_PAD_9_Washer_head_M4:4",
+    "H_CAM_PAD_9_Washer_nut_M4:2",
+    "H_CAM_PAD_9_Washer_nut_M4:3",
+    "H_CAM_PAD_9_Washer_nut_M4:4",
+    "H_CAM_PAD_21_Bolt_M4x65:2",
+    "H_CAM_PAD_21_Bolt_M4x65:3",
+    "H_CAM_PAD_21_Bolt_M4x65:4",
+    "H_CAM_PAD_21_Nut_M4:2",
+    "H_CAM_PAD_21_Nut_M4:3",
+    "H_CAM_PAD_21_Nut_M4:4",
+    "H_CAM_PAD_21_Washer_head_M4:2",
+    "H_CAM_PAD_21_Washer_head_M4:3",
+    "H_CAM_PAD_21_Washer_head_M4:4",
+    "H_CAM_PAD_21_Washer_nut_M4:2",
+    "H_CAM_PAD_21_Washer_nut_M4:3",
+    "H_CAM_PAD_21_Washer_nut_M4:4"
+  ],
+  "parameters": [
+    [
+      "arm_half_span",
+      "65 mm"
+    ],
+    [
+      "board_cx",
+      "-lens_dx"
+    ],
+    [
+      "board_cy",
+      "-lens_dy"
+    ],
+    [
+      "p09_post_w",
+      "18 mm"
+    ],
+    [
+      "p09_post_d",
+      "18 mm"
+    ],
+    [
+      "p09_stop_t",
+      "2 mm"
+    ],
+    [
+      "p09_front_tail",
+      "2.5 mm"
+    ],
+    [
+      "p10_bridge_w",
+      "10 mm"
+    ],
+    [
+      "p10_t",
+      "6 mm"
+    ],
+    [
+      "p09_outreach",
+      "lateral_gap/2+p09_stop_t+p09_post_d"
+    ],
+    [
+      "p09_bolt_y",
+      "board_w/2+lateral_gap/2+p09_stop_t+p09_post_d/2"
+    ],
+    [
+      "p09_arm_front",
+      "board_cy-board_w/2-p09_outreach-p09_front_tail"
+    ]
+  ]
+}

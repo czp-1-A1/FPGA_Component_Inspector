@@ -1,0 +1,28 @@
+============================================================
+   BitWriter, V1.0.145618
+   Copyright (c) 2012-2025 Anlogic Inc.
+   Executable = E:/Anlogic/TD_6.1.2_PH1P35_Release_155.545/bin/bw.exe
+   Built at =   15:10:46 Jan 10 2025
+   Run by =     Administrator
+   Run Date =   Fri Dec 26 09:50:45 2025
+
+   Run on =     BF-202403070915
+============================================================
+RUN-1002 : start command "connect_cable -host_name 127.0.0.1:5555 -usr_args {-f 12 -i 0} -open"
+RUN-1003 : finish command "connect_cable -host_name 127.0.0.1:5555 -usr_args {-f 12 -i 0} -open" in  0.001393s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%)
+
+RUN-1004 : used memory is 123 MB, reserved memory is 96 MB, peak memory is 123 MB
+RUN-1002 : start command "download -bit camera_to_dsi_display_Runs\phy_1\camera_to_dsi_display_compress.bit -mode jtag -spd 7 -cable 0"
+PRG-2014 : Chip validation success: PH1P35MDG324
+RUN-1003 : finish command "download -bit camera_to_dsi_display_Runs\phy_1\camera_to_dsi_display_compress.bit -mode jtag -spd 7 -cable 0" in  8.876273s wall, 0.171875s user + 0.046875s system = 0.218750s CPU (2.5%)
+
+RUN-1004 : used memory is 125 MB, reserved memory is 97 MB, peak memory is 176 MB
+GUI-1001 : Downloading succeeded!
+RUN-1002 : start command "connect_cable -close"
+RUN-1003 : finish command "connect_cable -close" in  0.000045s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%)
+
+RUN-1004 : used memory is 124 MB, reserved memory is 97 MB, peak memory is 176 MB
+RUN-1002 : start command "connect_cable -close"
+RUN-1003 : finish command "connect_cable -close" in  0.000001s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%)
+
+RUN-1004 : used memory is 125 MB, reserved memory is 97 MB, peak memory is 176 MB

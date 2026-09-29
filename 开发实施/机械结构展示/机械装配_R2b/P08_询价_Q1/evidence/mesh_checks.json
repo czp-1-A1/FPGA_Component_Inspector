@@ -1,0 +1,72 @@
+{
+  "STEP_valid": true,
+  "STEP_volume_mm3": 19441.169460775327,
+  "native_volume_mm3": 19441.16946077558,
+  "STL_volume_mm3": 19441.12914726311,
+  "volume_error_percent": 0.00020736155970026607,
+  "watertight": true,
+  "connected_solids": 1,
+  "triangles": 3084,
+  "dimensions_mm": [
+    137.0,
+    72.0,
+    9.0
+  ],
+  "bounds_mm": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      137.0,
+      72.0,
+      9.0
+    ]
+  ],
+  "STEP_datum": "Original lamp XY origin retained; foot contact Z=0, plate underside Z=3, top Z=9",
+  "STL_orientation": "Original top surface down; 180deg around X then translated to positive XY, bed Z0; feet point upwards",
+  "rotation": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      -1.0,
+      -1.2246467991473532e-16,
+      0.0
+    ],
+    [
+      0.0,
+      1.2246467991473532e-16,
+      -1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "translation_after_rotation_mm": [
+    7.0,
+    46.0,
+    9.000000000000004
+  ],
+  "tessellation_mm": 0.01,
+  "unsupported_downward_faces_above_bed": 0,
+  "quantity": 2,
+  "material": "PETG",
+  "infill_percent": 100,
+  "support": "none",
+  "brim_mm": 3,
+  "print_bed_with_brim_mm": [
+    143,
+    78,
+    9
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\n    \"members\": [\n        {\n            \"class\": \"MoveFeatures\",\n            \"doc\": \"\\nCreates a MoveFeatureInput object. Use properties and methods on this object\\nto define how the move is defined and then use the MoveFeatues.add method, passing in\\nthe MoveFeatureInput object to create a move feature.\\ninputEntities : An ObjectCollection containing the objects to move. For a parametric model, the collection can contain\\nBRepBody or BRepFace objects but not a combination of both.\\nReturns the newly created MoveFeatureInput object or null if the creation failed.\\n\",\n            \"name\": \"createInput2\",\n            \"namespace\": \"adsk.fusion\",\n            \"signature\": \"(inputEntities: ObjectCollection) -> adsk.fusion.MoveFeatureInput\",\n            \"type\": \"function\"\n        }\n    ],\n    \"message\": \"API documentation query completed\",\n    \"success\": true\n}",
+        "type": "text"
+      }
+    ]
+  }
+}

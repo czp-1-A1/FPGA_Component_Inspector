@@ -1,0 +1,164 @@
+{
+  "parts": [
+    {
+      "code": "P01",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 72853.82748764807
+    },
+    {
+      "code": "P02",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 83314.84634967853
+    },
+    {
+      "code": "P03_LB",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 13157.64824629442
+    },
+    {
+      "code": "P03_LF",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 13157.64824629442
+    },
+    {
+      "code": "P03_RB",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 13157.64824629442
+    },
+    {
+      "code": "P03_RF",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 13157.64824629442
+    },
+    {
+      "code": "P04",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 53936.74123147209
+    },
+    {
+      "code": "P05",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 42710.44473888326
+    },
+    {
+      "code": "P06A",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 27717.31048637332
+    },
+    {
+      "code": "P06B",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 27717.31048637326
+    },
+    {
+      "code": "P07_L",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 24358.784426500104
+    },
+    {
+      "code": "P07_R",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 24358.784426500097
+    },
+    {
+      "code": "S01",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 703.0
+    },
+    {
+      "code": "S03A",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 776.6032345518861
+    },
+    {
+      "code": "S03B",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 776.6032345518815
+    },
+    {
+      "code": "W01",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3118091.4824629445
+    },
+    {
+      "code": "W02",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1286245.9123147205
+    },
+    {
+      "code": "W03",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 143236.5929851776
+    },
+    {
+      "code": "W04",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 119549.01023741024
+    },
+    {
+      "code": "W05",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 64898.29649258883
+    },
+    {
+      "code": "CT01",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 47866.34634967854
+    },
+    {
+      "code": "CT02",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 7577.6482462944205
+    },
+    {
+      "code": "CT03",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 17503.456871912014
+    },
+    {
+      "code": "HT01",
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 28948.515048738205
+    }
+  ],
+  "coupon_interface_comparison": [
+    {
+      "coupon": "CT01",
+      "source": "P02",
+      "boolean_fuzzy_mm": 1e-05,
+      "symmetric_difference_mm3": 95732.69269935708,
+      "matches_cropped_interface": false
+    },
+    {
+      "coupon": "CT02",
+      "source": "P03_RB",
+      "boolean_fuzzy_mm": 1e-05,
+      "symmetric_difference_mm3": 15155.296492588843,
+      "matches_cropped_interface": false
+    }
+  ]
+}

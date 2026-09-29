@@ -1,0 +1,106 @@
+{
+  "document": "Untitled",
+  "timeline": 1244,
+  "docs": [
+    "FPGA_Carrier_Inspector_R2_Layout_Review",
+    "R2_Fit_Coupons_Prototype",
+    "R2_\u5173\u952e\u914d\u5408\u5c0f\u6837",
+    "Untitled"
+  ],
+  "sketches": [
+    {
+      "name": "Pad_position_slots_0_sketch",
+      "dimensions": [
+        {
+          "name": "d417",
+          "expression": "abs(( 0 mm ) - ( ( slot_d ) / 2 ))"
+        },
+        {
+          "name": "d418",
+          "expression": "abs(( -49 mm ) - ( ( 60 mm - slot_d ) / 2 ))"
+        },
+        {
+          "name": "d419",
+          "expression": "slot_d"
+        },
+        {
+          "name": "d420",
+          "expression": "2 * ( ( 60 mm - slot_d ) / 2 )"
+        }
+      ]
+    },
+    {
+      "name": "Pad_position_slots_0_ends_1_sketch",
+      "dimensions": [
+        {
+          "name": "d425",
+          "expression": "abs(( -49 mm ) - ( ( 60 mm - slot_d ) / 2 ))"
+        },
+        {
+          "name": "d426",
+          "expression": "slot_d"
+        }
+      ]
+    },
+    {
+      "name": "Pad_position_slots_0_ends_2_sketch",
+      "dimensions": [
+        {
+          "name": "d431",
+          "expression": "abs(( -49 mm ) + ( ( 60 mm - slot_d ) / 2 ))"
+        },
+        {
+          "name": "d432",
+          "expression": "slot_d"
+        }
+      ]
+    },
+    {
+      "name": "Pad_position_slots_1_sketch",
+      "dimensions": [
+        {
+          "name": "d437",
+          "expression": "abs(( 0 mm ) - ( ( slot_d ) / 2 ))"
+        },
+        {
+          "name": "d438",
+          "expression": "abs(( 49 mm ) - ( ( 60 mm - slot_d ) / 2 ))"
+        },
+        {
+          "name": "d439",
+          "expression": "slot_d"
+        },
+        {
+          "name": "d440",
+          "expression": "2 * ( ( 60 mm - slot_d ) / 2 )"
+        }
+      ]
+    },
+    {
+      "name": "Pad_position_slots_1_ends_1_sketch",
+      "dimensions": [
+        {
+          "name": "d445",
+          "expression": "abs(( 49 mm ) - ( ( 60 mm - slot_d ) / 2 ))"
+        },
+        {
+          "name": "d446",
+          "expression": "slot_d"
+        }
+      ]
+    },
+    {
+      "name": "Pad_position_slots_1_ends_2_sketch",
+      "dimensions": [
+        {
+          "name": "d451",
+          "expression": "abs(( 49 mm ) + ( ( 60 mm - slot_d ) / 2 ))"
+        },
+        {
+          "name": "d452",
+          "expression": "slot_d"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,594 @@
+<!doctype html><meta charset="utf-8"><title>FPGA R2 布局审查</title><style>body{font-family:Segoe UI,Microsoft YaHei,sans-serif;max-width:1180px;margin:40px auto;color:#203040;line-height:1.65;padding:0 24px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:9px;border:1px solid #ccd5df;text-align:left}th{background:#e9f0f6}img{max-width:100%}h1,h2{color:#15456b}code{overflow-wrap:anywhere}pre{white-space:pre-wrap}</style><h1>FPGA 载带视觉检测装置 R2 · 首阶段布局审查</h1>
+<p><strong>试制方案，2026-09-10。仅供布局确认；未完成实物试配、承载、温升或光学验证。R1 保留。</strong></p>
+<p>本目录包含 Fusion 原生参数化装配、整机 STEP 和四幅整体视图。自制零件使用草图、尺寸约束、拉伸、切除和少量放样特征；标准紧固件采用简化包络，未画螺纹。不是渲染图替代 CAD。整机当前包络为 <strong>650×400×380 mm</strong>（含底部 8 mm 防滑垫）。正视由前方 −Y 看向后方，俯视从 +Z 向下，右视从 +X 看向左侧。当前设计有 55 个用户参数、1244 项特征历史、348 个完全约束草图、324 个装配实体。重复件共享组件定义；P03 四个方位及 P07 左右件分开编号。</p>
+<h2>文件及查看</h2>
+<ul>
+<li><code>FPGA_Inspector_R2_Prototype.f3d</code>：用 Fusion 打开，可旋转、隐藏组件、查看时间线、修改用户参数。</li>
+<li><code>FPGA_Inspector_R2_Assembly.step</code>：整机实体交换文件；不含 Fusion 参数历史。</li>
+<li><code>整体视图/R2_Isometric.png</code>、<code>R2_Front.png</code>、<code>R2_Top.png</code>、<code>R2_Right.png</code>：原生 CAD 正交投影截图，2000×1500；不是制造工程图。</li>
+<li><code>参数表_R2.csv</code>：用户参数与表达式；<code>evidence/</code>：检查数据；<code>scripts/</code>：建模和检查脚本及修正记录。</li>
+<li><code>evidence/R2_working_checkpoint.f3d</code> 是中途恢复用检查点，<strong>不是最终审查版本</strong>。应打开文件名含 <code>Prototype</code> 的文件。</li>
+</ul>
+<p><img alt="轴测图" src="整体视图/R2_Isometric.png" /></p>
+<h3>整体正视、俯视、右视</h3>
+<p><img alt="正视图" src="整体视图/R2_Front.png" /></p>
+<p><img alt="俯视图" src="整体视图/R2_Top.png" /></p>
+<p><img alt="右视图" src="整体视图/R2_Right.png" /></p>
+<h2>布局与 R1 修正记录</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>R2 实施结果与原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>木结构</td>
+<td>底板 650×400×12；立板 300×360×12；两块 120×200×12 直角加强板。底板上面 Z=0，检测中心 X=Y=0，X 沿输送方向，Y 向后。立板前面 Y=110。</td>
+</tr>
+<tr>
+<td>相机对中</td>
+<td>托臂始终 X=±65。板卡中心 X=−20，镜头偏心 +20，镜头轴线仍为 X=Y=0；未增加左右滑台。</td>
+</tr>
+<tr>
+<td>四点承托</td>
+<td>P02 由 64 加宽为 74，接触深度改为 19。软垫厚 0.5 为假设，螺栓位于接触区以外。</td>
+</tr>
+<tr>
+<td>正向限位</td>
+<td>P02 集成上下亚克力 Y 止挡、板外硬支脚；P03 下伸 X 止挡并在上亚克力上方留 0.5 间隙。压紧力经板外支脚传递。四角止挡交界原有 3 mm³ 重叠已消除。</td>
+</tr>
+<tr>
+<td>相机高度</td>
+<td>根部加宽 52，双侧根部螺栓中心在加强筋之外；分档 20，微调槽总长 28、宽 4.5。上下档衔接。</td>
+</tr>
+<tr>
+<td>灯架</td>
+<td>P04 平板、两端垫高脚、12 深开放背通道；P05 双螺栓连接，无复杂滑块。P05 筋前端由 Y=28 后退到 Y=45，给连接板前后运动让位。</td>
+</tr>
+<tr>
+<td>木连接干涉</td>
+<td>加强板与立板的上连接点由 Z=140 降到 Z=110，避免与低位灯架螺栓相碰；下连接点 Z=60。未增加零件。</td>
+</tr>
+<tr>
+<td>灯圈</td>
+<td>P06A/B 分体外夹，通光孔保留；P07 合并为左右各一件。夹耳、直通线口/散热窗及闭合止挡保持简单。没有使用安装面未知的四个 M3 孔。</td>
+</tr>
+<tr>
+<td>灯的操作</td>
+<td>灯架高度连接采用 M4 外六角头，开放背通道侧向持 7 mm 扳手，正面紧固。夹圈螺钉从前方操作。</td>
+</tr>
+<tr>
+<td>水平进出料</td>
+<td>两端各 100×100×12 托板，距机身端面 2 mm；四片 12 厚木脚暂高 68。托板顶面与暂定带面同为 Z=80。顶面改为 M4×20 沉头螺钉，头低于板面 0.2，防止载带撞螺钉头。</td>
+</tr>
+<tr>
+<td>固定</td>
+<td>普通 25×25×25、厚 2 角码包络；实购孔位待核。只建结构连接孔，设备安装孔未臆造。底部 8 厚防滑垫让出螺钉头。</td>
+</tr>
+</tbody>
+</table>
+<p>图示颜色仅区分木板、打印件、设备与标准件，不表示已赋予可信的材料强度数据。</p>
+<h2>假设与参数修改规则</h2>
+<table>
+<thead>
+<tr>
+<th>未知项目</th>
+<th style="text-align: right;">本版布局值</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下/上亚克力厚度</td>
+<td style="text-align: right;">各 1 mm</td>
+<td>假设，待测</td>
+</tr>
+<tr>
+<td>承托面至组件顶部</td>
+<td style="text-align: right;">30 mm</td>
+<td>假设；不代表实际板卡总厚度</td>
+</tr>
+<tr>
+<td>镜头端面低于承托面</td>
+<td style="text-align: right;">20 mm</td>
+<td>假设；镜头自身 Ø14×18.3 单独定义</td>
+</tr>
+<tr>
+<td>实际带面高</td>
+<td style="text-align: right;">80 mm</td>
+<td>假设；已知 80 是设备外形高度，不能作为实测带面高度</td>
+</tr>
+<tr>
+<td>检测物高出带面</td>
+<td style="text-align: right;">5 mm</td>
+<td>假设</td>
+</tr>
+<tr>
+<td>拍摄距离 D</td>
+<td style="text-align: right;">100 mm</td>
+<td>从镜头端面到检测面；未做合焦验证</td>
+</tr>
+<tr>
+<td>灯发光面距检测面 H</td>
+<td style="text-align: right;">60 mm</td>
+<td>假设</td>
+</tr>
+<tr>
+<td>X/Y 总定位间隙</td>
+<td style="text-align: right;">各 1 mm</td>
+<td>初始设计值，需要试配，不能当成打印精度</td>
+</tr>
+<tr>
+<td>灯圈衬垫</td>
+<td style="text-align: right;">径向 0.5 mm</td>
+<td>假设材料与厚度；可更换，须轻压试配</td>
+</tr>
+</tbody>
+</table>
+<p>原生文件重新导入 Fusion 后，55 个参数、1244 项历史、342 个组件实例/子装配实例保留；STEP 经独立 OpenCascade 读取为 324 个有效实体，整形有效。<code>evidence/native_reopen.json</code>、<code>step_roundtrip.json</code> 保存证据。</p>
+<p>默认检测面 Z=85，镜头端面 Z=185，承托面 Z=205，上亚克力顶 Z=235，防脱片下表面 Z=235.5，灯下表面 Z=145。板卡中心为 (−20,0)，镜头、灯和检测点均为 (0,0)。</p>
+<p>修改 <code>camera_wd</code> 后，另将 <code>camera_row_z</code> 选到就近的 125、145…305 分档孔；该参数表示<strong>人工拆装换档</strong>，不是自动升降机构。建议令 <code>abs(camera_row_z-(support_z-soft_t-pad_t-10 mm)) ≤ 10.75 mm</code>。两边选择同档。</p>
+<p>修改板厚、偏心、带高后必须复核紧固件长度、工具与灯距。原生重算成功不等于新参数组合可以制造。设备和载带轮廓仍是包络，不做未知尺寸的贴合导向。</p>
+<h2>最不利承托与四向限位</h2>
+<p>下亚克力、实体承托面、实际软垫的默认交集：</p>
+<table>
+<thead>
+<tr>
+<th>接触点</th>
+<th>X 交集/mm</th>
+<th>Y 交集/mm</th>
+<th>名义接触</th>
+<th>各轴扣减 5 后的完整矩形</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左前</td>
+<td>−85…−28</td>
+<td>−45…−26</td>
+<td>57×19</td>
+<td>52×14</td>
+</tr>
+<tr>
+<td>左后</td>
+<td>−85…−28</td>
+<td>26…45</td>
+<td>57×19</td>
+<td>52×14</td>
+</tr>
+<tr>
+<td>右前</td>
+<td>28…45</td>
+<td>−45…−26</td>
+<td>17×19</td>
+<td><strong>12×14</strong></td>
+</tr>
+<tr>
+<td>右后</td>
+<td>28…45</td>
+<td>26…45</td>
+<td>17×19</td>
+<td><strong>12×14</strong></td>
+</tr>
+</tbody>
+</table>
+<p>孔槽位于 Y=±54、±66，未侵入上述接触区；接触面没有扣除后还占用面积的倒角或缺口。5 mm 保守扣减分别为板边内缩 0.5、定位位置变化 1、托臂安装 1、打印尺寸综合 1、软垫内缩及贴放 1.5。此为预算，不是实测制造精度。四点各满足至少 12×14=168 mm² 的目标；不能据此证明 1 mm 亚克力挠曲或承载合格。</p>
+<p>右侧约束为 <code>board_l/2-lens_dx-(65-pad_w/2)-5 ≥ 12</code>。默认恰为 12；若偏心改为 22，结果降为 10，<strong>不满足</strong>，须改承托宽度或重新布置，不能默默沿用结论。偏心 18 的回归值为 14。</p>
+<p>四个平面极限角：板卡 X、Y 各平移 ±0.5。最大抬起 0.5 时，X 止挡与上亚克力仍有 1 mm 竖向重叠，Y 下止挡仍有 0.5 mm；上止挡仍有 1 mm。X 止挡沿 Y 的最小接触长度 4.5 mm。垂直放入板卡，再装四片 P03，避免封闭夹口。上方间隙负责防抬，X/Y 硬止挡负责防滑，不以软垫摩擦代替定位。</p>
+<p><strong>配合风险：</strong>1 mm 总间隙不能覆盖任意方向的 1 mm 打印偏差再加板卡尺寸正偏差。上述承托面积预算不是“必定装得进去”的公差证明。须先做止挡小样/测量，调整 <code>lateral_gap</code>，保证可垂直放入且不挤弯亚克力；间隙变大后重新扣减承托宽度。</p>
+<h2>有效行程与组合限制</h2>
+<p>统一采用 <code>槽总长−4.5−双螺栓中心距−2×1</code>，以校核直径而不是理想螺杆直径计算。</p>
+<table>
+<thead>
+<tr>
+<th>调节项</th>
+<th>槽本身</th>
+<th>装配限制/本版使用范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>相机短槽</td>
+<td>28−4.5−0−2=<strong>21.5 mm</strong></td>
+<td>分档 20，相邻档重叠 1.5；125…305 孔档理论 D=29.75…231.25，但未将其宣称为整机可用距离</td>
+</tr>
+<tr>
+<td>灯高双螺栓</td>
+<td>140−4.5−16−2=<strong>117.5 mm</strong></td>
+<td>槽中心约束灯底 68.25…185.75；需再扣掉传送带、固定螺栓和背部操作空间。取 <strong>H=10…97 mm</strong>，连续有效 87 mm</td>
+</tr>
+<tr>
+<td>灯前后双螺栓</td>
+<td>72−4.5−36−2=<strong>29.5 mm</strong></td>
+<td>机械位置 Y=−14.75…+14.75；同轴检测仍要求 Y=0。默认 D100/H60 时建议 Y≤+10，给相机筋留约 2 mm 以上间隙</td>
+</tr>
+</tbody>
+</table>
+<p>本版采用保守组合区间：<strong>D=50…200、H=10…97，且 D≥H+38，灯 Y=0</strong>。例如 D50/H10、D100/H60、D135/H97。不是 D、H 可以在各自范围内任意搭配。若需要完整前后行程并保留约 2 mm 几何余量，采用 <strong>D≥H+42</strong>；例如 D102/H60。</p>
+<p>D40/H10 已检出相机筋与 P07 相交，故不承诺 40 mm。上端 H100 会遇到固定/支承结构，故使用上限 97。薄料人工取放更适合 H≥30、D≥H+38；低灯位先升灯再取放，不把 10 mm 下方空间当成人手空间。光学能否合焦、灯照是否均匀另行验证。</p>
+<p>检查方法：从原生实体复制临时 BRep，按真实部件分组平移，分档螺栓移至对应孔排；AABB 筛选后做精确布尔相交。检查 640 个组合，其中 435 个未发生体积相交。其余包含刻意测试的冲突组合，不能将“全部组合通过”作为结论。临界附近另有细分检查 <code>pose_refined.json</code>。这是离散扫查加约束计算，<strong>不是全连续运动或碰撞求解器证明</strong>。</p>
+<h2>几何、装配和操作检查</h2>
+<ul>
+<li>最终默认装配：324 实体，体积相交 0 对，布尔计算失败 0 对，特征历史异常 0 项。结果见 <code>geometry_check.json</code>。</li>
+<li>参数回归：堆叠高 35、偏心 18、镜头突出 22、带高 75、灯 Y=±14.75 共六次原生修改，均重算成功且无特征错误，已恢复默认。见 <code>parameter_regression_results.json</code>。堆叠高改到 35 时应把承托 M4×65 改选 M4×70；现有螺栓不能直接沿用。带面改为 75 时，当前实心机身简化包络会与带面包络重叠，必须按实物重建机身上部，不能宣称该变体无干涉。<code>lens_dy</code> 本版只校核 0；改变它会改变 Y 限位配合，需重新布置止挡。</li>
+<li>默认装配测试 36 个明确工具/操作包络，未检出冲突。包含 Ø10 正面套筒、灯架背部 18×5.2×14 扳手头包络、灯夹圈 Ø10 工具通道、Ø34 调焦手指包络、前方取料区。包络代表设计预留，实际工具尺寸、手姿和线缆弯曲仍须试配。</li>
+<li>接口暂留：前方 X±20/Y−100…−45、后方 X±20/Y45…95、左侧 X−120…−85/Y±15、右侧 X45…100/Y±15，Z210…230；均为假设可用区域，不代表真实连接器位于此处。</li>
+<li>角码、垫片与孔相对位置已做实体检查；标准螺纹、省略内六角的头部和螺母以包络表示，采购后核对头径、垫片外径和工具。木结构先组装，再放传送带，避免底部紧固件不可接近。</li>
+<li>灯架背部螺栓先预装，再固定 P04。高度调节时托住灯架、松开双螺栓、调整后两侧交替锁紧。相机换档需要先托住板卡组件，避免自由下落。</li>
+<li>托料脚高度需根据实测带面和垫片调整；两端 2 mm 间隙、表面平整度、沉孔边缘和实际载带通过性须检查。设备固定孔仍待实物定位，当前不应直接启停运行。</li>
+</ul>
+<h2>打印初审（未发 STL）</h2>
+<table>
+<thead>
+<tr>
+<th>打印件</th>
+<th style="text-align: right;">数量</th>
+<th>装配坐标包络 X×Y×Z/mm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01_对称托臂</td>
+<td style="text-align: right;">2</td>
+<td>52.0 × 190.0 × 50.0</td>
+</tr>
+<tr>
+<td>P02_加宽四点承托块</td>
+<td style="text-align: right;">4</td>
+<td>74.0 × 44.0 × 41.0</td>
+</tr>
+<tr>
+<td>P03_LF_上防脱及X止挡</td>
+<td style="text-align: right;">1</td>
+<td>74.0 × 30.0 × 7.5</td>
+</tr>
+<tr>
+<td>P03_LB_上防脱及X止挡</td>
+<td style="text-align: right;">1</td>
+<td>74.0 × 30.0 × 7.5</td>
+</tr>
+<tr>
+<td>P03_RF_上防脱及X止挡</td>
+<td style="text-align: right;">1</td>
+<td>74.0 × 30.0 × 7.5</td>
+</tr>
+<tr>
+<td>P03_RB_上防脱及X止挡</td>
+<td style="text-align: right;">1</td>
+<td>74.0 × 30.0 × 7.5</td>
+</tr>
+<tr>
+<td>P04_开放背槽竖导板</td>
+<td style="text-align: right;">2</td>
+<td>24.0 × 24.0 × 180.0</td>
+</tr>
+<tr>
+<td>P05_双螺栓灯托臂</td>
+<td style="text-align: right;">2</td>
+<td>20.0 × 150.0 × 44.0</td>
+</tr>
+<tr>
+<td>P06B_分体灯夹圈</td>
+<td style="text-align: right;">1</td>
+<td>136.0 × 54.5 × 16.0</td>
+</tr>
+<tr>
+<td>P06A_分体灯夹圈</td>
+<td style="text-align: right;">1</td>
+<td>136.0 × 54.5 × 16.0</td>
+</tr>
+<tr>
+<td>P07_L_灯圈连接板</td>
+<td style="text-align: right;">1</td>
+<td>88.0 × 52.0 × 8.0</td>
+</tr>
+<tr>
+<td>P07_R_灯圈连接板</td>
+<td style="text-align: right;">1</td>
+<td>88.0 × 52.0 × 8.0</td>
+</tr>
+</tbody>
+</table>
+<p>P01 侧放，约 190×50 的投影加四周 5 mm 附着边为 200×60，已到 200 mm 打印空间边界，须核查机器真实有效范围。P04 大平面朝下，约 24×180 加边后 34×190。P02 底面朝下；P03 顶面朝下使下伸止挡朝上；P05 侧放；P06/P07 平放。其余均在 200×200×200 包络内。</p>
+<p>P01 的侧放有利于让层内路径沿臂长延续，但不构成层间强度证明。P05 两筋之间的小桥接、P06 的 16 mm 窗顶桥接及局部孔顶需小样或可拆支撑；P03 小止挡、PETG 孔径及平面翘曲须试打。没有做切片仿真或试打印，因此<strong>本阶段不判定已适合打印，也不输出 STL</strong>。</p>
+<h2>灯圈与仍需实测的项目</h2>
+<ol>
+<li>确认灯壳可夹持圆柱面、真实外径、发光面、线口、散热结构和任何薄壁区域；4 个 M3 螺孔的安装面待确认。</li>
+<li>软衬连续接触、轻载防滑、线缆拉力影响以及松紧重复性，均待实物试验。不得用继续加力补偿夹圈尺寸不合适。</li>
+<li>初始夹缝 2、闭合止挡最小缝 1。<strong>止挡不是“拧紧到此”的目标，也不是灯壳受力安全证明</strong>；必须在轻压可靠夹持时停止。若需大幅压缩软衬才能防滑，应改衬垫/圈径并重新校核。</li>
+<li>夹紧工具装入、旋转和退出；P07 短槽是否随收紧自由移动；不得由镜头或摄像头座承重。</li>
+<li>发光面遮挡、光照均匀、调焦、实际工作距离及曝光效果；灯的工作温升与 PETG 软化/蠕变风险。</li>
+<li>实测板卡叠层高度、亚克力尺寸和挠曲、镜头突出量、连接器位置和排线自然弯曲半径；实际载带宽度、厚度、边缘轮廓及接续段通过性。</li>
+<li>木板实际厚度、孔偏差、传送带安装孔、启动振动和设备质量。完成固定、承载与启停试验后再评估可靠性。</li>
+</ol>
+<p>用户确认整体布局后，才进入逐件 STEP、独立工程图、木板下料/钻孔图、最终紧固件明细和装配说明；通过打印适用性检查的零件再提供 STL。</p>
+<h2>完整用户参数表</h2>
+<p>下列值均为当前 CAD 参数；“已知尺寸”和“暂定假设”的性质以本报告前文为准，不能将参数存在理解为已测量。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>表达式</th>
+<th style="text-align: right;">当前值/mm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wood_t</td>
+<td><code>12 mm</code></td>
+<td style="text-align: right;">12.0</td>
+</tr>
+<tr>
+<td>base_l</td>
+<td><code>650 mm</code></td>
+<td style="text-align: right;">650.0</td>
+</tr>
+<tr>
+<td>base_w</td>
+<td><code>400 mm</code></td>
+<td style="text-align: right;">400.0</td>
+</tr>
+<tr>
+<td>wall_y</td>
+<td><code>110 mm</code></td>
+<td style="text-align: right;">110.0</td>
+</tr>
+<tr>
+<td>wall_h</td>
+<td><code>360 mm</code></td>
+<td style="text-align: right;">360.0</td>
+</tr>
+<tr>
+<td>wall_w</td>
+<td><code>300 mm</code></td>
+<td style="text-align: right;">300.0</td>
+</tr>
+<tr>
+<td>belt_l</td>
+<td><code>420 mm</code></td>
+<td style="text-align: right;">420.0</td>
+</tr>
+<tr>
+<td>belt_w</td>
+<td><code>80 mm</code></td>
+<td style="text-align: right;">80.0</td>
+</tr>
+<tr>
+<td>machine_w</td>
+<td><code>110 mm</code></td>
+<td style="text-align: right;">110.0</td>
+</tr>
+<tr>
+<td>machine_h</td>
+<td><code>80 mm</code></td>
+<td style="text-align: right;">80.0</td>
+</tr>
+<tr>
+<td>belt_z</td>
+<td><code>80 mm</code></td>
+<td style="text-align: right;">80.0</td>
+</tr>
+<tr>
+<td>sample_h</td>
+<td><code>5 mm</code></td>
+<td style="text-align: right;">5.0</td>
+</tr>
+<tr>
+<td>detect_z</td>
+<td><code>belt_z + sample_h</code></td>
+<td style="text-align: right;">85.0</td>
+</tr>
+<tr>
+<td>board_l</td>
+<td><code>130 mm</code></td>
+<td style="text-align: right;">130.0</td>
+</tr>
+<tr>
+<td>board_w</td>
+<td><code>90 mm</code></td>
+<td style="text-align: right;">90.0</td>
+</tr>
+<tr>
+<td>lens_dx</td>
+<td><code>20 mm</code></td>
+<td style="text-align: right;">20.0</td>
+</tr>
+<tr>
+<td>lens_dy</td>
+<td><code>0 mm</code></td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr>
+<td>acrylic_lower_t</td>
+<td><code>1 mm</code></td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr>
+<td>acrylic_upper_t</td>
+<td><code>1 mm</code></td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr>
+<td>stack_h</td>
+<td><code>30 mm</code></td>
+<td style="text-align: right;">30.0</td>
+</tr>
+<tr>
+<td>lens_drop</td>
+<td><code>20 mm</code></td>
+<td style="text-align: right;">20.0</td>
+</tr>
+<tr>
+<td>lens_d</td>
+<td><code>14 mm</code></td>
+<td style="text-align: right;">14.0</td>
+</tr>
+<tr>
+<td>lens_body_h</td>
+<td><code>18.3 mm</code></td>
+<td style="text-align: right;">18.3</td>
+</tr>
+<tr>
+<td>camera_wd</td>
+<td><code>100 mm</code></td>
+<td style="text-align: right;">100.0</td>
+</tr>
+<tr>
+<td>lens_z</td>
+<td><code>detect_z + camera_wd</code></td>
+<td style="text-align: right;">185.0</td>
+</tr>
+<tr>
+<td>support_z</td>
+<td><code>lens_z + lens_drop</code></td>
+<td style="text-align: right;">205.0</td>
+</tr>
+<tr>
+<td>pad_w</td>
+<td><code>74 mm</code></td>
+<td style="text-align: right;">74.0</td>
+</tr>
+<tr>
+<td>pad_depth</td>
+<td><code>44 mm</code></td>
+<td style="text-align: right;">44.0</td>
+</tr>
+<tr>
+<td>pad_t</td>
+<td><code>10 mm</code></td>
+<td style="text-align: right;">10.0</td>
+</tr>
+<tr>
+<td>support_depth</td>
+<td><code>19 mm</code></td>
+<td style="text-align: right;">19.0</td>
+</tr>
+<tr>
+<td>soft_t</td>
+<td><code>0.5 mm</code></td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr>
+<td>retainer_gap</td>
+<td><code>0.5 mm</code></td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr>
+<td>lateral_gap</td>
+<td><code>1 mm</code></td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr>
+<td>slot_d</td>
+<td><code>4.5 mm</code></td>
+<td style="text-align: right;">4.5</td>
+</tr>
+<tr>
+<td>slot_end_margin</td>
+<td><code>1 mm</code></td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr>
+<td>camera_pitch</td>
+<td><code>20 mm</code></td>
+<td style="text-align: right;">20.0</td>
+</tr>
+<tr>
+<td>camera_slot_l</td>
+<td><code>28 mm</code></td>
+<td style="text-align: right;">28.0</td>
+</tr>
+<tr>
+<td>lamp_od</td>
+<td><code>90 mm</code></td>
+<td style="text-align: right;">90.0</td>
+</tr>
+<tr>
+<td>lamp_id</td>
+<td><code>40 mm</code></td>
+<td style="text-align: right;">40.0</td>
+</tr>
+<tr>
+<td>lamp_h</td>
+<td><code>22 mm</code></td>
+<td style="text-align: right;">22.0</td>
+</tr>
+<tr>
+<td>lamp_clearance</td>
+<td><code>60 mm</code></td>
+<td style="text-align: right;">60.0</td>
+</tr>
+<tr>
+<td>lamp_bottom</td>
+<td><code>detect_z + lamp_clearance</code></td>
+<td style="text-align: right;">145.0</td>
+</tr>
+<tr>
+<td>lamp_y</td>
+<td><code>0 mm</code></td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr>
+<td>ring_id</td>
+<td><code>91 mm</code></td>
+<td style="text-align: right;">91.0</td>
+</tr>
+<tr>
+<td>ring_od</td>
+<td><code>110 mm</code></td>
+<td style="text-align: right;">110.0</td>
+</tr>
+<tr>
+<td>ring_h</td>
+<td><code>16 mm</code></td>
+<td style="text-align: right;">16.0</td>
+</tr>
+<tr>
+<td>ring_gap</td>
+<td><code>2 mm</code></td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr>
+<td>ring_close_limit</td>
+<td><code>1 mm</code></td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr>
+<td>ring_z</td>
+<td><code>lamp_bottom + 3 mm</code></td>
+<td style="text-align: right;">148.0</td>
+</tr>
+<tr>
+<td>lamp_rail_slot</td>
+<td><code>140 mm</code></td>
+<td style="text-align: right;">140.0</td>
+</tr>
+<tr>
+<td>lamp_arm_slot</td>
+<td><code>72 mm</code></td>
+<td style="text-align: right;">72.0</td>
+</tr>
+<tr>
+<td>lamp_z_bolt_pitch</td>
+<td><code>16 mm</code></td>
+<td style="text-align: right;">16.0</td>
+</tr>
+<tr>
+<td>lamp_y_bolt_pitch</td>
+<td><code>36 mm</code></td>
+<td style="text-align: right;">36.0</td>
+</tr>
+<tr>
+<td>tray_gap</td>
+<td><code>2 mm</code></td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr>
+<td>camera_row_z</td>
+<td><code>185 mm</code></td>
+<td style="text-align: right;">185.0</td>
+</tr>
+</tbody>
+</table>

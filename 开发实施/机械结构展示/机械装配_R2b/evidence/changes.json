@@ -1,0 +1,264 @@
+{
+  "removed": [
+    "P06B_分体灯夹圈:1",
+    "P06A_分体灯夹圈:1",
+    "P07_L_灯圈连接板:1",
+    "P07_R_灯圈连接板:1",
+    "H_BRIDGE_ARM_-18_Bolt_M4x30:1",
+    "H_BRIDGE_ARM_-18_Nut_M4:1",
+    "H_BRIDGE_ARM_-18_Washer_head_M4:1",
+    "H_BRIDGE_ARM_-18_Washer_nut_M4:1",
+    "H_BRIDGE_RING_-18_Bolt_M4x35:1",
+    "H_BRIDGE_RING_-18_Nut_M4:1",
+    "H_BRIDGE_RING_-18_Washer_head_M4:1",
+    "H_BRIDGE_RING_-18_Washer_nut_M4:1",
+    "H_BRIDGE_ARM_18_Bolt_M4x30:1",
+    "H_BRIDGE_ARM_18_Nut_M4:1",
+    "H_BRIDGE_ARM_18_Washer_head_M4:1",
+    "H_BRIDGE_ARM_18_Washer_nut_M4:1",
+    "H_BRIDGE_RING_18_Bolt_M4x35:1",
+    "H_BRIDGE_RING_18_Nut_M4:1",
+    "H_BRIDGE_RING_18_Washer_head_M4:1",
+    "H_BRIDGE_RING_18_Washer_nut_M4:1",
+    "H_RING_CLAMP_Bolt_M4x35:1",
+    "H_RING_CLAMP_Nut_M4:1",
+    "H_RING_CLAMP_Washer_head_M4:1",
+    "H_RING_CLAMP_Washer_nut_M4:1",
+    "H_BRIDGE_ARM_-18_Bolt_M4x30:2",
+    "H_BRIDGE_ARM_-18_Nut_M4:2",
+    "H_BRIDGE_ARM_-18_Washer_head_M4:2",
+    "H_BRIDGE_ARM_-18_Washer_nut_M4:2",
+    "H_BRIDGE_RING_-18_Bolt_M4x35:2",
+    "H_BRIDGE_RING_-18_Nut_M4:2",
+    "H_BRIDGE_RING_-18_Washer_head_M4:2",
+    "H_BRIDGE_RING_-18_Washer_nut_M4:2",
+    "H_BRIDGE_ARM_18_Bolt_M4x30:2",
+    "H_BRIDGE_ARM_18_Nut_M4:2",
+    "H_BRIDGE_ARM_18_Washer_head_M4:2",
+    "H_BRIDGE_ARM_18_Washer_nut_M4:2",
+    "H_BRIDGE_RING_18_Bolt_M4x35:2",
+    "H_BRIDGE_RING_18_Nut_M4:2",
+    "H_BRIDGE_RING_18_Washer_head_M4:2",
+    "H_BRIDGE_RING_18_Washer_nut_M4:2",
+    "H_RING_CLAMP_Bolt_M4x35:2",
+    "H_RING_CLAMP_Nut_M4:2",
+    "H_RING_CLAMP_Washer_head_M4:2",
+    "H_RING_CLAMP_Washer_nut_M4:2",
+    "S03B_灯圈软衬_0p5厚_待实配:1",
+    "S03A_灯圈软衬_0p5厚_待实配:1"
+  ],
+  "parameter_edits": [
+    [
+      "P05_双螺栓灯托臂",
+      "d779",
+      "ring_z + ring_h - 12 mm",
+      "p08_bottom - 12 mm"
+    ],
+    [
+      "P05_双螺栓灯托臂",
+      "d787",
+      "ring_z + ring_h - 12 mm",
+      "p08_bottom - 12 mm"
+    ],
+    [
+      "P05_双螺栓灯托臂",
+      "d797",
+      "abs(-( ring_z + ring_h ))",
+      "abs(-( p08_bottom ))"
+    ],
+    [
+      "P05_双螺栓灯托臂",
+      "d805",
+      "abs(-( ring_z + ring_h ))",
+      "abs(-( p08_bottom ))"
+    ],
+    [
+      "P05_双螺栓灯托臂",
+      "d811",
+      "ring_z + ring_h - 13 mm",
+      "p08_bottom - 13 mm"
+    ],
+    [
+      "P05_双螺栓灯托臂",
+      "d819",
+      "ring_z + ring_h - 13 mm",
+      "p08_bottom - 13 mm"
+    ],
+    [
+      "P05_双螺栓灯托臂",
+      "d825",
+      "ring_z + ring_h - 13 mm",
+      "p08_bottom - 13 mm"
+    ],
+    [
+      "P05_双螺栓灯托臂",
+      "d833",
+      "abs(-( ring_z + ring_h + 6 mm ))",
+      "abs(-( p08_bottom + 6 mm ))"
+    ],
+    [
+      "P05_双螺栓灯托臂",
+      "d839",
+      "abs(-( ring_z + ring_h + 22 mm ))",
+      "abs(-( p08_bottom + 22 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_6_HexHead_Bolt_M4x35",
+      "d2084",
+      "abs(-( ring_z + ring_h + 6 mm ))",
+      "abs(-( p08_bottom + 6 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_6_HexHead_Bolt_M4x35",
+      "d2090",
+      "abs(-( ring_z + ring_h + 6 mm ))",
+      "abs(-( p08_bottom + 6 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_6_Nut_M4",
+      "d2096",
+      "abs(-( ring_z + ring_h + 6 mm ))",
+      "abs(-( p08_bottom + 6 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_6_Nut_M4",
+      "d2102",
+      "abs(-( ring_z + ring_h + 6 mm ))",
+      "abs(-( p08_bottom + 6 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_6_Washer_head_M4",
+      "d2108",
+      "abs(-( ring_z + ring_h + 6 mm ))",
+      "abs(-( p08_bottom + 6 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_6_Washer_head_M4",
+      "d2114",
+      "abs(-( ring_z + ring_h + 6 mm ))",
+      "abs(-( p08_bottom + 6 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_6_Washer_nut_M4",
+      "d2120",
+      "abs(-( ring_z + ring_h + 6 mm ))",
+      "abs(-( p08_bottom + 6 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_6_Washer_nut_M4",
+      "d2126",
+      "abs(-( ring_z + ring_h + 6 mm ))",
+      "abs(-( p08_bottom + 6 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_22_HexHead_Bolt_M4x35",
+      "d2132",
+      "abs(-( ring_z + ring_h + 22 mm ))",
+      "abs(-( p08_bottom + 22 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_22_HexHead_Bolt_M4x35",
+      "d2138",
+      "abs(-( ring_z + ring_h + 22 mm ))",
+      "abs(-( p08_bottom + 22 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_22_Nut_M4",
+      "d2144",
+      "abs(-( ring_z + ring_h + 22 mm ))",
+      "abs(-( p08_bottom + 22 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_22_Nut_M4",
+      "d2150",
+      "abs(-( ring_z + ring_h + 22 mm ))",
+      "abs(-( p08_bottom + 22 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_22_Washer_head_M4",
+      "d2156",
+      "abs(-( ring_z + ring_h + 22 mm ))",
+      "abs(-( p08_bottom + 22 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_22_Washer_head_M4",
+      "d2162",
+      "abs(-( ring_z + ring_h + 22 mm ))",
+      "abs(-( p08_bottom + 22 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_22_Washer_nut_M4",
+      "d2168",
+      "abs(-( ring_z + ring_h + 22 mm ))",
+      "abs(-( p08_bottom + 22 mm ))"
+    ],
+    [
+      "H_LAMP_ROOT_22_Washer_nut_M4",
+      "d2174",
+      "abs(-( ring_z + ring_h + 22 mm ))",
+      "abs(-( p08_bottom + 22 mm ))"
+    ]
+  ],
+  "new_parameters": [
+    [
+      "p08_t",
+      "6 mm"
+    ],
+    [
+      "p08_w",
+      "14 mm"
+    ],
+    [
+      "p08_foot_h",
+      "3 mm"
+    ],
+    [
+      "p08_foot_d",
+      "10 mm"
+    ],
+    [
+      "p08_m3_d",
+      "3.6 mm"
+    ],
+    [
+      "p08_pcd_r",
+      "39 mm"
+    ],
+    [
+      "p08_ear_x",
+      "120 mm"
+    ],
+    [
+      "p08_ear_w",
+      "20 mm"
+    ],
+    [
+      "p08_ear_l",
+      "52 mm"
+    ],
+    [
+      "p08_m4_pitch",
+      "36 mm"
+    ],
+    [
+      "p08_washer_d",
+      "7 mm"
+    ],
+    [
+      "p08_washer_t",
+      "0.5 mm"
+    ],
+    [
+      "lamp_back",
+      "lamp_bottom+lamp_h"
+    ],
+    [
+      "p08_bottom",
+      "lamp_back+p08_foot_h"
+    ],
+    [
+      "p08_top",
+      "p08_bottom+p08_t"
+    ]
+  ]
+}

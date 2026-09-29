@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\n    \"members\": [\n        {\n            \"class\": \"MoveFeatureInput\",\n            \"doc\": \"\\nThis method will define a move feature that defines a translation in X, Y, and Z.\\nxDistance : A ValueInput object that defines the offset in the X direction. If the ValueInput\\nis created using a real value, the distance is in centimeters. If it's defined using\\na string, the default document units are used.\\nyDistance : A ValueInput object that defines the offset in the Y direction. If the ValueInput\\nis created using a real value, the distance is in centimeters. If it's defined using\\na string, the default document units are used.\\nzDistance : A ValueInput object that defines the offset in the Z direction. If the ValueInput\\nis created using a real value, the distance is in centimeters. If it's defined using\\na string, the default document units are used.\\nisDesignSpace : Defines if the translation is defined with respect to the design or component space.\\nDesign space is the same as the root component space.\\nReturns true if defining the type of move is successful.\\n\",\n            \"name\": \"defineAsTranslateXYZ\",\n            \"namespace\": \"adsk.fusion\",\n            \"signature\": \"(xDistance: ValueInput, yDistance: ValueInput, zDistance: ValueInput, isDesignSpace: bool) -> bool\",\n            \"type\": \"function\"\n        }\n    ],\n    \"message\": \"API documentation query completed\",\n    \"success\": true\n}",
+        "type": "text"
+      }
+    ]
+  }
+}

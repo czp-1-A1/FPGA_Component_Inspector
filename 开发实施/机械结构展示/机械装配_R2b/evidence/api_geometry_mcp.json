@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\n    \"members\": [\n        {\n            \"class\": \"MeasureManager\",\n            \"doc\": \"\\nMeasures the minimum distance between the two input geometries.\\ngeometryOne : The first geometry to measure from. This can be an Occurrence, BRepBody, BRepFace, BRepEdge, BRepVertex,\\nConstructionPlane, ConstructionAxis, ConstructionPoint, and any sketch entity. The only temporary geometry supported is the Plane object.\\ngeometryTwo : The first geometry to measure from. This can be an Occurrence, BRepBody, BRepFace, BRepEdge, BRepVertex,\\nConstructionPlane, ConstructionAxis, ConstructionPoint, and any sketch entity. The only temporary geometry supported is the Plane object.\\nA MeasureResults object that contains the distance and the two points on the geometry that the distance that\\nwas measured between them in centimeters.\\n\",\n            \"name\": \"measureMinimumDistance\",\n            \"namespace\": \"adsk.core\",\n            \"signature\": \"(geometryOne: Base, geometryTwo: Base) -> adsk.core.MeasureResults\",\n            \"type\": \"function\"\n        },\n        {\n            \"class\": \"Features\",\n            \"doc\": \"Returns the collection that provides access to the Remove features within the component\\nand supports the creation of new Remove features.\",\n            \"name\": \"removeFeatures\",\n            \"namespace\": \"adsk.fusion\",\n            \"readonly\": true,\n            \"type\": \"property\"\n        },\n        {\n            \"class\": \"Features\",\n            \"doc\": \"Returns the collection that provides access to the mesh remove features\\nwithin the component and supports the creation of new mesh remove features.\",\n            \"name\": \"meshRemoveFeatures\",\n            \"namespace\": \"adsk.fusion\",\n            \"readonly\": true,\n            \"type\": \"property\"\n        }\n    ],\n    \"message\": \"API documentation query completed\",\n    \"success\": true\n}",
+        "type": "text"
+      }
+    ]
+  }
+}

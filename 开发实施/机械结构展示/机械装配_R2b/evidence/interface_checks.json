@@ -1,0 +1,206 @@
+{
+  "P08_cylindrical_faces": [
+    {
+      "origin_mm": [
+        120.0,
+        18.0,
+        170.0
+      ],
+      "radius_mm": 2.2499999999999964,
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "origin_mm": [
+        120.0,
+        -18.0,
+        170.0
+      ],
+      "radius_mm": 2.2499999999999964,
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "origin_mm": [
+        0.0,
+        39.0,
+        167.0
+      ],
+      "radius_mm": 1.8000000000000003,
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "origin_mm": [
+        39.0,
+        0.0,
+        167.0
+      ],
+      "radius_mm": 1.7999999999999972,
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "origin_mm": [
+        0.0,
+        39.0,
+        167.0
+      ],
+      "radius_mm": 5.0,
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "origin_mm": [
+        39.0,
+        0.0,
+        167.0
+      ],
+      "radius_mm": 5.0,
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "P05_washer_support": [
+    {
+      "y_offset_mm": -14.75,
+      "bolt_y_mm": -32.75,
+      "P05_underwasher_bearing_mm2": 31.793712411537033
+    },
+    {
+      "y_offset_mm": -14.75,
+      "bolt_y_mm": 3.25,
+      "P05_underwasher_bearing_mm2": 24.874486396769345
+    },
+    {
+      "y_offset_mm": 0,
+      "bolt_y_mm": -18,
+      "P05_underwasher_bearing_mm2": 24.874486396769356
+    },
+    {
+      "y_offset_mm": 0,
+      "bolt_y_mm": 18,
+      "P05_underwasher_bearing_mm2": 24.874486396769356
+    },
+    {
+      "y_offset_mm": 14.75,
+      "bolt_y_mm": -3.25,
+      "P05_underwasher_bearing_mm2": 24.874486396769345
+    },
+    {
+      "y_offset_mm": 14.75,
+      "bolt_y_mm": 32.75,
+      "P05_underwasher_bearing_mm2": 31.79371241153703
+    }
+  ],
+  "M4_grip_mm": 18,
+  "M4_length_mm": 30,
+  "M4_two_washers_mm": 1.6,
+  "M4_nut_mm": 3.2,
+  "M4_nominal_protrusion_beyond_nut_mm": 7.2,
+  "M4_note": "Retain 4 existing M4x30; geometric thread envelope only, purchased thread coverage/tolerance to verify",
+  "default_native_bodies": [
+    {
+      "occurrence": "P01_对称托臂_槽56_R2a_待实测:1",
+      "volume_mm3": 73213.82748764803,
+      "bbox_local_mm": [
+        -26.0,
+        -80.0,
+        154.5,
+        26.0,
+        110.0,
+        204.5
+      ]
+    },
+    {
+      "occurrence": "P05_双螺栓灯托臂:1",
+      "volume_mm3": 42710.44473888321,
+      "bbox_local_mm": [
+        -10.0,
+        -64.0,
+        158.0,
+        10.0,
+        86.0,
+        202.00000000000003
+      ]
+    },
+    {
+      "occurrence": "E08_环形灯_90x40x22:1",
+      "volume_mm3": 112198.84003031068,
+      "bbox_local_mm": [
+        -45.0,
+        -45.0,
+        145.0,
+        45.0,
+        45.0,
+        167.0
+      ]
+    },
+    {
+      "occurrence": "P01_对称托臂_槽56_R2a_待实测:2",
+      "volume_mm3": 73213.82748764803,
+      "bbox_local_mm": [
+        -26.0,
+        -80.0,
+        154.5,
+        26.0,
+        110.0,
+        204.5
+      ]
+    },
+    {
+      "occurrence": "P05_双螺栓灯托臂:2",
+      "volume_mm3": 42710.44473888321,
+      "bbox_local_mm": [
+        -10.0,
+        -64.0,
+        158.0,
+        10.0,
+        86.0,
+        202.00000000000003
+      ]
+    },
+    {
+      "occurrence": "A08_灯背板组件_前后参数驱动:1+P08_背孔连接板_同款候选_待实物互换:1",
+      "volume_mm3": 19441.16946077558,
+      "bbox_local_mm": [
+        -7.000000000000001,
+        -26.0,
+        167.0,
+        130.0,
+        46.000000000000014,
+        176.0
+      ]
+    },
+    {
+      "occurrence": "A08_灯背板组件_前后参数驱动:1+P08_背孔连接板_同款候选_待实物互换:2",
+      "volume_mm3": 19441.16946077558,
+      "bbox_local_mm": [
+        -7.000000000000001,
+        -26.0,
+        167.0,
+        130.0,
+        46.000000000000014,
+        176.0
+      ]
+    }
+  ]
+}

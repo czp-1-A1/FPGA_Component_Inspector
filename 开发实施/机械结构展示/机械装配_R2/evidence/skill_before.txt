@@ -1,0 +1,99 @@
+---
+name: fusion360-ai-modeling
+description: Drive a running Autodesk Fusion desktop session through the official local Fusion MCP to create, inspect, modify, and validate parametric 3D models from natural-language requirements; generate front/top/right three-view images; and iterate safely with visual and geometric checks. Use when the user asks Codex to model, edit, inspect, automate, save, or export Fusion/Fusion 360 CAD, create 三视图/三面视图, or turn dimensions, sketches, or reference images into Fusion geometry. Do not use for generic mesh sculpting, photorealistic rendering, or CAD systems other than Autodesk Fusion.
+---
+
+# Fusion 360 AI Modeling
+
+Use Autodesk's official local Fusion MCP as the execution surface. Treat the active Fusion document as user data: inspect it before writing, preserve unrelated geometry, and verify every meaningful change.
+
+## Preflight
+
+1. Confirm Fusion is running and its MCP server is enabled under `Preferences > General > API`.
+2. Use the configured `autodesk-fusion` MCP dependency. Discover its tools at runtime; Autodesk documents this tool set as dynamic.
+3. If connection fails, run `scripts/probe_fusion_mcp.py` against the configured URL. On Windows, also check whether another process owns the selected port.
+4. Read the active document and capture an initial screenshot before any mutation. If no document is active, create one only when the user's request implies a new model.
+5. Prefer `fusion_mcp_read` for screenshots, document context, and API documentation; `fusion_mcp_execute` for Fusion API scripts and document actions; and `fusion_mcp_update` for undo/redo. Follow the discovered schemas rather than assuming argument names.
+
+## Convert the request into a build contract
+
+Extract these facts from the user's request or reference image:
+
+- units and overall envelope;
+- functional interfaces, holes, threads, fits, and clearances;
+- symmetry and datum/origin choices;
+- material or manufacturing process when it affects geometry;
+- required output: editable Fusion model, export format, three views, drawing, or all of them.
+
+Ask only about missing facts that would materially change the geometry. Otherwise state compact assumptions and proceed. Default to millimetres unless the source clearly uses another unit.
+
+## Plan the model
+
+1. Inspect existing components, bodies, sketches, features, and user parameters.
+2. Choose a stable feature sequence: datums and parameters, base sketch, primary features, secondary cuts/additions, fillets/chamfers, patterns, then appearances or metadata.
+3. Create named user parameters for dimensions likely to change. Use descriptive component, body, sketch, and feature names.
+4. Keep separate real-world parts in separate components. Do not merge an assembly into one body unless requested.
+5. Prefer constrained sketches and semantic Fusion features over fragile direct-face edits.
+
+## Execute in reversible increments
+
+1. Before using an unfamiliar Fusion API, query API documentation through `fusion_mcp_read`.
+2. Send short, cohesive scripts through `fusion_mcp_execute`. Every script payload must define `run(_context)`.
+3. Do not catch exceptions inside `run`; Fusion MCP needs the original exception for diagnosis. Print compact JSON on success: created entity names, counts, parameter values, bounding boxes, and warnings.
+4. After each major feature group, inspect model structure and take a screenshot.
+5. If a script may have partially mutated the model, inspect first. Use undo before retrying when the state is uncertain.
+6. Do not leave an interactive Fusion command dialog open; screenshots and API documentation can fail while a command is active.
+
+## Validate geometry
+
+Perform both semantic and visual checks:
+
+- confirm expected components, bodies, sketches, and features exist;
+- compare bounding-box dimensions with the requested envelope;
+- verify important parameter expressions and units;
+- check hole counts, symmetry, wall thickness, clearances, and interference where relevant;
+- inspect screenshots for missing cuts, wrong orientation, stray bodies, and scale mistakes.
+
+Do not use screenshots as proof of dimensional accuracy. Use Fusion API measurements for precision.
+
+## Generate three views
+
+1. Produce front, top, and right orthographic views after the final geometry check.
+2. With the current Autodesk schema, call `fusion_mcp_read` using `queryType="screenshot"` and named directions. Treat those names as Fusion coordinate views, not guaranteed functional view labels: inspect the geometry and map the clearest functional front/top/right views before naming the output files. Use equal width and height settings for all calls.
+3. Use `scripts/capture_three_views.py` when the images need to be saved as local PNG artifacts. If a later Autodesk release removes named screenshot directions, load `assets/fusion-scripts/export_three_views.py`, replace its output directory and image settings, and execute it through `fusion_mcp_execute`.
+4. Account for Fusion camera changes being asynchronous: after assigning `viewOrientation`, process Fusion events before setting `camera.isFitView = True`, assign the camera again, refresh, and wait briefly before capture. Otherwise successive files can contain the same stale view.
+5. Fit the full model in each view and use consistent resolution and visual style. Return the viewport to an isometric working view; use the Fusion script fallback when the exact original camera must be restored.
+6. Inspect all three images and confirm they are distinct, correctly labeled, and tightly framed. If a view is ambiguous, add an isometric image as a fourth deliverable without replacing the three orthographic views.
+
+Read `references/three-view-and-qa.md` when generating views or deciding whether a model is ready to hand off.
+
+## Learn and improve this skill
+
+After each completed Fusion task, review API discoveries, failed attempts, corrections, and QA evidence for a reusable lesson. Automatically improve this skill when the lesson is confirmed by official API documentation or repeatable execution, applies beyond the current model, and can make future work safer, faster, or more reliable.
+
+1. Exclude user-specific dimensions, geometry, file paths, prompts, credentials, and unverified guesses. Keep one-off task knowledge in the task output, not in the skill.
+2. Capture the exact pre-edit contents or targeted diff for every skill file to be changed. Preserve unrelated edits and touch only this skill directory.
+3. Make the smallest useful patch. Prefer a tested reusable script change over verbose instructions when behavior can be deterministic.
+4. Validate the skill with `skill-creator/scripts/quick_validate.py`. Compile or run any modified script and repeat the smallest safe test that exercises the new behavior. Do not mutate the user's active design solely to test skill maintenance; use read-only checks or a disposable blank document.
+5. Compare concrete acceptance criteria before and after the patch, such as geometry measurements, feature health, command success, image orientation, framing, and artifact distinctness.
+6. If validation fails, the result regresses, or the new behavior is less reliable, immediately restore only the current patch from the captured baseline and rerun the baseline checks. Never use a broad repository reset for rollback.
+7. Keep a successful improvement without creating changelog or backup files inside the skill. Briefly report what was learned, what changed, and how it was validated in the task handoff.
+
+## Save and hand off
+
+Save only when the user asked for persistence or when working in a new document created for the task. Never overwrite a different existing design silently. Report:
+
+- what was created or changed;
+- assumptions and named parameters;
+- validation results;
+- saved document/export locations;
+- front, top, and right view artifacts;
+- any remaining uncertainty or manual Fusion step.
+
+## Safety boundaries
+
+- Never delete, replace, suppress, or combine pre-existing user geometry unless explicitly requested.
+- Before broad edits, save a version or confirm that undo is available.
+- Keep MCP on loopback. Do not expose the Fusion endpoint to the LAN or internet.
+- Treat arbitrary Fusion API script execution as full control of the active model. Avoid filesystem, subprocess, or network access inside scripts unless the user explicitly requested it.
+- Do not claim success from a tool response alone; inspect the resulting design.

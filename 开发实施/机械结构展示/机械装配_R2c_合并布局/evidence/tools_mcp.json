@@ -1,0 +1,305 @@
+{
+  "id": 2,
+  "jsonrpc": "2.0",
+  "result": {
+    "tools": [
+      {
+        "description": "Read Fusion Electronics design data (schematic, board, library). Requires an active Electronics document.\n\n=== ENTITY TYPES ===\nPass one of these as \"entity_type\". Omit \"object\" for all rows and columns.\n\n  electronics.Attribute - A name/value attribute attached to a part, instance, element, or other parent object.\n  electronics.Board - The PCB board design for a product.\n  electronics.Bus - A multi-bit bus on a schematic sheet.\n  electronics.Circle - A circle on a schematic sheet, board, library symbol, or package.\n  electronics.Contact - A pad, pin, or contact point on a package footprint.\n  electronics.ContactRef - Links a contact to a board signal in the package editor / connectivity.\n  electronics.Device - A device in a library (symbol and package association).\n  electronics.DeviceSet - A set of related devices in a library (name, description, and defaults).\n  electronics.Dimension - A linear or angular dimension on a board or schematic.\n  electronics.Element - A board component element: placement, name, and links to its package and 3D model.\n  electronics.Error - A design check (ERC or DRC) error or warning in a board or schematic.\n  electronics.Frame - Title block / frame on a sheet or board: grid, border, and bounds.\n  electronics.Gate - A logical gate in a device set linking a symbol to the schematic.\n  electronics.Grid - The drawing grid: spacing, style, and unit settings.\n  electronics.Hole - A non-plated or drilled feature on a board or in a package footprint.\n  electronics.Instance - A placed gate of a part on a schematic: position, name, and attributes.\n  electronics.Junction - A wire tee junction in a net segment or sheet context.\n  electronics.Label - A net name label on a wire segment in the connectivity.\n  electronics.Layer - A drawing, signal, or user layer in a board or schematic.\n  electronics.Library - A library of symbols, devices, and footprints used in a design.\n  electronics.Module - A reusable schematic block (hierarchical module with sheets and ports).\n  electronics.ModuleInstance - A placed module instance on a schematic: name, position, and variant.\n  electronics.Net - A net on a schematic sheet.\n  electronics.NetClass - Design rules for a net class: name, default trace width, and minimum drill.\n  electronics.Package - 2D land-pattern (footprint) definition in a device library, including bounds and description.\n  electronics.Package3D - 3D package model in a device library, linked to a 2D footprint and described for placement.\n  electronics.Pad - A through-hole pad (or long pad) on a board, including drill, shape, and signal.\n  electronics.Part - A placed device instance (component) on a schematic.\n  electronics.Pin - A pin on a library symbol, including name, position, and electrical mapping.\n  electronics.PinRef - A logical connection from a net segment to an instance pin.\n  electronics.PolyCutout - A polygonal cutout region in a board, package, or symbol.\n  electronics.PolyPour - A copper or metal pour (filled polygon) with isolation, rank, and hatch options.\n  electronics.PolyShape - A polygon outline or fill region in a board, package, or schematic context.\n  electronics.Port - A module block interface pin (hierarchical port definition).\n  electronics.PortRef - Connects a module block port to a net or bus wire segment in the design.\n  electronics.Rectangle - A rectangle shape on a schematic sheet, board, library symbol, or package.\n  electronics.Schematic - Schematic design content.\n  electronics.Segment - A line segment in a net or bus: connects junctions, wires, and ports.\n  electronics.Sheet - A single page of schematic circuitry within a design or module.\n  electronics.Signal - A copper signal (net) on a board with routing and DRC state.\n  electronics.Smd - A surface-mount pad (SMD) on a board or package footprint, with size and mask options.\n  electronics.Spline - A smooth curved board trace (spline) on a copper layer.\n  electronics.Symbol - Schematic symbol definition in a device library, including pin layout and appearance.\n  electronics.Technology - A technology string on a device (BOM/assembly build option).\n  electronics.Text - A text or label on a board, symbol, or sheet.\n  electronics.Variant - A part build variant: technology, value, and population.\n  electronics.VariantDef - Defines a part variant in a design (name and parent design container).\n  electronics.Via - A plated through-hole via on a board stack.\n  electronics.Wire - A wire segment on a schematic sheet or board signal trace.\n\n=== QUERY SHAPE ===\n  { \"entity_type\": \"electronics.<Class>\",\n    \"object\": { \"fields\": [...], \"filters\": [{\"property\": \"...\", \"op\": \"eq\", \"value\": ...}],\n                \"pagination\": { \"limit\": 100, \"offset\": 0 } } }\n\n=== EXAMPLES ===\n  All wires:\n    { \"entity_type\": \"electronics.Wire\" }\n\n  Net names only:\n    { \"entity_type\": \"electronics.Net\", \"object\": { \"fields\": [\"name\"] } }\n\n  Nets named GND:\n    { \"entity_type\": \"electronics.Net\", \"object\": { \"filters\": [{\"property\": \"name\", \"op\": \"eq\", \"value\": \"GND\"}] } }\n\n=== DISCOVERY ===\n  resource://mcp.electronics_entity_types       - all types with active-workspace hints\n  resource://mcp.electronics_schema_<class>     - properties and filter operators for one type\n",
+        "inputSchema": {
+          "properties": {
+            "entity_type": {
+              "description": "One of the listed electronics.<Class> values. Per-class fields and filter operators: resource://mcp.electronics_schema_<class>.",
+              "enum": [
+                "electronics.Attribute",
+                "electronics.Bus",
+                "electronics.Circle",
+                "electronics.Contact",
+                "electronics.Element",
+                "electronics.Frame",
+                "electronics.Gate",
+                "electronics.Hole",
+                "electronics.Grid",
+                "electronics.Instance",
+                "electronics.Junction",
+                "electronics.Label",
+                "electronics.Layer",
+                "electronics.Module",
+                "electronics.ModuleInstance",
+                "electronics.Net",
+                "electronics.Signal",
+                "electronics.Pad",
+                "electronics.Part",
+                "electronics.Pin",
+                "electronics.PinRef",
+                "electronics.PolyCutout",
+                "electronics.Spline",
+                "electronics.PolyPour",
+                "electronics.PolyShape",
+                "electronics.Port",
+                "electronics.PortRef",
+                "electronics.Rectangle",
+                "electronics.Segment",
+                "electronics.Sheet",
+                "electronics.Schematic",
+                "electronics.Board",
+                "electronics.Library",
+                "electronics.Smd",
+                "electronics.Symbol",
+                "electronics.DeviceSet",
+                "electronics.Device",
+                "electronics.Package",
+                "electronics.Package3D",
+                "electronics.Technology",
+                "electronics.Text",
+                "electronics.VariantDef",
+                "electronics.Variant",
+                "electronics.Via",
+                "electronics.ContactRef",
+                "electronics.Wire",
+                "electronics.Dimension",
+                "electronics.NetClass",
+                "electronics.Error"
+              ],
+              "type": "string"
+            },
+            "object": {
+              "description": "Optional query: fields (property names), filters (predicates), pagination (limit, offset).",
+              "properties": {
+                "fields": {
+                  "description": "Property names to return; omit for all columns.",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "filters": {
+                  "description": "Predicates {property, op, value}. String properties: op must be eq. Integer/number: lt/gt only if that property exposes them in the per-class MCP schema resource.",
+                  "items": {
+                    "properties": {
+                      "op": {
+                        "description": "eq for any filterable property. lt/gt only for integer/number properties that list those operators in resource://mcp.electronics_schema_<class>; string properties require eq.",
+                        "enum": [
+                          "eq",
+                          "lt",
+                          "gt"
+                        ],
+                        "type": "string"
+                      },
+                      "property": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "property",
+                      "op",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "pagination": {
+                  "description": "Page size (limit) and rows to skip (offset). For the next page, use pagination.nextOffset from the response when pagination.hasMore is true.",
+                  "properties": {
+                    "limit": {
+                      "description": "Max rows per page; default 100. Must not exceed 1000.",
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "description": "Skip rows from the start of the result set; default 0.",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "entity_type"
+          ],
+          "type": "object"
+        },
+        "name": "fusion_mcp_electronics_read"
+      },
+      {
+        "description": "Execute operations in the active Fusion model.\n\nThis tool provides the Execute operation, supporting execution\nwith a dispatcher pattern that routes to specific execution handlers.\n\n=== FEATURE TYPES ===\n\nscript:\n  Executes a Python script in the active Fusion design using the Fusion API.\n\n  Required parameters:\n    - featureType: \"script\" (required)\n    - object: (required) {\n        - script: Python script content as a string (required)\n      }\n\n  Script Requirements:\n    - The script must define a function named \"run\" with exactly one argument\n    - Function signature: def run(_context: str):\n    - This \"run\" function is the entry point that will be called when executing the script\n    - The script should use the Fusion API (adsk.core, adsk.fusion, etc.)\n  \n  Output and Error Handling:\n    - Any text printed by the script (via print() statements) will be returned as the tool's output\n    - Any exception raised by the run function will be returned as an error message from the tool\n    - IMPORTANT: Do NOT catch exceptions in your run function. If you catch exceptions, you cannot\n      determine if your script failed, where it failed, or why it failed. The exception error message\n      is essential for debugging and iterating on script improvements.\n\n  Best Practices:\n    - Read the Fusion API documentation for the APIs you will use before writing the script\n    - After running a script, verify the results by reading the document or viewing a snapshot\n      of the current view to confirm the script executed correctly\n\n  Example:\n  {\n    \"featureType\": \"script\",\n    \"object\": {\n      \"script\": \"import adsk.core\\n\\ndef run(_context: str):\\n    print(adsk.core.Application.get().version)\\n\"\n    }\n  }\n\ndocument: operation = open:\n  - Opens a document.\n  - Required parameters:\n    - featureType=\"document\"\n    - object:\n      - operation=\"open\"\n      - fileId: The id of the file to open\n  - Obtain the file id from the \"read\" tool's \"document\" query type with the \"search\" operation if necessary.\n\ndocument: operation = close:\n  - Closes the active document.\n  - Required parameters:\n    - featureType=\"document\"\n    - object:\n      - operation=\"close\"\n  - Optional parameters:\n    - object:\n      - userConfirmedSaveAndClose\n      - userConfirmedCloseWithoutSave\n  - If the document contains unsaved changes, then the user must be prompted for a choice on whether\n    to save or discard these changes and specify either userConfirmedSaveAndClose or userConfirmedCloseWithoutSave.\n\ndocument: operation = save:\n  - Saves the active document.\n  - Required parameters:\n    - featureType=\"document\"\n    - object:\n      - operation=\"save\"\n  - IMPORTANT: The document should not be saved unless expressly instructed to do so by the user.\n",
+        "inputSchema": {
+          "properties": {
+            "featureType": {
+              "description": "Type of execution operation to perform",
+              "enum": [
+                "script",
+                "document"
+              ],
+              "type": "string"
+            },
+            "object": {
+              "description": "Object containing execution parameters",
+              "properties": {
+                "fileId": {
+                  "description": "The id of the file to open",
+                  "type": "string"
+                },
+                "operation": {
+                  "description": "Document operation identifier",
+                  "enum": [
+                    "open",
+                    "close",
+                    "save"
+                  ],
+                  "type": "string"
+                },
+                "script": {
+                  "description": "Python script contents",
+                  "type": "string"
+                },
+                "userConfirmedCloseWithoutSave": {
+                  "description": "The user has confirmed that changes should be discarded",
+                  "type": "boolean"
+                },
+                "userConfirmedSaveAndClose": {
+                  "description": "The user has confirmed that changes should be saved",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "featureType",
+            "object"
+          ],
+          "type": "object"
+        },
+        "name": "fusion_mcp_execute"
+      },
+      {
+        "description": "Read geometric properties and data from the active Fusion model.\n\nThis tool provides the Read operation in the MCP CRUD framework with query types supporting\ncomprehensive read-only access to API documentation, documents, and projects.\n\n=== PROJECT QUERIES ===\n\nprojects:\n  - Lists all projects in the current hub\n  - No parameters required\n  - Returns: {\"projects\": [{\"name\": \"My Project\", \"id\": \"b.project_id\"}, ...]}\n  - Each project includes: name, id\n  - Returns empty array if no projects are found\n\n=== DOCUMENT QUERIES ===\n\ndocument: operation = search:\n  - Searches for files containing the name substring in a project or across projects.\n  - Required parameters:\n    - operation=\"search\"\n    - name: Name or partial name of file, fuzzy match, case insensitive\n  - Optional parameter:\n    - project: name or id of a project to search in, else all projects will be searched if missing\n  - Returns: {\"results\": [{\"name\": \"...\", \"id\": \"...\"}, ...]}\n\ndocument: operation = open:\n  - List all open documents\n  - No parameters required\n  - Returns: {\"results\": [{\"name\": \"...\", \"id\": \"...\", \"isActive\": true, \"isModified\": true}, ...]}\n\ndocument: operation = recent:\n  - List recent documents\n  - No parameters required\n  - Returns: {\"results\":[{\"name\":\"...\", \"id\": \"...\"}, ...]}\n\n=== API DOCUMENTATION QUERY ===\n\napiDocumentation:\n  - Returns API documentation for Fusion API classes, methods, and properties\n  - Required parameter: searchPattern\n  - Optional parameters: apiCategory AND filter\n  - Returns: {\"classes\": [{\"name\": \"...\", \"doc\": \"...\", \"properties\": [...],...}], \"members\": [{\"type\": \"function\", \"name\": \"...\", \"doc\": \"...\"},...]}\n  - Each class includes: The list of properties, functions, or enum value with a short description for each. Query members to get their full description.\n  - Each member includes: The full description of the property, function, or enum value.\n\n=== SCREENSHOT ===\n\nscreenshot:\n  - Returns a PNG screenshot of the active graphics view as base64-encoded image data\n  - Optional parameters: width, height, antiAliasing, transparentBackground, direction\n  - width: Image width in pixels (default: canvas width, range: 32-4096)\n  - height: Image height in pixels (default: canvas height, range: 32-4096)\n  - antiAliasing: Enable anti-aliasing (default: true)\n  - transparentBackground: Use transparent background (default: true)\n  - direction: Camera direction before capture: \"current\", \"front\", \"back\", \"bottom\", \"top\", \"left\", \"right\", \"iso-bottom-left\", \"iso-bottom-right\", \"iso-top-left\", \"iso-top-right\"\n  - Returns: {\"type\": \"image\", \"mimeType\": \"image/png\", \"base64Data\": \"<base64 string>\"}\n\n=== ACTIVE COMMAND QUERY ===\n\nactiveCommand:\n  - Returns the currently open command dialog's id, name, tooltip, and all visible input values\n  - No parameters required\n  - Returns {\"activeCommand\": null} if no command dialog is active\n  - isDefaultCommand: true when the active command is the session default (no interactive dialog)\n  - Each input includes: name, type, and type-specific fields:\n    - value/angle: {\"name\":\"Radius\",\"type\":\"value\",\"value\":1.25,\"expression\":\"1.25 cm\"}\n    - checkbox:   {\"name\":\"Tangent Chain\",\"type\":\"checkbox\",\"value\":true}\n    - dropdown:   {\"name\":\"Coolant\",\"type\":\"dropdown\",\"value\":\"Flood\",\"enum\":[\"Disabled\",\"Flood\",...]}\n    - selection:  {\"name\":\"Edges\",\"type\":\"selection\",\"selectionCount\":2,\"selections\":[{\"entityType\":\"adsk::fusion::BRepEdge\",\"selectionPoint\":[x,y,z]},...]}\n    - string:     {\"name\":\"Spindle Speed\",\"type\":\"string\",\"value\":\"5000.00 rpm\"}\n    - table:      {\"name\":\"Fillets\",\"type\":\"table\",\"rows\":[[...inputs...],[...inputs...]]}\n    - other:      {\"name\":\"...\",\"type\":\"<derived type>\"} (buttons, custom inputs, etc.)\n  - Use this query to read the current state of an active command\n",
+        "inputSchema": {
+          "properties": {
+            "antiAliasing": {
+              "description": "Enable anti-aliasing for 'screenshot' query (default: true).",
+              "type": "boolean"
+            },
+            "apiCategory": {
+              "description": "The category of objects to search for in the documentation for the 'apiDocumentation' query. Use 'class' to search class names, 'member' to search property, function, or enum value names, 'description' to search for class or member descriptions, or 'all' to search all of these.",
+              "enum": [
+                "class",
+                "member",
+                "description",
+                "all"
+              ],
+              "type": "string"
+            },
+            "direction": {
+              "description": "Camera direction for 'screenshot' query before capture. Use 'current' to keep current view, or a standard/view cube direction: 'front', 'back', 'bottom', 'top', 'left', 'right', 'iso-bottom-left', 'iso-bottom-right', 'iso-top-left', 'iso-top-right'.",
+              "enum": [
+                "current",
+                "front",
+                "back",
+                "bottom",
+                "top",
+                "left",
+                "right",
+                "iso-bottom-left",
+                "iso-bottom-right",
+                "iso-top-left",
+                "iso-top-right"
+              ],
+              "type": "string"
+            },
+            "filter": {
+              "description": "A filter for the types to search for in the 'apiDocumentation' query. Use a '.' separated list of namespace and class names to optionally limit the search to a specific namespace or class.\nExample: 'adsk.cam' will limit the search to the cam namespace. 'adsk.fusion.Extrude' will limit the search to the Extrude class.",
+              "type": "string"
+            },
+            "height": {
+              "description": "Image height in pixels for 'screenshot' query (default: canvas height, range: 32-4096).",
+              "maximum": 4096,
+              "minimum": 32,
+              "type": "number"
+            },
+            "name": {
+              "description": "Document search term (fuzzy match on document name).",
+              "type": "string"
+            },
+            "operation": {
+              "description": "Document operation identifier.",
+              "enum": [
+                "search",
+                "open",
+                "recent"
+              ],
+              "type": "string"
+            },
+            "project": {
+              "description": "Document search project name or id filter. Searches all projects if not specified.",
+              "type": "string"
+            },
+            "queryType": {
+              "description": "Type of geometry query to perform. Polymorphic queries adapt behavior based on entityToken type. List queries enumerate all entities. Parameter queries access design metadata.",
+              "enum": [
+                "apiDocumentation",
+                "screenshot",
+                "document",
+                "projects",
+                "activeCommand"
+              ],
+              "type": "string"
+            },
+            "searchPattern": {
+              "description": "Regular expression pattern. For 'apiDocumentation' query: searches API class/member names. For 'materialLibraries' query: filters material/appearance names by pattern.",
+              "type": "string"
+            },
+            "transparentBackground": {
+              "description": "Use transparent background for 'screenshot' query (default: true).",
+              "type": "boolean"
+            },
+            "width": {
+              "description": "Image width in pixels for 'screenshot' query (default: canvas width, range: 32-4096).",
+              "maximum": 4096,
+              "minimum": 32,
+              "type": "number"
+            }
+          },
+          "required": [
+            "queryType"
+          ],
+          "type": "object"
+        },
+        "name": "fusion_mcp_read"
+      },
+      {
+        "description": "Update the active Fusion model.\n\nThis tool provides undo and redo operations.\n\n=== FEATURE TYPES ===\n\nundo:\n  Undoes the most recent operation in the active document\n  Required parameters:\n    - featureType: \"undo\"\n  Returns: {\"success\": true, \"message\": \"Undo completed successfully\", \"canUndo\": true, \"canRedo\": true}\n  Error cases:\n    - Nothing to undo: {\"success\": false, \"error\": \"Nothing to undo\", \"canUndo\": false, \"canRedo\": false}\n    - Interactive mode: {\"success\": false, \"error\": \"Cannot undo during interactive operation...\"}\n  Notes:\n    - Undoes the last committed transaction (e.g., create feature, delete, edit)\n    - Cannot undo during preview or interactive commands (fails gracefully)\n    - Response includes canUndo/canRedo status for UI feedback\n\nredo:\n  Redoes the most recently undone operation in the active document\n  Required parameters:\n    - featureType: \"redo\"\n  Returns: {\"success\": true, \"message\": \"Redo completed successfully\", \"canUndo\": true, \"canRedo\": false}\n  Error cases:\n    - Nothing to redo: {\"success\": false, \"error\": \"Nothing to redo\", \"canUndo\": true, \"canRedo\": false}\n    - Interactive mode: {\"success\": false, \"error\": \"Cannot redo during interactive operation...\"}\n  Notes:\n    - Redoes the last undone transaction\n    - Cannot redo during preview or interactive commands (fails gracefully)\n    - Response includes canUndo/canRedo status for UI feedback\n\n=== EXAMPLES ===\n\nUndo the last operation:\n{\n  \"featureType\": \"undo\"\n}\n\nRedo the last undone operation:\n{\n  \"featureType\": \"redo\"\n}\n",
+        "inputSchema": {
+          "properties": {
+            "featureType": {
+              "description": "Type of update",
+              "enum": [
+                "undo",
+                "redo"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "featureType"
+          ],
+          "type": "object"
+        },
+        "name": "fusion_mcp_update"
+      }
+    ]
+  }
+}

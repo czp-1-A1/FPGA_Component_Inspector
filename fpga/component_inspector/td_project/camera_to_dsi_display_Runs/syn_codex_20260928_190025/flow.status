@@ -1,0 +1,23 @@
+Location         : E:\2026FPGA\FPGA_Component_Inspector\fpga\component_inspector\td_project\camera_to_dsi_display_Runs\syn_codex_20260928_190025
+Running with     : Tang Dynasty v6.2.168116
+                   Copyright (c) 2012-2025 Anlogic Inc.
+Top Model        : design_top_wrapper
+Device           : PH1P35MDG324
+Speed            : 3
+
+Timing Mode      : basic
+Setup            : WNS  2040ps  TNS        0ps  NUM_FEPS     0
+Hold             : WNS   114ps  TNS        0ps  NUM_FEPS     0
+
+Flow Statistics  :
+--------------------------------------------------------------------------------------------------
+     command     |  #calls  |  wall time  |  cpu time(s)  |  used memory(mb)  |  peak memory(mb)  
+--------------------------------------------------------------------------------------------------
+  optimize_rtl   |    1     |  31s(50%)   |    1(33%)     |        796        |        849        
+  optimize_gate  |    1     |  30s(48%)   |    2(66%)     |       1014        |       1014        
+  import_device  |    1     |   1s(1%)    |     0(0%)     |        322        |        322        
+    read_adc     |    1     |   0s(0%)    |     0(0%)     |        583        |        584        
+    read_sdc     |    3     |   0s(0%)    |     0(0%)     |        579        |        584        
+--------------------------------------------------------------------------------------------------
+      total      |    7     |    1m2s     |       3       |       1014        |       1014        
+--------------------------------------------------------------------------------------------------

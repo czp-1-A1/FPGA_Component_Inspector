@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\n    \"error\": \"Traceback (most recent call last):\\n  File \\\"<string>\\\", line 213, in <module>\\n  File \\\"<string>\\\", line 183, in run\\n  File \\\"<string>\\\", line 121, in box\\n  File \\\"<string>\\\", line 87, in rectangle\\n  File \\\"<string>\\\", line 70, in point\\n  File \\\"<string>\\\", line 39, in F\\n  File \\\"C:\\\\Users/dell/AppData/Local/Autodesk/webdeploy/production/61bf25b220a2d0307c84c301e65a59ac225d9a1e/Api/Python/packages\\\\adsk\\\\fusion.py\\\", line 103906, in evaluateExpression\\n    return _fusion.FusionUnitsManager_evaluateExpression(self, *args)\\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\\nRuntimeError: 6 : The expression parameter is not a valid expression\\n\",\n    \"success\": false\n}",
+        "type": "text"
+      }
+    ]
+  }
+}
