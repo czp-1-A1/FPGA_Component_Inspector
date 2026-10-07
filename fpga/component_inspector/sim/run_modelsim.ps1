@@ -53,6 +53,8 @@ try {
         "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
         "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v")
     $tests = @(
+        @{Name="isp_writer_stop"; Pass="PASS actual ISP full epoch:"; Sources=($ispSources + @("$hdl/observation_controls.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_isp_writer_stop.v"))},
+        @{Name="sobel_tail"; Pass="PASS Sobel tail:"; Sources=@("$hdl/roi_sobel_view.v", "$hdl/isp/data96_128/data96_128.v", "tb_sobel_tail.v")},
         @{Name="sobel_view"; Pass="PASS Sobel view:"; Sources=@("$hdl/roi_sobel_view.v", "$hdl/isp/data96_128/data96_128.v", "tb_sobel_view.v")},
         @{Name="observation"; Pass="PASS observation:"; Sources=@("$hdl/observation_controls.v", "$hdl/roi_observation_snapshot.v", "$hdl/roi_display_state.v", "$hdl/status_cdc.v", "tb_observation.v")},
         @{Name="stop_recovery"; Pass="PASS stop recovery:"; Sources=@("$hdl/input_monitor.v", "$hdl/roi_result_snapshot.v", "$hdl/roi_display_state.v", "$hdl/status_cdc.v", "tb_stop_recovery.v")},
@@ -105,10 +107,10 @@ try {
         & "$ModelSimBin/vlog.exe" -sv -work $library @defines $testbench >> "$directory/compile.log" 2>&1
         if ($LASTEXITCODE -ne 0) { throw "Testbench compile failed: $($test.Name); see $directory/compile.log" }
         $tops = @("$library.tb_$($test.Name)")
-        if ($test.Name -in @("pixel_interface", "roi_chain")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
+        if ($test.Name -in @("pixel_interface", "roi_chain", "isp_writer_stop")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
         $commands = "log /tb_$($test.Name)/*; run -all; quit -code 1 -force"
         $access = "+acc"
-        if ($test.Name -eq "roi_chain") { $access = "+acc=rn+/tb_roi_chain" }
+        if ($test.Name -in @("roi_chain", "isp_writer_stop")) { $access = "+acc=rn+/tb_$($test.Name)" }
         & "$ModelSimBin/vsim.exe" -c -L anlogic_sim "-voptargs=$access" -onfinish exit -l "$directory/transcript.log" -wlf "$directory/wave.wlf" -do $commands @tops *> "$directory/console.log"
         if ($LASTEXITCODE -ne 0) { throw "Simulation failed: $($test.Name); see $directory/console.log" }
         $output = Get-Content -LiteralPath "$directory/console.log" -Raw

@@ -17,16 +17,26 @@ module roi_sobel_view #(
 localparam BEATS=WIDTH/4;
 reg [7:0] write_group,read_group;
 reg [9:0] write_y,read_y,ready_rows;
-reg reading,input_armed;
+reg reading,input_armed,tail_bypass;
 reg v1,v2,v3,v4,previous;
 reg [1:0] frame_mode;
 wire [7:0] write_address=pixel_sof ? 8'd0 : write_group;
 wire [9:0] write_row=pixel_sof ? 10'd0 : write_y;
 // Ignore residual AWB beats between the early reset and the true pixel SOF.
 wire input_valid=pixel_valid && (input_armed || pixel_sof) && !early_sof;
+// Rows at/below Y1 are outside the processing window. Switch to the native
+// schedule only at a new row after every cached beat has drained. This keeps
+// the final rows from depending on extra CSI clocks during vertical blanking.
+// Dense streams that never reach this boundary retain the cached schedule.
+wire tail_bypass_start=input_valid && !pixel_sof && frame_mode[1] &&
+ write_address==0 && write_row>=Y1 && read_y==write_row && !reading &&
+ !v1 && !v2 && !v3 && !v4 && !previous && !out_valid && view_ready;
+wire bypass_tail=(tail_bypass && !pixel_sof) || tail_bypass_start;
 wire cache_overrun=input_valid && !pixel_sof && frame_mode[1] &&
-                   write_row>=read_y+10'd3 && read_y<HEIGHT;
+ (( !bypass_tail && write_row>=read_y+10'd3 && read_y<HEIGHT) ||
+  (bypass_tail && write_address==0 && !view_ready));
 wire read_issue=frame_mode[1] && !frame_bad && !cache_overrun &&
+ !bypass_tail &&
  !early_sof && !pixel_sof && read_y<HEIGHT &&
  (reading || (ready_rows>read_y && view_ready));
 wire [7:0] read_address=reading ? read_group : 8'd0;
@@ -62,7 +72,7 @@ generate for(bank=0;bank<4;bank=bank+1) begin : line_bank
  reg [95:0] memory [0:BEATS-1];
  reg [95:0] q;
  always @(posedge clk) begin
-  if(rst_n && input_valid && !frame_bad && (pixel_sof ? mode[1] : frame_mode[1]) && write_row[1:0]==bank)
+  if(rst_n && input_valid && !bypass_tail && !frame_bad && (pixel_sof ? mode[1] : frame_mode[1]) && write_row[1:0]==bank)
    memory[write_address]<=rgb;
   q<=memory[read_address];
  end
@@ -85,7 +95,7 @@ endfunction
 integer lane;
 always @(posedge clk or negedge rst_n) begin
  if(!rst_n) begin
-  write_group<=0;write_y<=0;read_group<=0;read_y<=0;ready_rows<=0;reading<=0;input_armed<=0;frame_mode<=0;
+  write_group<=0;write_y<=0;read_group<=0;read_y<=0;ready_rows<=0;reading<=0;input_armed<=0;frame_mode<=0;tail_bypass<=0;
   v1<=0;v2<=0;x1<=0;x2<=0;y1<=0;y2<=0;mode1<=0;mode2<=0;
   top2<=0;mid2<=0;bot2<=0;rgb2<=0;
  end else begin
@@ -99,6 +109,7 @@ always @(posedge clk or negedge rst_n) begin
   end
   if(input_valid) begin
    if(pixel_sof) begin
+    tail_bypass<=0;
     input_armed<=1;
     write_group<=1;write_y<=0;read_group<=0;read_y<=0;ready_rows<=0;reading<=0;frame_mode<=mode;
     v1<=0;v2<=0;
@@ -106,17 +117,21 @@ always @(posedge clk or negedge rst_n) begin
     write_group<=0;write_y<=write_y+1'b1;
     // Row y makes center row y-1 available; final row also makes its
     // own border available. No synthetic zeros are fed into real edges.
-    if(write_y==HEIGHT-1) ready_rows<=HEIGHT;
+    // The last ROI row has no Sobel neighborhood; only its own RGB/gray
+    // is used. Release it and later rows without waiting for a lower row.
+    if(write_y>=Y1-1) ready_rows<=write_y+10'd1;
+    else if(write_y==HEIGHT-1) ready_rows<=HEIGHT;
     else ready_rows<=write_y;
    end else write_group<=write_group+1'b1;
   end
+  if(tail_bypass_start) tail_bypass<=1;
   if(read_issue) begin
    if(read_address==BEATS-1) begin reading<=0;read_group<=0;read_y<=read_y+1'b1;end
    else begin reading<=1;read_group<=read_address+1'b1;end
   end
   if(early_sof || cache_overrun || frame_bad) begin
    reading<=0;v1<=0;v2<=0;
-   if(early_sof) begin input_armed<=0;ready_rows<=0;read_y<=0;end
+   if(early_sof) begin input_armed<=0;ready_rows<=0;read_y<=0;tail_bypass<=0;end
   end
  end
 end
@@ -200,13 +215,13 @@ always @(posedge clk or negedge rst_n) begin
   core_pixels<=0;edge_count<=0;edge_sum<=0;
  end else begin
   out_valid<=v4;out_last<=v4 && x4==WIDTH-4;out_x<=x4;out_y<=y4;
-  if(!(pixel_sof ? mode[1] : frame_mode[1])) begin
+  if(!(pixel_sof ? mode[1] : frame_mode[1]) || bypass_tail) begin
    out_valid<=input_valid;out_last<=input_valid && pixel_last;
    out_x<={1'b0,write_address,2'b00};out_y<=write_row;
   end
   if(early_sof || frame_bad || cache_overrun) begin out_valid<=0;out_last<=0;end
   for(lane=0;lane<4;lane=lane+1) begin
-   if(!(pixel_sof ? mode[1] : frame_mode[1]))
+   if(!(pixel_sof ? mode[1] : frame_mode[1]) || bypass_tail)
     out_rgb[95-lane*24-:24]<=(pixel_sof ? mode[0] : frame_mode[0]) &&
      write_address*4+lane>=X0 && write_address*4+lane<X1 && write_row>=Y0 && write_row<Y1 ?
       {3{gray(rgb[95-lane*24-:24])}} : rgb[95-lane*24-:24];
