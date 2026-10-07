@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-07",
+  "checked_at_local": "2026-10-07T21:08:38.8680775+08:00",
+  "branch": "lj4747-contest-work",
+  "checked_working_tree_head": "5d64363beb87f085081712e98bb1494d89445a8e",
+  "verified_pre_handoff_remote_head": "5d64363beb87f085081712e98bb1494d89445a8e",
+  "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
+  "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65",
+  "build_inputs": 207,
+  "frozen_evidence_records": 290,
+  "historical_single_pocket_photos": 9,
+  "total_sha256_and_git_tracking_checks": 507,
+  "missing_or_mismatched_or_untracked": 0,
+  "new_simulation_or_hardware_test_performed": false,
+  "writer_stops_after_handoff_save": true,
+  "running_processes": [
+    {
+      "pid": 15004,
+      "name": "bw"
+    },
+    {
+      "pid": 17224,
+      "name": "hwserver"
+    },
+    {
+      "pid": 31504,
+      "name": "hwserver"
+    },
+    {
+      "pid": 32148,
+      "name": "hwserver"
+    },
+    {
+      "pid": 41952,
+      "name": "td"
+    }
+  ],
+  "note": "This audit checks existing content against its manifests. Its HEAD is the pre-handoff baseline; checkout the latest remote branch HEAD for the handoff documents. Physical classification, 30 minutes, fixed fixture and cold boot remain pending."
+}

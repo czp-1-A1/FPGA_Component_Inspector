@@ -1,21 +1,36 @@
 {
   "date": "2026-10-07",
-  "status": "code_and_frozen_evidence_pushed_remote_SHA_verified",
+  "status": "code_and_frozen_evidence_saved_remote_base_verified",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
-  "branch": "hx1p35a-contest-work",
-  "code_commit": "7edbb0afca701332d3d11b1d6e5a6cf5d99354fd",
-  "verified_remote_code_commit": "7edbb0afca701332d3d11b1d6e5a6cf5d99354fd",
+  "branch": "lj4747-contest-work",
+  "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
+  "verified_pre_handoff_remote_head": "5d64363beb87f085081712e98bb1494d89445a8e",
+  "checkout": "latest remote HEAD of lj4747-contest-work",
   "handoff_document": "交接说明.md",
-  "bit": "fpga/component_inspector/release/edge_diagnostic_20261007/camera_to_dsi_display.bit",
-  "bit_sha256": "c3a1cce7d4a19d6750c0e6f3e36395a3c2f3d31901834a1b13a76f497a9230f8",
-  "indexed_sha256_checks": 927,
+  "handoff_audit": "开发实施/验收记录/20261007_交接保存_轮次1/content_check.json",
+  "bit": "fpga/component_inspector/release/edge_tail_fix_20261007/camera_to_dsi_display.bit",
+  "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65",
   "build_inputs": 207,
-  "frozen_evidence_copies": 715,
-  "physical_board_validation": "pending",
-  "next_step": "Burn frozen diagnostic bit and retest RAW/GRAY/EDGE/GRAY+EDGE/RAW; record ER/LP/WS/FR/SEC/OF/VF/UF and return-to-RAW recovery.",
-  "local_only": [
-    "tmp/",
-    "old large build/simulation caches"
+  "frozen_evidence_records": 290,
+  "historical_single_pocket_photos": 9,
+  "sha256_and_git_tracking_checks": 507,
+  "missing_mismatched_untracked": 0,
+  "classification_enabled": false,
+  "physical_video_feedback": "Human reports current views normal; full timed acceptance and independently verified programmed binary pending",
+  "stage_status": "Step 3 mean classifier, offline reference and 80x80 sampling implemented; formal calibration and independent physical acceptance pending; Step 4 UI/logo/views already implemented",
+  "next_step": "Confirm previous writer stopped, inspect branch/HEAD/worktree, read AGENTS and plan 26, then obtain user confirmation for next implementation or test batch",
+  "writer_stops_after_handoff_save": true,
+  "pending": [
+    "Fixed fixture, accurate working distance/coplanar field and repeatability",
+    "Physical sample truth and independent train/test split, real image reference",
+    "Formal threshold/recipe confirmation and classification enable plus fresh simulation/TD/frozen bit",
+    "30-minute video, independent input FPS, Flash/cold boot and remaining constraints"
   ],
-  "note": "This status file is added in the follow-up handoff documentation commit. Use the latest branch HEAD for checkout."
+  "previous_teammate_sync_snapshot": "开发实施/验收记录/20261007_交接保存_轮次1/hx1p35a_handoff_history.json",
+  "local_only": [
+    "tmp build/simulation caches",
+    "tool installations and running GUI/server processes",
+    "official FD_Release_2026.2.zip"
+  ],
+  "note": "Pre-handoff code baseline was already pushed and remotely verified. This file is part of the final handoff documentation commit; use the latest Git branch HEAD for checkout. Source commit and bit identity do not change with documentation commits."
 }
