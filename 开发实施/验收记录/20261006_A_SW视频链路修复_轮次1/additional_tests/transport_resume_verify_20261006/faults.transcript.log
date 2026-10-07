@@ -1,0 +1,50 @@
+# vsim -c -onfinish exit -l faults.transcript.log -wlf faults.wlf -do "run -all; quit -code 1 -force" work.tb_transport_faults 
+# Start time: 23:35:00 on Oct 06,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_transport_faults(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# Loading work.video_in(fast)
+# Loading work.video_out(fast)
+# run -all
+# CAPTURE mode=2 id=1 pixels=8192 packed=1536 writes=1536 slot=3 published=3 capture_ok=1 peak=316 bad=0 overflow=0 lost=0
+# DISPLAY mode=2 id=1 checked=8192 display_ok=1 underflow=0 pixel_errors=0 issued=1536 reserved_peak=480
+# STOP_CSI pixels=6280 words=1176 written=960 retained_slot=3 candidate_slot=2 published=0
+# CAPTURE mode=2 id=2 pixels=8192 packed=1536 writes=1536 slot=2 published=2 capture_ok=1 peak=316 bad=0 overflow=0 lost=1
+# DISPLAY mode=2 id=2 checked=8192 display_ok=1 underflow=0 pixel_errors=0 issued=1536 reserved_peak=480
+# UNDERFLOW remainder_black=256 underflow=1 ok=0 outstanding=240 pending_model=240 pause_remaining=3682
+# CROSS_VS_DRAIN preserved_slot=2 outstanding=240 fifo_reset=0
+# CROSS_VS_CLEAR old_queue_tail=4032 returned=4032 outstanding=0
+# DISPLAY mode=2 id=2 checked=8192 display_ok=1 underflow=1 pixel_errors=0 issued=1536 reserved_peak=480
+# CACHE_OVERRUN produced=384 written=0 bad=1 camera_bad=1 ok=0 retained_slot=2 peak=384
+# CAPTURE mode=2 id=1 pixels=8192 packed=1536 writes=1536 slot=3 published=3 capture_ok=1 peak=384 bad=0 overflow=0 lost=2
+# DISPLAY mode=2 id=1 checked=8192 display_ok=1 underflow=1 pixel_errors=0 issued=1536 reserved_peak=480
+# PASS: TRANSPORT_FAULTS stopped_CSI_tail_not_published=1 new_FS_recovered=1 lost_frames=2 underflow_frames=1 remainder_black=256 across_VS_drain=1 cache_overrun_rejected=1 new_good_recovered=1 word_pixel_errors=0
+# ** Note: $finish    : tb_transport_faults.v(318)
+#    Time: 1780255710 ps  Iteration: 1  Instance: /tb_transport_faults
+# End time: 23:35:03 on Oct 06,2026, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 10

@@ -1,0 +1,20 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 15:37:56 on Oct 07,2026
+vlog -work gap_work ../../fpga/component_inspector/user_source/hdl_source/roi_sobel_view.v data96_128.v 
+-- Compiling module roi_sobel_view
+-- Compiling module data_96bit_to_128bit
+
+Top level modules:
+	roi_sobel_view
+	data_96bit_to_128bit
+End time: 15:37:57 on Oct 07,2026, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 15:37:57 on Oct 07,2026
+vlog -sv -work gap_work tb_sobel_view.v 
+-- Compiling module tb_sobel_view
+
+Top level modules:
+	tb_sobel_view
+End time: 15:37:57 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

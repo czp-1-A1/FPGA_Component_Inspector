@@ -1,0 +1,49 @@
+# vsim -c -onfinish exit -l switch_0_2_gap_0_compete_0/transcript.log -wlf switch_0_2_gap_0_compete_0/diagnostic.wlf -do "run -all; quit -code 1 -force" work.tb_edge_freeze_transport "+FIRST=0" "+SECOND=2" "+GAP=0" "+COMPETE=0" "+TRACE=switch_0_2_gap_0_compete_0/trace.csv" 
+# Start time: 15:22:18 on Oct 07,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: tested_rtl/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: tested_rtl/soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: tested_rtl/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: tested_rtl/soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: tested_rtl/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: tested_rtl/soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: tested_rtl/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: tested_rtl/soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: tested_rtl/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: tested_rtl/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: tested_rtl/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: tested_rtl/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: tested_rtl/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: tested_rtl/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_edge_freeze_transport(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# Loading work.video_in(fast)
+# Loading work.video_out(fast)
+# run -all
+# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=0 compete=0
+# CAPTURE mode=0 id=1 pixels=614400 packed=115200 writes=115200 slot=3 published=3 capture_ok=1 peak=277 bad=0 overflow=0 lost=0
+# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0
+# FIRST_CACHE_OVERRUN cycle=461969 id=2 mode=2 gap=0 write_row=4 write_group=0 read_row=1 reading=1 ready_rows=3 view_ready=1 camera_used=274 rd_count=267 wr_busy=1 rd_busy=0 wr_burst=138 rd_burst=0 packed=375 written=101
+# CAPTURE mode=2 id=2 pixels=2004 packed=375 writes=105 slot=2 published=3 capture_ok=0 peak=277 bad=1 overflow=0 lost=0
+# CAPTURE_RESULT FAIL mode=2 id=2 gap=0 completed_slot=3 candidate_slot=2 pixels=2004 words=375 written=105 bad=1 camera_bad=1 fifo_used=270 read_y=1 write_y=600 credit=0 lost=0 overflow=0
+# FREEZE_REPRO latest_slot_retained=3 rejected_mode=2 input_frames_continue=1 frame_bad=1 camera_bad=1 lost_before_next_fs=0
+# DISPLAY mode=2 id=1 checked=614400 display_ok=1 underflow=0 pixel_errors=0 issued=115200 reserved_peak=480
+# CAPTURE mode=0 id=1 pixels=614400 packed=115200 writes=115200 slot=2 published=2 capture_ok=1 peak=278 bad=0 overflow=0 lost=1
+# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=0
+# DISPLAY mode=0 id=1 checked=614400 display_ok=1 underflow=0 pixel_errors=0 issued=115200 reserved_peak=480
+# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=0 compete=0 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1
+# ** Note: $finish    : tb_edge_freeze_transport.v(273)
+#    Time: 39253699020 ps  Iteration: 1  Instance: /tb_edge_freeze_transport
+# End time: 15:22:43 on Oct 07,2026, Elapsed time: 0:00:25
+# Errors: 0, Warnings: 10

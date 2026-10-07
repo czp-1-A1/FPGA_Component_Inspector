@@ -1,0 +1,31 @@
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/osd/transcript.log -wlf modelsim_work/osd/wave.wlf -do "log /tb_osd/*; run -all; quit -code 1 -force" test_osd.tb_osd 
+# Start time: 15:40:29 on Oct 07,2026
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_osd(fast)
+# Loading work.experiment_osd(fast)
+# Loading work.bin16_bcd(fast)
+# Loading work.osd_ascii_rom(fast)
+# Loading work.osd_cjk_rom(fast)
+# Loading work.osd_logo_rom(fast)
+# Loading work.experiment_osd(fast__1)
+# log /tb_osd/*
+#  run -all
+# PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values and frame snapshot
+# ** Note: $finish    : tb_osd.v(86)
+#    Time: 37337020 ns  Iteration: 1  Instance: /tb_osd
+# End time: 15:40:51 on Oct 07,2026, Elapsed time: 0:00:22
+# Errors: 0, Warnings: 0

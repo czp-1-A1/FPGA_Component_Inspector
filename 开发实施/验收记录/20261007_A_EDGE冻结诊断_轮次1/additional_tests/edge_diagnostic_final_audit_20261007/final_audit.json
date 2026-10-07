@@ -1,0 +1,122 @@
+{
+  "auditor": "root (finishing interrupted read-only audit)",
+  "status": "PASS software build and constraints; physical EDGE freeze not verified",
+  "verified_build_inputs": 207,
+  "warning_comparisons": {
+    "syn_1": {
+      "old_log": "tmp/video_fix_td_after_sof_20261006/td_project/camera_to_dsi_display_Runs/syn_1/td_20261006_233325.logw",
+      "new_log": "tmp/edge_diagnostic_td_20261007/td_project/camera_to_dsi_display_Runs/syn_1/td_20261007_154209.logw",
+      "semantic_warning_multisets_identical": true,
+      "warnings_including_critical": 808,
+      "critical_warnings": 2,
+      "warning_ids": {
+        "HDL-5007": 42,
+        "HDL-5317": 79,
+        "HDL-5314": 20,
+        "HDL-5323": 5,
+        "HDL-5369": 1,
+        "HDL-5001": 4,
+        "HDL-5106": 2,
+        "SYN-5065": 1,
+        "SYN-5013": 592,
+        "SYN-5025": 3,
+        "SYN-5011": 54,
+        "SYN-5041": 3,
+        "USR-6135": 2
+      }
+    },
+    "phy_1": {
+      "old_log": "tmp/video_fix_td_after_sof_20261006/td_project/camera_to_dsi_display_Runs/phy_1/td_20261006_233840.logw",
+      "new_log": "tmp/edge_diagnostic_td_20261007/td_project/camera_to_dsi_display_Runs/phy_1/td_20261007_154614.logw",
+      "semantic_warning_multisets_identical": true,
+      "warnings_including_critical": 10,
+      "critical_warnings": 2,
+      "warning_ids": {
+        "PHY-5060": 1,
+        "PHY-5016": 4,
+        "PHY-5088": 4,
+        "PHY-5079": 1
+      }
+    }
+  },
+  "metrics": {
+    "setup_wns_ps": 858,
+    "hold_wns_ps": 20,
+    "setup_tns_ps": 0,
+    "hold_tns_ps": 0,
+    "violated_setup_endpoints": 0,
+    "violated_hold_endpoints": 0,
+    "slices": 16397,
+    "slices_percent": 77.29,
+    "eram": 48,
+    "dsp": 8,
+    "sta_coverage": "94.53%"
+  },
+  "mailbox_budgets": [
+    {
+      "matched": 102,
+      "number": 102,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/payload*}] -to [get_regs {u_transport_display/D_data*}]"
+    },
+    {
+      "matched": 2,
+      "number": 2,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/req}] -to [get_regs {u_transport_display/req_sync[0]}]"
+    },
+    {
+      "matched": 2,
+      "number": 2,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_transport_display/ack}] -to [get_regs {u_transport_display/ack_sync[0]}]"
+    },
+    {
+      "matched": 208,
+      "number": 208,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]"
+    },
+    {
+      "matched": 2,
+      "number": 2,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]"
+    },
+    {
+      "matched": 2,
+      "number": 2,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]"
+    }
+  ],
+  "coverage_findings": [
+    "1. checking no clock(0) (HIGH)",
+    "2. checking clock definition(0) (HIGH)",
+    "3. checking dummy node(4) (HIGH)",
+    "4. checking invalid constraint(0) (HIGH)",
+    "5. checking pll/clock buffer clock constraints(7) (HIGH)",
+    "6. checking combinational loops(0) (HIGH)",
+    "7. checking soft fifo timing exception constraints(0) (HIGH)",
+    "8. checking no path constraints(0) (MEDIUM)",
+    "9. checking shadowed/ignored timing exception constraints(9) (MEDIUM)",
+    "10. checking no input delay(39) (MEDIUM)",
+    "11. checking no output delay(63) (MEDIUM)",
+    "12. checking partial input delay(1) (MEDIUM)",
+    "13. checking partial output delay(0) (MEDIUM)",
+    "14. checking abnormal input delay(0) (MEDIUM)"
+  ],
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "c3a1cce7d4a19d6750c0e6f3e36395a3c2f3d31901834a1b13a76f497a9230f8"
+  },
+  "fonts_and_logo_unchanged": true,
+  "previous_release_unchanged": true,
+  "board_validation_pending": true
+}

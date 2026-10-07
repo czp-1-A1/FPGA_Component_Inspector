@@ -1,0 +1,15 @@
+Model Technology ModelSim SE-64 vopt 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 15:44:17 on Oct 07,2026
+vopt "+acc=rn" work.tb_timing_debug -o timing_debug_opt 
+
+Top level modules:
+	tb_timing_debug
+
+Analyzing design...
+-- Loading module tb_timing_debug
+-- Loading module roi_sobel_view
+-- Loading module roi_sobel_view_no_debug
+Incremental compilation check found no design-units have changed.
+Optimized design name is timing_debug_opt
+End time: 15:44:17 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

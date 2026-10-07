@@ -1,0 +1,57 @@
+{
+  "completed_by": "root after agent interruption",
+  "checked_manifests": {
+    "origin_inputs_manifest.json": 27,
+    "life_proof_inputs_manifest.json": 35,
+    "full_inputs_manifest.json": 2,
+    "full_g160_inputs_manifest.json": 2
+  },
+  "successful_latest_source_tests": [
+    {
+      "log": "life_console.log",
+      "sha256": "69d71ea8e88be1f83e77c7f6b823fcf5d21544ff7312b801e24f30e3183e5737",
+      "pass_lines": [
+        "# PASS actual ISP lifecycle: real20ms debounce/CDC, next-nativeFS recovery, GRAY/EDGE modes, config/lane/cache faults and reason bits, every actual early locks old reason+LP+WS and clears new; prefixes do not claim frame_good"
+      ]
+    },
+    {
+      "log": "full_g160_console.log",
+      "sha256": "977bf91119f2938729ddb3262f722aa80226e2cb8c379d88b663968c54644dc8",
+      "pass_lines": [
+        "# PASS actual ISP full epoch: native600 rows/614400 pixels, EDGE153600 RGB beats, actual frame_good/guard completion, next early snapshots clean reason0/LP/nonzero/WS0 then clears good/new epoch"
+      ]
+    }
+  ],
+  "negative_input_test": {
+    "log": "full_console.log",
+    "sha256": "1b337c909188964d25b97330268011ab174160aeac9215876083c1d9ea485894",
+    "result": "FAIL, retained as investigation evidence",
+    "native_rows": 600,
+    "native_active_beats": 640,
+    "native_gap": 32,
+    "fatal_lines": [
+      "# ** Fatal: steady next-native-FS did not recover frame=2"
+    ],
+    "first_guard_bad_cycle": 26644,
+    "total_awb_beats": 145411,
+    "total_view_beats": 144384,
+    "expected_full_beats": 153600,
+    "board_applicability": "No observed native CSI gap measurement; root cause on board remains unknown"
+  },
+  "normal_complete_epoch": {
+    "native_rows": 600,
+    "native_active_beats": 640,
+    "native_gap": 160,
+    "awb_beats": 153600,
+    "view_beats": 153600,
+    "pixels": 614400,
+    "next_epoch_reason": 0,
+    "LP": 800,
+    "WS": 0
+  },
+  "limits": [
+    "Native gap32 loss is evidence at that synthetic timing, not a claimed board cause.",
+    "13 short lifecycle prefixes do not claim complete frame publication.",
+    "Vendor/IP simulation warnings retained."
+  ]
+}

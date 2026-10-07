@@ -1,0 +1,46 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish exit timing_debug_opt -do "run -all; quit -f" 
+# Start time: 15:44:18 on Oct 07,2026
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.tb_timing_debug(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.roi_sobel_view_no_debug(fast)
+# run -all
+# CHECK LP exact interval=256 LP=0100 WS=0000 period_seen=1
+# CHECK LP exact interval=257 LP=0101 WS=0000 period_seen=1
+# CHECK LP exact interval=640 LP=0280 WS=0000 period_seen=1
+# CHECK LP exact interval=65535 LP=ffff WS=0000 period_seen=1
+# CHECK LP exact interval=65536 LP=ffff WS=0000 period_seen=1
+# CHECK LP unmeasured period_seen hides saturated age
+# CHECK LP minimum selects 257 after 640
+# CHECK WS exact waiting=0 WS=0000 snapshot=01000000 continuous replay preserved
+# CHECK WS exact waiting=1 WS=0001 snapshot=01000001 continuous replay preserved
+# CHECK WS exact waiting=2 WS=0002 snapshot=01000002 continuous replay preserved
+# CHECK WS exact waiting=65535 WS=ffff snapshot=0100ffff continuous replay preserved
+# CHECK WS exact waiting=65536 WS=ffff snapshot=0100ffff continuous replay preserved
+# CHECK WS early truncation old=01000009 current=00000000
+# CHECK WS separate episodes 7 then 3 keeps maximum 7
+# CHECK WS actual cache abort preserves 262 waited cycles
+# CHECK RAW 65536 low-credit cycles WS=0, LP measured
+# CHECK GRAY 65536 low-credit cycles WS=0, LP measured
+# CHECK fresh EDGE epoch LP=640 WS=0 after RAW/GRAY
+# PASS independent timing_debug: 18 cases, 471221 compared cycles, 6406 video beats, 4101 RAW RGB reference beats; LP exact/saturation/unmeasured, WS EDGE-only/max/saturation/truncation, same-edge old snapshot and new clear, no diagnostic flow/video changes
+# ** Note: $finish    : tb_timing_debug.v(175)
+#    Time: 4188245356 ps  Iteration: 0  Instance: /tb_timing_debug
+# End time: 15:44:21 on Oct 07,2026, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 0

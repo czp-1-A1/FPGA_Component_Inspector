@@ -1,0 +1,111 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l transcript.log -wlf diagnostic.wlf -do "run -all; quit -code 1 -force" work.tb_ready_recovery anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 15:28:17 on Oct 07,2026
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_ready_recovery(fast)
+# Loading work.awb(fast)
+# Loading work.divider(fast)
+# Loading anlogic_sim.AL_DFF_X(fast)
+# Loading anlogic_sim.AL_MUX(fast)
+# Loading anlogic_sim.AL_DFF(fast)
+# Loading anlogic_sim.AL_MAP_LUT5(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT2(fast)
+# Loading anlogic_sim.AL_MAP_LUT3(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT4(fast)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__13)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__14)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__15)
+# Loading work.signal_delay(fast)
+# Loading work.blk_mem_gen_awb_delay_signal(fast)
+# Loading work.ram_f84573da5ab5(fast)
+# Loading anlogic_sim.PH1P_LOGIC_ERAM(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# Loading work.video_in(fast)
+# Loading work.w128_d512_fifo(fast)
+# Loading work.soft_fifo_al_4057d6b76aa6(fast)
+# Loading work.fifo_cross_domain_addr_process_al_4057d6b76aa6(fast)
+# Loading work.ram_infer_4057d6b76aa6(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_ready_recovery/awb_dut/signal_delay_d/blk_mem_gen_awb_delay_signal_d/ram_f84573da5ab5_Inst/username_inst File: D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v Line: 60
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_ready_recovery/awb_dut/signal_delay_d/blk_mem_gen_awb_delay_signal_d/ram_f84573da5ab5_Inst/username_inst File: D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v Line: 60
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ceb'. The port definition is at: D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_ready_recovery/vi/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v Line: 221
+# ** Warning: (vsim-3015) [PCDPC] - Port size (9) does not match connection size (32) for port 'addrb'. The port definition is at: D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_ready_recovery/vi/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v Line: 221
+# run -all
+# OBS real credit frame=1 mode=0 release_after=0 input_period=640 view=4096 writes=3072 published=1 capture_ok=1 Sobel_bad=0 ISP_bad=0 camera_bad=0 reassert=0 first_bad_row=-1 read_y=-1 credit_fall/rise=1/3 lost=0 overflow=0
+# OBS real credit frame=2 mode=2 release_after=2400 input_period=640 view=4096 writes=3072 published=1 capture_ok=1 Sobel_bad=0 ISP_bad=0 camera_bad=0 reassert=0 first_bad_row=-1 read_y=-1 credit_fall/rise=8/10 lost=0 overflow=0
+# OBS real credit frame=3 mode=2 release_after=3000 input_period=640 view=557 writes=135 published=0 capture_ok=0 Sobel_bad=1 ISP_bad=1 camera_bad=1 reassert=1 first_bad_row=5 read_y=2 credit_fall/rise=3/4 lost=0 overflow=0
+# OBS real credit frame=4 mode=2 release_after=3000 input_period=640 view=557 writes=136 published=0 capture_ok=0 Sobel_bad=1 ISP_bad=1 camera_bad=1 reassert=1 first_bad_row=5 read_y=2 credit_fall/rise=4/2 lost=1 overflow=0
+# OBS real credit frame=5 mode=2 release_after=0 input_period=640 view=4096 writes=3072 published=1 capture_ok=1 Sobel_bad=0 ISP_bad=0 camera_bad=0 reassert=0 first_bad_row=-1 read_y=-1 credit_fall/rise=2/1 lost=2 overflow=0
+# OBS real credit frame=6 mode=2 release_after=-1 input_period=640 view=512 writes=0 published=0 capture_ok=0 Sobel_bad=1 ISP_bad=1 camera_bad=1 reassert=1 first_bad_row=5 read_y=2 credit_fall/rise=2/3 lost=2 overflow=0
+# OBS real credit frame=7 mode=2 release_after=0 input_period=640 view=4096 writes=3072 published=1 capture_ok=1 Sobel_bad=0 ISP_bad=0 camera_bad=0 reassert=0 first_bad_row=-1 read_y=-1 credit_fall/rise=2/1 lost=3 overflow=0
+# OBS real credit frame=8 mode=0 release_after=0 input_period=640 view=4096 writes=3072 published=1 capture_ok=1 Sobel_bad=0 ISP_bad=0 camera_bad=0 reassert=0 first_bad_row=-1 read_y=-1 credit_fall/rise=1/3 lost=3 overflow=0
+# PASS actual AWB/video_in credit recovery: line period640, bounded stall succeeds, late stall aborts, next FS clears old bad and publishes EDGE, RAW transition recovers
+# ** Note: $finish    : ../tb_ready_recovery.v(108)
+#    Time: 1014321 ns  Iteration: 0  Instance: /tb_ready_recovery
+# End time: 15:28:49 on Oct 07,2026, Elapsed time: 0:00:32
+# Errors: 0, Warnings: 4

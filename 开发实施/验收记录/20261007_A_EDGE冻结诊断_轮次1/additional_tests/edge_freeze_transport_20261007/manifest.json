@@ -1,0 +1,1808 @@
+{
+  "date": "2026-10-07",
+  "source_policy": "Engineering read-only; compiled pinned snapshots; old evidence retained",
+  "clocks_ns": {
+    "CSI": 8.888,
+    "DDR": 15,
+    "DSI": 19.23
+  },
+  "active_awb_row_beats": 256,
+  "realistic_minimum_line_gap": 384,
+  "synthetic_frame_good": true,
+  "real_mc_bridge_and_command_fifo": true,
+  "default_camera_offset_dsi_cycles": 4500,
+  "inputs": [
+    {
+      "copy": "tested_rtl/roi_sobel_view.v",
+      "sha256": "94e0e630cb270a1b5bec4a17bcb438454dc362a7d46c54cdc78ba1ee61ddfa55",
+      "path": "fpga/component_inspector/user_source/hdl_source/roi_sobel_view.v",
+      "sha256_current_engineering": "377f6b3ff67cd3f11a744ce3cf0839576f78431754845eaba78cb014e4c3de11",
+      "engineering_unchanged": false
+    },
+    {
+      "copy": "tested_rtl/data96_128.v",
+      "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5",
+      "path": "fpga/component_inspector/user_source/hdl_source/isp/data96_128/data96_128.v",
+      "sha256_current_engineering": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5",
+      "engineering_unchanged": true
+    },
+    {
+      "copy": "tested_rtl/video_in.v",
+      "sha256": "0af1896eeedef3a31240db44090e1d0dc577b740344e13fbd56af83b09155df3",
+      "path": "fpga/component_inspector/user_source/hdl_source/video_in.v",
+      "sha256_current_engineering": "0af1896eeedef3a31240db44090e1d0dc577b740344e13fbd56af83b09155df3",
+      "engineering_unchanged": true
+    },
+    {
+      "copy": "tested_rtl/video_out.v",
+      "sha256": "9cf4ef7484fbe292816015f38c54406779ea29d5a0a4039847d482d34df3361c",
+      "path": "fpga/component_inspector/user_source/hdl_source/video_out.v",
+      "sha256_current_engineering": "9cf4ef7484fbe292816015f38c54406779ea29d5a0a4039847d482d34df3361c",
+      "engineering_unchanged": true
+    },
+    {
+      "copy": "tested_rtl/soft_fifo_al_4057d6b76aa6.v",
+      "sha256": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751",
+      "path": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v",
+      "sha256_current_engineering": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751",
+      "engineering_unchanged": true
+    },
+    {
+      "copy": "tested_rtl/w128_d512_fifo.v",
+      "sha256": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4",
+      "path": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v",
+      "sha256_current_engineering": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4",
+      "engineering_unchanged": true
+    },
+    {
+      "copy": "tested_rtl/mc_to_user_interface.v",
+      "sha256": "7d00f0058467a0f99e0e2d36fa360d59579b4b73be7fb33b16274fc6b422f438",
+      "path": "fpga/component_inspector/user_source/hdl_source/mc_to_user_interface.v",
+      "sha256_current_engineering": "7d00f0058467a0f99e0e2d36fa360d59579b4b73be7fb33b16274fc6b422f438",
+      "engineering_unchanged": true
+    },
+    {
+      "copy": "tested_rtl/soft_fifo_al_f58e8b3e1f3d.v",
+      "sha256": "198ca29ada4051f0037af040848e416f2b2be6b40e513dd65c531ec557fef424",
+      "path": "fpga/component_inspector/user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v",
+      "sha256_current_engineering": "198ca29ada4051f0037af040848e416f2b2be6b40e513dd65c531ec557fef424",
+      "engineering_unchanged": true
+    },
+    {
+      "copy": "tested_rtl/w155_d512_fifo.v",
+      "sha256": "d600bcd8e876691d6cf3a512650e7e69118fc8016e9fdf892ac85e4c63851e37",
+      "path": "fpga/component_inspector/user_source/ip_source/w155_d512_fifo/w155_d512_fifo.v",
+      "sha256_current_engineering": "d600bcd8e876691d6cf3a512650e7e69118fc8016e9fdf892ac85e4c63851e37",
+      "engineering_unchanged": true
+    }
+  ],
+  "cases": [
+    {
+      "case": "mc_switch_0_0_gap_384_compete_1_pause_1200",
+      "exit_code": 0,
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=0 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "functional_status": "PASS",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1200 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT PASS mode=0 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=0 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=691200 retired=691200 mc_writes=345600 mc_reads=345600 pause=1200 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "mc_switch_0_0_gap_384_compete_1_pause_1400",
+      "exit_code": 0,
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "functional_status": "FAIL",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1400 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=2640 bad=0 camera_bad=1 fifo_used=511 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=578640 retired=578640 mc_writes=233040 mc_reads=345600 pause=1400 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "mc_switch_0_0_gap_384_compete_1_pause_2000",
+      "exit_code": 0,
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "functional_status": "FAIL",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=2000 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=2640 bad=0 camera_bad=1 fifo_used=511 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=578640 retired=578640 mc_writes=233040 mc_reads=345600 pause=2000 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "case": "mc_switch_0_2_gap_384_compete_1_pause_0",
+      "functional_status": "PASS",
+      "exit_code": 0,
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=2 accepted=691200 retired=691200 mc_writes=345600 mc_reads=345600 pause=0 period=0 off=0"
+      ],
+      "warnings": 18
+    },
+    {
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "case": "mc_switch_0_2_gap_384_compete_1_pause_1000",
+      "functional_status": "PASS",
+      "exit_code": 0,
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1000 packed=2400 queue_used=2",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=691200 retired=691200 mc_writes=345600 mc_reads=345600 pause=1000 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "mc_switch_0_2_gap_384_compete_1_pause_1200",
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "exit_code": 0,
+      "functional_status": "PASS",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1200 packed=2400 queue_used=2",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=691200 retired=691200 mc_writes=345600 mc_reads=345600 pause=1200 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "mc_switch_0_2_gap_384_compete_1_pause_1400",
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1\r"
+      ],
+      "exit_code": 0,
+      "functional_status": "FAIL",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1400 packed=2400 queue_used=2",
+        "# FIRST_CACHE_OVERRUN cycle=482200 id=2 mode=2 gap=384 write_row=18 write_group=0 read_row=15 reading=1 ready_rows=17 view_ready=0 camera_used=310 rd_count=303 wr_busy=1 rd_busy=0 wr_burst=193 rd_burst=0 packed=2994 written=2686",
+        "# CAPTURE_RESULT FAIL mode=2 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=15976 words=2995 written=2690 bad=1 camera_bad=1 fifo_used=305 read_y=15 write_y=600 credit=0 lost=0 overflow=0",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=2 input_frames_continue=1 frame_bad=1 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=0",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=578690 retired=578690 mc_writes=233090 mc_reads=345600 pause=1400 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "exit_code": 0,
+      "functional_status": "FAIL",
+      "case": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4517",
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1\r"
+      ],
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# SOURCE_PHASE camera start offset=4517 DSI clocks from display VS task",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1400 packed=2400 queue_used=2",
+        "# FIRST_CACHE_OVERRUN cycle=482237 id=2 mode=2 gap=384 write_row=18 write_group=0 read_row=15 reading=1 ready_rows=17 view_ready=0 camera_used=315 rd_count=309 wr_busy=1 rd_busy=0 wr_burst=171 rd_burst=0 packed=3022 written=2708",
+        "# CAPTURE_RESULT FAIL mode=2 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=16124 words=3023 written=2712 bad=1 camera_bad=1 fifo_used=311 read_y=15 write_y=600 credit=0 lost=0 overflow=0",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=2 input_frames_continue=1 frame_bad=1 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=0",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=578712 retired=578712 mc_writes=233112 mc_reads=345600 pause=1400 period=0 off=0"
+      ],
+      "warnings": 18
+    },
+    {
+      "exit_code": 0,
+      "functional_status": "PASS",
+      "case": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4553",
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# SOURCE_PHASE camera start offset=4553 DSI clocks from display VS task",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1400 packed=2400 queue_used=2",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=691200 retired=691200 mc_writes=345600 mc_reads=345600 pause=1400 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "exit_code": 0,
+      "functional_status": "PASS",
+      "case": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4611",
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# SOURCE_PHASE camera start offset=4611 DSI clocks from display VS task",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1400 packed=2400 queue_used=2",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=691200 retired=691200 mc_writes=345600 mc_reads=345600 pause=1400 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "mc_switch_0_2_gap_384_compete_1_pause_1600",
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1\r"
+      ],
+      "exit_code": 0,
+      "functional_status": "FAIL",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1600 packed=2400 queue_used=2",
+        "# FIRST_CACHE_OVERRUN cycle=482200 id=2 mode=2 gap=384 write_row=18 write_group=0 read_row=15 reading=0 ready_rows=17 view_ready=0 camera_used=394 rd_count=391 wr_busy=1 rd_busy=0 wr_burst=151 rd_burst=0 packed=2880 written=2488",
+        "# CAPTURE_RESULT FAIL mode=2 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=15360 words=2880 written=2492 bad=1 camera_bad=1 fifo_used=388 read_y=15 write_y=600 credit=0 lost=0 overflow=0",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=2 input_frames_continue=1 frame_bad=1 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=0",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=578492 retired=578492 mc_writes=232892 mc_reads=345600 pause=1600 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "mc_switch_0_2_gap_384_compete_1_pause_1800",
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1\r"
+      ],
+      "exit_code": 0,
+      "functional_status": "FAIL",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1800 packed=2400 queue_used=2",
+        "# FIRST_CACHE_OVERRUN cycle=482200 id=2 mode=2 gap=384 write_row=18 write_group=0 read_row=15 reading=0 ready_rows=17 view_ready=0 camera_used=454 rd_count=454 wr_busy=1 rd_busy=0 wr_burst=214 rd_burst=0 packed=2880 written=2426",
+        "# CAPTURE_RESULT FAIL mode=2 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=15360 words=2880 written=2426 bad=1 camera_bad=1 fifo_used=454 read_y=15 write_y=600 credit=0 lost=0 overflow=0",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=2 input_frames_continue=1 frame_bad=1 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=0",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=578426 retired=578426 mc_writes=232826 mc_reads=345600 pause=1800 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1\r"
+      ],
+      "case": "mc_switch_0_2_gap_384_compete_1_pause_2000",
+      "functional_status": "FAIL",
+      "exit_code": 0,
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=2000 packed=2400 queue_used=2",
+        "# FIRST_CACHE_OVERRUN cycle=482200 id=2 mode=2 gap=384 write_row=18 write_group=0 read_row=15 reading=0 ready_rows=17 view_ready=0 camera_used=454 rd_count=454 wr_busy=1 rd_busy=0 wr_burst=214 rd_burst=0 packed=2880 written=2426",
+        "# CAPTURE_RESULT FAIL mode=2 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=15360 words=2880 written=2426 bad=1 camera_bad=1 fifo_used=454 read_y=15 write_y=600 credit=0 lost=0 overflow=0",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=2 input_frames_continue=1 frame_bad=1 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=0",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=578426 retired=578426 mc_writes=232826 mc_reads=345600 pause=2000 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "functional_status": "PASS",
+      "case": "mc_switch_2_0_gap_384_compete_1_pause_0",
+      "exit_code": 0,
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=2 accepted=691200 retired=691200 mc_writes=345600 mc_reads=345600 pause=0 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "functional_status": "PASS",
+      "case": "mc_switch_2_0_gap_384_compete_1_pause_1000",
+      "exit_code": 0,
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1000 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT PASS mode=0 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=691200 retired=691200 mc_writes=345600 mc_reads=345600 pause=1000 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "mc_switch_2_0_gap_384_compete_1_pause_1200",
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "exit_code": 0,
+      "functional_status": "PASS",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1200 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT PASS mode=0 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=691200 retired=691200 mc_writes=345600 mc_reads=345600 pause=1200 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "mc_switch_2_0_gap_384_compete_1_pause_1400",
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "exit_code": 0,
+      "functional_status": "FAIL",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1400 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=2640 bad=0 camera_bad=1 fifo_used=511 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=578640 retired=578640 mc_writes=233040 mc_reads=345600 pause=1400 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "exit_code": 0,
+      "functional_status": "FAIL",
+      "case": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4517",
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# SOURCE_PHASE camera start offset=4517 DSI clocks from display VS task",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1400 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=2640 bad=0 camera_bad=1 fifo_used=511 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=578640 retired=578640 mc_writes=233040 mc_reads=345600 pause=1400 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "exit_code": 0,
+      "functional_status": "FAIL",
+      "case": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4553",
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# SOURCE_PHASE camera start offset=4553 DSI clocks from display VS task",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1400 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=2640 bad=0 camera_bad=1 fifo_used=511 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=578640 retired=578640 mc_writes=233040 mc_reads=345600 pause=1400 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "exit_code": 0,
+      "functional_status": "FAIL",
+      "case": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4611",
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# SOURCE_PHASE camera start offset=4611 DSI clocks from display VS task",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1400 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=2421 bad=0 camera_bad=1 fifo_used=511 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=578421 retired=578421 mc_writes=232821 mc_reads=345600 pause=1400 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "mc_switch_2_0_gap_384_compete_1_pause_1600",
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "exit_code": 0,
+      "functional_status": "FAIL",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1600 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=2640 bad=0 camera_bad=1 fifo_used=511 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=578640 retired=578640 mc_writes=233040 mc_reads=345600 pause=1600 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "mc_switch_2_0_gap_384_compete_1_pause_1800",
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "exit_code": 0,
+      "functional_status": "FAIL",
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=1800 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=2640 bad=0 camera_bad=1 fifo_used=511 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=578640 retired=578640 mc_writes=233040 mc_reads=345600 pause=1800 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "functional_status": "FAIL",
+      "case": "mc_switch_2_0_gap_384_compete_1_pause_2000",
+      "exit_code": 0,
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "uses_real_mc_bridge": true,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# MC_PAUSE_START cycles=2000 packed=2400 queue_used=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=384 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=2640 bad=0 camera_bad=1 fifo_used=511 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1",
+        "# MC_DIAGNOSTIC real_command_fifo=1 peak=500 accepted=578640 retired=578640 mc_writes=233040 mc_reads=345600 pause=2000 period=0 off=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=0 compete=0 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1\r"
+      ],
+      "case": "switch_0_2_gap_0_compete_0",
+      "functional_status": "FAIL",
+      "exit_code": 0,
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=0 compete=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# FIRST_CACHE_OVERRUN cycle=461969 id=2 mode=2 gap=0 write_row=4 write_group=0 read_row=1 reading=1 ready_rows=3 view_ready=1 camera_used=274 rd_count=267 wr_busy=1 rd_busy=0 wr_burst=138 rd_burst=0 packed=375 written=101",
+        "# CAPTURE_RESULT FAIL mode=2 id=2 gap=0 completed_slot=3 candidate_slot=2 pixels=2004 words=375 written=105 bad=1 camera_bad=1 fifo_used=270 read_y=1 write_y=600 credit=0 lost=0 overflow=0",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=2 input_frames_continue=1 frame_bad=1 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=0",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=0 compete=0 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1"
+      ],
+      "warnings": 10
+    },
+    {
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=0 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1\r"
+      ],
+      "case": "switch_0_2_gap_0_compete_1",
+      "functional_status": "FAIL",
+      "exit_code": 0,
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=0 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# FIRST_CACHE_OVERRUN cycle=471704 id=2 mode=2 gap=0 write_row=4 write_group=0 read_row=1 reading=1 ready_rows=3 view_ready=1 camera_used=275 rd_count=269 wr_busy=1 rd_busy=0 wr_burst=138 rd_burst=0 packed=375 written=101",
+        "# CAPTURE_RESULT FAIL mode=2 id=2 gap=0 completed_slot=3 candidate_slot=2 pixels=2004 words=375 written=104 bad=1 camera_bad=1 fifo_used=271 read_y=1 write_y=600 credit=0 lost=0 overflow=0",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=2 input_frames_continue=1 frame_bad=1 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=0",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=0 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1"
+      ],
+      "warnings": 0
+    },
+    {
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=128 compete=0 captures=3 recovered=1 total_writes=345600 checked_pixels=1228800 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "case": "switch_0_2_gap_128_compete_0",
+      "functional_status": "PASS",
+      "exit_code": 0,
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=128 compete=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=128 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=128 compete=0 captures=3 recovered=1 total_writes=345600 checked_pixels=1228800 errors=0 overflow=0 underflow=0 lost=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=128 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "case": "switch_0_2_gap_128_compete_1",
+      "functional_status": "PASS",
+      "exit_code": 0,
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=128 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=128 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=128 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "switch_0_2_gap_384_compete_0",
+      "functional_status": "PASS",
+      "exit_code": 0,
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=0 captures=3 recovered=1 total_writes=345600 checked_pixels=1228800 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=0 captures=3 recovered=1 total_writes=345600 checked_pixels=1228800 errors=0 overflow=0 underflow=0 lost=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "switch_0_2_gap_384_compete_1",
+      "functional_status": "PASS",
+      "exit_code": 0,
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=512 compete=0 captures=3 recovered=1 total_writes=345600 checked_pixels=1228800 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "case": "switch_0_2_gap_512_compete_0",
+      "functional_status": "PASS",
+      "exit_code": 0,
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=512 compete=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=512 compete=0 captures=3 recovered=1 total_writes=345600 checked_pixels=1228800 errors=0 overflow=0 underflow=0 lost=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=512 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "case": "switch_0_2_gap_512_compete_1",
+      "functional_status": "PASS",
+      "exit_code": 0,
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=512 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=2 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=0 second=2 gap=512 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=64 compete=0 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1\r"
+      ],
+      "case": "switch_0_2_gap_64_compete_0",
+      "functional_status": "FAIL",
+      "exit_code": 0,
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=64 compete=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# FIRST_CACHE_OVERRUN cycle=472465 id=2 mode=2 gap=64 write_row=36 write_group=0 read_row=33 reading=1 ready_rows=35 view_ready=0 camera_used=322 rd_count=316 wr_busy=1 rd_busy=0 wr_burst=41 rd_burst=0 packed=6519 written=6198",
+        "# CAPTURE_RESULT FAIL mode=2 id=2 gap=64 completed_slot=3 candidate_slot=2 pixels=34772 words=6519 written=6201 bad=1 camera_bad=1 fifo_used=318 read_y=33 write_y=600 credit=0 lost=0 overflow=0",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=2 input_frames_continue=1 frame_bad=1 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=0",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=64 compete=0 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1"
+      ],
+      "warnings": 0
+    },
+    {
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=64 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1\r"
+      ],
+      "case": "switch_0_2_gap_64_compete_1",
+      "functional_status": "FAIL",
+      "exit_code": 0,
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=64 compete=1",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# FIRST_CACHE_OVERRUN cycle=473560 id=2 mode=2 gap=64 write_row=9 write_group=0 read_row=6 reading=1 ready_rows=8 view_ready=1 camera_used=287 rd_count=281 wr_busy=1 rd_busy=0 wr_burst=77 rd_burst=0 packed=1167 written=882",
+        "# CAPTURE_RESULT FAIL mode=2 id=2 gap=64 completed_slot=3 candidate_slot=2 pixels=6232 words=1168 written=885 bad=1 camera_bad=1 fifo_used=283 read_y=6 write_y=600 credit=0 lost=0 overflow=0",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=2 input_frames_continue=1 frame_bad=1 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=1 overflow=0",
+        "# FAIL: SWITCH_TRANSPORT first=0 second=2 gap=64 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0 lost=1"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "switch_2_0_gap_0_compete_0",
+      "functional_status": "FAIL",
+      "exit_code": 0,
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=0 compete=0 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=0 compete=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=0 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=963 bad=0 camera_bad=1 fifo_used=508 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=0 compete=0 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "switch_2_0_gap_0_compete_1",
+      "functional_status": "FAIL",
+      "exit_code": 0,
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=0 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=0 compete=1",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=0 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=960 bad=0 camera_bad=1 fifo_used=508 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=0 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "switch_2_0_gap_384_compete_0",
+      "functional_status": "PASS",
+      "exit_code": 0,
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=0 captures=3 recovered=1 total_writes=345600 checked_pixels=1228800 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=0 captures=3 recovered=1 total_writes=345600 checked_pixels=1228800 errors=0 overflow=0 underflow=0 lost=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "switch_2_0_gap_384_compete_1",
+      "functional_status": "PASS",
+      "exit_code": 0,
+      "summary": [
+        "# PASS: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0\r"
+      ],
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=384 compete=1",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=0 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# PASS: SWITCH_TRANSPORT first=2 second=0 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "switch_2_0_gap_64_compete_0",
+      "functional_status": "FAIL",
+      "exit_code": 0,
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=64 compete=0 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=64 compete=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=64 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=11382 bad=0 camera_bad=1 fifo_used=506 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=64 compete=0 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1"
+      ],
+      "warnings": 0
+    },
+    {
+      "case": "switch_2_0_gap_64_compete_1",
+      "functional_status": "FAIL",
+      "exit_code": 0,
+      "summary": [
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=64 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1\r"
+      ],
+      "uses_real_mc_bridge": false,
+      "key_lines": [
+        "# CASE first_mode=2 second_mode=0 active_line_beats=256 second_line_gap=64 compete=1",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0",
+        "# CAPTURE_RESULT FAIL mode=0 id=2 gap=64 completed_slot=3 candidate_slot=2 pixels=614400 words=115200 written=1200 bad=0 camera_bad=1 fifo_used=511 read_y=0 write_y=600 credit=0 lost=0 overflow=1",
+        "# FREEZE_REPRO latest_slot_retained=3 rejected_mode=0 input_frames_continue=1 frame_bad=0 camera_bad=1 lost_before_next_fs=0",
+        "# CAPTURE_RESULT PASS mode=2 id=1 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=1 overflow=1",
+        "# FAIL: SWITCH_TRANSPORT first=2 second=0 gap=64 compete=1 second_capture=0 recovery_capture=1 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=1 underflow=0 lost=1"
+      ],
+      "warnings": 0
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "base_tb_full_transport.v",
+      "bytes": 11570,
+      "sha256": "b1317fe29fc24af88ea216e93f9c7777ef89d0ccd0aef4c83b011601656580da"
+    },
+    {
+      "path": "BASELINE_README.md",
+      "bytes": 3471,
+      "sha256": "21291dfb49dbc619079e58efc0625df9d9e1294b41cb6e639b35a736ccdc32f5"
+    },
+    {
+      "path": "compile.log",
+      "bytes": 1131,
+      "sha256": "867e716b2c57ab1bb2f8af840d76c45d601f619bd9bc8d88dd9c63408849f330"
+    },
+    {
+      "path": "generate_control_runner.py",
+      "bytes": 459,
+      "sha256": "4cd505f4a6559fdd620b92e3b969011365b888986695f737d29778186b826663"
+    },
+    {
+      "path": "generate_mc_probe.py",
+      "bytes": 4730,
+      "sha256": "fd0fd11c7190a5dee6f4fc1ec056bac4b6a46ae7beb624ae3f2c229ad24d30a5"
+    },
+    {
+      "path": "generate_phase_probe.py",
+      "bytes": 2469,
+      "sha256": "29e98d9d3fccdcb597c86863a99b57153f3b0c1dd7ae9e90db673a5bae155a7d"
+    },
+    {
+      "path": "generate_probe.py",
+      "bytes": 6903,
+      "sha256": "f2461c24785b58b2b217e2c102ea28b8e5ab564f969eca576d52519e18c2ed1d"
+    },
+    {
+      "path": "mc_compile.log",
+      "bytes": 1409,
+      "sha256": "af6c554277a69e9e62983a0d1f92b01ac6df022a6f74e0351b77c8193a6b7505"
+    },
+    {
+      "path": "mc_compile_failed_implicit_net.log",
+      "bytes": 1680,
+      "sha256": "3ec76241dfc60dcf4966cb61f62d75d5b476be015da08958f0065435add97a5c"
+    },
+    {
+      "path": "mc_setup.log",
+      "bytes": 192,
+      "sha256": "abd916311bb441064c68c831b10e5a4b8812bd4a174310c74869413a34fcbac8"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_1200/console.log",
+      "bytes": 3307,
+      "sha256": "c443531339e398e816f968e510c692826a33f9d9ebea43b61408b459cdeede62"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_1200/result.json",
+      "bytes": 309,
+      "sha256": "717ba99f38fef9c355fe65b8b2a3186ddc48d9a2d8a9de10940dba7a584d3258"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_1200/trace.csv",
+      "bytes": 123046,
+      "sha256": "5d6be2251d467ee692998ce3a935a7b7ca3d0d1b9d83a1a3dd59fbcdd4ba5b4b"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_1200/transcript.log",
+      "bytes": 3254,
+      "sha256": "bca587da2255458e6ca83bab4d71e0e5b3942165cb02de2e9f78aa0c026da358"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_1400/console.log",
+      "bytes": 3467,
+      "sha256": "6885a69dd81eb83d0e472d45ed33e05c7c915716a96155ba0c11a07049c1bebf"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_1400/result.json",
+      "bytes": 345,
+      "sha256": "534fec4f4ac11e15e6b4c1ab0e28bb20fe0f0737683e657f54978df5bff45ec8"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_1400/trace.csv",
+      "bytes": 116450,
+      "sha256": "8725a5b7744d6da288287173bf056adb246f526f7b44d1c72b5ce9d32b5a17eb"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_1400/transcript.log",
+      "bytes": 3414,
+      "sha256": "eb6214c0dc7559bbb59987dbfc9a5af5ed514fd9c814a62bbbc6a0cf9f98cb45"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_2000/console.log",
+      "bytes": 3467,
+      "sha256": "2199b6ad5bffc63089fcc1a714e361aa454cd8649f4e657f73fe2c8a5f744094"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_2000/result.json",
+      "bytes": 345,
+      "sha256": "4fda5ac18caf88d6ea810a6243e0c493e3112b66810f3e9ad14b011ba75c09cc"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_2000/trace.csv",
+      "bytes": 116450,
+      "sha256": "8b66efd25d53059a295ed9e2a94563dc9dea8fbcd77c633f3c01d0d12eaf2c3b"
+    },
+    {
+      "path": "mc_switch_0_0_gap_384_compete_1_pause_2000/transcript.log",
+      "bytes": 3414,
+      "sha256": "082bbe5afa6621e55276d2231bfda3462a8ae76db179fecb17e0d103b8f5de51"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_0/console.log",
+      "bytes": 6151,
+      "sha256": "f3b40c2ebbfa40428b6597e1e74d76fe4cfc8019ab2dbbde76970260dd1af406"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_0/result.json",
+      "bytes": 306,
+      "sha256": "8e633745a5debbd54186eb1b468797075a889cc333f37de02843029f84993e49"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_0/trace.csv",
+      "bytes": 124351,
+      "sha256": "cbae8ed55a9a5d3482523801f60cceeb826447b83a67d467c13154b92c91f921"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_0/transcript.log",
+      "bytes": 6098,
+      "sha256": "6dd59bc6c876be8c069ef40a7dc53514625c9d12ccfbb070f61a7f69b8113c4d"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1000/console.log",
+      "bytes": 3309,
+      "sha256": "ee717ec002513462f878d939f70d8f5bb35891c2aa35e1d47e432a285ab87572"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1000/result.json",
+      "bytes": 309,
+      "sha256": "c863e449c2599df57bb521204168f56940e8f4ccbacb2ef2041dbfac9b7190f5"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1000/trace.csv",
+      "bytes": 124711,
+      "sha256": "1d356c1ae9328e017664cc0bbfcd99d8ece454658e03a230e6f8f61b3c4006c8"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1000/transcript.log",
+      "bytes": 3256,
+      "sha256": "094997a86f96631b9a7be73ed747630a9868ea033600460024c17ab14bd93ce6"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1200/console.log",
+      "bytes": 3309,
+      "sha256": "3ddf1c47755a55ffcc2e56b0221f3cc9b90bc28c17e675855e48a0386c1eec3b"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1200/result.json",
+      "bytes": 309,
+      "sha256": "9385a0d873dd95f5befbc649fa05af8ca01de1c9823a394dd28debb187f64084"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1200/trace.csv",
+      "bytes": 124955,
+      "sha256": "6834fbf2bfa4234a0c2c17a79d03c77ee3ae7990b09a6d345179748285f88c27"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1200/transcript.log",
+      "bytes": 3256,
+      "sha256": "9e1491c010564c06a046f36c976df896091dac6b67f64b4f598cd600f79ecbe4"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400/console.log",
+      "bytes": 3692,
+      "sha256": "4042e991a37b42c913dd8499d8a153a3a4934f7f0cd68ba186e71c04c2757797"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400/result.json",
+      "bytes": 345,
+      "sha256": "6ec12f299feaa3eaf15208aa98ca34daac28afb6a880470697cfcf69b15d8872"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400/trace.csv",
+      "bytes": 116741,
+      "sha256": "7111a5c163d1596deacea2fd9caf26a8f1ab5592f10314207e28c22c7060405a"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400/transcript.log",
+      "bytes": 3639,
+      "sha256": "542031cae039f5fe7257358daafb5d153b1fc3dbc74947331a42dc8b4379c789"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4517/console.log",
+      "bytes": 6741,
+      "sha256": "f245057ce617b4f68241cd8dae5bd2a041fa0be312451e7701ee9588d435cb2e"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4517/result.json",
+      "bytes": 356,
+      "sha256": "1dabc55dbd67876576e3925c9d8cb7226cd0066b400e70dfa16a117a85de4b34"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4517/trace.csv",
+      "bytes": 116504,
+      "sha256": "319aa6c5c57e238a430c0eaa68d6be0ed8c285687d4af8119dbb5ecd093290b5"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4517/transcript.log",
+      "bytes": 6688,
+      "sha256": "61bd6b443151f09b80ccff2fee9f34acf55280f09cc0e22d6c3cf26d8e6dc129"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4553/console.log",
+      "bytes": 3444,
+      "sha256": "4616656e1c9d1144825c406b5623549530b91a8043180ca743134f906809f79f"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4553/result.json",
+      "bytes": 320,
+      "sha256": "bef6930f001d8b9ef1a9ea36b5224ffb4bda14d27f8d34655c329eddf61faf95"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4553/trace.csv",
+      "bytes": 124928,
+      "sha256": "811603176d5a11c0c3303c0c205f39344b6401cfc04b519dbcd9edce5de71b25"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4553/transcript.log",
+      "bytes": 3391,
+      "sha256": "58a93c5ed65b9154bfa03c8fd415d960b3916b79277aa4f691905f2ae26e7405"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4611/console.log",
+      "bytes": 3444,
+      "sha256": "6a40abf1276b00b86874dc63a112ff2840bbb6ac9806efd595576d1a93a409e7"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4611/result.json",
+      "bytes": 320,
+      "sha256": "a2b60b36efe5c5e08643dd70d5b0cb4896ffda6a748a48b2fd6da870e07fa9b0"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4611/trace.csv",
+      "bytes": 124943,
+      "sha256": "ed657b0a9a8f8aebaf14733ab3f0f9a4cd46c1905e3edb4501dbea8b8ba7dbef"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4611/transcript.log",
+      "bytes": 3391,
+      "sha256": "29d43522ee89f38a28850fff2e11184bef011211d1cf6e3cafd5d4fbf229f2dd"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1600/console.log",
+      "bytes": 3692,
+      "sha256": "66bd85905e5ac3fe0d317734bfb1b084ccc6e94795782a5e6f4a341b558ccb59"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1600/result.json",
+      "bytes": 345,
+      "sha256": "c490ba6942c59b5ff437acc74932acfb475485852da3e69c27f9b582c2d3ce28"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1600/trace.csv",
+      "bytes": 116505,
+      "sha256": "66fcb83c121f1efb8465385e33e471faf59590b0e2a56135e150e8cd4d970fb5"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1600/transcript.log",
+      "bytes": 3639,
+      "sha256": "c5cd44549e275b4f2f3986c97d72ccddde923bac0607ba375ebee132243e946d"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1800/console.log",
+      "bytes": 3692,
+      "sha256": "58a6c3f773ec13e3a7f0aba038555342f268c650b35f3e91d27965b4e9a6ad72"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1800/result.json",
+      "bytes": 345,
+      "sha256": "e6cc925489217fca3a43cd69459e944451f6aa38d0bed0b7e0f5acae8a23f228"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1800/trace.csv",
+      "bytes": 116505,
+      "sha256": "628504bc2b391ef09911f053ddb925d3728ebd28522df3c970d2ed12a26c0c2f"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_1800/transcript.log",
+      "bytes": 3639,
+      "sha256": "fc7f4ac79803fec47af939c48565560e7df5787f48bed9d1c44c793f91425be4"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_2000/console.log",
+      "bytes": 3692,
+      "sha256": "2f42e6b032126a9e628fa1f9cda568ccbda4a270452958e46e00a4d7a1d4b899"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_2000/result.json",
+      "bytes": 345,
+      "sha256": "c4f17d54ceb57629d95a714282441dd629157393b450adad3ede0c8c9107cdb4"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_2000/trace.csv",
+      "bytes": 116505,
+      "sha256": "33e056dcfce90afbe74e8fde164a014e08a2817ce4bd785916f38861dea1ab3a"
+    },
+    {
+      "path": "mc_switch_0_2_gap_384_compete_1_pause_2000/transcript.log",
+      "bytes": 3639,
+      "sha256": "42e005b5a6c45157111bb3dfc33f59b7f6fbe39061afca44bf56ce8becb00258"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_0/console.log",
+      "bytes": 3239,
+      "sha256": "b43850679655d81a8ce1564bd265160cd7239931822da20b927905b0e5308fd2"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_0/result.json",
+      "bytes": 306,
+      "sha256": "4831fac021b22beff4d76800e94d8dc038638f809b4971599f474c886622aab7"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_0/trace.csv",
+      "bytes": 123665,
+      "sha256": "fd6f3efe75a2dfc5cbd791c0d0e09ae05fac43f279a4452eccdd9fc2085b090c"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_0/transcript.log",
+      "bytes": 3186,
+      "sha256": "9fc5926cf7421c3dee8d3fbe88bdaf00a4e8a568de106940890d6889dc366ac4"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1000/console.log",
+      "bytes": 3311,
+      "sha256": "c567c880526afab76cb88f4c14d072b7a0a7f9f9db24affcafadcc6547f5cd48"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1000/result.json",
+      "bytes": 309,
+      "sha256": "5a59645246423cc3ff4154ad7a43fc78e065f1bbf31e0106db26ea7da24acbe5"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1000/trace.csv",
+      "bytes": 123782,
+      "sha256": "3325b218acfd7dfd94a110c315dea340b55a84a7b0ba999d72f1d10cf49d83cd"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1000/transcript.log",
+      "bytes": 3258,
+      "sha256": "d6c6fddc291dd3f0d9df11dc302c98d664bf2ac4894278235d70982c324a07e5"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1200/console.log",
+      "bytes": 3311,
+      "sha256": "d332815630f1c84a301f33896c2f2dfbe8b6f082a372bb137e08a94a2386460c"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1200/result.json",
+      "bytes": 309,
+      "sha256": "18e4d3b5374d3fca90ffccde1e01ea99249265421b468a60d8ea6cce9e496cd4"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1200/trace.csv",
+      "bytes": 123782,
+      "sha256": "0db86441b5171669311769e364b8572d88bac4b9137ab36499da9d334d952628"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1200/transcript.log",
+      "bytes": 3258,
+      "sha256": "1f0c6dc0a864dfafcb4407dc5cf9dbf67775bf9b2c77ec033931a7ca7d4046ce"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400/console.log",
+      "bytes": 3471,
+      "sha256": "22838b966508f63a8f92a8eddf920ba453123112e74ebd61eeea6a9b572812d0"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400/result.json",
+      "bytes": 345,
+      "sha256": "a15ca24fb163fe03e2c779a7fa506fa62c448d56fc7e5ad7d09dec0dc1485f48"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400/trace.csv",
+      "bytes": 117186,
+      "sha256": "fbb307dedacbc80cd1d4d04c57f7a13ad65673a6a060f50d2649a84ee86fe7cb"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400/transcript.log",
+      "bytes": 3418,
+      "sha256": "ed41ffd1d44735120a711f1a14e299d34cd34db8ce9ff7bc2645116d20147846"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4517/console.log",
+      "bytes": 3606,
+      "sha256": "0e8123acfeda9617e50e379d69e0016a9c0a1d718df04b401a81d37485bc3cec"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4517/result.json",
+      "bytes": 356,
+      "sha256": "bc10efb10822597450e66fbf8d0f1d4afa924813c2fe594c424f8069e2aaba0e"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4517/trace.csv",
+      "bytes": 117186,
+      "sha256": "479d65a60bc72fb1d4894dc40be9e655fcf8b4bdc511f4326e15b2bcfe3ab432"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4517/transcript.log",
+      "bytes": 3553,
+      "sha256": "06f510442b3e3364f1bca204758df670aa537ae870374ac914e1e404a6d2a021"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4553/console.log",
+      "bytes": 3606,
+      "sha256": "097dc9ab8e0d6575b24e98e0f354036880472a5665eca62533c8a77d8c79cfaf"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4553/result.json",
+      "bytes": 356,
+      "sha256": "99873c47bd4ff99c6226a43e8fed8f0975761e05af38d15a60f75fcf0f73a3a2"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4553/trace.csv",
+      "bytes": 117186,
+      "sha256": "701e366b6aa5c215a0a7105e02ad9bbb7adf1fbf94b985f700a67e04230fa03a"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4553/transcript.log",
+      "bytes": 3553,
+      "sha256": "defdb2495506f5f0aa720cfb018bd57fb9cdcc8a02296874b0605507083a0bca"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4611/console.log",
+      "bytes": 3606,
+      "sha256": "97ab0e56d381e3e501a42a3d988acafbb08e13b6c6199732e146556f3fa2a03c"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4611/result.json",
+      "bytes": 356,
+      "sha256": "232f0736a60aa874b1b03d526845218c500e07d7d5f808131fdb05f0e5965243"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4611/trace.csv",
+      "bytes": 117186,
+      "sha256": "a1d83646ce36d2559ffe4666fce7be367aba93939c3e6312eb028dfc2999651b"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1400_phase_4611/transcript.log",
+      "bytes": 3553,
+      "sha256": "ca669a63eea2c155b18bc6b26cac3706dc7614223bf5702f46727e201ce6801c"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1600/console.log",
+      "bytes": 3471,
+      "sha256": "78386a9ed2e83655a30db6eada0700a003e83223e8fe558ccf0cddd3b6672b84"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1600/result.json",
+      "bytes": 345,
+      "sha256": "d4c3b31bf976f7c3d6c84e65e13b15c6ba4a9f5e9f3fa5065476467db339da83"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1600/trace.csv",
+      "bytes": 117186,
+      "sha256": "fbb307dedacbc80cd1d4d04c57f7a13ad65673a6a060f50d2649a84ee86fe7cb"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1600/transcript.log",
+      "bytes": 3418,
+      "sha256": "0f7ca2eb74df0434a6eda750201e82b80964045fac04f62ec74164353800914e"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1800/console.log",
+      "bytes": 3471,
+      "sha256": "52d72958206af2f461400e8ed1d6997096e3ffa6b2275a3fe00320ebf1421e7c"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1800/result.json",
+      "bytes": 345,
+      "sha256": "9d0305ab28c3e1a873f1b4fa06d946b5bea765d364ec5739ee37fc46920b3198"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1800/trace.csv",
+      "bytes": 117186,
+      "sha256": "8d3e05f5ff6cf63cfa376366e190a642650f6bcc2262c511d1f3f7b6bd1344da"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_1800/transcript.log",
+      "bytes": 3418,
+      "sha256": "3a5294d8fb8b0f2baff483d002f4afb5cd8f026c882c08883bab8f3d9173e593"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_2000/console.log",
+      "bytes": 3471,
+      "sha256": "fe6c75e6608ab5473a5650d746add6e345a6b5f4b461d0312e7de6d1916b229c"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_2000/result.json",
+      "bytes": 345,
+      "sha256": "8608e647f829e6f4b93d9056273972870ac2bba3cba8cf33a380c239d13de3c0"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_2000/trace.csv",
+      "bytes": 117186,
+      "sha256": "e968229486e360eb3abd48df9f9f1ecebf64a2c17e2b49b835b25dcaa266f594"
+    },
+    {
+      "path": "mc_switch_2_0_gap_384_compete_1_pause_2000/transcript.log",
+      "bytes": 3418,
+      "sha256": "f9cfa171312328da80a36afadd96f775d03315d6e415ab4cd4190aee67c09743"
+    },
+    {
+      "path": "mode_0_pixels.hex",
+      "bytes": 9830400,
+      "sha256": "f7d63808457e39348d938ae36638fa44f53e04e9b3316e58dd330ceabee777f3"
+    },
+    {
+      "path": "mode_0_words.hex",
+      "bytes": 7833600,
+      "sha256": "319ac4f2f5cda6e2e3f373647e598d83cee1e8243aafd8bd30953285d0bf8854"
+    },
+    {
+      "path": "mode_1_pixels.hex",
+      "bytes": 9830400,
+      "sha256": "f428926d607c8ac8e002a6798a0cdc1464d1fcd0370169f1059e9bd504159fa2"
+    },
+    {
+      "path": "mode_1_words.hex",
+      "bytes": 7833600,
+      "sha256": "f3165df84c66748d6674aa075bc0bd42e09161308ce94385f1a3e51a6d6a3479"
+    },
+    {
+      "path": "mode_2_pixels.hex",
+      "bytes": 9830400,
+      "sha256": "6083bdd8899cff7fd064e377a278f3209fcd81d558c3b5d7454cab13f84e6e84"
+    },
+    {
+      "path": "mode_2_words.hex",
+      "bytes": 7833600,
+      "sha256": "86a28a8e645d46a70b0c9e7095a5c61e459a0f37803729e0e47379c7a1cc9fe1"
+    },
+    {
+      "path": "mode_3_pixels.hex",
+      "bytes": 9830400,
+      "sha256": "914c6ec4b855656cf81bccefc196a2835ffb1bdd86eda630dd3ee258c25f1e3c"
+    },
+    {
+      "path": "mode_3_words.hex",
+      "bytes": 7833600,
+      "sha256": "c44fcc40ed639602b20bee350c8b0d541d02a8ae2b1490e330d810a1341da5f8"
+    },
+    {
+      "path": "phase_compile.log",
+      "bytes": 1424,
+      "sha256": "352c6337e11960f633e78730d55d45e8e58f69950f2fed05720c1d8ca6e00128"
+    },
+    {
+      "path": "phase_setup.log",
+      "bytes": 138,
+      "sha256": "776a93813accb8356f11a09898a954e96b627200b9e8b8e52bcb67a3ecb6e862"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7663,
+      "sha256": "c9c4e4fa6ba0da7f1bb3e8337b3eb3b8b01a224007925e502e72597d746a871f"
+    },
+    {
+      "path": "run.ps1",
+      "bytes": 2432,
+      "sha256": "65545fde066c881074185e904f5eaf74c93750e458cb5a469639235e9d53475e"
+    },
+    {
+      "path": "run_control.ps1",
+      "bytes": 2646,
+      "sha256": "ef55c275d2fbf0615680911384ab74710f4d2ed82d4e0c2c9388ff828b5b60ea"
+    },
+    {
+      "path": "run_mc.ps1",
+      "bytes": 2616,
+      "sha256": "dad378439633842346df2ea2f84264da704b587ae6a7f2b65c4146c7c8262c51"
+    },
+    {
+      "path": "run_phase.ps1",
+      "bytes": 2793,
+      "sha256": "83e0653b084fce1605e0c9f94c1f85a417c777b290a0ab61ff0aa80c097ec5db"
+    },
+    {
+      "path": "setup.log",
+      "bytes": 280,
+      "sha256": "bfe46b20817166ec3f85b940d2c95970a433ee02cf7053602836a22b313460f2"
+    },
+    {
+      "path": "switch_0_2_gap_0_compete_0/console.log",
+      "bytes": 4831,
+      "sha256": "7b22a49ad68fb0d03965a61d75043805b67d34ec68009af44157843422d152cb"
+    },
+    {
+      "path": "switch_0_2_gap_0_compete_0/result.json",
+      "bytes": 327,
+      "sha256": "ad48442e975823f7a05a7ff50b20e37bbf779fbdb863140df21a69825f0b2a6f"
+    },
+    {
+      "path": "switch_0_2_gap_0_compete_0/trace.csv",
+      "bytes": 113564,
+      "sha256": "aae226bfa82347afac619d25b0a89b1a532319262e81dfb4c88b950e71b208f8"
+    },
+    {
+      "path": "switch_0_2_gap_0_compete_0/transcript.log",
+      "bytes": 4778,
+      "sha256": "fea2348a897136cff6f04739001df06164c81e39d01e64d78cbe6069d66f194f"
+    },
+    {
+      "path": "switch_0_2_gap_0_compete_1/console.log",
+      "bytes": 3396,
+      "sha256": "9141ac22f324a18bb68ac5f8d7121d714191f2b2be7bfdb49d72d50ddf85abee"
+    },
+    {
+      "path": "switch_0_2_gap_0_compete_1/result.json",
+      "bytes": 327,
+      "sha256": "0303bc639964e507101aee15f6171f0c9579dd5bab42074a12518fc8f2f30a6e"
+    },
+    {
+      "path": "switch_0_2_gap_0_compete_1/trace.csv",
+      "bytes": 113564,
+      "sha256": "e8569ae44f5aeedeaaffbf9df2a0493524eaa25ed3cf5d8a628588fb74e9140b"
+    },
+    {
+      "path": "switch_0_2_gap_0_compete_1/transcript.log",
+      "bytes": 3343,
+      "sha256": "af937f7aec21b48103e2a6d1ba158149c3b3bc806201584c2096d6ed7bef7741"
+    },
+    {
+      "path": "switch_0_2_gap_128_compete_0/console.log",
+      "bytes": 2931,
+      "sha256": "a161e73c102462a342c26524271bc3f92f33adef24712e5b6aea4a1830413b6d"
+    },
+    {
+      "path": "switch_0_2_gap_128_compete_0/result.json",
+      "bytes": 295,
+      "sha256": "89259f54d6c451614db6d179a4941f30a9a92754fd03d5d8c89de4fe31ad4de7"
+    },
+    {
+      "path": "switch_0_2_gap_128_compete_0/trace.csv",
+      "bytes": 118380,
+      "sha256": "b88d484ee3b79b1c6709ec0f58edaa2c7cfb235987ab20119f4399129baba099"
+    },
+    {
+      "path": "switch_0_2_gap_128_compete_0/transcript.log",
+      "bytes": 2878,
+      "sha256": "40e42a6e295546f3475ba17f7597d71649aced2853bcb9864cdf5a01d13b8868"
+    },
+    {
+      "path": "switch_0_2_gap_128_compete_1/console.log",
+      "bytes": 3041,
+      "sha256": "c64be81cbc9e70f0e2cdb377b22e7ca976f15178e3d6795b30ca26e4d3beafa8"
+    },
+    {
+      "path": "switch_0_2_gap_128_compete_1/result.json",
+      "bytes": 295,
+      "sha256": "c4c25a52c07c6088967cd7f97f8487b52b3070c733400792499986e3cdab7a18"
+    },
+    {
+      "path": "switch_0_2_gap_128_compete_1/trace.csv",
+      "bytes": 196006,
+      "sha256": "8bb17a1e19def352f92b19e9ba33546d9cfb06d21ab7ddac327a6e50445f92eb"
+    },
+    {
+      "path": "switch_0_2_gap_128_compete_1/transcript.log",
+      "bytes": 2988,
+      "sha256": "334042067a61a02217de3e4e52babcd70bda34d17aaf3d79ca2a9d9e41ea356a"
+    },
+    {
+      "path": "switch_0_2_gap_384_compete_0/console.log",
+      "bytes": 2931,
+      "sha256": "443a841e197b0258ba3ebb35c18c970f5f8b219e7375fc4ebaa923d19de83861"
+    },
+    {
+      "path": "switch_0_2_gap_384_compete_0/result.json",
+      "bytes": 295,
+      "sha256": "14b7529378cfd1c4a4204ff0d4ed6def93f926a94d83e9910b1b1cca4ba2af74"
+    },
+    {
+      "path": "switch_0_2_gap_384_compete_0/trace.csv",
+      "bytes": 117665,
+      "sha256": "aa38b437ed8d133708111e64bdec18f5e549c8e94f151367441d43405890622e"
+    },
+    {
+      "path": "switch_0_2_gap_384_compete_0/transcript.log",
+      "bytes": 2878,
+      "sha256": "3b76625779d3ad59461cbdad8927369846d65155aecbed6ee2f55f8a87d5cc22"
+    },
+    {
+      "path": "switch_0_2_gap_384_compete_1/console.log",
+      "bytes": 3041,
+      "sha256": "bed9397a9ec663a0804d8bd46c5f39da5699bffa30c64a15b99dd73761045eb5"
+    },
+    {
+      "path": "switch_0_2_gap_384_compete_1/result.json",
+      "bytes": 295,
+      "sha256": "cf5623713b1a74b86e1e72fa02354d5883125a65588e3c652a6d68b32b66684e"
+    },
+    {
+      "path": "switch_0_2_gap_384_compete_1/trace.csv",
+      "bytes": 124351,
+      "sha256": "cbae8ed55a9a5d3482523801f60cceeb826447b83a67d467c13154b92c91f921"
+    },
+    {
+      "path": "switch_0_2_gap_384_compete_1/transcript.log",
+      "bytes": 2988,
+      "sha256": "ee13f203fb158cacf0adcfc490f3e834e2c236faf3ffe7a4ef2b56daf8f0be26"
+    },
+    {
+      "path": "switch_0_2_gap_512_compete_0/console.log",
+      "bytes": 2931,
+      "sha256": "b8f035409c813df9ba2ab9ddd7e714ba6db5e9b9c643b612363c1dba89d742dc"
+    },
+    {
+      "path": "switch_0_2_gap_512_compete_0/result.json",
+      "bytes": 295,
+      "sha256": "4f7b5aba498117224505c47b7e46ff198c2f369587a82787f9515a904856a388"
+    },
+    {
+      "path": "switch_0_2_gap_512_compete_0/trace.csv",
+      "bytes": 117427,
+      "sha256": "70e656dda9d0fd186af059bba2ad5200c1559680c7638278f1ee901ee3a90ffa"
+    },
+    {
+      "path": "switch_0_2_gap_512_compete_0/transcript.log",
+      "bytes": 2878,
+      "sha256": "ccef629b84d1cca4365295623260c4cd95ac1ce24a6f252a726ae0b4b91f9fac"
+    },
+    {
+      "path": "switch_0_2_gap_512_compete_1/console.log",
+      "bytes": 3041,
+      "sha256": "cdace7d0e56d1606956a9c4afaaa1936f53fe3d21eb7abf0b8db7f9a4ce566a7"
+    },
+    {
+      "path": "switch_0_2_gap_512_compete_1/result.json",
+      "bytes": 295,
+      "sha256": "6919b38908a0b2931e54cf66458f11bc3210a5d9b090cd1377af16e308a173da"
+    },
+    {
+      "path": "switch_0_2_gap_512_compete_1/trace.csv",
+      "bytes": 120687,
+      "sha256": "7e5ef1eba9097a121c7f1f7a5824afa344944707ab3c306025feb20b1c7cb6fe"
+    },
+    {
+      "path": "switch_0_2_gap_512_compete_1/transcript.log",
+      "bytes": 2988,
+      "sha256": "9947dad9ac30fd1348171dcbff191279579e04f179fd907d2c8c9235e0170954"
+    },
+    {
+      "path": "switch_0_2_gap_64_compete_0/console.log",
+      "bytes": 3305,
+      "sha256": "ce3aea201eeed0f181ba84f25fa98546976302e31ad540205b508f82525b4aa4"
+    },
+    {
+      "path": "switch_0_2_gap_64_compete_0/result.json",
+      "bytes": 329,
+      "sha256": "f63d16353494f9516a368b9bbab45317340720fc1b83b9af3d9d394a747fa1b7"
+    },
+    {
+      "path": "switch_0_2_gap_64_compete_0/trace.csv",
+      "bytes": 122400,
+      "sha256": "680e304be60519d93812f223b42a99565046ad584766ae936a1961b854ba526f"
+    },
+    {
+      "path": "switch_0_2_gap_64_compete_0/transcript.log",
+      "bytes": 3252,
+      "sha256": "419058027a67799a070fcb8e86ab4943d6f54cae737961ec6e6bbc32eedb1395"
+    },
+    {
+      "path": "switch_0_2_gap_64_compete_1/console.log",
+      "bytes": 3406,
+      "sha256": "2a7398dca975a77a9a12890be9ba959a22d8a1b183ed9fa09943ec6880cfe46c"
+    },
+    {
+      "path": "switch_0_2_gap_64_compete_1/result.json",
+      "bytes": 329,
+      "sha256": "77ec0957a366dfaee8ded3392cd7a0fd6b6e6731e4a5083f1f8807d0732952f6"
+    },
+    {
+      "path": "switch_0_2_gap_64_compete_1/trace.csv",
+      "bytes": 114267,
+      "sha256": "6c14c5392c7cac84ee32252443f702f8c13ead32e43f4cb424944f5dec621579"
+    },
+    {
+      "path": "switch_0_2_gap_64_compete_1/transcript.log",
+      "bytes": 3353,
+      "sha256": "19fec32bdc1f3cb260f59ce5218a57ddad9c6420d2beccb00b26ddbbcfd14eb7"
+    },
+    {
+      "path": "switch_2_0_gap_0_compete_0/console.log",
+      "bytes": 3077,
+      "sha256": "0b392700db6a97fef7035bc0bd27bde353e9ff963a1b43a9f5fa73cf9ba24df1"
+    },
+    {
+      "path": "switch_2_0_gap_0_compete_0/result.json",
+      "bytes": 327,
+      "sha256": "502b6e82df2dc7a9fd004e41274fada8c8ab421fde032fe464581d1daeb498da"
+    },
+    {
+      "path": "switch_2_0_gap_0_compete_0/trace.csv",
+      "bytes": 116695,
+      "sha256": "50455c94fbb729055389a4bdbaa4ff8d8d30e4352268d3c703a681bae83cbc4a"
+    },
+    {
+      "path": "switch_2_0_gap_0_compete_0/transcript.log",
+      "bytes": 3024,
+      "sha256": "2a1ee4d7f632514a67afb298d6dc7e88f33578b031f8e18ada702fa0bc468366"
+    },
+    {
+      "path": "switch_2_0_gap_0_compete_1/console.log",
+      "bytes": 3187,
+      "sha256": "223a95083bd4ad20b2666e3f5414f39cb65e1742fb76711964af7cc1c57b5bc4"
+    },
+    {
+      "path": "switch_2_0_gap_0_compete_1/result.json",
+      "bytes": 327,
+      "sha256": "decaee4ba3fb14d9ebe788740cd128b11c64a71f85e2ae7d274abe8acaee135a"
+    },
+    {
+      "path": "switch_2_0_gap_0_compete_1/trace.csv",
+      "bytes": 116695,
+      "sha256": "9e2b2723d7b9a1df0f3dbe7235430e313771448666778d2259450e9cf8bcc4f8"
+    },
+    {
+      "path": "switch_2_0_gap_0_compete_1/transcript.log",
+      "bytes": 3134,
+      "sha256": "196f9b86be9001946c63eecf4d758ce739a308272b1b084fd188d43c20fa267b"
+    },
+    {
+      "path": "switch_2_0_gap_384_compete_0/console.log",
+      "bytes": 2933,
+      "sha256": "a9501ad628637a5354676e8146fa9c6bbc830a7f723a554f2d97746b8e15a8de"
+    },
+    {
+      "path": "switch_2_0_gap_384_compete_0/result.json",
+      "bytes": 295,
+      "sha256": "8f19ba9b0d5bcc246248c0bcf98c30e03b6bab44d425c320fb1750367fe5ff9e"
+    },
+    {
+      "path": "switch_2_0_gap_384_compete_0/trace.csv",
+      "bytes": 117797,
+      "sha256": "71f023be4fcee78d2d957e2cad57540d97a9f018cdaa0d8ef0365bd35ee993ce"
+    },
+    {
+      "path": "switch_2_0_gap_384_compete_0/transcript.log",
+      "bytes": 2880,
+      "sha256": "9b3c3338bb130a16e3615e622b2179e22cf809692c798f0062705e3323d68da6"
+    },
+    {
+      "path": "switch_2_0_gap_384_compete_1/console.log",
+      "bytes": 3043,
+      "sha256": "2611689e2c84bb3476e1b411de97a74e0b3ab1c91edc4ea951b1916c3e7c1d44"
+    },
+    {
+      "path": "switch_2_0_gap_384_compete_1/result.json",
+      "bytes": 295,
+      "sha256": "7e852b7816c1171b9c4a5f412edab2e4bded40e9fb5883774096742d4de836c3"
+    },
+    {
+      "path": "switch_2_0_gap_384_compete_1/trace.csv",
+      "bytes": 123665,
+      "sha256": "fd6f3efe75a2dfc5cbd791c0d0e09ae05fac43f279a4452eccdd9fc2085b090c"
+    },
+    {
+      "path": "switch_2_0_gap_384_compete_1/transcript.log",
+      "bytes": 2990,
+      "sha256": "a51f8bf8e5c795030dcf827cf4ad882e1e0870b96d503c6b8b3889098539549d"
+    },
+    {
+      "path": "switch_2_0_gap_64_compete_0/console.log",
+      "bytes": 3088,
+      "sha256": "2348c6be1d5efd9ccf07789a79227f8058095c2622a3b4b539c4bea315e9467f"
+    },
+    {
+      "path": "switch_2_0_gap_64_compete_0/result.json",
+      "bytes": 329,
+      "sha256": "d1d59bd1be0de1464439afde47af67eea4557cef166f3b8b57d78d59dd09ad25"
+    },
+    {
+      "path": "switch_2_0_gap_64_compete_0/trace.csv",
+      "bytes": 119918,
+      "sha256": "36147c0ef11d8ec4ad0862bf419144389c0249f7c3c52c327ae1404e2dca08f8"
+    },
+    {
+      "path": "switch_2_0_gap_64_compete_0/transcript.log",
+      "bytes": 3035,
+      "sha256": "d8cdaea3f9ee6f65904f1b4d8eec3c4b3752638d8cc4bb73ab9840ea7a50fb7b"
+    },
+    {
+      "path": "switch_2_0_gap_64_compete_1/console.log",
+      "bytes": 3196,
+      "sha256": "1c0dfa9d56374f7470b7f5544e247364fc43045c71f4d30b2da867e28a977254"
+    },
+    {
+      "path": "switch_2_0_gap_64_compete_1/result.json",
+      "bytes": 329,
+      "sha256": "c2436b622d0d1d0d20634b7d593197822e69481d31ef255312a4d7b06f0ae7c5"
+    },
+    {
+      "path": "switch_2_0_gap_64_compete_1/trace.csv",
+      "bytes": 117738,
+      "sha256": "e676b5e4cd8b54d1c1c6d3a6ee2b9cb2ba40536e90893999a14029f96cbca0cf"
+    },
+    {
+      "path": "switch_2_0_gap_64_compete_1/transcript.log",
+      "bytes": 3143,
+      "sha256": "f7054e28266f0bd1b64f53e9efb578dc971cbe6112c2d39227bd5597eb719837"
+    },
+    {
+      "path": "tb_edge_freeze_mc.v",
+      "bytes": 18908,
+      "sha256": "512d320e29382e74fc5c07f3acb22e08dae33fa00f3814ef60f12ab37fdf90b0"
+    },
+    {
+      "path": "tb_edge_freeze_phase.v",
+      "bytes": 19111,
+      "sha256": "8e2b5e0ac41db309063d8e0420fbae86d19333aba8cfaab606472406c2a58688"
+    },
+    {
+      "path": "tb_edge_freeze_transport.v",
+      "bytes": 15798,
+      "sha256": "156e00c8c81fe14cef2ebaa918c929cd20b77029ee64d88be4ac5a61f62c6cb9"
+    },
+    {
+      "path": "tested_inputs.json",
+      "bytes": 2064,
+      "sha256": "1a549873ee5937511ebee8702afd08e250be40927785e2ea053804a855a0b6bd"
+    },
+    {
+      "path": "tested_rtl/data96_128.v",
+      "bytes": 975,
+      "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+    },
+    {
+      "path": "tested_rtl/mc_to_user_interface.v",
+      "bytes": 2784,
+      "sha256": "7d00f0058467a0f99e0e2d36fa360d59579b4b73be7fb33b16274fc6b422f438"
+    },
+    {
+      "path": "tested_rtl/roi_sobel_view.v",
+      "bytes": 9679,
+      "sha256": "94e0e630cb270a1b5bec4a17bcb438454dc362a7d46c54cdc78ba1ee61ddfa55"
+    },
+    {
+      "path": "tested_rtl/soft_fifo_al_4057d6b76aa6.v",
+      "bytes": 34326,
+      "sha256": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751"
+    },
+    {
+      "path": "tested_rtl/soft_fifo_al_f58e8b3e1f3d.v",
+      "bytes": 29626,
+      "sha256": "198ca29ada4051f0037af040848e416f2b2be6b40e513dd65c531ec557fef424"
+    },
+    {
+      "path": "tested_rtl/video_in.v",
+      "bytes": 5332,
+      "sha256": "0af1896eeedef3a31240db44090e1d0dc577b740344e13fbd56af83b09155df3"
+    },
+    {
+      "path": "tested_rtl/video_out.v",
+      "bytes": 5649,
+      "sha256": "9cf4ef7484fbe292816015f38c54406779ea29d5a0a4039847d482d34df3361c"
+    },
+    {
+      "path": "tested_rtl/w128_d512_fifo.v",
+      "bytes": 1222,
+      "sha256": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4"
+    },
+    {
+      "path": "tested_rtl/w155_d512_fifo.v",
+      "bytes": 1160,
+      "sha256": "d600bcd8e876691d6cf3a512650e7e69118fc8016e9fdf892ac85e4c63851e37"
+    },
+    {
+      "path": "write_manifest.py",
+      "bytes": 2607,
+      "sha256": "3ba3e61b8584601536617db96b8ba5cbc1e4b7b6fea624784e43d600ebdd611e"
+    }
+  ],
+  "experimental_candidate_rtl_created": false
+}

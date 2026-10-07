@@ -1,0 +1,88 @@
+{
+  "result": "PASS",
+  "source_sha256": "377f6b3ff67cd3f11a744ce3cf0839576f78431754845eaba78cb014e4c3de11",
+  "source_matches_engineering_after_run": true,
+  "pass_line": "# PASS independent timing_debug: 18 cases, 471221 compared cycles, 6406 video beats, 4101 RAW RGB reference beats; LP exact/saturation/unmeasured, WS EDGE-only/max/saturation/truncation, same-edge old snapshot and new clear, no diagnostic flow/video changes",
+  "files": [
+    {
+      "path": "attempt1_license_failure/compile.log",
+      "bytes": 1600,
+      "sha256": "940c1066846ff66a09c6fe6e8fbca22fde66a9e6cdaa3da3e388798b7da9efac"
+    },
+    {
+      "path": "attempt1_license_failure/console.log",
+      "bytes": 286,
+      "sha256": "4228c8ae1024b099e8bff0856d59092e5ddc1d2c294722bc45aa1180edd0d5cf"
+    },
+    {
+      "path": "attempt1_license_failure/optimize.log",
+      "bytes": 668,
+      "sha256": "035d28b88584c896145b474c91694a3def70233d6812ae1ed2c793308f4c248a"
+    },
+    {
+      "path": "attempt1_license_failure/run.ps1",
+      "bytes": 835,
+      "sha256": "f0cc430d3535ed5dbaeb4ddb818e2dcab769bf7f532c41b1e9795c2b6ee773ca"
+    },
+    {
+      "path": "attempt1_license_failure/setup.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "compile.log",
+      "bytes": 437,
+      "sha256": "75362612685776db6e9098d2e836c7769472a2dacb9f8c2ee6031dffb2142e2a"
+    },
+    {
+      "path": "console.log",
+      "bytes": 2503,
+      "sha256": "b2dd409a811fa83b49b0abfb496ccc4e752c353a08a4801ff078e1c64c242dc7"
+    },
+    {
+      "path": "inputs.json",
+      "bytes": 335,
+      "sha256": "1d05314db9ecee4c23f7988c38629cfda08c939fa0d23d4241927471d7dc884b"
+    },
+    {
+      "path": "optimize.log",
+      "bytes": 536,
+      "sha256": "ce01a91c584a5cad7fc1a36fa695421e44971bee712d18f5b7eb479a8608222f"
+    },
+    {
+      "path": "roi_sobel_view_no_debug.v",
+      "bytes": 9613,
+      "sha256": "68c192454f6f1239434c9bef83a0426a26929529ac3ab43e5feede3a139202a2"
+    },
+    {
+      "path": "roi_sobel_view_tested.v",
+      "bytes": 10819,
+      "sha256": "377f6b3ff67cd3f11a744ce3cf0839576f78431754845eaba78cb014e4c3de11"
+    },
+    {
+      "path": "run.ps1",
+      "bytes": 1257,
+      "sha256": "b4ac884ea9a4388f0295ecf4bc87efad6f9776469a74e55705c7d9c243ac87ac"
+    },
+    {
+      "path": "setup.log",
+      "bytes": 57,
+      "sha256": "d8f40ef11d20a33e26687e7671abe0fe68f08d4818d8e196d540602b3d0d832b"
+    },
+    {
+      "path": "tb_timing_debug.v",
+      "bytes": 8847,
+      "sha256": "4e3620f18981fef0750d7cc2e384db65b463733c079dc1f2218bb005faa81313"
+    },
+    {
+      "path": "transcript",
+      "bytes": 2450,
+      "sha256": "d4058cfe0ed9fd4de91b62eca5ebe73eb249aeb2e7becab578acdc67fc3fce70"
+    }
+  ],
+  "limitations": [
+    "Sobel diagnostic snapshot tested with NBA receiver matching intended ISP capture; not full ISP or board validation.",
+    "Same-source no-debug control preserves functional RTL and checks every output/flow cycle; independent RAW pixel oracle additionally checked.",
+    "Attempt1 license setup failure and control-newline warnings preserved in attempt1_license_failure; successful retry uses configured user/machine license with clean control newlines."
+  ]
+}
