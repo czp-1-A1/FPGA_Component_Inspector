@@ -1,0 +1,17 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:02:43 on Oct 06,2026
+vlog -work work D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/isp/data96_128/data96_128.v 
+-- Compiling module roi_sobel_view
+** Error: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(23): (vlog-2730) Undefined variable: 'v1'.
+** Error: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(23): (vlog-2730) Undefined variable: 'v2'.
+** Error: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(23): (vlog-2730) Undefined variable: 'previous'.
+** Error: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(23): (vlog-2730) Undefined variable: 'v3'.
+** Error: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(23): (vlog-2730) Undefined variable: 'v4'.
+** Error (suppressible): D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(43): (vlog-2388) 'v1' already declared in this scope (roi_sobel_view) at D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(23).
+** Error (suppressible): D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(43): (vlog-2388) 'v2' already declared in this scope (roi_sobel_view) at D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(23).
+** Error (suppressible): D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(43): (vlog-2388) 'v3' already declared in this scope (roi_sobel_view) at D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(23).
+** Error (suppressible): D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(43): (vlog-2388) 'v4' already declared in this scope (roi_sobel_view) at D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(23).
+** Error (suppressible): D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(97): (vlog-2388) 'previous' already declared in this scope (roi_sobel_view) at D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v(23).
+-- Compiling module data_96bit_to_128bit
+End time: 19:02:43 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 10, Warnings: 0

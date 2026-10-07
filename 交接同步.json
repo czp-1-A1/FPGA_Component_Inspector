@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-07",
+  "status": "code_and_frozen_evidence_pushed_remote_SHA_verified",
+  "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
+  "branch": "hx1p35a-contest-work",
+  "code_commit": "7edbb0afca701332d3d11b1d6e5a6cf5d99354fd",
+  "verified_remote_code_commit": "7edbb0afca701332d3d11b1d6e5a6cf5d99354fd",
+  "handoff_document": "交接说明.md",
+  "bit": "fpga/component_inspector/release/edge_diagnostic_20261007/camera_to_dsi_display.bit",
+  "bit_sha256": "c3a1cce7d4a19d6750c0e6f3e36395a3c2f3d31901834a1b13a76f497a9230f8",
+  "indexed_sha256_checks": 927,
+  "build_inputs": 207,
+  "frozen_evidence_copies": 715,
+  "physical_board_validation": "pending",
+  "next_step": "Burn frozen diagnostic bit and retest RAW/GRAY/EDGE/GRAY+EDGE/RAW; record ER/LP/WS/FR/SEC/OF/VF/UF and return-to-RAW recovery.",
+  "local_only": [
+    "tmp/",
+    "old large build/simulation caches"
+  ],
+  "note": "This status file is added in the follow-up handoff documentation commit. Use the latest branch HEAD for checkout."
+}

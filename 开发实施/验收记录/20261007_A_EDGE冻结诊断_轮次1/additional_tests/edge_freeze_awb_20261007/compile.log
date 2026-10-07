@@ -1,0 +1,26 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 15:19:24 on Oct 07,2026
+vlog -work work D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/awb.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/signal_delay.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/roi_sobel_view.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\hdl_source/isp/data96_128/data96_128.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\ip_source/divider/divider_gate.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source\ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v 
+-- Compiling module awb
+-- Compiling module signal_delay
+-- Compiling module roi_sobel_view
+-- Compiling module data_96bit_to_128bit
+-- Compiling module divider
+-- Compiling module blk_mem_gen_awb_delay_signal
+-- Compiling module ram_f84573da5ab5
+
+Top level modules:
+	awb
+	roi_sobel_view
+	data_96bit_to_128bit
+End time: 15:19:25 on Oct 07,2026, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 15:19:25 on Oct 07,2026
+vlog -sv -work work tb_dense_awb.v 
+-- Compiling module tb_dense_awb
+
+Top level modules:
+	tb_dense_awb
+End time: 15:19:25 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

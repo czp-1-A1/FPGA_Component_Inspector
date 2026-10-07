@@ -1,0 +1,102 @@
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l transcript.log -wlf diagnostic.wlf -do "run -all; quit -code 1 -force" work.tb_awb_epoch anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 23:42:03 on Oct 06,2026
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_awb_epoch(fast)
+# Loading work.awb(fast)
+# Loading work.divider(fast)
+# Loading anlogic_sim.AL_DFF_X(fast)
+# Loading anlogic_sim.AL_MUX(fast)
+# Loading anlogic_sim.AL_DFF(fast)
+# Loading anlogic_sim.AL_MAP_LUT5(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT2(fast)
+# Loading anlogic_sim.AL_MAP_LUT3(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT4(fast)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__13)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__14)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__15)
+# Loading work.signal_delay(fast)
+# Loading work.blk_mem_gen_awb_delay_signal(fast)
+# Loading work.ram_f84573da5ab5(fast)
+# Loading anlogic_sim.PH1P_LOGIC_ERAM(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_awb_epoch/awb_dut/signal_delay_d/blk_mem_gen_awb_delay_signal_d/ram_f84573da5ab5_Inst/username_inst File: D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v Line: 60
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_awb_epoch/awb_dut/signal_delay_d/blk_mem_gen_awb_delay_signal_d/ram_f84573da5ab5_Inst/username_inst File: D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v Line: 60
+# run -all
+# OBS real AWB pre-SOF mode=0 old_valid_consumable=3 leaked_view=0 leaked_packed_after_FS=0 prior_epoch_words_before_FS=1 sticky_bad=0 old_write_row=3
+# PASS old AWB inputs suppressed mode=0 beats=3 frozen_write_pointer=208,3 RAM_word_unchanged=1 input_armed=0 input_valid=0
+# PASS real AWB recovery mode=0 new_sof_cycle=2935 early_to_sof=75 first_view_cycle=2935 origin=0,0 AWB=2048 rows=8 pixels=8192 packed=1536 gradients=0/0
+# OBS real AWB pre-SOF mode=1 old_valid_consumable=3 leaked_view=0 leaked_packed_after_FS=0 prior_epoch_words_before_FS=1 sticky_bad=0 old_write_row=3
+# PASS old AWB inputs suppressed mode=1 beats=3 frozen_write_pointer=208,3 RAM_word_unchanged=1 input_armed=0 input_valid=0
+# PASS real AWB recovery mode=1 new_sof_cycle=13373 early_to_sof=75 first_view_cycle=13373 origin=0,0 AWB=2048 rows=8 pixels=8192 packed=1536 gradients=0/0
+# OBS real AWB pre-SOF mode=2 old_valid_consumable=3 leaked_view=0 leaked_packed_after_FS=0 prior_epoch_words_before_FS=0 sticky_bad=0 old_write_row=3
+# PASS old AWB inputs suppressed mode=2 beats=3 frozen_write_pointer=208,3 RAM_word_unchanged=1 input_armed=0 input_valid=0
+# PASS real AWB recovery mode=2 new_sof_cycle=23811 early_to_sof=75 first_view_cycle=24928 origin=0,0 AWB=2048 rows=8 pixels=8192 packed=1536 gradients=40/3840
+# OBS real AWB pre-SOF mode=3 old_valid_consumable=3 leaked_view=0 leaked_packed_after_FS=0 prior_epoch_words_before_FS=0 sticky_bad=0 old_write_row=3
+# PASS old AWB inputs suppressed mode=3 beats=3 frozen_write_pointer=208,3 RAM_word_unchanged=1 input_armed=0 input_valid=0
+# PASS real AWB recovery mode=3 new_sof_cycle=34249 early_to_sof=75 first_view_cycle=35366 origin=0,0 AWB=2048 rows=8 pixels=8192 packed=1536 gradients=40/3840
+# PASS real AWB epoch isolation: 4 modes, vendor ERAM and divider, stopped CSI, 3 real residual beats ignored, exact fresh frames and packed words
+# ** Note: $finish    : ../tb_awb_epoch.v(177)
+#    Time: 2417521 ns  Iteration: 0  Instance: /tb_awb_epoch
+# End time: 23:42:26 on Oct 06,2026, Elapsed time: 0:00:23
+# Errors: 0, Warnings: 2

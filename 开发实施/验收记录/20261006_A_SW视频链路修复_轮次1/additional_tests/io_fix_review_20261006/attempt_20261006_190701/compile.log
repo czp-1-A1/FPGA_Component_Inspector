@@ -1,0 +1,24 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:07:01 on Oct 06,2026
+vlog -work work D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/hdl_source/video_in.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/hdl_source/video_out.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v 
+-- Compiling module video_in
+-- Compiling module video_out
+-- Compiling module soft_fifo_al_4057d6b76aa6
+-- Compiling module fifo_cross_domain_addr_process_al_4057d6b76aa6
+-- Compiling module ram_infer_4057d6b76aa6
+-- Compiling module w128_d512_fifo
+
+Top level modules:
+	video_in
+	video_out
+End time: 19:07:01 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:07:02 on Oct 06,2026
+vlog -sv -work work tb_video_transport.sv 
+-- Compiling module tb_video_transport
+
+Top level modules:
+	tb_video_transport
+End time: 19:07:02 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

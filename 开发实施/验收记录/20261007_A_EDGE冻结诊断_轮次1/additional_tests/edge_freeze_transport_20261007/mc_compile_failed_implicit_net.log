@@ -1,0 +1,32 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 15:26:24 on Oct 07,2026
+vlog -work mc_work tested_rtl/roi_sobel_view.v tested_rtl/data96_128.v tested_rtl/video_in.v tested_rtl/video_out.v tested_rtl/soft_fifo_al_4057d6b76aa6.v tested_rtl/w128_d512_fifo.v tested_rtl/mc_to_user_interface.v tested_rtl/soft_fifo_al_f58e8b3e1f3d.v tested_rtl/w155_d512_fifo.v 
+-- Compiling module roi_sobel_view
+-- Compiling module data_96bit_to_128bit
+-- Compiling module video_in
+-- Compiling module video_out
+-- Compiling module soft_fifo_al_4057d6b76aa6
+-- Compiling module fifo_cross_domain_addr_process_al_4057d6b76aa6
+-- Compiling module ram_infer_4057d6b76aa6
+-- Compiling module w128_d512_fifo
+-- Compiling module mc_to_user_interface
+-- Compiling module soft_fifo_al_f58e8b3e1f3d
+-- Compiling module ram_infer_f58e8b3e1f3d
+-- Compiling module w155_d512_fifo
+
+Top level modules:
+	roi_sobel_view
+	data_96bit_to_128bit
+	video_in
+	video_out
+	mc_to_user_interface
+End time: 15:26:24 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 15:26:24 on Oct 07,2026
+vlog -sv -work mc_work tb_edge_freeze_mc.v 
+-- Compiling module tb_edge_freeze_mc
+** Error (suppressible): tb_edge_freeze_mc.v(59): (vlog-2388) 'user_rdvalid' already declared in this scope (tb_edge_freeze_mc) at tb_edge_freeze_mc.v(55).
+** Error (suppressible): tb_edge_freeze_mc.v(62): (vlog-2388) 'user_rddata' already declared in this scope (tb_edge_freeze_mc) at tb_edge_freeze_mc.v(55).
+End time: 15:26:24 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 2, Warnings: 0

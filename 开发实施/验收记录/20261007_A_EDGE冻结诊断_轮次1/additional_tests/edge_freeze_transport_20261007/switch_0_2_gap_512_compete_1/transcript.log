@@ -1,0 +1,38 @@
+# vsim -c -onfinish exit -l switch_0_2_gap_512_compete_1/transcript.log -wlf switch_0_2_gap_512_compete_1/diagnostic.wlf -do "run -all; quit -code 1 -force" work.tb_edge_freeze_transport "+FIRST=0" "+SECOND=2" "+GAP=512" "+COMPETE=1" "+TRACE=switch_0_2_gap_512_compete_1/trace.csv" 
+# Start time: 15:25:46 on Oct 07,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_edge_freeze_transport(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# Loading work.video_in(fast)
+# Loading work.video_out(fast)
+# run -all
+# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=512 compete=1
+# CAPTURE mode=0 id=1 pixels=614400 packed=115200 writes=115200 slot=3 published=3 capture_ok=1 peak=277 bad=0 overflow=0 lost=0
+# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0
+# CAPTURE mode=2 id=2 pixels=614400 packed=115200 writes=115200 slot=2 published=2 capture_ok=1 peak=384 bad=0 overflow=0 lost=0
+# CAPTURE_RESULT PASS mode=2 id=2 gap=512 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0
+# DISPLAY mode=2 id=1 checked=614400 display_ok=1 underflow=0 pixel_errors=0 issued=115200 reserved_peak=480
+# DISPLAY mode=2 id=2 checked=614400 display_ok=1 underflow=0 pixel_errors=0 issued=115200 reserved_peak=480
+# CAPTURE mode=0 id=1 pixels=614400 packed=115200 writes=115200 slot=3 published=3 capture_ok=1 peak=384 bad=0 overflow=0 lost=0
+# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0
+# DISPLAY mode=0 id=1 checked=614400 display_ok=1 underflow=0 pixel_errors=0 issued=115200 reserved_peak=480
+# PASS: SWITCH_TRANSPORT first=0 second=2 gap=512 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0
+# ** Note: $finish    : tb_edge_freeze_transport.v(273)
+#    Time: 52735563570 ps  Iteration: 1  Instance: /tb_edge_freeze_transport
+# End time: 15:26:00 on Oct 07,2026, Elapsed time: 0:00:14
+# Errors: 0, Warnings: 0

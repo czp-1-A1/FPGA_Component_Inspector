@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-05",
+  "purpose": "display proposal only; no new RTL/bit implementation or hardware acceptance",
+  "user_implementation_approval": false,
+  "proposal": "../20_A结果显示字体Logo与状态处理_待确认方案.md",
+  "fragment": "C:\\Users\\yiziw\\.codex\\visualizations\\2026\\10\\02\\01a0fcf4-604d-7ef2-88bc-ccfea7cc8b08\\fpga-stage-a-display.html",
+  "fragment_sha256": "392bb50d9142eb0ee88004613701a0860f20e7c4eff8923bfc1416591605535d",
+  "logo_source_sha256": "37c76680345f17a85632b7835e46a3a197cf75fdd91ca6a970b75f5346e7a9f8",
+  "preview_checks": {
+    "script_errors": 0,
+    "state_scenarios": [
+      "uncal",
+      "wait",
+      "present",
+      "empty",
+      "config",
+      "offline"
+    ],
+    "content_modes": [
+      "sample",
+      "demo"
+    ],
+    "outer_viewport_widths": [
+      320,
+      736,
+      1024
+    ],
+    "horizontal_overflow": false,
+    "png_dimensions": [
+      1024,
+      600
+    ],
+    "rtl_simulation_run": false,
+    "td_build_run": false,
+    "board_test_run": false
+  },
+  "unchanged_baseline": {
+    "verified_inputs": 198,
+    "input_mismatches": 0,
+    "project_sha256": "f46df358d4cf912ffe8477f161aab74026e2f3c1b7d5371c8a5baf552b06279b",
+    "bit_sha256": "78d9a419cc75bae78655cc7608037959415ea67fd0452580446de0b7176c3c54"
+  },
+  "files": [
+    {
+      "path": "lab3-logo-reference.png",
+      "bytes": 4548,
+      "sha256": "3087f577a1a967d76583811c66c9fb27dfea3bb811243cf44501bc573a3d6f75",
+      "dimensions": [
+        160,
+        160
+      ]
+    },
+    {
+      "path": "sample-uncal-preview.png",
+      "bytes": 41391,
+      "sha256": "23574ee901850e50bfbe6d0436a8d8884d14ebba7504d90ef218d62d4e5ab657",
+      "dimensions": [
+        1024,
+        600
+      ]
+    },
+    {
+      "path": "demo-present-preview.png",
+      "bytes": 39465,
+      "sha256": "3a77c394a21e42b34582dc8267849bdf42da14c5dab2dc3d4d66a7df1f999e24",
+      "dimensions": [
+        1024,
+        600
+      ]
+    },
+    {
+      "path": "demo-offline-preview.png",
+      "bytes": 41087,
+      "sha256": "53bad14a895ca26aa08f1f8a4a27aeefa71136137032e1f4566e499c23594e26",
+      "dimensions": [
+        1024,
+        600
+      ]
+    },
+    {
+      "path": "README.md",
+      "bytes": 1159,
+      "sha256": "d95c5ea341b2ff6c527abe04225d456b7c67c9a265a3c0767a868e8d5ca0ead1"
+    }
+  ]
+}

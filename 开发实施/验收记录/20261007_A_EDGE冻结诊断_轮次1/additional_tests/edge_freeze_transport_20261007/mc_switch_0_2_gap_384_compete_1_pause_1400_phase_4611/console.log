@@ -1,0 +1,46 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish exit -l mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4611/transcript.log -wlf mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4611/diagnostic.wlf -do "run -all; quit -code 1 -force" phase_work.tb_edge_freeze_phase "+FIRST=0" "+SECOND=2" "+GAP=384" "+COMPETE=1" "+MC_PAUSE=1400" "+PHASE=4611" "+TRACE=mc_switch_0_2_gap_384_compete_1_pause_1400_phase_4611/trace.csv" 
+# Start time: 15:36:59 on Oct 07,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_edge_freeze_phase(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# Loading work.video_in(fast)
+# Loading work.video_out(fast)
+# Loading work.mc_to_user_interface(fast)
+# run -all
+# CASE first_mode=0 second_mode=2 active_line_beats=256 second_line_gap=384 compete=1
+# SOURCE_PHASE camera start offset=4611 DSI clocks from display VS task
+# CAPTURE mode=0 id=1 pixels=614400 packed=115200 writes=115200 slot=3 published=3 capture_ok=1 peak=277 bad=0 overflow=0 lost=0
+# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0
+# MC_PAUSE_START cycles=1400 packed=2400 queue_used=2
+# CAPTURE mode=2 id=2 pixels=614400 packed=115200 writes=115200 slot=2 published=2 capture_ok=1 peak=384 bad=0 overflow=0 lost=0
+# CAPTURE_RESULT PASS mode=2 id=2 gap=384 completed_slot=2 candidate_slot=2 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=600 write_y=600 credit=1 lost=0 overflow=0
+# DISPLAY mode=2 id=1 checked=614400 display_ok=1 underflow=0 pixel_errors=0 issued=115200 reserved_peak=480
+# DISPLAY mode=2 id=2 checked=614400 display_ok=1 underflow=0 pixel_errors=0 issued=115200 reserved_peak=480
+# CAPTURE mode=0 id=1 pixels=614400 packed=115200 writes=115200 slot=3 published=3 capture_ok=1 peak=384 bad=0 overflow=0 lost=0
+# CAPTURE_RESULT PASS mode=0 id=1 gap=512 completed_slot=3 candidate_slot=3 pixels=614400 words=115200 written=115200 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=600 credit=1 lost=0 overflow=0
+# DISPLAY mode=0 id=1 checked=614400 display_ok=1 underflow=0 pixel_errors=0 issued=115200 reserved_peak=480
+# PASS: SWITCH_TRANSPORT first=0 second=2 gap=384 compete=1 captures=3 recovered=1 total_writes=345600 checked_pixels=1843200 errors=0 overflow=0 underflow=0 lost=0
+# MC_DIAGNOSTIC real_command_fifo=1 peak=501 accepted=691200 retired=691200 mc_writes=345600 mc_reads=345600 pause=1400 period=0 off=0
+# ** Note: $finish    : tb_edge_freeze_phase.v(327)
+#    Time: 52735563570 ps  Iteration: 1  Instance: /tb_edge_freeze_phase
+# End time: 15:37:20 on Oct 07,2026, Elapsed time: 0:00:21
+# Errors: 0, Warnings: 0
