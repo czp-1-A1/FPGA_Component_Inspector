@@ -41,4 +41,4 @@
 - **未决事项**：尚未测板上FE后CSI时钟，不把模型停钟当现场波形证明；本次镜像未烧录、实物/30分钟/输入帧率独立测量/冷启动未测，不能判板上已解决。原工程7项DDR PLL频率告警、2个悬空节点、输入39/输出63未指定delay及partial input1未闭合；WS也可能记录尾部credit-low间隔，非零不直接判冻结。
 - **下一条具体操作**：人核对release/edge_tail_fix_20261007镜像SHA并下载，在固定代码/镜像下RAW→GRAY→EDGE→GRAY+EDGE→RAW逐模式稳定2秒、移动10秒，记录OF/VF/UF前后与更新/恢复，填写开发实施/验收记录/20261007_A_EDGE上板复测_轮次2.md，保留失败轮次1及旧镜像。
 - **运行中进程/设备**：本轮隔离ModelSim和TD CLI已结束，用户TD GUI PID41952及bw/hwserver运行；板卡/相机/显示器已接/JTAG可识别为用户口述，AI未下载/JTAG操作。旧TD6.2.168116 License expired、MC漏HEX夹具失败均独立保留，不绕过许可或改参考答案。
-- **提交/推送状态**：源码已提交43a3da6cf36da923835f4e7fb5f03e3bdb5c779f；冻结镜像、照片、证据与交接文字随本次交付提交，推送完成以实际远端HEAD核对为准。只写lj4747-contest-work，无fetch/pull/reset/强推或main/队员分支写入。交接同步.json为旧队员历史状态，本次以Git及本条为准。
+- **提交/推送状态**：源码43a3da6及冻结交付03ecbfb039c49d1909b6458943d779e1c0c9b3c6已成功推送，远端HEAD逐字核对一致，代码/镜像/原图/证据齐全；本次交接状态更新也提交到个人分支，最新HEAD以Git为准。仅写lj4747-contest-work，无fetch/pull/reset/强推或main/队员分支写入。当前同步证据在开发实施/验收记录/20261007_A_EDGE上板复测_轮次2/交付同步.json，根交接同步.json为旧队员历史。
