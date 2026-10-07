@@ -1,0 +1,43 @@
+{
+  "status": "software_verified_board_validation_pending",
+  "branch": "lj4747-contest-work",
+  "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
+  "start_head": "3532d7c78d28cef135b322a2dd811e5cc2954944",
+  "tool": "TD6.2.178840",
+  "simulator": "ModelSim SE-64 10.5 (2016.02)",
+  "device": "PH1P35MDG324 speed3",
+  "classification_enabled": false,
+  "bit": {
+    "path": "fpga/component_inspector/release/edge_tail_fix_20261007/camera_to_dsi_display.bit",
+    "sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65",
+    "bytes": 1789539
+  },
+  "build_directory": "C:\\Users\\Li47\\Desktop\\aa\\edge_tail_td_20261007_178840",
+  "build_inputs_count": 207,
+  "build_inputs_sha256": "8295caedd9e2f43f73aba47971ee146da1ba6c901cd07b735f9751a3b8567504",
+  "timing": {
+    "setup_wns_ns": 1.384,
+    "hold_wns_ns": 0.02,
+    "setup_tns_ns": 0,
+    "hold_tns_ns": 0,
+    "sta_coverage_percent": 94.59
+  },
+  "resources": {
+    "slice_used": 16424,
+    "slice_total": 21216,
+    "eram_used": 48,
+    "eram_total": 108,
+    "dsp_used": 8,
+    "dsp_total": 40
+  },
+  "unresolved": [
+    "Physical CSI clock tail has not been measured",
+    "Board playback, 30-minute stability and cold boot not retested",
+    "Existing DDR PLL/I-O constraint diagnostics remain"
+  ],
+  "rollback": {
+    "path": "fpga/component_inspector/release/edge_diagnostic_20261007/camera_to_dsi_display.bit",
+    "sha256": "c3a1cce7d4a19d6750c0e6f3e36395a3c2f3d31901834a1b13a76f497a9230f8",
+    "board_status": "FAIL_EDGE_FREEZE"
+  }
+}

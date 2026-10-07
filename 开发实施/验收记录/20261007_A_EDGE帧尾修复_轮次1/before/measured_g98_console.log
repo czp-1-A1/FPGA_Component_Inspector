@@ -1,0 +1,324 @@
+Reading D:/modeltech64_10.5/tcl/vsim/pref.tcl
+
+# 10.5
+
+# vsim -c -L anlogic_sim -voptargs="+acc=rn+/tb_isp_measured" -onfinish exit -l measured_g98_transcript.log -wlf measured_g98.wlf -do "run -all; quit -code 1 -force" measured_work.tb_isp_measured anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR "+GAP=98" 
+# Start time: 17:48:14 on Oct 07,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v(136): (vopt-2241) Connection width does not match width of port 'O_raw_tready'. The port definition is at: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v(37).
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v(60): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v(60): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v(167): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_zhenghe_d1'.  Expected 10, found 9.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v(98): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_demosaic_r0'.  Expected 10, found 9.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v(98): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/signal_delay.v(120): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_awb_delay_signal_d'.  Expected 10, found 9.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/signal_delay.v(120): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/awb.v(166): (vopt-2685) [TFMPC] - Too few port connections for 'div_gen_G_R_r1'.  Expected 8, found 7.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/awb.v(166): (vopt-2718) [TFMPC] - Missing connection for port 'remainder'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/awb.v(176): (vopt-2685) [TFMPC] - Too few port connections for 'divide_G_B_r1'.  Expected 8, found 7.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/hdl_source/awb.v(176): (vopt-2718) [TFMPC] - Missing connection for port 'remainder'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(2727): (vopt-2685) [TFMPC] - Too few port connections for 'al_2c3c91d5'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(2727): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(2727): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(2809): (vopt-2685) [TFMPC] - Too few port connections for 'al_17a6d7fa'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(2809): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(2809): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(3781): (vopt-2685) [TFMPC] - Too few port connections for 'al_f683b5d3'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(3781): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(3781): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(3870): (vopt-2685) [TFMPC] - Too few port connections for 'al_f65f531c'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(3870): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(3870): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(4852): (vopt-2685) [TFMPC] - Too few port connections for 'al_8cc7c1e'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(4852): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(4852): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(4948): (vopt-2685) [TFMPC] - Too few port connections for 'al_12836a8f'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(4948): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(4948): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(5946): (vopt-2685) [TFMPC] - Too few port connections for 'al_5892fcb5'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(5946): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(5946): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(6049): (vopt-2685) [TFMPC] - Too few port connections for 'al_b3f6820d'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(6049): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(6049): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(7063): (vopt-2685) [TFMPC] - Too few port connections for 'al_7c3d1a1a'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(7063): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(7063): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(7173): (vopt-2685) [TFMPC] - Too few port connections for 'al_f5789861'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(7173): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(7173): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(8203): (vopt-2685) [TFMPC] - Too few port connections for 'al_3aab319'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(8203): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(8203): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(8320): (vopt-2685) [TFMPC] - Too few port connections for 'al_61a0d7ee'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(8320): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(8320): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(9366): (vopt-2685) [TFMPC] - Too few port connections for 'al_623841ba'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(9366): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(9366): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(9490): (vopt-2685) [TFMPC] - Too few port connections for 'al_2de59830'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(9490): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(9490): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(10546): (vopt-2685) [TFMPC] - Too few port connections for 'al_aa681be'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(10546): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(10546): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(10677): (vopt-2685) [TFMPC] - Too few port connections for 'al_6d616ad8'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(10677): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(10677): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(11749): (vopt-2685) [TFMPC] - Too few port connections for 'al_f70fd955'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(11749): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(11749): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(11887): (vopt-2685) [TFMPC] - Too few port connections for 'al_26555348'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(11887): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(11887): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(12975): (vopt-2685) [TFMPC] - Too few port connections for 'al_b1b33ac1'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(12975): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(12975): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(13120): (vopt-2685) [TFMPC] - Too few port connections for 'al_9642b13d'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(13120): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(13120): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(15068): (vopt-2685) [TFMPC] - Too few port connections for 'al_35ee5592'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(15068): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(15068): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(15220): (vopt-2685) [TFMPC] - Too few port connections for 'al_50e9f109'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(15220): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(15220): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(16340): (vopt-2685) [TFMPC] - Too few port connections for 'al_7f00f7cf'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(16340): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(16340): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(16499): (vopt-2685) [TFMPC] - Too few port connections for 'al_e29bec0b'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(16499): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(16499): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(17629): (vopt-2685) [TFMPC] - Too few port connections for 'al_d51334f9'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(17629): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(17629): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(17795): (vopt-2685) [TFMPC] - Too few port connections for 'al_893284b6'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(17795): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(17795): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(18941): (vopt-2685) [TFMPC] - Too few port connections for 'al_3d1326ec'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(18941): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(18941): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(19114): (vopt-2685) [TFMPC] - Too few port connections for 'al_fe1a61c8'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(19114): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(19114): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(20276): (vopt-2685) [TFMPC] - Too few port connections for 'al_c7f8d01f'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(20276): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(20276): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(20456): (vopt-2685) [TFMPC] - Too few port connections for 'al_cc6624f3'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(20456): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(20456): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(21634): (vopt-2685) [TFMPC] - Too few port connections for 'al_5fe5f689'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(21634): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(21634): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(21821): (vopt-2685) [TFMPC] - Too few port connections for 'al_d9f3f288'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(21821): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(21821): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(23015): (vopt-2685) [TFMPC] - Too few port connections for 'al_614d9b5f'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(23015): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(23015): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(23209): (vopt-2685) [TFMPC] - Too few port connections for 'al_40de5145'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(23209): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(23209): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(24413): (vopt-2685) [TFMPC] - Too few port connections for 'al_2b863aeb'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(24413): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(24413): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(24614): (vopt-2685) [TFMPC] - Too few port connections for 'al_a0f4601c'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(24614): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(24614): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(25834): (vopt-2685) [TFMPC] - Too few port connections for 'al_b8005145'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(25834): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(25834): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(26042): (vopt-2685) [TFMPC] - Too few port connections for 'al_3728e305'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(26042): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(26042): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(27278): (vopt-2685) [TFMPC] - Too few port connections for 'al_33912f9'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(27278): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(27278): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(27493): (vopt-2685) [TFMPC] - Too few port connections for 'al_5379bc02'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(27493): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(27493): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(29636): (vopt-2685) [TFMPC] - Too few port connections for 'al_5984d26f'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(29636): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(29636): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(29858): (vopt-2685) [TFMPC] - Too few port connections for 'al_f4fca905'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(29858): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(29858): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(31126): (vopt-2685) [TFMPC] - Too few port connections for 'al_5e220ed'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(31126): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(31126): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(32635): (vopt-2685) [TFMPC] - Too few port connections for 'al_4d428833'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(32635): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(32635): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(34151): (vopt-2685) [TFMPC] - Too few port connections for 'al_6defe612'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(34151): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(34151): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(35667): (vopt-2685) [TFMPC] - Too few port connections for 'al_be405246'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(35667): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(35667): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(37183): (vopt-2685) [TFMPC] - Too few port connections for 'al_83514792'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(37183): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(37183): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(38699): (vopt-2685) [TFMPC] - Too few port connections for 'al_fd3e8af2'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(38699): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(38699): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(40215): (vopt-2685) [TFMPC] - Too few port connections for 'al_9425b3df'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(40215): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(40215): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(41731): (vopt-2685) [TFMPC] - Too few port connections for 'al_5c7d50e3'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(41731): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(41731): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(43247): (vopt-2685) [TFMPC] - Too few port connections for 'al_d271eb9'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(43247): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(43247): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(45676): (vopt-2685) [TFMPC] - Too few port connections for 'al_1f358278'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(45676): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(45676): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(47192): (vopt-2685) [TFMPC] - Too few port connections for 'al_6c167d08'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(47192): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(47192): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(48708): (vopt-2685) [TFMPC] - Too few port connections for 'al_6570f066'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(48708): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(48708): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(50224): (vopt-2685) [TFMPC] - Too few port connections for 'al_f8363f33'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(50224): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(50224): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(51740): (vopt-2685) [TFMPC] - Too few port connections for 'al_ca709f8b'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(51740): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(51740): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(53256): (vopt-2685) [TFMPC] - Too few port connections for 'al_20bc1162'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(53256): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(53256): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(54772): (vopt-2685) [TFMPC] - Too few port connections for 'al_dc46bad1'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(54772): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(54772): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(57046): (vopt-2685) [TFMPC] - Too few port connections for 'al_f4af5624'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(57046): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(57046): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(58500): (vopt-2685) [TFMPC] - Too few port connections for 'al_7b9955b'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(58500): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(58500): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(58505): (vopt-2685) [TFMPC] - Too few port connections for 'al_2beb57ee'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(58505): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(58505): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(59403): (vopt-2685) [TFMPC] - Too few port connections for 'al_2f3c0b9c'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(59403): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(59403): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(59457): (vopt-2685) [TFMPC] - Too few port connections for 'al_ddf981e2'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(59457): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(59457): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(60365): (vopt-2685) [TFMPC] - Too few port connections for 'al_98b3b8dd'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(60365): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(60365): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(60426): (vopt-2685) [TFMPC] - Too few port connections for 'al_60de78b1'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(60426): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(60426): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(61350): (vopt-2685) [TFMPC] - Too few port connections for 'al_bb9963f6'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(61350): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(61350): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(61418): (vopt-2685) [TFMPC] - Too few port connections for 'al_7241ba4'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(61418): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(61418): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(62358): (vopt-2685) [TFMPC] - Too few port connections for 'al_39ead89a'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(62358): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(62358): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(62433): (vopt-2685) [TFMPC] - Too few port connections for 'al_14fec680'.  Expected 4, found 2.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(62433): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: C:\Users\Li47\Desktop\aa\edge_repro_20261007_baseline/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v(62433): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_isp_measured(fast)
+# Loading work.observation_controls(fast)
+# Loading work.status_cdc(fast)
+# Loading work.uial2axis(fast)
+# Loading work.isp_top(fast)
+# Loading work.divider(fast)
+# Loading anlogic_sim.AL_MAP_LUT5(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT2(fast)
+# Loading anlogic_sim.AL_MAP_LUT3(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT4(fast)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__13)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__14)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__15)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# run -all
+# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=1 rows=4 request=0 receive=0 tag=0 frame_mode=0 early_cycle=1047 pixel_cycle=1101 AWB=1024 view=1024 guard_bad=1 video_bad=1 invalid_after_early=704 bad_after_early=3652 good=0
+# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=2 rows=600 request=6 receive=6 tag=6 frame_mode=2 early_cycle=6244 pixel_cycle=6298 AWB=153600 view=153600 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=1
+# PASS independent native/full AWB line period native=800 measured_AWB=738 measured_LP=738
+# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=3 rows=4 request=6 receive=6 tag=6 frame_mode=2 early_cycle=450871 pixel_cycle=450925 AWB=1024 view=768 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=0
+# PASS actual ISP full epoch: native600 rows/614400 pixels, EDGE153600 RGB beats, actual frame_good/guard completion, next early snapshots clean reason0/LP/nonzero/WS0 then clears good/new epoch
+# ** Note: $finish    : tb_isp_measured.v(126)
+#    Time: 24642991 ns  Iteration: 0  Instance: /tb_isp_measured
+# End time: 17:48:42 on Oct 07,2026, Elapsed time: 0:00:28
+# Errors: 0, Warnings: 234

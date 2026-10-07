@@ -32,13 +32,13 @@
 
 交接需包含代码、必要未跟踪文件与证据，不能只传本文。按授权提交/推送，不混入无关暂存文件；成功推送才可称已同步。接棒端核对工具依赖、实际文件与日志；Git不传未提交文件、进程或聊天。意外断额度时由人保存改动，接棒端恢复实际断点，WIP不当作稳定版。
 
-## 当前断点（2026-10-07，用户确认开始，接续诊断候选上板复测）
+## 当前断点（2026-10-07，EDGE帧尾修复已冻结，实物待测）
 
-- **目标与阶段**：用户已明确回复“确认开始”，并口述板卡/相机/显示器已接好、JTAG可识别。本轮接续到个人`lj4747-contest-work`，优先烧录已冻结的EDGE诊断候选并进行RAW→GRAY→EDGE→GRAY+EDGE→RAW实物复测；分类仍为未标定，不改算法或阈值。
-- **代码基线**：完整工作区`C:/Users/Li47/Desktop/aa/FPGA_Component_Inspector_git`，个人`lj4747-contest-work`已合入队员基线，接棒合并提交为`83eb57f74c2c833a9386c25638cd5b7ddef747ec`，两个父提交为`991336d873dbb9e9b15d758fc544a1ff216a301e`与`2eb2de6022a9083e6d3674f8bd44c192b05acf87`。仅交接摘要冲突，按用户最新规则解决。冻结镜像源提交`7edbb0afca701332d3d11b1d6e5a6cf5d99354fd`及207输入未变，后续记录提交只更新文档；未向main或队员分支合并。
-- **本轮改动**：合入队员已提交的工程、sim、release与冻结证据。本实现端仅解决交接文档冲突，并新增`开发实施/验收记录/20261007_A_EDGE上板复测_轮次1.md`及同名目录中的两份接棒SHA检查记录；没有修改任何RTL、约束、镜像或冻结证据。`HANDOFF.md`仍指向个人工作分支。
-- **验证及证据**：合并后的工程索引与队员分支在`fpga/component_inspector`下无差异；207构建输入逐个SHA复核通过，0差异。冻结bit为1789539字节，SHA为`c3a1cce7d4a19d6750c0e6f3e36395a3c2f3d31901834a1b13a76f497a9230f8`，未变化。接收及合并后核对记录已保存。本机只执行工具版本/文件存在检查：TD、bw、hwserver运行于`D:/td6.2.1/bin`，所需6个vendor库存在；ModelSim SE-64 10.5（2016.02）在`D:/modeltech64_10.5/win64`。队员的TD6.2.168116、ModelSim2019.2与软件通过结果是历史交付，本机未重跑仿真、综合或布局布线，尚未收到本轮烧录及移动画面证据。
-- **未决事项**：当前TD可执行文件版本字段为空，关于页面准确版本待人工补充；本机ModelSim与队员版本不同，后续RTL修复时需在隔离冻结输入上验证本机兼容性及许可证。本轮先用既有冻结bit，不重建或覆盖release。板卡丝印、实际距离/光源/EXP/GAIN、输入帧率和照片待补。四模式更新、拒帧计数和回RAW恢复均未测，EDGE实物根因仍未知，不能称已修复。短时模式复测不代替30分钟稳定性、冷启动或A版完整验收。
-- **下一条具体操作**：接棒合并已完成且推送；目前已向用户发出RAW复测操作，等待其结果。由用户在已识别JTAG的TD中下载`fpga/component_inspector/release/edge_diagnostic_20261007/camera_to_dsi_display.bit`，确认ANLOGIC标志下出现ER/LP/WS。先SW1/SW2都下，等2秒、移动载带观察10秒，记录RAW画面及进入/10秒后OF/VF/UF；随后按复测记录完成其余模式。卡住先拍全屏再回RAW。用户提供实物结果后填写当前记录，不改变冻结代码或已有失败证据。
-- **运行中进程/设备**：用户TD GUI及其bw/hwserver正在运行，本端未操作其界面或JTAG；ModelSim版本查询已结束，没有本端构建/仿真进程。板卡等已接好、JTAG可识别为用户口述；烧录与开关/载带操作由人执行。
-- **提交/推送状态**：接棒合并`83eb57f74c2c833a9386c25638cd5b7ddef747ec`已成功推送到`origin/lj4747-contest-work`，保留双方提交历史；本轮新增复测准备记录和接棒证据，后续记录提交的最新SHA以本地HEAD与远端引用核对。没有更改RTL、约束或冻结镜像，未向队员分支或main写入，未强推。当前实物结果均待用户提供，不声明上板通过。
+- **目标与阶段**：接续A视频底座；用户确认RAW/GRAY持续更新、EDGE/GRAY+EDGE冻结、回RAW自行恢复。旧候选判实物FAIL。本轮候选软件通过，实物未测，CLASS_CALIBRATED=0，不更改阈值或降低验收条件。
+- **分支/代码基线**：完整Git工作区C:/Users/Li47/Desktop/aa/FPGA_Component_Inspector_git，lj4747-contest-work；开始HEAD3532d7c78d28cef135b322a2dd811e5cc2954944，已合入队员2eb2de6；本轮源码提交43a3da6cf36da923835f4e7fb5f03e3bdb5c779f。207输入逐项匹配提交和构建目录，仅roi_sobel_view.v相对旧版改变。
+- **改动文件**：Sobel安全行边界框外尾部直通，sim新增sobel_tail/isp_writer_stop及runner；保存原失败、四张未修改原图、新实施说明/验收记录/冻结source_snapshot/ModelSim与TD日志；新增release/edge_tail_fix_20261007及manifest/build_inputs/README，current_codex_build.json、交接说明.md及两处AGENTS更新。工程路径ASCII、原Example未动。
+- **验证及证据**：旧停CSI反例RAW PASS/EDGE少332拍未发布；新EDGE/GRAY+EDGE均完整115200字并发布。原Sobel11、新尾部15、真实ISP9场景通过；MC两组切换共3686400像素零错误/溢出/下溢/丢帧。TD6.2.178840综合/布局布线/bitgen完成，setup+1.384ns/hold+0.020ns/TNS0，slice77.41%、ERAM48/108、DSP8/40；STA覆盖94.59%，完整约束检查及遗留告警保留。新bit SHA bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65，1789539字节；详见开发实施/验收记录/20261007_A_EDGE帧尾修复_轮次1.md及同名证据目录。
+- **未决事项**：尚未测板上FE后CSI时钟，不把模型停钟当现场波形证明；本次镜像未烧录、实物/30分钟/输入帧率独立测量/冷启动未测，不能判板上已解决。原工程7项DDR PLL频率告警、2个悬空节点、输入39/输出63未指定delay及partial input1未闭合；WS也可能记录尾部credit-low间隔，非零不直接判冻结。
+- **下一条具体操作**：人核对release/edge_tail_fix_20261007镜像SHA并下载，在固定代码/镜像下RAW→GRAY→EDGE→GRAY+EDGE→RAW逐模式稳定2秒、移动10秒，记录OF/VF/UF前后与更新/恢复，填写开发实施/验收记录/20261007_A_EDGE上板复测_轮次2.md，保留失败轮次1及旧镜像。
+- **运行中进程/设备**：本轮隔离ModelSim和TD CLI已结束，用户TD GUI PID41952及bw/hwserver运行；板卡/相机/显示器已接/JTAG可识别为用户口述，AI未下载/JTAG操作。旧TD6.2.168116 License expired、MC漏HEX夹具失败均独立保留，不绕过许可或改参考答案。
+- **提交/推送状态**：源码已提交43a3da6cf36da923835f4e7fb5f03e3bdb5c779f；冻结镜像、照片、证据与交接文字随本次交付提交，推送完成以实际远端HEAD核对为准。只写lj4747-contest-work，无fetch/pull/reset/强推或main/队员分支写入。交接同步.json为旧队员历史状态，本次以Git及本条为准。

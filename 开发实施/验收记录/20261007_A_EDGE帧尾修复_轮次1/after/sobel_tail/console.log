@@ -1,0 +1,48 @@
+Reading D:/modeltech64_10.5/tcl/vsim/pref.tcl
+
+# 10.5
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/sobel_tail/transcript.log -wlf modelsim_work/sobel_tail/wave.wlf -do "log /tb_sobel_tail/*; run -all; quit -code 1 -force" test_sobel_tail.tb_sobel_tail 
+# Start time: 18:10:58 on Oct 07,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: tb_sobel_tail.v(11): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 21, found 20.
+# ** Warning: tb_sobel_tail.v(11): (vopt-2718) [TFMPC] - Missing connection for port 'timing_debug'.
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_sobel_tail(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# log /tb_sobel_tail/*
+#  run -all
+# OBS Sobel frame=1 mode=0 pattern=1 bubbles=0 core=0 edges=0 strength=0
+# OBS Sobel frame=2 mode=1 pattern=1 bubbles=1 core=0 edges=0 strength=0
+# OBS Sobel frame=3 mode=2 pattern=1 bubbles=0 core=40 edges=8 strength=5440
+# OBS Sobel frame=4 mode=3 pattern=1 bubbles=1 core=40 edges=8 strength=5440
+# OBS Sobel frame=5 mode=3 pattern=0 bubbles=0 core=40 edges=0 strength=0
+# OBS Sobel frame=6 mode=3 pattern=2 bubbles=1 core=40 edges=20 strength=14080
+# OBS Sobel frame=7 mode=3 pattern=3 bubbles=0 core=40 edges=16 strength=14016
+# OBS Sobel frame=8 mode=3 pattern=4 bubbles=0 core=40 edges=37 strength=13128
+# OBS Sobel frame=9 mode=3 pattern=4 bubbles=1 core=0 edges=0 strength=0
+# OBS Sobel frame=10 mode=3 pattern=4 bubbles=1 core=40 edges=37 strength=13128
+# OBS Sobel frame=11 mode=0 pattern=4 bubbles=0 core=0 edges=0 strength=0
+# OBS Sobel frame=12 mode=2 pattern=4 bubbles=2 core=40 edges=37 strength=13128
+# OBS Sobel frame=13 mode=3 pattern=4 bubbles=2 core=40 edges=37 strength=13128
+# PASS streaming-tail credit loss: partial frame rejected, no later valid output/statistics
+# OBS Sobel frame=15 mode=3 pattern=4 bubbles=2 core=40 edges=37 strength=13128
+# PASS Sobel tail: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup
+# ** Note: $finish    : tb_sobel_tail.v(130)
+#    Time: 85060 ns  Iteration: 1  Instance: /tb_sobel_tail
+# End time: 18:10:59 on Oct 07,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 2
