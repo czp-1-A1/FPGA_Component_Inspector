@@ -2,8 +2,8 @@
   "date": "2026-10-07",
   "user_quote": "这个的工作距离是220mm",
   "working_distance_mm": 220,
-  "measurement_origin": "待用户确认",
-  "ruler_object_coplanarity": "待用户确认",
+  "measurement_origin": "目前不确定，待夹持固定后测量",
+  "ruler_object_coplanarity": "目前不确定，待固定后核对",
   "prior_user_fixture_feedback": "仍是临时摆放，机构未完成",
   "photo_identity": "未提供下载日志/镜像SHA，第二图UI不同，不绑定同一版本",
   "photos": [
@@ -29,5 +29,10 @@
       "file": "scale_estimate.json",
       "sha256": "bceb7171055034008d7239169b9858fc7f8ca44001da88a3475bbe6bf7485f78"
     }
-  ]
+  ],
+  "clarification_quote": "先不确定，现在还没有准确固定的器件夹持，是通过判断距离后大致维持高度测量的，并不一定准确",
+  "working_distance_kind": "临时高度估计，非准确工作距离",
+  "distance_uncertainty": "未知",
+  "formal_calibration_valid": false,
+  "scale_applicability": "仅原照片尺平面的探索估计，不用于实际元件平面ROI/机械尺寸/阈值冻结"
 }
