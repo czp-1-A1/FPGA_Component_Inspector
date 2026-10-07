@@ -1,6 +1,6 @@
 `timescale 1ns / 1ns //仿真时间刻度/精度
 
-module hdmi_tx (
+module hdmi_tx #(parameter WIDTH=1024,HEIGHT=600,HTOTAL=1344,VTOTAL=635,HFP=160,HSA=24,HBP=136,VFP=12,VSA=2,VBP=21,VIC=0) (
     input wire       I_pixel_clk, //像素时钟
     input wire       I_serial_clk,//串行发送时钟
     input wire       I_rst, //异步复位信号，高电平有效
@@ -175,18 +175,18 @@ module hdmi_tx (
     hdmi_1_4b_transmitter_core_wrapper#(
         .DEVICE                 ( "PH1P"   ),
 
-		.HTOTAL                 ( 1344     ),
-        .HSA                    ( 24       ),
-        .HFP                    ( 160      ),
-        .HBP                    ( 136      ),
-        .HACTIVE                ( 1024     ),
-        .VTOTAL                 ( 635      ),
-        .VSA                    ( 2        ),
-        .VFP                    ( 12       ),
-        .VBP                    ( 21       ),
-        .VACTIVE                ( 600      ),
+		.HTOTAL                 ( HTOTAL   ),
+        .HSA                    ( HSA      ),
+        .HFP                    ( HFP      ),
+        .HBP                    ( HBP      ),
+        .HACTIVE                ( WIDTH    ),
+        .VTOTAL                 ( VTOTAL   ),
+        .VSA                    ( VSA      ),
+        .VFP                    ( VFP      ),
+        .VBP                    ( VBP      ),
+        .VACTIVE                ( HEIGHT   ),
 
-		.VIDEO_VIC              ( 0        ),
+		.VIDEO_VIC              ( VIC      ),
 
         .VIDEO_TPG              ( "Disable" ),
         .VIDEO_FORMAT           ( "RGB"    ),

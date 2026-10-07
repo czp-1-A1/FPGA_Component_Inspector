@@ -11,6 +11,7 @@
     </HardWare>
     <Source_Files>
         <Verilog>
+            <File Path="../user_source/hdl_source/native_hdmi_pll.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="115"/></FileInfo></File>
             <File Path="../user_source/hdl_source/observation_controls.v">
                 <FileInfo>
                     <Attr Name="UsedInSyn" Val="true"/>

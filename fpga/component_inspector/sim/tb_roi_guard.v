@@ -10,7 +10,8 @@ wire accept,commit,invalid,sv;
 wire [7:0] avg,lo,hi;
 wire [19:0] count;
 wire [27:0] sum;
-roi_frame_guard #(.WIDTH(12),.HEIGHT(3)) guard(clk,rst,fs,fe,hs,rv,lane_error,cfg,pv,ps,pl,x,y,accept,commit,invalid);
+// Preserve the legacy test's public coordinate widths while geometry is tiny.
+roi_frame_guard #(.WIDTH(12),.HEIGHT(3),.X_BITS(11),.Y_BITS(10)) guard(clk,rst,fs,fe,hs,rv,lane_error,cfg,pv,ps,pl,x,y,accept,commit,invalid);
 roi_statistics #(.X0(1),.X1(10),.Y0(0),.Y1(3)) stats(clk,rst,accept,ps,x,y,data,commit,invalid,sv,avg,lo,hi,count,sum,,fs);
 integer commits=0,row,b,p,reference_sum,reference_lo,reference_hi,g,case_no=0;
 always @(posedge clk) if(rst && commit) commits=commits+1;

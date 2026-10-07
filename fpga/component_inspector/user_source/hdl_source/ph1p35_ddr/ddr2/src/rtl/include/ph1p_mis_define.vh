@@ -1,7 +1,7 @@
 `define DRAM_DDR2
 `define DDR2_512M
 `define DDR2_X16
-`define DDR2_1066
+`define DDR2_533C
 `define PH1P35
 `define PH1P35_DDRIO_PAD
 `define PH1P_VCCIO_1V50

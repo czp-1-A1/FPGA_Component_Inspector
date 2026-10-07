@@ -1,0 +1,43 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 00:07:29 on Oct 08,2026
+vlog -work test_roi_chain ../user_source/hdl_source/isp/uial2axis.v ../user_source/hdl_source/isp/isp_top.v ../user_source/hdl_source/roi_frame_guard.v ../user_source/hdl_source/roi_statistics.v ../user_source/hdl_source/roi_classifier.v ../user_source/hdl_source/roi_result_snapshot.v ../user_source/hdl_source/roi_sobel_view.v ../user_source/hdl_source/roi_observation_snapshot.v ../user_source/hdl_source/awb.v ../user_source/hdl_source/signal_delay.v ../user_source/hdl_source/isp/data128_96/data128_96.v ../user_source/hdl_source/isp/data96_128/data96_128.v ../user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v ../user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v ../user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v ../user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v ../user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v ../user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.v ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.v ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v ../user_source/ip_source/divider/divider_gate.v ../user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v 
+-- Compiling module uial2axis
+-- Compiling module isp_top
+-- Compiling module roi_frame_guard
+-- Compiling module roi_statistics
+-- Compiling module roi_classifier
+-- Compiling module roi_result_snapshot
+-- Compiling module roi_sobel_view
+-- Compiling module roi_observation_snapshot
+-- Compiling module awb
+-- Compiling module signal_delay
+-- Compiling module data128_96
+-- Compiling module data_96bit_to_128bit
+-- Compiling module demosaic
+-- Compiling module raw_matrix_3x3_buffer
+-- Compiling module zhenghe
+-- Compiling module line_buffer_demosaic
+-- Compiling module mipi_to_raw_converter
+-- Compiling module bilinear_interpolation
+-- Compiling module blk_mem_gen_demosaic
+-- Compiling module ram_c36c2ca3b3a7
+-- Compiling module blk_mem_gen_zhenghe
+-- Compiling module ram_d32970204f32
+-- Compiling module divider
+-- Compiling module blk_mem_gen_awb_delay_signal
+-- Compiling module ram_f84573da5ab5
+
+Top level modules:
+	uial2axis
+	isp_top
+End time: 00:07:29 on Oct 08,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 00:07:29 on Oct 08,2026
+vlog -sv -work test_roi_chain tb_roi_chain.v 
+-- Compiling module tb_roi_chain
+
+Top level modules:
+	tb_roi_chain
+End time: 00:07:30 on Oct 08,2026, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0

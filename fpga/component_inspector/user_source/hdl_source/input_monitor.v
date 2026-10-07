@@ -2,7 +2,7 @@
 // RAW10: four pixels per valid beat, with bubbles. Packet end comes from
 // physical HS-valid falling; allow 16 cycles for the CSI/RAW pipeline to drain.
 // Counters saturate. Lane counter counts error assertion edges, not bad pixels.
-module input_monitor #(parameter integer REF_HZ=50000000)(
+module input_monitor #(parameter integer REF_HZ=50000000, WIDTH=1024, HEIGHT=600)(
  input wire rx_clk, ref_clk, rst_n,
  input wire frame_start, frame_end, hs_valid, raw_valid,
  input wire [1:0] lane_error,
@@ -48,7 +48,7 @@ always @(posedge rx_clk or negedge rst_n) begin
    end
    if(frame_end) begin
     active<=0; last_width<=first_width; last_height<=lines;
-    if((line_bad || raw_overflow || pixels!=0 || first_width!=1024 || lines!=600)
+    if((line_bad || raw_overflow || pixels!=0 || first_width!=WIDTH || lines!=HEIGHT)
        && format_count!=16'hffff) format_count<=format_count+1'b1;
    end
   end

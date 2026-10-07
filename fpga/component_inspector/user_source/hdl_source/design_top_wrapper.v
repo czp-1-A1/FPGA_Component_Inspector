@@ -1,6 +1,6 @@
 
 
-module design_top_wrapper (
+module design_top_wrapper #(parameter VIDEO_WIDTH=1920,VIDEO_HEIGHT=1080,ENABLE_EDGE=0) (
     input wire        I_sys_clk,
     input wire        I_rst_n,
       
@@ -202,7 +202,13 @@ module design_top_wrapper (
 	
 	
     assign S_rst_n 		= S_pll_lock;
-    assign S_hdmi_rst_n = S_pll_lock;
+    wire S_hdmi_pll_lock;
+    wire S_hdmi_async_rst_n=S_rst_n && S_hdmi_pll_lock;
+    reg [2:0] hdmi_reset_sync;
+    always @(posedge S_hdmi_pixel_clk or negedge S_hdmi_async_rst_n)
+      if(!S_hdmi_async_rst_n) hdmi_reset_sync<=0;
+      else hdmi_reset_sync<={hdmi_reset_sync[1:0],1'b1};
+    assign S_hdmi_rst_n=hdmi_reset_sync[2];
 
     always @(posedge S_csi_rx_clk or negedge S_rst_n) begin
         if(!S_rst_n)
@@ -422,8 +428,8 @@ module design_top_wrapper (
         .clk0_out    ( S_100m_clk        ),
         .clk1_out    ( S_24m_clk         ),
 
-        .clk4_out    ( S_hdmi_pixel_clk  ),
-        .clk5_out    ( S_hdmi_serial_clk ),
+        .clk4_out    ( ),
+        .clk5_out    ( ),
 
         .lock        ( S_pll_lock        )
 
@@ -433,6 +439,9 @@ module design_top_wrapper (
 	
 
   
+    HDMI_PLL u_hdmi_pll(.refclk(I_sys_clk),.reset(~I_rst_n),
+      .clk0_out(S_hdmi_pixel_clk),.clk1_out(S_hdmi_serial_clk),.lock(S_hdmi_pll_lock));
+
   ae_set u_ae_set (
       .I_clk(S_24m_clk),
       .I_rst(~S_rst_n),
@@ -539,8 +548,8 @@ raw10_unpacket_2lane u_raw10_unpacket (
 
 //将数据转为stream流
 uial2axis #(
-.IMG_WIDTH(1024),
-.IMG_HEIGHT(600),
+.IMG_WIDTH(VIDEO_WIDTH),
+.IMG_HEIGHT(VIDEO_HEIGHT),
 .INPUT_DATA_WIDTH(40)
 ) 
 u_uial2axis (
@@ -595,9 +604,9 @@ image_correction #(
 
 //ISP算法顶层模块
 // One shared set of experimental ROI bounds for statistics and the display.
-localparam ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428;
+localparam ROI_X0=(VIDEO_WIDTH-512)/2,ROI_X1=ROI_X0+512,ROI_Y0=(VIDEO_HEIGHT-256)/2,ROI_Y1=ROI_Y0+256;
 // One pocket core supplies the statistics; the large ROI remains a viewing aid.
-localparam SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340;
+localparam SAMPLE_X0=(VIDEO_WIDTH-80)/2,SAMPLE_X1=SAMPLE_X0+80,SAMPLE_Y0=(VIDEO_HEIGHT-80)/2,SAMPLE_Y1=SAMPLE_Y0+80;
 // Placeholders only: enable after single-hole ROI and optical calibration.
 localparam CLASS_CALIBRATED=0;
 localparam [7:0] CLASS_THRESHOLD=0;
@@ -608,12 +617,12 @@ wire [27:0] roi_display_record;
 wire [82:0] observation_record;
 wire [17:0] observation_request,observation_receive,observation_display;
 observation_controls u_observation_controls(
- .clk(I_sys_clk),.rst_n(S_rst_n),.switches(I_switch),.request(observation_request));
+ .clk(I_sys_clk),.rst_n(S_rst_n),.switches({(I_switch[1] && ENABLE_EDGE),I_switch[0]}),.request(observation_request));
 status_cdc #(.WIDTH(18)) u_observation_receive(
  .S_clk(I_sys_clk),.D_clk(S_csi_rx_clk),.rst_n(S_rst_n),
  .S_data(observation_request),.D_data(observation_receive));
 status_cdc #(.WIDTH(18)) u_observation_display(
- .S_clk(I_sys_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+ .S_clk(I_sys_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_hdmi_async_rst_n),
  .S_data(observation_request),.D_data(observation_display));
 wire roi_sample_valid;
 wire [7:0] roi_sample_mean,roi_sample_min,roi_sample_max;
@@ -633,7 +642,8 @@ wire [35:0] video_diagnostics;
 wire completed_valid,active_valid,capture_ok,display_ok;
 wire [1:0] completed_rp,active_rp;
 wire [15:0] lost_frames,overflow_frames,underflow_frames;
-isp_top #(.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
+isp_top #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.ENABLE_EDGE(ENABLE_EDGE),
+ .VIEW_X0(ROI_X0),.VIEW_X1(ROI_X1),.VIEW_Y0(ROI_Y0),.VIEW_Y1(ROI_Y1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
 .axi4s_video_aclk(S_csi_rx_clk),
 .I_rst_n         (S_rst_n),
 .I_tlast         (S_raw_tlast	),
@@ -659,7 +669,7 @@ isp_top #(.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPL
   );
 
 
-    video_in u_video_in(
+    video_in #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT)) u_video_in(
         .I_rst_n              (  S_rst_n             ),
 
         .I_camera_clk         ( S_csi_rx_clk          ),
@@ -696,11 +706,12 @@ isp_top #(.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPL
     assign S_ddr_user_wr_data  = S_vi_ddr_wr_data;
 
 
-    assign S_video_out_rst_n = S_hdmi_rst_n;
+    assign S_video_out_rst_n = S_rst_n; // DDR drain must survive HDMI loss.
 
-    video_out u_video_out(
+    video_out #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.CHECK_DISPLAY_LOCK(1)) u_video_out(
         .I_rst_n             ( S_video_out_rst_n    ),
         .I_ddr_clk           ( S_ddr_clk            ),
+        .I_display_lock(S_hdmi_pll_lock),.I_pixel_rst_n(S_hdmi_rst_n),
  
         .O_video_out_rd_busy ( S_video_out_rd_busy  ),
         .I_video_in_wr_busy  ( S_video_in_wr_busy   ),
@@ -789,14 +800,14 @@ isp_top #(.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPL
 
 
     uivtc #(
-        .H_ActiveSize ( 1024 ),
-        .H_FrameSize  ( 1344 ),
-        .H_SyncStart  ( 1184 ),
-        .H_SyncEnd    ( 1208 ),
-        .V_ActiveSize ( 600  ),
-        .V_FrameSize  ( 635  ),
-        .V_SyncStart  ( 612  ),
-        .V_SyncEnd    ( 614  )
+        .H_ActiveSize ( VIDEO_WIDTH ),
+        .H_FrameSize  ( 2200 ),
+        .H_SyncStart  ( 2008 ),
+        .H_SyncEnd    ( 2052 ),
+        .V_ActiveSize ( VIDEO_HEIGHT ),
+        .V_FrameSize  ( 1125 ),
+        .V_SyncStart  ( 1084 ),
+        .V_SyncEnd    ( 1089 )
     )u_hdmi_vtc(
         .I_vtc_rstn    ( S_hdmi_rst_n    ),
         .I_vtc_clk     ( S_hdmi_pixel_clk ),
@@ -810,8 +821,8 @@ isp_top #(.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPL
     hdmi_mixer #(
         .H_OFFSET   ( 0    ),
         .V_OFFSET   ( 0    ),
-        .IMG_WIDTH  ( 1024 ),
-        .IMG_HEIGHT ( 600  ),
+        .IMG_WIDTH  ( VIDEO_WIDTH ),
+        .IMG_HEIGHT ( VIDEO_HEIGHT ),
         .DEBUG_MODE ( 0    )
     )u_hdmi_mixer(
         .I_clk           ( S_hdmi_pixel_clk   ),
@@ -832,7 +843,7 @@ isp_top #(.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPL
 
     wire [15:0] mon_width,mon_height,mon_fps,mon_lane,mon_format,mon_gap;
     wire [31:0] mon_frames,mon_seconds;
-    input_monitor u_input_monitor(
+    input_monitor #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT)) u_input_monitor(
         .rx_clk(S_csi_rx_clk),.ref_clk(I_sys_clk),.rst_n(S_rst_n),
         .frame_start(S_raw10_frame_start),.frame_end(S_raw10_frame_end),
         .hs_valid(S_hs_rx_valid),.raw_valid(S_raw10_valid),.lane_error(S_lane_error),
@@ -840,12 +851,12 @@ isp_top #(.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPL
         .format_errors(mon_format),.gap_seconds(mon_gap),.frames(mon_frames),.uptime(mon_seconds));
     wire [159:0] mon_display;
     status_cdc #(.WIDTH(160)) u_monitor_display(
-        .S_clk(I_sys_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+        .S_clk(I_sys_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_hdmi_async_rst_n),
         .S_data({mon_width,mon_height,mon_fps,mon_lane,mon_format,mon_gap,mon_frames,mon_seconds}),
         .D_data(mon_display));
     wire [48:0] cam_display;
     status_cdc #(.WIDTH(49)) u_camera_display(
-        .S_clk(S_24m_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+        .S_clk(S_24m_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_hdmi_async_rst_n),
         .S_data({S_ae,S_ag,S_i2c_errors,(S_cam_cfg_done && S_ae_cfg_done && !S_ae_req)}),
         .D_data(cam_display));
     wire exp_vs,exp_hs,exp_de;
@@ -854,27 +865,27 @@ isp_top #(.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPL
     wire observation_match=observation_data[45:28]==observation_display;
     wire [27:0] roi_display={observation_data[27:25],(observation_data[24] && observation_match),observation_data[23:0]};
     status_cdc #(.WIDTH(83)) u_roi_display(
-        .S_clk(S_csi_rx_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+        .S_clk(S_csi_rx_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_hdmi_async_rst_n),
         .S_data(observation_record),.D_data(observation_data));
     wire [16:0] transport_display;
     wire [51:0] overflow_display;
     status_cdc #(.WIDTH(17)) u_transport_display(
-     .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+     .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_hdmi_async_rst_n),
      .S_data({capture_ok,lost_frames}),.D_data(transport_display));
     status_cdc #(.WIDTH(52)) u_overflow_display(
-     .S_clk(S_csi_rx_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+     .S_clk(S_csi_rx_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_hdmi_async_rst_n),
      .S_data({video_diagnostics,overflow_frames}),.D_data(overflow_display));
     wire transport_ok=transport_display[16] && display_ok;
     wire roi_display_valid;
     wire [1:0] roi_display_state_code;
     roi_display_state u_roi_display_state(
-        .clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),.cfg_done(cam_display[0] && transport_ok),
+        .clk(S_hdmi_pixel_clk),.rst_n(S_hdmi_rst_n),.cfg_done(cam_display[0] && transport_ok),
         .exposure(cam_display[48:33]),.gain(cam_display[32:17]),.fps(mon_display[127:112]),
         .calibration_ok(CLASS_CALIBRATED && cam_display[48:33]==CLASS_EXPOSURE && cam_display[32:17]==CLASS_GAIN),
         .record(roi_display),.observation_request(observation_display),.sample_valid(roi_display_valid),.state(roi_display_state_code));
-    experiment_osd #(.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
+    experiment_osd #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
  .SAMPLE_X0(SAMPLE_X0),.SAMPLE_X1(SAMPLE_X1),.SAMPLE_Y0(SAMPLE_Y0),.SAMPLE_Y1(SAMPLE_Y1)) u_experiment_osd(
-        .clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+        .clk(S_hdmi_pixel_clk),.rst_n(S_hdmi_rst_n),
         .vs(S_hdmi_out_vsync),.hs(S_hdmi_out_hsync),.de(S_hdmi_out_de),.rgb(S_hdmi_out_data),
         .exposure(cam_display[48:33]),.gain(cam_display[32:17]),
         .view_mode(observation_display[1:0]),.edge_count(observation_data[58:46]),.edge_sum(observation_data[82:59]),
@@ -889,7 +900,8 @@ isp_top #(.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPL
         .frames(mon_display[63:32]),.uptime(mon_display[31:0]),
         .out_vs(exp_vs),.out_hs(exp_hs),.out_de(exp_de),.out_rgb(exp_rgb));
 
-    hdmi_tx u_hdmi_tx(
+    hdmi_tx #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.HTOTAL(2200),.VTOTAL(1125),
+ .HFP(88),.HSA(44),.HBP(148),.VFP(4),.VSA(5),.VBP(36),.VIC(34)) u_hdmi_tx(
         .I_pixel_clk        ( S_hdmi_pixel_clk  ),
         .I_serial_clk       ( S_hdmi_serial_clk ),
         .I_rst              ( ~S_hdmi_rst_n     ),

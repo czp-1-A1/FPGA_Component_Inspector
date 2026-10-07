@@ -1,10 +1,11 @@
 // Half-open ROI. Four pixels retain the AWB high-to-low display order.
 // Approximate luminance is floor((R+2G+B)/4); no pixel-rate multiplication/divide.
 module roi_statistics #(
+ parameter WIDTH=1024,HEIGHT=600,X_BITS=$clog2(WIDTH+1),Y_BITS=$clog2(HEIGHT+1),
  parameter X0=256,X1=768,Y0=172,Y1=428
 )(
  input wire clk,rst_n,pixel_accept,pixel_sof,
- input wire [10:0] pixel_x,input wire [9:0] pixel_y,input wire [95:0] rgb,
+ input wire [X_BITS-1:0] pixel_x,input wire [Y_BITS-1:0] pixel_y,input wire [95:0] rgb,
  input wire frame_commit,invalidate,
  output reg sample_valid,output reg [7:0] mean,minimum,maximum,
  output reg [19:0] sample_pixels,output reg [27:0] sample_sum,

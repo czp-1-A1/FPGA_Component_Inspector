@@ -1,0 +1,33 @@
+Reading D:/modeltech64_10.5/tcl/vsim/pref.tcl
+
+# 10.5
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/display_state/transcript.log -wlf modelsim_work/display_state/wave.wlf -do "log /tb_display_state/*; run -all; quit -code 1 -force" test_display_state.tb_display_state 
+# Start time: 23:57:58 on Oct 07,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_display_state(fast)
+# Loading work.roi_classifier(fast)
+# Loading work.roi_result_snapshot(fast)
+# Loading work.status_cdc(fast)
+# Loading work.roi_display_state(fast)
+# log /tb_display_state/*
+#  run -all
+# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, stopped CSI, FPS recovery and reset require fresh sample
+# ** Note: $finish    : tb_display_state.v(61)
+#    Time: 10903410 ps  Iteration: 1  Instance: /tb_display_state
+# End time: 23:57:59 on Oct 07,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

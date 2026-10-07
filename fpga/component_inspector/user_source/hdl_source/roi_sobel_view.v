@@ -2,6 +2,7 @@
 // downstream FIFO reserves a row. Unrecoverable cache overrun aborts the frame.
 module roi_sobel_view #(
  parameter WIDTH=1024,HEIGHT=600,
+ parameter X_BITS=$clog2(WIDTH+1),Y_BITS=$clog2(HEIGHT+1),GROUP_BITS=$clog2(WIDTH/4),
  parameter X0=256,X1=768,Y0=172,Y1=428,
  parameter CORE_X0=472,CORE_X1=552,CORE_Y0=260,CORE_Y1=340,
  parameter EDGE_THRESHOLD=80
@@ -10,18 +11,18 @@ module roi_sobel_view #(
  input wire [95:0] rgb,input wire [1:0] mode,input wire invalidate,
  input wire view_ready,output reg frame_bad,
  output reg out_valid,out_last,out_early_sof,output reg [95:0] out_rgb,
- output reg [10:0] out_x,output reg [9:0] out_y,
+ output reg [X_BITS-1:0] out_x,output reg [Y_BITS-1:0] out_y,
  output reg [12:0] core_pixels,edge_count,output reg [23:0] edge_sum,
  output wire [31:0] timing_debug
 );
 localparam BEATS=WIDTH/4;
-reg [7:0] write_group,read_group;
-reg [9:0] write_y,read_y,ready_rows;
+reg [GROUP_BITS-1:0] write_group,read_group;
+reg [Y_BITS-1:0] write_y,read_y,ready_rows;
 reg reading,input_armed,tail_bypass;
 reg v1,v2,v3,v4,previous;
 reg [1:0] frame_mode;
-wire [7:0] write_address=pixel_sof ? 8'd0 : write_group;
-wire [9:0] write_row=pixel_sof ? 10'd0 : write_y;
+wire [GROUP_BITS-1:0] write_address=pixel_sof ? 8'd0 : write_group;
+wire [Y_BITS-1:0] write_row=pixel_sof ? 10'd0 : write_y;
 // Ignore residual AWB beats between the early reset and the true pixel SOF.
 wire input_valid=pixel_valid && (input_armed || pixel_sof) && !early_sof;
 // Rows at/below Y1 are outside the processing window. Switch to the native
@@ -39,7 +40,7 @@ wire read_issue=frame_mode[1] && !frame_bad && !cache_overrun &&
  !bypass_tail &&
  !early_sof && !pixel_sof && read_y<HEIGHT &&
  (reading || (ready_rows>read_y && view_ready));
-wire [7:0] read_address=reading ? read_group : 8'd0;
+wire [GROUP_BITS-1:0] read_address=reading ? read_group : 8'd0;
 // Observability only: input line period and longest consecutive row-credit wait.
 // The ISP snapshots these old-epoch values on the same early FS that clears them.
 reg line_seen,period_seen;
@@ -78,8 +79,8 @@ generate for(bank=0;bank<4;bank=bank+1) begin : line_bank
  end
  assign row_q[bank]=q;
 end endgenerate
-reg [10:0] x1,x2,x3,x4;
-reg [9:0] y1,y2,y3,y4;
+reg [X_BITS-1:0] x1,x2,x3,x4;
+reg [Y_BITS-1:0] y1,y2,y3,y4;
 reg [1:0] mode1,mode2,mode3,mode4;
 reg [31:0] top2,mid2,bot2;
 reg [95:0] rgb2,rgb3,rgb4;
@@ -140,8 +141,8 @@ end
 reg [31:0] top_p,mid_p,bot_p;
 reg [7:0] left_t,left_m,left_b;
 reg [95:0] rgb_p;
-reg [10:0] x_p;
-reg [9:0] y_p;
+reg [X_BITS-1:0] x_p;
+reg [Y_BITS-1:0] y_p;
 reg [1:0] mode_p;
 wire last_p=x_p==WIDTH-4;
 wire process=previous && (v2 || last_p);
@@ -217,7 +218,7 @@ always @(posedge clk or negedge rst_n) begin
   out_valid<=v4;out_last<=v4 && x4==WIDTH-4;out_x<=x4;out_y<=y4;
   if(!(pixel_sof ? mode[1] : frame_mode[1]) || bypass_tail) begin
    out_valid<=input_valid;out_last<=input_valid && pixel_last;
-   out_x<={1'b0,write_address,2'b00};out_y<=write_row;
+   out_x<=write_address*4;out_y<=write_row;
   end
   if(early_sof || frame_bad || cache_overrun) begin out_valid<=0;out_last<=0;end
   for(lane=0;lane<4;lane=lane+1) begin

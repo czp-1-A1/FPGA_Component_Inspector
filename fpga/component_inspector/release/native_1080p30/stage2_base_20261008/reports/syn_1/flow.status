@@ -1,0 +1,23 @@
+Location         : C:\Users\Li47\Desktop\aa\native_1080p30_r4_20261007\td_project\camera_to_dsi_display_Runs\syn_1
+Running with     : Tang Dynasty v6.2.178840
+                   Copyright (c) 2012-2025 Anlogic Inc.
+Top Model        : design_top_wrapper
+Device           : PH1P35MDG324
+Speed            : 3
+
+Timing Mode      : basic
+Setup            : WNS    13ps  TNS        0ps  NUM_FEPS     0
+Hold             : WNS   114ps  TNS        0ps  NUM_FEPS     0
+
+Flow Statistics  :
+---------------------------------------------------------------------------------------------------
+     command     |  #calls  |  wall time   |  cpu time(s)  |  used memory(mb)  |  peak memory(mb)  
+---------------------------------------------------------------------------------------------------
+  optimize_gate  |    1     |  1m13s(57%)  |    71(57%)    |       1167        |       1167        
+  optimize_rtl   |    1     |   51s(40%)   |    50(40%)    |        924        |        975        
+  import_device  |    1     |    1s(0%)    |     1(0%)     |        332        |        332        
+    read_adc     |    1     |    1s(0%)    |     1(0%)     |        659        |        660        
+    read_sdc     |    3     |    0s(0%)    |     0(0%)     |        654        |        660        
+---------------------------------------------------------------------------------------------------
+      total      |    7     |     2m6s     |      123      |       1167        |       1167        
+---------------------------------------------------------------------------------------------------

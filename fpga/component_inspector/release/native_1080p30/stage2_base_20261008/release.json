@@ -1,0 +1,55 @@
+{
+  "status": "DIAGNOSTIC_CANDIDATE_NOT_ACCEPTED",
+  "stage": 2,
+  "enable_edge": 0,
+  "branch": "lj4747-contest-work",
+  "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "source_identity": "input_snapshot.json SHA-256 manifest; working changes not committed",
+  "bit_sha256": "7b8c08c27582960da985b52102c0c9273533c3bf5cabc89d757cbfee7588e709",
+  "bit_bytes": 1789539,
+  "td": "6.2.178840",
+  "modelsim": "SE-64 10.5 (2016-02-13)",
+  "routed_setup_wns_ns": 0.143,
+  "routed_hold_wns_ns": 0.02,
+  "setup_tns_ns": 0,
+  "hold_tns_ns": 0,
+  "setup_violated_endpoints": 0,
+  "hold_violated_endpoints": 0,
+  "sta_coverage_percent": 95.31,
+  "all_paths_timing_accepted": false,
+  "resources": {
+    "slices": 14911,
+    "slice_capacity": 21216,
+    "eram": 45,
+    "eram_capacity": 108,
+    "dsp": 8,
+    "dsp_capacity": 40,
+    "pll": 5,
+    "pll_capacity": 6
+  },
+  "clock_model_measurement_mhz": {
+    "pixel": 74.25,
+    "serial": 371.250001,
+    "ratio": 5.0
+  },
+  "tests_passed": 25,
+  "tests_failed_final": 0,
+  "tests_not_run": [
+    "FHD independent numerical RAW-to-demosaic/AWB reference",
+    "FHD EDGE/composite integration and four-mode round trips (stage 3 gated)",
+    "physical DDR write/read/stress",
+    "all physical acceptance"
+  ],
+  "open_constraints": {
+    "no_input_delay": 39,
+    "no_output_delay": 63,
+    "partial_input_delay": 1,
+    "dummy_nodes": 2,
+    "shadowed_groups": 5,
+    "invalid_constraints": 0,
+    "no_clock": 0,
+    "pll_mismatch": 0
+  },
+  "burn": "manual only; no board/JTAG actions performed",
+  "rollback_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
+}

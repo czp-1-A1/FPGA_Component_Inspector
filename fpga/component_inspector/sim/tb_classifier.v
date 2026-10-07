@@ -16,7 +16,7 @@ wire [27:0] sum;
 wire [1:0] state;
 wire cancel=invalid || !cfg || |lane;
 wire [26:0] display;
-roi_frame_guard #(.WIDTH(20),.HEIGHT(12)) guard(clk,rst,fs,fe,hs,rv,lane,cfg,pv,ps,pl,x,y,accept,commit,invalid);
+roi_frame_guard #(.WIDTH(20),.HEIGHT(12),.X_BITS(11),.Y_BITS(10)) guard(clk,rst,fs,fe,hs,rv,lane,cfg,pv,ps,pl,x,y,accept,commit,invalid);
 roi_statistics #(.X0(1),.X1(17),.Y0(2),.Y1(10)) stats(clk,rst,accept,ps,x,y,rgb,commit,cancel,sv,mean,lo,hi,count,sum,new_sample,fs);
 roi_classifier classifier(clk,rst,cal,fs,cancel,sv,new_sample,mean,threshold,high_side,state);
 status_cdc #(.WIDTH(27)) mailbox(clk,dclk,rst,{state,sv,mean,lo,hi},display);

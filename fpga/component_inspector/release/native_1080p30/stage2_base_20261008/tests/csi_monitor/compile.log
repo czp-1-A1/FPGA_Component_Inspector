@@ -1,0 +1,23 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 23:58:07 on Oct 07,2026
+vlog -work test_csi_monitor ../user_source/hdl_source/status_cdc.v ../user_source/hdl_source/input_monitor.v ../user_source/hdl_source/isp/csi_unpacket_2lane.v ../user_source/hdl_source/isp/raw10_unpacket_2lane.v 
+-- Compiling module status_cdc
+-- Compiling module input_monitor
+-- Compiling module csi_unpacket_2lane
+-- Compiling module raw10_unpacket_2lane
+
+Top level modules:
+	input_monitor
+	csi_unpacket_2lane
+	raw10_unpacket_2lane
+End time: 23:58:08 on Oct 07,2026, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 23:58:08 on Oct 07,2026
+vlog -sv -work test_csi_monitor tb_csi_monitor.v 
+-- Compiling module tb_csi_monitor
+
+Top level modules:
+	tb_csi_monitor
+End time: 23:58:08 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

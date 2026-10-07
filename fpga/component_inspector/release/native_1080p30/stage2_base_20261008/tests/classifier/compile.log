@@ -1,0 +1,24 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 00:07:27 on Oct 08,2026
+vlog -work test_classifier ../user_source/hdl_source/roi_frame_guard.v ../user_source/hdl_source/roi_statistics.v ../user_source/hdl_source/roi_classifier.v ../user_source/hdl_source/status_cdc.v 
+-- Compiling module roi_frame_guard
+-- Compiling module roi_statistics
+-- Compiling module roi_classifier
+-- Compiling module status_cdc
+
+Top level modules:
+	roi_frame_guard
+	roi_statistics
+	roi_classifier
+	status_cdc
+End time: 00:07:27 on Oct 08,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 00:07:27 on Oct 08,2026
+vlog -sv -work test_classifier tb_classifier.v 
+-- Compiling module tb_classifier
+
+Top level modules:
+	tb_classifier
+End time: 00:07:27 on Oct 08,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

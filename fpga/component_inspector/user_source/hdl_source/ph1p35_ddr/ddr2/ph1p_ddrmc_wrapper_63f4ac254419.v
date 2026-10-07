@@ -12,7 +12,7 @@
 `endif
 
 module ph1p_ddrmc_wrapper_63f4ac254419 #(
-    parameter tCK              = 1876,
+    parameter tCK              = 3750,
     parameter BK_NUM           = 2 ,
     parameter AC_NUM           = 4 ,
     parameter DX_NUM           = 2 ,
@@ -34,21 +34,21 @@ module ph1p_ddrmc_wrapper_63f4ac254419 #(
     parameter DRAM_ODT         = "RZQ/4",
 
     parameter WDM              = 1 ,
-    parameter CWL              = 6 ,
-    parameter CL               = 8 ,
+    parameter CWL              = 3 ,
+    parameter CL               = 4 ,
     parameter CAL_EN           = 1 ,
 
 // PLL
-    parameter PLL0_REFCLK_FREQ = "100",
-    parameter PLL0_REFCLK_DIV  =  1   ,
-    parameter PLL0_FBKCLK_DIV  =  12  ,
+    parameter PLL0_REFCLK_FREQ = 50.0,
+    parameter PLL0_REFCLK_DIV  =  2   ,
+    parameter PLL0_FBKCLK_DIV  =  32  ,
     parameter PLL0_CLK2_DIV    =  3   ,
-    parameter PLL0_CLK3_DIV    =  24  ,
+    parameter PLL0_CLK3_DIV    =  16  ,
     parameter PLL0_FRAC        = "DISABLE",
     parameter PLL0_FRAC_SDM    =  0   ,
-    parameter PLL1_REFCLK_FREQ = "100",
-    parameter PLL1_REFCLK_DIV  =  1   ,
-    parameter PLL1_CLK0_DIV    =  12  ,
+    parameter PLL1_REFCLK_FREQ = 66.6666666667,
+    parameter PLL1_REFCLK_DIV  =  2   ,
+    parameter PLL1_CLK0_DIV    =  24  ,
 
 // MC
     parameter MC_ECC           = "OFF",

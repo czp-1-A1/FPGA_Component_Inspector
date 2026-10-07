@@ -1,6 +1,6 @@
 param(
-    [string]$ModelSimBin = "D:/modelsim/win64",
-    [string]$TdSimRoot = "D:/AAA/FPGA.....YZW/sim_release",
+    [string]$ModelSimBin = "D:/modeltech64_10.5/win64",
+    [string]$TdSimRoot = "D:/td6.2.1/sim_release",
     [switch]$TieUnusedAwbRamInputs,
     [string[]]$OnlyTests = @()
 )
@@ -26,7 +26,8 @@ try {
     $vendor = @(
         "$TdSimRoot/common/al_map_basic.v", "$TdSimRoot/common/al_map_lut.v",
         "$TdSimRoot/common/al_map_adder.v", "$TdSimRoot/common/al_phy_glbl.v",
-        "$TdSimRoot/ph1p/ph1p_logic_eram.v", "$TdSimRoot/ph1p/ph1p_phy_gsr.v"
+        "$TdSimRoot/ph1p/ph1p_logic_eram.v", "$TdSimRoot/ph1p/ph1p_phy_gsr.v",
+        "$TdSimRoot/ph1p/ph1p_logic_bufg.v", "$TdSimRoot/ph1p/ph1p_phy_pll_v2.v"
     )
     foreach ($path in $vendor) {
         if (!(Test-Path -LiteralPath $path)) { throw "Missing vendor simulation library: $path" }
@@ -53,6 +54,13 @@ try {
         "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
         "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v")
     $tests = @(
+        @{Name="fhd_faults"; Pass="PASS FHD faults:"; Sources=@("$hdl/roi_frame_guard.v", "tb_fhd_faults.v")},
+        @{Name="fhd_osd"; Pass="PASS FHD OSD decimal"; Sources=@("$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/experiment_osd.v", "tb_fhd_osd.v")},
+        @{Name="fhd_mc"; Pass="PASS: SWITCH_TRANSPORT"; Sources=@("$hdl/roi_sobel_view.v", "$hdl/isp/data96_128/data96_128.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$hdl/mc_to_user_interface.v", "$ip/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v", "$ip/w155_d512_fifo/w155_d512_fifo.v", "tb_fhd_mc.v")},
+        @{Name="native_pll"; Pass="PASS native PLL:"; Sources=@("$hdl/native_hdmi_pll.v", "$ip/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v", "tb_native_pll.v")},
+        @{Name="fhd_csi"; Pass="PASS FHD CSI:"; Sources=@("$hdl/input_monitor.v", "$hdl/status_cdc.v", "$hdl/isp/csi_unpacket_2lane.v", "$hdl/isp/raw10_unpacket_2lane.v", "tb_fhd_csi.v")},
+        @{Name="fhd_reader"; Pass="PASS FHD reader:"; Sources=@("$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_fhd_reader.v")},
+        @{Name="fhd_isp"; Pass="PASS FHD ISP mode=1:"; Sources=($ispSources + @("$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_fhd_isp.v"))},
         @{Name="isp_writer_stop"; Pass="PASS actual ISP full epoch:"; Sources=($ispSources + @("$hdl/observation_controls.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_isp_writer_stop.v"))},
         @{Name="sobel_tail"; Pass="PASS Sobel tail:"; Sources=@("$hdl/roi_sobel_view.v", "$hdl/isp/data96_128/data96_128.v", "tb_sobel_tail.v")},
         @{Name="sobel_view"; Pass="PASS Sobel view:"; Sources=@("$hdl/roi_sobel_view.v", "$hdl/isp/data96_128/data96_128.v", "tb_sobel_view.v")},
@@ -107,11 +115,15 @@ try {
         & "$ModelSimBin/vlog.exe" -sv -work $library @defines $testbench >> "$directory/compile.log" 2>&1
         if ($LASTEXITCODE -ne 0) { throw "Testbench compile failed: $($test.Name); see $directory/compile.log" }
         $tops = @("$library.tb_$($test.Name)")
-        if ($test.Name -in @("pixel_interface", "roi_chain", "isp_writer_stop")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
+        if ($test.Name -in @("pixel_interface", "roi_chain", "isp_writer_stop", "fhd_isp")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
         $commands = "log /tb_$($test.Name)/*; run -all; quit -code 1 -force"
         $access = "+acc"
-        if ($test.Name -in @("roi_chain", "isp_writer_stop")) { $access = "+acc=rn+/tb_$($test.Name)" }
-        & "$ModelSimBin/vsim.exe" -c -L anlogic_sim "-voptargs=$access" -onfinish exit -l "$directory/transcript.log" -wlf "$directory/wave.wlf" -do $commands @tops *> "$directory/console.log"
+        if ($test.Name -in @("roi_chain", "isp_writer_stop", "fhd_isp")) { $access = "+acc=rn+/tb_$($test.Name)" }
+        $functionalOptions = @()
+        # Only the analog PLL frequency test disables vendor internal specify
+        # checks. This measures functional clocks; routed STA remains mandatory.
+        if ($test.Name -eq "native_pll") { $functionalOptions += "+notimingchecks" }
+        & "$ModelSimBin/vsim.exe" -c @functionalOptions -L anlogic_sim "-voptargs=$access" -onfinish exit -l "$directory/transcript.log" -wlf "$directory/wave.wlf" -do $commands @tops *> "$directory/console.log"
         if ($LASTEXITCODE -ne 0) { throw "Simulation failed: $($test.Name); see $directory/console.log" }
         $output = Get-Content -LiteralPath "$directory/console.log" -Raw
         if (!$output.Contains($test.Pass) -or $output -match '(?m)^#?\s*\*\* (Fatal|Error):') {

@@ -1,0 +1,25 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 23:57:59 on Oct 07,2026
+vlog -work test_controls ../user_source/hdl_source/uiisp_beta/ae_set.v ../user_source/hdl_source/uics500_cfg/uicfgcs500.v ../user_source/hdl_source/uics500_cfg/uics500reg.v ../user_source/hdl_source/uics500_cfg/uics500regAE.v ../user_source/hdl_source/uics500_cfg/SC500GainTbl.v 
+-- Compiling module ae_set
+-- Compiling module uicfgcs500
+-- Compiling module uics500reg
+-- Compiling module uics500regAE
+-- Compiling module SC500GainTbl
+
+Top level modules:
+	ae_set
+	uicfgcs500
+End time: 23:57:59 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 23:57:59 on Oct 07,2026
+vlog -sv -work test_controls tb_controls.v 
+-- Compiling module tb_controls
+-- Compiling module uii2c
+
+Top level modules:
+	tb_controls
+	uii2c
+End time: 23:57:59 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

@@ -11,9 +11,9 @@
             <ipxact:configurableElementValues>
                 <ipxact:configurableElementValue referenceId="PH1P_DDR_TYPE">&quot;Integrated&quot;</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="PH1P_SINGLE_PLL">0</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="PH1P_REF_CLK">100.0000</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="PH1P_DDR_SPEED">1066.00</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="PH1P_SPEED_BIN">&quot;DDR2-1066&quot;</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="PH1P_REF_CLK">50.0000</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="PH1P_DDR_SPEED">533.3333333333</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="PH1P_SPEED_BIN">&quot;DDR2-533C&quot;</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="PH1P_MC_EN">1</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="GEN_AXI_CTRL">1</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="PH1P_AXI_CTRL">0</ipxact:configurableElementValue>
@@ -46,7 +46,7 @@
                 <ipxact:configurableElementValue referenceId="ENABLE_DDR4">0</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="ENABLE_TWO_TYPE">1</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="GEN_RESET">0</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="tCK">1876</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="tCK">3750</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="CS_WIDTH">1</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="CKE_WIDTH">1</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="CK_WIDTH">1</ipxact:configurableElementValue>
@@ -63,8 +63,8 @@
                 <ipxact:configurableElementValue referenceId="DRAM_DRV">&quot;0&quot;</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="DRAM_ODT">&quot;75&quot;</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="WDM">1</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="CL">7</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="CWL">6</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="CL">4</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="CWL">3</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="CAL_EN">0</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="DX_NUM">2</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="DQS_WIDTH">2</ipxact:configurableElementValue>
@@ -80,16 +80,16 @@
                 <ipxact:configurableElementValue referenceId="AC_NUM">4</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="GEN_BUFG">0</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="ADD_CLK_LOC">1</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="PLL0_REFCLK_FREQ">100.0</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="PLL0_REFCLK_DIV">3</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="PLL0_REFCLK_FREQ">50.0</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="PLL0_REFCLK_DIV">2</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="PLL0_FBKCLK_DIV">32</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="PLL0_FRAC">&quot;DISABLE&quot;</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="PLL0_FRAC_SDM">0</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="PLL0_CLK2_DIV">2</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="PLL0_CLK3_DIV">21</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="PLL1_REFCLK_FREQ">133.3</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="PLL1_REFCLK_DIV">4</ipxact:configurableElementValue>
-                <ipxact:configurableElementValue referenceId="PLL1_CLK0_DIV">12</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="PLL0_CLK2_DIV">3</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="PLL0_CLK3_DIV">16</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="PLL1_REFCLK_FREQ">66.6666666667</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="PLL1_REFCLK_DIV">2</ipxact:configurableElementValue>
+                <ipxact:configurableElementValue referenceId="PLL1_CLK0_DIV">24</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="BK_NUM">2</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="ENABLE_324">0</ipxact:configurableElementValue>
                 <ipxact:configurableElementValue referenceId="DEFINE_IO_TYPE">&quot;PH1P35_DDRIO_PAD&quot;</ipxact:configurableElementValue>

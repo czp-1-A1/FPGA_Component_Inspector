@@ -1,4 +1,6 @@
 module isp_top #(
+    parameter WIDTH=1024,HEIGHT=600,ENABLE_EDGE=1,
+    parameter VIEW_X0=256,VIEW_X1=768,VIEW_Y0=172,VIEW_Y1=428,
     parameter ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340
 ) (
     input 			axi4s_video_aclk,
@@ -62,8 +64,8 @@ wire view_valid,view_last,view_early,sample_cancel;
  
  
 demosaic #(
-    .IMG_HEIGHT          (600),  // 图像高度
-    .IMG_WIDTH           (1024),   // 图像宽度
+    .IMG_HEIGHT          (HEIGHT),  // 图像高度
+    .IMG_WIDTH           (WIDTH),   // 图像宽度
     .data_complete_delay (50  ),
     .BAYER_MODE          ("BGGR")
 )
@@ -90,8 +92,8 @@ data128_96 u_data128_96 (
 );
 
 awb #(
-    .IMG_HEIGHT(600),
-    .IMG_WIDTH (1024)
+    .IMG_HEIGHT(HEIGHT),
+    .IMG_WIDTH (WIDTH)
 ) u_awb (
     .I_clk   (axi4s_video_aclk),
     .I_rst_n (I_rst_n),
@@ -119,10 +121,10 @@ wire view_frame_bad;
 wire [31:0] view_timing;
 wire [12:0] edge_pixels,edge_count;
 wire [23:0] edge_sum;
-roi_sobel_view #(.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
+roi_sobel_view #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.X0(VIEW_X0),.X1(VIEW_X1),.Y0(VIEW_Y0),.Y1(VIEW_Y1),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
  .clk(axi4s_video_aclk),.rst_n(I_rst_n),.pixel_valid(awb_O_tvalid),
  .pixel_sof(awb_pixel_sof),.pixel_last(awb_O_tlast),.early_sof(awb_O_tuser),
- .rgb(awb_O_tdata),.mode(observation_tag[1:0]),.invalidate(sample_cancel),
+ .rgb(awb_O_tdata),.mode({(observation_tag[1] && ENABLE_EDGE),observation_tag[0]}),.invalidate(sample_cancel),
  .view_ready(view_ready),.frame_bad(view_frame_bad),
  .out_valid(view_valid),.out_last(view_last),.out_early_sof(view_early),.out_rgb(view_rgb),
  .out_x(),.out_y(),.core_pixels(edge_pixels),.edge_count(edge_count),.edge_sum(edge_sum),.timing_debug(view_timing));
@@ -130,12 +132,12 @@ roi_observation_snapshot #(.CORE_AREA((ROI_X1-ROI_X0)*(ROI_Y1-ROI_Y0))) u_roi_ob
  .clk(axi4s_video_aclk),.rst_n(I_rst_n),.invalidate(sample_cancel),.tag(observation_tag),
  .legacy_record(display_record),.core_pixels(edge_pixels),.edge_count(edge_count),.edge_sum(edge_sum),
  .record(observation_record));
-wire [10:0] roi_x;
-wire [9:0] roi_y;
+wire [$clog2(WIDTH+1)-1:0] roi_x;
+wire [$clog2(HEIGHT+1)-1:0] roi_y;
 wire roi_accept,roi_commit,roi_invalidate,sample_new;
 // Cancel pending statistics on native FS, including an old in-flight division.
 assign sample_cancel=roi_invalidate || !config_ok || |lane_error || !observation_match;
-roi_frame_guard u_roi_guard(
+roi_frame_guard #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) u_roi_guard(
     .clk(axi4s_video_aclk),.rst_n(I_rst_n),
     .raw_start(raw_start),.raw_end(raw_end),.hs_valid(hs_valid),.raw_valid(raw_valid),
     .lane_error(lane_error),.config_ok(config_ok && observation_match),
@@ -157,7 +159,7 @@ always @(posedge axi4s_video_aclk or negedge I_rst_n) begin
   video_reject_reason<=video_reject_reason | video_fault;
  end else if(roi_commit && !video_frame_bad) video_frame_good<=1;
 end
-roi_statistics #(.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(ROI_Y1)) u_roi_statistics(
+roi_statistics #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(ROI_Y1)) u_roi_statistics(
     .clk(axi4s_video_aclk),.rst_n(I_rst_n),.pixel_accept(roi_accept),.pixel_sof(awb_pixel_sof),
     .pixel_x(roi_x),.pixel_y(roi_y),.rgb(awb_O_tdata),
     .frame_commit(roi_commit),.invalidate(sample_cancel),.sample_valid(sample_valid),

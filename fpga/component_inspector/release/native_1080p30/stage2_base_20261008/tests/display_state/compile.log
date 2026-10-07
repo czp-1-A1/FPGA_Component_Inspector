@@ -1,0 +1,24 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 23:57:57 on Oct 07,2026
+vlog -work test_display_state ../user_source/hdl_source/roi_classifier.v ../user_source/hdl_source/roi_result_snapshot.v ../user_source/hdl_source/roi_display_state.v ../user_source/hdl_source/status_cdc.v 
+-- Compiling module roi_classifier
+-- Compiling module roi_result_snapshot
+-- Compiling module roi_display_state
+-- Compiling module status_cdc
+
+Top level modules:
+	roi_classifier
+	roi_result_snapshot
+	roi_display_state
+	status_cdc
+End time: 23:57:57 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 23:57:57 on Oct 07,2026
+vlog -sv -work test_display_state tb_display_state.v 
+-- Compiling module tb_display_state
+
+Top level modules:
+	tb_display_state
+End time: 23:57:57 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

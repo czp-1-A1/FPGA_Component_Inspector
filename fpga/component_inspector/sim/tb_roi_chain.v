@@ -16,7 +16,7 @@ reg [17:0] request=1;
 wire [82:0] observation_record;
 uial2axis #(.IMG_WIDTH(1024),.IMG_HEIGHT(600),.INPUT_DATA_WIDTH(40)) bridge(
  clk,rst,raw,rv,fs,fe,av,adata,asof,alast);
-isp_top dut(.axi4s_video_aclk(clk),.I_rst_n(rst),.I_tlast(alast),.I_tuser(asof),
+isp_top #(.WIDTH(1024),.HEIGHT(600)) dut(.axi4s_video_aclk(clk),.I_rst_n(rst),.I_tlast(alast),.I_tuser(asof),
  .view_ready(1'b1),.video_frame_good(),.video_frame_bad(),
  .I_tdata(adata),.I_tvalid(av),.I_tdest(10'd0),.O_tready(ready),
  .O_tdata(packed_data),.O_tlast(packed_last),.O_tuser(packed_sof),.O_tvalid(packed_valid),.I_tready(in_ready),

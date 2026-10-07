@@ -1,5 +1,6 @@
 // Sampling UI. Three pixel clocks for RGB, DE, HS, VS and ENABLE bypass.
 module experiment_osd #(
+ parameter WIDTH=1024,HEIGHT=600,Y_BITS=$clog2(HEIGHT+1),FOOTER_SHIFT=HEIGHT-600,
  parameter ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
  parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340
 )(
@@ -13,7 +14,7 @@ module experiment_osd #(
  input wire [35:0] diagnostics,
  output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb
 );
-reg vs_d,de_d;reg [10:0] x;reg [9:0] y;
+reg vs_d,de_d;reg [10:0] x;reg [Y_BITS-1:0] y;
 wire start=vs && !vs_d;
 wire [19:0] exp_bcd,gain_bcd,mean_bcd,min_bcd,max_bcd,w_bcd,h_bcd,fps_bcd;
 bin16_bcd b0(clk,rst_n,start,exposure,exp_bcd);
@@ -269,76 +270,76 @@ always @* begin
   if(x>=976 && x<992) begin glyph=mode_glyph(mode_s,7);glyph_col=(x-976)/2;end
   if(x>=992 && x<1008) begin glyph=mode_glyph(mode_s,8);glyph_col=(x-992)/2;end
  end
- if(x>=16 && x<112 && y>=510 && y<534) begin
+ if(x>=16 && x<112 && y>=(510+FOOTER_SHIFT) && y<(534+FOOTER_SHIFT)) begin
   glyph_cjk=1;ink_color=24'hb0c0d4;
-  glyph_row=(y-510)/1;
+  glyph_row=(y-(510+FOOTER_SHIFT))/1;
   if(x>=16 && x<40) begin glyph=6'd9;glyph_col=(x-16)/1;end
   if(x>=40 && x<64) begin glyph=6'd10;glyph_col=(x-40)/1;end
   if(x>=64 && x<88) begin glyph=6'd11;glyph_col=(x-64)/1;end
   if(x>=88 && x<112) begin glyph=6'd12;glyph_col=(x-88)/1;end
  end
- if(x>=16 && x<208 && y>=540 && y<588) begin
+ if(x>=16 && x<208 && y>=(540+FOOTER_SHIFT) && y<(588+FOOTER_SHIFT)) begin
   glyph_cjk=1;ink_color=result_color;
-  glyph_row=(y-540)/2;
+  glyph_row=(y-(540+FOOTER_SHIFT))/2;
   if(x>=16 && x<64) begin glyph=result_glyph(class_s,0);glyph_col=(x-16)/2;end
   if(x>=64 && x<112) begin glyph=result_glyph(class_s,1);glyph_col=(x-64)/2;end
   if(x>=112 && x<160) begin glyph=result_glyph(class_s,2);glyph_col=(x-112)/2;end
   if(x>=160 && x<208) begin glyph=result_glyph(class_s,3);glyph_col=(x-160)/2;end
  end
- if(x>=304 && x<368 && y>=510 && y<542) begin
+ if(x>=304 && x<368 && y>=(510+FOOTER_SHIFT) && y<(542+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hb0c0d4;
-  glyph_row=(y-510)/2;
+  glyph_row=(y-(510+FOOTER_SHIFT))/2;
   if(x>=304 && x<320) begin glyph=7'd77;glyph_col=(x-304)/2;end
   if(x>=320 && x<336) begin glyph=7'd69;glyph_col=(x-320)/2;end
   if(x>=336 && x<352) begin glyph=7'd65;glyph_col=(x-336)/2;end
   if(x>=352 && x<368) begin glyph=7'd78;glyph_col=(x-352)/2;end
  end
- if(x>=384 && x<432 && y>=510 && y<542) begin
+ if(x>=384 && x<432 && y>=(510+FOOTER_SHIFT) && y<(542+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hffffff;
-  glyph_row=(y-510)/2;
+  glyph_row=(y-(510+FOOTER_SHIFT))/2;
   if(x>=384 && x<400) begin glyph=sample_s ? decimal(mean_bcd,2) : 7'd45;glyph_col=(x-384)/2;end
   if(x>=400 && x<416) begin glyph=sample_s ? decimal(mean_bcd,3) : 7'd45;glyph_col=(x-400)/2;end
   if(x>=416 && x<432) begin glyph=sample_s ? decimal(mean_bcd,4) : 7'd45;glyph_col=(x-416)/2;end
  end
- if(x>=464 && x<512 && y>=510 && y<542) begin
+ if(x>=464 && x<512 && y>=(510+FOOTER_SHIFT) && y<(542+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hb0c0d4;
-  glyph_row=(y-510)/2;
+  glyph_row=(y-(510+FOOTER_SHIFT))/2;
   if(x>=464 && x<480) begin glyph=7'd77;glyph_col=(x-464)/2;end
   if(x>=480 && x<496) begin glyph=7'd73;glyph_col=(x-480)/2;end
   if(x>=496 && x<512) begin glyph=7'd78;glyph_col=(x-496)/2;end
  end
- if(x>=528 && x<576 && y>=510 && y<542) begin
+ if(x>=528 && x<576 && y>=(510+FOOTER_SHIFT) && y<(542+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hffffff;
-  glyph_row=(y-510)/2;
+  glyph_row=(y-(510+FOOTER_SHIFT))/2;
   if(x>=528 && x<544) begin glyph=sample_s ? decimal(min_bcd,2) : 7'd45;glyph_col=(x-528)/2;end
   if(x>=544 && x<560) begin glyph=sample_s ? decimal(min_bcd,3) : 7'd45;glyph_col=(x-544)/2;end
   if(x>=560 && x<576) begin glyph=sample_s ? decimal(min_bcd,4) : 7'd45;glyph_col=(x-560)/2;end
  end
- if(x>=624 && x<672 && y>=510 && y<542) begin
+ if(x>=624 && x<672 && y>=(510+FOOTER_SHIFT) && y<(542+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hb0c0d4;
-  glyph_row=(y-510)/2;
+  glyph_row=(y-(510+FOOTER_SHIFT))/2;
   if(x>=624 && x<640) begin glyph=7'd77;glyph_col=(x-624)/2;end
   if(x>=640 && x<656) begin glyph=7'd65;glyph_col=(x-640)/2;end
   if(x>=656 && x<672) begin glyph=7'd88;glyph_col=(x-656)/2;end
  end
- if(x>=688 && x<736 && y>=510 && y<542) begin
+ if(x>=688 && x<736 && y>=(510+FOOTER_SHIFT) && y<(542+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hffffff;
-  glyph_row=(y-510)/2;
+  glyph_row=(y-(510+FOOTER_SHIFT))/2;
   if(x>=688 && x<704) begin glyph=sample_s ? decimal(max_bcd,2) : 7'd45;glyph_col=(x-688)/2;end
   if(x>=704 && x<720) begin glyph=sample_s ? decimal(max_bcd,3) : 7'd45;glyph_col=(x-704)/2;end
   if(x>=720 && x<736) begin glyph=sample_s ? decimal(max_bcd,4) : 7'd45;glyph_col=(x-720)/2;end
  end
- if(x>=768 && x<864 && y>=514 && y<538) begin
+ if(x>=768 && x<864 && y>=(514+FOOTER_SHIFT) && y<(538+FOOTER_SHIFT)) begin
   glyph_cjk=1;ink_color=24'h74dbc7;
-  glyph_row=(y-514)/1;
+  glyph_row=(y-(514+FOOTER_SHIFT))/1;
   if(x>=768 && x<792) begin glyph=sample_s ? 6'd11 : 6'd0;glyph_col=(x-768)/1;end
   if(x>=792 && x<816) begin glyph=sample_s ? 6'd12 : 6'd0;glyph_col=(x-792)/1;end
   if(x>=816 && x<840) begin glyph=sample_s ? 6'd18 : 6'd0;glyph_col=(x-816)/1;end
   if(x>=840 && x<864) begin glyph=sample_s ? 6'd28 : 6'd0;glyph_col=(x-840)/1;end
  end
- if(x>=304 && x<800 && y>=548 && y<564) begin
+ if(x>=304 && x<800 && y>=(548+FOOTER_SHIFT) && y<(564+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hffffff;
-  glyph_row=(y-548)/1;
+  glyph_row=(y-(548+FOOTER_SHIFT))/1;
   if(x>=304 && x<312) begin glyph=7'd73;glyph_col=(x-304)/1;end
   if(x>=312 && x<320) begin glyph=7'd78;glyph_col=(x-312)/1;end
   if(x>=320 && x<328) begin glyph=7'd32;glyph_col=(x-320)/1;end
@@ -402,9 +403,9 @@ always @* begin
   if(x>=784 && x<792) begin glyph=7'd69;glyph_col=(x-784)/1;end
   if(x>=792 && x<800) begin glyph=7'd88;glyph_col=(x-792)/1;end
  end
- if(x>=808 && x<984 && y>=548 && y<564) begin
+ if(x>=808 && x<984 && y>=(548+FOOTER_SHIFT) && y<(564+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hffae64;
-  glyph_row=(y-548)/1;
+  glyph_row=(y-(548+FOOTER_SHIFT))/1;
   if(x>=808 && x<816) begin glyph=7'd69;glyph_col=(x-808)/1;end
   if(x>=816 && x<824) begin glyph=7'd67;glyph_col=(x-816)/1;end
   if(x>=824 && x<832) begin glyph=7'd32;glyph_col=(x-824)/1;end
@@ -428,9 +429,9 @@ always @* begin
   if(x>=968 && x<976) begin glyph=7'd56;glyph_col=(x-968)/1;end
   if(x>=976 && x<984) begin glyph=7'd48;glyph_col=(x-976)/1;end
  end
- if(x>=304 && x<528 && y>=576 && y<592) begin
+ if(x>=304 && x<528 && y>=(576+FOOTER_SHIFT) && y<(592+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hffffff;
-  glyph_row=(y-576)/1;
+  glyph_row=(y-(576+FOOTER_SHIFT))/1;
   if(x>=304 && x<312) begin glyph=7'd70;glyph_col=(x-304)/1;end
   if(x>=312 && x<320) begin glyph=7'd82;glyph_col=(x-312)/1;end
   if(x>=320 && x<328) begin glyph=7'd32;glyph_col=(x-320)/1;end
@@ -460,26 +461,26 @@ always @* begin
   if(x>=512 && x<520) begin glyph=7'd69;glyph_col=(x-512)/1;end
   if(x>=520 && x<528) begin glyph=7'd88;glyph_col=(x-520)/1;end
  end
- if(x>=624 && x<744 && y>=572 && y<596) begin
+ if(x>=624 && x<744 && y>=(572+FOOTER_SHIFT) && y<(596+FOOTER_SHIFT)) begin
   glyph_cjk=1;ink_color=reason_s==1 ? 24'hef7186 : 24'hb0c0d4;
-  glyph_row=(y-572)/1;
+  glyph_row=(y-(572+FOOTER_SHIFT))/1;
   if(x>=624 && x<648) begin glyph=reason_glyph(reason_s,0);glyph_col=(x-624)/1;end
   if(x>=648 && x<672) begin glyph=reason_glyph(reason_s,1);glyph_col=(x-648)/1;end
   if(x>=672 && x<696) begin glyph=reason_glyph(reason_s,2);glyph_col=(x-672)/1;end
   if(x>=696 && x<720) begin glyph=reason_glyph(reason_s,3);glyph_col=(x-696)/1;end
   if(x>=720 && x<744) begin glyph=reason_glyph(reason_s,4);glyph_col=(x-720)/1;end
  end
- if(x>=920 && x<1016 && y>=572 && y<596) begin
+ if(x>=920 && x<1016 && y>=(572+FOOTER_SHIFT) && y<(596+FOOTER_SHIFT)) begin
   glyph_cjk=1;ink_color=24'hf7b955;
-  glyph_row=(y-572)/1;
+  glyph_row=(y-(572+FOOTER_SHIFT))/1;
   if(x>=920 && x<944) begin glyph=error_s ? 6'd30 : 6'd0;glyph_col=(x-920)/1;end
   if(x>=944 && x<968) begin glyph=error_s ? 6'd31 : 6'd0;glyph_col=(x-944)/1;end
   if(x>=968 && x<992) begin glyph=error_s ? 6'd32 : 6'd0;glyph_col=(x-968)/1;end
   if(x>=992 && x<1016) begin glyph=error_s ? 6'd33 : 6'd0;glyph_col=(x-992)/1;end
  end
- if(x>=536 && x<592 && y>=576 && y<592) begin
+ if(x>=536 && x<592 && y>=(576+FOOTER_SHIFT) && y<(592+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hffae64;
-  glyph_row=(y-576)/1;
+  glyph_row=(y-(576+FOOTER_SHIFT))/1;
   if(x>=536 && x<544) begin glyph=7'd79;glyph_col=(x-536)/1;end
   if(x>=544 && x<552) begin glyph=7'd70;glyph_col=(x-544)/1;end
   if(x>=552 && x<560) begin glyph=7'd32;glyph_col=(x-552)/1;end
@@ -488,9 +489,9 @@ always @* begin
   if(x>=576 && x<584) begin glyph=hexchar(overflow_s[4+:4]);glyph_col=(x-576)/1;end
   if(x>=584 && x<592) begin glyph=hexchar(overflow_s[0+:4]);glyph_col=(x-584)/1;end
  end
- if(x>=752 && x<808 && y>=576 && y<592) begin
+ if(x>=752 && x<808 && y>=(576+FOOTER_SHIFT) && y<(592+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hffae64;
-  glyph_row=(y-576)/1;
+  glyph_row=(y-(576+FOOTER_SHIFT))/1;
   if(x>=752 && x<760) begin glyph=7'd86;glyph_col=(x-752)/1;end
   if(x>=760 && x<768) begin glyph=7'd70;glyph_col=(x-760)/1;end
   if(x>=768 && x<776) begin glyph=7'd32;glyph_col=(x-768)/1;end
@@ -499,9 +500,9 @@ always @* begin
   if(x>=792 && x<800) begin glyph=hexchar(lost_s[4+:4]);glyph_col=(x-792)/1;end
   if(x>=800 && x<808) begin glyph=hexchar(lost_s[0+:4]);glyph_col=(x-800)/1;end
  end
- if(x>=832 && x<888 && y>=576 && y<592) begin
+ if(x>=832 && x<888 && y>=(576+FOOTER_SHIFT) && y<(592+FOOTER_SHIFT)) begin
   glyph_cjk=0;ink_color=24'hffae64;
-  glyph_row=(y-576)/1;
+  glyph_row=(y-(576+FOOTER_SHIFT))/1;
   if(x>=832 && x<840) begin glyph=7'd85;glyph_col=(x-832)/1;end
   if(x>=840 && x<848) begin glyph=7'd70;glyph_col=(x-840)/1;end
   if(x>=848 && x<856) begin glyph=7'd32;glyph_col=(x-848)/1;end
@@ -567,7 +568,7 @@ always @(posedge clk or negedge rst_n) begin
   cjk_address<={glyph[5:0],glyph_row};
   logo_address<={logo_y,logo_x};
   hs_p<={hs_p[0],hs};vs_p<={vs_p[0],vs};de_p<={de_p[0],de};
-  panel_p<={panel_p[0],(de && (y<80 || y>=504))};
+  panel_p<={panel_p[0],(de && (y<80 || y>=(504+FOOTER_SHIFT)))};
   logo_p<={logo_p[0],(x>=16 && x<112 && y>=8 && y<72)};
   cjk_p<={cjk_p[0],glyph_cjk};col0<=glyph_col;col1<=col0;
   rgb0<=picture;rgb1<=rgb0;ink0<=ink_color;ink1<=ink0;

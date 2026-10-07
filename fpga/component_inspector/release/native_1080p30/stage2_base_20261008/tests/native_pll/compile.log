@@ -1,0 +1,20 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 00:09:04 on Oct 08,2026
+vlog -work test_native_pll ../user_source/hdl_source/native_hdmi_pll.v ../user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v 
+-- Compiling module HDMI_PLL
+-- Compiling module HDMI_PLL_STAGE
+-- Compiling module ph1p_phy_pll_wrapper_25a56e5ce2f9
+
+Top level modules:
+	HDMI_PLL
+End time: 00:09:04 on Oct 08,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 00:09:04 on Oct 08,2026
+vlog -sv -work test_native_pll tb_native_pll.v 
+-- Compiling module tb_native_pll
+
+Top level modules:
+	tb_native_pll
+End time: 00:09:04 on Oct 08,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

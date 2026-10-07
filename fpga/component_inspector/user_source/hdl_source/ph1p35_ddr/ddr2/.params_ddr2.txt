@@ -1,8 +1,8 @@
 PH1P_DDR_TYPE : Integrated : U : En : DDR2;;DDR3;;DDR4;;Integrated :  : 
 PH1P_PingPong_PHY : 0 : U : Dis :  :  : 
 PH1P_SINGLE_PLL : 0 : U : En :  :  : 
-PH1P_REF_CLK : 100.0000 : U : En :  : 25.0000 : 400.0000
-PH1P_DDR_SPEED : 1066.00 : U : En :  : 400 : 1600
+PH1P_REF_CLK : 50.0000 : U : En :  : 25.0000 : 400.0000
+PH1P_DDR_SPEED : 533.3333333333 : U : En :  : 400 : 1600
 PH1P_DQ_BYTE : 2 : U : Dis : 2 :  : 
 PH1P_IO_VOL : 1.5 : U : Dis : 1.5 :  : 
 PH1P_VREF : Internal : U : Dis : External;;Internal :  : 
@@ -11,7 +11,7 @@ PH1P_PZQ_SHARE : 0 : U : Dis :  :  :
 PH1P_MASTER_BK : BANK11 : U : Dis : BANK11;;BANK12;;BANK13;;BANK14;;BANK32;;BANK33 :  : 
 PH1P_COMP_TYPE : x16 : U : Dis : x8;;x16 :  : 
 PH1P_COMP_DENSITY : 512 : U : Dis : 512 :  : 
-PH1P_SPEED_BIN : DDR2-1066 : U : En : DDR2-1066;;DDR2-1333-8;;DDR2-1333-9 :  : 
+PH1P_SPEED_BIN : DDR2-533C : U : En : DDR2-1066;;DDR2-1333-8;;DDR2-1333-9 :  : 
 PH1P_MC_EN : 1 : G : En :  :  : 
 GEN_AXI_CTRL : 1 : G : En :  :  : 
 PH1P_AXI_CTRL : 0 : U : En :  :  : 

@@ -17,7 +17,7 @@ uial2axis #(.IMG_WIDTH(1024),.IMG_HEIGHT(600),.INPUT_DATA_WIDTH(40)) bridge(clk,
 wire [127:0] pd;wire pv,ps,pl,ir,good,bad,sv;wire [7:0] mean,mn,mx;wire [1:0] state;
 wire [82:0] record;wire [27:0] display_record;
 wire [35:0] diagnostics;wire row_credit;reg active=0;
-isp_top dut(.axi4s_video_aclk(clk),.I_rst_n(rst),.I_tlast(al),.I_tuser(aso),
+isp_top #(.WIDTH(1024),.HEIGHT(600)) dut(.axi4s_video_aclk(clk),.I_rst_n(rst),.I_tlast(al),.I_tuser(aso),
  .I_tdata(ad),.I_tvalid(av),.I_tdest(10'd0),.O_tready(1'b1),.I_tready(ir),
  .O_tdata(pd),.O_tvalid(pv),.O_tuser(ps),.O_tlast(pl),
  .raw_start(fs),.raw_end(fe),.hs_valid(hs),.raw_valid(rv),.lane_error(lane),.config_ok(cfg),
@@ -27,7 +27,7 @@ isp_top dut(.axi4s_video_aclk(clk),.I_rst_n(rst),.I_tlast(al),.I_tuser(aso),
 reg ddr=0; always #7.5 ddr=~ddr;
 wire completed,capture_ok,wren; wire [1:0] completed_rp; wire [15:0] lost,overflow;
 wire [24:0] wraddr;wire [127:0] wrdata;
-video_in vi(.I_rst_n(rst),.I_camera_clk(clk),.I_camera_frame_start(ps),.I_camera_valid(pv),
+video_in #(.WIDTH(1024),.HEIGHT(600)) vi(.I_rst_n(rst),.I_camera_clk(clk),.I_camera_frame_start(ps),.I_camera_valid(pv),
  .I_camera_data(pd),.I_mipi_rx_error(1'b0),.I_frame_good(good),.I_frame_bad(bad),.O_camera_ready(row_credit),
  .I_ddr_clk(ddr),.I_display_pause(1'b0),.I_video_out_rd_busy(1'b0),.I_active_valid(1'b0),.I_active_rp(2'd0),
  .O_video_in_wr_busy(),.O_video_out_rp(),.O_completed_valid(completed),.O_completed_rp(completed_rp),

@@ -1,6 +1,7 @@
 // Drain old DDR responses before resetting or selecting another complete slot.
-module video_out #(parameter WIDTH=1024,HEIGHT=600)(
+module video_out #(parameter WIDTH=1024,HEIGHT=600,CHECK_DISPLAY_LOCK=0)(
  input wire I_rst_n,I_ddr_clk,
+ input wire I_display_lock,I_pixel_rst_n,
  output wire O_video_out_rd_busy,input wire I_video_in_wr_busy,
  input wire [1:0] I_video_out_rp,
  input wire I_completed_valid,input wire [1:0] I_completed_rp,
@@ -12,25 +13,31 @@ module video_out #(parameter WIDTH=1024,HEIGHT=600)(
  output reg O_display_ok,output reg [15:0] O_underflow_frames
 );
 localparam WORDS=WIDTH*HEIGHT*3/16;
-localparam PREFILL=(WIDTH*3/16<192) ? WIDTH*3/16 : 192;
-localparam DRAIN=0,CLEAR=1,RUN=2;
+localparam WORD_BITS=$clog2(WORDS+1);
+localparam PREFILL=WIDTH*3/16;
+localparam DRAIN=0,CLEAR=1,RUN=2,WAIT_FRAME=3;
 reg [1:0] state;
 reg [3:0] reset_count;
 reg [2:0] vs_sync;
+reg [1:0] lock_sync;
+reg need_boundary;
+wire display_locked=!CHECK_DISPLAY_LOCK || lock_sync[1];
+wire pixel_rst_n=I_rst_n && (!CHECK_DISPLAY_LOCK || I_pixel_rst_n);
 wire S_video_frame_start=vs_sync[1] && !vs_sync[2];
 wire S_fifo_rst=!I_rst_n || state==CLEAR;
 wire [8:0] S_fifo_wr_num,S_fifo_rd_num;
 wire S_fifo_emtpy,fifo_full;
 wire [127:0] S_fifo_rd_data;
 reg [8:0] outstanding,burst_left;
-reg [16:0] issued;
+reg [WORD_BITS-1:0] issued;
 reg S_ddr_rd_valid,return_bad;
 wire [9:0] reserved={1'b0,S_fifo_wr_num}+{1'b0,outstanding};
-wire S_ddr_rd_trig=state==RUN && O_active_valid && !return_bad &&
+// Read burst capacity is independent of the writer's 120-word line credit.
+wire S_ddr_rd_trig=state==RUN && display_locked && O_active_valid && !return_bad &&
  !S_video_frame_start && !I_video_in_wr_busy && !S_ddr_rd_valid &&
  outstanding==0 && issued<WORDS && reserved<=271;
 assign O_ddr_user_rd_en=S_ddr_rd_valid && I_ddr_user_ready &&
- state==RUN && !S_video_frame_start;
+ state==RUN && display_locked && !S_video_frame_start;
 assign O_video_out_rd_busy=S_ddr_rd_trig || S_ddr_rd_valid;
 function [24:0] base;
  input [1:0] slot;
@@ -40,11 +47,13 @@ function [24:0] base;
 endfunction
 always @(posedge I_ddr_clk or negedge I_rst_n) begin
  if(!I_rst_n) begin
-  state<=DRAIN;reset_count<=0;vs_sync<=0;outstanding<=0;issued<=0;
+  state<=DRAIN;reset_count<=0;vs_sync<=0;lock_sync<=0;
+  need_boundary<=CHECK_DISPLAY_LOCK;outstanding<=0;issued<=0;
   burst_left<=0;S_ddr_rd_valid<=0;O_ddr_user_addr<=0;
   O_active_valid<=0;O_active_rp<=0;return_bad<=0;
  end else begin
   vs_sync<={vs_sync[1:0],I_video_vsync};
+  lock_sync<={lock_sync[0],I_display_lock};
   case({O_ddr_user_rd_en,I_ddr_user_rd_valid && outstanding!=0})
    2'b10:outstanding<=outstanding+1'b1;
    2'b01:outstanding<=outstanding-1'b1;
@@ -62,13 +71,23 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
   end
   if(state==DRAIN && outstanding==0) begin
    state<=CLEAR;reset_count<=0;issued<=0;return_bad<=0;
-   O_active_valid<=I_completed_valid;O_active_rp<=I_completed_rp;
+   O_active_valid<=I_completed_valid && display_locked && !need_boundary;O_active_rp<=I_completed_rp;
    O_ddr_user_addr<=base(I_completed_rp);
   end else if(state==CLEAR) begin
-   reset_count<=reset_count+1'b1;
-   if(reset_count==10) state<=RUN;
+   if(display_locked) begin
+    reset_count<=reset_count+1'b1;
+    if(reset_count==10) state<=need_boundary ? WAIT_FRAME : RUN;
+   end else reset_count<=0;
   end
-  if(S_video_frame_start) begin state<=DRAIN;S_ddr_rd_valid<=0;end
+  if(S_video_frame_start && display_locked) begin
+   state<=DRAIN;S_ddr_rd_valid<=0;need_boundary<=0;
+  end
+  // DDR clock continues even when the pixel clock has stopped. Do not clear
+  // outstanding or reset the FIFO until every accepted old read has returned.
+  if(!display_locked) begin
+   need_boundary<=1;S_ddr_rd_valid<=0;O_active_valid<=0;
+   if(state!=DRAIN && state!=CLEAR) state<=DRAIN;
+  end
  end
 end
 reg [1:0] armed_sync,bad_sync;
@@ -78,22 +97,22 @@ reg S_video_rd_en_1d;
 reg [127:0] S_fifo_rd_data_1d;
 wire need_word=I_video_rd_en &&
  (S_fifo_rd_cnt==0 || S_fifo_rd_cnt==5 || S_fifo_rd_cnt==10);
-wire unavailable=!armed_sync[1] || bad_sync[1] ||
+wire unavailable=!pixel_rst_n || !armed_sync[1] || bad_sync[1] ||
  (first_pixel && S_fifo_rd_num<PREFILL) || (need_word && S_fifo_emtpy);
 wire S_fifo_rd_en=need_word && !display_bad && !unavailable;
 w128_d512_fifo U_w128_d512_fifo(
  .rst(S_fifo_rst),.clkw(I_ddr_clk),
- .we(I_ddr_user_rd_valid && outstanding!=0 && state==RUN && !S_video_frame_start),
+ .we(I_ddr_user_rd_valid && outstanding!=0 && state==RUN && display_locked && !S_video_frame_start),
  .di(I_ddr_user_rd_data),.wrusedw(S_fifo_wr_num),.afull(),.full_flag(fifo_full),
  .clkr(I_dsi_clk),.re(S_fifo_rd_en),.dout(S_fifo_rd_data),
  .rdusedw(S_fifo_rd_num),.valid(),.empty_flag(S_fifo_emtpy),.aempty());
-always @(posedge I_dsi_clk or negedge I_rst_n) begin
- if(!I_rst_n) begin
+always @(posedge I_dsi_clk or negedge pixel_rst_n) begin
+ if(!pixel_rst_n) begin
   armed_sync<=0;bad_sync<=0;vs_previous<=0;display_bad<=1;first_pixel<=1;
   S_fifo_rd_cnt<=0;S_fifo_rd_cnt_1d<=0;S_video_rd_en_1d<=0;
-  S_fifo_rd_data_1d<=0;O_vdieo_data<=0;O_display_ok<=0;O_underflow_frames<=0;
+  S_fifo_rd_data_1d<=0;O_vdieo_data<=0;O_display_ok<=0;
  end else begin
-  armed_sync<={armed_sync[0],(state==RUN && O_active_valid)};
+  armed_sync<={armed_sync[0],(state==RUN && O_active_valid && display_locked)};
   bad_sync<={bad_sync[0],return_bad};vs_previous<=I_video_vsync;
   if(I_video_vsync && !vs_previous) begin
    display_bad<=0;first_pixel<=1;S_fifo_rd_cnt<=0;S_video_rd_en_1d<=0;
@@ -102,7 +121,6 @@ always @(posedge I_dsi_clk or negedge I_rst_n) begin
     S_fifo_rd_cnt<=S_fifo_rd_cnt+1'b1;first_pixel<=0;
     if(unavailable && !display_bad) begin
      display_bad<=1;O_display_ok<=0;
-     if(armed_sync[1]) O_underflow_frames<=O_underflow_frames+1'b1;
     end else if(first_pixel && !display_bad) O_display_ok<=1;
    end else S_fifo_rd_cnt<=0;
    S_video_rd_en_1d<=I_video_rd_en && !display_bad && !unavailable;
@@ -129,5 +147,11 @@ always @(posedge I_dsi_clk or negedge I_rst_n) begin
    endcase
   end else O_vdieo_data<=0;
  end
+end
+// Preserve the diagnostic counter across HDMI-only resets.
+always @(posedge I_dsi_clk or negedge I_rst_n) begin
+ if(!I_rst_n) O_underflow_frames<=0;
+ else if(pixel_rst_n && I_video_rd_en && unavailable && !display_bad && armed_sync[1])
+  O_underflow_frames<=O_underflow_frames+1'b1;
 end
 endmodule

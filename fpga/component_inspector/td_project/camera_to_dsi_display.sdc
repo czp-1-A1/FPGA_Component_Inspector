@@ -5,8 +5,8 @@ derive_clocks
 
 rename_clock -name {pll_clk_100m} [get_clocks {u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}]
 rename_clock -name {pll_clk_24m} [get_clocks {u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]}]
-rename_clock -name {HDMI_PIXEL_CLK} [get_clocks {u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[4]}]
-rename_clock -name {HDMI_SERIAL_CLK} [get_clocks {u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[5]}]
+rename_clock -name {HDMI_PIXEL_CLK} [get_clocks {u_hdmi_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}]
+rename_clock -name {HDMI_SERIAL_CLK} [get_clocks {u_hdmi_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]}]
 
 rename_clock -name {MIPI_RX_BYTE_CLK} [get_clocks {u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.o_fabric_div4_8_clk}]
 
@@ -29,7 +29,7 @@ set_max_delay -datapath_only 19.0 -from [get_clocks {MIPI_RX_BYTE_CLK}] -to [get
 set_max_delay -datapath_only 8.0 -from [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {MIPI_RX_BYTE_CLK}]
 
 # Bundled payload is held through two-stage request/capture and until ack.
-# 19ns is less than the 38.46ns minimum settling interval to HDMI capture.
+# 19ns is less than the 26.93ns minimum settling interval to HDMI capture.
 set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/payload*}] -to [get_regs {u_monitor_display/D_data*}]
 set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/payload*}] -to [get_regs {u_camera_display/D_data*}]
 # Tokens use two-stage synchronizers; bound the physical crossing as well.

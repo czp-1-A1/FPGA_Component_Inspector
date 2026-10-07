@@ -1,0 +1,79 @@
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/fhd_mc/transcript.log -wlf modelsim_work/fhd_mc/wave.wlf -do "log /tb_fhd_mc/*; run -all; quit -code 1 -force" test_fhd_mc.tb_fhd_mc 
+# Start time: 00:10:06 on Oct 08,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: tb_fhd_mc.v(52): (vopt-2685) [TFMPC] - Too few port connections for 'vo'.  Expected 22, found 20.
+# ** Warning: tb_fhd_mc.v(52): (vopt-2718) [TFMPC] - Missing connection for port 'I_pixel_rst_n'.
+# ** Warning: tb_fhd_mc.v(52): (vopt-2718) [TFMPC] - Missing connection for port 'I_display_lock'.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(201): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(201): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(201): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_fhd_mc(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# Loading work.video_in(fast)
+# Loading work.w128_d512_fifo(fast)
+# Loading work.soft_fifo_al_4057d6b76aa6(fast)
+# Loading work.fifo_cross_domain_addr_process_al_4057d6b76aa6(fast)
+# Loading work.ram_infer_4057d6b76aa6(fast)
+# Loading work.video_out(fast)
+# Loading work.mc_to_user_interface(fast)
+# Loading work.w155_d512_fifo(fast)
+# Loading work.soft_fifo_al_f58e8b3e1f3d(fast)
+# Loading work.ram_infer_f58e8b3e1f3d(fast)
+# ** Warning: (vsim-3015) ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): [PCDPC] - Port size (1) does not match connection size (32) for port 'ceb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_fhd_mc/vi/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v
+# ** Warning: (vsim-3015) ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): [PCDPC] - Port size (9) does not match connection size (32) for port 'addrb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_fhd_mc/vi/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v
+# ** Warning: (vsim-3015) ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): [PCDPC] - Port size (1) does not match connection size (32) for port 'ceb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_fhd_mc/vo/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v
+# ** Warning: (vsim-3015) ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): [PCDPC] - Port size (9) does not match connection size (32) for port 'addrb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_fhd_mc/vo/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v
+# ** Warning: (vsim-3015) ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(201): [PCDPC] - Port size (1) does not match connection size (32) for port 'cea'. The port definition is at: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(222).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_fhd_mc/mcif/U_w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d_Inst/ram_inst File: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v
+# ** Warning: (vsim-3015) ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(201): [PCDPC] - Port size (1) does not match connection size (32) for port 'ocea'. The port definition is at: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(223).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_fhd_mc/mcif/U_w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d_Inst/ram_inst File: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v
+# ** Warning: (vsim-3015) ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(201): [PCDPC] - Port size (1) does not match connection size (32) for port 'ceb'. The port definition is at: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(230).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_fhd_mc/mcif/U_w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d_Inst/ram_inst File: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v
+# ** Warning: (vsim-3015) ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(201): [PCDPC] - Port size (1) does not match connection size (32) for port 'web'. The port definition is at: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(232).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_fhd_mc/mcif/U_w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d_Inst/ram_inst File: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v
+# ** Warning: (vsim-3015) ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(201): [PCDPC] - Port size (9) does not match connection size (32) for port 'addrb'. The port definition is at: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(234).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_fhd_mc/mcif/U_w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d_Inst/ram_inst File: ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v
+# log /tb_fhd_mc/*
+#  run -all
+# CASE first_mode=0 second_mode=1 active_line_beats=480 second_line_gap=2272 compete=1
+# CAPTURE mode=0 id=1 pixels=2073600 packed=388800 writes=388800 slot=3 published=3 capture_ok=1 peak=243 bad=0 overflow=0 lost=0
+# TIMING_STATS mode=0 id=1 LP=3472 WS=0 core_pixels=0 edge_count=0 edge_sum=0
+# CAPTURE_RESULT PASS mode=0 id=1 gap=2272 completed_slot=3 candidate_slot=3 pixels=2073600 words=388800 written=388800 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=1080 credit=1 lost=0 overflow=0
+# MC_PAUSE_START cycles=100 packed=2400 queue_used=0
+# DISPLAY mode=1 id=1 checked=2073600 display_ok=1 underflow=0 pixel_errors=0 issued=388800 reserved_peak=480
+# CAPTURE mode=1 id=2 pixels=2073600 packed=388800 writes=388800 slot=2 published=2 capture_ok=1 peak=364 bad=0 overflow=0 lost=0
+# TIMING_STATS mode=1 id=2 LP=3472 WS=0 core_pixels=0 edge_count=0 edge_sum=0
+# CAPTURE_RESULT PASS mode=1 id=2 gap=2272 completed_slot=2 candidate_slot=2 pixels=2073600 words=388800 written=388800 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=1080 credit=1 lost=0 overflow=0
+# DISPLAY mode=1 id=2 checked=2073600 display_ok=1 underflow=0 pixel_errors=0 issued=388800 reserved_peak=480
+# CAPTURE mode=0 id=1 pixels=2073600 packed=388800 writes=388800 slot=3 published=3 capture_ok=1 peak=364 bad=0 overflow=0 lost=0
+# TIMING_STATS mode=0 id=1 LP=3472 WS=0 core_pixels=0 edge_count=0 edge_sum=0
+# CAPTURE_RESULT PASS mode=0 id=1 gap=2272 completed_slot=3 candidate_slot=3 pixels=2073600 words=388800 written=388800 bad=0 camera_bad=0 fifo_used=0 read_y=0 write_y=1080 credit=1 lost=0 overflow=0
+# DISPLAY mode=0 id=1 checked=2073600 display_ok=1 underflow=0 pixel_errors=0 issued=388800 reserved_peak=480
+# PASS: SWITCH_TRANSPORT first=0 second=1 gap=2272 compete=1 captures=3 recovered=1 total_writes=1166400 checked_pixels=6220800 errors=0 overflow=0 underflow=0 lost=0
+# MC_DIAGNOSTIC real_command_fifo=1 peak=95 accepted=2332800 retired=2332800 mc_writes=1166400 mc_reads=1166400 pause=100 period=520 off=10
+# ** Note: $finish    : tb_fhd_mc.v(332)
+#    Time: 164156832476 ps  Iteration: 1  Instance: /tb_fhd_mc
+# End time: 00:13:49 on Oct 08,2026, Elapsed time: 0:03:43
+# Errors: 0, Warnings: 18

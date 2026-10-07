@@ -1,0 +1,292 @@
+Table of Contents
+-----------------
+1. checking no clock(0) (HIGH)
+2. checking clock definition(0) (HIGH)
+3. checking dummy node(2) (HIGH)
+4. checking invalid constraint(0) (HIGH)
+5. checking pll/clock buffer clock constraints(0) (HIGH)
+6. checking combinational loops(0) (HIGH)
+7. checking soft fifo timing exception constraints(0) (HIGH)
+8. checking no path constraints(0) (MEDIUM)
+9. checking shadowed/ignored timing exception constraints(5) (MEDIUM)
+10. checking no input delay(39) (MEDIUM)
+11. checking no output delay(63) (MEDIUM)
+12. checking partial input delay(1) (MEDIUM)
+13. checking partial output delay(0) (MEDIUM)
+14. checking abnormal input delay(0) (MEDIUM)
+
+
+1. checking nets with no clock driven. (HIGH)
+---------------------------------------------
+2. checking clock definition problems. (HIGH)
+---------------------------------------------
+2.1 There are 0 leaf clock pins driven by multiple clocks. (HIGH)
+
+
+2.2 There are 0 clocks created on internal clock network. (HIGH)
+
+
+2.3 There are 0 unexpandable clock sets. (HIGH)
+
+
+2.4 There are 0 local clocks. (HIGH)
+
+
+2.5 There are 0 generated clocks that are not connected to their master clocks. (HIGH)
+
+
+3. checking dummy nodes. (HIGH)
+---------------------------------------------
+There are 2 nodes are dangling. (HIGH)
+
+DummyNode in Model: AL_MAP_LUT1
+	O_screen_pwm_syn_1956.o
+
+DummyNode in Model: PH1P_PHY_HD_PAD
+	IO_cam_sda_syn_2.ts
+
+4. checking invalid constraints. (HIGH)
+---------------------------------------------
+There are 0 invalid constraints. (HIGH)
+
+
+5. checking PLL/buffer clocks. (HIGH)
+---------------------------------------------
+PLL/buffer inst: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL
+{
+	There are 0 clock pins that have no clock constraints. (HIGH)
+
+
+	There are 0 clocks whose clock frequency do not match the PLL setting. (HIGH)
+
+
+}
+
+PLL/buffer inst: u_hdmi_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL
+{
+	There are 0 clock pins that have no clock constraints. (HIGH)
+
+
+	There are 0 clocks whose clock frequency do not match the PLL setting. (HIGH)
+
+
+}
+
+PLL/buffer inst: u_hdmi_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL
+{
+	There are 0 clock pins that have no clock constraints. (HIGH)
+
+
+	There are 0 clocks whose clock frequency do not match the PLL setting. (HIGH)
+
+
+}
+
+PLL/buffer inst: u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_clk/u_pll0/u_pll_inst
+{
+	There are 0 clock pins that have no clock constraints. (HIGH)
+
+
+	There are 0 clocks whose clock frequency do not match the PLL setting. (HIGH)
+
+
+}
+
+PLL/buffer inst: u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_clk/u_pll1/u_pll_inst
+{
+	There are 0 clock pins that have no clock constraints. (HIGH)
+
+
+	There are 0 clocks whose clock frequency do not match the PLL setting. (HIGH)
+
+
+}
+
+6. checking combinational loops. (HIGH)
+---------------------------------------------
+There are 0 combinational loops. (HIGH)
+
+
+7. checking soft fifo set_max_delay constraints. (HIGH)
+---------------------------------------------
+There are 0 max-delay datapath-only paths that are part of the provided async clock paths, whereas the timing between other registers is not relaxed or ignored. (HIGH)
+
+
+8. checking no path constraints. (MEDIUM)
+---------------------------------------------
+There are 0 constraints that have no timing paths. (MEDIUM)
+
+
+9. checking path exception constraints shadowed/ignored by other constraints. (MEDIUM)
+---------------------------------------------
+
+MCP/SMD Summary
+--------------------
+
+		Max Check
+		--------------------
+		     Total    Dominated     Shadowed      Ignored   Constraint
+		       278          240           38            0   set_max_delay -datapath_only 14.0 -from [get_clocks {mipi_rx_ck_pad MIPI_RX_BYTE_CLK sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}]
+		       170          116           54            0   set_max_delay -datapath_only 19.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]
+		       122          104           18            0   set_max_delay -datapath_only 8.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {MIPI_RX_BYTE_CLK}]
+		       352          192          160            0   set_max_delay -datapath_only 19.0 -from [get_clocks {MIPI_RX_BYTE_CLK}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]
+		       110            4          106            0   set_max_delay -datapath_only 8.0 -from [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {MIPI_RX_BYTE_CLK}]
+		       632          632            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/payload*}] -to [get_regs {u_monitor_display/D_data*}]
+		       134          134            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/payload*}] -to [get_regs {u_camera_display/D_data*}]
+		         2            2            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/req}] -to [get_regs {u_monitor_display/req_sync[0]}]
+		                                                    set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/req}] -to [get_regs {u_observation_display/req_sync[0]}]
+		         2            2            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/ack}] -to [get_regs {u_monitor_display/ack_sync[0]}]
+		                                                    set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/ack}] -to [get_regs {u_observation_display/ack_sync[0]}]
+		         2            2            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/req}] -to [get_regs {u_camera_display/req_sync[0]}]
+		         2            2            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/ack}] -to [get_regs {u_camera_display/ack_sync[0]}]
+		       134          134            0            0   set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/payload*}] -to [get_regs {u_camera_receive/D_data*}]
+		         2            2            0            0   set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/req}] -to [get_regs {u_camera_receive/req_sync[0]}]
+		         2            2            0            0   set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/ack}] -to [get_regs {u_camera_receive/ack_sync[0]}]
+		       166          166            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/payload*}] -to [get_regs {u_roi_display/D_data*}]
+		         2            2            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]
+		                                                    set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/req}] -to [get_regs {u_roi_display/req_sync[0]}]
+		         2            2            0            0   set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]
+		                                                    set_max_delay -datapath_only 8.0 -from [get_regs {u_roi_display/ack}] -to [get_regs {u_roi_display/ack_sync[0]}]
+		        64           64            0            0   set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/payload*}] -to [get_regs {u_observation_receive/D_data*}]
+		         2            2            0            0   set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/req}] -to [get_regs {u_observation_receive/req_sync[0]}]
+		         2            2            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_receive/ack}] -to [get_regs {u_observation_receive/ack_sync[0]}]
+		        64           64            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/payload*}] -to [get_regs {u_observation_display/D_data*}]
+		        68           68            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/payload*}] -to [get_regs {u_transport_display/D_data*}]
+		         2            2            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/req}] -to [get_regs {u_transport_display/req_sync[0]}]
+		         2            2            0            0   set_max_delay -datapath_only 14.0 -from [get_regs {u_transport_display/ack}] -to [get_regs {u_transport_display/ack_sync[0]}]
+		       140          140            0            0   set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]
+		        36           36            0            0   set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 8.588
+		        36           36            0            0   set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 13.168
+
+		Min Check
+		--------------------
+		     Total    Dominated     Shadowed      Ignored   Constraint
+
+10. checking no input delay (MEDIUM)
+--------------------------
+There are 39 input ports that with no input delay specified. (MEDIUM)
+
+	IO_cam_sda
+	IO_rx_clk_pad_n
+	IO_rx_data_pad_n[3]
+	IO_rx_data_pad_n[2]
+	IO_rx_data_pad_n[1]
+	IO_rx_data_pad_n[0]
+	IO_rx_data_pad_p[3]
+	IO_rx_data_pad_p[2]
+	IO_rx_data_pad_p[1]
+	IO_rx_data_pad_p[0]
+	I_button[3]
+	I_button[2]
+	I_button[1]
+	I_button[0]
+	I_rst_n
+	I_switch[1]
+	I_switch[0]
+	ddr_dm[1]
+	ddr_dm[0]
+	ddr_dq[15]
+	ddr_dq[14]
+	ddr_dq[13]
+	ddr_dq[12]
+	ddr_dq[11]
+	ddr_dq[10]
+	ddr_dq[9]
+	ddr_dq[8]
+	ddr_dq[7]
+	ddr_dq[6]
+	ddr_dq[5]
+	ddr_dq[4]
+	ddr_dq[3]
+	ddr_dq[2]
+	ddr_dq[1]
+	ddr_dq[0]
+	ddr_dqs_n[1]
+	ddr_dqs_n[0]
+	ddr_dqs_p[1]
+	ddr_dqs_p[0]
+
+11. checking no output delay (MEDIUM)
+--------------------------
+There are 63 output ports that with no output delay specified. (MEDIUM)
+
+	IO_cam_sda
+	IO_rx_clk_pad_n
+	IO_rx_clk_pad_p
+	IO_rx_data_pad_n[3]
+	IO_rx_data_pad_n[2]
+	IO_rx_data_pad_n[1]
+	IO_rx_data_pad_n[0]
+	IO_rx_data_pad_p[3]
+	IO_rx_data_pad_p[2]
+	IO_rx_data_pad_p[1]
+	IO_rx_data_pad_p[0]
+	O_cam_rst
+	O_cam_scl
+	O_screen_pwm
+	O_tmds_ch0_p
+	O_tmds_ch1_p
+	O_tmds_ch2_p
+	O_tmds_clk_p
+	ddr_addr[12]
+	ddr_addr[11]
+	ddr_addr[10]
+	ddr_addr[9]
+	ddr_addr[8]
+	ddr_addr[7]
+	ddr_addr[6]
+	ddr_addr[5]
+	ddr_addr[4]
+	ddr_addr[3]
+	ddr_addr[2]
+	ddr_addr[1]
+	ddr_addr[0]
+	ddr_ba[1]
+	ddr_ba[0]
+	ddr_cas_n
+	ddr_ck_n[0]
+	ddr_ck_p[0]
+	ddr_cke[0]
+	ddr_cs_n[0]
+	ddr_dm[1]
+	ddr_dm[0]
+	ddr_dq[15]
+	ddr_dq[14]
+	ddr_dq[13]
+	ddr_dq[12]
+	ddr_dq[11]
+	ddr_dq[10]
+	ddr_dq[9]
+	ddr_dq[8]
+	ddr_dq[7]
+	ddr_dq[6]
+	ddr_dq[5]
+	ddr_dq[4]
+	ddr_dq[3]
+	ddr_dq[2]
+	ddr_dq[1]
+	ddr_dq[0]
+	ddr_dqs_n[1]
+	ddr_dqs_n[0]
+	ddr_dqs_p[1]
+	ddr_dqs_p[0]
+	ddr_odt[0]
+	ddr_ras_n
+	ddr_we_n
+
+12. checking partial input delay (MEDIUM)
+--------------------------
+There is 1 input port with partial input delay specified. (MEDIUM)
+
+	IO_rx_clk_pad_p
+
+13. checking partial output delay (MEDIUM)
+--------------------------
+There are 0 output ports with partial output delay specified. (MEDIUM)
+
+
+14. checking abnormal set_input_delay constraints. (MEDIUM)
+---------------------------------------------
+There are 0 abnormal set_input_delay constraints. (MEDIUM)
+
+

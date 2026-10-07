@@ -1,0 +1,18 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 23:58:29 on Oct 07,2026
+vlog -work test_pack_boundary ../user_source/hdl_source/isp/data96_128/data96_128.v 
+-- Compiling module data_96bit_to_128bit
+
+Top level modules:
+	data_96bit_to_128bit
+End time: 23:58:29 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 23:58:29 on Oct 07,2026
+vlog -sv -work test_pack_boundary tb_pack_boundary.v 
+-- Compiling module tb_pack_boundary
+
+Top level modules:
+	tb_pack_boundary
+End time: 23:58:29 on Oct 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

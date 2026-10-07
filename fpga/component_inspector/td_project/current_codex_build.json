@@ -1,14 +1,32 @@
 {
-  "syn": "C:\\Users\\Li47\\Desktop\\aa\\edge_tail_td_20261007_178840\\td_project\\camera_to_dsi_display_Runs\\syn_1",
-  "phy": "C:\\Users\\Li47\\Desktop\\aa\\edge_tail_td_20261007_178840\\td_project\\camera_to_dsi_display_Runs\\phy_1",
+  "syn": "C:\\Users\\Li47\\Desktop\\aa\\native_1080p30_r4_20261007\\td_project\\camera_to_dsi_display_Runs\\syn_1",
+  "phy": "C:\\Users\\Li47\\Desktop\\aa\\native_1080p30_r4_20261007\\td_project\\camera_to_dsi_display_Runs\\phy_1",
   "flow": "D:/td6.2.1/scripts/DefaultFlow.tcl",
   "tool": "D:/td6.2.1/bin/td_commands_prompt.exe",
   "td_version": "6.2.178840",
-  "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
+  "source_commit": null,
+  "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "source_identity": "release/native_1080p30/stage2_base_20261008/input_snapshot.json",
   "release": {
-    "path": "fpga/component_inspector/release/edge_tail_fix_20261007/camera_to_dsi_display.bit",
-    "sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65",
-    "bytes": 1789539
+    "path": "fpga/component_inspector/release/native_1080p30/stage2_base_20261008/camera_to_dsi_display.bit",
+    "sha256": "7b8c08c27582960da985b52102c0c9273533c3bf5cabc89d757cbfee7588e709",
+    "bytes": 1789539,
+    "status": "DIAGNOSTIC_CANDIDATE_NOT_ACCEPTED",
+    "enable_edge": 0
   },
-  "validation_record": "开发实施/验收记录/20261007_A_EDGE帧尾修复_轮次1.md"
+  "validation_record": "开发实施/验收记录/20261008_原像素1080p30_轮次2.md",
+  "previous_build": {
+    "syn": "C:\\Users\\Li47\\Desktop\\aa\\edge_tail_td_20261007_178840\\td_project\\camera_to_dsi_display_Runs\\syn_1",
+    "phy": "C:\\Users\\Li47\\Desktop\\aa\\edge_tail_td_20261007_178840\\td_project\\camera_to_dsi_display_Runs\\phy_1",
+    "flow": "D:/td6.2.1/scripts/DefaultFlow.tcl",
+    "tool": "D:/td6.2.1/bin/td_commands_prompt.exe",
+    "td_version": "6.2.178840",
+    "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
+    "release": {
+      "path": "fpga/component_inspector/release/edge_tail_fix_20261007/camera_to_dsi_display.bit",
+      "sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65",
+      "bytes": 1789539
+    },
+    "validation_record": "开发实施/验收记录/20261007_A_EDGE帧尾修复_轮次1.md"
+  }
 }

@@ -1,0 +1,22 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 00:02:44 on Oct 08,2026
+vlog -work test_fhd_osd ../user_source/hdl_source/bin16_bcd.v ../user_source/hdl_source/osd_ascii_rom.v ../user_source/hdl_source/osd_cjk_rom.v ../user_source/hdl_source/osd_logo_rom.v ../user_source/hdl_source/experiment_osd.v 
+-- Compiling module bin16_bcd
+-- Compiling module osd_ascii_rom
+-- Compiling module osd_cjk_rom
+-- Compiling module osd_logo_rom
+-- Compiling module experiment_osd
+
+Top level modules:
+	experiment_osd
+End time: 00:02:44 on Oct 08,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 00:02:44 on Oct 08,2026
+vlog -sv -work test_fhd_osd tb_fhd_osd.v 
+-- Compiling module tb_fhd_osd
+
+Top level modules:
+	tb_fhd_osd
+End time: 00:02:44 on Oct 08,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

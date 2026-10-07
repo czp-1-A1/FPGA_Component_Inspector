@@ -75,10 +75,10 @@ begin
 		27:	REG_DATA = {16'h3205, 8'hdb}; 
 		28:	REG_DATA = {16'h3206, 8'h05}; 
 		29:	REG_DATA = {16'h3207, 8'hf3}; 
-		30:	REG_DATA = {16'h3208, 8'h04}; 
-		31:	REG_DATA = {16'h3209, 8'h00}; 
-		32:	REG_DATA = {16'h320a, 8'h02}; 
-		33:	REG_DATA = {16'h320b, 8'h58}; 
+		30:	REG_DATA = {16'h3208, 8'h07}; 
+		31:	REG_DATA = {16'h3209, 8'h80}; 
+		32:	REG_DATA = {16'h320a, 8'h04}; 
+		33:	REG_DATA = {16'h320b, 8'h38}; 
 		34:	REG_DATA = {16'h320c, 8'h0b}; 
 		35:	REG_DATA = {16'h320d, 8'h24}; 
 		36:	REG_DATA = {16'h320e, 8'h04}; 

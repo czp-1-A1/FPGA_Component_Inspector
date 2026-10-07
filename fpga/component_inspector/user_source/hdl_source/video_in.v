@@ -14,6 +14,9 @@ module video_in #(parameter WIDTH=1024,HEIGHT=600)(
  output wire [127:0] O_ddr_user_wr_data,input wire I_ddr_user_ready
 );
 localparam WORDS=WIDTH*HEIGHT*3/16;
+localparam WORD_BITS=$clog2(WORDS+1);
+localparam LINE_WORDS=WIDTH*3/16;
+localparam ROW_CREDIT_LIMIT=512-LINE_WORDS-32; // Write-side reservation only.
 reg [3:0] extend_count;
 reg S_camera_frame_start_extend;
 reg [2:0] frame_sync;
@@ -21,10 +24,10 @@ wire S_frame_start=frame_sync[1] && !frame_sync[2];
 wire S_fifo_rst=!I_rst_n || frame_sync[2];
 wire [8:0] S_fifo_rd_num,camera_used;
 wire camera_full,fifo_empty;
-reg [16:0] camera_count;
+reg [WORD_BITS-1:0] camera_count;
 reg camera_bad,camera_done;
 reg [1:0] bad_sync,done_sync,good_sync;
-assign O_camera_ready=!S_camera_frame_start_extend && !S_fifo_rst && !camera_bad && !camera_full && camera_used<=288;
+assign O_camera_ready=!S_camera_frame_start_extend && !S_fifo_rst && !camera_bad && !camera_full && camera_used<=ROW_CREDIT_LIMIT;
 always @(posedge I_camera_clk or negedge I_rst_n) begin
  if(!I_rst_n) begin
   extend_count<=0;S_camera_frame_start_extend<=0;
@@ -51,7 +54,7 @@ always @(posedge I_camera_clk or negedge I_rst_n) begin
 end
 reg [1:0] S_video_in_wp;
 reg frame_open,published;
-reg [16:0] written;
+reg [WORD_BITS-1:0] written;
 reg S_ddr_wr_valid;
 reg [8:0] burst_left;
 wire S_fifo_rd_en=S_ddr_wr_valid && I_ddr_user_ready && !fifo_empty &&

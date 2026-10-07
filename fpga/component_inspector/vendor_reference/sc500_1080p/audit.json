@@ -1,0 +1,97 @@
+{
+  "status": "static_checks_pass_only",
+  "camera": {
+    "vendor_sha256": "f47fcd96fda16c41ce275e3984ff462ecf47d4c991f9b08b26971bfb0250c580",
+    "rtl_sha256": "424cbef78d37a5aa3e7d71819ca3c7dad772b5b921d3e839c9814c72efb4c526",
+    "vendor_entries": 116,
+    "rtl_entries": 121,
+    "common_sequence_equal": true,
+    "retained_explicit_raw10_2lane": {
+      "3018": "3a",
+      "3031": "0a",
+      "3650": "31",
+      "3652": "00",
+      "3654": "00"
+    },
+    "retained_gain_difference": {
+      "3e08": {
+        "vendor": "07",
+        "rtl": "08"
+      },
+      "3e09": {
+        "vendor": "3f",
+        "rtl": "5f"
+      }
+    },
+    "geometry": "1920x1080"
+  },
+  "ddr": {
+    "reference_mhz": 50.0,
+    "vco_mhz": 800.0,
+    "ddr_mhz": 266.6666666666667,
+    "user_mhz": 66.66666666666667,
+    "config_mhz": 50.0,
+    "tck_ps": 3750,
+    "cl": 4,
+    "cwl": 3,
+    "speed_bin": "DDR2-533C",
+    "refresh_ddr_cycles": 2080,
+    "refresh_us": 7.8,
+    "mc_address_unit_bytes": 2,
+    "slots": [
+      {
+        "slot": 0,
+        "base": 0,
+        "end_exclusive": 3110400
+      },
+      {
+        "slot": 1,
+        "base": 7000000,
+        "end_exclusive": 10110400
+      },
+      {
+        "slot": 2,
+        "base": 14000000,
+        "end_exclusive": 17110400
+      },
+      {
+        "slot": 3,
+        "base": 21000000,
+        "end_exclusive": 24110400
+      }
+    ],
+    "payload_mb_per_s": 373.248,
+    "theoretical_mb_per_s": 1066.6666666666667,
+    "physical_ddr_write_read_stress": "NOT_RUN"
+  },
+  "fifo": {
+    "write_used_max_before_line": 120,
+    "line_words": 360,
+    "read_reserved_max_before_240_burst": 271,
+    "prefill_words": 360
+  },
+  "hdmi": {
+    "pll_chain": [
+      {
+        "reference": 50,
+        "n": 5,
+        "m": 108,
+        "c": 32,
+        "output": 33.75
+      },
+      {
+        "reference": 33.75,
+        "n": 1,
+        "m": 33,
+        "c0": 15,
+        "c1": 3,
+        "pixel": 74.25,
+        "serial": 371.25
+      }
+    ],
+    "note": "Integer ratios exact. TD clock periods rounded to 1ps can display serial 371.333 MHz; vendor model measurement separately required.",
+    "vic": 34
+  },
+  "classification": "UNCALIBRATED",
+  "physical_acceptance": "NOT_RUN"
+}

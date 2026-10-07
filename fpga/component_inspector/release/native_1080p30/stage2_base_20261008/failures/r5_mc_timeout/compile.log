@@ -1,0 +1,33 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 00:03:28 on Oct 08,2026
+vlog -work test_fhd_mc ../user_source/hdl_source/roi_sobel_view.v ../user_source/hdl_source/isp/data96_128/data96_128.v ../user_source/hdl_source/video_in.v ../user_source/hdl_source/video_out.v ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v ../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v ../user_source/hdl_source/mc_to_user_interface.v ../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v ../user_source/ip_source/w155_d512_fifo/w155_d512_fifo.v 
+-- Compiling module roi_sobel_view
+-- Compiling module data_96bit_to_128bit
+-- Compiling module video_in
+-- Compiling module video_out
+-- Compiling module soft_fifo_al_4057d6b76aa6
+-- Compiling module fifo_cross_domain_addr_process_al_4057d6b76aa6
+-- Compiling module ram_infer_4057d6b76aa6
+-- Compiling module w128_d512_fifo
+-- Compiling module mc_to_user_interface
+-- Compiling module soft_fifo_al_f58e8b3e1f3d
+-- Compiling module ram_infer_f58e8b3e1f3d
+-- Compiling module w155_d512_fifo
+
+Top level modules:
+	roi_sobel_view
+	data_96bit_to_128bit
+	video_in
+	video_out
+	mc_to_user_interface
+End time: 00:03:28 on Oct 08,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 00:03:28 on Oct 08,2026
+vlog -sv -work test_fhd_mc tb_fhd_mc.v 
+-- Compiling module tb_fhd_mc
+
+Top level modules:
+	tb_fhd_mc
+End time: 00:03:28 on Oct 08,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
