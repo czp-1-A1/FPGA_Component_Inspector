@@ -2,7 +2,7 @@
 
 工作仓库：<https://github.com/czp-1-A1/FPGA_Component_Inspector>。
 
-本机完整Git工作区为`C:/Users/Li47/Desktop/aa/FPGA_Component_Inspector_git`，Li47交接分支为`handoff/li47`。原`FPGA_Component_Inspector/`目录是保留的源码快照，后续复用完整Git工作区，不重复克隆。
+本机完整Git工作区为`C:/Users/Li47/Desktop/aa/FPGA_Component_Inspector_git`，Li47默认工作及交接分支为`lj4747-contest-work`。原`FPGA_Component_Inspector/`目录是保留的源码快照，后续复用完整Git工作区，不重复克隆。新工作分支继承旧`handoff/li47`的`b2c95f5`交接提交；旧分支作为历史交接基线保留。
 
 ## 继续本人的任务
 
@@ -20,7 +20,7 @@ git remote -v
 
 1. 停止本端开发与可能写入工程的进程，更新`AGENTS.md`。写清目标、分支/基线、改动、证据、未决事项、下一操作、运行中进程/设备和提交/推送状态。
 2. 检查未提交、暂存及未跟踪文件，只暂存本轮必要代码、交接说明和证据。不要用全部暂存把无关文件带入；凭据与机器进程不能通过Git交接。
-3. 按用户授权提交并推送`handoff/li47`。首次推送用`git push -u origin handoff/li47`，之后用`git push`；禁止强推或未经确认合并到`main`。
+3. 按用户授权提交并推送`lj4747-contest-work`。首次推送用`git push -u origin lj4747-contest-work`，之后用`git push`；禁止强推或未经确认合并到`main`。
 4. 核对本地HEAD、上游分支与远端SHA一致，成功后才报告已同步。把分支名、提交SHA和未随Git传递的依赖告知接棒者；WIP仍按WIP说明，不作为验收通过。
 
 ## 接续其他队员的分支

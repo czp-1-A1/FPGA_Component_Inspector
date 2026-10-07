@@ -34,11 +34,11 @@
 
 ## 当前断点（2026-10-07）
 
-- **目标与阶段**：建立Li47的Git交接工作区与任务分支。用户已确认上一实现端停止，并授权完整克隆、创建及推送`handoff/li47`；该远端分支已建立。后续队员分支的拉取、切换及新开发，仍先由用户确认。工程仍停在A/步骤1，尚无本项目上板视频通过证据。
-- **代码基线**：完整Git克隆位于`C:/Users/Li47/Desktop/aa/FPGA_Component_Inspector_git`，`origin`为`https://github.com/czp-1-A1/FPGA_Component_Inspector.git`。`handoff/li47`从`origin/main`提交`f87ccf1c6a38e84b58a4f86cecd532a71ae56e89`创建，已跟踪`origin/handoff/li47`；本轮交接文档的基准是包含本摘要的提交，其SHA用`git rev-parse HEAD`取得。克隆不是浅克隆，原`FPGA_Component_Inspector/`源码快照与ZIP保留不动，后续复用新克隆。
-- **本轮改动**：仅更新新克隆的`AGENTS.md`及新增交接操作说明`HANDOFF.md`，并更新工作区外层本入口。核心规则对齐用户最新的三人轮流开发约定，本机工程路径修正为实际新克隆路径。未修改FPGA RTL、约束、机械资料或原始Example。
-- **验证及证据**：完整克隆收到1342个对象、342.16MiB，校验并检出1284个文件；创建分支前工作区干净，`git rev-parse --is-shallow-repository`为`false`，`git fsck --full`及`git diff --check`通过。GitHub浏览器认证成功，`lj4747`账号已成功首次推送`handoff/li47`并建立上游；重新读取远端确认分支在`f87ccf1`。本轮未编译、仿真、布局布线或上板。上一轮静态记录为2-lane RAW10、SID=0x36、自定义1024×600，并发现复位等待、PWDNB、24/27MHz和曝光初值问题；本轮未复测，不能判通过。
-- **未决事项**：远端已存在队员分支`hx1p35a-contest-work`，本轮仅列出其引用，未拉取、切换、合并或分析。板卡、TD、相机与现场视频验收仍待用户确认后继续；远端不包含被忽略的官方大压缩包，旧日志不能替代复测。Git代理沿用Windows已有的`127.0.0.1:10090`，提交作者采用授权账号`lj4747`及GitHub noreply隐私邮箱，仅保存在本仓库本地配置；凭据不写入仓库。
-- **下一条具体操作**：先核对当前分支、HEAD、上游、工作区和远端SHA是否一致，确认本轮交接文档已同步；之后等待用户确认下一项开发任务或需要接续的队员分支。不重复克隆，不自动切换到队员分支。若用户确认继续A/步骤1，则在TD打开`fpga/component_inspector/td_project/camera_to_dsi_display.al`，先核对实际引脚、时钟及复位时序再实施。
-- **运行中进程/设备**：本轮完整克隆及Git Credential Manager认证进程均已退出。未启动TD、编译或板卡操作；无本轮遗留开发进程，设备现场状态仍未确认。
-- **提交/推送状态**：远端交接分支已成功建立，上游为`origin/handoff/li47`；本轮仅将上述交接文档纳入独立提交。接棒端以包含本摘要的实际HEAD与远端`refs/heads/handoff/li47`核对同步状态，二者一致且工作区干净后续接。未合并到`main`，未强推。
+- **目标与阶段**：用户明确选择创建自己的`lj4747-contest-work`工作分支，作为后续开发与队员交接的默认个人分支；本地已创建并切换。工程仍停在A/步骤1，尚无本项目上板视频通过证据。后续新开发或接续其他队员分支，仍先由用户确认。
+- **代码基线**：复用完整Git工作区`C:/Users/Li47/Desktop/aa/FPGA_Component_Inspector_git`，`origin`为`https://github.com/czp-1-A1/FPGA_Component_Inspector.git`。新分支从已同步的`handoff/li47`提交`b2c95f52fc6eb4967b763a79566e03c1e91f9b7e`创建，继承其代码及交接文档；本轮最新基准为包含本摘要的提交，用`git rev-parse HEAD`取得SHA。`main`基线仍为`f87ccf1c6a38e84b58a4f86cecd532a71ae56e89`。原源码快照、ZIP及旧交接分支保留，后续不重复克隆。
+- **本轮改动**：仅更新新分支的`AGENTS.md`和`HANDOFF.md`，将默认开发、提交和推送分支改为`lj4747-contest-work`，并更新工作区外层本入口。未修改FPGA RTL、约束、机械资料或原始Example。
+- **验证及证据**：创建前已核对分支、HEAD、暂存/未提交/未跟踪文件及远端引用；工作区干净，当前基准与远端`handoff/li47`一致，未发现同名本地或远端工作分支。`git switch -c lj4747-contest-work`成功，创建后HEAD仍为`b2c95f5`。上一轮完整克隆及Git完整性检查通过；本轮未重复克隆、未编译、仿真、布局布线或上板，Git同步不代表FPGA验收通过。
+- **未决事项**：队员分支`hx1p35a-contest-work`本轮仅查询其引用，未拉取、切换、合并或分析。板卡/TD/相机及实物视频验收仍待确认。上一轮静态阅读发现复位等待、PWDNB、24/27MHz与曝光初值问题，仍需现场核对及复测；远端不包含被忽略的官方大压缩包。Git作者为授权账号`lj4747`及其GitHub noreply邮箱，现有本机代理配置和凭据仅保存在本机。
+- **下一条具体操作**：核对`lj4747-contest-work`本地HEAD、上游、远端SHA及工作区一致后，等待用户确认下一项开发任务或给出要接续的队员分支。若确认继续A/步骤1，则在TD打开`fpga/component_inspector/td_project/camera_to_dsi_display.al`，先核对实际引脚、时钟与复位时序。
+- **运行中进程/设备**：本轮未启动TD、编译、板卡操作或新的认证流程，无本轮遗留开发进程；现场设备状态尚未确认。
+- **提交/推送状态**：本轮以独立文档提交建立个人工作分支，推送目标为`origin/lj4747-contest-work`。接棒端以本摘要所在提交的实际HEAD与远端`refs/heads/lj4747-contest-work`核对，二者一致且工作区干净后才视为同步。旧`handoff/li47`仍保留在`b2c95f5`，未合并到`main`或队员分支，未强推。
