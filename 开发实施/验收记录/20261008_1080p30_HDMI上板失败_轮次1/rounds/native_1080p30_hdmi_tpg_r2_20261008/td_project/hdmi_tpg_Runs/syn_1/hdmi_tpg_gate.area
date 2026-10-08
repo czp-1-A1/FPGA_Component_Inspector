@@ -1,0 +1,80 @@
+standard
+***Report Model: hdmi_tpg_top Device: PH1P35MDG324***
+
+Design Statistics
+#IO                         6   out of    160    3.75%
+  #input                    2
+  #output                   4
+  #inout                    0
+#lut                      912
+  #lut1                    21
+  #lut2                   214
+  #lut3                   255
+  #lut4                    85
+  #lut5                   121
+  #lut6                   216
+#reg                     1079
+  #slice reg             1079   out of  42432    2.54%
+  #pad reg                  0
+
+Utilization Statistics
+#slice*                   701   out of  21216    3.30%
+  #used ram                16
+    #dram lut               0
+    #shifter lut           16
+  #used logic             685
+    #with luts*           528
+    #with adder            56
+    #reg only*            101
+#f7mux                      0   out of  10608    0.00%
+#f8mux                      0   out of   5304    0.00%
+#eram                       5   out of    108    4.63%
+  #eram20k                  5
+  #fifo20k                  0
+#dsp                        0   out of     40    0.00%
+#ddr_byte                   0   out of     12    0.00%
+#mipi_tx                    0   out of      2    0.00%
+#mipi_rx                    0   out of      2    0.00%
+#pad                       10   out of    160    6.25%
+#pll                        2   out of      6   33.33%
+#gclk                       2   out of     32    6.25%
+#lclk                       0   out of     12    0.00%
+#sclk                       0   out of     48    0.00%
+#mlclk                      0   out of      6    0.00%
+#ioclk                      0   out of     18    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+Report Hierarchy Area:
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance                                     |Module                             |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |ddr     |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|top                                          |hdmi_tpg_top                       |528       |56      |1079    |5       |0       |0        |16          |0       |0       |2       |0       |
+|  u_core                                     |hdmi_1_4b_transmitter_core_wrapper |506       |56      |1029    |5       |0       |0        |16          |0       |0       |0       |0       |
+|    u0_reset_sync                            |hdmi_1_4b_tx_reset_sync            |0         |0       |2       |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u_hdmi_tx_controller_wrapper             |hdmi_tx_controller_wrapper         |459       |56      |991     |5       |0       |0        |16          |0       |0       |0       |0       |
+|      u0_hdmi_tmds_encode                    |hdmi_tmds_encode                   |70        |0       |156     |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u1_hdmi_tmds_encode                    |hdmi_tmds_encode                   |61        |0       |108     |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u2_hdmi_tmds_encode                    |hdmi_tmds_encode                   |64        |0       |108     |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u_hdmi_data_distribution               |hdmi_data_distribution             |1         |0       |39      |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u_hdmi_island_data_assemble            |hdmi_island_data_assemble          |114       |0       |249     |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u_hdmi_island_data_gen                 |hdmi_island_data_gen               |61        |0       |98      |3       |0       |0        |0           |0       |0       |0       |0       |
+|        U_audio_sample_packet_2_channel      |audio_sample_packet_2_channel      |6         |0       |12      |3       |0       |0        |0           |0       |0       |0       |0       |
+|          u_w96_d1024_fifo                   |w96_d1024_fifo                     |6         |0       |11      |3       |0       |0        |0           |0       |0       |0       |0       |
+|      u_hdmi_video_data_assemble             |hdmi_video_data_assemble           |0         |0       |35      |0       |0       |0        |16          |0       |0       |0       |0       |
+|      u_hdmi_video_source                    |hdmi_video_source                  |28        |28      |38      |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u_hdmi_video_tpg_gen                   |hdmi_video_tpg_gen                 |45        |28      |103     |0       |0       |0        |0           |0       |0       |0       |0       |
+|        u_video_tpg_rgb444_gen               |video_tpg_rgb444_gen               |35        |28      |65      |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u_video_axi_stream_receiver            |video_axi_stream_receiver          |15        |0       |57      |2       |0       |0        |0           |0       |0       |0       |0       |
+|        u_w24_d1024_fifo                     |w24_d1024_fifo                     |13        |0       |55      |2       |0       |0        |0           |0       |0       |0       |0       |
+|  u_hdmi_pll                                 |HDMI_PLL                           |2         |0       |0       |0       |0       |0        |0           |0       |0       |2       |0       |
+|    u_output                                 |HDMI_PLL_STAGE                     |1         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|      ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst |ph1p_phy_pll_wrapper_25a56e5ce2f9  |1         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|    u_ref                                    |HDMI_PLL_STAGE                     |0         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|      ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst |ph1p_phy_pll_wrapper_25a56e5ce2f9  |0         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|  u_phy                                      |hdmi_phy_wrapper                   |19        |0       |47      |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u0_lane_lvds_8_1                         |lane_lvds_10_1                     |8         |0       |18      |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u1_lane_lvds_8_1                         |lane_lvds_10_1                     |5         |0       |12      |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u2_lane_lvds_8_1                         |lane_lvds_10_1                     |5         |0       |12      |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u3_lane_lvds_8_1                         |lane_lvds_10_1                     |1         |0       |5       |0       |0       |0        |0           |0       |0       |0       |0       |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

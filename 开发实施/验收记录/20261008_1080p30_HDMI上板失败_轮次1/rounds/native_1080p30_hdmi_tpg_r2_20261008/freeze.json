@@ -1,0 +1,72 @@
+{
+  "branch": "lj4747-native-1080p30-stage2",
+  "head": "9ab9d555a1bc5888b5b605aa6ebc423288d7441b",
+  "purpose": "HDMI-only1080p30 internalTPG diagnostic; no camera/DDR; not accepted",
+  "inputs": [
+    {
+      "path": "diagnostics/hdmi_1080p30_tpg/hdmi_tpg_top.v",
+      "sha256": "701015f979c499feb7afa57bf0cc46594988d18ac15a637f34c5fca70c524cb7",
+      "bytes": 1777
+    },
+    {
+      "path": "user_source/hdl_source/native_hdmi_pll.v",
+      "sha256": "bd4c8e6fad7c9e2e78af3b4c71979664de267d7e947d3fb38139f95d245fe951",
+      "bytes": 4196
+    },
+    {
+      "path": "user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v",
+      "sha256": "2f6f2560129b950c9f5a36136f128a9304ff858bf1bae0f2129ea0145d941a1e",
+      "bytes": 12535
+    },
+    {
+      "path": "user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v",
+      "sha256": "867e0b0bdd874bc383d00918c9e1be3fe01edf41f343b6a0d73e262776596a63",
+      "bytes": 328975
+    },
+    {
+      "path": "user_source/hdl_source/hdmi_phy_warpper.v",
+      "sha256": "416b082b0987001bdbc0a7e20a557cb8fb1dca34e25dc881e6d28a8cb3cf4300",
+      "bytes": 4017
+    },
+    {
+      "path": "user_source/hdl_source/lane_lvds_10_1.v",
+      "sha256": "de9529321354f04837e051d0ec1681cf44783d4be3284703a788e081147500bc",
+      "bytes": 4421
+    },
+    {
+      "path": "tools/prepare_hdmi_diagnostic.py",
+      "sha256": "0b9da7f794556310086546d57bcf2578edc8206d309d9ac97082b2625e2a58cf",
+      "bytes": 4694
+    },
+    {
+      "path": "sim/tb_hdmi_tpg.v",
+      "sha256": "a8700cf647cf8459d73a5714467bc6cda36192f069c47a750ba5bc223a9df843",
+      "bytes": 3157
+    },
+    {
+      "path": "sim/hdmi_decode.vh",
+      "sha256": "70953d0ed0a6bcad4e11f0b919fe6cb807fc01b52394e6147e96e7cab0b6d626",
+      "bytes": 1170
+    },
+    {
+      "path": "sim/run_hdmi_tpg.ps1",
+      "sha256": "c678eea34be0b2425768ad813314968547ca9c130acdb0aeb62b9401a45a1cc3",
+      "bytes": 2398
+    },
+    {
+      "path": "td_project/pin.adc",
+      "sha256": "c825b3540b434f52fdbf50058dc32a2fe1ed0a54796e0344ebda173fb9241ef2",
+      "bytes": 579
+    },
+    {
+      "path": "td_project/hdmi_tpg.sdc",
+      "sha256": "a0300b772f47f801f2a3f1e2e7f620e29c2e9ff9ec3e3634a67b93174d5d411c",
+      "bytes": 375
+    },
+    {
+      "path": "td_project/hdmi_tpg.al",
+      "sha256": "495a9bba09b1800e518123b3833243f89c267b751545b284e1bd46ae07d46844",
+      "bytes": 4012
+    }
+  ]
+}

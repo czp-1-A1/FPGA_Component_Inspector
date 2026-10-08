@@ -1,0 +1,1090 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 21:15:38 on Oct 08,2026
+vlog -work anlogic_sim D:\td6.2.1\sim_release\common\al_map_basic.v D:\td6.2.1\sim_release\common\al_map_lut.v D:\td6.2.1\sim_release\common\al_map_adder.v D:\td6.2.1\sim_release\common\al_phy_glbl.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_eram.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_gsr.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_bufg.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll_v2.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_hrio.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_buf.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_config.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_dphy_lvcmos.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_dphy_lvds_rx.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_dphy_lvds_tx.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_dphy_mipi_rx.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_dphy_mipi_tx.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_dram.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_dram32x16.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_dram32x16r8.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_dram64x8.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_dram64x8r16.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_fifo.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_hdio_delay.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_hdio.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_hpt.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_hrio_delay.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_iobuf.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_mult.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_ramfifo.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_seq_div.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_shifter.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_shifterx16.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_shifterx8.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_slice.v D:\td6.2.1\sim_release\ph1p\ph1p_logic_tvs.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_clock_aligner.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_config_v2.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_config.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_bankref.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_byte.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v2.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_dffshifter.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_dramhardcon.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_dspadd.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_dsplogic.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_dspmult_v2.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_dspmult.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_dspsiou_v2.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_dspsiou.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_dsptadd.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_eram_v2.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_eram.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_f78mux.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_f7mux.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_fifoctrl.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_gclk_test.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_gclk.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_hclk.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_hd_bankref.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_hd_pad.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_bankref_v2.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_bankref.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_ioclk.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_lclk.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_lslice.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_mcu.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_rx.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_mlclk.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_mslice.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_osc.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_oscdiv.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_sclk_v2.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_sclk.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_shifterhardcon.v D:\td6.2.1\sim_release\ph1p\ph1p_phy_tvs.v 
+-- Compiling module reg_ar_as_w1
+-- Compiling module reg_sr_ss_w1
+-- Compiling module reg_ar_ss_w1
+-- Compiling module reg_sr_as_w1
+-- Compiling module latch_ar_ss_w1
+-- Compiling module latch_sr_as_w1
+-- Compiling module latch_sr_ss_w1
+-- Compiling module latch_ar_as_w1
+-- Compiling module AL_DFF_W
+-- Compiling module AL_DFF_0
+-- Compiling module AL_DFF_1
+-- Compiling module AL_DFF_X
+-- Compiling module AL_LATCH_W
+-- Compiling module AL_LATCH_0
+-- Compiling module AL_LATCH_1
+-- Compiling module AL_LATCH_X
+-- Compiling module AL_MUX
+-- Compiling module AL_DFF
+-- Compiling module AL_LATCH
+-- Compiling module AL_FADD
+-- Compiling module AL_MAP_LUT1
+-- Compiling module AL_MAP_LUT2
+-- Compiling module AL_MAP_LUT3
+-- Compiling module AL_MAP_LUT4
+-- Compiling module AL_MAP_LUT5
+-- Compiling module AL_MAP_LUT6
+-- Compiling module AL_MAP_LUT6P
+-- Compiling module AL_MAP_LUT6X
+-- Compiling module AL_MAP_LLMUX
+-- Compiling module AL_MAP_F7MUX
+-- Compiling module AL_MAP_F8MUX
+-- Compiling module AL_MAP_CARRY4
+-- Compiling module AL_MAP_ADDER
+-- Compiling module glbl
+-- Compiling module PH1P_LOGIC_ERAM
+-- Compiling module PH1P_PHY_GSR
+-- Compiling module PH1P_LOGIC_BUFG
+-- Compiling module PH1P_PHY_PLL_V2
+-- Compiling module cpll_div_n_logic
+-- Compiling module gpll_vco_mux_top
+-- Compiling module gpll_fracn_top_v1
+-- Compiling module al6100gpll_cpll_div_n_dff
+-- Compiling module gpll_top
+-- Compiling module gpll_prediv
+-- Compiling module cpll_div_23_lvt
+-- Compiling module gpll_fbdiv_top_v1
+-- Compiling module gpll_clk_mux
+-- Compiling module gpll_pi_64bit
+-- Compiling module gpll_vco_mux_pi_top
+-- Compiling module gpll_ibias
+-- Compiling module gpll_vco_buf
+-- Compiling module bg_sgaux_init
+-- Compiling module gpll_ana_buf_unit_x3
+-- Compiling module gpll_fbdiv_mux
+-- Compiling module cpll_div_n_sync
+-- Compiling module gpll_core
+-- Compiling module cpll_div_n_buf
+-- Compiling module cpll_div_n_top
+-- Compiling module regulator_top
+-- Compiling module cpll_div_234_lvt
+-- Compiling module com_hss_tieh
+-- Compiling module com_hss_tiel
+-- Compiling module al6100gpll_com_hss_buf4x
+-- Compiling module gpll_ana
+-- Compiling module al6100gpll_com_hss_bufx4
+-- Compiling module gpll_vco_buf_unit
+-- Compiling module al6100gpll_DRNQV1_140P12T40L
+-- Compiling module al6100gpll_NAND2CV1_140P12T40L
+-- Compiling module al6100gpll_PULL1_140P12T40L
+-- Compiling module al6100gpll_NAND3CV1_140P12T40L
+-- Compiling module al6100gpll_NAND2BV1_140P12T40L
+-- Compiling module al6100gpll_NAND2CV2_140P12T40L
+-- Compiling module al6100gpll_AND2V2_140P12T40L
+-- Compiling module al6100gpll_CLKMUX2V2_140P12T40L
+-- Compiling module al6100gpll_CLKINV2_140P12T40L
+-- Compiling module al6100gpll_CLKINV4_140P12T40L
+-- Compiling module al6100gpll_CLKINV8_140P12T40L
+-- Compiling module al6100gpll_DRSNQV2_140P12T40L
+-- Compiling module al6100gpll_NAND2V2_140P12T40L
+-- Compiling module al6100gpll_INV2_140P12T40L
+-- Compiling module al6100gpll_OR2V2_140P12T40L
+-- Compiling module al6100gpll_BUFV2_140P12T40L
+-- Compiling module al6100gpll_CLKNAND2V2_140P12T40L
+-- Compiling module al6100gpll_com_hss_inv8x
+-- Compiling module al6100gpll_com_hss_inv4x
+-- Compiling module al6100gpll_com_hss_inv2x
+-- Compiling module al6100gpll_com_hss_tgate_2x
+-- Compiling module al6100gpll_com_hss_mux2x
+-- Compiling module al6100gpll_com_hss_dff2x
+-- Compiling module al6100gpll_com_hss_and2_2x
+-- Compiling module gpll_ctrl
+-- Compiling module gpll_test
+-- Compiling module gpll_test_cell
+-- Compiling module gpll_output
+-- Compiling module gpll_out_div_duty
+-- Compiling module gpll_out_rst
+-- Compiling module gpll_out_gate
+-- Compiling module gpll_out_duty
+-- Compiling module gpll_out_en_stdby_ctrl
+-- Compiling module gpll_out_en
+-- Compiling module gpll_out_main
+-- Compiling module gpll_lockdet
+-- Compiling module gpll_fbdiv_dig
+-- Compiling module gpll_fbdiv_dig_sdm
+-- Compiling module gpll_fbdiv_dig_ssc
+-- Compiling module gpll_fbdiv_dig_ssc_div
+-- Compiling module gpll_fbdiv_dig_ssc_lpf
+-- Compiling module gpll_vco_mux_div_ctrl
+-- Compiling module gpll_vco_mux_phs
+-- Compiling module gpll_vco_mux_pi_ctrl
+-- Compiling module gpll_vco_mux_buf
+-- Compiling module gpll_vco_mux
+-- Compiling module axis2apb_gpll
+-- Compiling module pll_slave
+-- Compiling module axis_slave
+-- Compiling module gpll_pi_dec_top
+-- Compiling module sync_dff
+-- Compiling module st2p
+-- Compiling module sync_del
+-- Compiling module pulse
+-- Compiling module at0012_cell_clk_buf
+-- Compiling module al6100_gpll_cell_clk_mux
+-- Compiling module gpll_ana_core
+-- Compiling module gpll_ouput_pi_top
+-- Compiling UDP udp_dff
+-- Compiling UDP udp_mux2
+-- Compiling module BUFV1_140P9T40H
+-- Compiling module TBUFV8_140P9T40H
+-- Compiling module DRSNQV2_140P9T40H
+-- Compiling module CLKBUFV4_140P9T40H
+-- Compiling module CLKINV2_140P9T40H
+-- Compiling module INV2_140P9T40H
+-- Compiling module DRSNQV1_140P9T40H
+-- Compiling module DSNQV4_140P9T40H
+-- Compiling module DRNQV4_140P9T40H
+-- Compiling module DSNQV2_140P9T40H
+-- Compiling module AND2V8_140P9T40H
+-- Compiling module DRNQV2_140P9T40H
+-- Compiling module CLKINV4_140P9T40R
+-- Compiling module CLKNAND2V2_140P9T40R
+-- Compiling module CLKAND2V2_140P9T40R
+-- Compiling module DRSNQV2_140P9T40R
+-- Compiling module CLKINV3_140P9T40R
+-- Compiling module INV3_140P9T40R
+-- Compiling module PH1P_LOGIC_HR_ISERDES
+-- Compiling module PH1P_LOGIC_HR_OSERDES
+-- Compiling module PH1P_LOGIC_IDDR
+-- Compiling module PH1P_LOGIC_IDDRx2
+-- Compiling module PH1P_LOGIC_ODDR
+-- Compiling module PH1P_LOGIC_ODDRx2
+-- Compiling module PH1P_LOGIC_BUF
+-- Compiling module PH1P_LOGIC_MBOOT
+-- Compiling module PH1P_LOGIC_MBOOT_V2
+-- Compiling module PH1P_LOGIC_DNA
+-- Compiling module PH1P_LOGIC_ICAP
+-- Compiling module PH1P_LOGIC_GSRN
+-- Compiling module PH1P_LOGIC_ECC
+-- Compiling module PH1P_LOGIC_GCTRL
+-- Compiling module PH1P_LOGIC_TRSTN
+-- Compiling module PH1P_LOGIC_BOUNDARYSCAN
+-- Compiling module PH1P_LOGIC_JTAG
+-- Compiling module PH1P_LOGIC_QSPI2MCU
+-- Compiling module PH1P_LOGIC_DEVICE_VERSION
+-- Compiling module PH1P_LOGIC_DUALBOOT
+-- Compiling module PH1P_LOGIC_DPHY_LVCMOS
+-- Compiling module PH1P_LOGIC_DPHY_LVDS_RX
+-- Compiling module PH1P_LOGIC_DPHY_LVDS_TX
+-- Compiling module PH1P_LOGIC_DPHY_MIPI_RX
+-- Compiling module PH1P_LOGIC_DPHY_MIPI_TX
+-- Compiling module PH1P_LOGIC_DRAM
+-- Compiling module PH1P_LOGIC_DRAM32X16
+-- Compiling module PH1P_LOGIC_DRAM32X16R8
+-- Compiling module PH1P_LOGIC_DRAM64X8
+-- Compiling module PH1P_LOGIC_DRAM64X8R16
+-- Compiling module PH1P_LOGIC_FIFO
+-- Compiling module PH1P_LOGIC_DYNAMIC_HD_IDELAY
+-- Compiling module PH1P_LOGIC_DYNAMIC_HD_ODELAY
+-- Compiling module PH1P_LOGIC_HD_IDDR
+-- Compiling module PH1P_LOGIC_HD_ODDR
+-- Compiling module PH1P_LOGIC_HPT
+-- Compiling module PH1P_LOGIC_DYNAMIC_HR_IDELAY
+-- Compiling module PH1P_LOGIC_DYNAMIC_IDELAY
+-- Compiling module PH1P_LOGIC_DYNAMIC_HR_ODELAY
+-- Compiling module PH1P_LOGIC_IBUF_DIFF
+-- Compiling module PH1P_LOGIC_OBUF_DIFF
+-- Compiling module PH1P_LOGIC_IOBUF_DIFF
+-- Compiling module PH1P_LOGIC_IOBUF
+-- Compiling module PH1P_LOGIC_IBUF
+-- Compiling module PH1P_LOGIC_OBUF
+-- Compiling module PH1P_LOGIC_IOTRIBUF
+-- Compiling module PH1P_LOGIC_MULT
+-- Compiling module PH1P_LOGIC_RAMFIFO
+-- Compiling module gray2bin
+-- Compiling module gray_count
+-- Compiling module showahead_buffer
+-- Compiling module PH1P_LOGIC_SEQ_DIV
+-- Compiling module PH1P_LOGIC_SHIFTER
+-- Compiling module PH1P_LOGIC_SHIFTERX16
+-- Compiling module PH1P_LOGIC_SHIFTERX8
+-- Compiling module PH1P_LOGIC_SLICE
+-- Compiling module PH1P_LOGIC_TVS
+-- Compiling module PH1P_PHY_CLOCK_ALIGNER
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_clock_aligner.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: (vlog-2070) Existing unprotected design unit "com_hss_tieh" is being recompiled as protected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_clock_aligner.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: (vlog-2070) Existing unprotected design unit "com_hss_tiel" is being recompiled as protected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_clock_aligner.v(255): (vlog-2633) '<protected>' already exists.
+** Warning: (vlog-2070) Existing unprotected design unit "udp_mux2" is being recompiled as protected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_clock_aligner.v(255): (vlog-2633) '<protected>' already exists.
+** Warning: (vlog-2070) Existing unprotected design unit "udp_dff" is being recompiled as protected.
+-- Compiling module PH1P_PHY_CONFIG_V2
+-- Compiling module PH1P_PHY_CONFIG
+-- Compiling module PH1P_PHY_DDRPHY_BANKREF
+-- Compiling module PH1P_PHY_DDRPHY_BYTE
+-- Compiling module PH1P_PHY_DDRPHY_PAD_V2
+-- Compiling module PH1P_PHY_DDRPHY_PAD_V3
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad_v3.v(201): (vlog-2275) '<protected>' already exists and will be overwritten.
+-- Compiling module PH1P_PHY_DDRPHY_PAD
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_ddrphy_pad.v(213): (vlog-2275) '<protected>' already exists and will be overwritten.
+-- Compiling module PH1P_PHY_DFFSHIFTER
+-- Compiling module PHY_SLICE_FCIMUX0
+-- Compiling module PHY_SLICE_FCIMUX1
+-- Compiling module PH1P_PHY_DRAMHARDCON
+-- Compiling module PH1P_PHY_DSPADD
+-- Compiling module PH1P_PHY_DSPLOGIC
+-- Compiling module PH1P_PHY_DSPMULT_V2
+-- Compiling module PH1P_PHY_DSPMULT
+-- Compiling module PH1P_PHY_DSPSIOU_V2
+-- Compiling module PH1P_PHY_DSPSIOU
+-- Compiling module PH1P_PHY_DSPTADD
+-- Compiling module PH1P_PHY_ERAM_V2
+-- Compiling module PH1P_PHY_ERAM
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_eram.v(2477): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_eram.v(2477): (vlog-2275) '<protected>' already exists and will be overwritten.
+-- Compiling module PH1P_PHY_F78MUX
+-- Compiling module PH1P_PHY_F7MUX
+-- Compiling module PH1P_PHY_FIFOCTRL
+-- Compiling module PH1P_PHY_FIFOCONTROLLER
+-- Compiling module AL_FIFOCTRL_fifo_sync2dff
+-- Compiling module AL_FIFOCTRL_bin2gray
+-- Compiling module AL_FIFOCTRL_gray2bin
+-- Compiling module AL_FIFOCTRL_writectrl
+-- Compiling module AL_FIFOCTRL_readctrl
+-- Compiling module PH1P_PHY_GCLK_TSMUX_TEST
+-- Compiling module PH1P_PHY_GCLK_CMUX_TEST
+-- Compiling module PH1P_PHY_IOCLK_BANK_TEST
+-- Compiling module PH1P_PHY_IOCLK_BANK_TEST_V2
+-- Compiling module PH1P_PHY_PHYCLK_BANK_TEST
+-- Compiling module PH1P_PHY_PSCLK_BANK_TEST
+-- Compiling module PH1P_PHY_GCLK
+-- Compiling module PH1P_PHY_HCLK
+-- Compiling module PH1P_PHY_HD_BANKREF
+-- Compiling module PH1P_PHY_HD_PAD
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hd_pad.v(194): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: (vlog-2070) Existing unprotected design unit "CLKAND2V2_140P9T40R" is being recompiled as protected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hd_pad.v(194): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: (vlog-2070) Existing unprotected design unit "CLKINV4_140P9T40R" is being recompiled as protected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hd_pad.v(194): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: (vlog-2070) Existing unprotected design unit "INV2_140P9T40H" is being recompiled as protected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hd_pad.v(194): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: (vlog-2070) Existing unprotected design unit "CLKNAND2V2_140P9T40R" is being recompiled as protected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hd_pad.v(194): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: (vlog-2070) Existing unprotected design unit "DRSNQV2_140P9T40R" is being recompiled as protected.
+-- Compiling module PH1P_PHY_HR_BANKREF_V2
+-- Compiling module PH1P_PHY_HR_BANKREF
+-- Compiling module PH1P_PHY_HR_PAD_V2
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v2.v(253): (vlog-2275) '<protected>' already exists and will be overwritten.
+-- Compiling module PH1P_PHY_HR_PAD_V3
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad_v3.v(255): (vlog-2275) '<protected>' already exists and will be overwritten.
+-- Compiling module PH1P_PHY_HR_PAD
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+-- Compiling module PH1P_PHY_IOCLK
+-- Compiling module PH1P_PHY_LCLK
+-- Compiling module PH1P_PHY_LSLICE
+-- Compiling module PH1P_PHY_MCU
+-- Compiling module PH1P_PHY_MIPIIO_RX
+-- Compiling module PH1P_PHY_MIPIIO_TX
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mipiio_tx.v(341): (vlog-2633) '<protected>' already exists.
+-- Compiling module PH1P_PHY_MLCLK
+-- Compiling module PH1P_PHY_MSLICE
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mslice.v(865): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mslice.v(865): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mslice.v(865): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mslice.v(865): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mslice.v(865): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_mslice.v(865): (vlog-2275) '<protected>' already exists and will be overwritten.
+-- Compiling module PH1P_PHY_OSC
+-- Compiling module PH1P_PHY_OSCDIV
+-- Compiling module PH1P_PHY_PLL
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(2141): (vlog-2275) 'gpll_pi_64bit' already exists and will be overwritten.
+-- Compiling module gpll_pi_64bit
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(2292): (vlog-2275) 'gpll_vco_mux_pi_top' already exists and will be overwritten.
+-- Compiling module gpll_vco_mux_pi_top
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(2353): (vlog-2275) 'gpll_ibias' already exists and will be overwritten.
+-- Compiling module gpll_ibias
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(2413): (vlog-2275) 'bg_sgaux_init' already exists and will be overwritten.
+-- Compiling module bg_sgaux_init
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(2450): (vlog-2275) 'gpll_fbdiv_top_v1' already exists and will be overwritten.
+-- Compiling module gpll_fbdiv_top_v1
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(2695): (vlog-2275) 'gpll_clk_mux' already exists and will be overwritten.
+-- Compiling module gpll_clk_mux
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(2805): (vlog-2275) 'gpll_top' already exists and will be overwritten.
+-- Compiling module gpll_top
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(3252): (vlog-2275) 'gpll_prediv' already exists and will be overwritten.
+-- Compiling module gpll_prediv
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(3343): (vlog-2275) 'cpll_div_n_logic' already exists and will be overwritten.
+-- Compiling module cpll_div_n_logic
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(3399): (vlog-2275) 'cpll_div_23_lvt' already exists and will be overwritten.
+-- Compiling module cpll_div_23_lvt
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(3513): (vlog-2275) 'gpll_vco_mux_top' already exists and will be overwritten.
+-- Compiling module gpll_vco_mux_top
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(3596): (vlog-2275) 'al6100gpll_cpll_div_n_dff' already exists and will be overwritten.
+-- Compiling module al6100gpll_cpll_div_n_dff
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(3631): (vlog-2275) 'gpll_fracn_top_v1' already exists and will be overwritten.
+-- Compiling module gpll_fracn_top_v1
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(3929): (vlog-2275) 'cpll_div_n_buf' already exists and will be overwritten.
+-- Compiling module cpll_div_n_buf
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(4025): (vlog-2275) 'regulator_top' already exists and will be overwritten.
+-- Compiling module regulator_top
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(4090): (vlog-2275) 'cpll_div_n_sync' already exists and will be overwritten.
+-- Compiling module cpll_div_n_sync
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(4352): (vlog-2275) 'gpll_ana' already exists and will be overwritten.
+-- Compiling module gpll_ana
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(5007): (vlog-2275) 'gpll_vco_buf_unit' already exists and will be overwritten.
+-- Compiling module gpll_vco_buf_unit
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(5064): (vlog-2275) 'cpll_div_234_lvt' already exists and will be overwritten.
+-- Compiling module cpll_div_234_lvt
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(5171): (vlog-2275) 'gpll_core' already exists and will be overwritten.
+-- Compiling module gpll_core
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(5926): (vlog-2275) 'cpll_div_n_top' already exists and will be overwritten.
+-- Compiling module cpll_div_n_top
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6025): (vlog-2275) 'gpll_ana_buf_unit_x3' already exists and will be overwritten.
+-- Compiling module gpll_ana_buf_unit_x3
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6065): (vlog-2275) 'gpll_fbdiv_mux' already exists and will be overwritten.
+-- Compiling module gpll_fbdiv_mux
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6107): (vlog-2275) 'com_hss_tiel' already exists and will be overwritten.
+-- Compiling module com_hss_tiel
+** Warning: (vlog-2070) Existing protected design unit "com_hss_tiel" is being recompiled as unprotected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6122): (vlog-2275) 'com_hss_tieh' already exists and will be overwritten.
+-- Compiling module com_hss_tieh
+** Warning: (vlog-2070) Existing protected design unit "com_hss_tieh" is being recompiled as unprotected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6137): (vlog-2275) 'gpll_vco_buf' already exists and will be overwritten.
+-- Compiling module gpll_vco_buf
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6193): (vlog-2275) 'al6100gpll_com_hss_buf4x' already exists and will be overwritten.
+-- Compiling module al6100gpll_com_hss_buf4x
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6218): (vlog-2275) 'al6100gpll_com_hss_bufx4' already exists and will be overwritten.
+-- Compiling module al6100gpll_com_hss_bufx4
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6248): (vlog-2275) 'al6100gpll_DRNQV1_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_DRNQV1_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6361): (vlog-2275) 'al6100gpll_NAND2CV1_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_NAND2CV1_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6731): (vlog-2275) 'al6100gpll_PULL1_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_PULL1_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6764): (vlog-2275) 'al6100gpll_NAND3CV1_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_NAND3CV1_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6804): (vlog-2275) 'al6100gpll_NAND2BV1_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_NAND2BV1_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6919): (vlog-2275) 'al6100gpll_NAND2CV2_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_NAND2CV2_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6956): (vlog-2275) 'al6100gpll_AND2V2_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_AND2V2_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(6994): (vlog-2275) 'al6100gpll_CLKMUX2V2_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_CLKMUX2V2_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7054): (vlog-2275) 'al6100gpll_CLKINV2_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_CLKINV2_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7088): (vlog-2275) 'al6100gpll_CLKINV4_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_CLKINV4_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7122): (vlog-2275) 'al6100gpll_CLKINV8_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_CLKINV8_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7156): (vlog-2275) 'al6100gpll_DRSNQV2_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_DRSNQV2_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7282): (vlog-2275) 'al6100gpll_NAND2V2_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_NAND2V2_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7320): (vlog-2275) 'al6100gpll_INV2_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_INV2_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7354): (vlog-2275) 'al6100gpll_OR2V2_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_OR2V2_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7392): (vlog-2275) 'al6100gpll_BUFV2_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_BUFV2_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7427): (vlog-2275) 'al6100gpll_CLKNAND2V2_140P12T40L' already exists and will be overwritten.
+-- Compiling module al6100gpll_CLKNAND2V2_140P12T40L
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7482): (vlog-2275) 'al6100gpll_com_hss_inv8x' already exists and will be overwritten.
+-- Compiling module al6100gpll_com_hss_inv8x
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7505): (vlog-2275) 'al6100gpll_com_hss_inv4x' already exists and will be overwritten.
+-- Compiling module al6100gpll_com_hss_inv4x
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7528): (vlog-2275) 'al6100gpll_com_hss_inv2x' already exists and will be overwritten.
+-- Compiling module al6100gpll_com_hss_inv2x
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7574): (vlog-2275) 'al6100gpll_com_hss_tgate_2x' already exists and will be overwritten.
+-- Compiling module al6100gpll_com_hss_tgate_2x
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7603): (vlog-2275) 'al6100gpll_com_hss_mux2x' already exists and will be overwritten.
+-- Compiling module al6100gpll_com_hss_mux2x
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7628): (vlog-2275) 'al6100gpll_com_hss_dff2x' already exists and will be overwritten.
+-- Compiling module al6100gpll_com_hss_dff2x
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7652): (vlog-2275) 'al6100gpll_com_hss_and2_2x' already exists and will be overwritten.
+-- Compiling module al6100gpll_com_hss_and2_2x
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7671): (vlog-2275) 'gpll_ctrl' already exists and will be overwritten.
+-- Compiling module gpll_ctrl
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(7937): (vlog-2275) 'gpll_test' already exists and will be overwritten.
+-- Compiling module gpll_test
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(8060): (vlog-2275) 'gpll_test_cell' already exists and will be overwritten.
+-- Compiling module gpll_test_cell
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(8083): (vlog-2275) 'gpll_output' already exists and will be overwritten.
+-- Compiling module gpll_output
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(8482): (vlog-2275) 'gpll_out_div_duty' already exists and will be overwritten.
+-- Compiling module gpll_out_div_duty
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(9167): (vlog-2275) 'gpll_out_rst' already exists and will be overwritten.
+-- Compiling module gpll_out_rst
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(9251): (vlog-2275) 'gpll_out_gate' already exists and will be overwritten.
+-- Compiling module gpll_out_gate
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(9364): (vlog-2275) 'gpll_out_duty' already exists and will be overwritten.
+-- Compiling module gpll_out_duty
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(9422): (vlog-2275) 'gpll_out_en_stdby_ctrl' already exists and will be overwritten.
+-- Compiling module gpll_out_en_stdby_ctrl
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(9492): (vlog-2275) 'gpll_out_en' already exists and will be overwritten.
+-- Compiling module gpll_out_en
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(9522): (vlog-2275) 'gpll_out_main' already exists and will be overwritten.
+-- Compiling module gpll_out_main
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(9578): (vlog-2275) 'gpll_lockdet' already exists and will be overwritten.
+-- Compiling module gpll_lockdet
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(10355): (vlog-2275) 'gpll_fbdiv_dig' already exists and will be overwritten.
+-- Compiling module gpll_fbdiv_dig
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(10448): (vlog-2275) 'gpll_fbdiv_dig_sdm' already exists and will be overwritten.
+-- Compiling module gpll_fbdiv_dig_sdm
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(10711): (vlog-2275) 'gpll_fbdiv_dig_ssc' already exists and will be overwritten.
+-- Compiling module gpll_fbdiv_dig_ssc
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(11006): (vlog-2275) 'gpll_fbdiv_dig_ssc_div' already exists and will be overwritten.
+-- Compiling module gpll_fbdiv_dig_ssc_div
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(11140): (vlog-2275) 'gpll_fbdiv_dig_ssc_lpf' already exists and will be overwritten.
+-- Compiling module gpll_fbdiv_dig_ssc_lpf
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(11239): (vlog-2275) 'gpll_vco_mux_div_ctrl' already exists and will be overwritten.
+-- Compiling module gpll_vco_mux_div_ctrl
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(11639): (vlog-2275) 'gpll_vco_mux_phs' already exists and will be overwritten.
+-- Compiling module gpll_vco_mux_phs
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(11986): (vlog-2275) 'gpll_vco_mux_pi_ctrl' already exists and will be overwritten.
+-- Compiling module gpll_vco_mux_pi_ctrl
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(12168): (vlog-2275) 'gpll_vco_mux_buf' already exists and will be overwritten.
+-- Compiling module gpll_vco_mux_buf
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(12980): (vlog-2275) 'gpll_vco_mux' already exists and will be overwritten.
+-- Compiling module gpll_vco_mux
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(13135): (vlog-2275) 'axis2apb_gpll' already exists and will be overwritten.
+-- Compiling module axis2apb_gpll
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(13723): (vlog-2275) 'pll_slave' already exists and will be overwritten.
+-- Compiling module pll_slave
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(14653): (vlog-2275) 'axis_slave' already exists and will be overwritten.
+-- Compiling module axis_slave
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(15194): (vlog-2275) 'gpll_pi_dec_top' already exists and will be overwritten.
+-- Compiling module gpll_pi_dec_top
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(15572): (vlog-2275) 'sync_dff' already exists and will be overwritten.
+-- Compiling module sync_dff
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(15696): (vlog-2275) 'st2p' already exists and will be overwritten.
+-- Compiling module st2p
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(15775): (vlog-2275) 'sync_del' already exists and will be overwritten.
+-- Compiling module sync_del
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(15840): (vlog-2275) 'pulse' already exists and will be overwritten.
+-- Compiling module pulse
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(15924): (vlog-2275) 'at0012_cell_clk_buf' already exists and will be overwritten.
+-- Compiling module at0012_cell_clk_buf
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(15967): (vlog-2275) 'al6100_gpll_cell_clk_mux' already exists and will be overwritten.
+-- Compiling module al6100_gpll_cell_clk_mux
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16008): (vlog-2275) 'gpll_ana_core' already exists and will be overwritten.
+-- Compiling module gpll_ana_core
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16301): (vlog-2275) 'gpll_ouput_pi_top' already exists and will be overwritten.
+-- Compiling module gpll_ouput_pi_top
+-- Compiling UDP udp_dff
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16452): (vlog-2633) 'udp_dff' already exists.
+** Warning: (vlog-2070) Existing protected design unit "udp_dff" is being recompiled as unprotected.
+-- Compiling UDP udp_mux2
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16478): (vlog-2633) 'udp_mux2' already exists.
+** Warning: (vlog-2070) Existing protected design unit "udp_mux2" is being recompiled as unprotected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16496): (vlog-2275) 'BUFV1_140P9T40H' already exists and will be overwritten.
+-- Compiling module BUFV1_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16523): (vlog-2275) 'TBUFV8_140P9T40H' already exists and will be overwritten.
+-- Compiling module TBUFV8_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16552): (vlog-2275) 'DRSNQV2_140P9T40H' already exists and will be overwritten.
+-- Compiling module DRSNQV2_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16669): (vlog-2275) 'CLKBUFV4_140P9T40H' already exists and will be overwritten.
+-- Compiling module CLKBUFV4_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16695): (vlog-2275) 'CLKINV2_140P9T40H' already exists and will be overwritten.
+-- Compiling module CLKINV2_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16720): (vlog-2275) 'INV2_140P9T40H' already exists and will be overwritten.
+-- Compiling module INV2_140P9T40H
+** Warning: (vlog-2070) Existing protected design unit "INV2_140P9T40H" is being recompiled as unprotected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16746): (vlog-2275) 'DRSNQV1_140P9T40H' already exists and will be overwritten.
+-- Compiling module DRSNQV1_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16864): (vlog-2275) 'DSNQV4_140P9T40H' already exists and will be overwritten.
+-- Compiling module DSNQV4_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(16938): (vlog-2275) 'DRNQV4_140P9T40H' already exists and will be overwritten.
+-- Compiling module DRNQV4_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(17010): (vlog-2275) 'DSNQV2_140P9T40H' already exists and will be overwritten.
+-- Compiling module DSNQV2_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(17084): (vlog-2275) 'AND2V8_140P9T40H' already exists and will be overwritten.
+-- Compiling module AND2V8_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(17113): (vlog-2275) 'DRNQV2_140P9T40H' already exists and will be overwritten.
+-- Compiling module DRNQV2_140P9T40H
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(17185): (vlog-2275) 'CLKINV4_140P9T40R' already exists and will be overwritten.
+-- Compiling module CLKINV4_140P9T40R
+** Warning: (vlog-2070) Existing protected design unit "CLKINV4_140P9T40R" is being recompiled as unprotected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(17209): (vlog-2275) 'CLKNAND2V2_140P9T40R' already exists and will be overwritten.
+-- Compiling module CLKNAND2V2_140P9T40R
+** Warning: (vlog-2070) Existing protected design unit "CLKNAND2V2_140P9T40R" is being recompiled as unprotected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(17238): (vlog-2275) 'CLKAND2V2_140P9T40R' already exists and will be overwritten.
+-- Compiling module CLKAND2V2_140P9T40R
+** Warning: (vlog-2070) Existing protected design unit "CLKAND2V2_140P9T40R" is being recompiled as unprotected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(17267): (vlog-2275) 'DRSNQV2_140P9T40R' already exists and will be overwritten.
+-- Compiling module DRSNQV2_140P9T40R
+** Warning: (vlog-2070) Existing protected design unit "DRSNQV2_140P9T40R" is being recompiled as unprotected.
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(17384): (vlog-2275) 'CLKINV3_140P9T40R' already exists and will be overwritten.
+-- Compiling module CLKINV3_140P9T40R
+** Warning: D:\td6.2.1\sim_release\ph1p\ph1p_phy_pll.v(17408): (vlog-2275) 'INV3_140P9T40R' already exists and will be overwritten.
+-- Compiling module INV3_140P9T40R
+-- Compiling module PH1P_PHY_SCLK_V2
+-- Compiling module PH1P_PHY_SCLK
+-- Compiling module PH1P_PHY_SHIFTERHARDCON
+-- Compiling module PH1P_PHY_TVS
+
+Top level modules:
+	reg_ar_as_w1
+	reg_sr_ss_w1
+	reg_ar_ss_w1
+	reg_sr_as_w1
+	latch_ar_ss_w1
+	latch_sr_as_w1
+	latch_sr_ss_w1
+	latch_ar_as_w1
+	AL_DFF_W
+	AL_DFF_0
+	AL_DFF_1
+	AL_LATCH_W
+	AL_LATCH_0
+	AL_LATCH_1
+	AL_FADD
+	AL_MAP_LUT1
+	AL_MAP_LUT2
+	AL_MAP_LUT3
+	AL_MAP_LUT6
+	AL_MAP_LUT6P
+	AL_MAP_LUT6X
+	AL_MAP_LLMUX
+	AL_MAP_F7MUX
+	AL_MAP_F8MUX
+	AL_MAP_CARRY4
+	AL_MAP_ADDER
+	glbl
+	PH1P_PHY_GSR
+	PH1P_LOGIC_BUFG
+	PH1P_PHY_PLL_V2
+	CLKINV2_140P9T40H
+	CLKINV3_140P9T40R
+	PH1P_LOGIC_HR_ISERDES
+	PH1P_LOGIC_HR_OSERDES
+	PH1P_LOGIC_IDDR
+	PH1P_LOGIC_IDDRx2
+	PH1P_LOGIC_ODDR
+	PH1P_LOGIC_ODDRx2
+	PH1P_LOGIC_BUF
+	PH1P_LOGIC_MBOOT
+	PH1P_LOGIC_MBOOT_V2
+	PH1P_LOGIC_DNA
+	PH1P_LOGIC_ICAP
+	PH1P_LOGIC_GSRN
+	PH1P_LOGIC_ECC
+	PH1P_LOGIC_GCTRL
+	PH1P_LOGIC_TRSTN
+	PH1P_LOGIC_BOUNDARYSCAN
+	PH1P_LOGIC_JTAG
+	PH1P_LOGIC_QSPI2MCU
+	PH1P_LOGIC_DEVICE_VERSION
+	PH1P_LOGIC_DUALBOOT
+	PH1P_LOGIC_DPHY_LVCMOS
+	PH1P_LOGIC_DPHY_LVDS_RX
+	PH1P_LOGIC_DPHY_LVDS_TX
+	PH1P_LOGIC_DPHY_MIPI_RX
+	PH1P_LOGIC_DPHY_MIPI_TX
+	PH1P_LOGIC_DRAM
+	PH1P_LOGIC_DRAM32X16
+	PH1P_LOGIC_DRAM32X16R8
+	PH1P_LOGIC_DRAM64X8
+	PH1P_LOGIC_DRAM64X8R16
+	PH1P_LOGIC_FIFO
+	PH1P_LOGIC_DYNAMIC_HD_IDELAY
+	PH1P_LOGIC_DYNAMIC_HD_ODELAY
+	PH1P_LOGIC_HD_IDDR
+	PH1P_LOGIC_HD_ODDR
+	PH1P_LOGIC_HPT
+	PH1P_LOGIC_DYNAMIC_IDELAY
+	PH1P_LOGIC_DYNAMIC_HR_ODELAY
+	PH1P_LOGIC_IBUF_DIFF
+	PH1P_LOGIC_OBUF_DIFF
+	PH1P_LOGIC_IOBUF_DIFF
+	PH1P_LOGIC_IOBUF
+	PH1P_LOGIC_IBUF
+	PH1P_LOGIC_OBUF
+	PH1P_LOGIC_IOTRIBUF
+	PH1P_LOGIC_MULT
+	PH1P_LOGIC_RAMFIFO
+	PH1P_LOGIC_SEQ_DIV
+	PH1P_LOGIC_SHIFTER
+	PH1P_LOGIC_SHIFTERX16
+	PH1P_LOGIC_SHIFTERX8
+	PH1P_LOGIC_SLICE
+	PH1P_LOGIC_TVS
+	PH1P_PHY_CLOCK_ALIGNER
+	PH1P_PHY_CONFIG_V2
+	PH1P_PHY_CONFIG
+	PH1P_PHY_DDRPHY_BANKREF
+	PH1P_PHY_DDRPHY_BYTE
+	PH1P_PHY_DDRPHY_PAD_V2
+	PH1P_PHY_DDRPHY_PAD_V3
+	PH1P_PHY_DDRPHY_PAD
+	PH1P_PHY_DFFSHIFTER
+	PHY_SLICE_FCIMUX0
+	PHY_SLICE_FCIMUX1
+	PH1P_PHY_DSPADD
+	PH1P_PHY_DSPLOGIC
+	PH1P_PHY_DSPMULT_V2
+	PH1P_PHY_DSPMULT
+	PH1P_PHY_DSPSIOU_V2
+	PH1P_PHY_DSPSIOU
+	PH1P_PHY_DSPTADD
+	PH1P_PHY_ERAM_V2
+	PH1P_PHY_ERAM
+	PH1P_PHY_F78MUX
+	PH1P_PHY_F7MUX
+	PH1P_PHY_FIFOCTRL
+	PH1P_PHY_GCLK_TSMUX_TEST
+	PH1P_PHY_GCLK_CMUX_TEST
+	PH1P_PHY_IOCLK_BANK_TEST
+	PH1P_PHY_IOCLK_BANK_TEST_V2
+	PH1P_PHY_PHYCLK_BANK_TEST
+	PH1P_PHY_PSCLK_BANK_TEST
+	PH1P_PHY_GCLK
+	PH1P_PHY_HCLK
+	PH1P_PHY_HD_BANKREF
+	PH1P_PHY_HD_PAD
+	PH1P_PHY_HR_BANKREF_V2
+	PH1P_PHY_HR_BANKREF
+	PH1P_PHY_IOCLK
+	PH1P_PHY_LCLK
+	PH1P_PHY_MCU
+	PH1P_PHY_MLCLK
+	PH1P_PHY_OSC
+	PH1P_PHY_OSCDIV
+	PH1P_PHY_PLL
+	PH1P_PHY_SCLK_V2
+	PH1P_PHY_SCLK
+End time: 21:15:56 on Oct 08,2026, Elapsed time: 0:00:18
+Errors: 0, Warnings: 605

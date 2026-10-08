@@ -1,0 +1,263 @@
+# vsim -c "+notimingchecks" -L anlogic_sim -voptargs="+acc=rn+/tb_hdmi_tpg+/tb_hdmi_tpg/dut" -onfinish exit -l transcript.log -wlf wave.wlf -do "run -all; quit -code 1 -force" work.tb_hdmi_tpg anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 21:31:09 on Oct 08,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'bea'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(45).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'dib'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(46).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'beb'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(47).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'bea'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(45).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'dib'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(46).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'beb'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(47).
+# ** Warning: ../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(125): (vopt-2241) Connection width does not match width of port '<protected>'.<protected>
+# ** Warning: ../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(125): (vopt-2241) Connection width does not match width of port '<protected>'.<protected>
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'bea'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(45).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'dib'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(46).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'beb'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(47).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'bea'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(45).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'dib'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(46).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2241) Connection width does not match width of port 'beb'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(47).
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2685) [TFMPC] - Too few port connections for 'xaxis2apb_gpll'.  Expected 153, found 101.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_delay'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_ref_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_vctrl_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_test_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_tda_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_syn_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_refclk_out_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_refclk_det_div'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_refclk_det_byp'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pllrst_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pllpdn'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_phi_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_out_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_icfg'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_frac_mode'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_capsel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_outputpi_icfg'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_outputpi_capsel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_outgate_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_mrst_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_load_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_load_div2_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_kvco_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_intfb'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fracn_prbs_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fracn_dither_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fracn_dither_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fbk_sel_wakeup'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fbfracn_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fastlock_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_enclk_main'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_enable_sync'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_dyn_source'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_div2_phc'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_div2_bypass_n'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_dig_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_dig_pd'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_cp_refsel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_cp_dlysel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_cal_counter'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'm_tuser_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'm_rlast_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'm_rdata_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'm_rvalid_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'm_tready_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 's_tready_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 's_rlast_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 's_rdata_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 's_rvalid_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'axis_rst_n_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'axis_clk_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'map_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2685) [TFMPC] - Too few port connections for 'xaxis2apb_gpll'.  Expected 153, found 101.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_delay'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_ref_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_vctrl_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_test_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_tda_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_syn_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_refclk_out_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_refclk_det_div'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_refclk_det_byp'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pllrst_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pllpdn'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_phi_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_out_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_icfg'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_frac_mode'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_pi_capsel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_outputpi_icfg'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_outputpi_capsel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_outgate_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_mrst_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_load_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_load_div2_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_kvco_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_intfb'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fracn_prbs_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fracn_dither_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fracn_dither_en'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fbk_sel_wakeup'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fbfracn_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_fastlock_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_enclk_main'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_enable_sync'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_dyn_source'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_div2_phc'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_div2_bypass_n'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_dig_sel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_dig_pd'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_cp_refsel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_cp_dlysel'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'mc1_cal_counter'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'm_tuser_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'm_rlast_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'm_rdata_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'm_rvalid_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'm_tready_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 's_tready_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 's_rlast_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 's_rdata_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 's_rvalid_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'axis_rst_n_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'axis_clk_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(1318): (vopt-2718) [TFMPC] - Missing connection for port 'map_i'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2685) [TFMPC] - Too few port connections for 'u5'.  Expected 22, found 18.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2685) [TFMPC] - Too few port connections for 'u5'.  Expected 22, found 18.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2685) [TFMPC] - Too few port connections for 'u5'.  Expected 22, found 18.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2685) [TFMPC] - Too few port connections for 'u5'.  Expected 22, found 18.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6878): (vopt-2685) [TFMPC] - Too few port connections for 'xout7'.  Expected 39, found 37.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6878): (vopt-2718) [TFMPC] - Missing connection for port 'clk_int_early'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6878): (vopt-2718) [TFMPC] - Missing connection for port 'clk_div_by_one'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6919): (vopt-2685) [TFMPC] - Too few port connections for 'xout6'.  Expected 39, found 37.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6919): (vopt-2718) [TFMPC] - Missing connection for port 'clk_int_early'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6919): (vopt-2718) [TFMPC] - Missing connection for port 'clk_div_by_one'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6938): (vopt-2685) [TFMPC] - Too few port connections for 'xout5'.  Expected 39, found 37.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6938): (vopt-2718) [TFMPC] - Missing connection for port 'clk_int_early'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6938): (vopt-2718) [TFMPC] - Missing connection for port 'clk_div_by_one'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6957): (vopt-2685) [TFMPC] - Too few port connections for 'xout4'.  Expected 39, found 37.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6957): (vopt-2718) [TFMPC] - Missing connection for port 'clk_int_early'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6957): (vopt-2718) [TFMPC] - Missing connection for port 'clk_div_by_one'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6976): (vopt-2685) [TFMPC] - Too few port connections for 'xout3'.  Expected 39, found 37.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6976): (vopt-2718) [TFMPC] - Missing connection for port 'clk_int_early'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6976): (vopt-2718) [TFMPC] - Missing connection for port 'clk_div_by_one'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6995): (vopt-2685) [TFMPC] - Too few port connections for 'xout2'.  Expected 39, found 37.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6995): (vopt-2718) [TFMPC] - Missing connection for port 'clk_int_early'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(6995): (vopt-2718) [TFMPC] - Missing connection for port 'clk_div_by_one'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(7014): (vopt-2685) [TFMPC] - Too few port connections for 'xout1'.  Expected 39, found 37.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(7014): (vopt-2718) [TFMPC] - Missing connection for port 'clk_int_early'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(7014): (vopt-2718) [TFMPC] - Missing connection for port 'clk_div_by_one'.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(2897): (vopt-2958) Implicit wire 'fast_lock' does not have any driver.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v(4493): (vopt-2958) Implicit wire 'ibp_30u_pi' does not have any driver.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_hdmi_tpg(fast)
+# Loading work.hdmi_tpg_top(fast)
+# Loading anlogic_sim.CLKNAND2V2_140P9T40R(fast)
+# Loading anlogic_sim.gpll_top(fast)
+# Loading anlogic_sim.CLKAND2V2_140P9T40R(fast)
+# Loading anlogic_sim.BUFV1_140P9T40H(fast)
+# Loading anlogic_sim.DRSNQV2_140P9T40R(fast)
+# Loading anlogic_sim.INV3_140P9T40R(fast)
+# Loading anlogic_sim.DRSNQV2_140P9T40H(fast)
+# Loading anlogic_sim.TBUFV8_140P9T40H(fast)
+# Loading anlogic_sim.al6100gpll_CLKINV4_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_CLKINV8_140P12T40L(fast)
+# Loading anlogic_sim.DSNQV4_140P9T40H(fast)
+# Loading anlogic_sim.DRNQV4_140P9T40H(fast)
+# Loading anlogic_sim.DRSNQV1_140P9T40H(fast)
+# Loading anlogic_sim.DSNQV2_140P9T40H(fast)
+# Loading anlogic_sim.DRNQV2_140P9T40H(fast)
+# Loading anlogic_sim.AND2V8_140P9T40H(fast)
+# Loading anlogic_sim.CLKBUFV4_140P9T40H(fast)
+# Loading anlogic_sim.al6100gpll_DRNQV1_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_NAND2CV2_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_AND2V2_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_CLKMUX2V2_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_DRSNQV2_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_NAND2V2_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_INV2_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_OR2V2_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_BUFV2_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_NAND2CV1_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_NAND2BV1_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_CLKNAND2V2_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_CLKINV2_140P12T40L(fast)
+# Loading anlogic_sim.al6100gpll_NAND3CV1_140P12T40L(fast)
+# Loading anlogic_sim.PH1P_LOGIC_ERAM(fast)
+# Loading anlogic_sim.PH1P_LOGIC_ERAM(fast__1)
+# Loading anlogic_sim.PH1P_LOGIC_ERAM(fast__2)
+# Loading anlogic_sim.PH1P_LOGIC_ERAM(fast__3)
+# Loading anlogic_sim.PH1P_PHY_HR_PAD(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (1) does not match connection size (32) for port 'bea'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(45).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (11) does not match connection size (32) for port 'dib'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(46).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (1) does not match connection size (32) for port 'beb'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(47).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (1) does not match connection size (32) for port 'bea'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(45).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (9) does not match connection size (32) for port 'dib'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(46).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (1) does not match connection size (32) for port 'beb'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(47).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (1) does not match connection size (32) for port 'bea'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(45).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (96) does not match connection size (32) for port 'dib'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(46).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (1) does not match connection size (32) for port 'beb'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(47).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (1) does not match connection size (32) for port 'bea'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(45).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (24) does not match connection size (32) for port 'dib'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(46).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# ** Warning: (vsim-3015) D:/td6.2.1/sim_release/ph1p/ph1p_logic_ramfifo.v(181): [PCDPC] - Port size (1) does not match connection size (32) for port 'beb'. The port definition is at: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v(47).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_hdmi_tpg/dut/u_core/<protected>/<protected>/<protected>/<protected>/<protected>/u5 File: D:/td6.2.1/sim_release/ph1p/ph1p_logic_eram.v
+# run -all
+# OBS TPG HS LOW width44; HIGH width2156; period2200
+# OBS TPG HS LOW width44; HIGH width2156; period2200
+# OBS TPG HS LOW width44; HIGH width2156; period2200
+# OBS TPG VS LOW width11000; frame2475000 pixel clocks
+# ** Fatal: TPG horizontal period 4412
+#    Time: 1852923974820 fs  Scope: tb_hdmi_tpg File: tb_hdmi_tpg.v Line: 43
+# ** Note: $finish    : tb_hdmi_tpg.v(43)
+#    Time: 1852923974820 fs  Iteration: 0  Instance: /tb_hdmi_tpg
+# End time: 21:33:27 on Oct 08,2026, Elapsed time: 0:02:18
+# Errors: 1, Warnings: 183

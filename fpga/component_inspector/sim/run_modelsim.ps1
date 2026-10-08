@@ -2,9 +2,13 @@ param(
     [string]$ModelSimBin = "D:/modeltech64_10.5/win64",
     [string]$TdSimRoot = "D:/td6.2.1/sim_release",
     [switch]$TieUnusedAwbRamInputs,
+    [switch]$HdmiObserve,
     [string[]]$OnlyTests = @()
 )
 $ErrorActionPreference = "Stop"
+if ($HdmiObserve -and ($OnlyTests.Count -ne 1 -or $OnlyTests[0] -ne 'fhd_hdmi')) {
+    throw 'HDMI observation mode requires -OnlyTests fhd_hdmi; it is not a verification pass'
+}
 # A desktop process started before license configuration may not inherit it.
 foreach ($name in @("MGLS_LICENSE_FILE", "LM_LICENSE_FILE")) {
     if (![Environment]::GetEnvironmentVariable($name, "Process")) {
@@ -27,8 +31,14 @@ try {
         "$TdSimRoot/common/al_map_basic.v", "$TdSimRoot/common/al_map_lut.v",
         "$TdSimRoot/common/al_map_adder.v", "$TdSimRoot/common/al_phy_glbl.v",
         "$TdSimRoot/ph1p/ph1p_logic_eram.v", "$TdSimRoot/ph1p/ph1p_phy_gsr.v",
-        "$TdSimRoot/ph1p/ph1p_logic_bufg.v", "$TdSimRoot/ph1p/ph1p_phy_pll_v2.v"
+        "$TdSimRoot/ph1p/ph1p_logic_bufg.v", "$TdSimRoot/ph1p/ph1p_phy_pll_v2.v", "$TdSimRoot/ph1p/ph1p_logic_hrio.v"
     )
+    if ($OnlyTests.Count -eq 0 -or 'fhd_hdmi' -in $OnlyTests) {
+        # Exact dependencies of the protected HDMI/ODDR. PHY_HR_PAD (without
+        # V2/V3 suffix) is instantiated by LOGIC_ODDR. Keep native models.
+        $vendor += @("$TdSimRoot/ph1p/ph1p_logic_ramfifo.v", "$TdSimRoot/ph1p/ph1p_phy_hr_pad.v")
+        $vendor = @($vendor | ForEach-Object { (Resolve-Path -LiteralPath $_).ProviderPath } | Select-Object -Unique)
+    }
     foreach ($path in $vendor) {
         if (!(Test-Path -LiteralPath $path)) { throw "Missing vendor simulation library: $path" }
     }
@@ -54,6 +64,7 @@ try {
         "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
         "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v")
     $tests = @(
+        @{Name="fhd_hdmi"; Pass="PASS FHD HDMI:"; Sources=@("$hdl/vtc/uivtc.v", "$hdl/hdmi_tx.v", "$hdl/hdmi_1_4b_transmitter_core_wrapper.enc.v", "$hdl/hdmi_phy_warpper.v", "$hdl/lane_lvds_10_1.v", "$hdl/I2S_receiver.v", "$hdl/audio_arc_calculate.v", "$hdl/key_remove_shakes.v", "tb_fhd_hdmi.v")},
         @{Name="fhd_faults"; Pass="PASS FHD faults:"; Sources=@("$hdl/roi_frame_guard.v", "tb_fhd_faults.v")},
         @{Name="fhd_osd"; Pass="PASS FHD OSD decimal"; Sources=@("$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/experiment_osd.v", "tb_fhd_osd.v")},
         @{Name="fhd_mc"; Pass="PASS: SWITCH_TRANSPORT"; Sources=@("$hdl/roi_sobel_view.v", "$hdl/isp/data96_128/data96_128.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$hdl/mc_to_user_interface.v", "$ip/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v", "$ip/w155_d512_fifo/w155_d512_fifo.v", "tb_fhd_mc.v")},
@@ -115,23 +126,27 @@ try {
         & "$ModelSimBin/vlog.exe" -sv -work $library @defines $testbench >> "$directory/compile.log" 2>&1
         if ($LASTEXITCODE -ne 0) { throw "Testbench compile failed: $($test.Name); see $directory/compile.log" }
         $tops = @("$library.tb_$($test.Name)")
-        if ($test.Name -in @("pixel_interface", "roi_chain", "isp_writer_stop", "fhd_isp")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
+        if ($test.Name -in @("pixel_interface", "roi_chain", "isp_writer_stop", "fhd_isp", "fhd_hdmi")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
         $commands = "log /tb_$($test.Name)/*; run -all; quit -code 1 -force"
         $access = "+acc"
         if ($test.Name -in @("roi_chain", "isp_writer_stop", "fhd_isp")) { $access = "+acc=rn+/tb_$($test.Name)" }
         $functionalOptions = @()
+        if ($HdmiObserve) { $functionalOptions += '+observe' }
         # Only the analog PLL frequency test disables vendor internal specify
         # checks. This measures functional clocks; routed STA remains mandatory.
         if ($test.Name -eq "native_pll") { $functionalOptions += "+notimingchecks" }
         & "$ModelSimBin/vsim.exe" -c @functionalOptions -L anlogic_sim "-voptargs=$access" -onfinish exit -l "$directory/transcript.log" -wlf "$directory/wave.wlf" -do $commands @tops *> "$directory/console.log"
         if ($LASTEXITCODE -ne 0) { throw "Simulation failed: $($test.Name); see $directory/console.log" }
         $output = Get-Content -LiteralPath "$directory/console.log" -Raw
-        if (!$output.Contains($test.Pass) -or $output -match '(?m)^#?\s*\*\* (Fatal|Error):') {
+        $completion = if ($HdmiObserve) { 'OBS HDMI probe complete:' } else { $test.Pass }
+        if (!$output.Contains($completion) -or $output -match '(?m)^#?\s*\*\* (Fatal|Error):') {
             throw "Missing successful completion or fatal diagnostic: $($test.Name); see $directory/console.log"
         }
         Get-Content -LiteralPath "$directory/console.log" | Where-Object { $_ -match '(PASS |OBS )' }
     }
-    if ($TieUnusedAwbRamInputs) {
+    if ($HdmiObserve) {
+        Write-Output 'OBS ModelSim HDMI diagnostic completed; verification requirements remain unchanged, no acceptance'
+    } elseif ($TieUnusedAwbRamInputs) {
         Write-Output "PASS ModelSim diagnostic: $($tests.Count) tests with AWB RAM unused inputs forced to zero; original RTL is not accepted by this result"
     } else {
         Write-Output "PASS ModelSim: all $($tests.Count) tests, including original vendor ERAM model"

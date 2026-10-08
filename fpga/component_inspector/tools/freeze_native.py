@@ -23,7 +23,7 @@ def main():
     else:
         for directory in ('sim', 'tools'):
             paths.update(p.relative_to(engine).as_posix() for p in (engine/directory).rglob('*')
-                         if p.is_file() and p.suffix in ('.v','.sv','.py','.ps1','.hex','.tcl','.json','.md'))
+                         if p.is_file() and p.suffix in ('.v','.sv','.vh','.py','.ps1','.hex','.tcl','.json','.md'))
         paths.add('user_source/hdl_source/native_hdmi_pll.v')
         paths.update(p.relative_to(engine).as_posix() for p in (engine/'vendor_reference').rglob('*') if p.is_file())
     manifest = []

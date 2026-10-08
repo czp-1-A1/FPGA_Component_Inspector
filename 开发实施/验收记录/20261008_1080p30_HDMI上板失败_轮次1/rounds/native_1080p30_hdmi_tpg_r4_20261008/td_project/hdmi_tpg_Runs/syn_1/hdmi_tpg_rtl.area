@@ -1,0 +1,62 @@
+standard
+***Report Model: hdmi_tpg_top Device: PH1P35MDG324***
+
+IO Statistics
+#IO                         6
+  #input                    2
+  #output                   4
+  #inout                    0
+
+Gate Statistics
+#Basic gates             1554
+  #and                     37
+  #nand                     0
+  #or                      15
+  #nor                      0
+  #xor                     22
+  #xnor                     0
+  #buf                      0
+  #not                    119
+  #bufif1                   0
+  #MX21                   237
+  #FADD                     0
+  #DFF                   1124
+  #LATCH                    0
+#MACRO_ADD                128
+#MACRO_EQ                  31
+#MACRO_MUX                586
+#MACRO_OTHERS               8
+
+Report Hierarchy Area:
++---------------------------------------------------------------------------------------------------------+
+|Instance                                     |Module                             |gates  |seq    |macros |
++---------------------------------------------------------------------------------------------------------+
+|top                                          |hdmi_tpg_top                       |430    |1124   |167    |
+|  u_core                                     |hdmi_1_4b_transmitter_core_wrapper |421    |1074   |161    |
+|    u0_reset_sync                            |hdmi_1_4b_tx_reset_sync            |0      |2      |0      |
+|    u_hdmi_tx_controller_wrapper             |hdmi_tx_controller_wrapper         |420    |1072   |161    |
+|      u0_hdmi_tmds_encode                    |hdmi_tmds_encode                   |95     |161    |41     |
+|      u1_hdmi_tmds_encode                    |hdmi_tmds_encode                   |49     |109    |38     |
+|      u2_hdmi_tmds_encode                    |hdmi_tmds_encode                   |52     |109    |38     |
+|      u_hdmi_data_distribution               |hdmi_data_distribution             |0      |42     |0      |
+|      u_hdmi_island_data_assemble            |hdmi_island_data_assemble          |4      |365    |2      |
+|      u_hdmi_island_data_gen                 |hdmi_island_data_gen               |100    |103    |3      |
+|        U_audio_sample_packet_2_channel      |audio_sample_packet_2_channel      |2      |1      |1      |
+|          u_w96_d1024_fifo                   |w96_d1024_fifo                     |0      |0      |1      |
+|      u_hdmi_video_data_assemble             |hdmi_video_data_assemble           |0      |40     |0      |
+|      u_hdmi_video_source                    |hdmi_video_source                  |20     |38     |24     |
+|      u_hdmi_video_tpg_gen                   |hdmi_video_tpg_gen                 |91     |103    |14     |
+|        u_video_tpg_rgb444_gen               |video_tpg_rgb444_gen               |88     |65     |10     |
+|      u_video_axi_stream_receiver            |video_axi_stream_receiver          |9      |2      |1      |
+|        u_w24_d1024_fifo                     |w24_d1024_fifo                     |0      |0      |1      |
+|  u_hdmi_pll                                 |HDMI_PLL                           |3      |0      |2      |
+|    u_output                                 |HDMI_PLL_STAGE                     |0      |0      |1      |
+|      ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst |ph1p_phy_pll_wrapper_25a56e5ce2f9  |0      |0      |0      |
+|    u_ref                                    |HDMI_PLL_STAGE                     |0      |0      |1      |
+|      ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst |ph1p_phy_pll_wrapper_25a56e5ce2f9  |0      |0      |0      |
+|  u_phy                                      |hdmi_phy_wrapper                   |2      |47     |4      |
+|    u0_lane_lvds_8_1                         |lane_lvds_10_1                     |2      |18     |1      |
+|    u1_lane_lvds_8_1                         |lane_lvds_10_1                     |0      |12     |1      |
+|    u2_lane_lvds_8_1                         |lane_lvds_10_1                     |0      |12     |1      |
+|    u3_lane_lvds_8_1                         |lane_lvds_10_1                     |0      |5      |1      |
++---------------------------------------------------------------------------------------------------------+

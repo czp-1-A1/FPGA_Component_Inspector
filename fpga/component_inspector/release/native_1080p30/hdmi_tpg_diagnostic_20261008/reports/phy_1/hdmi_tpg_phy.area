@@ -1,0 +1,117 @@
+standard
+***Report Model: hdmi_tpg_top Device: PH1P35MDG324***
+
+Design Statistics
+#IO                         6   out of    160    3.75%
+  #input                    2
+  #output                   4
+  #inout                    0
+#lut6                     666   out of  21216    3.14%
+#reg                     1088
+  #slice reg             1088   out of  42432    2.56%
+  #pad reg                  0
+
+Utilization Statistics
+#slice                    839   out of  21216    3.95%
+  #used ram                16
+    #dram lut               0
+    #shifter lut           16
+  #used logic             823
+    #with luts            594
+    #with adder            56
+    #reg only             173
+#feedthrough               95
+#f7mux                      0   out of  10608    0.00%
+#f8mux                      0   out of   5304    0.00%
+#eram                       5   out of    108    4.63%
+  #eram20k                  5
+  #fifo20k                  0
+#dsp                        0   out of     40    0.00%
+#ddr_byte                   0   out of     12    0.00%
+#mipi_tx                    0   out of      2    0.00%
+#mipi_rx                    0   out of      2    0.00%
+#pad                       10   out of    160    6.25%
+#pll                        2   out of      6   33.33%
+#gclk                       3   out of     32    9.38%
+#lclk                       0   out of     12    0.00%
+#sclk                       6   out of     48   12.50%
+#mlclk                      0   out of      6    0.00%
+#ioclk                      0   out of     18    0.00%
+
+
+Detailed IO Report
+
+       Name          Direction    Location    IOStandard    IOType    DriveStrength    PullType    PackReg    DiffResistor  
+      I_rst_n          INPUT        R10        LVCMOS33      HDIO          N/A          PULLUP      NONE          NONE      
+     I_sys_clk         INPUT         C4        LVCMOS33      HDIO          N/A          PULLUP      NONE          NONE      
+   O_tmds_ch0_p       OUTPUT        G16         TMDS33       HRIO          N/A           NONE       DDRX1         NONE      
+  O_tmds_ch0_p(n)     OUTPUT        H16         TMDS33       HRIO          N/A           NONE       NONE          NONE      
+   O_tmds_ch1_p       OUTPUT        F17         TMDS33       HRIO          N/A           NONE       DDRX1         NONE      
+  O_tmds_ch1_p(n)     OUTPUT        E18         TMDS33       HRIO          N/A           NONE       NONE          NONE      
+   O_tmds_ch2_p       OUTPUT        H14         TMDS33       HRIO          N/A           NONE       DDRX1         NONE      
+  O_tmds_ch2_p(n)     OUTPUT        H13         TMDS33       HRIO          N/A           NONE       NONE          NONE      
+   O_tmds_clk_p       OUTPUT        C17         TMDS33       HRIO          N/A           NONE       DDRX1         NONE      
+  O_tmds_clk_p(n)     OUTPUT        D18         TMDS33       HRIO          N/A           NONE       NONE          NONE      
+
+Report Clock Domain Luts:
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Index   |  Name                                                                               |  Frequency   |  LUT As Logic   |  LUT As Shifter   |  LUT As Dram   |  BRAM   |  DSP
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  #1      |  u_hdmi_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]  |  74MHz       |  856            |  32               |  0             |  5      |  0
+  #2      |  u_hdmi_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]  |  371MHz      |  64             |  0                |  0             |  0      |  0
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Clock Resource Statistics
+Index     ClockNet                               Type            DriverType         Driver                                                                             ClockFanout        GclkLocation
+#1        u_hdmi_pll/u_output/clk0_buf           UserGclk        pll                u_hdmi_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc0    677                x23y39z0
+#2        u_phy/u0_lane_lvds_8_1/I_serial_clk    InferredGclk    pll                u_hdmi_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc1    36                 x23y39z1
+#3        u_hdmi_pll/u_ref/clk0_buf              UserGclk        pll                u_hdmi_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc0       1                  x23y39z16
+
+Report Hierarchy Area:
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance                                     |Module                             |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |ddr     |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|top                                          |hdmi_tpg_top                       |594       |56      |1088    |5       |0       |0        |16          |0       |0       |2       |0       |
+|  u_core                                     |hdmi_1_4b_transmitter_core_wrapper |572       |56      |1038    |5       |0       |0        |16          |0       |0       |0       |0       |
+|    u_hdmi_tx_controller_wrapper             |hdmi_tx_controller_wrapper         |533       |56      |989     |5       |0       |0        |16          |0       |0       |0       |0       |
+|      u0_hdmi_tmds_encode                    |hdmi_tmds_encode                   |81        |0       |152     |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u1_hdmi_tmds_encode                    |hdmi_tmds_encode                   |66        |0       |111     |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u2_hdmi_tmds_encode                    |hdmi_tmds_encode                   |71        |0       |111     |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u_hdmi_island_data_assemble            |hdmi_island_data_assemble          |140       |0       |263     |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u_hdmi_island_data_gen                 |hdmi_island_data_gen               |67        |0       |85      |3       |0       |0        |0           |0       |0       |0       |0       |
+|        u_audio_clock_regeneration_packet    |audio_clock_regeneration_packet    |1         |0       |0       |0       |0       |0        |0           |0       |0       |0       |0       |
+|        U_audio_sample_packet_2_channel      |audio_sample_packet_2_channel      |7         |0       |11      |3       |0       |0        |0           |0       |0       |0       |0       |
+|          u_w96_d1024_fifo                   |w96_d1024_fifo                     |6         |0       |10      |3       |0       |0        |0           |0       |0       |0       |0       |
+|      u_hdmi_video_source                    |hdmi_video_source                  |29        |28      |37      |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u_hdmi_video_tpg_gen                   |hdmi_video_tpg_gen                 |51        |28      |103     |0       |0       |0        |0           |0       |0       |0       |0       |
+|        u_video_tpg_rgb444_gen               |video_tpg_rgb444_gen               |40        |28      |64      |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u_video_axi_stream_receiver            |video_axi_stream_receiver          |17        |0       |56      |2       |0       |0        |0           |0       |0       |0       |0       |
+|        u_w24_d1024_fifo                     |w24_d1024_fifo                     |15        |0       |52      |2       |0       |0        |0           |0       |0       |0       |0       |
+|      u_hdmi_video_data_assemble             |hdmi_video_data_assemble           |4         |0       |37      |0       |0       |0        |16          |0       |0       |0       |0       |
+|      u_hdmi_data_distribution               |hdmi_data_distribution             |7         |0       |34      |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u0_reset_sync                            |hdmi_1_4b_tx_reset_sync            |1         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0       |
+|  u_hdmi_pll                                 |HDMI_PLL                           |1         |0       |0       |0       |0       |0        |0           |0       |0       |2       |0       |
+|    u_output                                 |HDMI_PLL_STAGE                     |1         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|      ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst |ph1p_phy_pll_wrapper_25a56e5ce2f9  |1         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|    u_ref                                    |HDMI_PLL_STAGE                     |0         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|      ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst |ph1p_phy_pll_wrapper_25a56e5ce2f9  |0         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|  u_phy                                      |hdmi_phy_wrapper                   |19        |0       |47      |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u0_lane_lvds_8_1                         |lane_lvds_10_1                     |10        |0       |24      |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u2_lane_lvds_8_1                         |lane_lvds_10_1                     |2         |0       |6       |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u1_lane_lvds_8_1                         |lane_lvds_10_1                     |6         |0       |13      |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u3_lane_lvds_8_1                         |lane_lvds_10_1                     |1         |0       |4       |0       |0       |0        |0           |0       |0       |0       |0       |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+DataNet Average Fanout:
+
+   Index     Fanout    Nets  
+    #1         1       1130  
+    #2         2       130   
+    #3         3        78   
+    #4         4        85   
+    #5        5-10     152   
+    #6       11-50      22   
+    #7       51-100     2    
+  Average     2.26           

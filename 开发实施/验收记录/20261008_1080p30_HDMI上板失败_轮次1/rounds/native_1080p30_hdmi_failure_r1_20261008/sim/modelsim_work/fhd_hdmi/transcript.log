@@ -1,0 +1,15 @@
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/fhd_hdmi/transcript.log -wlf modelsim_work/fhd_hdmi/wave.wlf -do "log /tb_fhd_hdmi/*; run -all; quit -code 1 -force" test_fhd_hdmi.tb_fhd_hdmi anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 21:02:17 on Oct 08,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Error: ../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(125): in protected region
+# ** Error: ../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(125): in protected region
+# ** Error: ../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(125): in protected region
+# ** Error: ../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(125): in protected region
+# ** Error: D:/td6.2.1/sim_release/ph1p/ph1p_logic_hrio.v(780): in protected region
+# ** Error: D:/td6.2.1/sim_release/ph1p/ph1p_logic_hrio.v(780): in protected region
+# ** Error: D:/td6.2.1/sim_release/ph1p/ph1p_logic_hrio.v(780): in protected region
+# ** Error: D:/td6.2.1/sim_release/ph1p/ph1p_logic_hrio.v(780): in protected region
+# Optimization failed
+# Error loading design
+# End time: 21:02:18 on Oct 08,2026, Elapsed time: 0:00:01
+# Errors: 8, Warnings: 0

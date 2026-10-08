@@ -1,6 +1,6 @@
 {
   "date": "2026-10-08",
-  "status": "native_1080p30_stage2_diagnostic_branch_published_not_accepted",
+  "status": "native_1080p30_stage2_failed_hdmi_under_diagnosis",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
   "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
@@ -28,7 +28,13 @@
   "all_paths_timing_accepted": false,
   "classification_enabled": false,
   "enable_edge": 0,
-  "physical_acceptance": "NOT_RUN",
+  "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED",
+  "latest_debug_record": "开发实施/验收记录/20261008_1080p30_HDMI上板失败_轮次1.md",
+  "human_board_actions_performed": true,
+  "user_confirmed_direct_supplied_bit": true,
+  "user_confirmed_old_code_displays": true,
+  "user_confirmed_monitor_supports_1080p30": true,
+  "failure_photo_sha256": "096105006959bf325c728d4277c01d23c67adfe875da9ac664258febf436ecb7",
   "pending": [
     "39 input and 63 output delay warnings; hard PHY/board timing budgets and remaining warning audit closure",
     "Independent FHD numerical RAW-to-demosaic/AWB reference",
@@ -37,7 +43,7 @@
     "Stage3 FHD EDGE/composite/four-mode integration and final timed/cold-start/field-of-view acceptance"
   ],
   "writer_stops_after_handoff_save": true,
-  "next_step": "Manually test the frozen candidate and fill the human gate. Preserve all failures; do not enter EDGE/composite until the human gate is confirmed.",
+  "next_step": "User volatile-downloads standalone TPG diagnostic and records screen/information page. Original camera image failed HDMI; no EDGE integration.",
   "processes": [
     {
       "ProcessName": "bw",
@@ -63,7 +69,7 @@
     "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
     "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
   },
-  "note": "User authorized a new branch and upload. First push succeeded and remote f0e6742 was verified. A following handoff/tool-only commit is published on the same new branch; resolve latest HEAD with git ls-remote. Frozen code/bit identity remains f22e833 plus the per-file SHA manifest. No board action has been performed.",
+  "note": "Original camera candidate unchanged and failed HDMI on the board, as reported by the user. Separate TPG diagnostic is frozen and built; physical test pending. Negative sync difference is recorded, root cause not declared.",
   "development_branch": "lj4747-contest-work",
   "verified_development_remote_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "upload_record": "开发实施/验收记录/20261008_1080p30分支上传_轮次1.md",
@@ -73,5 +79,19 @@
     "Assembled standalone TD download directories; regenerate with committed script",
     "User TD/bw/hwserver processes",
     "Untracked user Example/01_MIPI采集与HDMI显示/lab_hd_1_mipi_hdmi/ (not committed or uploaded)"
-  ]
+  ],
+  "hdmi_diagnostic": {
+    "release": "fpga/component_inspector/release/native_1080p30/hdmi_tpg_diagnostic_20261008",
+    "bit_sha256": "8d0098b11012e22f8ae9eae329106534e1060505f24e88658749504a681836a0",
+    "desktop_bit": "C:/Users/Li47/Desktop/SC500_HDMI_1080p30_TEST/hdmi_tpg.bit",
+    "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_1080p30_TEST/td_project/hdmi_tpg.al",
+    "simulation": "PASS post-lock full frame with ideal clocks, actual encrypted core and vendor ODDR; measured negative sync, target positive polarity remains open",
+    "setup_wns_ns": 0.121,
+    "hold_wns_ns": 0.024,
+    "tns": 0,
+    "violating_endpoints": 0,
+    "sta_coverage_percent": 99.96,
+    "physical_acceptance": "NOT_RUN",
+    "source_freeze": "native_1080p30_hdmi_tpg_r8_20261008"
+  }
 }

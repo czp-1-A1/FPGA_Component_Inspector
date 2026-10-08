@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project Version="3" Minor="2" Path="C:/Users/Li47/Desktop/aa/native_1080p30_hdmi_tpg_r1_20261008/td_project">
+    <Project_Created_Time></Project_Created_Time>
+    <TD_Encoding>UTF-8</TD_Encoding>
+    <TD_Version>6.2.178840</TD_Version>
+    <Name>hdmi_tpg</Name>
+    <HardWare>
+        <Family>PH1</Family>
+        <Device>PH1P35MDG324</Device>
+        <Speed>-3</Speed>
+    </HardWare>
+    <Source_Files>
+<Verilog>
+<File Path="../../../diagnostics/hdmi_1080p30_tpg/hdmi_tpg_top.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/></FileInfo></File>
+<File Path="../../../user_source/hdl_source/native_hdmi_pll.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/></FileInfo></File>
+<File Path="../../../user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/></FileInfo></File>
+<File Path="../../../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/></FileInfo></File>
+<File Path="../../../user_source/hdl_source/hdmi_phy_warpper.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/></FileInfo></File>
+<File Path="../../../user_source/hdl_source/lane_lvds_10_1.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/></FileInfo></File>
+</Verilog>
+<ADC_FILE>
+<File Path="../../pin.adc"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="constraint_1"/></FileInfo></File>
+</ADC_FILE>
+<SDC_FILE>
+<File Path="../../hdmi_tpg.sdc"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="constraint_1"/></FileInfo></File>
+</SDC_FILE>
+</Source_Files>
+    <FileSets>
+        <FileSet Name="design_1" Type="DesignFiles">
+        </FileSet>
+        <FileSet Name="constraint_1" Type="ConstrainFiles">
+        </FileSet>
+    </FileSets>
+    <TOP_MODULE>
+        <LABEL>hdmi_tpg_top</LABEL>
+        <MODULE>hdmi_tpg_top</MODULE>
+        <CREATEINDEX>user</CREATEINDEX>
+    </TOP_MODULE>
+    <Property>
+    </Property>
+    <Device_Settings>
+    </Device_Settings>
+    <Configurations>
+        <Control0>
+            <mclk_freq>33MHz</mclk_freq>
+        </Control0>
+        <FeatureRow>
+            <boot_mode>mspix4</boot_mode>
+        </FeatureRow>
+    </Configurations>
+    <Runs>
+        <Run Name="syn_1" Type="Synthesis" ConstraintSet="constraint_1" Description="" Active="true" useDefaultScript="false">
+            <Strategy Name="Default_Synthesis_Strategy">
+            </Strategy>
+            <UserParams>
+            </UserParams>
+        </Run>
+        <Run Name="phy_1" Type="PhysicalDesign" ConstraintSet="constraint_1" Description="" SynRun="syn_1" Active="true">
+            <Strategy Name="Default_PhysicalDesign_Strategy">
+                <BitgenProperty::GeneralOption>
+                    <compress>on</compress>
+                </BitgenProperty::GeneralOption>
+            </Strategy>
+            <UserParams>
+            </UserParams>
+        </Run>
+    </Runs>
+    <Project_Settings>
+    </Project_Settings>
+</Project>
