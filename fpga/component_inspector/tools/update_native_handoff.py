@@ -1,6 +1,6 @@
 """Refresh the short handoff checkpoint without accumulating history."""
 from pathlib import Path
-import argparse, subprocess,datetime
+import argparse, subprocess,datetime,json
 
 ap=argparse.ArgumentParser()
 ap.add_argument('checkpoint')
@@ -9,6 +9,11 @@ ap.add_argument('--commit-status',default='本轮变更尚未提交/推送；基
 args=ap.parse_args()
 repo=Path(__file__).resolve().parents[3]
 head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip()
+raw_processes=subprocess.check_output(['powershell','-NoProfile','-Command',
+    "Get-Process | Where-Object {$_.ProcessName -match '^(td|bw|hwserver|vsim|vlog|td_commands_prompt)$'} | Select-Object ProcessName,Id | ConvertTo-Json -Compress"],text=True).strip()
+processes=json.loads(raw_processes) if raw_processes else []
+if isinstance(processes,dict):processes=[processes]
+process_text='、'.join(str(p['ProcessName'])+str(p['Id']) for p in processes) or '未发现相关进程'
 summary=f'''## 当前断点（{datetime.date.today().isoformat()}，SC500原像素1080p30迁移）
 
 - **目标与断点**：用户已批准实施1080p30分阶段迁移；{args.checkpoint}。阶段2仅RAW/GRAY，人工上板门槛通过后才集成完整EDGE。
@@ -17,7 +22,7 @@ summary=f'''## 当前断点（{datetime.date.today().isoformat()}，SC500原像�
 - **验证及证据**：207旧输入/旧bit已冻结；25类仿真最终PASS，早期失败独立保留；完整TD建立/保持WNS+0.143/+0.020ns，两种TNS/违例端点0；资源14911/21216 Slice、45/108 ERAM、8/40 DSP、5/6 PLL。候选release/native_1080p30/stage2_base_20261008新bit SHA 7b8c08c27582960da985b52102c0c9273533c3bf5cabc89d757cbfee7588e709；191文件/282冻结输入完整性通过。仅诊断、未验收。
 - **未决事项**：STA覆盖95.31%，39输入/63输出延迟、partial/dummy等审计后仍待板级预算闭合；FHD RAW→去马赛克/AWB独立数值参考未运行；物理DDR训练/写读/压力、实际输入尺寸/30秒采集FPS、HDMI识别、RAW/GRAY各2分钟均未测。DDR50MHz方案已一致改PLL/tCK/CL/CWL/刷新，不能以STA消警告代替实物。完整EDGE/组合及最终30分钟/20轮/3冷启动未进入。CLASS_CALIBRATED=0，不启用T58。
 - **下一条具体操作**：{args.next}。
-- **运行中进程/设备**：最后查询用户TD GUI41952、bw15004、hwserver17224/31504/32148保留；助手TD CLI/ModelSim均退出。未烧录或操作唯一板卡；本端保存交付后停止实现，接棒仍先确认前端停止。
+- **运行中进程/设备**：当前查询{process_text}；本轮未启动/停止用户进程或烧录、未操作唯一板卡。实现端及工具进程归属以本轮记录核对；本端保存交付后停止实现，接棒仍先确认前端停止。
 - **提交/推送状态**：{args.commit_status}。仅续接个人分支，不pull/reset/强推。
 '''
 for path in (repo/'AGENTS.md',repo.parent/'AGENTS.md'):
