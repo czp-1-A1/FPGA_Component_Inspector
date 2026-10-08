@@ -1,13 +1,13 @@
 {
   "date": "2026-10-08",
-  "status": "native_1080p30_stage2_diagnostic_local_only_not_accepted",
+  "status": "native_1080p30_stage2_diagnostic_branch_published_not_accepted",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
-  "branch": "lj4747-contest-work",
+  "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
   "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
-  "verified_remote_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
-  "pushed": false,
-  "checkout": "Use local lj4747-contest-work HEAD. Remote does not yet contain this implementation. Do not reset to remote or assume synchronization.",
+  "verified_remote_head": "f0e67420490a925e0c07beae4d11b2723ad4a3a3",
+  "pushed": true,
+  "checkout": "Use latest origin/lj4747-native-1080p30-stage2 for this delivery. The original personal branch is retained and its remote remains3be3967.",
   "handoff_document": "交接说明.md",
   "validation_record": "开发实施/验收记录/20261008_原像素1080p30_轮次2.md",
   "manual_gate": "开发实施/验收记录/20261008_1080p30底座_人工门槛_待测.md",
@@ -37,17 +37,25 @@
     "Stage3 FHD EDGE/composite/four-mode integration and final timed/cold-start/field-of-view acceptance"
   ],
   "writer_stops_after_handoff_save": true,
-  "next_step": "Verify local checkout and frozen SHA, manually test stage2 according to the candidate README. Preserve failures; do not enter full EDGE integration until the human gate is confirmed.",
-  "processes": {
-    "user_td": 41952,
-    "bw": 15004,
-    "hwserver": [
-      17224,
-      31504,
-      32148
-    ],
-    "assistant_td_modelsim": "none"
-  },
+  "next_step": "Manually test the frozen candidate and fill the human gate. Preserve all failures; do not enter EDGE/composite until the human gate is confirmed.",
+  "processes": [
+    {
+      "ProcessName": "bw",
+      "Id": 32376
+    },
+    {
+      "ProcessName": "hwserver",
+      "Id": 10024
+    },
+    {
+      "ProcessName": "td",
+      "Id": 15172
+    },
+    {
+      "ProcessName": "td",
+      "Id": 29524
+    }
+  ],
   "board_actions_performed": false,
   "previous_handoff": {
     "commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
@@ -55,5 +63,15 @@
     "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
     "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
   },
-  "note": "Build and test snapshots were captured before the implementation commit; their per-file hashes bind the bit. Implementation commit is f22e833; a following handoff-only commit may advance HEAD. No push has been performed."
+  "note": "User authorized a new branch and upload. First push succeeded and remote f0e6742 was verified. A following handoff/tool-only commit is published on the same new branch; resolve latest HEAD with git ls-remote. Frozen code/bit identity remains f22e833 plus the per-file SHA manifest. No board action has been performed.",
+  "development_branch": "lj4747-contest-work",
+  "verified_development_remote_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "upload_record": "开发实施/验收记录/20261008_1080p30分支上传_轮次1.md",
+  "td_download_reproduction": "python fpga/component_inspector/tools/prepare_native_download.py C:/native_1080p30_td --from-release",
+  "local_only": [
+    "Desktop SC500_1080p30_TD.lnk",
+    "Assembled standalone TD download directories; regenerate with committed script",
+    "User TD/bw/hwserver processes",
+    "Untracked user Example/01_MIPI采集与HDMI显示/lab_hd_1_mipi_hdmi/ (not committed or uploaded)"
+  ]
 }
