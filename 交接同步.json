@@ -5,7 +5,7 @@
   "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
   "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
-  "verified_remote_head": "f0e67420490a925e0c07beae4d11b2723ad4a3a3",
+  "verified_remote_head": "02849e86a15e4d0a4deba9a435ff7e62d5783837",
   "pushed": true,
   "checkout": "Use latest origin/lj4747-native-1080p30-stage2 for this delivery. The original personal branch is retained and its remote remains3be3967.",
   "handoff_document": "交接说明.md",
@@ -47,11 +47,15 @@
   "processes": [
     {
       "ProcessName": "bw",
+      "Id": 15528
+    },
+    {
+      "ProcessName": "bw",
       "Id": 32376
     },
     {
       "ProcessName": "hwserver",
-      "Id": 10024
+      "Id": 24484
     },
     {
       "ProcessName": "td",
@@ -93,5 +97,6 @@
     "sta_coverage_percent": 99.96,
     "physical_acceptance": "NOT_RUN",
     "source_freeze": "native_1080p30_hdmi_tpg_r8_20261008"
-  }
+  },
+  "hdmi_diagnostic_commit": "02849e86a15e4d0a4deba9a435ff7e62d5783837"
 }
