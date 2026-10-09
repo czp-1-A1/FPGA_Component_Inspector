@@ -1,0 +1,38 @@
+# vsim -c -L anlogic_sim -voptargs="+acc=rn" -onfinish exit -l legacy_negative.transcript.log -wlf legacy_negative.wave.wlf -do "run -all; quit -code 1 -force" work.tb_sync_aligned_pins anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR -gLEGACY_A=1 
+# Start time: 21:06:21 on Oct 09,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_sync_aligned_pins(fast)
+# Loading work.positive_top(fast)
+# Loading work.HDMI_PLL(fast)
+# Loading work.dvi_encoder(fast)
+# Loading work.hdmi_phy_wrapper(fast)
+# Loading work.lane_lvds_10_1(fast)
+# Loading anlogic_sim.PH1P_LOGIC_ODDR(fast)
+# Loading anlogic_sim.PH1P_PHY_HR_PAD(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# run -all
+# OBS positive pins words500000 pixels0
+# OBS positive pins words1000000 pixels0
+# OBS positive pins words1500000 pixels0
+# OBS positive pins words2000000 pixels0
+# ** Fatal: VS leading edge does not coincide with HS leading edge
+#    Time: 32128575328800 fs  Scope: tb_sync_aligned_pins File: tb_sync_aligned_pins.v Line: 82
+# ** Note: $finish    : tb_sync_aligned_pins.v(82)
+#    Time: 32128575328800 fs  Iteration: 0  Instance: /tb_sync_aligned_pins
+# End time: 21:08:07 on Oct 09,2026, Elapsed time: 0:01:46
+# Errors: 1, Warnings: 0

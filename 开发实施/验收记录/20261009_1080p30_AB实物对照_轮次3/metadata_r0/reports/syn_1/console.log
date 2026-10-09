@@ -1,0 +1,567 @@
+============================================================
+   Tang Dynasty, V6.2.178840
+   Copyright (c) 2012-2025 Anlogic Inc.
+   Executable = D:/td6.2.1/bin/td_commands_prompt.exe
+   Built at =   14:07:58 Sep  4 2025
+   Run by =     Li47
+   Run Date =   Fri Oct  9 21:06:18 2026
+
+   Run on =     LI474747
+============================================================
+RUN-1002 : start command "import_device ph1_35p.db -package PH1P35MDG324 -speed 3"
+ARC-1001 : Device Initialization.
+ARC-1001 : ----------------------------------------------------------------
+ARC-1001 :           OPTION          |          IO           |   SETTING   
+ARC-1001 : ----------------------------------------------------------------
+ARC-1001 :   non_jtag_persist(none)  |        35 IOs         |    gpio    
+ARC-1001 :            jtag           |  P13/P15/L14/R13/T13  |  dedicate  
+ARC-1001 : ----------------------------------------------------------------
+RUN-1003 : finish command "import_device ph1_35p.db -package PH1P35MDG324 -speed 3" in  1.707417s wall, 1.234375s user + 0.046875s system = 1.281250s CPU (75.0%)
+
+RUN-1004 : used memory is 333 MB, reserved memory is 330 MB, peak memory is 333 MB
+RUN-1002 : start command "open_project sync_aligned_fhd30.prj"
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :     Parameters    |   Settings   |  Default Values  |  Note  
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :    enable_seed    |     off      |       off        |        
+RUN-1001 :    hfn_to_clock   |  1000000000  |    1000000000    |        
+RUN-1001 :      message      |   standard   |     standard     |        
+RUN-1001 :    qor_monitor    |      on      |        on        |        
+RUN-1001 :   speedup_effort  |      0       |        0         |        
+RUN-1001 :    syn_ip_flow    |     off      |       off        |        
+RUN-1001 :       thread      |     auto     |       auto       |        
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :     Parameters    |   Settings   |  Default Values  |  Note  
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :    enable_seed    |     off      |       off        |        
+RUN-1001 :    hfn_to_clock   |  1000000000  |    1000000000    |        
+RUN-1001 :      message      |   standard   |     standard     |        
+RUN-1001 :    qor_monitor    |      on      |        on        |        
+RUN-1001 :   speedup_effort  |      0       |        0         |        
+RUN-1001 :    syn_ip_flow    |     off      |       off        |        
+RUN-1001 :       thread      |     auto     |       auto       |        
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file ../../../diagnostics/hdmi_positive/sync_aligned_top.v
+HDL-1007 : analyze verilog file ../../../diagnostics/hdmi_positive/positive_top.v
+HDL-1007 : analyze verilog file ../../../diagnostics/hdmi_positive/dvi_encoder.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/native_hdmi_pll.v
+HDL-1007 : analyze verilog file ../../../user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/hdmi_phy_warpper.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/lane_lvds_10_1.v
+PRJ-1401 : Successfully analyzed 7 source files.
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :     Parameters    |   Settings   |  Default Values  |  Note  
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :    enable_seed    |     off      |       off        |        
+RUN-1001 :    hfn_to_clock   |  1000000000  |    1000000000    |        
+RUN-1001 :      message      |   standard   |     standard     |        
+RUN-1001 :    qor_monitor    |      on      |        on        |        
+RUN-1001 :   speedup_effort  |      0       |        0         |        
+RUN-1001 :    syn_ip_flow    |     off      |       off        |        
+RUN-1001 :       thread      |     auto     |       auto       |        
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+RUN-1002 : start command "elaborate -top sync_aligned_fhd30_top"
+HDL-1007 : elaborate module sync_aligned_fhd30_top in ../../../diagnostics/hdmi_positive/sync_aligned_top.v(4)
+HDL-1007 : elaborate module positive_top(ALIGN_VSYNC=1) in ../../../diagnostics/hdmi_positive/positive_top.v(3)
+HDL-1007 : elaborate module HDMI_PLL in ../../../user_source/hdl_source/native_hdmi_pll.v(5)
+HDL-1007 : elaborate module HDMI_PLL_STAGE(FIN_MHZ="50.000000000",N=5,M=108,C0=32,C1=32,CAP=16,ENABLE_C1="DISABLE") in ../../../user_source/hdl_source/native_hdmi_pll.v(24)
+HDL-1007 : elaborate module PH1P_LOGIC_BUFG in D:\td6.2.1\arch/ph1p_macro.v(8085)
+HDL-1007 : elaborate module ph1p_phy_pll_wrapper_25a56e5ce2f9(FBKCLK="VCO_PHASE0",FIN="50.000000000",REFCLK_DIV=5,FBCLK_DIV=108,CLKC0_ENABLE="ENABLE",CLKC0_DIV=32,CLKC0_CPHASE=31,CLKC0_DUTY_INT=16,CLKC1_DIV=32,CLKC1_CPHASE=31,CLKC1_DUTY_INT=16,CLKC4_DIV=25,CLKC4_CPHASE=24,CLKC4_DUTY_INT=13,CLKC5_DIV=5,CLKC5_CPHASE=4,CLKC5_DUTY_INT=3,LPF_CAP=16,ICP_CUR=0,FEEDBK_MODE="NOCOMP") in ../../../user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v(2)
+HDL-1007 : elaborate module PH1P_PHY_PLL_V2(FBKCLK="VCO_PHASE0",FIN="50.000000000",REFCLK_DIV=5,FBCLK_DIV=108,CLKC0_CPHASE=31,CLKC1_CPHASE=31,CLKC4_CPHASE=24,CLKC5_CPHASE=4,CLKC0_DIV=32,CLKC1_DIV=32,CLKC4_DIV=25,CLKC5_DIV=5,CLKC0_DUTY_INT=16,CLKC1_DUTY_INT=16,CLKC4_DUTY_INT=13,CLKC5_DUTY_INT=3,CLKC0_ENABLE="ENABLE",LPF_CAP=16,ICP_CUR=0,FEEDBK_MODE="NOCOMP") in D:\td6.2.1\arch/ph1p_macro.v(1091)
+HDL-1007 : elaborate module HDMI_PLL_STAGE in ../../../user_source/hdl_source/native_hdmi_pll.v(24)
+HDL-1007 : elaborate module ph1p_phy_pll_wrapper_25a56e5ce2f9(FBKCLK="VCO_PHASE0",FIN="33.750000000",FBCLK_DIV=33,CLKC0_ENABLE="ENABLE",CLKC0_DIV=15,CLKC0_CPHASE=14,CLKC0_DUTY_INT=8,CLKC1_ENABLE="ENABLE",CLKC1_DIV=3,CLKC1_CPHASE=2,CLKC1_DUTY_INT=2,CLKC4_DIV=25,CLKC4_CPHASE=24,CLKC4_DUTY_INT=13,CLKC5_DIV=5,CLKC5_CPHASE=4,CLKC5_DUTY_INT=3,LPF_CAP=0,ICP_CUR=0,FEEDBK_MODE="NOCOMP") in ../../../user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v(2)
+HDL-1007 : elaborate module PH1P_PHY_PLL_V2(FBKCLK="VCO_PHASE0",FIN="33.750000000",FBCLK_DIV=33,CLKC0_CPHASE=14,CLKC1_CPHASE=2,CLKC4_CPHASE=24,CLKC5_CPHASE=4,CLKC0_DIV=15,CLKC1_DIV=3,CLKC4_DIV=25,CLKC5_DIV=5,CLKC0_DUTY_INT=8,CLKC1_DUTY_INT=2,CLKC4_DUTY_INT=13,CLKC5_DUTY_INT=3,CLKC0_ENABLE="ENABLE",CLKC1_ENABLE="ENABLE",LPF_CAP=0,ICP_CUR=0,FEEDBK_MODE="NOCOMP") in D:\td6.2.1\arch/ph1p_macro.v(1091)
+HDL-1007 : elaborate module dvi_encoder in ../../../diagnostics/hdmi_positive/dvi_encoder.v(3)
+HDL-1007 : elaborate module hdmi_phy_wrapper(DEVICE="PH1P") in ../../../user_source/hdl_source/hdmi_phy_warpper.v(3)
+HDL-1007 : elaborate module lane_lvds_10_1(DEVICE="PH1P") in ../../../user_source/hdl_source/lane_lvds_10_1.v(4)
+HDL-1007 : elaborate module PH1P_LOGIC_ODDR in D:\td6.2.1\arch/ph1p_macro.v(8343)
+HDL-1200 : Current top model is sync_aligned_fhd30_top
+HDL-1100 : Inferred 0 RAMs.
+RUN-1002 : start command "read_adc ../../pin.adc"
+RUN-1002 : start command "set_pin_assignment  I_sys_clk   LOCATION = C4; IOSTANDARD  = LVCMOS33; PULLTYPE = PULLUP; "
+RUN-1002 : start command "set_pin_assignment  I_rst_n   LOCATION = R10; IOSTANDARD = LVCMOS33; PULLTYPE = PULLUP; "
+RUN-1002 : start command "set_pin_assignment  O_tmds_ch0_p   LOCATION = G16; IOSTANDARD = TMDS33; PULLTYPE = NONE; "
+RUN-1002 : start command "set_pin_assignment  O_tmds_ch1_p   LOCATION = F17; IOSTANDARD = TMDS33; PULLTYPE = NONE; "
+RUN-1002 : start command "set_pin_assignment  O_tmds_ch2_p   LOCATION = H14; IOSTANDARD = TMDS33; PULLTYPE = NONE; "
+RUN-1002 : start command "set_pin_assignment  O_tmds_clk_p   LOCATION = C17; IOSTANDARD = TMDS33; PULLTYPE = NONE; "
+RUN-1001 : Starting of IO setups legality check.
+RUN-1002 : start command "read_sdc ../../sync_aligned_fhd30.sdc"
+RUN-1002 : start command "export_db sync_aligned_fhd30_elaborate.db"
+RUN-1001 : Exported flow parameters
+RUN-1001 : Exported /
+RUN-1001 : Exported libs
+RUN-1001 : Exported entities
+RUN-1001 : Exported ports
+RUN-1001 : Exported pins
+RUN-1001 : Exported instances
+RUN-1001 : Exported nets
+RUN-1001 : Exported buses
+RUN-1001 : Exported models
+RUN-1001 : Exported packer
+RUN-1001 : Exported congestions
+RUN-1001 : Exported violations
+RUN-1001 : Exported ATMR Setting
+RUN-1001 : Exported timing constraints
+RUN-1001 : Exported IO constraints
+RUN-1001 : Exported Inst constraints
+RUN-1001 : Exported ChipWatcher
+RUN-1002 : start command "commit_param -step rtl"
+RUN-1001 : Print Global Property
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :     Parameters    |   Settings   |  Default Values  |  Note  
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :    enable_seed    |     off      |       off        |        
+RUN-1001 :    hfn_to_clock   |  1000000000  |    1000000000    |        
+RUN-1001 :      message      |   standard   |     standard     |        
+RUN-1001 :    qor_monitor    |      on      |        on        |        
+RUN-1001 :   speedup_effort  |      0       |        0         |        
+RUN-1001 :    syn_ip_flow    |     off      |       off        |        
+RUN-1001 :       thread      |     auto     |       auto       |        
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 : Print Rtl Property
+RUN-1001 : -------------------------------------------------------------------
+RUN-1001 :         Parameters        |  Settings  |  Default Values  |  Note  
+RUN-1001 : -------------------------------------------------------------------
+RUN-1001 :        fix_undriven       |     0      |        0         |        
+RUN-1001 :   gated_clock_conversion  |    off     |       off        |        
+RUN-1001 :         infer_fsm         |    auto    |       auto       |        
+RUN-1001 :         infer_rom         |     on     |        on        |        
+RUN-1001 :       infer_shifter       |     on     |        on        |        
+RUN-1001 :       keep_hierarchy      |    auto    |       auto       |        
+RUN-1001 :        merge_equal        |     on     |        on        |        
+RUN-1001 :      min_control_set      |     8      |        8         |        
+RUN-1001 :       min_ripple_len      |    auto    |       auto       |        
+RUN-1001 :          seq_syn          |     on     |        on        |        
+RUN-1001 : -------------------------------------------------------------------
+RUN-1002 : start command "insert_debugger"
+RUN-1002 : start command "optimize_rtl"
+RUN-1001 : Open license file D:/td6.2.1/license/Anlogic.lic
+SYN-1001 : Stage 1 | Optimize RTL
+SYN-1001 : Stage 1.1 | Check Design Sanity
+SYN-1001 : End Stage 1.1 | Check Design Sanity; Time: 0.002832s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 341, reserved = 434, peak = 341;
+
+SYN-1079 : finish stage Check Design Sanity. Total instances: 513, Total nets: 1201.
+
+SYN-1001 : Stage 1.2 | Initialize Design
+SYN-1001 : End Stage 1.2 | Initialize Design; Time: 0.018099s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (86.3%); Memory(MB): used = 341, reserved = 434, peak = 341;
+
+SYN-1079 : finish stage Initialize Design. Total instances: 157, Total nets: 807.
+
+SYN-1001 : Stage 1.3 | Flatten Module
+SYN-1011 : Flatten model sync_aligned_fhd30_top
+SYN-1001 : End Stage 1.3 | Flatten Module; Time: 0.005202s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (300.4%); Memory(MB): used = 341, reserved = 434, peak = 341;
+
+SYN-1079 : finish stage Flatten Module. Total instances: 327, Total nets: 1143.
+
+SYN-1001 : Stage 1.4 | Uniform Instance
+SYN-1001 : End Stage 1.4 | Uniform Instance; Time: 0.001373s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 341, reserved = 434, peak = 341;
+
+SYN-1079 : finish stage Uniform Instance. Total instances: 329, Total nets: 1145.
+
+SYN-1001 : Stage 1.5 | Optimize Design
+SYN-1001 : Optimize 1 less-than instances
+SYN-1032 : 1096/2 useful/useless nets, 327/2 useful/useless insts
+SYN-1016 : Merged 50 instances.
+USR-1002 : Derived clock:  create_generated_clock -name {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -source [get_ports I_sys_clk] -master_clock {sys_clk_50m} -divide_by 1.4815 -duty_cycle 50.0000 [get_pins {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}]
+USR-1002 : Derived clock:  create_generated_clock -name {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -source [get_pins {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}] -master_clock {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -multiply_by 2.2000 -duty_cycle 50.0000 [get_pins {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}]
+USR-1002 : Derived clock:  create_generated_clock -name {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]} -source [get_pins {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}] -master_clock {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -multiply_by 11.0000 -duty_cycle 50.0000 [get_pins {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]}]
+SYN-1016 : Merged 30 instances.
+SYN-1001 : End Stage 1.5 | Optimize Design; Time: 0.187328s wall, 0.171875s user + 0.015625s system = 0.187500s CPU (100.1%); Memory(MB): used = 313, reserved = 412, peak = 345;
+
+SYN-1079 : finish stage Optimize Design. Total instances: 270, Total nets: 306.
+
+SYN-1001 : Stage 1.6 | Optimize Iteratively
+SYN-1018 : Transformed 3 mux instances.
+SYN-1019 : Optimized 3 mux instances.
+SYN-1014 : Optimize round 1
+SYN-1020 : Optimized 3 distributor mux.
+SYN-1001 : Optimize 12 less-than instances
+SYN-1015 : Optimize round 1, 114 better
+SYN-1014 : Optimize round 2
+SYN-1017 : Remove 1 const input seq instances
+SYN-1015 : Optimize round 2, 10 better
+SYN-3010 : Optimized 3 DFF(s)
+SYN-1014 : Optimize round 1
+SYN-1015 : Optimize round 1, 15 better
+SYN-1014 : Optimize round 2
+SYN-1015 : Optimize round 2, 0 better
+SYN-1001 : End Stage 1.6 | Optimize Iteratively; Time: 0.396481s wall, 0.390625s user + 0.000000s system = 0.390625s CPU (98.5%); Memory(MB): used = 313, reserved = 429, peak = 345;
+
+SYN-1079 : finish stage Optimize Iteratively. Total instances: 258, Total nets: 291.
+
+SYN-1001 : Stage 1.7 | Check Design
+SYN-1001 : End Stage 1.7 | Check Design; Time: 0.000087s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 314, reserved = 429, peak = 345;
+
+SYN-1079 : finish stage Check Design. Total instances: 258, Total nets: 291.
+
+SYN-1001 : End Stage 1 | Optimize RTL; Time: 0.612353s wall, 0.593750s user + 0.015625s system = 0.609375s CPU (99.5%); Memory(MB): used = 314, reserved = 429, peak = 345;
+
+SYN-1079 : finish stage Optimize RTL. Total instances: 258, Total nets: 291.
+
+RUN-1002 : start command "report_area -file sync_aligned_fhd30_rtl.area"
+RUN-1001 : standard
+***Report Model: sync_aligned_fhd30_top Device: PH1P35MDG324***
+
+IO Statistics
+#IO                         6
+  #input                    2
+  #output                   4
+  #inout                    0
+
+Gate Statistics
+#Basic gates              146
+  #and                      8
+  #nand                     0
+  #or                       1
+  #nor                      0
+  #xor                      1
+  #xnor                     0
+  #buf                      0
+  #not                     19
+  #bufif1                   0
+  #MX21                    16
+  #FADD                     0
+  #DFF                    101
+  #LATCH                    0
+#MACRO_ADD                 21
+#MACRO_EQ                   7
+#MACRO_MUX                 74
+#MACRO_OTHERS               6
+
+RUN-1002 : start command "export_db sync_aligned_fhd30_rtl.db"
+RUN-1001 : Exported flow parameters
+RUN-1001 : Exported /
+RUN-1001 : Exported libs
+RUN-1001 : Exported entities
+RUN-1001 : Exported ports
+RUN-1001 : Exported pins
+RUN-1001 : Exported instances
+RUN-1001 : Exported nets
+RUN-1001 : Exported buses
+RUN-1001 : Exported models
+RUN-1001 : Exported packer
+RUN-1001 : Exported congestions
+RUN-1001 : Exported violations
+RUN-1001 : Exported ATMR Setting
+RUN-1001 : Exported timing constraints
+RUN-1001 : Exported IO constraints
+RUN-1001 : Exported Inst constraints
+RUN-1001 : Exported ChipWatcher
+RUN-1002 : start command "commit_param -step gate"
+RUN-1001 : Print Global Property
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :     Parameters    |   Settings   |  Default Values  |  Note  
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :    enable_seed    |     off      |       off        |        
+RUN-1001 :    hfn_to_clock   |  1000000000  |    1000000000    |        
+RUN-1001 :      message      |   standard   |     standard     |        
+RUN-1001 :    qor_monitor    |      on      |        on        |        
+RUN-1001 :   speedup_effort  |      0       |        0         |        
+RUN-1001 :    syn_ip_flow    |     off      |       off        |        
+RUN-1001 :       thread      |     auto     |       auto       |        
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 : Print Gate Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   eram_cascade_height  |    auto    |       auto       |        
+RUN-1001 :        map_mode        |    auto    |       auto       |        
+RUN-1001 :      map_strategy      |     1      |        1         |        
+RUN-1001 :       pack_effort      |   medium   |      medium      |        
+RUN-1001 :     pack_seq_in_io     |    auto    |       auto       |        
+RUN-1001 :         report         |  standard  |     standard     |        
+RUN-1001 : ----------------------------------------------------------------
+RUN-1002 : start command "optimize_gate -packarea sync_aligned_fhd30_gate.area"
+RUN-1001 : Open license file D:/td6.2.1/license/Anlogic.lic
+SYN-1001 : Stage 2 | Optimize Gate
+SYN-1001 : Stage 2.1 | Map Reg
+SYN-1001 : End Stage 2.1 | Map Reg; Time: 0.003410s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 314, reserved = 492, peak = 345;
+
+SYN-1079 : finish stage Map Reg. Total instances: 258, Total nets: 291.
+
+SYN-1001 : Stage 2.2 | Map IO
+SYN-2001 : Map 6 IOs to PADs of model 'sync_aligned_fhd30_top'
+SYN-1001 : End Stage 2.2 | Map IO; Time: 0.126634s wall, 0.125000s user + 0.000000s system = 0.125000s CPU (98.7%); Memory(MB): used = 318, reserved = 495, peak = 345;
+
+SYN-1001 : Stage 2.3 | Map Macro
+RUN-1002 : start command "update_pll_param -module sync_aligned_fhd30_top"
+SYN-2501 : Processed 0 LOGIC_BUF instances.
+SYN-2501 : 2 BUFG to GCLK
+SYN-2571 : Optimize after map_dsp, round 1
+SYN-2571 : Optimize after map_dsp, round 1, 0 better
+SYN-1001 : Optimize 3 adders
+SYN-2501 : Optimize round 1
+SYN-1016 : Merged 13 instances.
+SYN-2501 : Optimize round 1, 70 better
+SYN-2501 : Optimize round 2
+SYN-2501 : Optimize round 2, 0 better
+SYN-2501 : Optimize round 1
+SYN-2501 : Optimize round 1, 0 better
+USR-1002 : Derived clock:  create_generated_clock -name {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -source [get_ports I_sys_clk] -master_clock {sys_clk_50m} -divide_by 1.4815 -duty_cycle 50.0000 [get_pins {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}]
+USR-1002 : Derived clock:  create_generated_clock -name {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -source [get_pins {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}] -master_clock {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -multiply_by 2.2000 -duty_cycle 50.0000 [get_pins {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}]
+USR-1002 : Derived clock:  create_generated_clock -name {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]} -source [get_pins {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}] -master_clock {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -multiply_by 11.0000 -duty_cycle 50.0000 [get_pins {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]}]
+SYN-2501 : Map 21 macro adder(s)
+SYN-1016 : Merged 83 instances.
+SYN-1001 : End Stage 2.3 | Map Macro; Time: 0.075400s wall, 0.062500s user + 0.015625s system = 0.078125s CPU (103.6%); Memory(MB): used = 329, reserved = 495, peak = 345;
+
+SYN-1079 : finish stage Map Macro. Total instances: 515, Total nets: 543.
+
+SYN-1001 : Stage 2.4 | Map Gate
+SYN-3001 : Collect 88 PI 85 PO (5 timing unconstrained) for mapping
+SYN-2581 : Mapping with K=6, #lut = 108 (3.31), #lev = 4 (2.34), #crit_level = 4
+SYN-2551 : Post LUT mapping optimization.
+SYN-2581 : Mapping with K=6, #lut = 104 (3.40), #lev = 4 (2.24), #crit_level = 0
+SYN-3001 : Logic optimization opt = 0.14 sec, map = 0.01 sec, post map opt = 0.09 sec.
+SYN-1001 : End Stage 2.4 | Map Gate; Time: 0.285437s wall, 0.281250s user + 0.000000s system = 0.281250s CPU (98.5%); Memory(MB): used = 347, reserved = 514, peak = 347;
+
+SYN-1001 : Packing model "sync_aligned_fhd30_top" ...
+SYN-1001 : Stage 2.5 | Pack Gate
+SYN-4010 : Pack lib has 43 rtl pack models with 26 top pack blocks
+SYN-1014 : Optimize round 1
+SYN-1015 : Optimize round 1, 0 better
+SYN-4002 : Packing 101 DFF/LATCH to SEQ ...
+SYN-1001 : Remove 1 carry adders
+RUN-1002 : start command "start_timer"
+USR-1002 : Derived clock:  create_generated_clock -name {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -source [get_ports I_sys_clk] -master_clock {sys_clk_50m} -divide_by 1.4815 -duty_cycle 50.0000 [get_pins {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}]
+USR-1002 : Derived clock:  create_generated_clock -name {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -source [get_pins {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}] -master_clock {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -multiply_by 2.2000 -duty_cycle 50.0000 [get_pins {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}]
+USR-1002 : Derived clock:  create_generated_clock -name {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]} -source [get_pins {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]}] -master_clock {u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]} -multiply_by 11.0000 -duty_cycle 50.0000 [get_pins {u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]}]
+TMR-2502 : Net delay update with mode: Synthesized
+RUN-1002 : start command "end_timer"
+SYN-4009 : Pack 1 carry chain into lslice
+SYN-1001 : End Stage 2.5 | Pack Gate; Time: 0.062381s wall, 0.031250s user + 0.031250s system = 0.062500s CPU (100.2%); Memory(MB): used = 347, reserved = 514, peak = 347;
+
+RUN-1002 : start command "report_qor -step gate -file gate.qor"
+RUN-1002 : start command "start_timer"
+TMR-2502 : Net delay update with mode: Synthesized
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |          349                |
+|     Setup TNS             |            0                |
+|     Num of violated S-EP  |            0                |
+|     Hold WNS              |          469                |
+|     Hold TNS              |            0                |
+|     Num of violated H-EP  |            0                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #registers            |          101                |
+|     #luts                 |          104                |
+|     #lut1                 |            3                |
+|     #lut1(~A)             |            3                |
+|     #slices               |           12                |
+|     slices percentage     |        0.06%                |
+|     #RAMs                 |            0                |
+|     #DSPs                 |            0                |
+|     #f7mux                |        0.00%                |
+|     #MACROs               |            1                |
+|     #insts in MACRO       |           12                |
+-----------------------------------------------------------
+| kept_net                  |                             |
+|     #syn_keep             |            0                |
+|     #keep_hier            |            0                |
+|     #dont_touch           |            0                |
+|     #mark_debug           |            0                |
+|     #max_fanout_keep      |            0                |
+|     #async_reg            |            0                |
+-----------------------------------------------------------
+| Top 10% datanet fanout#   |        31.00                |
+| dff(single fanout)->dff   |           12                |
+| dff(single fanout)->dram  |            0                |
+-----------------------------------------------------------
+| Over-quota path num*      |                             |
+|     Total Number          |            0                |
+|     Total Exceed Level    |            0                |
+|     Worst Level Slack     |            2                |
+-----------------------------------------------------------
+| Rent**                    |                             |
+-----------------------------------------------------------
+Note*: Over-quota path shows the over-path-level-threshold path number of each clock.
+       The clock will not be shown if no path is with path level over the threshold.
+       The threshold is defined as worst path_margin / 800ps.
+Note**: Rent shows the rent exponent value of the modules whose rent value exceeds the threshold.
+        Only modules under top are reported, and the threshold is defined as 0.7.
+
+Logic Level Distribution
+-------------------------------------------------------------------------------------------------------------------------------------------------
+  Clock                                                                                 |  Period            |  0    |  1   |  2   |  3   |  4
+-------------------------------------------------------------------------------------------------------------------------------------------------
+  sys_clk_50m                                                                           |  20.000ns (50MHz)  |  0    |  0   |  0   |  0   |  0
+  u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]  |  13.468ns (74MHz)  |  49   |  2   |  20  |  12  |  24
+  u_video/u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]  |  2.693ns (371MHz)  |  59   |  46  |  0   |  0   |  0
+  u_video/u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]     |  29.630ns (33MHz)  |  0    |  0   |  0   |  0   |  0
+  Total                                                                                 |  NA                |  108  |  48  |  20  |  12  |  24
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Note: The table count the worst 100000 paths, each endpoint count only one time.(212 paths analyzed)
+
+Hierarchical Rent Exponent Report
++--------------------------------------------------------+
+|Inst     |Model  |Rent     |Cell     |Pin     |Term     |
++--------------------------------------------------------+
++--------------------------------------------------------+
+Note: Cell represents total number of cells inside module; Pin represents total number of pins
+      which have net connection inside module; Term represents total number of PIs and POs of module.
+      Rent represents the relationship between number of terms and number of cells in module.
+      A module with higher rent corresponds to highly connected logic and strong connectivity with others.
+Report gate stage QoR done.
+
+RUN-1002 : start command "report_area -file sync_aligned_fhd30_gate.area"
+SYN-4034 : The count of slices with lut is 0.
+SYN-4035 : The count of slices with lut+ripple is 12.
+RUN-1001 : standard
+***Report Model: sync_aligned_fhd30_top Device: PH1P35MDG324***
+
+Design Statistics
+#IO                         6   out of    160    3.75%
+  #input                    2
+  #output                   4
+  #inout                    0
+#lut                      116
+  #lut1                     3
+  #lut2                    32
+  #lut3                    37
+  #lut4                     3
+  #lut5                    10
+  #lut6                    31
+#reg                      101
+  #slice reg              101   out of  42432    0.24%
+  #pad reg                  0
+
+Utilization Statistics
+#slice*                    86   out of  21216    0.41%
+  #used ram                 0
+    #dram lut               0
+    #shifter lut            0
+  #used logic              86
+    #with luts*            68
+    #with adder            12
+    #reg only*              6
+#f7mux                      0   out of  10608    0.00%
+#f8mux                      0   out of   5304    0.00%
+#eram                       0   out of    108    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        0   out of     40    0.00%
+#ddr_byte                   0   out of     12    0.00%
+#mipi_tx                    0   out of      2    0.00%
+#mipi_rx                    0   out of      2    0.00%
+#pad                       10   out of    160    6.25%
+#pll                        2   out of      6   33.33%
+#gclk                       2   out of     32    6.25%
+#lclk                       0   out of     12    0.00%
+#sclk                       0   out of     48    0.00%
+#mlclk                      0   out of      6    0.00%
+#ioclk                      0   out of     18    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+SYN-1001 : End Stage 2 | Optimize Gate; Time: 0.609478s wall, 0.531250s user + 0.078125s system = 0.609375s CPU (100.0%); Memory(MB): used = 348, reserved = 514, peak = 348;
+
+RUN-1002 : start command "legalize_phy_inst"
+SYN-1001 : Stage 3 | Legalize Phy Inst
+SYN-1011 : Flatten model sync_aligned_fhd30_top
+SYN-1001 : End Stage 3 | Legalize Phy Inst; Time: 0.001420s wall, 0.000000s user + 0.000000s system = 0.000000s CPU (n/a%); Memory(MB): used = 348, reserved = 514, peak = 348;
+
+RUN-1002 : start command "update_timing"
+RUN-1002 : start command "start_timer"
+RUN-1002 : start command "report_timing_status -file sync_aligned_fhd30_gate.ts"
+RUN-1002 : start command "report_timing_summary -file sync_aligned_fhd30_gate.timing"
+RUN-1002 : start command "flow_status -file flow.status"
+Location         : C:\Users\Li47\Desktop\aa\native_c_sync_r2_20261009\td_project\sync_aligned_fhd30_Runs\syn_1
+Running with     : Tang Dynasty v6.2.178840
+                   Copyright (c) 2012-2025 Anlogic Inc.
+Top Model        : sync_aligned_fhd30_top
+Device           : PH1P35MDG324
+Speed            : 3
+
+Timing Mode      : basic
+Setup            : WNS   349ps  TNS        0ps  NUM_FEPS     0
+Hold             : WNS   469ps  TNS        0ps  NUM_FEPS     0
+
+Flow Statistics  :
+RUN-1001 : Flow Statistics:
+RUN-1001 : --------------------------------------------------------------------------------------------------
+RUN-1001 :      command     |  #calls  |  wall time  |  cpu time(s)  |  used memory(mb)  |  peak memory(mb)  
+RUN-1001 : --------------------------------------------------------------------------------------------------
+RUN-1001 :   import_device  |    1     |  1s(100%)   |    1(100%)    |        333        |        333        
+RUN-1001 :   optimize_gate  |    1     |   0s(0%)    |     0(0%)     |        348        |        348        
+RUN-1001 :   optimize_rtl   |    1     |   0s(0%)    |     0(0%)     |        314        |        345        
+RUN-1001 :     read_adc     |    1     |   0s(0%)    |     0(0%)     |        340        |        340        
+RUN-1001 :     read_sdc     |    1     |   0s(0%)    |     0(0%)     |        340        |        340        
+RUN-1001 : --------------------------------------------------------------------------------------------------
+RUN-1001 :       total      |    5     |     1s      |       1       |        348        |        348        
+RUN-1001 : --------------------------------------------------------------------------------------------------
+RUN-1002 : start command "export_db sync_aligned_fhd30_gate.db"
+RUN-1001 : Exported flow parameters
+RUN-1001 : Exported /
+RUN-1001 : Exported libs
+RUN-1001 : Exported entities
+RUN-1001 : Exported ports
+RUN-1001 : Exported pins
+RUN-1001 : Exported instances
+RUN-1001 : Exported nets
+RUN-1001 : Exported buses
+RUN-1001 : Exported models
+RUN-1001 : Exported packer
+RUN-1001 : Exported congestions
+RUN-1001 : Exported violations
+RUN-1001 : Exported ATMR Setting
+RUN-1001 : Exported timing constraints
+RUN-1001 : Exported IO constraints
+RUN-1001 : Exported Inst constraints
+RUN-1001 : Exported ChipWatcher
+RUN-1002 : start command "export_flow_status -s read_design -e opt_gate"
+RUN-1002 : start command "flow_status"
+
+Location         : C:\Users\Li47\Desktop\aa\native_c_sync_r2_20261009\td_project\sync_aligned_fhd30_Runs\syn_1
+Running with     : Tang Dynasty v6.2.178840
+                   Copyright (c) 2012-2025 Anlogic Inc.
+Top Model        : sync_aligned_fhd30_top
+Device           : PH1P35MDG324
+Speed            : 3
+
+Timing Mode      : basic
+Setup            : WNS   349ps  TNS        0ps  NUM_FEPS     0
+Hold             : WNS   469ps  TNS        0ps  NUM_FEPS     0
+
+RUN-1001 : Flow Statistics:
+RUN-1001 : --------------------------------------------------------------------------------------------------
+RUN-1001 :      command     |  #calls  |  wall time  |  cpu time(s)  |  used memory(mb)  |  peak memory(mb)  
+RUN-1001 : --------------------------------------------------------------------------------------------------
+RUN-1001 :   import_device  |    1     |  1s(100%)   |    1(100%)    |        333        |        333        
+RUN-1001 :   optimize_gate  |    1     |   0s(0%)    |     0(0%)     |        348        |        348        
+RUN-1001 :   optimize_rtl   |    1     |   0s(0%)    |     0(0%)     |        314        |        345        
+RUN-1001 :     read_adc     |    1     |   0s(0%)    |     0(0%)     |        340        |        340        
+RUN-1001 :     read_sdc     |    1     |   0s(0%)    |     0(0%)     |        340        |        340        
+RUN-1001 : --------------------------------------------------------------------------------------------------
+RUN-1001 :       total      |    5     |     1s      |       1       |        348        |        348        
+RUN-1001 : --------------------------------------------------------------------------------------------------
+RUN-1002 : start command "check_timing -file constraint_coverage.txt -verbose"

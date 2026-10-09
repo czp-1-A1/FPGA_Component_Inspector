@@ -1,6 +1,6 @@
 // Standalone positive-sync DVI-compatible colorbars. No camera/DDR or AVI.
 // A:1080p30. B:720p60 comparison. Same74.25/371.25MHz PLL and PHY.
-module positive_top #(parameter MODE_HD60=0)(input wire I_sys_clk,I_rst_n,
+module positive_top #(parameter MODE_HD60=0,parameter ALIGN_VSYNC=0)(input wire I_sys_clk,I_rst_n,
  output wire O_tmds_ch0_p,O_tmds_ch1_p,O_tmds_ch2_p,O_tmds_clk_p);
  wire pixel,serial,locked;
  HDMI_PLL u_pll(I_sys_clk,pixel,serial,locked,!I_rst_n);
@@ -21,7 +21,12 @@ module positive_top #(parameter MODE_HD60=0)(input wire I_sys_clk,I_rst_n,
   else x<=x+1'b1;
  wire de=x<HA && y<VA;
  wire hs=x>=HS0 && x<HS1;
- wire vs=y>=VS0 && y<VS1;
+ // Legacy A/B retains VS at active-coordinate x=0. The C diagnostic aligns
+ // both VS edges with leading HS, measuring vertical porches in HS lines.
+ // These partial active-coordinate rows belong to whole HS-defined lines.
+ wire vs=ALIGN_VSYNC ?
+  ((y==VS0-1) ? (x>=HS0) : (y==VS1-1) ? (x<HS0) : (y>=VS0 && y<VS1)) :
+  (y>=VS0 && y<VS1);
  reg [23:0] rgb;
  always @* begin
   if(x<BAR)rgb=24'hffffff;

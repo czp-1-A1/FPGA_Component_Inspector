@@ -1,0 +1,88 @@
+{
+  "inputs": [
+    {
+      "bytes": 3960,
+      "path": "sim/tb_hdmi_avi.v",
+      "sha256": "878066cf735602b2a2d86ad27d4507bf5ef95530bafc6ff90f3907435eeabc26"
+    },
+    {
+      "bytes": 2222,
+      "path": "sim/run_hdmi_avi.ps1",
+      "sha256": "991891305f0f60b3c613b9d00d852b668f77b611a4806478faa08377f8598233"
+    },
+    {
+      "bytes": 1170,
+      "path": "sim/hdmi_decode.vh",
+      "sha256": "70953d0ed0a6bcad4e11f0b919fe6cb807fc01b52394e6147e96e7cab0b6d626"
+    },
+    {
+      "bytes": 756,
+      "path": "sim/hdmi_ideal_pll.v",
+      "sha256": "9111a6d5b891fd08f6b65cc41d85732873631bb7ac3fc3ae3a5dbb1101054184"
+    },
+    {
+      "bytes": 1809,
+      "path": "diagnostics/hdmi_1080p30_tpg/hdmi_tpg_top.v",
+      "sha256": "64a700e374960c3d5aaf7406b1400c4fe964289f7ca7644423f1df771349d43f"
+    },
+    {
+      "bytes": 328975,
+      "path": "user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v",
+      "sha256": "867e0b0bdd874bc383d00918c9e1be3fe01edf41f343b6a0d73e262776596a63"
+    },
+    {
+      "bytes": 4017,
+      "path": "user_source/hdl_source/hdmi_phy_warpper.v",
+      "sha256": "416b082b0987001bdbc0a7e20a557cb8fb1dca34e25dc881e6d28a8cb3cf4300"
+    },
+    {
+      "bytes": 4421,
+      "path": "user_source/hdl_source/lane_lvds_10_1.v",
+      "sha256": "de9529321354f04837e051d0ec1681cf44783d4be3284703a788e081147500bc"
+    }
+  ],
+  "purpose": "Observe actual vendor AVI independently, ideal clocks/parallel symbols, no board claim",
+  "head": "62a836a8afa3bf0195e947c829c63f59e0ed0823",
+  "vendor_models": [
+    {
+      "path": "common/al_map_basic.v",
+      "sha256": "ac0aa7f986fdfba39fb7b361b26ace4ba1049807d6feccde09b2fa21eb0903da"
+    },
+    {
+      "path": "common/al_map_lut.v",
+      "sha256": "a8af44de361088c0bb66a58d5af9b8eb5aa6e9b8ca56992d6164a9f689c488f0"
+    },
+    {
+      "path": "common/al_map_adder.v",
+      "sha256": "02dfbc0864687bcba96cbed80c69dada2c511e24c89b0e4e308fed3ccc8ccf84"
+    },
+    {
+      "path": "common/al_phy_glbl.v",
+      "sha256": "c194f5335b54a6d707a8b633b8f4d3a171e52006337600f7433379b11fb3b2ff"
+    },
+    {
+      "path": "ph1p/ph1p_logic_eram.v",
+      "sha256": "70d89b70bdd51812ad86b91e88526b4604ebb117516efda5af976fcddb2e69af"
+    },
+    {
+      "path": "ph1p/ph1p_phy_gsr.v",
+      "sha256": "787312a19b4007bef3b76986bce267966b2d04c1871290ce29905629e38f1524"
+    },
+    {
+      "path": "ph1p/ph1p_logic_bufg.v",
+      "sha256": "23950e1134040701237a94cfa6f2a6b1b77232141fe68ee2cb8be5e92eda8f7e"
+    },
+    {
+      "path": "ph1p/ph1p_logic_hrio.v",
+      "sha256": "fe602af25ced1c1707f25416d8063530ace6f5dbef34e602df953eb98e6adc74"
+    },
+    {
+      "path": "ph1p/ph1p_logic_ramfifo.v",
+      "sha256": "fd59d4cd218783b5da0a250ad9dbfc0782745f1e93655cae70458ec905f62e7b"
+    },
+    {
+      "path": "ph1p/ph1p_phy_hr_pad.v",
+      "sha256": "fe559fdcae48047150e47812765093ffcff1d89d30c47fef217f3c0394d68522"
+    }
+  ]
+}

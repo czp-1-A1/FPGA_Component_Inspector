@@ -5,8 +5,8 @@
   "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
   "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
-  "verified_remote_head": "7d7598576db0d18f3a324f437ef3a5da4366a6e5",
-  "pushed": true,
+  "verified_remote_head": "62a836a8afa3bf0195e947c829c63f59e0ed0823",
+  "pushed": false,
   "checkout": "Use latest origin/lj4747-native-1080p30-stage2 for this delivery. The original personal branch is retained and its remote remains3be3967.",
   "handoff_document": "交接说明.md",
   "validation_record": "开发实施/验收记录/20261008_原像素1080p30_轮次2.md",
@@ -29,7 +29,7 @@
   "classification_enabled": false,
   "enable_edge": 0,
   "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED",
-  "latest_debug_record": "开发实施/验收记录/20261009_1080p30_HDMI色条上板失败_轮次2.md",
+  "latest_debug_record": "开发实施/验收记录/20261009_1080p30_AB实物对照_轮次3.md",
   "human_board_actions_performed": true,
   "user_confirmed_direct_supplied_bit": true,
   "user_confirmed_old_code_displays": true,
@@ -43,7 +43,7 @@
     "Stage3 FHD EDGE/composite/four-mode integration and final timed/cold-start/field-of-view acceptance"
   ],
   "writer_stops_after_handoff_save": true,
-  "next_step": "User volatile-downloads A_1080p30.bit; if unsupported, B_720p60.bit. Record both. Same PLL clocks; no camera/DDR acceptance implied.",
+  "next_step": "User volatile-downloads C_1080p30_sync.bit, reports color bars/unsupported and observed resolution/Hz if available. No camera/DDR gate passed.",
   "processes": [
     {
       "ProcessName": "bw",
@@ -65,7 +65,7 @@
     "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
     "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
   },
-  "note": "Original camera and vendor TPG physically failed. Separate pin-verified positive-sync diagnostics are ready, NOT_RUN on board. User confirms actual1080p30 works on another device despite manual48-144Hz range; root cause unknown.",
+  "note": "A user-confirmed unsupported, B displays color bars. C fixes HS/VS coincidence only; pin simulation and final internal TD pass, physical NOT_RUN. Actual vendor AVI observed RGB/VIC34 correct; root cause unconfirmed.",
   "development_branch": "lj4747-contest-work",
   "verified_development_remote_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "upload_record": "开发实施/验收记录/20261008_1080p30分支上传_轮次1.md",
@@ -100,7 +100,7 @@
       "freeze": "native_positive_fhd30_r1_20261009",
       "desktop_bit": "C:/Users/Li47/Desktop/SC500_HDMI_TEST_20261009/A_1080p30.bit",
       "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_TEST_20261009/A_1080p30/td_project/positive_fhd30.al",
-      "physical_acceptance": "NOT_RUN"
+      "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED_USER_CONFIRMED"
     },
     {
       "mode": "hd60",
@@ -110,10 +110,50 @@
       "freeze": "native_positive_hd60_r1_20261009",
       "desktop_bit": "C:/Users/Li47/Desktop/SC500_HDMI_TEST_20261009/B_720p60.bit",
       "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_TEST_20261009/B_720p60/td_project/positive_hd60.al",
-      "physical_acceptance": "NOT_RUN"
+      "physical_acceptance": "COLOR_BARS_DISPLAYED_USER_CONFIRMED_FREQUENCY_UNMEASURED"
     }
   ],
   "user_confirmed_actual_1080p30_display_on_other_device": true,
   "monitor_model": "AOC Q24G51F",
-  "positive_diagnostic_commit": "7d7598576db0d18f3a324f437ef3a5da4366a6e5"
+  "positive_diagnostic_commit": "7d7598576db0d18f3a324f437ef3a5da4366a6e5",
+  "sync_aligned_diagnostic": {
+    "bit": "C_1080p30_sync.bit",
+    "sha256": "d0dc5c2a35ef8445e62c61eff358949403254c66ca5442d57f9d7549ad3006c4",
+    "bytes": 1789497,
+    "desktop_bit": "C:/Users/Li47/Desktop/SC500_HDMI_C_1080p30_20261009/C_1080p30_sync.bit",
+    "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_C_1080p30_20261009/td_project/sync_aligned_fhd30.al",
+    "source_freeze": "native_c_sync_r2_20261009",
+    "negative_freeze": "native_c_negative_r2_20261009",
+    "avi_freeze": "native_avi_r1_20261009",
+    "physical_acceptance": "NOT_RUN",
+    "setup_tns_ns": 0,
+    "hold_tns_ns": 0,
+    "violating_endpoints": 0,
+    "sta_coverage_percent": 99.65,
+    "all_paths_timing_accepted": false,
+    "resources": {
+      "slice": {
+        "used": 91,
+        "capacity": 21216
+      },
+      "eram": {
+        "used": 0,
+        "capacity": 108
+      },
+      "dsp": {
+        "used": 0,
+        "capacity": 40
+      },
+      "pll": {
+        "used": 2,
+        "capacity": 6
+      },
+      "gclk": {
+        "used": 3,
+        "capacity": 32
+      }
+    },
+    "setup_wns_ns": 0.134,
+    "hold_wns_ns": 0.026
+  }
 }

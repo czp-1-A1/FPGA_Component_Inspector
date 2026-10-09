@@ -1,0 +1,199 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 21:01:13 on Oct 09,2026
+vlog -work anlogic_sim D:/td6.2.1/sim_release/common/al_map_basic.v D:/td6.2.1/sim_release/common/al_map_lut.v D:/td6.2.1/sim_release/common/al_map_adder.v D:/td6.2.1/sim_release/common/al_phy_glbl.v D:/td6.2.1/sim_release/ph1p/ph1p_phy_gsr.v D:/td6.2.1/sim_release/ph1p/ph1p_logic_bufg.v D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v D:/td6.2.1/sim_release/ph1p/ph1p_logic_hrio.v D:/td6.2.1/sim_release/ph1p/ph1p_phy_hr_pad.v 
+-- Compiling module reg_ar_as_w1
+-- Compiling module reg_sr_ss_w1
+-- Compiling module reg_ar_ss_w1
+-- Compiling module reg_sr_as_w1
+-- Compiling module latch_ar_ss_w1
+-- Compiling module latch_sr_as_w1
+-- Compiling module latch_sr_ss_w1
+-- Compiling module latch_ar_as_w1
+-- Compiling module AL_DFF_W
+-- Compiling module AL_DFF_0
+-- Compiling module AL_DFF_1
+-- Compiling module AL_DFF_X
+-- Compiling module AL_LATCH_W
+-- Compiling module AL_LATCH_0
+-- Compiling module AL_LATCH_1
+-- Compiling module AL_LATCH_X
+-- Compiling module AL_MUX
+-- Compiling module AL_DFF
+-- Compiling module AL_LATCH
+-- Compiling module AL_FADD
+-- Compiling module AL_MAP_LUT1
+-- Compiling module AL_MAP_LUT2
+-- Compiling module AL_MAP_LUT3
+-- Compiling module AL_MAP_LUT4
+-- Compiling module AL_MAP_LUT5
+-- Compiling module AL_MAP_LUT6
+-- Compiling module AL_MAP_LUT6P
+-- Compiling module AL_MAP_LUT6X
+-- Compiling module AL_MAP_LLMUX
+-- Compiling module AL_MAP_F7MUX
+-- Compiling module AL_MAP_F8MUX
+-- Compiling module AL_MAP_CARRY4
+-- Compiling module AL_MAP_ADDER
+-- Compiling module glbl
+-- Compiling module PH1P_PHY_GSR
+-- Compiling module PH1P_LOGIC_BUFG
+-- Compiling module PH1P_PHY_PLL_V2
+-- Compiling module cpll_div_n_logic
+-- Compiling module gpll_vco_mux_top
+-- Compiling module gpll_fracn_top_v1
+-- Compiling module al6100gpll_cpll_div_n_dff
+-- Compiling module gpll_top
+-- Compiling module gpll_prediv
+-- Compiling module cpll_div_23_lvt
+-- Compiling module gpll_fbdiv_top_v1
+-- Compiling module gpll_clk_mux
+-- Compiling module gpll_pi_64bit
+-- Compiling module gpll_vco_mux_pi_top
+-- Compiling module gpll_ibias
+-- Compiling module gpll_vco_buf
+-- Compiling module bg_sgaux_init
+-- Compiling module gpll_ana_buf_unit_x3
+-- Compiling module gpll_fbdiv_mux
+-- Compiling module cpll_div_n_sync
+-- Compiling module gpll_core
+-- Compiling module cpll_div_n_buf
+-- Compiling module cpll_div_n_top
+-- Compiling module regulator_top
+-- Compiling module cpll_div_234_lvt
+-- Compiling module com_hss_tieh
+-- Compiling module com_hss_tiel
+-- Compiling module al6100gpll_com_hss_buf4x
+-- Compiling module gpll_ana
+-- Compiling module al6100gpll_com_hss_bufx4
+-- Compiling module gpll_vco_buf_unit
+-- Compiling module al6100gpll_DRNQV1_140P12T40L
+-- Compiling module al6100gpll_NAND2CV1_140P12T40L
+-- Compiling module al6100gpll_PULL1_140P12T40L
+-- Compiling module al6100gpll_NAND3CV1_140P12T40L
+-- Compiling module al6100gpll_NAND2BV1_140P12T40L
+-- Compiling module al6100gpll_NAND2CV2_140P12T40L
+-- Compiling module al6100gpll_AND2V2_140P12T40L
+-- Compiling module al6100gpll_CLKMUX2V2_140P12T40L
+-- Compiling module al6100gpll_CLKINV2_140P12T40L
+-- Compiling module al6100gpll_CLKINV4_140P12T40L
+-- Compiling module al6100gpll_CLKINV8_140P12T40L
+-- Compiling module al6100gpll_DRSNQV2_140P12T40L
+-- Compiling module al6100gpll_NAND2V2_140P12T40L
+-- Compiling module al6100gpll_INV2_140P12T40L
+-- Compiling module al6100gpll_OR2V2_140P12T40L
+-- Compiling module al6100gpll_BUFV2_140P12T40L
+-- Compiling module al6100gpll_CLKNAND2V2_140P12T40L
+-- Compiling module al6100gpll_com_hss_inv8x
+-- Compiling module al6100gpll_com_hss_inv4x
+-- Compiling module al6100gpll_com_hss_inv2x
+-- Compiling module al6100gpll_com_hss_tgate_2x
+-- Compiling module al6100gpll_com_hss_mux2x
+-- Compiling module al6100gpll_com_hss_dff2x
+-- Compiling module al6100gpll_com_hss_and2_2x
+-- Compiling module gpll_ctrl
+-- Compiling module gpll_test
+-- Compiling module gpll_test_cell
+-- Compiling module gpll_output
+-- Compiling module gpll_out_div_duty
+-- Compiling module gpll_out_rst
+-- Compiling module gpll_out_gate
+-- Compiling module gpll_out_duty
+-- Compiling module gpll_out_en_stdby_ctrl
+-- Compiling module gpll_out_en
+-- Compiling module gpll_out_main
+-- Compiling module gpll_lockdet
+-- Compiling module gpll_fbdiv_dig
+-- Compiling module gpll_fbdiv_dig_sdm
+-- Compiling module gpll_fbdiv_dig_ssc
+-- Compiling module gpll_fbdiv_dig_ssc_div
+-- Compiling module gpll_fbdiv_dig_ssc_lpf
+-- Compiling module gpll_vco_mux_div_ctrl
+-- Compiling module gpll_vco_mux_phs
+-- Compiling module gpll_vco_mux_pi_ctrl
+-- Compiling module gpll_vco_mux_buf
+-- Compiling module gpll_vco_mux
+-- Compiling module axis2apb_gpll
+-- Compiling module pll_slave
+-- Compiling module axis_slave
+-- Compiling module gpll_pi_dec_top
+-- Compiling module sync_dff
+-- Compiling module st2p
+-- Compiling module sync_del
+-- Compiling module pulse
+-- Compiling module at0012_cell_clk_buf
+-- Compiling module al6100_gpll_cell_clk_mux
+-- Compiling module gpll_ana_core
+-- Compiling module gpll_ouput_pi_top
+-- Compiling UDP udp_dff
+-- Compiling UDP udp_mux2
+-- Compiling module BUFV1_140P9T40H
+-- Compiling module TBUFV8_140P9T40H
+-- Compiling module DRSNQV2_140P9T40H
+-- Compiling module CLKBUFV4_140P9T40H
+-- Compiling module CLKINV2_140P9T40H
+-- Compiling module INV2_140P9T40H
+-- Compiling module DRSNQV1_140P9T40H
+-- Compiling module DSNQV4_140P9T40H
+-- Compiling module DRNQV4_140P9T40H
+-- Compiling module DSNQV2_140P9T40H
+-- Compiling module AND2V8_140P9T40H
+-- Compiling module DRNQV2_140P9T40H
+-- Compiling module CLKINV4_140P9T40R
+-- Compiling module CLKNAND2V2_140P9T40R
+-- Compiling module CLKAND2V2_140P9T40R
+-- Compiling module DRSNQV2_140P9T40R
+-- Compiling module CLKINV3_140P9T40R
+-- Compiling module INV3_140P9T40R
+-- Compiling module PH1P_LOGIC_HR_ISERDES
+-- Compiling module PH1P_LOGIC_HR_OSERDES
+-- Compiling module PH1P_LOGIC_IDDR
+-- Compiling module PH1P_LOGIC_IDDRx2
+-- Compiling module PH1P_LOGIC_ODDR
+-- Compiling module PH1P_LOGIC_ODDRx2
+-- Compiling module PH1P_PHY_HR_PAD
+** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: (vlog-2070) Existing unprotected design unit "CLKINV4_140P9T40R" is being recompiled as protected.
+** Warning: D:/td6.2.1/sim_release/ph1p/ph1p_phy_hr_pad.v(246): (vlog-2275) '<protected>' already exists and will be overwritten.
+** Warning: (vlog-2070) Existing unprotected design unit "INV2_140P9T40H" is being recompiled as protected.
+
+Top level modules:
+	reg_ar_as_w1
+	reg_sr_ss_w1
+	reg_ar_ss_w1
+	reg_sr_as_w1
+	latch_ar_ss_w1
+	latch_sr_as_w1
+	latch_sr_ss_w1
+	latch_ar_as_w1
+	AL_DFF_W
+	AL_DFF_0
+	AL_DFF_1
+	AL_LATCH_W
+	AL_LATCH_0
+	AL_LATCH_1
+	AL_FADD
+	AL_MAP_LUT1
+	AL_MAP_LUT2
+	AL_MAP_LUT3
+	AL_MAP_LUT6
+	AL_MAP_LUT6P
+	AL_MAP_LUT6X
+	AL_MAP_LLMUX
+	AL_MAP_F7MUX
+	AL_MAP_F8MUX
+	AL_MAP_CARRY4
+	AL_MAP_ADDER
+	glbl
+	PH1P_PHY_GSR
+	PH1P_LOGIC_BUFG
+	PH1P_PHY_PLL_V2
+	CLKINV2_140P9T40H
+	CLKINV3_140P9T40R
+	PH1P_LOGIC_HR_ISERDES
+	PH1P_LOGIC_HR_OSERDES
+	PH1P_LOGIC_IDDR
+	PH1P_LOGIC_IDDRx2
+	PH1P_LOGIC_ODDR
+	PH1P_LOGIC_ODDRx2
+End time: 21:01:16 on Oct 09,2026, Elapsed time: 0:00:03
+Errors: 0, Warnings: 6

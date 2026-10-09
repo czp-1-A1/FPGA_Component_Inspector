@@ -1,0 +1,49 @@
+standard
+***Report Model: sync_aligned_fhd30_top Device: PH1P35MDG324***
+
+IO Statistics
+#IO                         6
+  #input                    2
+  #output                   4
+  #inout                    0
+
+Gate Statistics
+#Basic gates              146
+  #and                      8
+  #nand                     0
+  #or                       1
+  #nor                      0
+  #xor                      1
+  #xnor                     0
+  #buf                      0
+  #not                     19
+  #bufif1                   0
+  #MX21                    16
+  #FADD                     0
+  #DFF                    101
+  #LATCH                    0
+#MACRO_ADD                 21
+#MACRO_EQ                   7
+#MACRO_MUX                 74
+#MACRO_OTHERS               6
+
+Report Hierarchy Area:
++----------------------------------------------------------------------------------------------------------+
+|Instance                                       |Module                            |gates  |seq    |macros |
++----------------------------------------------------------------------------------------------------------+
+|top                                            |sync_aligned_fhd30_top            |45     |101    |34     |
+|  u_video                                      |positive_top                      |45     |101    |34     |
+|    u_blue                                     |dvi_encoder                       |7      |8      |3      |
+|    u_green                                    |dvi_encoder                       |6      |8      |3      |
+|    u_phy                                      |hdmi_phy_wrapper                  |2      |52     |4      |
+|      u0_lane_lvds_8_1                         |lane_lvds_10_1                    |2      |18     |1      |
+|      u1_lane_lvds_8_1                         |lane_lvds_10_1                    |0      |12     |1      |
+|      u2_lane_lvds_8_1                         |lane_lvds_10_1                    |0      |12     |1      |
+|      u3_lane_lvds_8_1                         |lane_lvds_10_1                    |0      |10     |1      |
+|    u_pll                                      |HDMI_PLL                          |3      |0      |2      |
+|      u_output                                 |HDMI_PLL_STAGE                    |0      |0      |1      |
+|        ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst |ph1p_phy_pll_wrapper_25a56e5ce2f9 |0      |0      |0      |
+|      u_ref                                    |HDMI_PLL_STAGE                    |0      |0      |1      |
+|        ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst |ph1p_phy_pll_wrapper_25a56e5ce2f9 |0      |0      |0      |
+|    u_red                                      |dvi_encoder                       |6      |8      |3      |
++----------------------------------------------------------------------------------------------------------+

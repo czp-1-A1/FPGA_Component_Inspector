@@ -1,0 +1,120 @@
+{
+  "project": "sync_aligned_fhd30",
+  "head": "62a836a8afa3bf0195e947c829c63f59e0ed0823",
+  "purpose": "C VS-phase alignment only, positive DVI, no camera/DDR/AVI; not accepted",
+  "inputs": [
+    {
+      "path": "diagnostics/hdmi_positive/sync_aligned_top.v",
+      "sha256": "a219d2b5f0366c8d331de3478ebb3da1628cae3b7928550375cd72e8f3da5c17",
+      "bytes": 484
+    },
+    {
+      "path": "diagnostics/hdmi_positive/positive_top.v",
+      "sha256": "4e06850d9a0a17a50e1ea7aa1bfb06490070727b1c4c3528db266125f5d93a57",
+      "bytes": 2832
+    },
+    {
+      "path": "diagnostics/hdmi_positive/dvi_encoder.v",
+      "sha256": "3de52f1b96c9cd7e4e476c5d9358b35bffe46ed3c5529cbc4be8f3e3a0e50ae2",
+      "bytes": 1576
+    },
+    {
+      "path": "user_source/hdl_source/native_hdmi_pll.v",
+      "sha256": "bd4c8e6fad7c9e2e78af3b4c71979664de267d7e947d3fb38139f95d245fe951",
+      "bytes": 4196
+    },
+    {
+      "path": "user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v",
+      "sha256": "2f6f2560129b950c9f5a36136f128a9304ff858bf1bae0f2129ea0145d941a1e",
+      "bytes": 12535
+    },
+    {
+      "path": "user_source/hdl_source/hdmi_phy_warpper.v",
+      "sha256": "416b082b0987001bdbc0a7e20a557cb8fb1dca34e25dc881e6d28a8cb3cf4300",
+      "bytes": 4017
+    },
+    {
+      "path": "user_source/hdl_source/lane_lvds_10_1.v",
+      "sha256": "de9529321354f04837e051d0ec1681cf44783d4be3284703a788e081147500bc",
+      "bytes": 4421
+    },
+    {
+      "path": "sim/tb_sync_aligned_pins.v",
+      "sha256": "63f2599d07bb85a09d974a32153313263a1636e164b210bd4e5db29d66809097",
+      "bytes": 5741
+    },
+    {
+      "path": "sim/hdmi_decode.vh",
+      "sha256": "70953d0ed0a6bcad4e11f0b919fe6cb807fc01b52394e6147e96e7cab0b6d626",
+      "bytes": 1170
+    },
+    {
+      "path": "sim/hdmi_ideal_pll.v",
+      "sha256": "9111a6d5b891fd08f6b65cc41d85732873631bb7ac3fc3ae3a5dbb1101054184",
+      "bytes": 756
+    },
+    {
+      "path": "sim/run_sync_aligned_diagnostic.ps1",
+      "sha256": "095157f5acf9c4044782771eb69e71b8f3a8e9927d5c86424a4fd0ab5eb6da97",
+      "bytes": 2514
+    },
+    {
+      "path": "tools/prepare_sync_aligned_diagnostic.py",
+      "sha256": "b71ded655987b134d51104ab7993b5e3b9571a59dda8f0f069074bffc2619123",
+      "bytes": 4650
+    },
+    {
+      "path": "td_project/pin.adc",
+      "sha256": "c825b3540b434f52fdbf50058dc32a2fe1ed0a54796e0344ebda173fb9241ef2",
+      "bytes": 579
+    },
+    {
+      "path": "td_project/sync_aligned_fhd30.sdc",
+      "sha256": "5c4d7aa7c01bb40583bdcd8f068a2b40506aa21343eef265e0784f39c8b05005",
+      "bytes": 303
+    },
+    {
+      "path": "td_project/sync_aligned_fhd30.al",
+      "sha256": "ff589d6e3c977db1e37deab1d591991077179affc42400160f78cfa5ca4ec36d",
+      "bytes": 4271
+    }
+  ],
+  "vendor_models": [
+    {
+      "path": "D:/td6.2.1/sim_release/common/al_map_basic.v",
+      "sha256": "ac0aa7f986fdfba39fb7b361b26ace4ba1049807d6feccde09b2fa21eb0903da"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/common/al_map_lut.v",
+      "sha256": "a8af44de361088c0bb66a58d5af9b8eb5aa6e9b8ca56992d6164a9f689c488f0"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/common/al_map_adder.v",
+      "sha256": "02dfbc0864687bcba96cbed80c69dada2c511e24c89b0e4e308fed3ccc8ccf84"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/common/al_phy_glbl.v",
+      "sha256": "c194f5335b54a6d707a8b633b8f4d3a171e52006337600f7433379b11fb3b2ff"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/ph1p/ph1p_phy_gsr.v",
+      "sha256": "787312a19b4007bef3b76986bce267966b2d04c1871290ce29905629e38f1524"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/ph1p/ph1p_logic_bufg.v",
+      "sha256": "23950e1134040701237a94cfa6f2a6b1b77232141fe68ee2cb8be5e92eda8f7e"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v",
+      "sha256": "91a10de0f6bbbe29db3b6f7ea62d735058756fdd4a3bc73370e1186ad8814e7c"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/ph1p/ph1p_logic_hrio.v",
+      "sha256": "fe602af25ced1c1707f25416d8063530ace6f5dbef34e602df953eb98e6adc74"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/ph1p/ph1p_phy_hr_pad.v",
+      "sha256": "fe559fdcae48047150e47812765093ffcff1d89d30c47fef217f3c0394d68522"
+    }
+  ]
+}
