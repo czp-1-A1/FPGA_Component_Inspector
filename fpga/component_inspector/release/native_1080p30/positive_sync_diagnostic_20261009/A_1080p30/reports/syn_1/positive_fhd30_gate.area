@@ -1,0 +1,67 @@
+standard
+***Report Model: positive_fhd30_top Device: PH1P35MDG324***
+
+Design Statistics
+#IO                         6   out of    160    3.75%
+  #input                    2
+  #output                   4
+  #inout                    0
+#lut                      114
+  #lut1                     3
+  #lut2                    30
+  #lut3                    39
+  #lut4                     8
+  #lut5                     9
+  #lut6                    25
+#reg                      101
+  #slice reg              101   out of  42432    0.24%
+  #pad reg                  0
+
+Utilization Statistics
+#slice*                    81   out of  21216    0.38%
+  #used ram                 0
+    #dram lut               0
+    #shifter lut            0
+  #used logic              81
+    #with luts*            63
+    #with adder            12
+    #reg only*              6
+#f7mux                      0   out of  10608    0.00%
+#f8mux                      0   out of   5304    0.00%
+#eram                       0   out of    108    0.00%
+  #eram20k                  0
+  #fifo20k                  0
+#dsp                        0   out of     40    0.00%
+#ddr_byte                   0   out of     12    0.00%
+#mipi_tx                    0   out of      2    0.00%
+#mipi_rx                    0   out of      2    0.00%
+#pad                       10   out of    160    6.25%
+#pll                        2   out of      6   33.33%
+#gclk                       2   out of     32    6.25%
+#lclk                       0   out of     12    0.00%
+#sclk                       0   out of     48    0.00%
+#mlclk                      0   out of      6    0.00%
+#ioclk                      0   out of     18    0.00%
+
+* Note! The LUT and Slice count after Optimize-Gate is not the final value, Run Optimize-place for a more realistic count.
+
+Report Hierarchy Area:
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|Instance                                       |Module                            |logic lut |ripple  |seq     |eram    |dsp     |dram lut |shifter lut |f7mux   |f8mux   |pll     |ddr     |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|top                                            |positive_fhd30_top                |63        |12      |101     |0       |0       |0        |0           |0       |0       |2       |0       |
+|  u_video                                      |positive_top                      |63        |12      |101     |0       |0       |0        |0           |0       |0       |2       |0       |
+|    u_blue                                     |dvi_encoder                       |15        |0       |8       |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u_green                                    |dvi_encoder                       |6         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u_phy                                      |hdmi_phy_wrapper                  |21        |0       |52      |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u0_lane_lvds_8_1                         |lane_lvds_10_1                    |7         |0       |18      |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u1_lane_lvds_8_1                         |lane_lvds_10_1                    |5         |0       |12      |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u2_lane_lvds_8_1                         |lane_lvds_10_1                    |5         |0       |12      |0       |0       |0        |0           |0       |0       |0       |0       |
+|      u3_lane_lvds_8_1                         |lane_lvds_10_1                    |4         |0       |10      |0       |0       |0        |0           |0       |0       |0       |0       |
+|    u_pll                                      |HDMI_PLL                          |2         |0       |0       |0       |0       |0        |0           |0       |0       |2       |0       |
+|      u_output                                 |HDMI_PLL_STAGE                    |1         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|        ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst |ph1p_phy_pll_wrapper_25a56e5ce2f9 |1         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|      u_ref                                    |HDMI_PLL_STAGE                    |0         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|        ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst |ph1p_phy_pll_wrapper_25a56e5ce2f9 |0         |0       |0       |0       |0       |0        |0           |0       |0       |1       |0       |
+|    u_red                                      |dvi_encoder                       |6         |0       |8       |0       |0       |0        |0           |0       |0       |0       |0       |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

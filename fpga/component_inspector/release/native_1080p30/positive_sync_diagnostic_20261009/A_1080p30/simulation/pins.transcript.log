@@ -1,0 +1,42 @@
+# vsim -c -L anlogic_sim -voptargs="+acc=rn" -onfinish exit -l pins.transcript.log -wlf pins.wave.wlf -do "run -all; quit -code 1 -force" work.tb_positive_pins anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 20:27:12 on Oct 09,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_positive_pins(fast)
+# Loading work.positive_top(fast)
+# Loading work.HDMI_PLL(fast)
+# Loading work.dvi_encoder(fast)
+# Loading work.hdmi_phy_wrapper(fast)
+# Loading work.lane_lvds_10_1(fast)
+# Loading anlogic_sim.PH1P_LOGIC_ODDR(fast)
+# Loading anlogic_sim.PH1P_PHY_HR_PAD(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# run -all
+# OBS positive pins words500000 pixels0
+# OBS positive pins words1000000 pixels0
+# OBS positive pins words1500000 pixels0
+# OBS positive pins words2000000 pixels0
+# OBS positive pins words2500000 pixels21920
+# OBS positive pins words3000000 pixels458360
+# OBS positive pins words3500000 pixels894720
+# OBS positive pins words4000000 pixels1330960
+# OBS positive pins words4500000 pixels1767400
+# PASS positive pin frame: words2475000 pixels2073600 lines1080, RGB all pixels, H2200 positive44 V1125 positive5, clock=74.250074 MHz, frames=1
+# ** Note: $finish    : tb_positive_pins.v(95)
+#    Time: 65461875328800 fs  Iteration: 0  Instance: /tb_positive_pins
+# End time: 20:31:27 on Oct 09,2026, Elapsed time: 0:04:15
+# Errors: 0, Warnings: 0

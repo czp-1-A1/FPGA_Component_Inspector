@@ -1,0 +1,83 @@
+{
+  "mode": "hd60",
+  "project": "positive_hd60",
+  "head": "4454b9e2687517567108f94c304685e68917f6e7",
+  "purpose": "Positive-sync DVI-compatible pin diagnostic; no camera/DDR/AVI; not accepted",
+  "inputs": [
+    {
+      "path": "diagnostics/hdmi_positive/positive_top.v",
+      "sha256": "d8dcc1fcede319102f4ddb28d980f398716d4507ad38d01999dfe616c68b5900",
+      "bytes": 2493
+    },
+    {
+      "path": "diagnostics/hdmi_positive/dvi_encoder.v",
+      "sha256": "3de52f1b96c9cd7e4e476c5d9358b35bffe46ed3c5529cbc4be8f3e3a0e50ae2",
+      "bytes": 1576
+    },
+    {
+      "path": "user_source/hdl_source/native_hdmi_pll.v",
+      "sha256": "bd4c8e6fad7c9e2e78af3b4c71979664de267d7e947d3fb38139f95d245fe951",
+      "bytes": 4196
+    },
+    {
+      "path": "user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v",
+      "sha256": "2f6f2560129b950c9f5a36136f128a9304ff858bf1bae0f2129ea0145d941a1e",
+      "bytes": 12535
+    },
+    {
+      "path": "user_source/hdl_source/hdmi_phy_warpper.v",
+      "sha256": "416b082b0987001bdbc0a7e20a557cb8fb1dca34e25dc881e6d28a8cb3cf4300",
+      "bytes": 4017
+    },
+    {
+      "path": "user_source/hdl_source/lane_lvds_10_1.v",
+      "sha256": "de9529321354f04837e051d0ec1681cf44783d4be3284703a788e081147500bc",
+      "bytes": 4421
+    },
+    {
+      "path": "sim/tb_positive_pins.v",
+      "sha256": "174817aa3e9c6c577ebb2c2131cf18260f094d271b2ea483773c7751faa3236b",
+      "bytes": 5491
+    },
+    {
+      "path": "sim/hdmi_decode.vh",
+      "sha256": "70953d0ed0a6bcad4e11f0b919fe6cb807fc01b52394e6147e96e7cab0b6d626",
+      "bytes": 1170
+    },
+    {
+      "path": "sim/hdmi_ideal_pll.v",
+      "sha256": "9111a6d5b891fd08f6b65cc41d85732873631bb7ac3fc3ae3a5dbb1101054184",
+      "bytes": 756
+    },
+    {
+      "path": "sim/tb_native_pll.v",
+      "sha256": "27d9fbbf3dbad3943c433327535608a9661ed8289aee010d2eb29ed8d0c79a7f",
+      "bytes": 1010
+    },
+    {
+      "path": "sim/run_positive_diagnostic.ps1",
+      "sha256": "2a232ad88ec03f640bd630471d7e308365ba7bf7db4e4c011a5732cc3fa3c0ca",
+      "bytes": 2454
+    },
+    {
+      "path": "tools/prepare_positive_diagnostic.py",
+      "sha256": "6d7e50f3415e4023ba71ca7d2bcc781790407714cf32c5913be82df0eb896faf",
+      "bytes": 4352
+    },
+    {
+      "path": "td_project/pin.adc",
+      "sha256": "c825b3540b434f52fdbf50058dc32a2fe1ed0a54796e0344ebda173fb9241ef2",
+      "bytes": 579
+    },
+    {
+      "path": "td_project/positive_hd60.sdc",
+      "sha256": "5c4d7aa7c01bb40583bdcd8f068a2b40506aa21343eef265e0784f39c8b05005",
+      "bytes": 303
+    },
+    {
+      "path": "td_project/positive_hd60.al",
+      "sha256": "c807751106ef38aef6978c0c0470450d5f519a03f5bbe9f13a9a8cd4e9b0dee2",
+      "bytes": 4002
+    }
+  ]
+}

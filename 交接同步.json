@@ -1,11 +1,11 @@
 {
-  "date": "2026-10-08",
+  "date": "2026-10-09",
   "status": "native_1080p30_stage2_failed_hdmi_under_diagnosis",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
   "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
   "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
-  "verified_remote_head": "02849e86a15e4d0a4deba9a435ff7e62d5783837",
+  "verified_remote_head": "4454b9e2687517567108f94c304685e68917f6e7",
   "pushed": true,
   "checkout": "Use latest origin/lj4747-native-1080p30-stage2 for this delivery. The original personal branch is retained and its remote remains3be3967.",
   "handoff_document": "交接说明.md",
@@ -29,7 +29,7 @@
   "classification_enabled": false,
   "enable_edge": 0,
   "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED",
-  "latest_debug_record": "开发实施/验收记录/20261008_1080p30_HDMI上板失败_轮次1.md",
+  "latest_debug_record": "开发实施/验收记录/20261009_1080p30_HDMI色条上板失败_轮次2.md",
   "human_board_actions_performed": true,
   "user_confirmed_direct_supplied_bit": true,
   "user_confirmed_old_code_displays": true,
@@ -43,27 +43,19 @@
     "Stage3 FHD EDGE/composite/four-mode integration and final timed/cold-start/field-of-view acceptance"
   ],
   "writer_stops_after_handoff_save": true,
-  "next_step": "User volatile-downloads standalone TPG diagnostic and records screen/information page. Original camera image failed HDMI; no EDGE integration.",
+  "next_step": "User volatile-downloads A_1080p30.bit; if unsupported, B_720p60.bit. Record both. Same PLL clocks; no camera/DDR acceptance implied.",
   "processes": [
     {
       "ProcessName": "bw",
-      "Id": 15528
-    },
-    {
-      "ProcessName": "bw",
-      "Id": 32376
+      "Id": 24144
     },
     {
       "ProcessName": "hwserver",
-      "Id": 24484
+      "Id": 42748
     },
     {
       "ProcessName": "td",
-      "Id": 15172
-    },
-    {
-      "ProcessName": "td",
-      "Id": 29524
+      "Id": 43500
     }
   ],
   "board_actions_performed": false,
@@ -73,7 +65,7 @@
     "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
     "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
   },
-  "note": "Original camera candidate unchanged and failed HDMI on the board, as reported by the user. Separate TPG diagnostic is frozen and built; physical test pending. Negative sync difference is recorded, root cause not declared.",
+  "note": "Original camera and vendor TPG physically failed. Separate pin-verified positive-sync diagnostics are ready, NOT_RUN on board. User confirms actual1080p30 works on another device despite manual48-144Hz range; root cause unknown.",
   "development_branch": "lj4747-contest-work",
   "verified_development_remote_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "upload_record": "开发实施/验收记录/20261008_1080p30分支上传_轮次1.md",
@@ -95,8 +87,32 @@
     "tns": 0,
     "violating_endpoints": 0,
     "sta_coverage_percent": 99.96,
-    "physical_acceptance": "NOT_RUN",
+    "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED_USER_CONFIRMED",
     "source_freeze": "native_1080p30_hdmi_tpg_r8_20261008"
   },
-  "hdmi_diagnostic_commit": "02849e86a15e4d0a4deba9a435ff7e62d5783837"
+  "hdmi_diagnostic_commit": "02849e86a15e4d0a4deba9a435ff7e62d5783837",
+  "positive_diagnostics": [
+    {
+      "mode": "fhd30",
+      "bit": "A_1080p30/A_1080p30.bit",
+      "sha256": "2e37be0a79bc63223c7413eca84e91929fdaa9e1e7a5e5a86601879f4f6074e6",
+      "bytes": 1789493,
+      "freeze": "native_positive_fhd30_r1_20261009",
+      "desktop_bit": "C:/Users/Li47/Desktop/SC500_HDMI_TEST_20261009/A_1080p30.bit",
+      "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_TEST_20261009/A_1080p30/td_project/positive_fhd30.al",
+      "physical_acceptance": "NOT_RUN"
+    },
+    {
+      "mode": "hd60",
+      "bit": "B_720p60/B_720p60.bit",
+      "sha256": "25d27f6583c11a40c79a9cb7348d7fdbfe85089bbb68b2b45ef8f266ba4a2bc4",
+      "bytes": 1789492,
+      "freeze": "native_positive_hd60_r1_20261009",
+      "desktop_bit": "C:/Users/Li47/Desktop/SC500_HDMI_TEST_20261009/B_720p60.bit",
+      "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_TEST_20261009/B_720p60/td_project/positive_hd60.al",
+      "physical_acceptance": "NOT_RUN"
+    }
+  ],
+  "user_confirmed_actual_1080p30_display_on_other_device": true,
+  "monitor_model": "AOC Q24G51F"
 }
