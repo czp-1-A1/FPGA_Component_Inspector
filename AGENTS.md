@@ -41,4 +41,4 @@
 - **未决事项**：C物理显示、实际频率/中途失锁及I/O/PHY预算未测；原相机/厂商TPG/A物理失败，B仅用户色条证据。其他30Hz信源HDMI/DP接口待答。原独立FHD ISP数值参考、DDR物理写读压力、1920×1080/采集FPS/RAW与GRAY、所有最终实物项目仍未测；CLASS_CALIBRATED=0，ENABLE_EDGE=0。
 - **下一条具体操作**：用户TD易失下载桌面SC500_HDMI_C_1080p30_20261009/C_1080p30_sync.bit，AL为td_project/sync_aligned_fhd30.al；反馈C色条/输入不支持，能显示后查分辨率/Hz。旧Flash保留；不以色条当原相机/DDR验收、不启用EDGE、不改30fps目标。
 - **运行中进程/设备**：助手两个ModelSim及C TD CLI全部结束；用户bw24144、hwserver42748、td43500未动，本端未操作JTAG或Flash/唯一板；交付保存后停止实现，接棒先核对前端停止。
-- **提交/推送状态**：本轮交付文件已完成但当前未提交/推送，按原授权在结束上传并核对远端；Example不混入提交，不pull/reset/强推。
+- **提交/推送状态**：本轮C源码/bit/证据提交e36bd097308c8487c6ad0cbd0bc1775070a3e3c7已成功推送并核对远端一致；随后仅补同步交接记录，最终HEAD用git log/ls-remote核对；Example不混入提交，不pull/reset/强推。
