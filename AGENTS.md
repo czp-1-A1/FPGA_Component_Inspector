@@ -41,4 +41,4 @@
 - **未决事项**：D物理未测；C实物失败原因未定，实际频率/PLL质量/位流PLL独立解码/中途失锁及4TMDS输出预算未测。D GCLK交换，不能称物理单变量。原FHD独立ISP数值参考、物理DDR写读压力、尺寸/采集FPS/RAW与GRAY及最终全部实物项目未测；CLASS_CALIBRATED=0，ENABLE_EDGE=0。
 - **下一条具体操作**：用户TD易失下载桌面SC500_HDMI_D_1080p30_20261009/D_1080p30_HDMI.bit（SHA2a22cc98b9538c80cda6ae1e80b4d8272984ab1277710eb269f3d8953c6e6172）；AL为td_project/avi_fhd30.al；记录色条或输入不支持。Git下载目录用prepare_avi_download.py重建。保留旧Flash，阶段2相机/DDR门槛未过不启用EDGE。
 - **运行中进程/设备**：助手D ModelSim及TD CLI均结束；用户bw24144/hwserver42748/td43500未动，本端未操作唯一板/JTAG/Flash。保存交付后本实现端停止；接棒先核对前端停止。
-- **提交/推送状态**：开始HEAD6f48c178已同步；本轮保存D交付，按原授权提交/推送后核对远端；Example不混入提交，不pull/reset/强推。
+- **提交/推送状态**：D代码/bit/证据提交8a7b6307108e579c2d09feee4098f7824793a178已成功推送且远端一致；本次仅补同步交接记录，最终交付HEAD以git log/ls-remote核对。Example不混入提交，不pull/reset/强推。
