@@ -5,8 +5,8 @@
   "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
   "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
-  "verified_remote_head": "8a7b6307108e579c2d09feee4098f7824793a178",
-  "pushed": true,
+  "verified_remote_head": "5b9b35320dad46209283252086dd3eb370934944",
+  "pushed": false,
   "checkout": "Use latest origin/lj4747-native-1080p30-stage2 for this delivery. The original personal branch is retained and its remote remains3be3967.",
   "handoff_document": "交接说明.md",
   "validation_record": "开发实施/验收记录/20261008_原像素1080p30_轮次2.md",
@@ -29,7 +29,7 @@
   "classification_enabled": false,
   "enable_edge": 0,
   "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED",
-  "latest_debug_record": "开发实施/验收记录/20261009_1080p30_C实物失败_轮次4.md",
+  "latest_debug_record": "开发实施/验收记录/20261009_1080p30_D实物失败_轮次5.md",
   "human_board_actions_performed": true,
   "user_confirmed_direct_supplied_bit": true,
   "user_confirmed_old_code_displays": true,
@@ -43,7 +43,7 @@
     "Stage3 FHD EDGE/composite/four-mode integration and final timed/cold-start/field-of-view acceptance"
   ],
   "writer_stops_after_handoff_save": true,
-  "next_step": "Human volatile-download D_1080p30_HDMI.bit and report bars/unsupported; preserve working Flash. Camera/DDR30fps gate still closed.",
+  "next_step": "Collect unchanged-D HDMI reconnect/display restart and prior successful30Hz source same HDMI port/active-signal evidence. Single-bit720p60/1080p30 comparison not implemented.",
   "processes": [
     {
       "ProcessName": "bw",
@@ -51,7 +51,7 @@
     },
     {
       "ProcessName": "hwserver",
-      "Id": 42748
+      "Id": 1548
     },
     {
       "ProcessName": "td",
@@ -65,7 +65,7 @@
     "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
     "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
   },
-  "note": "C user unsupported; B bars only, menu unreadable. D two complete serial frames/TD/package PASS; physical NOT_RUN. Frequency/PLL-bit decoding/board budgets unverified.",
+  "note": "D physical FAIL; B monitor info1280x720p60. Actual vendor PLL/ODDR16-row probe PASS after receiver reset-accounting correction; r1/r2FAIL preserved. No new bit or TD; root cause unresolved.",
   "development_branch": "lj4747-contest-work",
   "verified_development_remote_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "upload_record": "开发实施/验收记录/20261008_1080p30分支上传_轮次1.md",
@@ -110,7 +110,8 @@
       "freeze": "native_positive_hd60_r1_20261009",
       "desktop_bit": "C:/Users/Li47/Desktop/SC500_HDMI_TEST_20261009/B_720p60.bit",
       "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_TEST_20261009/B_720p60/td_project/positive_hd60.al",
-      "physical_acceptance": "COLOR_BARS_DISPLAYED_USER_CONFIRMED_FREQUENCY_UNMEASURED"
+      "physical_acceptance": "DISPLAY_INFO_1280X720P60_USER_CONFIRMED",
+      "monitor_reported_mode": "1280x720p60"
     }
   ],
   "user_confirmed_actual_1080p30_display_on_other_device": true,
@@ -164,7 +165,7 @@
     "desktop_bit": "C:/Users/Li47/Desktop/SC500_HDMI_D_1080p30_20261009/D_1080p30_HDMI.bit",
     "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_D_1080p30_20261009/td_project/avi_fhd30.al",
     "source_freeze": "native_d_avi_r1_20261009",
-    "physical_acceptance": "NOT_RUN",
+    "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED_USER_CONFIRMED",
     "setup_tns_ns": 0,
     "hold_tns_ns": 0,
     "violating_endpoints": 0,
@@ -195,5 +196,19 @@
     "setup_wns_ns": 0.052,
     "hold_wns_ns": 0.022
   },
-  "hdmi_avi_diagnostic_commit": "8a7b6307108e579c2d09feee4098f7824793a178"
+  "hdmi_avi_diagnostic_commit": "8a7b6307108e579c2d09feee4098f7824793a178",
+  "native_pll_serial_probe": {
+    "scope": "16 complete early RGB rows,30720 pixels,HS2200/44,video preambles/guards,5:1 cadence",
+    "status": "PASS_R3_AFTER_RECEIVER_RESET_FIX",
+    "early_failures": [
+      "R1FAIL",
+      "R2FAIL"
+    ],
+    "freeze": "native_d_real_pll_pins_r3_20261009",
+    "vendor_timing_checks_enabled": true,
+    "models": 9,
+    "full_frame_avi_vs": "NOT_RUN",
+    "physical_measurement": "NOT_RUN",
+    "no_new_bit": true
+  }
 }
