@@ -1,0 +1,15 @@
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 21:38:45 on Oct 09,2026
+vlog -sv hdmi_ideal_pll.v ../diagnostics/hdmi_positive/avi_fhd30_top.v ../diagnostics/hdmi_positive/hdmi_avi_insert.v ../diagnostics/hdmi_positive/dvi_encoder.v ../user_source/hdl_source/hdmi_phy_warpper.v ../user_source/hdl_source/lane_lvds_10_1.v tb_hdmi_avi_pins.v 
+-- Compiling module HDMI_PLL
+-- Compiling module avi_fhd30_top
+-- Compiling module hdmi_avi_insert
+-- Compiling module dvi_encoder
+-- Compiling module hdmi_phy_wrapper
+-- Compiling module lane_lvds_10_1
+-- Compiling module tb_hdmi_avi_pins
+
+Top level modules:
+	tb_hdmi_avi_pins
+End time: 21:38:45 on Oct 09,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

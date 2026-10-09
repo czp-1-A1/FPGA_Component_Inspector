@@ -1,0 +1,51 @@
+# vsim -c -L anlogic_sim -voptargs="+acc=rn" -onfinish exit -l avi_pins.transcript.log -wlf avi_pins.wave.wlf -do "run -all; quit -code 1 -force" work.tb_hdmi_avi_pins anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 21:38:46 on Oct 09,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_hdmi_avi_pins(fast)
+# Loading work.avi_fhd30_top(fast)
+# Loading work.HDMI_PLL(fast)
+# Loading work.dvi_encoder(fast)
+# Loading work.hdmi_avi_insert(fast)
+# Loading work.hdmi_phy_wrapper(fast)
+# Loading work.lane_lvds_10_1(fast)
+# Loading anlogic_sim.PH1P_LOGIC_ODDR(fast)
+# Loading anlogic_sim.PH1P_PHY_HR_PAD(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# run -all
+# OBS HDMI AVI serial words500000 frame0 pixels0
+# OBS HDMI AVI serial words1000000 frame0 pixels0
+# OBS HDMI AVI serial words1500000 frame0 pixels0
+# OBS HDMI AVI serial words2000000 frame0 pixels0
+# OBS pin AVI #1 RGB 16:9 VIC34 defaultQ noRepeat, checksum2D/header and4 subpacket ECC valid
+# OBS HDMI AVI serial words2500000 frame0 pixels21920
+# OBS HDMI AVI serial words3000000 frame0 pixels458360
+# OBS HDMI AVI serial words3500000 frame0 pixels894720
+# OBS HDMI AVI serial words4000000 frame0 pixels1330960
+# OBS HDMI AVI serial words4500000 frame0 pixels1767400
+# OBS pin AVI #2 RGB 16:9 VIC34 defaultQ noRepeat, checksum2D/header and4 subpacket ECC valid
+# OBS HDMI AVI serial words5000000 frame1 pixels43840
+# OBS HDMI AVI serial words5500000 frame1 pixels480000
+# OBS HDMI AVI serial words6000000 frame1 pixels916440
+# OBS HDMI AVI serial words6500000 frame1 pixels1352880
+# OBS HDMI AVI serial words7000000 frame1 pixels1789320
+# OBS pin AVI #3 RGB 16:9 VIC34 defaultQ noRepeat, checksum2D/header and4 subpacket ECC valid
+# PASS HDMI AVI serial: frames2 each2475000 words/2073600 RGB pixels/1080 lines; H2200 positive44 V1125 positive5 aligned, preambles/guards/control intervals, one RGB16:9 VIC34 AVI per frame/ECC/checksum2D, clock=74.250074 MHz. Ideal PLL and vendor ODDR only.
+# ** Note: $finish    : tb_hdmi_avi_pins.v(140)
+#    Time: 98792589472800 fs  Iteration: 0  Instance: /tb_hdmi_avi_pins
+# End time: 21:44:06 on Oct 09,2026, Elapsed time: 0:05:20
+# Errors: 0, Warnings: 0

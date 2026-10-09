@@ -1,0 +1,26 @@
+param([string]$ModelSimBin='D:/modeltech64_10.5/win64')
+$ErrorActionPreference='Stop'
+foreach($name in @('MGLS_LICENSE_FILE','LM_LICENSE_FILE')){
+ if(![Environment]::GetEnvironmentVariable($name,'Process')){
+  $value=[Environment]::GetEnvironmentVariable($name,'User')
+  if(!$value){$value=[Environment]::GetEnvironmentVariable($name,'Machine')}
+  if($value){[Environment]::SetEnvironmentVariable($name,$value,'Process')}
+ }
+}
+Push-Location $PSScriptRoot
+try{
+ & "$ModelSimBin/vmap.exe" -c *> avi_pins.setup.log
+ & "$ModelSimBin/vlib.exe" vendor >> avi_pins.setup.log 2>&1
+ & "$ModelSimBin/vmap.exe" anlogic_sim vendor >> avi_pins.setup.log 2>&1
+ $models=@('common/al_map_basic.v','common/al_map_lut.v','common/al_map_adder.v','common/al_phy_glbl.v',
+ 'ph1p/ph1p_phy_gsr.v','ph1p/ph1p_logic_bufg.v','ph1p/ph1p_phy_pll_v2.v','ph1p/ph1p_logic_hrio.v','ph1p/ph1p_phy_hr_pad.v') | ForEach-Object {"D:/td6.2.1/sim_release/$_"}
+ & "$ModelSimBin/vlog.exe" -work anlogic_sim @models *> avi_pins.vendor.log
+ if($LASTEXITCODE -ne 0){throw 'Vendor compile failed'}
+ & "$ModelSimBin/vlib.exe" work >> avi_pins.setup.log 2>&1
+ & "$ModelSimBin/vlog.exe" -sv hdmi_ideal_pll.v ../diagnostics/hdmi_positive/avi_fhd30_top.v ../diagnostics/hdmi_positive/hdmi_avi_insert.v ../diagnostics/hdmi_positive/dvi_encoder.v ../user_source/hdl_source/hdmi_phy_warpper.v ../user_source/hdl_source/lane_lvds_10_1.v tb_hdmi_avi_pins.v *> avi_pins.compile.log
+ if($LASTEXITCODE -ne 0){throw 'HDMI AVI diagnostic compile failed'}
+ & "$ModelSimBin/vsim.exe" -c -L anlogic_sim '-voptargs=+acc=rn' -onfinish exit -l avi_pins.transcript.log -wlf avi_pins.wave.wlf -do 'run -all; quit -code 1 -force' work.tb_hdmi_avi_pins anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR *> avi_pins.console.log
+ $text=Get-Content avi_pins.console.log -Raw
+ if($LASTEXITCODE -ne 0 -or !$text.Contains('PASS HDMI AVI serial: frames2') -or $text -match '(?m)^#?\s*\*\* (Fatal|Error):'){throw 'HDMI AVI pin simulation failed; preserve logs'}
+ Get-Content avi_pins.console.log | Where-Object {$_ -match 'OBS |PASS '}
+}finally{Pop-Location}
