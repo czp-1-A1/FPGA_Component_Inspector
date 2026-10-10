@@ -41,4 +41,4 @@
 - **未决事项**：E物理NOT_RUN；D热插拔/显示器重启未反馈。真实PLL完整E往返、模拟频率/抖动/位流PLL独立解码/TMDS外部预算未测。原FHD独立ISP数值、物理DDR、采集尺寸FPS、RAW/GRAY及最终实物未测；CLASS_CALIBRATED=0、ENABLE_EDGE=0。旧B成功不等于E720成功。
 - **下一条具体操作**：用户TD易失下载桌面SC500_HDMI_E_DUAL_20261010/E_720p60_1080p30.bit一次（AL td_project/dual_mode.al），SW1下→上→下，各等2–3秒；报告色条/输入不支持和信息读数，1080失败也不换bit而直接下拨。人工结果绑定SHA，不固化覆盖旧Flash；不进入EDGE或降低30fps目标。
 - **运行中进程/设备**：助手ModelSim/TD CLI均结束，开始/结束未发现td/bw/hwserver；无JTAG/Flash操作，旧进程号不沿用。本实现端保存交付后停止，接棒先核对。
-- **提交/推送状态**：开始HEAD3bef970已与远端一致；本轮交付待提交推送，成功后补同步状态。Example不混入，不pull/reset/强推。
+- **提交/推送状态**：本轮交付提交8de3bc31e14c0114e7ce62469f7ac5a7c0717f0e已成功推送并核对远端一致；本次补上传交接记录，最终HEAD以git log/ls-remote核对。Example不混入，不pull/reset/强推。
