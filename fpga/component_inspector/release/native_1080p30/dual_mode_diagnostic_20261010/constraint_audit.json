@@ -1,0 +1,76 @@
+{
+  "status": "INTERNAL_TIMING_PASS_EXTERNAL_BUDGETS_OPEN",
+  "setup_hold_both_corners": {
+    "setup_tns_ns": 0,
+    "hold_tns_ns": 0,
+    "violating_endpoints": 0
+  },
+  "related_pixel_to_serial_paths": {
+    "max_paths": 59,
+    "min_paths": 59,
+    "endpoints": 59
+  },
+  "mode_synchronizer": {
+    "first_stage_async_input_false_path_only": true,
+    "interstage_datapath_max_ns": 2.0,
+    "actual_data_path_ns": 0.307,
+    "max_slack_ns": 1.629,
+    "packed_location": "x030y048z2",
+    "checked_report": "reports/phy_1/dual_mode_exception.timing"
+  },
+  "invalid_dummy_no_clock_or_ignored_constraints": 0,
+  "pll_frequency_mismatch_checks": 0,
+  "target_clocks_mhz": {
+    "reference": 50.0,
+    "intermediate": 33.75,
+    "pixel": 74.25,
+    "serial": 371.25
+  },
+  "displayed_sta_serial_mhz": 371.333,
+  "displayed_sta_serial_explanation": "2.693ns displayed precision inverse, not measured hardware frequency",
+  "pll_locations": {
+    "reference": "x043y079z0",
+    "output": "x000y039z0"
+  },
+  "gclk_locations": {
+    "reference": "x023y039z16",
+    "pixel": "x023y039z0",
+    "serial": "x023y039z1"
+  },
+  "warnings": [
+    {
+      "code": "PHY-5016",
+      "text": "PHY-5016 WARNING: PLL clkc is driving an IO without location.",
+      "status": "OPEN_PHYSICAL_CLOCK_IO_AUDIT"
+    },
+    {
+      "code": "PHY-5016",
+      "text": "PHY-5016 WARNING: PLL clkc is not driving a clock-capable IO.",
+      "status": "OPEN_PHYSICAL_CLOCK_IO_AUDIT"
+    },
+    {
+      "code": "PHY-5016",
+      "text": "PHY-5016 WARNING: PLL clkc is driving an IO without location.",
+      "status": "OPEN_PHYSICAL_CLOCK_IO_AUDIT"
+    }
+  ],
+  "no_input_delay": {
+    "ports": [
+      "I_rst_n",
+      "I_mode_select"
+    ],
+    "status": "ASYNCHRONOUS_RESET_SWITCH_NO_EXTERNAL_SYNCHRONOUS_BUDGET"
+  },
+  "no_output_delay": {
+    "ports": [
+      "O_tmds_ch0_p",
+      "O_tmds_ch1_p",
+      "O_tmds_ch2_p",
+      "O_tmds_clk_p"
+    ],
+    "status": "OPEN_EXTERNAL_TMDS_BOARD_BUDGET"
+  },
+  "full_real_pll_switch_simulation": "NOT_RUN",
+  "analog_frequency_jitter_and_signal_integrity": "NOT_RUN",
+  "physical_acceptance": "NOT_RUN"
+}

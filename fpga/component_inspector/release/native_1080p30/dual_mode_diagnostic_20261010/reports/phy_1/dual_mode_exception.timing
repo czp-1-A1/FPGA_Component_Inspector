@@ -1,0 +1,159 @@
+Created by          : Tang Dynasty v6.2.178840
+                    : Copyright (c) 2012-2025 Anlogic Inc.
+Generated           : Sat Oct 10 16:42:00 2026
+
+Top Model           : dual_mode_top
+Device              : PH1P35MDG324
+Speed               : 3
+STA coverage        : 99.78%
+Constraint File     : C:/Users/Li47/Desktop/aa/native_e_dual_r2_20261010/td_project/dual_mode.sdc;
+Confidence          : Routed
+Check Corner        : Both (Slow and Fast)
+CRPR Enabled        : Yes
+Report Scheme       : 10 end point(s) per path group, 1 path(s) per end point
+
+
+Check Status
+-------------
+
+Corner   | Max      Min     
+------------------------------------
+Slow     | yes      yes     
+Fast     | yes      yes     
+
+MCP/SMD Summary
+--------------------
+
+		Max Check
+		--------------------
+		     Total    Dominated     Shadowed      Ignored   Constraint
+		         1            1            0            0   set_max_delay -datapath_only 2.0 -from [get_regs {mode_s0}] -to [get_regs {mode_s1}]
+
+		Min Check
+		--------------------
+		     Total    Dominated     Shadowed      Ignored   Constraint
+
+Status of timing exceptions
+--------------------------------------------------
+
+MCP/SMD Details
+--------------------
+
+
+Constraint     :   set_max_delay -datapath_only 2.0 -from [get_regs {mode_s0}] -to [get_regs {mode_s1}]
+Check Type     :   Max
+--------------------------------------------------------------------------------
+Total Paths    :            1
+Dominated      :            1,        100.0%
+
+
+Details on timing exceptions
+--------------------------------------------------
+
+Timing details for constraint:
+	set_max_delay -datapath_only 2.0 -from [get_regs {mode_s0}] -to [get_regs {mode_s1}]
+--------------------------------------------------
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     
+set_max_delay -datapath_only 2.0 -from [get_regs {mode_s0}] -to [get_regs {mode_s1}]
+
+Type           :     SMD
+
+Statistics:
+Max            : SWNS      1.629ns, STNS      0.000ns,         0 Viol Endpoints,         1 Total Endpoints,         1 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 1.629ns
+Begin Point         : mode_s0_reg_syn_3.clk (rising edge triggered by clock u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]  { rise@0.000000ns  fall@6.734000ns  period=13.468000 })
+End Point           : mode_s0_reg_syn_3.imb (rising edge triggered by clock u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]  { rise@0.000000ns  fall@6.734000ns  period=13.468000 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 2.000ns { u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0] rising@0.000ns - u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0] rising@0.000ns }
+Data Path Delay     : 0.307ns (cell 0.204ns (66%), net 0.103ns (34%))
+Clock Skew          : 0.000ns
+Logic Level         : 0
+Max Fanout          : 1
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_2.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_2.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_2.di
+net (fo=1)          x043y079            0.000          0.000          net: I_sys_clk_dup_1,  ../../../diagnostics/hdmi_positive/dual_mode_top.v(4)
+                                                                      pin: u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y079            0.000          0.000          pin: u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.000          0.000          net: u_pll/u_ref/clk0_buf,  ../../../user_source/hdl_source/native_hdmi_pll.v(32)
+                                                                      pin: u_pll/u_ref/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.000          0.000          pin: u_pll/u_ref/bufg_feedback.clkout
+net (fo=1)                              0.000          0.000          net: u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/refclk,  ../../../user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v(119)
+                                                                      pin: u_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1.clkin
+SCLK                x023y019z0          0.000          0.000          pin: u_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1.clkout
+net (fo=1)          x000y039            0.000          0.000          net: u_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x000y039            0.000          0.000          pin: u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.000          0.000          net: u_pll/u_output/clk0_buf,  ../../../user_source/hdl_source/native_hdmi_pll.v(32)
+                                                                      pin: u_pll/u_output/bufg_feedback.clkin[0]
+GCLK                x023y039z0          0.000          0.000          pin: u_pll/u_output/bufg_feedback.clkout
+net (fo=1)                              0.000          0.000          net: pixel,  ../../../diagnostics/hdmi_positive/dual_mode_top.v(6)
+                                                                      pin: u_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x023y059z12         0.000          0.000          pin: u_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=53)                             0.000          0.000          net: u_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: mode_s0_reg_syn_3.clk
+--------------------------------------------------------------------  ---------------
+clk2q               x030y048z2          0.126    f     0.126          pin: mode_s0_reg_syn_3.oqa
+net (fo=1)                              0.103          0.229          net: mode_s0,  ../../../diagnostics/hdmi_positive/dual_mode_top.v(13)
+                                                                      pin: mode_s0_reg_syn_3.imb
+reg                 x030y048z2          0.078    r     0.307          net: mode_s1,  ../../../diagnostics/hdmi_positive/dual_mode_top.v(13)
+--------------------------------------------------------------------  ---------------
+Arrival                                                0.307               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_2.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_2.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_2.di
+net (fo=1)          x043y079            0.000          0.000          net: I_sys_clk_dup_1,  ../../../diagnostics/hdmi_positive/dual_mode_top.v(4)
+                                                                      pin: u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y079            0.000          0.000          pin: u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.000          0.000          net: u_pll/u_ref/clk0_buf,  ../../../user_source/hdl_source/native_hdmi_pll.v(32)
+                                                                      pin: u_pll/u_ref/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.000          0.000          pin: u_pll/u_ref/bufg_feedback.clkout
+net (fo=1)                              0.000          0.000          net: u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/refclk,  ../../../user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v(119)
+                                                                      pin: u_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1.clkin
+SCLK                x023y019z0          0.000          0.000          pin: u_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1.clkout
+net (fo=1)          x000y039            0.000          0.000          net: u_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x000y039            0.000          0.000          pin: u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.000          0.000          net: u_pll/u_output/clk0_buf,  ../../../user_source/hdl_source/native_hdmi_pll.v(32)
+                                                                      pin: u_pll/u_output/bufg_feedback.clkin[0]
+GCLK                x023y039z0          0.000          0.000          pin: u_pll/u_output/bufg_feedback.clkout
+net (fo=1)                              0.000          0.000          net: pixel,  ../../../diagnostics/hdmi_positive/dual_mode_top.v(6)
+                                                                      pin: u_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x023y059z12         0.000          0.000          pin: u_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=53)                             0.000          0.000          net: u_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: mode_s0_reg_syn_3.clk
+constraint delay                        2.000          2.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064          1.936               
+clock uncertainty                       0.000          1.936               
+clock pessimism                         0.000          1.936               
+--------------------------------------------------------------------  ---------------
+Required                                               1.936               
+--------------------------------------------------------------------  ---------------
+Slack                                                  1.629               
+
+
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+
+
+
+
