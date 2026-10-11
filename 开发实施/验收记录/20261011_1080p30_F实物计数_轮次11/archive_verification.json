@@ -1,0 +1,42 @@
+{
+  "status": "PASS_FREEZE_AND_ARCHIVE_INTEGRITY_ONLY",
+  "inputs_per_round": 16,
+  "vendor_models_per_round": 9,
+  "unchanged_inputs": 15,
+  "only_difference": [
+    "sim/run_clock_probe_real_pll.ps1"
+  ],
+  "difference": "Remove -voptargs=+acc=rn observation in r2, no RTL/reference/model/timing-check change",
+  "live_f_bit_sha256": "6449cf3b67e9c9c04bc32b1b367dc7b36d79c33c98ae6f5a499e78d71ec64541",
+  "rounds": [
+    {
+      "round": "real_pll_r1",
+      "result": "INTERRUPTED",
+      "console_warning_count": 127,
+      "model_missing_port_warning_count": 118,
+      "warning_codes": {
+        "vopt-2685": 9,
+        "vopt-2718": 118
+      },
+      "completed_pass_marker": false
+    },
+    {
+      "round": "real_pll_r2_checkpoint",
+      "result": "RUNNING",
+      "console_warning_count": 129,
+      "model_missing_port_warning_count": 118,
+      "warning_codes": {
+        "vopt-2685": 9,
+        "vopt-2718": 118,
+        "vopt-2958": 2
+      },
+      "completed_pass_marker": false
+    }
+  ],
+  "archives": [
+    "\u5f00\u53d1\u5b9e\u65bd\\\u9a8c\u6536\u8bb0\u5f55\\20261011_1080p30_F\u5b9e\u7269\u8ba1\u6570_\u8f6e\u6b2111\\real_pll_r1",
+    "\u5f00\u53d1\u5b9e\u65bd\\\u9a8c\u6536\u8bb0\u5f55\\20261011_1080p30_F\u5b9e\u7269\u8ba1\u6570_\u8f6e\u6b2111\\real_pll_r2_checkpoint"
+  ],
+  "completed_real_pll_full_test": false,
+  "physical_acceptance": false
+}

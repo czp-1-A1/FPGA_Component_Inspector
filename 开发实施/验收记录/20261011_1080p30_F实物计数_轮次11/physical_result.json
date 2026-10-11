@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-11",
+  "source": "USER_PHOTOS",
+  "bit_sha256": "6449cf3b67e9c9c04bc32b1b367dc7b36d79c33c98ae6f5a499e78d71ec64541",
+  "identity": "F CLOCK PROBE title and immediate response to frozenF download instructions; no JTAG readback",
+  "observation": "Image1 shows input unsupported; image2 shows720 bars, VALID11 and savedFHD counters",
+  "mode_assignment": "FHD failure then720 recovery inferred from immediately preceding instructions and displayed savedFHD record; no extra user text",
+  "raw_fields": {
+    "720": {
+      "P": {
+        "hex": "046CF710",
+        "decimal": 74250000
+      },
+      "H": {
+        "hex": "0000AFC8",
+        "decimal": 45000
+      },
+      "V": {
+        "hex": "0000003C",
+        "decimal": 60
+      }
+    },
+    "FHD": {
+      "P": {
+        "hex": "046CF710",
+        "decimal": 74250000
+      },
+      "H": {
+        "hex": "000083D6",
+        "decimal": 33750
+      },
+      "V": {
+        "hex": "0000001E",
+        "decimal": 30
+      }
+    }
+  },
+  "valid": "11",
+  "reference_window_cycles": 50000000,
+  "reference_assumption_hz": 50000000,
+  "derived": {
+    "pixel_mhz": 74.25,
+    "hd_line_khz": 45.0,
+    "hd_fps": 60,
+    "fhd_line_khz": 33.75,
+    "fhd_fps": 30
+  },
+  "physical_acceptance": "FAIL_1080P30_720_DISPLAY_AND_FHD_INTERNAL_COUNT_PASS",
+  "limit": "Internal source raster event counters relative to board50MHz, not external HDMI timing/serial5:1/jitter, not captureFPS, not full soak/cold-start test",
+  "next": "Frozen realPLL full serial-frame simulation; original1080p30 target unchanged"
+}

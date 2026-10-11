@@ -1,0 +1,125 @@
+{
+  "head": "ef07b33e9763732076a4692c1767f151d7e17b3c",
+  "bound_f_bit_sha256": "6449cf3b67e9c9c04bc32b1b367dc7b36d79c33c98ae6f5a499e78d71ec64541",
+  "purpose": "F actual vendor PLL/ODDR full serial720/FHD/720; unchanged released production RTL; startup receiver reset accounting only, same timing/raster/RGB reference. No new bit.",
+  "inputs": [
+    {
+      "path": "diagnostics/hdmi_positive/clock_probe_top.v",
+      "sha256": "d137714c12a932534178c0bc95aad50e51ceba6052a6715a704398578ad5c9c6",
+      "bytes": 3712
+    },
+    {
+      "path": "diagnostics/hdmi_positive/dvi_encoder.v",
+      "sha256": "3de52f1b96c9cd7e4e476c5d9358b35bffe46ed3c5529cbc4be8f3e3a0e50ae2",
+      "bytes": 1576
+    },
+    {
+      "path": "user_source/hdl_source/native_hdmi_pll.v",
+      "sha256": "bd4c8e6fad7c9e2e78af3b4c71979664de267d7e947d3fb38139f95d245fe951",
+      "bytes": 4196
+    },
+    {
+      "path": "user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v",
+      "sha256": "2f6f2560129b950c9f5a36136f128a9304ff858bf1bae0f2129ea0145d941a1e",
+      "bytes": 12535
+    },
+    {
+      "path": "user_source/hdl_source/hdmi_phy_warpper.v",
+      "sha256": "416b082b0987001bdbc0a7e20a557cb8fb1dca34e25dc881e6d28a8cb3cf4300",
+      "bytes": 4017
+    },
+    {
+      "path": "user_source/hdl_source/lane_lvds_10_1.v",
+      "sha256": "de9529321354f04837e051d0ec1681cf44783d4be3284703a788e081147500bc",
+      "bytes": 4421
+    },
+    {
+      "path": "diagnostics/hdmi_positive/clock_probe_measure.v",
+      "sha256": "2dc2f1550219228640414bea868717ac8d9e2c4576119f1f467a51eae418b0d5",
+      "bytes": 2503
+    },
+    {
+      "path": "diagnostics/hdmi_positive/clock_probe_osd.v",
+      "sha256": "b58045d90e3262d211e792ffa6a171d84bb95184aab8a5327538d31d4a92d7f8",
+      "bytes": 3571
+    },
+    {
+      "path": "user_source/hdl_source/status_cdc.v",
+      "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151",
+      "bytes": 834
+    },
+    {
+      "path": "sim/clock_probe_reference.json",
+      "sha256": "c7343821608cf2732e350836fbf34afa69e45a85261e828eca6130ff793187d1",
+      "bytes": 1976
+    },
+    {
+      "path": "sim/clock_probe_reference.vh",
+      "sha256": "2940f0fbda89fb8f7a96ca5950003637bd405fd311d61fe13d8c1917d4eb7ac7",
+      "bytes": 1454
+    },
+    {
+      "path": "sim/clock_probe_font.mem",
+      "sha256": "0d7d4adcc83aae122664290ed2e40312ea73ed9435ec78351dc258408f33b11f",
+      "bytes": 3584
+    },
+    {
+      "path": "sim/hdmi_decode.vh",
+      "sha256": "70953d0ed0a6bcad4e11f0b919fe6cb807fc01b52394e6147e96e7cab0b6d626",
+      "bytes": 1170
+    },
+    {
+      "path": "sim/tb_clock_probe_real_pll.v",
+      "sha256": "28956497e2eec087c6b6d83db171e6fcb5172bb41525298ad796f0284afe8954",
+      "bytes": 7821
+    },
+    {
+      "path": "sim/run_clock_probe_real_pll.ps1",
+      "sha256": "4f77b6b25a5838264fa8c6ad1033e7ada59079f9efaac4f5255e9916d9afc436",
+      "bytes": 2418
+    },
+    {
+      "path": "tools/freeze_clock_probe_real_pll.py",
+      "sha256": "668c9b362b1ad4b5ff7acda264da444daf16a4d7f403e70e91ce01d6992343bc",
+      "bytes": 2219
+    }
+  ],
+  "vendor_models": [
+    {
+      "path": "D:/td6.2.1/sim_release/common/al_map_basic.v",
+      "sha256": "ac0aa7f986fdfba39fb7b361b26ace4ba1049807d6feccde09b2fa21eb0903da"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/common/al_map_lut.v",
+      "sha256": "a8af44de361088c0bb66a58d5af9b8eb5aa6e9b8ca56992d6164a9f689c488f0"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/common/al_map_adder.v",
+      "sha256": "02dfbc0864687bcba96cbed80c69dada2c511e24c89b0e4e308fed3ccc8ccf84"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/common/al_phy_glbl.v",
+      "sha256": "c194f5335b54a6d707a8b633b8f4d3a171e52006337600f7433379b11fb3b2ff"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/ph1p/ph1p_phy_gsr.v",
+      "sha256": "787312a19b4007bef3b76986bce267966b2d04c1871290ce29905629e38f1524"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/ph1p/ph1p_logic_bufg.v",
+      "sha256": "23950e1134040701237a94cfa6f2a6b1b77232141fe68ee2cb8be5e92eda8f7e"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v",
+      "sha256": "91a10de0f6bbbe29db3b6f7ea62d735058756fdd4a3bc73370e1186ad8814e7c"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/ph1p/ph1p_logic_hrio.v",
+      "sha256": "fe602af25ced1c1707f25416d8063530ace6f5dbef34e602df953eb98e6adc74"
+    },
+    {
+      "path": "D:/td6.2.1/sim_release/ph1p/ph1p_phy_hr_pad.v",
+      "sha256": "fe559fdcae48047150e47812765093ffcff1d89d30c47fef217f3c0394d68522"
+    }
+  ]
+}

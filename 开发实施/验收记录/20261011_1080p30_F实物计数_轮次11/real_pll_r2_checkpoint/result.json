@@ -1,0 +1,17 @@
+{
+  "status": "RUNNING",
+  "completed": false,
+  "snapshot_time": "2026-10-11T12:55:42.177039+00:00",
+  "source": "C:\\Users\\Li47\\Desktop\\aa\\native_f_real_pll_r2_20261011",
+  "bound_f_bit_sha256": "6449cf3b67e9c9c04bc32b1b367dc7b36d79c33c98ae6f5a499e78d71ec64541",
+  "inputs_verified": 16,
+  "vendor_models_verified": 9,
+  "observations": [
+    "# OBS F actualPLL startup reset1 at0.000000ns",
+    "# OBS F actualPLL startup reset2 at452292.336310ns",
+    "# OBS F pin words500000 mode0"
+  ],
+  "fatal_or_error": false,
+  "scope": "Actual vendor PLL+ODDR, serial pins/reference/full raster/5:1 and mode changes; released F RTL and prior reference unchanged. Simulation only, no new bit or hardware action.",
+  "limitation": "RUNNING/INTERRUPTED snapshots are not a completed frame/switch test. One-second live counts and external analog waveform/camera/DDR are outside this test."
+}

@@ -1,0 +1,27 @@
+{
+  "status": "SOURCE_AUDITED_MODEL_LIMITATION_RETAINED_NOT_PHYSICAL_SIGNOFF",
+  "r1_warning_count": 127,
+  "r2_warning_count": 129,
+  "common_port_warnings": {
+    "vopt-2718": 118,
+    "vopt-2685": 9
+  },
+  "extra_r2_warnings": {
+    "vopt-2958": 2
+  },
+  "vendor_file": "D:/td6.2.1/sim_release/ph1p/ph1p_phy_pll_v2.v",
+  "source_sha256": "91a10de0f6bbbe29db3b6f7ea62d735058756fdd4a3bc73370e1186ad8814e7c",
+  "undriven": [
+    {
+      "name": "fast_lock",
+      "line": 2897,
+      "source": "Unmodelled fast_lock output carried via gpll_ana/gpll_core and scan/test mux. No assignment in supplied vendor model; visible after observation removal."
+    },
+    {
+      "name": "ibp_30u_pi",
+      "line": 4493,
+      "source": "Vendor bias model output/connection; analog core line13908 comments no need to model these output. Not externally measured analog behavior."
+    }
+  ],
+  "action": "Keep all original vendor code, timing checks and warning logs. Tests continue checking actual locked clocks, serial cadence and pins; no claim of analog waveform or all-model-port validation."
+}

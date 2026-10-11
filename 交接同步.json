@@ -1,12 +1,12 @@
 {
   "date": "2026-10-11",
-  "status": "f_clock_probe_generated_verified_physical_pending",
+  "status": "f_physical_failed_internal_counts_match_real_pll_running",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
   "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
   "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
-  "verified_remote_head": "9715f0791f5e012718ec72f4d094e9a26d4969b5",
-  "pushed": true,
+  "verified_remote_head": "ef07b33e9763732076a4692c1767f151d7e17b3c",
+  "pushed": false,
   "checkout": "Use latest origin/lj4747-native-1080p30-stage2 for this delivery. The original personal branch is retained and its remote remains3be3967.",
   "handoff_document": "交接说明.md",
   "validation_record": "开发实施/验收记录/20261008_原像素1080p30_轮次2.md",
@@ -29,7 +29,7 @@
   "classification_enabled": false,
   "enable_edge": 0,
   "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED",
-  "latest_debug_record": "开发实施/验收记录/20261011_旧版参考F时钟诊断_轮次10.md",
+  "latest_debug_record": "开发实施/验收记录/20261011_1080p30_F实物计数_轮次11.md",
   "human_board_actions_performed": true,
   "user_confirmed_direct_supplied_bit": true,
   "user_confirmed_old_code_displays": true,
@@ -43,7 +43,7 @@
     "Stage3 FHD EDGE/composite/four-mode integration and final timed/cold-start/field-of-view acceptance"
   ],
   "writer_stops_after_handoff_save": true,
-  "next_step": "User volatile download F; SW1down5s/up5s/down3s; photograph top P/H/V+VALID. Stage2 gate still unpassed.",
+  "next_step": "Read frozen r2 final simulator log; collect PC manually timed1080p30 same-port/same-cable and active-signal evidence before further diagnostic bit.",
   "processes": [
     {
       "ProcessName": "td",
@@ -55,7 +55,19 @@
     },
     {
       "ProcessName": "hwserver",
-      "Id": 13148
+      "Id": 28328
+    },
+    {
+      "ProcessName": "vsim",
+      "Id": 24236,
+      "owner": "assistant"
+    },
+    {
+      "ProcessName": "vsimk",
+      "Id": 37264,
+      "owner": "assistant",
+      "start": "2026-10-11 20:41:50",
+      "freeze": "native_f_real_pll_r2_20261011"
     }
   ],
   "board_actions_performed": false,
@@ -65,7 +77,7 @@
     "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
     "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
   },
-  "note": "F generated using old independent50MHz monitor approach and preserved E common PLL/PHY/raster. Diagnostic only, root cause open, no physical acceptance. No target change.",
+  "note": "F photos: internal counters match source target;1080p30 physical fail retained. Full actualPLL test running with immutable F RTL/reference. No new bit, production modification or target reduction.",
   "development_branch": "lj4747-contest-work",
   "verified_development_remote_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "upload_record": "开发实施/验收记录/20261008_1080p30分支上传_轮次1.md",
@@ -401,7 +413,7 @@
     "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_F_PROBE_20261011/td_project/clock_probe.al",
     "build_freeze": "native_f_probe_r4_20261011",
     "simulation_freeze": "native_f_probe_r2_20261011",
-    "physical_acceptance": "NOT_RUN",
+    "physical_acceptance": "FAIL_1080P30_720_DISPLAY_AND_FHD_INTERNAL_COUNT_PASS",
     "all_paths_timing_accepted": false,
     "setup_tns_ns": 0,
     "hold_tns_ns": 0,
@@ -445,9 +457,65 @@
     "archives": 5,
     "git_artifact_commit": "9715f0791f5e012718ec72f4d094e9a26d4969b5",
     "normal_crossing_hold_checks": true,
-    "full_real_pll_switch_simulation": "NOT_RUN",
+    "full_real_pll_switch_simulation": "RUNNING_NOT_COMPLETED",
     "verified_remote_head": "9715f0791f5e012718ec72f4d094e9a26d4969b5",
     "git_blob_sha_verification": "PASS_154_FILES",
-    "push_status": "SUCCESS"
+    "push_status": "SUCCESS",
+    "physical_record": "开发实施/验收记录/20261011_1080p30_F实物计数_轮次11.md",
+    "physical_identity": "Title/context; no JTAG readback; mode sequence inferred",
+    "actual_pll_progress_archive": "开发实施/验收记录/20261011_1080p30_F实物计数_轮次11/real_pll_r2_checkpoint",
+    "actual_pll_interrupted_archive": "开发实施/验收记录/20261011_1080p30_F实物计数_轮次11/real_pll_r1",
+    "measured_internal_events": {
+      "date": "2026-10-11",
+      "source": "USER_PHOTOS",
+      "bit_sha256": "6449cf3b67e9c9c04bc32b1b367dc7b36d79c33c98ae6f5a499e78d71ec64541",
+      "identity": "F CLOCK PROBE title and immediate response to frozenF download instructions; no JTAG readback",
+      "observation": "Image1 shows input unsupported; image2 shows720 bars, VALID11 and savedFHD counters",
+      "mode_assignment": "FHD failure then720 recovery inferred from immediately preceding instructions and displayed savedFHD record; no extra user text",
+      "raw_fields": {
+        "720": {
+          "P": {
+            "hex": "046CF710",
+            "decimal": 74250000
+          },
+          "H": {
+            "hex": "0000AFC8",
+            "decimal": 45000
+          },
+          "V": {
+            "hex": "0000003C",
+            "decimal": 60
+          }
+        },
+        "FHD": {
+          "P": {
+            "hex": "046CF710",
+            "decimal": 74250000
+          },
+          "H": {
+            "hex": "000083D6",
+            "decimal": 33750
+          },
+          "V": {
+            "hex": "0000001E",
+            "decimal": 30
+          }
+        }
+      },
+      "valid": "11",
+      "reference_window_cycles": 50000000,
+      "reference_assumption_hz": 50000000,
+      "derived": {
+        "pixel_mhz": 74.25,
+        "hd_line_khz": 45.0,
+        "hd_fps": 60,
+        "fhd_line_khz": 33.75,
+        "fhd_fps": 30
+      },
+      "physical_acceptance": "FAIL_1080P30_720_DISPLAY_AND_FHD_INTERNAL_COUNT_PASS",
+      "limit": "Internal source raster event counters relative to board50MHz, not external HDMI timing/serial5:1/jitter, not captureFPS, not full soak/cold-start test",
+      "next": "Frozen realPLL full serial-frame simulation; original1080p30 target unchanged"
+    },
+    "independent_pc_1080p30_test": "NOT_RUN_AWAITING_FEEDBACK"
   }
 }
