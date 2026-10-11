@@ -1,12 +1,12 @@
 {
-  "date": "2026-10-10",
+  "date": "2026-10-11",
   "status": "native_1080p30_stage2_failed_hdmi_under_diagnosis",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
   "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
   "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "verified_remote_head": "8de3bc31e14c0114e7ce62469f7ac5a7c0717f0e",
-  "pushed": true,
+  "pushed": false,
   "checkout": "Use latest origin/lj4747-native-1080p30-stage2 for this delivery. The original personal branch is retained and its remote remains3be3967.",
   "handoff_document": "交接说明.md",
   "validation_record": "开发实施/验收记录/20261008_原像素1080p30_轮次2.md",
@@ -29,11 +29,11 @@
   "classification_enabled": false,
   "enable_edge": 0,
   "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED",
-  "latest_debug_record": "开发实施/验收记录/20261010_1080p30_E同镜像双模式_轮次6.md",
+  "latest_debug_record": "开发实施/验收记录/20261011_1080p30_E实物往返_轮次7.md",
   "human_board_actions_performed": true,
   "user_confirmed_direct_supplied_bit": true,
   "user_confirmed_old_code_displays": true,
-  "user_confirmed_monitor_supports_1080p30": true,
+  "user_confirmed_monitor_supports_1080p30": null,
   "failure_photo_sha256": "096105006959bf325c728d4277c01d23c67adfe875da9ac664258febf436ecb7",
   "pending": [
     "39 input and 63 output delay warnings; hard PHY/board timing budgets and remaining warning audit closure",
@@ -43,8 +43,21 @@
     "Stage3 FHD EDGE/composite/four-mode integration and final timed/cold-start/field-of-view acceptance"
   ],
   "writer_stops_after_handoff_save": true,
-  "next_step": "User download frozen E once; SW1 down/up/down, wait2-3s each, record colorbars/unsupported and monitor info. No flash overwrite; stage2 capture/DDR gate remains closed.",
-  "processes": [],
+  "next_step": "Connect target AOC to PC and select external AOC in Advanced Display; report available30Hz/active signal/display result, or internal-display-only. User screenshot selects internal display1920x1080/60Hz, not target AOC. Keep30fps objective.",
+  "processes": [
+    {
+      "ProcessName": "td",
+      "Id": 15680
+    },
+    {
+      "ProcessName": "bw",
+      "Id": 35588
+    },
+    {
+      "ProcessName": "hwserver",
+      "Id": 13148
+    }
+  ],
   "board_actions_performed": false,
   "previous_handoff": {
     "commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
@@ -52,7 +65,7 @@
     "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
     "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
   },
-  "note": "E frozen ideal-PLL/vendor-ODDR full6 frames/2 transitions PASS; TD final118ps/29ps TNS0; physicalNOT_RUN, external budgets OPEN. r1compileFAIL retained. Root cause unresolved.",
+  "note": "E volatile physical1080FAIL,720 colorbars recover in one bit. Earlier claimed30Hz success source clarified as FPGA old Flash, format/identity unknown; independent30Hz support unverified. Exact AOC Q24G51F official V48-144Hz. No newRTL/bit/sim/TD.",
   "development_branch": "lj4747-contest-work",
   "verified_development_remote_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "upload_record": "开发实施/验收记录/20261008_1080p30分支上传_轮次1.md",
@@ -199,7 +212,7 @@
     "no_new_bit": true
   },
   "native_pll_probe_commit": "81d58d09c78f7f16f33572478a8b796f2a1b6282",
-  "user_confirmed_1080p30_same_hdmi_port_and_cable": true,
+  "user_confirmed_1080p30_same_hdmi_port_and_cable": null,
   "e_dual_mode_diagnostic": {
     "bit": "E_720p60_1080p30.bit",
     "sha256": "6ac37c66de74ca2406cc24bc98ac6b51a97acb71d90ecb5b8080ee97b3f90ca5",
@@ -207,7 +220,7 @@
     "desktop_bit": "C:/Users/Li47/Desktop/SC500_HDMI_E_DUAL_20261010/E_720p60_1080p30.bit",
     "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_E_DUAL_20261010/td_project/dual_mode.al",
     "source_freeze": "native_e_dual_r2_20261010",
-    "physical_acceptance": "NOT_RUN",
+    "physical_acceptance": "FAIL_1080P30_WITH_720_RECOVERY",
     "setup_tns_ns": 0,
     "hold_tns_ns": 0,
     "violating_endpoints": 0,
@@ -252,6 +265,52 @@
     "base_head": "3bef970fed3020fa35b87bc6599d16b986e3589e",
     "artifact_commit": "8de3bc31e14c0114e7ce62469f7ac5a7c0717f0e",
     "verified_remote_head": "8de3bc31e14c0114e7ce62469f7ac5a7c0717f0e",
-    "git_payload_sha_verification": "PASS_46_FILES"
+    "git_payload_sha_verification": "PASS_46_FILES",
+    "physical_result": "开发实施/验收记录/20261011_1080p30_E实物往返_轮次7/physical_result.json",
+    "volatile_download_confirmed": true,
+    "new_mode_readout": "NOT_REPORTED_FOR_E"
+  },
+  "same_port_and_cable_for_old_working_flash": true,
+  "prior_1080p30_success_clarification": {
+    "source": "SAME_FPGA_OLD_FLASH_CODE_IDENTITY_UNKNOWN",
+    "independent_source_success": "UNVERIFIED",
+    "known_repository_baseline": "1024x600",
+    "working_flash_identity": "UNKNOWN",
+    "user_original_claim_preserved_in_history": true
+  },
+  "monitor_model_spec_audit": {
+    "date": "2026-10-11",
+    "timezone": "Asia/Shanghai",
+    "source": "https://www.aocmonitor.com.cn/product-16061.html",
+    "model": "Q24G51F",
+    "raw_html_sha256": "63f97297ff26d32ad4dc50f60c36a8ce62631766ac909a3860fcdbcdd5884697",
+    "published_scan_range": {
+      "horizontal_khz": [
+        30,
+        230
+      ],
+      "vertical_hz": [
+        48,
+        144
+      ]
+    },
+    "interpretation": "30Hz lies outside listed vertical scan range; compatibility hypothesis, not direct EDID or independent30Hz input acceptance proof",
+    "wrong_model_excluded": "24G51F without Q",
+    "manual": "NOT_RETRIEVED",
+    "target_edid": "UNAVAILABLE_HOST_ONLY_CSW150F"
+  },
+  "pc_signal_test": {
+    "date": "2026-10-11",
+    "source": "USER_ATTACHMENT",
+    "image": "开发实施/验收记录/20261011_1080p30_E实物往返_轮次7/pc_internal_display_60hz.png",
+    "sha256": "82ba125a9d98eb48a8ba0a8b638612b2dabec5026e3ea762f20ebfe1080e00f9",
+    "selected_display": "内部显示器",
+    "adapter": "Intel(R) UHD Graphics",
+    "desktop_mode": "1920x1080,60Hz",
+    "active_signal_mode": "1920x1080,60Hz",
+    "refresh_rate": "60Hz",
+    "external_AOC_selected": false,
+    "conclusion": "Internal notebook display only; neither target AOC60Hz nor AOC30Hz capability established by this image",
+    "user_text": "只有60hz的，可以用"
   }
 }

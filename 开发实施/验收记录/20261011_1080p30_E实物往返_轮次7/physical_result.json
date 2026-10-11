@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-11",
+  "code_baseline": "97b7aeab8f0cd9e7250fbb4f74ce898a2bf45365",
+  "artifact_commit": "8de3bc31e14c0114e7ce62469f7ac5a7c0717f0e",
+  "bit": "E_720p60_1080p30.bit",
+  "sha256": "6ac37c66de74ca2406cc24bc98ac6b51a97acb71d90ecb5b8080ee97b3f90ca5",
+  "download_method": "VOLATILE_USER_CONFIRMED_NO_FLASH_PROGRAMMING",
+  "user_report": "下拨有色条 → 上拨输入不支持 → 再下拨恢复色条",
+  "steps": [
+    {
+      "sw1": "DOWN",
+      "expected_mode": "720p60",
+      "result": "COLORBARS_USER_REPORTED",
+      "monitor_information": "NOT_REPORTED_FOR_E"
+    },
+    {
+      "sw1": "UP",
+      "expected_mode": "1080p30",
+      "result": "INPUT_UNSUPPORTED_USER_REPORTED"
+    },
+    {
+      "sw1": "DOWN",
+      "expected_mode": "720p60",
+      "result": "COLORBARS_RECOVERED_USER_REPORTED",
+      "monitor_information": "NOT_REPORTED_FOR_E"
+    }
+  ],
+  "overall": "FAIL_1080P30_WITH_720_RECOVERY",
+  "new_photo": "NOT_PROVIDED",
+  "observations": "Single bit and common physical clock/routing; repeatability/cold starts/absolute frequency not measured",
+  "prior_success_signal_source": "SAME_FPGA_OLD_FLASH_CODE_IDENTITY_UNKNOWN",
+  "prior_independent_actual_1080p30_success": "UNVERIFIED_AFTER_SOURCE_CLARIFICATION",
+  "official_scan_range": {
+    "horizontal_khz": [
+      30,
+      230
+    ],
+    "vertical_hz": [
+      48,
+      144
+    ]
+  },
+  "stage2_manual_gate": "NOT_PASSED",
+  "new_bit_generated": false,
+  "new_td_or_simulation": false,
+  "next_step": "Connect AOC to PC; select external AOC, report30Hz option/active signal/result or no external display.",
+  "pc_test": "INTERNAL_DISPLAY_ONLY_TARGET_AOC_NOT_TESTED",
+  "pc_test_evidence": "开发实施/验收记录/20261011_1080p30_E实物往返_轮次7/pc_display_evidence.json"
+}
