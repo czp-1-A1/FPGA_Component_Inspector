@@ -1,0 +1,103 @@
+{
+  "status": "PASS_FROZEN_SOURCE_AND_BIT_BINDING",
+  "date": "2026-10-11",
+  "user_identified_old_release": "edge_diagnostic_20261007",
+  "user_reports_old_display_works": true,
+  "physical_readback": "NOT_RUN",
+  "old_bit_sha256": "c3a1cce7d4a19d6750c0e6f3e36395a3c2f3d31901834a1b13a76f497a9230f8",
+  "old_all_207_inputs_sha_verified": true,
+  "old_geometry": {
+    "H_ActiveSize": 1024,
+    "H_FrameSize": 1344,
+    "H_SyncStart": 1184,
+    "H_SyncEnd": 1208,
+    "V_ActiveSize": 600,
+    "V_FrameSize": 635,
+    "V_SyncStart": 612,
+    "V_SyncEnd": 614
+  },
+  "old_pll_dividers": {
+    "REFCLK_DIV": 1,
+    "FBCLK_DIV": 2,
+    "CLKC0_DIV": 13,
+    "CLKC4_DIV": 25,
+    "CLKC5_DIV": 5
+  },
+  "old_nominal_pixel_hz": 52000000,
+  "old_nominal_serial_hz": 260000000,
+  "old_nominal_hdmi_refresh_hz": 60.929883764529436,
+  "old_osd_fps_source": "RAW10 camera frame_start counted against independent50MHz reference; not display refresh",
+  "new_bit_sha256": "7b8c08c27582960da985b52102c0c9273533c3bf5cabc89d757cbfee7588e709",
+  "new_geometry": {
+    "H_ActiveSize": 1920,
+    "H_FrameSize": 2200,
+    "H_SyncStart": 2008,
+    "H_SyncEnd": 2052,
+    "V_ActiveSize": 1080,
+    "V_FrameSize": 1125,
+    "V_SyncStart": 1084,
+    "V_SyncEnd": 1089
+  },
+  "new_nominal_pixel_hz": 74250000,
+  "new_nominal_serial_hz": 371250000,
+  "new_nominal_hdmi_refresh_hz": 30.0,
+  "selected_new_inputs_sha_verified": 9,
+  "source_differences": [
+    {
+      "path": "user_source/hdl_source/design_top_wrapper.v",
+      "old_sha256": "a418a3403a36c7d5e65ee5665477480e2dbd758f0e04c482d1db70c91d5d13ee",
+      "new_sha256": "41fcd2674c5b1b1258bac46ee0cc59fe64b24a1b2eecca2a4b32d95f42c62111",
+      "unchanged": false
+    },
+    {
+      "path": "user_source/hdl_source/experiment_osd.v",
+      "old_sha256": "3aaba12cdabbac399291a32fe37e2834dcd6e4d2ea58faaa49567bffdc129da8",
+      "new_sha256": "6e2691d1d02232376a63b8d155ce74fc2a4bb71e42e2e1cd2226882d67c8c52a",
+      "unchanged": false
+    },
+    {
+      "path": "user_source/hdl_source/input_monitor.v",
+      "old_sha256": "4fb4cae4e342ac796b3101dac0916e69daef27c341c1fbe745d20ec01537c6fc",
+      "new_sha256": "4aa8e3c84102abbc78630c5a2f30d50ff83c615ba14f8d769b40d037f93cc4bd",
+      "unchanged": false
+    },
+    {
+      "path": "user_source/hdl_source/hdmi_tx.v",
+      "old_sha256": "6565255ce3f9f5255a5493aa8f0a8c509c8897802648d3a0aacdd35c89487625",
+      "new_sha256": "f90f5b9c24f088cb35cd3a43c28074d759316f468022b2d4ddba159f1a12d99e",
+      "unchanged": false
+    },
+    {
+      "path": "user_source/hdl_source/hdmi_phy_warpper.v",
+      "old_sha256": "416b082b0987001bdbc0a7e20a557cb8fb1dca34e25dc881e6d28a8cb3cf4300",
+      "new_sha256": "416b082b0987001bdbc0a7e20a557cb8fb1dca34e25dc881e6d28a8cb3cf4300",
+      "unchanged": true
+    },
+    {
+      "path": "user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v",
+      "old_sha256": "867e0b0bdd874bc383d00918c9e1be3fe01edf41f343b6a0d73e262776596a63",
+      "new_sha256": "867e0b0bdd874bc383d00918c9e1be3fe01edf41f343b6a0d73e262776596a63",
+      "unchanged": true
+    },
+    {
+      "path": "user_source/hdl_source/vtc/uivtc.v",
+      "old_sha256": "c7deaea83ea04fae9caaf34644fe089aeba6dc54dee26c377aef1df44648e4db",
+      "new_sha256": "c7deaea83ea04fae9caaf34644fe089aeba6dc54dee26c377aef1df44648e4db",
+      "unchanged": true
+    },
+    {
+      "path": "user_source/ip_source/PLL/PLL.v",
+      "old_sha256": "2f99e768a454bb5e9b51aebf6da4345c99201d055bb46dc343f0cd2fb0297c25",
+      "new_sha256": "2f99e768a454bb5e9b51aebf6da4345c99201d055bb46dc343f0cd2fb0297c25",
+      "unchanged": true
+    },
+    {
+      "path": "user_source/hdl_source/native_hdmi_pll.v",
+      "old_sha256": null,
+      "new_sha256": "bd4c8e6fad7c9e2e78af3b4c71979664de267d7e947d3fb38139f95d245fe951",
+      "unchanged": false
+    }
+  ],
+  "source_reference_sha256": "941788f3393d43b8cc9b762c3ee251220d253e27fdb824da1c4749690d6b9130",
+  "limit": "Calculated nominal clocks/raster rate from frozen source and50MHz assumption. No measured FPGA output, Flash readback, new simulation, TD or new bit. Old display success does not itself establish1080p30 acceptance; root cause remains open."
+}

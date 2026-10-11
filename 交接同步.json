@@ -1,12 +1,12 @@
 {
   "date": "2026-10-11",
-  "status": "native_1080p30_stage2_physical_fail_monitor_target_choice_pending",
+  "status": "native_1080p30_stage2_physical_fail_old_display_image_identified_cause_open",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
   "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
   "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "verified_remote_head": "05980f2572ff3544d0dc7c78719cbfb3bab6223e",
-  "pushed": true,
+  "pushed": false,
   "checkout": "Use latest origin/lj4747-native-1080p30-stage2 for this delivery. The original personal branch is retained and its remote remains3be3967.",
   "handoff_document": "交接说明.md",
   "validation_record": "开发实施/验收记录/20261008_原像素1080p30_轮次2.md",
@@ -29,7 +29,7 @@
   "classification_enabled": false,
   "enable_edge": 0,
   "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED",
-  "latest_debug_record": "开发实施/验收记录/20261011_1080p30_AOC能力核对_轮次8.md",
+  "latest_debug_record": "开发实施/验收记录/20261011_旧可显示镜像确认_轮次9.md",
   "human_board_actions_performed": true,
   "user_confirmed_direct_supplied_bit": true,
   "user_confirmed_old_code_displays": true,
@@ -43,7 +43,7 @@
     "Stage3 FHD EDGE/composite/four-mode integration and final timed/cold-start/field-of-view acceptance"
   ],
   "writer_stops_after_handoff_save": true,
-  "next_step": "Await user scope decision: keep capture/HDMI1080p30 and use verified30Hz display, or authorize feasibility evaluation of capture1080p30/HDMI1080p60. No changed target or new bit before decision;60Hz output requires serializer/clock/STA/DDR replay feasibility audit.",
+  "next_step": "Original capture/HDMI1080p30 target remains. User identified old edge_diagnostic bit; its camera FPS is separate from nominal1024x600/60.9299Hz HDMI. Scope clarification sent. If strict30 retained, evaluate720-readable captured1080 clock/line/frame diagnostic (not implemented); if60 allowed, audit serializer/clock/STA/DDR replay feasibility first.",
   "processes": [
     {
       "ProcessName": "td",
@@ -65,7 +65,7 @@
     "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
     "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
   },
-  "note": "E1080p30 physicalFAIL with720 recovery; active target Q24G51F HDMI EDID V48-144Hz, advertisesVIC16/4 not34. External screenshot desktop1080p60 but active1440p60. Monitor30Hz compatibility is leading inference, not exclusion of all board issues; all hardware gates remain unpassed.",
+  "note": "User objects to monitor blame; old working image is c3a1cce7 edge_diagnostic with207 inputsSHA verified. OSD FPS counts RAW10 camera frames; old HDMI nominal60.9299Hz, new30Hz. EDID facts retained but leading-monitor attribution withdrawn; cause open, no target change/newbit/hardware acceptance.",
   "development_branch": "lj4747-contest-work",
   "verified_development_remote_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "upload_record": "开发实施/验收记录/20261008_1080p30分支上传_轮次1.md",
@@ -274,10 +274,10 @@
   },
   "same_port_and_cable_for_old_working_flash": true,
   "prior_1080p30_success_clarification": {
-    "source": "SAME_FPGA_OLD_FLASH_CODE_IDENTITY_UNKNOWN",
-    "independent_source_success": "UNVERIFIED",
-    "known_repository_baseline": "1024x600",
-    "working_flash_identity": "UNKNOWN",
+    "source": "USER_IDENTIFIED_EDGE_DIAGNOSTIC_20261007_BIT",
+    "independent_source_success": "NO_INDEPENDENT_1080P30_ACCEPTANCE_PROOF",
+    "known_repository_baseline": "1024x600 nominalHDMI60.9298838Hz",
+    "working_flash_identity": "USER_IDENTIFIED_FILE_NOT_FLASH_READBACK",
     "user_original_claim_preserved_in_history": true
   },
   "monitor_model_spec_audit": {
@@ -371,7 +371,24 @@
     "raw_edid_uploaded": false,
     "limit": "Declared modes only; no measured FPGA frequency or proof of every custom timing acceptance.",
     "artifact_commit": "05980f2572ff3544d0dc7c78719cbfb3bab6223e",
-    "git_blob_sha_verification": "PASS_9_EVIDENCE_AND_2_TOOLS"
+    "git_blob_sha_verification": "PASS_9_EVIDENCE_AND_2_TOOLS",
+    "compatibility_conclusion": "DECLARATION_ONLY_ROOT_CAUSE_OPEN_PREMATURE_LEADING_ATTRIBUTION_WITHDRAWN"
   },
-  "target_scope_decision": "PENDING_USER_REPLY"
+  "target_scope_decision": "UNCHANGED_1080P30_SCOPE_CLARIFICATION_PENDING",
+  "working_old_image": {
+    "date": "2026-10-11",
+    "user_statement": "原先那个30帧的版本是可以在这个屏上显示的，不是屏的问题",
+    "user_supplied_path": "C:/Users/Li47/Desktop/aa/FPGA Component Inspector git/fpga/component inspector/release/edge diagnostic 20261007/camera to dsi display.bit",
+    "user_clarification": "刚才那个是旧版本的",
+    "matched_repository_path": "fpga/component_inspector/release/edge_diagnostic_20261007/camera_to_dsi_display.bit",
+    "sha256": "c3a1cce7d4a19d6750c0e6f3e36395a3c2f3d31901834a1b13a76f497a9230f8",
+    "display_result": "WORKS_USER_REPORTED_OLD_IMAGE",
+    "physical_readback": "NOT_RUN",
+    "old_edge_stability": "NOT_UPGRADED",
+    "target_change_authorized": false,
+    "old_all_207_inputs_sha_verified": true,
+    "nominal_hdmi_mode": "1024x600,60.9298838Hz",
+    "osd_fps": "RAW10_CAMERA_INPUT_COUNT",
+    "record": "开发实施/验收记录/20261011_旧可显示镜像确认_轮次9.md"
+  }
 }
