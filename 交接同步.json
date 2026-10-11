@@ -5,8 +5,8 @@
   "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
   "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
-  "verified_remote_head": "f1dbfab5ae2a58e6d3deddc18bd88a76ca3b7f87",
-  "pushed": false,
+  "verified_remote_head": "9715f0791f5e012718ec72f4d094e9a26d4969b5",
+  "pushed": true,
   "checkout": "Use latest origin/lj4747-native-1080p30-stage2 for this delivery. The original personal branch is retained and its remote remains3be3967.",
   "handoff_document": "交接说明.md",
   "validation_record": "开发实施/验收记录/20261008_原像素1080p30_轮次2.md",
@@ -443,8 +443,11 @@
     "payloads": 136,
     "build_inputs": 6,
     "archives": 5,
-    "git_artifact_commit": "PENDING",
+    "git_artifact_commit": "9715f0791f5e012718ec72f4d094e9a26d4969b5",
     "normal_crossing_hold_checks": true,
-    "full_real_pll_switch_simulation": "NOT_RUN"
+    "full_real_pll_switch_simulation": "NOT_RUN",
+    "verified_remote_head": "9715f0791f5e012718ec72f4d094e9a26d4969b5",
+    "git_blob_sha_verification": "PASS_154_FILES",
+    "push_status": "SUCCESS"
   }
 }
