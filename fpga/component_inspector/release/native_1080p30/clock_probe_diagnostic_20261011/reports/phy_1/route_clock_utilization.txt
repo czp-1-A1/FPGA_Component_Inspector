@@ -1,0 +1,285 @@
+Copyright (c) 2012-2025 Anlogic Inc., All Rights Reserved.
+----------------------------------------------------------------------------
+| Tool Version : Tang Dynasty v6.2.178840 Nov  3 2025 14:21:23              
+| Date         : Sun Oct 11 19:02:29 2026                                   
+| Command      : report_clock_utilization -file route_clock_utilization.txt 
+| Design       : clock_probe_top                                            
+| Device       : ph1_35p-PH1P35MDG324                                       
+| Speed        : 3                                                          
+----------------------------------------------------------------------------
+
+Table of Contents
+-----------------
+A. Clock Utilization Report.
+B. Clock Buffer Info.
+C. IP Stat.
+
+
+------------------------------------------------------------------------------------------------------------
+----------------------------------------A. Clock Utilization Report.----------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+1. Clock Buffer Utilization
++------------------+------+-----------+
+| Type             | Used | Available |
++------------------+------+-----------+
+| PH1P_PHY_GCLK    |    4 |        32 |
+| PH1P_PHY_IOCLK   |    0 |        16 |
+| PH1P_PHY_LCLK    |    0 |        16 |
+| PH1P_PHY_MLCLK   |    0 |        16 |
+| PH1P_PHY_SCLK_V2 |   11 |        48 |
++------------------+------+-----------+
+
+
+2. Global Clock Resource Stat.
++------------+------------+---------------+-------------------------------------------------------------+------------+------+-----------+-------------------+-------------+-------------+--------------+------------------------------------------------------------------------------+--------------------------------------------------------------+
+| Global Idx | Source Idx | Global Type   | Inst.Pin                                                    | Constraint | site | Location  | Load Clock Region | Clock Loads | Total Loads | Clock Period | Clock                                                                        | Net                                                          |
++------------+------------+---------------+-------------------------------------------------------------+------------+------+-----------+-------------------+-------------+-------------+--------------+------------------------------------------------------------------------------+--------------------------------------------------------------+
+| gclk_0     | src_0      | PH1P_PHY_GCLK | I_sys_clk_dup_1_created_gclkinst.clkout                     | None       | T    | x23y39z17 |                 4 |         502 |         502 |       20.000 | sys_clk_50m                                                                  | I_sys_clk_syn_3                                              |
+| gclk_1     | src_1      | PH1P_PHY_GCLK | u_pll/u_output/bufg_feedback.clkout                         | None       | B    | x23y39z0  |                 4 |         439 |         439 |       13.468 | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0] | pixel                                                        |
+| gclk_2     | src_2      | PH1P_PHY_GCLK | u_phy/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst.clkout | None       | B    | x23y39z1  |                 2 |          35 |          35 |        2.693 | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1] | u_phy/u0_lane_lvds_8_1/I_serial_clk_syn_1                    |
+| gclk_3     | src_3      | PH1P_PHY_GCLK | u_pll/u_ref/bufg_feedback.clkout                            | None       | T    | x23y39z16 |                 1 |           1 |           1 |       29.630 | u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]    | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/refclk |
++------------+------------+---------------+-------------------------------------------------------------+------------+------+-----------+-------------------+-------------+-------------+--------------+------------------------------------------------------------------------------+--------------------------------------------------------------+
+
+
+3. Global Clock Source Stat.
++------------+------------+-----------------+------------------------------------------------------------------------------+------------+------+----------+-------------+-----------------+---------------------+------------------------------------------------------------------------------+-------------------------------------+
+| Source Idx | Global Idx | Source Type     | Inst.Pin                                                                     | Constraint | Site | Location | Clock Loads | Non Clock Loads | Source Clock Period | Source Clock                                                                 | Net                                 |
++------------+------------+-----------------+------------------------------------------------------------------------------+------------+------+----------+-------------+-----------------+---------------------+------------------------------------------------------------------------------+-------------------------------------+
+| src_0      | gclk_0     | PH1P_PHY_HD_PAD | I_sys_clk_syn_2.di                                                           | None       | N/A  | x33y78z0 |           2 |               0 |              20.000 | sys_clk_50m                                                                  | I_sys_clk_dup_1                     |
+| src_1      | gclk_1     | PH1P_PHY_PLL_V2 | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0] | None       | N/A  | x0y39z0  |           1 |               0 |              13.468 | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0] | u_pll/u_output/clk0_buf             |
+| src_2      | gclk_2     | PH1P_PHY_PLL_V2 | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1] | None       | N/A  | x0y39z0  |           1 |               0 |               2.693 | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1] | u_phy/u0_lane_lvds_8_1/I_serial_clk |
+| src_3      | gclk_3     | PH1P_PHY_PLL_V2 | u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]    | None       | N/A  | x43y79z0 |           1 |               0 |              29.630 | u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]    | u_pll/u_ref/clk0_buf                |
++------------+------------+-----------------+------------------------------------------------------------------------------+------------+------+----------+-------------+-----------------+---------------------+------------------------------------------------------------------------------+-------------------------------------+
+
+
+4. Local Clock Resource Stat.
++-----------+------+----------+------------+------+----------+-------------+-------------+--------------+-------+-----+
+| Local Idx | Type | Inst.Pin | Constraint | site | Location | Clock Loads | Total Loads | Clock Period | Clock | Net |
++-----------+------+----------+------------+------+----------+-------------+-------------+--------------+-------+-----+
+
+
+5. Clock Region Resource Stat.
++-------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+
+|                   |   Global Clock   | PH1_PHY_SCLK_V2  | PH1_PHY_LCLK_V2  | PH1_PHY_MLCLK_V2 | PH1_PHY_HP_MLCLK |  PH1_PHY_IOCLK   | PH1_PHY_HP_IOCLK |
++-------------------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+
+| Clock Region Name | Used   | Avail   | Used   | Avail   | Used   | Avail   | Used   | Avail   | Used   | Avail   | Used   | Avail   | Used   | Avail   |
++-------------------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+
+| X0Y0              |      4 |      12 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |
+| X1Y0              |      2 |      12 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |
+| X0Y1              |      3 |      12 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |
+| X1Y1              |      4 |      12 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |
++-------------------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+
+
+
+6. Track Utilization.
++----+----+----+
+|    | X0 | X1 |
++----+----+----+
+| Y1 |  3 |  4 |
+| Y0 |  4 |  2 |
++----+----+----+
+
+
+7. Global Clock gclk_0 Stat.
++------------+---------------+-----------------------------------------+-------------------+-------------+-------------+----------------+----------+-----------------+----------------------+
+| Global Idx | Type          | Driver.Pin                              | Driver Region (D) | Clock       | Period (ns) | Waveform (ns)  | Root (R) | Net             | FanoutGroup1         |
++------------+---------------+-----------------------------------------+-------------------+-------------+-------------+----------------+----------+-----------------+----------------------+
+| gclk_0     | PH1P_PHY_GCLK | I_sys_clk_dup_1_created_gclkinst.clkout | T                 | sys_clk_50m |      20.000 | {0.000 10.000} | N/A      | I_sys_clk_syn_3 | PH1P_PHY_LSLICE(502) |
++------------+---------------+-----------------------------------------+-------------------+-------------+-------------+----------------+----------+-----------------+----------------------+
++----+-----+-----+
+|    | X0  | X1  |
++----+-----+-----+
+| Y1 | 122 |  30 |
+| Y0 | 217 | 133 |
++----+-----+-----+
+
+
+8. Global Clock gclk_1 Stat.
++------------+---------------+-------------------------------------+-------------------+------------------------------------------------------------------------------+-------------+---------------+----------+-------+----------------------+
+| Global Idx | Type          | Driver.Pin                          | Driver Region (D) | Clock                                                                        | Period (ns) | Waveform (ns) | Root (R) | Net   | FanoutGroup1         |
++------------+---------------+-------------------------------------+-------------------+------------------------------------------------------------------------------+-------------+---------------+----------+-------+----------------------+
+| gclk_1     | PH1P_PHY_GCLK | u_pll/u_output/bufg_feedback.clkout | B                 | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0] |      13.468 | {0.000 6.734} | N/A      | pixel | PH1P_PHY_LSLICE(439) |
++------------+---------------+-------------------------------------+-------------------+------------------------------------------------------------------------------+-------------+---------------+----------+-------+----------------------+
++----+-----+----+
+|    | X0  | X1 |
++----+-----+----+
+| Y1 |  62 | 72 |
+| Y0 | 280 | 25 |
++----+-----+----+
+
+
+9. Global Clock gclk_2 Stat.
++------------+---------------+-------------------------------------------------------------+-------------------+------------------------------------------------------------------------------+-------------+---------------+----------+-------------------------------------------+---------------------+-----------------------+
+| Global Idx | Type          | Driver.Pin                                                  | Driver Region (D) | Clock                                                                        | Period (ns) | Waveform (ns) | Root (R) | Net                                       | FanoutGroup1        | FanoutGroup2          |
++------------+---------------+-------------------------------------------------------------+-------------------+------------------------------------------------------------------------------+-------------+---------------+----------+-------------------------------------------+---------------------+-----------------------+
+| gclk_2     | PH1P_PHY_GCLK | u_phy/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst.clkout | B                 | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1] |       2.693 | {0.000 1.346} | N/A      | u_phy/u0_lane_lvds_8_1/I_serial_clk_syn_1 | PH1P_PHY_LSLICE(27) | PH1P_PHY_HR_PAD_V2(8) |
++------------+---------------+-------------------------------------------------------------+-------------------+------------------------------------------------------------------------------+-------------+---------------+----------+-------------------------------------------+---------------------+-----------------------+
++----+----+----+
+|    | X0 | X1 |
++----+----+----+
+| Y1 |  2 | 33 |
+| Y0 |  0 |  0 |
++----+----+----+
+
+
+10. Global Clock gclk_3 Stat.
++------------+---------------+----------------------------------+-------------------+---------------------------------------------------------------------------+-------------+----------------+----------+--------------------------------------------------------------+--------------------+
+| Global Idx | Type          | Driver.Pin                       | Driver Region (D) | Clock                                                                     | Period (ns) | Waveform (ns)  | Root (R) | Net                                                          | FanoutGroup1       |
++------------+---------------+----------------------------------+-------------------+---------------------------------------------------------------------------+-------------+----------------+----------+--------------------------------------------------------------+--------------------+
+| gclk_3     | PH1P_PHY_GCLK | u_pll/u_ref/bufg_feedback.clkout | T                 | u_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0] |      29.630 | {0.000 14.815} | N/A      | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/refclk | PH1P_PHY_PLL_V2(1) |
++------------+---------------+----------------------------------+-------------------+---------------------------------------------------------------------------+-------------+----------------+----------+--------------------------------------------------------------+--------------------+
++----+----+----+
+|    | X0 | X1 |
++----+----+----+
+| Y1 |  0 |  0 |
+| Y0 |  1 |  0 |
++----+----+----+
+
+
+11. Region X0Y0
++----------+-------+------------------+------------+-------------+-------------+--------------------------------------------------------------------------+----------------------+
+| Idx      | Track | Type             | Constraint | Clock Loads | Total Loads | Net                                                                      | FanoutGroup1         |
++----------+-------+------------------+------------+-------------+-------------+--------------------------------------------------------------------------+----------------------+
+| gclk_0   | 2     | PH1P_PHY_GCLK    | None       |         217 |         217 | I_sys_clk_syn_3                                                          | PH1P_PHY_LSLICE(217) |
+| gclk_1   | 1     | PH1P_PHY_GCLK    | None       |         280 |         280 | pixel                                                                    | PH1P_PHY_LSLICE(280) |
+| gclk_3   | 0     | PH1P_PHY_GCLK    | None       |           1 |           1 | u_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/refclk             | PH1P_PHY_PLL_V2(1)   |
+|          |       |                  |            |             |             |                                                                          |                      |
+| local_0  | N/A   | PH1P_PHY_SCLK_V2 | None       |         280 |         280 | u_pll/u_output/bufg_feedback_auto_created_sclk_s_0_l_bk2_sclk_outnet     | PH1P_PHY_LSLICE(280) |
+| local_1  | N/A   | PH1P_PHY_SCLK_V2 | None       |         217 |         217 | I_sys_clk_dup_1_created_gclkinst_auto_created_sclk_s_0_l_bk3_sclk_outnet | PH1P_PHY_LSLICE(217) |
+| local_9  | N/A   | PH1P_PHY_HD_PAD  | None       |           1 |           1 | I_sys_clk_dup_1                                                          | PH1P_PHY_GCLK(1)     |
+| local_11 | N/A   | PH1P_PHY_PLL_V2  | None       |           1 |           1 | u_phy/u0_lane_lvds_8_1/I_serial_clk                                      | PH1P_PHY_GCLK(1)     |
+| local_12 | N/A   | PH1P_PHY_PLL_V2  | None       |           1 |           1 | u_pll/u_output/clk0_buf                                                  | PH1P_PHY_GCLK(1)     |
+| local_13 | N/A   | PH1P_PHY_PLL_V2  | None       |           1 |           1 | u_pll/u_ref/clk0_buf                                                     | PH1P_PHY_GCLK(1)     |
+| local_14 | 10    | PH1P_PHY_TIE     | None       |           1 |           1 | x0y19_clk_auto_gnd                                                       | PH1P_PHY_PLL_V2(1)   |
+| local_16 | N/A   | PH1P_PHY_SCLK_V2 | None       |           1 |           1 | u_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1_sclk_outnet        | PH1P_PHY_PLL_V2(1)   |
++----------+-------+------------------+------------+-------------+-------------+--------------------------------------------------------------------------+----------------------+
+
+
+12. Region X1Y0
++---------+-------+------------------+------------+-------------+-------------+--------------------------------------------------------------------------+----------------------+
+| Idx     | Track | Type             | Constraint | Clock Loads | Total Loads | Net                                                                      | FanoutGroup1         |
++---------+-------+------------------+------------+-------------+-------------+--------------------------------------------------------------------------+----------------------+
+| gclk_0  | 0     | PH1P_PHY_GCLK    | None       |         133 |         133 | I_sys_clk_syn_3                                                          | PH1P_PHY_LSLICE(133) |
+| gclk_1  | 1     | PH1P_PHY_GCLK    | None       |          25 |          25 | pixel                                                                    | PH1P_PHY_LSLICE(25)  |
+|         |       |                  |            |             |             |                                                                          |                      |
+| local_2 | N/A   | PH1P_PHY_SCLK_V2 | None       |         133 |         133 | I_sys_clk_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk1_sclk_outnet | PH1P_PHY_LSLICE(133) |
+| local_8 | N/A   | PH1P_PHY_SCLK_V2 | None       |          25 |          25 | u_pll/u_output/bufg_feedback_auto_created_sclk_s_0_r_bk2_sclk_outnet     | PH1P_PHY_LSLICE(25)  |
++---------+-------+------------------+------------+-------------+-------------+--------------------------------------------------------------------------+----------------------+
+
+
+13. Region X0Y1
++----------+-------+------------------+------------+-------------+-------------+----------------------------------------------------------------------------------------------+----------------------+
+| Idx      | Track | Type             | Constraint | Clock Loads | Total Loads | Net                                                                                          | FanoutGroup1         |
++----------+-------+------------------+------------+-------------+-------------+----------------------------------------------------------------------------------------------+----------------------+
+| gclk_0   | 0     | PH1P_PHY_GCLK    | None       |         122 |         122 | I_sys_clk_syn_3                                                                              | PH1P_PHY_LSLICE(122) |
+| gclk_1   | 1     | PH1P_PHY_GCLK    | None       |          62 |          62 | pixel                                                                                        | PH1P_PHY_LSLICE(62)  |
+| gclk_2   | 2     | PH1P_PHY_GCLK    | None       |           2 |           2 | u_phy/u0_lane_lvds_8_1/I_serial_clk_syn_1                                                    | PH1P_PHY_LSLICE(2)   |
+|          |       |                  |            |             |             |                                                                                              |                      |
+| local_3  | N/A   | PH1P_PHY_SCLK_V2 | None       |         122 |         122 | I_sys_clk_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1_sclk_outnet                     | PH1P_PHY_LSLICE(122) |
+| local_5  | N/A   | PH1P_PHY_SCLK_V2 | None       |          62 |          62 | u_pll/u_output/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet                         | PH1P_PHY_LSLICE(62)  |
+| local_10 | N/A   | PH1P_PHY_SCLK_V2 | None       |           2 |           2 | u_phy/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst_auto_created_sclk_s_1_l_bk3_sclk_outnet | PH1P_PHY_LSLICE(2)   |
++----------+-------+------------------+------------+-------------+-------------+----------------------------------------------------------------------------------------------+----------------------+
+
+
+14. Region X1Y1
++----------+-------+------------------+------------+-------------+-------------+----------------------------------------------------------------------------------------------+---------------------+-----------------------+
+| Idx      | Track | Type             | Constraint | Clock Loads | Total Loads | Net                                                                                          | FanoutGroup1        | FanoutGroup2          |
++----------+-------+------------------+------------+-------------+-------------+----------------------------------------------------------------------------------------------+---------------------+-----------------------+
+| gclk_0   | 2     | PH1P_PHY_GCLK    | None       |          30 |          30 | I_sys_clk_syn_3                                                                              | PH1P_PHY_LSLICE(30) |                       |
+| gclk_1   | 0     | PH1P_PHY_GCLK    | None       |          72 |          72 | pixel                                                                                        | PH1P_PHY_LSLICE(72) |                       |
+| gclk_2   | 1     | PH1P_PHY_GCLK    | None       |          33 |          33 | u_phy/u0_lane_lvds_8_1/I_serial_clk_syn_1                                                    | PH1P_PHY_LSLICE(25) | PH1P_PHY_HR_PAD_V2(8) |
+|          |       |                  |            |             |             |                                                                                              |                     |                       |
+| local_4  | N/A   | PH1P_PHY_SCLK_V2 | None       |          72 |          72 | u_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk1_sclk_outnet                         | PH1P_PHY_LSLICE(72) |                       |
+| local_6  | N/A   | PH1P_PHY_SCLK_V2 | None       |          33 |          33 | u_phy/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst_auto_created_sclk_s_1_r_bk2_sclk_outnet | PH1P_PHY_LSLICE(25) | PH1P_PHY_HR_PAD_V2(8) |
+| local_7  | N/A   | PH1P_PHY_SCLK_V2 | None       |          30 |          30 | I_sys_clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk3_sclk_outnet                     | PH1P_PHY_LSLICE(30) |                       |
+| local_9  | N/A   | PH1P_PHY_HD_PAD  | None       |           1 |           1 | I_sys_clk_dup_1                                                                              | PH1P_PHY_PLL_V2(1)  |                       |
+| local_15 | 11    | PH1P_PHY_TIE     | None       |           1 |           1 | x43y59_clk_auto_gnd                                                                          | PH1P_PHY_PLL_V2(1)  |                       |
++----------+-------+------------------+------------+-------------+-------------+----------------------------------------------------------------------------------------------+---------------------+-----------------------+
+
+
+
+-----------------------------------------------------------------------------------------------------
+----------------------------------------B. Clock Buffer Info.----------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+1.Clock Buffer Index.
++---------+------------------+-----------+--------+--------+----------------------------------------------------------------------------------+
+| Index   | Type             | Location  | Sector | Fanout | Buffer                                                                           |
++---------+------------------+-----------+--------+--------+----------------------------------------------------------------------------------+
+| gclk_1  | PH1P_PHY_GCLK    | x23y39z0  |      0 |      4 | u_pll/u_output/bufg_feedback                                                     |
+| gclk_2  | PH1P_PHY_GCLK    | x23y39z17 |      0 |      4 | I_sys_clk_dup_1_created_gclkinst                                                 |
+| gclk_3  | PH1P_PHY_GCLK    | x23y39z1  |      0 |      2 | u_phy/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst                             |
+| gclk_4  | PH1P_PHY_GCLK    | x23y39z16 |      0 |      1 | u_pll/u_ref/bufg_feedback                                                        |
+|         |                  |           |        |        |                                                                                  |
+| sclk_1  | PH1P_PHY_SCLK_V2 | x23y19z1  |      0 |    280 | u_pll/u_output/bufg_feedback_auto_created_sclk_s_0_l_bk2                         |
+| sclk_2  | PH1P_PHY_SCLK_V2 | x23y19z2  |      0 |    217 | I_sys_clk_dup_1_created_gclkinst_auto_created_sclk_s_0_l_bk3                     |
+| sclk_3  | PH1P_PHY_SCLK_V2 | x23y19z12 |      0 |    133 | I_sys_clk_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk1                     |
+| sclk_4  | PH1P_PHY_SCLK_V2 | x23y59z0  |      1 |    122 | I_sys_clk_dup_1_created_gclkinst_auto_created_sclk_s_1_l_bk1                     |
+| sclk_5  | PH1P_PHY_SCLK_V2 | x23y59z12 |      1 |     72 | u_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk1                         |
+| sclk_6  | PH1P_PHY_SCLK_V2 | x23y59z1  |      1 |     62 | u_pll/u_output/bufg_feedback_auto_created_sclk_s_1_l_bk2                         |
+| sclk_7  | PH1P_PHY_SCLK_V2 | x23y59z13 |      1 |     33 | u_phy/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst_auto_created_sclk_s_1_r_bk2 |
+| sclk_8  | PH1P_PHY_SCLK_V2 | x23y59z14 |      1 |     30 | I_sys_clk_dup_1_created_gclkinst_auto_created_sclk_s_1_r_bk3                     |
+| sclk_9  | PH1P_PHY_SCLK_V2 | x23y19z13 |      0 |     25 | u_pll/u_output/bufg_feedback_auto_created_sclk_s_0_r_bk2                         |
+| sclk_10 | PH1P_PHY_SCLK_V2 | x23y59z2  |      1 |      2 | u_phy/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst_auto_created_sclk_s_1_l_bk3 |
+| sclk_11 | PH1P_PHY_SCLK_V2 | x23y19z0  |      0 |      1 | u_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1                            |
++---------+------------------+-----------+--------+--------+----------------------------------------------------------------------------------+
+
+2.Clock Buffer Driver Stat.
++---------+-----------+------+-------------------------+----------------+------------+
+| Index   | Location  | Site | DriverType.Pin          | DriverLocation | DriverSite |
++---------+-----------+------+-------------------------+----------------+------------+
+| gclk_1  | x23y39z0  | B    | PH1P_PHY_PLL_V2.clkc[0] | x0y39z0        | S0 L       |
+| gclk_2  | x23y39z17 | T    | PH1P_PHY_HD_PAD.di      | x33y78z0       | S1 R       |
+| gclk_3  | x23y39z1  | B    | PH1P_PHY_PLL_V2.clkc[1] | x0y39z0        | S0 L       |
+| gclk_4  | x23y39z16 | T    | PH1P_PHY_PLL_V2.clkc[0] | x43y79z0       | S1 R       |
+|         |           |      |                         |                |            |
+| sclk_1  | x23y19z1  | S0 L | PH1P_PHY_GCLK.clkout    | x23y39z0       | S0 L       |
+| sclk_2  | x23y19z2  | S0 L | PH1P_PHY_GCLK.clkout    | x23y39z17      | S0 L       |
+| sclk_3  | x23y19z12 | S0 R | PH1P_PHY_GCLK.clkout    | x23y39z17      | S0 L       |
+| sclk_4  | x23y59z0  | S1 L | PH1P_PHY_GCLK.clkout    | x23y39z17      | S0 L       |
+| sclk_5  | x23y59z12 | S1 R | PH1P_PHY_GCLK.clkout    | x23y39z0       | S0 L       |
+| sclk_6  | x23y59z1  | S1 L | PH1P_PHY_GCLK.clkout    | x23y39z0       | S0 L       |
+| sclk_7  | x23y59z13 | S1 R | PH1P_PHY_GCLK.clkout    | x23y39z1       | S0 L       |
+| sclk_8  | x23y59z14 | S1 R | PH1P_PHY_GCLK.clkout    | x23y39z17      | S0 L       |
+| sclk_9  | x23y19z13 | S0 R | PH1P_PHY_GCLK.clkout    | x23y39z0       | S0 L       |
+| sclk_10 | x23y59z2  | S1 L | PH1P_PHY_GCLK.clkout    | x23y39z1       | S0 L       |
+| sclk_11 | x23y19z0  | S0 L | PH1P_PHY_GCLK.clkout    | x23y39z16      | S0 L       |
++---------+-----------+------+-------------------------+----------------+------------+
+
+3.Clock Buffer Fanout Stat.
++---------+----------------------+-----------------------+
+| Index   | FanoutGroup1         | FanoutGroup2          |
++---------+----------------------+-----------------------+
+| gclk_1  | PH1P_PHY_SCLK_V2(4)  |                       |
+| gclk_2  | PH1P_PHY_SCLK_V2(4)  |                       |
+| gclk_3  | PH1P_PHY_SCLK_V2(2)  |                       |
+| gclk_4  | PH1P_PHY_SCLK_V2(1)  |                       |
+|         |                      |                       |
+| sclk_1  | PH1P_PHY_LSLICE(280) |                       |
+| sclk_2  | PH1P_PHY_LSLICE(217) |                       |
+| sclk_3  | PH1P_PHY_LSLICE(133) |                       |
+| sclk_4  | PH1P_PHY_LSLICE(122) |                       |
+| sclk_5  | PH1P_PHY_LSLICE(72)  |                       |
+| sclk_6  | PH1P_PHY_LSLICE(62)  |                       |
+| sclk_7  | PH1P_PHY_LSLICE(25)  | PH1P_PHY_HR_PAD_V2(8) |
+| sclk_8  | PH1P_PHY_LSLICE(30)  |                       |
+| sclk_9  | PH1P_PHY_LSLICE(25)  |                       |
+| sclk_10 | PH1P_PHY_LSLICE(2)   |                       |
+| sclk_11 | PH1P_PHY_PLL_V2(1)   |                       |
++---------+----------------------+-----------------------+
+
+
+-------------------------------------------------------------------------------------------
+----------------------------------------C. IP Stat.----------------------------------------
+-------------------------------------------------------------------------------------------
+
+1.IP List.
++-------+------+----------+------+----------+
+| Index | Bank | Location | Side | Instance |
++-------+------+----------+------+----------+
+
+2.IP Clock Topo Stat.
++--------+--------+-------+----+--------+--------+---------+
+| Driver | Buffer | Inpin | IP | Outpin | Buffer | Fanouts |
++--------+--------+-------+----+--------+--------+---------+

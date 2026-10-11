@@ -1,0 +1,92 @@
+{
+  "build_freeze": "native_f_probe_r4_20261011",
+  "simulation_freeze": "native_f_probe_r2_20261011",
+  "byte_identical_production_and_test_inputs": [
+    {
+      "path": "diagnostics/hdmi_positive/clock_probe_top.v",
+      "sha256": "d137714c12a932534178c0bc95aad50e51ceba6052a6715a704398578ad5c9c6",
+      "bytes": 3712
+    },
+    {
+      "path": "diagnostics/hdmi_positive/dvi_encoder.v",
+      "sha256": "3de52f1b96c9cd7e4e476c5d9358b35bffe46ed3c5529cbc4be8f3e3a0e50ae2",
+      "bytes": 1576
+    },
+    {
+      "path": "user_source/hdl_source/native_hdmi_pll.v",
+      "sha256": "bd4c8e6fad7c9e2e78af3b4c71979664de267d7e947d3fb38139f95d245fe951",
+      "bytes": 4196
+    },
+    {
+      "path": "user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v",
+      "sha256": "2f6f2560129b950c9f5a36136f128a9304ff858bf1bae0f2129ea0145d941a1e",
+      "bytes": 12535
+    },
+    {
+      "path": "user_source/hdl_source/hdmi_phy_warpper.v",
+      "sha256": "416b082b0987001bdbc0a7e20a557cb8fb1dca34e25dc881e6d28a8cb3cf4300",
+      "bytes": 4017
+    },
+    {
+      "path": "user_source/hdl_source/lane_lvds_10_1.v",
+      "sha256": "de9529321354f04837e051d0ec1681cf44783d4be3284703a788e081147500bc",
+      "bytes": 4421
+    },
+    {
+      "path": "diagnostics/hdmi_positive/clock_probe_measure.v",
+      "sha256": "2dc2f1550219228640414bea868717ac8d9e2c4576119f1f467a51eae418b0d5",
+      "bytes": 2503
+    },
+    {
+      "path": "diagnostics/hdmi_positive/clock_probe_osd.v",
+      "sha256": "b58045d90e3262d211e792ffa6a171d84bb95184aab8a5327538d31d4a92d7f8",
+      "bytes": 3571
+    },
+    {
+      "path": "user_source/hdl_source/status_cdc.v",
+      "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151",
+      "bytes": 834
+    },
+    {
+      "path": "sim/tb_clock_probe_pins.v",
+      "sha256": "b213dd33057323ac6ed9915f69623acd3f5e74c5887934370ad8c8b402d9de2f",
+      "bytes": 6927
+    },
+    {
+      "path": "sim/tb_clock_probe_units.v",
+      "sha256": "adf5ab6beaa4187553c53f78489932d0d4d3853bc16cc018586f0ae634b1f0de",
+      "bytes": 5323
+    },
+    {
+      "path": "sim/clock_probe_reference.json",
+      "sha256": "c7343821608cf2732e350836fbf34afa69e45a85261e828eca6130ff793187d1",
+      "bytes": 1976
+    },
+    {
+      "path": "sim/clock_probe_reference.vh",
+      "sha256": "2940f0fbda89fb8f7a96ca5950003637bd405fd311d61fe13d8c1917d4eb7ac7",
+      "bytes": 1454
+    },
+    {
+      "path": "sim/clock_probe_font.mem",
+      "sha256": "0d7d4adcc83aae122664290ed2e40312ea73ed9435ec78351dc258408f33b11f",
+      "bytes": 3584
+    },
+    {
+      "path": "sim/hdmi_decode.vh",
+      "sha256": "70953d0ed0a6bcad4e11f0b919fe6cb807fc01b52394e6147e96e7cab0b6d626",
+      "bytes": 1170
+    },
+    {
+      "path": "sim/hdmi_ideal_pll.v",
+      "sha256": "9111a6d5b891fd08f6b65cc41d85732873631bb7ac3fc3ae3a5dbb1101054184",
+      "bytes": 756
+    },
+    {
+      "path": "sim/run_clock_probe.ps1",
+      "sha256": "ffd3745e80680c5ede14a61cdd69594d1e6cce6dbf5a4838fa27c21ba3057587",
+      "bytes": 2794
+    }
+  ],
+  "differences": "Only build-generator/SDC/AL; r4 removes crossing hold exemptions and limits lock cut to hard-lock source pins. No RTL/test/reference changes after r2 freeze."
+}

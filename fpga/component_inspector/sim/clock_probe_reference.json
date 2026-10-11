@@ -1,0 +1,82 @@
+{
+  "window_ref_cycles": 50000000,
+  "reference_frequency_assumption_hz": 50000000,
+  "target_counts_per_second": {
+    "720": {
+      "P": 74250000,
+      "H": 45000,
+      "V": 60
+    },
+    "FHD": {
+      "P": 74250000,
+      "H": 33750,
+      "V": 30
+    }
+  },
+  "frame_event_window_boundary_tolerance": 1,
+  "ui": {
+    "panel": [
+      16,
+      656,
+      16,
+      112
+    ],
+    "text_origin": [
+      32,
+      32
+    ],
+    "cell": [
+      16,
+      16
+    ],
+    "font": {
+      "0": "3c42464a52623c",
+      "1": "1838181818183c",
+      "2": "3c42020408107e",
+      "3": "3c42021c02423c",
+      "4": "040c14247e0404",
+      "5": "7e407c0202423c",
+      "6": "1c20407c42423c",
+      "7": "7e020408101010",
+      "8": "3c42423c42423c",
+      "9": "3c42423e020438",
+      "A": "1824427e424242",
+      "B": "7c42427c42427c",
+      "C": "3c42404040423c",
+      "D": "78444242424478",
+      "E": "7e40407c40407e",
+      "F": "7e40407c404040",
+      "H": "4242427e424242",
+      "I": "3c18181818183c",
+      "K": "42444870484442",
+      "L": "4040404040407e",
+      "M": "42665a5a424242",
+      "N": "4262524a464242",
+      "O": "3c42424242423c",
+      "P": "7c42427c404040",
+      "R": "7c42427c484442",
+      "S": "3c42403c02423c",
+      "V": "42424242242418",
+      "W": "4242425a5a6642",
+      "X": "42422418244242",
+      "/": "02020408102040"
+    },
+    "rows": [
+      "F CLOCK PROBE VALID {HD_VALID}{FHD_VALID}",
+      "720 P{HP:08X} H{HH:08X} V{HV:08X}",
+      "FHD P{FP:08X} H{FH:08X} V{FV:08X}",
+      "50M REF / 1S WINDOW HEX"
+    ]
+  },
+  "unit_window": 1000,
+  "unit_pixel_period_ns": 13.468013468,
+  "unit_count_tolerance": {
+    "P": 4,
+    "H": 1,
+    "V": 1
+  },
+  "limitations": [
+    "Internal pixel/raster counts, not camera measurement or serial-pin analog metrology",
+    "Pin simulation uses ideal common5:1 PLL and vendor ODDR; real PLL full-frame not run"
+  ]
+}

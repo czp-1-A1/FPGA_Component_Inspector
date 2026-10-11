@@ -1,0 +1,18 @@
+{
+  "counter_gray_windows_wrap_clock_stop_lock_reset": "PASS_FROZEN_R2_1000_CYCLE_UNIT_WINDOW",
+  "mailbox_atomic_dest_stop_resume": "PASS_FROZEN_R2",
+  "osd_complete_720_and_fhd_rasters": "PASS_3712500_SAMPLES_NONZERO_HEX_FIELDS_AND_EQUAL_DELAY",
+  "serialized_pins": "PASS_ALL_RGB_INITIAL_ZERO_OSD_SYNC_COUNTS_AND_TWO_SWITCHES_IDEAL_PLL_VENDOR_ODDR",
+  "serialized_dynamic_one_second_fields": "NOT_RUN_ENDS_BEFORE_HARDWARE_WINDOW",
+  "full_real_pll_frame_switch_simulation": "NOT_RUN",
+  "actual_board_clock_serial_frequency_jitter": "NOT_RUN",
+  "physical_hdmi_acceptance": "NOT_RUN",
+  "physical_camera_ddr": "NOT_RUN",
+  "prior_camera_test_suite": "NOT_RERUN_UNCHANGED_PRODUCTION",
+  "early_rounds": {
+    "r1": "FAIL_TEST_REFERENCE_HEX_CASE_RETAINED",
+    "r2": "SIM_PASS_TD_INTERNAL_PASS_CONSTRAINT_AUDIT_REJECTED_HOLD_SCOPE",
+    "r3": "TD_INTERNAL_PASS_LOCK_CUT_SCOPE_REFINED_IN_R4",
+    "r4": "FINAL_INTERNAL_STA_AND_CONSTRAINT_AUDIT_PASS_EXTERNAL_BUDGETS_OPEN"
+  }
+}

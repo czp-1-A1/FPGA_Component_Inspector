@@ -1,0 +1,94 @@
+{
+  "status": "INTERNAL_STA_PASS_EXTERNAL_BUDGETS_OPEN",
+  "setup_tns_ns": 0,
+  "hold_tns_ns": 0,
+  "violating_endpoints": 0,
+  "normal_crossing_hold_checks": true,
+  "blanket_clock_group_cut": false,
+  "valid_max_delay_constraints": [
+    {
+      "paths": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "command": "set_max_delay -datapath_only 2.0 -from [get_regs {mode_s0}] -to [get_regs {mode_s1}]"
+    },
+    {
+      "paths": 163,
+      "dominated": 163,
+      "shadowed": 0,
+      "ignored": 0,
+      "command": "set_max_delay -datapath_only 12.0 -from [get_regs {u_count.p_gray* u_count.h_gray* u_count.v_gray*}] -to [get_regs {u_measure.p_s0* u_measure.h_s0* u_measure.v_s0*}]"
+    },
+    {
+      "paths": 98,
+      "dominated": 98,
+      "shadowed": 0,
+      "ignored": 0,
+      "command": "set_max_delay -datapath_only 2.0 -from [get_regs {u_measure.*_s0*}] -to [get_regs {u_measure.*_s1*}]"
+    },
+    {
+      "paths": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "command": "set_max_delay -datapath_only 8.0 -from [get_regs {frame_mode}] -to [get_regs {u_measure.mode_s0}]"
+    },
+    {
+      "paths": 778,
+      "dominated": 778,
+      "shadowed": 0,
+      "ignored": 0,
+      "command": "set_max_delay -datapath_only 8.0 -from [get_regs {u_status.payload* u_status.req u_status.ack}] -to [get_regs {u_status.D_data* u_status.req_sync[0] u_status.ack_sync[0]}]"
+    },
+    {
+      "paths": 2,
+      "dominated": 2,
+      "shadowed": 0,
+      "ignored": 0,
+      "command": "set_max_delay -datapath_only 2.0 -from [get_regs {u_status.req_sync[0] u_status.ack_sync[0]}] -to [get_regs {u_status.req_sync[1] u_status.ack_sync[1]}]"
+    }
+  ],
+  "packed_cell_aliases": "Constraints also match some intra-domain packed flops. All max budgets are below clock periods and tighten setup; all hold checks retained in r4.",
+  "related_pixel_to_serial_paths": {
+    "max": 59,
+    "min": 59
+  },
+  "target_clocks_mhz": {
+    "reference": 50,
+    "intermediate": 33.75,
+    "pixel": 74.25,
+    "serial": 371.25
+  },
+  "displayed_sta_serial_mhz": 371.333,
+  "displayed_precision_note": "Rounded2.693ns inverse, not hardware frequency measurement",
+  "warnings": [
+    {
+      "code": "PHY-5016",
+      "text": "PHY-5016 WARNING: PLL clkc is driving an IO without location.",
+      "status": "OPEN_BOARD_PLL_PHY_AUDIT"
+    },
+    {
+      "code": "PHY-5016",
+      "text": "PHY-5016 WARNING: PLL clkc is not driving a clock-capable IO.",
+      "status": "OPEN_BOARD_PLL_PHY_AUDIT"
+    },
+    {
+      "code": "PHY-5016",
+      "text": "PHY-5016 WARNING: PLL clkc is driving an IO without location.",
+      "status": "OPEN_BOARD_PLL_PHY_AUDIT"
+    }
+  ],
+  "async_inputs_without_delays": [
+    "I_rst_n",
+    "I_mode_select"
+  ],
+  "output_budgets_open": [
+    "O_tmds_ch0_p",
+    "O_tmds_ch1_p",
+    "O_tmds_ch2_p",
+    "O_tmds_clk_p"
+  ],
+  "invalid_dummy_no_clock_ignored_or_no_path": 0,
+  "physical_frequency_jitter_tmds": "NOT_RUN"
+}

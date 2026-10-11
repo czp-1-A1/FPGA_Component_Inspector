@@ -1,0 +1,46 @@
+{
+  "bit": "F_720p60_1080p30_probe.bit",
+  "sha256": "6449cf3b67e9c9c04bc32b1b367dc7b36d79c33c98ae6f5a499e78d71ec64541",
+  "bytes": 1789490,
+  "desktop_bit": "C:/Users/Li47/Desktop/SC500_HDMI_F_PROBE_20261011/F_720p60_1080p30_probe.bit",
+  "desktop_al": "C:/Users/Li47/Desktop/SC500_HDMI_F_PROBE_20261011/td_project/clock_probe.al",
+  "build_freeze": "native_f_probe_r4_20261011",
+  "simulation_freeze": "native_f_probe_r2_20261011",
+  "physical_acceptance": "NOT_RUN",
+  "all_paths_timing_accepted": false,
+  "setup_tns_ns": 0,
+  "hold_tns_ns": 0,
+  "violating_endpoints": 0,
+  "sta_coverage_percent": 99.95,
+  "resources": {
+    "slice": {
+      "used": 1212,
+      "capacity": 21216
+    },
+    "eram": {
+      "used": 0,
+      "capacity": 108
+    },
+    "dsp": {
+      "used": 0,
+      "capacity": 40
+    },
+    "pll": {
+      "used": 2,
+      "capacity": 6
+    },
+    "gclk": {
+      "used": 4,
+      "capacity": 32
+    }
+  },
+  "frozen_inputs": 21,
+  "vendor_models": 9,
+  "byte_identical_simulation_inputs": 17,
+  "portable_al_references": 11,
+  "simulated_complete_hd_frames": 4,
+  "simulated_complete_fhd_frames": 2,
+  "simulated_transitions": 2,
+  "setup_wns_ns": 0.16,
+  "hold_wns_ns": 0.026
+}
