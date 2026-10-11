@@ -1,0 +1,149 @@
+{
+  "bytes": 256,
+  "sha256": "9ab76e3d63361f947c654318459ed6418c73be47cd7ebe39d7ecb20cd4f55a57",
+  "version": "1.3",
+  "extension_count": 1,
+  "block_checksums": [
+    0,
+    0
+  ],
+  "model": "Q24G51F",
+  "range_limits": [
+    {
+      "min_v_hz": 48,
+      "max_v_hz": 144,
+      "min_h_khz": 30,
+      "max_h_khz": 230,
+      "max_pixel_mhz": 600,
+      "formula_flag": 0
+    }
+  ],
+  "detailed_timings": [
+    {
+      "location": "base:54",
+      "pixel_hz": 241700000,
+      "width": 2560,
+      "height": 1440,
+      "h_total": 2720,
+      "v_total": 1481,
+      "h_front_porch": 48,
+      "h_sync_width": 32,
+      "v_front_porch": 3,
+      "v_sync_width": 5,
+      "interlaced": false,
+      "raster_rate_hz": 60.0001985939548
+    },
+    {
+      "location": "CTA1:66",
+      "pixel_hz": 573810000,
+      "width": 2560,
+      "height": 1440,
+      "h_total": 2720,
+      "v_total": 1465,
+      "h_front_porch": 48,
+      "h_sync_width": 32,
+      "v_front_porch": 3,
+      "v_sync_width": 5,
+      "interlaced": false,
+      "raster_rate_hz": 143.99969885565147
+    },
+    {
+      "location": "CTA1:84",
+      "pixel_hz": 497760000,
+      "width": 2560,
+      "height": 1440,
+      "h_total": 2720,
+      "v_total": 1525,
+      "h_front_porch": 48,
+      "h_sync_width": 32,
+      "v_front_porch": 3,
+      "v_sync_width": 5,
+      "interlaced": false,
+      "raster_rate_hz": 120.0
+    },
+    {
+      "location": "CTA1:102",
+      "pixel_hz": 410720000,
+      "width": 2560,
+      "height": 1440,
+      "h_total": 2720,
+      "v_total": 1510,
+      "h_front_porch": 48,
+      "h_sync_width": 32,
+      "v_front_porch": 3,
+      "v_sync_width": 5,
+      "interlaced": false,
+      "raster_rate_hz": 100.0
+    }
+  ],
+  "cta_extensions": [
+    {
+      "index": 1,
+      "revision": 3,
+      "video_vics": [
+        16,
+        31,
+        5,
+        20,
+        4,
+        19,
+        3,
+        18,
+        2,
+        17,
+        1,
+        63
+      ],
+      "data_blocks": [
+        {
+          "offset": 4,
+          "tag": 2,
+          "size": 12
+        },
+        {
+          "offset": 17,
+          "tag": 1,
+          "size": 3
+        },
+        {
+          "offset": 21,
+          "tag": 4,
+          "size": 3
+        },
+        {
+          "offset": 25,
+          "tag": 3,
+          "size": 7
+        },
+        {
+          "offset": 33,
+          "tag": 3,
+          "size": 7
+        },
+        {
+          "offset": 41,
+          "tag": 7,
+          "size": 3
+        },
+        {
+          "offset": 45,
+          "tag": 7,
+          "size": 6
+        },
+        {
+          "offset": 52,
+          "tag": 3,
+          "size": 13
+        }
+      ],
+      "extended_video_vics": []
+    }
+  ],
+  "unparsed_extension_tags": [],
+  "advertised_1080p30_vic34": false,
+  "advertised_1080p60_vic16": true,
+  "advertised_720p60_vic4": true,
+  "detailed_1080p30": [],
+  "limit": "Declared base DTD/CTA VDB/Y420VDB only; EDID does not prove all custom timings, transport waveform or hardware acceptance.",
+  "decoder_sha256": "e37fce85ca7878711ca4e16f5b387b46e568d60fdf015dde2b6303c3b8279498"
+}

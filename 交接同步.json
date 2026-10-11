@@ -1,12 +1,12 @@
 {
   "date": "2026-10-11",
-  "status": "native_1080p30_stage2_failed_hdmi_under_diagnosis",
+  "status": "native_1080p30_stage2_physical_fail_monitor_target_choice_pending",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
   "branch": "lj4747-native-1080p30-stage2",
   "implementation_commit": "f22e83306cbf1bd39a04835e03b24ef1925393ef",
   "base_commit": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "verified_remote_head": "22153fca5b13743f9e5b5ae2537b79bfe4217121",
-  "pushed": true,
+  "pushed": false,
   "checkout": "Use latest origin/lj4747-native-1080p30-stage2 for this delivery. The original personal branch is retained and its remote remains3be3967.",
   "handoff_document": "交接说明.md",
   "validation_record": "开发实施/验收记录/20261008_原像素1080p30_轮次2.md",
@@ -29,7 +29,7 @@
   "classification_enabled": false,
   "enable_edge": 0,
   "physical_acceptance": "FAILED_HDMI_INPUT_UNSUPPORTED",
-  "latest_debug_record": "开发实施/验收记录/20261011_1080p30_E实物往返_轮次7.md",
+  "latest_debug_record": "开发实施/验收记录/20261011_1080p30_AOC能力核对_轮次8.md",
   "human_board_actions_performed": true,
   "user_confirmed_direct_supplied_bit": true,
   "user_confirmed_old_code_displays": true,
@@ -43,7 +43,7 @@
     "Stage3 FHD EDGE/composite/four-mode integration and final timed/cold-start/field-of-view acceptance"
   ],
   "writer_stops_after_handoff_save": true,
-  "next_step": "Connect target AOC to PC and select external AOC in Advanced Display; report available30Hz/active signal/display result, or internal-display-only. User screenshot selects internal display1920x1080/60Hz, not target AOC. Keep30fps objective.",
+  "next_step": "Await user scope decision: keep capture/HDMI1080p30 and use verified30Hz display, or authorize feasibility evaluation of capture1080p30/HDMI1080p60. No changed target or new bit before decision;60Hz output requires serializer/clock/STA/DDR replay feasibility audit.",
   "processes": [
     {
       "ProcessName": "td",
@@ -65,7 +65,7 @@
     "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
     "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
   },
-  "note": "E volatile physical1080FAIL,720 colorbars recover in one bit. Earlier claimed30Hz success source clarified as FPGA old Flash, format/identity unknown; independent30Hz support unverified. Exact AOC Q24G51F official V48-144Hz. No newRTL/bit/sim/TD.",
+  "note": "E1080p30 physicalFAIL with720 recovery; active target Q24G51F HDMI EDID V48-144Hz, advertisesVIC16/4 not34. External screenshot desktop1080p60 but active1440p60. Monitor30Hz compatibility is leading inference, not exclusion of all board issues; all hardware gates remain unpassed.",
   "development_branch": "lj4747-contest-work",
   "verified_development_remote_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "upload_record": "开发实施/验收记录/20261008_1080p30分支上传_轮次1.md",
@@ -74,7 +74,9 @@
     "Desktop SC500_1080p30_TD.lnk",
     "Assembled standalone TD download directories; regenerate with committed script",
     "User TD/bw/hwserver processes",
-    "Untracked user Example/01_MIPI采集与HDMI显示/lab_hd_1_mipi_hdmi/ (not committed or uploaded)"
+    "Untracked user Example/01_MIPI采集与HDMI显示/lab_hd_1_mipi_hdmi/ (not committed or uploaded)",
+    "native_monitor_edid_20261011 raw EDID",
+    "native_monitor_edid_recheck_20261011 raw EDID"
   ],
   "hdmi_diagnostic": {
     "release": "fpga/component_inspector/release/native_1080p30/hdmi_tpg_diagnostic_20261008",
@@ -114,7 +116,7 @@
       "monitor_reported_mode": "1280x720p60"
     }
   ],
-  "user_confirmed_actual_1080p30_display_on_other_device": true,
+  "user_confirmed_actual_1080p30_display_on_other_device": null,
   "monitor_model": "AOC Q24G51F",
   "positive_diagnostic_commit": "7d7598576db0d18f3a324f437ef3a5da4366a6e5",
   "sync_aligned_diagnostic": {
@@ -297,7 +299,7 @@
     "interpretation": "30Hz lies outside listed vertical scan range; compatibility hypothesis, not direct EDID or independent30Hz input acceptance proof",
     "wrong_model_excluded": "24G51F without Q",
     "manual": "NOT_RETRIEVED",
-    "target_edid": "UNAVAILABLE_HOST_ONLY_CSW150F"
+    "target_edid": "CAPTURED_ACTIVE_HDMI_Q24G51F_SHA9ab76e3d"
   },
   "pc_signal_test": {
     "date": "2026-10-11",
@@ -313,5 +315,61 @@
     "conclusion": "Internal notebook display only; neither target AOC60Hz nor AOC30Hz capability established by this image",
     "user_text": "只有60hz的，可以用"
   },
-  "e_physical_record_commit": "22153fca5b13743f9e5b5ae2537b79bfe4217121"
+  "e_physical_record_commit": "22153fca5b13743f9e5b5ae2537b79bfe4217121",
+  "pc_external_signal_test": {
+    "date": "2026-10-11",
+    "source": "USER_ATTACHMENT",
+    "image": "开发实施/验收记录/20261011_1080p30_AOC能力核对_轮次8/pc_external_aoc_60hz.png",
+    "sha256": "76d80255968fc8f9f1f38dad327eaaf8bd39f2324a0f9bf0102999f034dc97fc",
+    "selected_display": "Q24G51F",
+    "adapter": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "desktop_mode": "1920x1080,60Hz",
+    "active_signal_mode": "2560x1440,60Hz",
+    "listed_refresh_hz": [
+      144,
+      120,
+      119.88,
+      100,
+      75.03,
+      72.19,
+      70.07,
+      60,
+      59.94,
+      56.25,
+      50
+    ],
+    "user_text": "外接AOC没有30Hz选项",
+    "limit": "GPU scaled desktop1920x1080 to active2560x1440; this image does not establish an actual1080p60 or1080p30 link."
+  },
+  "monitor_edid_audit": {
+    "date": "2026-10-11",
+    "model": "Q24G51F",
+    "active": true,
+    "connection": "HDMI_WMI_TECHNOLOGY_5",
+    "bytes": 256,
+    "sha256": "9ab76e3d63361f947c654318459ed6418c73be47cd7ebe39d7ecb20cd4f55a57",
+    "repeat_capture": "IDENTICAL",
+    "checksums": [
+      0,
+      0
+    ],
+    "vertical_range_hz": [
+      48,
+      144
+    ],
+    "horizontal_range_khz": [
+      30,
+      230
+    ],
+    "vic34_advertised": false,
+    "vic16_advertised": true,
+    "vic4_advertised": true,
+    "detailed_1080p30": false,
+    "wmi_source_modes": 23,
+    "fixed_field_crosscheck": "PASS",
+    "record": "开发实施/验收记录/20261011_1080p30_AOC能力核对_轮次8.md",
+    "raw_edid_uploaded": false,
+    "limit": "Declared modes only; no measured FPGA frequency or proof of every custom timing acceptance."
+  },
+  "target_scope_decision": "PENDING_USER_REPLY"
 }

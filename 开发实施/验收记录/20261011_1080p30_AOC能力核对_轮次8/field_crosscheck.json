@@ -1,0 +1,32 @@
+{
+  "status": "PASS_FIXED_FIELDS_AND_ASSOCIATION",
+  "repeated_capture_identical": true,
+  "raw_edid_sha256": "9ab76e3d63361f947c654318459ed6418c73be47cd7ebe39d7ecb20cd4f55a57",
+  "checksums": [
+    0,
+    0
+  ],
+  "active_hdmi_technology": 5,
+  "range_descriptor_offset": 108,
+  "range_descriptor_hex": "000000fd0030901ee63c000a202020202020",
+  "cta_vdb_offset": 132,
+  "cta_vdb_hex": "4c101f0514041303120211013f",
+  "video_vics": [
+    16,
+    31,
+    5,
+    20,
+    4,
+    19,
+    3,
+    18,
+    2,
+    17,
+    1,
+    63
+  ],
+  "wmi_source_modes": 23,
+  "wmi_fhd_source_refresh_hz": 60,
+  "limit": "WMI source-mode enumeration is partial and may synthesize timings. Neither WMI nor EDID is a measurement of FPGA output or proof of all custom-mode acceptance.",
+  "reference_sha256": "204060dfde55162630c120bb6f0b4c14fcca423b0f0708745413bacb06d041ed"
+}
