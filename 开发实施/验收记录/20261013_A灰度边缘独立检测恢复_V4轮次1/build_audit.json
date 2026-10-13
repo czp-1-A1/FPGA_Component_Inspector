@@ -1,0 +1,69 @@
+{
+  "status": "PASS_routed_build_tests_pending",
+  "onsite": "PENDING",
+  "changed_inputs": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "td_project/camera_to_dsi_display.sdc",
+    "user_source/hdl_source/roi_mode_classifier.v"
+  ],
+  "unchanged_inputs": 206,
+  "timing": {
+    "setup_wns_ns": 0.787,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.6
+  },
+  "resources": {
+    "slice": {
+      "used": 12226,
+      "total": 21216,
+      "percent": 57.63
+    },
+    "eram": {
+      "used": 48,
+      "total": 108,
+      "percent": 44.44
+    },
+    "dsp": {
+      "used": 8,
+      "total": 40,
+      "percent": 20.0
+    }
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 10
+  },
+  "warning_deltas": {
+    "syn_1": {
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "max_delays_declared": 31,
+  "max_delays_matched": 31,
+  "max_delays_ignored": 0,
+  "sdc_active_budgets_unchanged": true,
+  "inactive_constraints_removed": [
+    "set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/payload*}] -to [get_regs {*crossing/D_data*}]",
+    "set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/req}] -to [get_regs {*crossing/req_sync[0]}]",
+    "set_max_delay -datapath_only 8.0 -from [get_regs {*crossing/ack}] -to [get_regs {*crossing/ack_sync[0]}]",
+    "set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/payload*}] -to [get_regs {u_active_frame_display/D_data*}]",
+    "set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/req}] -to [get_regs {u_active_frame_display/req_sync[0]}]",
+    "set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}] -to [get_regs {u_active_frame_display/ack_sync[0]}]"
+  ],
+  "explicit_max_delays": 29,
+  "vendor_fifo_max_delays": 2,
+  "variant": "FIXED_DIRECT_V4_GRAY_EDGE_INDEPENDENT_NO_FUSION",
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "40348043fd499e9eedfed62ba9fe3fb30114742998ee521d28be44dd4b95ec3b"
+  }
+}

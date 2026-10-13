@@ -1,0 +1,28 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 12:55:33 on Oct 13,2026
+vlog -work test_presence_modes ../user_source/hdl_source/roi_mode_classifier.v ../user_source/hdl_source/roi_tape_guard.v ../user_source/hdl_source/roi_classifier.v ../user_source/hdl_source/roi_result_snapshot.v ../user_source/hdl_source/roi_display_state.v ../user_source/hdl_source/status_cdc.v 
+-- Compiling module roi_mode_classifier
+-- Compiling module roi_tape_guard
+-- Compiling module roi_classifier
+-- Compiling module roi_result_snapshot
+-- Compiling module roi_display_state
+-- Compiling module status_cdc
+
+Top level modules:
+	roi_mode_classifier
+	roi_tape_guard
+	roi_classifier
+	roi_result_snapshot
+	roi_display_state
+	status_cdc
+End time: 12:55:33 on Oct 13,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 12:55:33 on Oct 13,2026
+vlog -sv -work test_presence_modes tb_presence_modes.v 
+-- Compiling module tb_presence_modes
+
+Top level modules:
+	tb_presence_modes
+End time: 12:55:33 on Oct 13,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

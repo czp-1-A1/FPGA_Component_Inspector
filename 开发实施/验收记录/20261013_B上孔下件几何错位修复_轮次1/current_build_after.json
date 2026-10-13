@@ -1,0 +1,28 @@
+{
+  "purpose": "3528_AUTO4_upper_hole_geometry_v3",
+  "td_version": "6.2.168116",
+  "base_head": "37d0f9d0473cb4f77660ab5eebd1a7f8f1fe8670",
+  "source_commit": null,
+  "source_snapshot": "开发实施/验收记录/20261013_B上孔下件几何错位修复_轮次1/source_snapshot",
+  "build_root": "tmp/upper_holes_v3_r2_20261013",
+  "release": {
+    "path": "fpga/component_inspector/release/upper_hole_geometry_v3_20261013/camera_to_dsi_display.bit",
+    "bytes": 1789539,
+    "sha256": "4bd71a387689cf7df77303ccd9e9372e77211f5fc637c82ad17749cb0a1fac35"
+  },
+  "validation_record": "开发实施/验收记录/20261013_B上孔下件几何错位修复_轮次1.md",
+  "fresh_tests": [
+    "geometry_polarity",
+    "rectangular_anchors",
+    "multi_pockets",
+    "multi_osd",
+    "multi_first_invalid",
+    "video_fallback_display",
+    "multi_video",
+    "video_metadata_fallback",
+    "writer_epoch",
+    "multi_writer",
+    "tracking_osd"
+  ],
+  "onsite": "PENDING"
+}

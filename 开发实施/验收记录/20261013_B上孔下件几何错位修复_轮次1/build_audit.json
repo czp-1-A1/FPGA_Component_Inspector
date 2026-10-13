@@ -1,0 +1,67 @@
+{
+  "status": "PASS_routed_build_software_tests_pending",
+  "onsite": "PENDING",
+  "changed_inputs": [
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/multi_pocket_detector.v"
+  ],
+  "unchanged_inputs": 208,
+  "timing": {
+    "setup_wns_ns": 0.133,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.79
+  },
+  "resources": {
+    "slice": {
+      "used": 15821,
+      "total": 21216,
+      "percent": 74.57
+    },
+    "eram": {
+      "used": 48,
+      "total": 108,
+      "percent": 44.44
+    },
+    "dsp": {
+      "used": 8,
+      "total": 40,
+      "percent": 20.0
+    }
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 10
+  },
+  "warning_deltas": {
+    "syn_1": {
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "max_delays_declared": 37,
+  "max_delays_matched": 37,
+  "max_delays_ignored": 0,
+  "sdc_unchanged": true,
+  "geometry": {
+    "orientation": "UPPER_HOLES_LOWER_POCKETS",
+    "search_y": [
+      168,
+      336
+    ],
+    "offset_x": -32,
+    "offset_y": 80,
+    "core": 80,
+    "onsite_measurement": "PROVISIONAL"
+  },
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "4bd71a387689cf7df77303ccd9e9372e77211f5fc637c82ad17749cb0a1fac35"
+  }
+}

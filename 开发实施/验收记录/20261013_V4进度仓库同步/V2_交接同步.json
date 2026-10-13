@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-13",
+  "status": "code_and_evidence_pushed_remote_verified",
+  "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
+  "branch": "lj4747-contest-work",
+  "source_commit": "d9b8d2d0d8073ab127325776b7828c9780349dd6",
+  "build_base_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "checkout": "latest remote HEAD of lj4747-contest-work",
+  "handoff_document": "交接说明.md",
+  "progress_record": "开发实施/验收记录/20261013_进度仓库同步.md",
+  "build_record": "fpga/component_inspector/td_project/current_codex_build.json",
+  "bit": "fpga/component_inspector/release/multi_pocket_video_fix_v2_20261013/camera_to_dsi_display.bit",
+  "bit_sha256": "b3d775b19f7ceb31cb34bb952ebacf27df739ae18bced699d8492ae61e79f51a",
+  "build_inputs": 211,
+  "frozen_evidence_records": 417,
+  "staged_sha_checks": 629,
+  "missing_mismatched": 0,
+  "stage_status": "3528 manual WB, grayscale/Sobel classification, moving hole/pocket tracking, AUTO4 labels and frame epoch black-screen fix v2 implemented; physical acceptance pending",
+  "onsite": "PENDING",
+  "physical_video_feedback": "V2 has not yet been verified on the board",
+  "software_tests_passed": 14,
+  "slice_percent": 74.08,
+  "next_step": "Read AGENTS, verify V2/D4 programmed image, confirm RAW live video, then stationary/moving pocket truth; report D4 M ready/epoch diagnostics if needed",
+  "previous_handoff_snapshots": [
+    {
+      "path": "开发实施/验收记录/20261013_进度仓库同步/20261007_交接说明.md",
+      "sha256": "a5a4278d7fea0b512fbabf71bc299bbbbe2c38d53dd87d77b7c59e1476435b73"
+    },
+    {
+      "path": "开发实施/验收记录/20261013_进度仓库同步/20261007_交接同步.json",
+      "sha256": "847acaf03510297d3d4134e84a9179d2cca428c1eb1845ea479437dff5032ef6"
+    }
+  ],
+  "local_only": [
+    "tmp build and simulation caches",
+    "root transient build_console.log and transcript",
+    "tool installations",
+    "official FD_Release_2026.2.zip"
+  ],
+  "note": "Current source/release/evidence commit was pushed and remote HEAD verified. Subsequent progress documentation does not change frozen release SHA or source inputs.",
+  "verified_remote_source_head": "d9b8d2d0d8073ab127325776b7828c9780349dd6",
+  "source_commit_input_sha_checks": 211
+}

@@ -1,0 +1,46 @@
+# vsim -c -voptargs="+acc" -onfinish exit -l transcript.log -wlf wave.wlf -do "run -all; quit -code 1 -force" work.tb_hole_sensitivity 
+# Start time: 12:25:31 on Oct 13,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_hole_sensitivity(fast)
+# Loading work.multi_pocket_tracker(fast)
+# run -all
+# OBS sensitivity radius=24 rise_per_96=0 hole_gray=200 parsed_rows=10 accepted_rows=2 reason=0 seed=4 mask=f verified=f
+# OBS sensitivity radius=24 rise_per_96=1 hole_gray=200 parsed_rows=12 accepted_rows=0 reason=2 seed=0 mask=0 verified=0
+# OBS sensitivity radius=24 rise_per_96=2 hole_gray=200 parsed_rows=12 accepted_rows=0 reason=2 seed=0 mask=0 verified=0
+# ROW y=272 counts=0/2/4 middle_widths=36,28,0,0 prev=0,0,0,0 next=44,44,36,28 shape=0
+# ROW y=280 counts=2/4/4 middle_widths=44,44,36,28 prev=36,28,0,0 next=52,44,44,44 shape=0
+# ROW y=288 counts=4/4/4 middle_widths=52,44,44,44 prev=44,44,36,28 next=44,44,52,44 shape=0
+# ROW y=296 counts=4/4/4 middle_widths=44,44,52,44 prev=52,44,44,44 next=36,44,44,44 shape=0
+# ROW y=304 counts=4/4/4 middle_widths=36,44,44,44 prev=44,44,52,44 next=28,36,44,44 shape=0
+# ROW y=272 counts=0/2/4 middle_widths=36,28,0,0 prev=0,0,0,0 next=44,44,36,28 shape=0
+# ROW y=280 counts=2/4/4 middle_widths=44,44,36,28 prev=36,28,0,0 next=52,44,44,44 shape=0
+# ROW y=288 counts=4/4/4 middle_widths=52,44,44,44 prev=44,44,36,28 next=44,44,52,44 shape=0
+# ROW y=296 counts=4/4/4 middle_widths=44,44,52,44 prev=52,44,44,44 next=36,44,44,44 shape=0
+# ROW y=304 counts=4/4/4 middle_widths=36,44,44,44 prev=44,44,52,44 next=28,36,44,44 shape=0
+# OBS sensitivity radius=24 rise_per_96=4 hole_gray=200 parsed_rows=14 accepted_rows=0 reason=2 seed=0 mask=0 verified=0
+# OBS sensitivity radius=24 rise_per_96=8 hole_gray=200 parsed_rows=16 accepted_rows=0 reason=2 seed=0 mask=0 verified=0
+# OBS sensitivity radius=16 rise_per_96=0 hole_gray=200 parsed_rows=6 accepted_rows=2 reason=0 seed=4 mask=f verified=f
+# OBS sensitivity radius=16 rise_per_96=1 hole_gray=200 parsed_rows=8 accepted_rows=0 reason=2 seed=0 mask=0 verified=0
+# OBS sensitivity radius=16 rise_per_96=2 hole_gray=200 parsed_rows=8 accepted_rows=0 reason=2 seed=0 mask=0 verified=0
+# OBS sensitivity radius=16 rise_per_96=4 hole_gray=200 parsed_rows=10 accepted_rows=0 reason=2 seed=0 mask=0 verified=0
+# OBS sensitivity radius=16 rise_per_96=8 hole_gray=200 parsed_rows=12 accepted_rows=0 reason=2 seed=0 mask=0 verified=0
+# OBS sensitivity radius=24 rise_per_96=0 hole_gray=110 parsed_rows=0 accepted_rows=0 reason=2 seed=0 mask=0 verified=0
+# DONE sensitivity characterization: 11 trials; rejected bright tilted rows=8; controls passed
+# ** Note: $finish    : tb_hole_sensitivity.v(71)
+#    Time: 19189280 ns  Iteration: 1  Instance: /tb_hole_sensitivity
+# End time: 12:25:39 on Oct 13,2026, Elapsed time: 0:00:08
+# Errors: 0, Warnings: 0

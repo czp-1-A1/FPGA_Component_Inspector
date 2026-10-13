@@ -1,0 +1,26 @@
+{
+  "purpose": "3528_FIXED_DIRECT_GRAY_EDGE_INDEPENDENT_V4",
+  "td_version": "6.2.168116",
+  "base_head": "37d0f9d0473cb4f77660ab5eebd1a7f8f1fe8670",
+  "source_commit": null,
+  "source_snapshot": "开发实施/验收记录/20261013_A灰度边缘独立检测恢复_V4轮次1/source_snapshot",
+  "build_root": "tmp/direct_detection_v4_r3_20261013",
+  "release": {
+    "path": "fpga/component_inspector/release/direct_detection_v4_20261013/camera_to_dsi_display.bit",
+    "bytes": 1789539,
+    "sha256": "40348043fd499e9eedfed62ba9fe3fb30114742998ee521d28be44dd4b95ec3b"
+  },
+  "validation_record": "开发实施/验收记录/20261013_A灰度边缘独立检测恢复_V4轮次1.md",
+  "fresh_tests": [
+    "direct_modes",
+    "direct_isp",
+    "direct_video",
+    "direct_osd",
+    "presence_modes",
+    "display_state",
+    "wb_epoch",
+    "writer_epoch",
+    "video_fallback_display"
+  ],
+  "onsite": "PENDING"
+}

@@ -1,0 +1,60 @@
+# PASS direct modes: 23 checks, original edge bounds, RAW/GRAY brightness, EDGE independence, combined view does not fuse, incomplete sample rejects
+# OBS actual ROI chain frame=1 mode=0 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=0/0/0
+# OBS actual ROI chain frame=2 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=180/180/180
+# OBS actual Sobel frame=2 view=1 pixels=614400 packed=115200 edges=0 sum=0
+# OBS actual ROI chain frame=3 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=180/180/180
+# OBS actual Sobel frame=3 view=2 pixels=614400 packed=115200 edges=0 sum=0
+# OBS actual ROI chain frame=4 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=180/180/180
+# OBS actual Sobel frame=4 view=3 pixels=614400 packed=115200 edges=0 sum=0
+# OBS actual ROI chain frame=5 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=10/10/10
+# OBS actual Sobel frame=5 view=0 pixels=614400 packed=115200 edges=6400 sum=4352000
+# OBS actual ROI chain frame=6 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=10/10/10
+# OBS actual Sobel frame=6 view=1 pixels=614400 packed=115200 edges=0 sum=0
+# OBS actual ROI chain frame=7 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=32/0/80
+# OBS actual Sobel frame=7 view=2 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=8 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=32/0/80
+# OBS actual Sobel frame=8 view=3 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=9 mode=1 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=32/0/80
+# OBS actual ROI chain frame=10 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=180/180/180
+# OBS actual Sobel frame=10 view=1 pixels=614400 packed=115200 edges=6400 sum=896320
+# OBS actual ROI chain frame=11 mode=3 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=180/180/180
+# OBS actual ROI chain frame=12 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=180/180/180
+# OBS actual Sobel frame=12 view=1 pixels=614400 packed=115200 edges=0 sum=0
+# OBS actual ROI chain frame=13 mode=4 commits=1 sample_valid=0 AWBbeats=153600 mean/min/max=180/180/180
+# OBS actual ROI chain frame=14 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=31/0/80
+# OBS actual Sobel frame=14 view=2 pixels=614400 packed=115200 edges=317 sum=51200
+# PASS direct ISP: actual RAW10/vendor RAM/Sobel/full 600 rows, independent pixel references, no hole or dark-strip prerequisite, both conflict directions, four views, short rejection, mode/WB cancellation and recovery
+# OBS ISP initial line-span learning frame good=0 bad=1 ready=0
+# OBS direct video frame=2 view=1 mean=194 EC=0 GS=0 class=2
+# OBS direct video frame=3 view=1 mean=194 EC=0 GS=0 class=2
+# OBS direct video frame=4 view=0 mean=194 EC=0 GS=0 class=2
+# OBS direct video frame=5 view=2 mean=194 EC=3888 GS=940554 class=2
+# OBS competing DDR stress rejects incomplete view frame=6 reason=1
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS direct video: actual correction/RAW10/vendor RAM/fixed sample metadata-disabled writer/DDR reader arbitration; accepted=4 rejected=1; complete 614400-pixel raster, no underflow, bad view preserves previous slot
+# PASS direct OSD: 672000 pixels, FIXED V4/D5, full Chinese GRAY/EDGE labels, OFF/invalidation, conflicting results stay independent, fixed core and three-clock/frame-held raster
+# PASS video fallback display: 384 exact RGB pixels, normal/zero metadata/recovery slots, unchanged metadata binding, no black video or underflow
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# PASS writer epoch: 8 clock phases/close-marker gaps, next complete frame recovers with matching source epoch and metadata
+# PASS WB epoch: coherent held request/result, invalidation, change-away/back with stopped CSI, recovery, epoch wrap and fresh-token requirement
+# OBS tape pattern=0 valid=1 counts=1280/1280 dark=1280/1280
+# OBS tape pattern=1 valid=0 counts=1280/1280 dark=0/0
+# OBS tape pattern=2 valid=0 counts=1280/1280 dark=1280/0
+# OBS tape pattern=3 valid=1 counts=1280/1280 dark=1280/1280
+# OBS tape pattern=4 valid=0 counts=1280/1280 dark=0/0
+# OBS tape pattern=5 valid=1 counts=1280/1280 dark=960/960
+# OBS tape pattern=6 valid=0 counts=1280/1280 dark=959/959
+# OBS tape pattern=7 valid=0 counts=1280/1276 dark=1280/1276
+# OBS tape pattern=8 valid=1 counts=1280/1280 dark=1280/1280
+# OBS tape pattern=0 valid=1 counts=1280/1280 dark=1280/1280
+# OBS tape pattern=0 valid=1 counts=1280/1280 dark=1280/1280
+# PASS presence modes: independent EDGE/GRAY, inclusive dual-feature bounds/deadband/conflict, incomplete core, background/one-sided guard, PPC4 weighted gray, 75-percent coverage, bubbles/missing beat, reset/FS/invalidate; locator-circle limitation recorded
+# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, enabled exposure/gain tuning with fresh tokens, stopped CSI, FPS recovery and reset require fresh sample
+PASS ModelSim: all 9 tests, including original vendor ERAM model

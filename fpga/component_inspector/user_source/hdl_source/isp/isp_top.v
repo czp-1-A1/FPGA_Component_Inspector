@@ -1,5 +1,5 @@
 module isp_top #(
-    parameter TRACKING=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
+    parameter TRACKING=0,DIRECT_DETECTION=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
     parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,
     parameter META_WIDTH=178+340*MULTI_POCKETS
 ) (
@@ -138,7 +138,7 @@ wire [43:0] gradient_magnitudes;wire [3:0] gradient_neighborhood;
 wire [339:0] pocket_records;wire multi_new;
 wire [43:0] pocket_x0;wire [39:0] pocket_y0;wire [3:0] pocket_mask,pocket_verified;
 wire legacy_valid,legacy_new;wire [7:0] legacy_mean,legacy_min,legacy_max;wire [1:0] legacy_class;
-roi_sobel_view #(.X0(MULTI_POCKETS ? 96 : 256),.X1(MULTI_POCKETS ? 928 : 768),.DYNAMIC_ROI(TRACKING),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
+roi_sobel_view #(.X0(MULTI_POCKETS ? 96 : 256),.X1(MULTI_POCKETS ? 928 : 768),.Y1(MULTI_POCKETS ? 464 : 428),.DYNAMIC_ROI(TRACKING),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
  .dynamic_x0(track_x0),.dynamic_x1(track_x1),.dynamic_y0(track_y0),.dynamic_y1(track_y1),
  .clk(axi4s_video_aclk),.rst_n(I_rst_n),.pixel_valid(awb_O_tvalid),
  .pixel_sof(awb_pixel_sof),.pixel_last(awb_O_tlast),.early_sof(awb_O_tuser),
@@ -156,7 +156,7 @@ wire [10:0] roi_x;
 wire [9:0] roi_y;
 wire roi_accept,roi_commit,roi_invalidate,sample_new;
 // Finish features while CSI is still clocking rows, not after native FE.
-// The lower hole search and the core's Sobel neighborhood are complete here.
+// The upper hole search and the lower core's Sobel neighborhood finish here.
 // These are provisional results: the writer still requires the entire frame.
 localparam RESULT_ROW=MULTI_POCKETS ? 456 : (HOLE_Y+10>ROI_Y1+2) ? HOLE_Y+10 : ROI_Y1+2;
 wire result_commit=TRACKING ? (roi_accept && roi_x==0 && roi_y==RESULT_ROW) : roi_commit;
@@ -212,7 +212,10 @@ always @(posedge axi4s_video_aclk or negedge I_rst_n) begin
  else if(metadata_pending) begin
   metadata_wait<=metadata_wait-1'b1;
   if(metadata_wait==1) begin
-   if(MULTI_POCKETS) frame_metadata<={pocket_records,track_diagnostic,frame_config,track_locked,track_x0,track_x1,observation_record};
+   // Frame configuration tags exist even if the first pocket has no valid sample.
+   // Other pockets must not be hidden by the first pocket's missing history tag.
+   if(MULTI_POCKETS) frame_metadata<={pocket_records,track_diagnostic,frame_config,track_locked,track_x0,track_x1,
+    wb_frame_request,observation_record[82:46],observation_tag,observation_record[27:0]};
    else frame_metadata<={track_diagnostic,frame_config,track_locked,track_x0,track_x1,observation_record};
    frame_metadata_ready<=1;metadata_pending<=0;
   end
@@ -250,8 +253,10 @@ roi_classifier u_roi_classifier(
     .clk(axi4s_video_aclk),.rst_n(I_rst_n),.calibration_ok(calibration_ok),
     .frame_start(raw_start),.invalidate(sample_cancel),.sample_valid(legacy_valid),.sample_new(legacy_new),
     .mean(legacy_mean),.threshold(threshold),.present_high(present_high),.state(gray_class_state));
-roi_mode_classifier #(.CORE_AREA((ROI_X1-ROI_X0)*(ROI_Y1-ROI_Y0))) u_roi_mode_classifier(
-    .mode(observation_tag[1:0]),.gray_state(gray_class_state),.scene_ok(scene_ok && (!TRACKING || track_locked)),
+// Direct fixed-core trials use the complete sample, independent of hole search
+// and dark reference strips. The operator aligns a real pocket in the cyan box.
+roi_mode_classifier #(.FUSE_FEATURES(!DIRECT_DETECTION),.CORE_AREA((ROI_X1-ROI_X0)*(ROI_Y1-ROI_Y0))) u_roi_mode_classifier(
+    .mode(observation_tag[1:0]),.gray_state(gray_class_state),.scene_ok(DIRECT_DETECTION || (scene_ok && (!TRACKING || track_locked))),
     .core_pixels(edge_pixels),.edge_count(edge_count),.edge_sum(edge_sum),.state(legacy_class));
 assign result_valid=MULTI_POCKETS ? pocket_records[63] : legacy_valid;
 assign sample_new=MULTI_POCKETS ? multi_new : legacy_new;

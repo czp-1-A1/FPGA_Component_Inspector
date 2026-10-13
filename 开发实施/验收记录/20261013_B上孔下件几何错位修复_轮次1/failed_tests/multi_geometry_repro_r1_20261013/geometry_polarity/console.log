@@ -1,0 +1,36 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/geometry_polarity/transcript.log -wlf modelsim_work/geometry_polarity/wave.wlf -do "log /tb_geometry_polarity/*; run -all; quit -code 1 -force" test_geometry_polarity.tb_geometry_polarity 
+# Start time: 11:23:18 on Oct 13,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_geometry_polarity(fast)
+# Loading work.multi_pocket_tracker(fast)
+# Loading work.multi_pocket_statistics(fast)
+# log /tb_geometry_polarity/*
+#  run -all
+# OBS upper-hole geometry bank=0 ROI=(184,260) valid=1 state=2 mean=72
+# OBS upper-hole geometry bank=1 ROI=(280,260) valid=1 state=2 mean=72
+# OBS upper-hole geometry bank=2 ROI=(376,260) valid=1 state=2 mean=72
+# OBS upper-hole geometry bank=3 ROI=(472,260) valid=1 state=2 mean=72
+# ** Fatal: pitched lower parts were mistaken for hole anchors; 4 PRESENT boxes landed on upper sprocket circles
+#    Time: 6242040 ns  Scope: tb_geometry_polarity File: tb_geometry_polarity.v Line: 51
+# ** Note: $finish    : tb_geometry_polarity.v(51)
+#    Time: 6242040 ns  Iteration: 1  Instance: /tb_geometry_polarity
+# End time: 11:23:22 on Oct 13,2026, Elapsed time: 0:00:04
+# Errors: 1, Warnings: 0

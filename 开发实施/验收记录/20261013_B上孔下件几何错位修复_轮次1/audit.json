@@ -1,0 +1,151 @@
+{
+  "status": "PASS_source_simulation_and_routed_build",
+  "onsite": "PENDING",
+  "changed_inputs": [
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/multi_pocket_detector.v"
+  ],
+  "unchanged_inputs": 208,
+  "timing": {
+    "setup_wns_ns": 0.133,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.79
+  },
+  "resources": {
+    "slice": {
+      "used": 15821,
+      "total": 21216,
+      "percent": 74.57
+    },
+    "eram": {
+      "used": 48,
+      "total": 108,
+      "percent": 44.44
+    },
+    "dsp": {
+      "used": 8,
+      "total": 40,
+      "percent": 20.0
+    }
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 10
+  },
+  "warning_deltas": {
+    "syn_1": {
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "max_delays_declared": 37,
+  "max_delays_matched": 37,
+  "max_delays_ignored": 0,
+  "sdc_unchanged": true,
+  "geometry": {
+    "orientation": "UPPER_HOLES_LOWER_POCKETS",
+    "search_y": [
+      168,
+      336
+    ],
+    "offset_x": -32,
+    "offset_y": 80,
+    "core": 80,
+    "onsite_measurement": "PROVISIONAL"
+  },
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "4bd71a387689cf7df77303ccd9e9372e77211f5fc637c82ad17749cb0a1fac35"
+  },
+  "tests": [
+    {
+      "test": "geometry_polarity",
+      "root": "tmp/upper_holes_v3_r2_20261013",
+      "passes": [
+        "PASS geometry polarity: upper-hole orientation never classifies sprocket circles as parts"
+      ]
+    },
+    {
+      "test": "rectangular_anchors",
+      "root": "tmp/upper_holes_v3_r2_20261013",
+      "passes": [
+        "PASS rectangular anchors: pitched upper-band rectangular bright bodies never acquire hole-derived classifications"
+      ]
+    },
+    {
+      "test": "multi_pockets",
+      "root": "tmp/upper_holes_v3_r2_20261013",
+      "passes": [
+        "PASS multi pockets: 358 assertions; broad automatic acquisition, mixed/empty, PPC4 reference statistics/shared edges/four modes, both directions, fast/y loss and reacquire, malformed holes, cancellation"
+      ]
+    },
+    {
+      "test": "multi_osd",
+      "root": "tmp/upper_holes_v3_r2_20261013",
+      "passes": [
+        "PASS multi OSD: 632064 pixels; four independent colored boxes/Chinese labels, AUTO4 version, post-VS frame metadata, no mid-raster jump/stale boxes, three clock RGB/sync alignment"
+      ]
+    },
+    {
+      "test": "multi_first_invalid",
+      "root": "tmp/upper_holes_v3_r3_20261013",
+      "passes": [
+        "PASS multi first invalid: cold first pocket rejected, three other pockets remain valid, coherent frame tags independent of sample history"
+      ]
+    },
+    {
+      "test": "video_fallback_display",
+      "root": "tmp/upper_holes_v3_r3_20261013",
+      "passes": [
+        "PASS video fallback display: 384 exact RGB pixels, normal/zero metadata/recovery slots, unchanged metadata binding, no black video or underflow"
+      ]
+    },
+    {
+      "test": "multi_video",
+      "root": "tmp/upper_holes_v3_r3_20261013",
+      "passes": [
+        "PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow",
+        "PASS multi video: actual correction/RAW10/vendor RAM/518-bit metadata/DDR reader arbitration; accepted=4 rejected=1; complete 614400-pixel raster, no underflow, bad view preserves previous slot"
+      ]
+    },
+    {
+      "test": "video_metadata_fallback",
+      "root": "tmp/upper_holes_v3_r3_20261013",
+      "passes": [
+        "PASS video metadata fallback: normal/absent/late/wrong epoch/recovery, no stale four-pocket labels, strict legacy mode, bad and short pixels rejected, W/M snapshot and reset"
+      ]
+    },
+    {
+      "test": "writer_epoch",
+      "root": "tmp/upper_holes_v3_r3_20261013",
+      "passes": [
+        "PASS writer epoch: 8 clock phases/close-marker gaps, next complete frame recovers with matching source epoch and metadata"
+      ]
+    },
+    {
+      "test": "multi_writer",
+      "root": "tmp/upper_holes_v3_r3_20261013",
+      "passes": [
+        "PASS multi writer: RAW10/vendor RAM/full frames/518-bit metadata/actual writer/short rejection, frame-held moving ROI with current-frame upper-hole verification, four views, empty, lost/recovery, coherent metadata"
+      ]
+    },
+    {
+      "test": "tracking_osd",
+      "root": "tmp/upper_holes_v3_r3_20261013",
+      "passes": [
+        "PASS tracking OSD: post-VS slot metadata, complete rasters, moving box, no mid-frame jump, lost target hides box, D3 publish flags/count frozen per raster"
+      ]
+    }
+  ],
+  "reproduced_defect": "V2 upper-sprocket/lower-part counterexample: 4 valid PRESENT boxes on sprocket row, mean72",
+  "source_head_at_freeze": "37d0f9d0473cb4f77660ab5eebd1a7f8f1fe8670",
+  "source_commit": null,
+  "resource_review": "74.57% within existing reviewed70-75% experiment band; +104 Slice vs V2, no new ERAM/DSP; optimize before expansion"
+}

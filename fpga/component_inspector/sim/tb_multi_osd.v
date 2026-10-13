@@ -13,7 +13,7 @@ experiment_osd #(.TRACKING(1),.MULTI_POCKETS(1)) dut(
  .track_valid(1'b1),.track_x0(11'd208),.track_x1(11'd288),.track_reason(4'd0),.track_rows(3'd7),
  .pocket_records(records),.pocket_enable(enable),.out_vs(ov),.out_hs(oh),.out_de(od),.out_rgb(color));
 reg [7:0] ascii_rows[0:2047];reg [23:0] cjk_rows[0:2047];
-reg [103:0] version_text="AUTO4 EXP V2 ",diagnostic_text;
+reg [103:0] version_text="AUTO4 EXP V3 ",diagnostic_text;
 integer n=0,xx,yy,px,py,p,bx,by,state,glyph,col,row,checked=0;
 reg checking=0,expected_enable;reg [23:0] expected_color,ink_color;
 reg [2:0] hist_de=0,hist_hs=0,hist_vs=0;

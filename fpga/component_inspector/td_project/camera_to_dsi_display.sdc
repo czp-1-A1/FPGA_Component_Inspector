@@ -61,13 +61,10 @@ set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}]
 set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]
 set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]
 
-# Complete-frame metadata uses the existing held-payload CDC protocol.
-set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/payload*}] -to [get_regs {*crossing/D_data*}]
-set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/req}] -to [get_regs {*crossing/req_sync[0]}]
-set_max_delay -datapath_only 8.0 -from [get_regs {*crossing/ack}] -to [get_regs {*crossing/ack_sync[0]}]
-set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/payload*}] -to [get_regs {u_active_frame_display/D_data*}]
-set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/req}] -to [get_regs {u_active_frame_display/req_sync[0]}]
-set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}] -to [get_regs {u_active_frame_display/ack_sync[0]}]
+# FIXED EXP V4 disables tracking/frame-metadata transport; these two mailboxes
+# are compiled out. Their six named constraints remain in the frozen V3 SDC.
+# Restore them before enabling ENABLE_TRACKING again; active CDC budgets above
+# and publishing diagnostics below are unchanged.
 
 # Read-only writer publishing diagnostics use the same held-payload mailbox.
 set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/payload*}] -to [get_regs {u_publish_display/D_data*}]

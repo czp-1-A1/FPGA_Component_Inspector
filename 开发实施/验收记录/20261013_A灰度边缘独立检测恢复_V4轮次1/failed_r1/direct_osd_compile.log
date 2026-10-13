@@ -1,0 +1,23 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 12:38:46 on Oct 13,2026
+vlog -work test_direct_osd ../user_source/hdl_source/bin16_bcd.v ../user_source/hdl_source/osd_ascii_rom.v ../user_source/hdl_source/osd_cjk_rom.v ../user_source/hdl_source/osd_logo_rom.v ../user_source/hdl_source/experiment_osd.v 
+-- Compiling module bin16_bcd
+-- Compiling module osd_ascii_rom
+-- Compiling module osd_cjk_rom
+-- Compiling module osd_logo_rom
+-- Compiling module experiment_osd
+
+Top level modules:
+	experiment_osd
+End time: 12:38:46 on Oct 13,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 12:38:46 on Oct 13,2026
+vlog -sv -work test_direct_osd tb_direct_osd.v 
+-- Compiling module tb_direct_osd
+** Error: (vlog-13069) tb_direct_osd.v(63): near "end": syntax error, unexpected end.
+** Error (suppressible): tb_direct_osd.v(66): (vlog-2720) A generate begin/end pair has been found outside of generate construct.
+** Error: (vlog-13069) tb_direct_osd.v(66): near "=": syntax error, unexpected '='.
+** Error: tb_direct_osd.v(66): (vlog-13205) Syntax error found in the scope following 'checking'. Is there a missing '::'?
+End time: 12:38:46 on Oct 13,2026, Elapsed time: 0:00:00
+Errors: 4, Warnings: 0

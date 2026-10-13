@@ -1,31 +1,26 @@
 {
-  "purpose": "3528_AUTO4_video_metadata_blackfix_v2",
+  "purpose": "3528_FIXED_DIRECT_GRAY_EDGE_INDEPENDENT_V4",
   "td_version": "6.2.168116",
-  "base_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
-  "source_commit": "d9b8d2d0d8073ab127325776b7828c9780349dd6",
-  "source_snapshot": "开发实施/验收记录/20261013_BAUTO4黑屏元数据排查_轮次1/source_snapshot",
-  "build_root": "tmp/multi_video_fix_r2_20261013",
+  "base_head": "37d0f9d0473cb4f77660ab5eebd1a7f8f1fe8670",
+  "source_commit": null,
+  "source_snapshot": "开发实施/验收记录/20261013_A灰度边缘独立检测恢复_V4轮次1/source_snapshot",
+  "build_root": "tmp/direct_detection_v4_r3_20261013",
   "release": {
-    "path": "fpga/component_inspector/release/multi_pocket_video_fix_v2_20261013/camera_to_dsi_display.bit",
+    "path": "fpga/component_inspector/release/direct_detection_v4_20261013/camera_to_dsi_display.bit",
     "bytes": 1789539,
-    "sha256": "b3d775b19f7ceb31cb34bb952ebacf27df739ae18bced699d8492ae61e79f51a"
+    "sha256": "40348043fd499e9eedfed62ba9fe3fb30114742998ee521d28be44dd4b95ec3b"
   },
-  "validation_record": "开发实施/验收记录/20261013_BAUTO4黑屏元数据排查_轮次1.md",
+  "validation_record": "开发实施/验收记录/20261013_A灰度边缘独立检测恢复_V4轮次1.md",
   "fresh_tests": [
-    "writer_epoch",
-    "video_metadata_fallback",
-    "publish_diag",
-    "frame_metadata",
-    "multi_metadata",
-    "multi_osd",
-    "video_fallback_display",
-    "multi_writer",
-    "tracking_osd",
-    "isp_metadata_stop",
-    "isp_writer_stop",
+    "direct_modes",
+    "direct_isp",
+    "direct_video",
+    "direct_osd",
+    "presence_modes",
+    "display_state",
     "wb_epoch",
-    "cdc",
-    "multi_video"
+    "writer_epoch",
+    "video_fallback_display"
   ],
   "onsite": "PENDING"
 }

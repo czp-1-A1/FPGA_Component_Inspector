@@ -1,43 +1,39 @@
 {
   "date": "2026-10-13",
-  "status": "code_and_evidence_pushed_remote_verified",
+  "status": "V4_commit_and_push_in_progress",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
   "branch": "lj4747-contest-work",
-  "source_commit": "d9b8d2d0d8073ab127325776b7828c9780349dd6",
-  "build_base_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "source_commit": null,
+  "build_base_head": "37d0f9d0473cb4f77660ab5eebd1a7f8f1fe8670",
   "checkout": "latest remote HEAD of lj4747-contest-work",
   "handoff_document": "交接说明.md",
-  "progress_record": "开发实施/验收记录/20261013_进度仓库同步.md",
+  "progress_record": "开发实施/验收记录/20261013_V4进度仓库同步.md",
   "build_record": "fpga/component_inspector/td_project/current_codex_build.json",
-  "bit": "fpga/component_inspector/release/multi_pocket_video_fix_v2_20261013/camera_to_dsi_display.bit",
-  "bit_sha256": "b3d775b19f7ceb31cb34bb952ebacf27df739ae18bced699d8492ae61e79f51a",
+  "bit": "fpga/component_inspector/release/direct_detection_v4_20261013/camera_to_dsi_display.bit",
+  "bit_sha256": "40348043fd499e9eedfed62ba9fe3fb30114742998ee521d28be44dd4b95ec3b",
   "build_inputs": 211,
-  "frozen_evidence_records": 417,
-  "staged_sha_checks": 629,
-  "missing_mismatched": 0,
-  "stage_status": "3528 manual WB, grayscale/Sobel classification, moving hole/pocket tracking, AUTO4 labels and frame epoch black-screen fix v2 implemented; physical acceptance pending",
+  "frozen_evidence_records": 408,
+  "verified_new_archive_files": 816,
+  "software_tests_passed": 9,
+  "slice_percent": 57.63,
   "onsite": "PENDING",
-  "physical_video_feedback": "V2 has not yet been verified on the board",
-  "software_tests_passed": 14,
-  "slice_percent": 74.08,
-  "next_step": "Read AGENTS, verify V2/D4 programmed image, confirm RAW live video, then stationary/moving pocket truth; report D4 M ready/epoch diagnostics if needed",
+  "stage_status": "FIXED V4/D5: manually aligned 80x80 ROI, independent grayscale and edge results. V3 geometry history, physical feedback and plan 50 included.",
+  "physical_video_feedback": "V4-labelled photos available; background false positives and hole edges show object-validity and edge semantic limitations; programmed SHA and paired true empty-pocket acceptance pending.",
+  "next_step": "Follow plan 50 to close the 3528 white-component grayscale workflow: paired present/true empty/background truth, object validity, then minimal frozen repair. No new RTL/bit implemented in plan 50.",
   "previous_handoff_snapshots": [
     {
-      "path": "开发实施/验收记录/20261013_进度仓库同步/20261007_交接说明.md",
-      "sha256": "a5a4278d7fea0b512fbabf71bc299bbbbe2c38d53dd87d77b7c59e1476435b73"
+      "path": "开发实施/验收记录/20261013_V4进度仓库同步/V2_交接说明.md",
+      "sha256": "5d16d9e79d7674afae605e9eaa94bad125758a7b5c173b9b78f088a63ab395ac"
     },
     {
-      "path": "开发实施/验收记录/20261013_进度仓库同步/20261007_交接同步.json",
-      "sha256": "847acaf03510297d3d4134e84a9179d2cca428c1eb1845ea479437dff5032ef6"
+      "path": "开发实施/验收记录/20261013_V4进度仓库同步/V2_交接同步.json",
+      "sha256": "ef9168e67c7bd76fd5ce6a5df055aea951dd4282c73894a8add59ee739fb1598"
     }
   ],
   "local_only": [
-    "tmp build and simulation caches",
+    "tmp build/simulation caches",
     "root transient build_console.log and transcript",
-    "tool installations",
-    "official FD_Release_2026.2.zip"
+    "tool installations"
   ],
-  "note": "Current source/release/evidence commit was pushed and remote HEAD verified. Subsequent progress documentation does not change frozen release SHA or source inputs.",
-  "verified_remote_source_head": "d9b8d2d0d8073ab127325776b7828c9780349dd6",
-  "source_commit_input_sha_checks": 211
+  "note": "Frozen V3/V4 releases and evidence retain original bytes. Repository sync does not upgrade physical acceptance."
 }

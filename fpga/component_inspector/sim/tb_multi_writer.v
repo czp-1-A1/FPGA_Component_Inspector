@@ -50,15 +50,15 @@ task frame(input integer move,input integer part,input integer have_holes,input 
     rv=1;
     for(l=0;l<4;l=l+1) begin
      x=b*4+l;v=80;
-     if(holes && row>=364 && row<397) begin
+     if(holes && row>=264 && row<297) begin
       for(h=-2;h<=2;h=h+1) begin
-       c=392+shift+96*h;
-       if(x>=c-16 && x<c+16) v=800;
+       c=456+shift+96*h;
+       if((x-c)*(x-c)+(row-280)*(row-280)<=256) v=800;
       end
      end
      for(h=-2;h<=2;h=h+1) begin
-      c=392+shift+96*h+48;
-      if((h%2)==0 && present && row>=264 && row<336 && x>=c-36 && x<c+36) v=(x/4+row/4)%2 ? 700 : 1000;
+      c=456+shift+96*h-32;
+      if((h%2)==0 && present && row>=324 && row<396 && x>=c-36 && x<c+36) v=(x/4+row/4)%2 ? 700 : 1000;
      end
      raw[39-l*10-:10]=v;
     end
@@ -76,7 +76,7 @@ task frame(input integer move,input integer part,input integer have_holes,input 
   if(!cap || !writer.published || writer.writer_epoch!=frame_no || completed_meta!==meta) $fatal(1,"AUTO4 full frame/metadata writer did not publish atomically epoch=%0d frame=%0d",writer.writer_epoch,frame_no);
   if(!mready || !good || bad) $fatal(1,"actual ISP tracking frame incomplete %0d",frame_no);
   if(meta[137]!==expected_lock) $fatal(1,"actual ISP lock %0d expected %0d got %b",frame_no,expected_lock,meta[137]);
-  if(meta[169:138]!={16'd2244,16'd48} || meta[114:0]!==obs || meta[136:126]!=dut.track_x0 || meta[125:115]!=dut.track_x1) $fatal(1,"actual ISP metadata mixed epochs/coords/results");
+  if(meta[169:138]!={16'd2244,16'd48} || meta[114:0]!=={dut.wb_frame_request,obs[82:46],dut.observation_tag,obs[27:0]} || meta[136:126]!=dut.track_x0 || meta[125:115]!=dut.track_x1) $fatal(1,"actual ISP metadata mixed epochs/coords/results");
   for(integer p=0;p<4;p++) begin
    if(meta[178+p*85+63]!==expected_lock) $fatal(1,"actual ISP pocket validity frame=%0d bank=%0d got=%b diag=%h",frame_no,p,meta[178+p*85+63],meta[177:170]);
    if(expected_lock) begin
@@ -96,7 +96,7 @@ initial begin
  frame(4,1,1,1,0);frame(0,1,1,1,2);frame(4,1,1,1,3);
  saved_meta=completed_meta;nrows=100;frame(4,1,1,-1,3);nrows=600;
  frame(4,1,1,0,1);frame(4,1,1,1,1);
- $display("PASS multi writer: RAW10/vendor RAM/full frames/518-bit metadata/actual writer/short rejection, frame-held moving ROI with current-frame lower-hole verification, four views, empty, lost/recovery, coherent metadata");$finish;
+ $display("PASS multi writer: RAW10/vendor RAM/full frames/518-bit metadata/actual writer/short rejection, frame-held moving ROI with current-frame upper-hole verification, four views, empty, lost/recovery, coherent metadata");$finish;
 end
 initial begin #100000000;$fatal(1,"actual ISP tracking watchdog");end
 endmodule

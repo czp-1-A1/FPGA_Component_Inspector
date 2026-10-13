@@ -1,9 +1,10 @@
 // Experimental 3528 geometry; all coordinates are native 1024x600 pixels.
-// One PPC4-decimated parser searches a broad lower-hole band, not an X anchor.
+// Fixed trial orientation: sprocket row above the component pockets.
+// One PPC4-decimated parser searches the upper band, not an X anchor.
 // Three adjacent sampled rows must agree and contain at least two pitched holes.
 module multi_pocket_tracker #(
- parameter X0=128,X1=896,Y0=340,Y1=444,STEP_Y=8,
- parameter PITCH=96,PITCH_TOL=24,OFFSET_X=48,OFFSET_Y=80,
+ parameter X0=128,X1=896,Y0=168,Y1=336,STEP_Y=8,
+ parameter PITCH=96,PITCH_TOL=24,OFFSET_X=32,OFFSET_Y=80,
  parameter CORE=80,VERIFY_X=4,VERIFY_Y=8
 )(
  input wire clk,rst_n,frame_start,pixel_sof,accept,frame_commit,invalidate,
@@ -27,13 +28,17 @@ reg [8:0] best_score;
 reg [3:0] reason;
 wire [11:0] run_width={1'b0,last}-{1'b0,first}+12'd4;
 wire [11:0] midpoint={1'b0,first}+{1'b0,last}+12'd4;
-wire safe_pending=pending_center+OFFSET_X>=X0+CORE/2+16 && pending_center+OFFSET_X<=X1-CORE/2-16;
+wire safe_pending=pending_center-OFFSET_X>=X0+CORE/2+16 && pending_center-OFFSET_X<=X1-CORE/2-16;
 wire pair_ok=previous_valid && pending_center>previous_center &&
  pending_center-previous_center>=PITCH-PITCH_TOL && pending_center-previous_center<=PITCH+PITCH_TOL;
-wire previous_safe=previous_center+OFFSET_X>=X0+CORE/2+16 && previous_center+OFFSET_X<=X1-CORE/2-16;
+wire previous_safe=previous_center-OFFSET_X>=X0+CORE/2+16 && previous_center-OFFSET_X<=X1-CORE/2-16;
 wire [8:0] row_score={2'd0,p1_w[0]}+{2'd0,p1_w[1]}+{2'd0,p1_w[2]}+{2'd0,p1_w[3]};
-wire [9:0] row_distance=p1_y>=380 ? p1_y-380 : 380-p1_y;
-wire [9:0] best_distance=best_y>=380 ? best_y-380 : 380-best_y;
+localparam CENTER_Y=(Y0+Y1)/2;
+// A quantized maximum can span several rows. Move from a tapering shoulder
+// toward the wider adjacent chord instead of treating the shoulder as center.
+wire [9:0] candidate_y=widths[0]>p2_w[0] ? p1_y+STEP_Y : widths[0]<p2_w[0] ? p1_y-STEP_Y : p1_y;
+wire [9:0] row_distance=candidate_y>=CENTER_Y ? candidate_y-CENTER_Y : CENTER_Y-candidate_y;
+wire [9:0] best_distance=best_y>=CENTER_Y ? best_y-CENTER_Y : CENTER_Y-best_y;
 reg shape_ok;reg [3:0] matched;integer k,j;
 always @* begin
  shape_ok=count>=2 && count==p1_count && count==p2_count && p1_y==p2_y+STEP_Y && y_d==p1_y+STEP_Y;
@@ -41,17 +46,19 @@ always @* begin
   if((centers[k]>=p1_x[k] ? centers[k]-p1_x[k] : p1_x[k]-centers[k])>8 ||
      (p2_x[k]>=p1_x[k] ? p2_x[k]-p1_x[k] : p1_x[k]-p2_x[k])>8 ||
      widths[k]>p1_w[k]+8 || p2_w[k]>p1_w[k]+8 ||
-     {widths[k],1'b0}<p1_w[k] || {p2_w[k],1'b0}<p1_w[k]) shape_ok=0;
+     {widths[k],1'b0}<p1_w[k] || {p2_w[k],1'b0}<p1_w[k] ||
+     p1_w[k]<widths[k] || p1_w[k]<p2_w[k] ||
+     (p1_w[k]<widths[k]+4 && p1_w[k]<p2_w[k]+4)) shape_ok=0;
  end
  matched=0;
  for(k=0;k<4;k=k+1) for(j=0;j<4;j=j+1)
   if(sample_mask[k] && j<best_count &&
-     (sample_x0[k*11+:11]>=best_x[j]+OFFSET_X-CORE/2 ?
-       sample_x0[k*11+:11]-(best_x[j]+OFFSET_X-CORE/2) :
-       (best_x[j]+OFFSET_X-CORE/2)-sample_x0[k*11+:11])<=VERIFY_X &&
-     (sample_y0[k*10+:10]>=best_y-OFFSET_Y-CORE/2 ?
-       sample_y0[k*10+:10]-(best_y-OFFSET_Y-CORE/2) :
-       (best_y-OFFSET_Y-CORE/2)-sample_y0[k*10+:10])<=VERIFY_Y) matched[k]=1;
+     (sample_x0[k*11+:11]>=best_x[j]-OFFSET_X-CORE/2 ?
+       sample_x0[k*11+:11]-(best_x[j]-OFFSET_X-CORE/2) :
+       (best_x[j]-OFFSET_X-CORE/2)-sample_x0[k*11+:11])<=VERIFY_X &&
+     (sample_y0[k*10+:10]>=best_y+OFFSET_Y-CORE/2 ?
+       sample_y0[k*10+:10]-(best_y+OFFSET_Y-CORE/2) :
+       (best_y+OFFSET_Y-CORE/2)-sample_y0[k*10+:10])<=VERIFY_Y) matched[k]=1;
 end
 assign diagnostic={reason,located,best_count>=2 ? 3'b111 : 3'b000};
 integer i;
@@ -59,7 +66,7 @@ always @(posedge clk or negedge rst_n) begin
  if(!rst_n) begin
   a_d<=0;x_d<=0;y_d<=0;gray_d<=0;running<=0;left_ok<=0;pending<=0;left_margin<=0;previous_valid<=0;
   first<=0;last<=0;pending_center<=0;previous_center<=0;pending_width<=0;previous_width<=0;dark_count<=0;mid_count<=0;
-  count<=0;p1_count<=0;p2_count<=0;best_count<=0;seed_count<=0;p1_y<=0;p2_y<=0;best_y<=380;seed_y<=380;best_score<=0;
+  count<=0;p1_count<=0;p2_count<=0;best_count<=0;seed_count<=0;p1_y<=0;p2_y<=0;best_y<=CENTER_Y;seed_y<=CENTER_Y;best_score<=0;
   sample_x0<=0;sample_y0<=0;sample_mask<=0;verified_mask<=0;located<=0;reason<=1;
   for(i=0;i<4;i=i+1) begin centers[i]<=0;widths[i]<=0;p1_x[i]<=0;p2_x[i]<=0;p1_w[i]<=0;p2_w[i]<=0;best_x[i]<=0;seed_x[i]<=0;end
  end else begin
@@ -69,8 +76,8 @@ always @(posedge clk or negedge rst_n) begin
    count<=0;p1_count<=0;p2_count<=0;best_count<=0;best_score<=0;located<=0;verified_mask<=0;reason<=1;
    for(i=0;i<4;i=i+1) begin
     sample_mask[i]<=i<seed_count;
-    sample_x0[i*11+:11]<=seed_x[i]+OFFSET_X-CORE/2;
-    sample_y0[i*10+:10]<=seed_y-OFFSET_Y-CORE/2;
+    sample_x0[i*11+:11]<=seed_x[i]-OFFSET_X-CORE/2;
+    sample_y0[i*10+:10]<=seed_y+OFFSET_Y-CORE/2;
    end
   end else if(invalidate) begin
    seed_count<=0;sample_mask<=0;verified_mask<=0;best_count<=0;located<=1;reason<=7;
@@ -110,7 +117,7 @@ always @(posedge clk or negedge rst_n) begin
     end
     if(x_d==X1-4) begin
      if(shape_ok && (row_score>best_score || (row_score==best_score && row_distance<best_distance))) begin
-      best_count<=p1_count;best_y<=p1_y;best_score<=row_score;
+      best_count<=p1_count;best_y<=candidate_y;best_score<=row_score;
       for(i=0;i<4;i=i+1) best_x[i]<=p1_x[i];
      end
      p2_count<=p1_count;p1_count<=count;p2_y<=p1_y;p1_y<=y_d;

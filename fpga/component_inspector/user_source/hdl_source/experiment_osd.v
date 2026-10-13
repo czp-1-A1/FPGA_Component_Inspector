@@ -1,6 +1,6 @@
 // Sampling UI. Three pixel clocks for RGB, DE, HS, VS and ENABLE bypass.
 module experiment_osd #(
- parameter TRACKING=0,MULTI_POCKETS=0,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
+ parameter TRACKING=0,MULTI_POCKETS=0,DIRECT_DETECTION=0,CLASS_THRESHOLD=58,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
  parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340,HOLE_Y=220
 )(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,
@@ -54,7 +54,7 @@ reg [15:0] lane_s,format_s,i2c_s,gap_s,overflow_s,lost_s,underflow_s;
 reg [31:0] frames_s,uptime_s;
 reg [35:0] diagnostics_s;
 reg [25:0] publish_s;
-reg sample_s,cfg_s,error_s,edge_sample_s;reg [1:0] class_s,reason_s,mode_s;
+reg sample_s,cfg_s,error_s,edge_sample_s;reg [1:0] class_s,reason_s,mode_s,gray_state_s,edge_state_s;
 reg [15:0] edge_count_s;reg [23:0] edge_sum_s;
 always @(posedge clk or negedge rst_n) begin
  if(!rst_n) begin
@@ -62,7 +62,7 @@ always @(posedge clk or negedge rst_n) begin
   track_valid_s<=0;track_reason_s<=1;track_rows_s<=0;track_x0_s<=SAMPLE_X0;track_x1_s<=SAMPLE_X1;vs_d<=0;de_d<=0;x<=0;y<=0;sample_s<=0;cfg_s<=0;error_s<=0;wb_tune_s<=0;wb_pending_s<=0;
   overflow_s<=0;lost_s<=0;underflow_s<=0;diagnostics_s<=0;publish_s<=0;
   mode_s<=0;edge_sample_s<=0;edge_count_s<=0;edge_sum_s<=0;
-  class_s<=1;reason_s<=0;lane_s<=0;format_s<=0;i2c_s<=0;gap_s<=0;frames_s<=0;uptime_s<=0;
+  class_s<=1;gray_state_s<=1;edge_state_s<=1;reason_s<=0;lane_s<=0;format_s<=0;i2c_s<=0;gap_s<=0;frames_s<=0;uptime_s<=0;
  end else begin
   vs_d<=vs;de_d<=de;
   if(vs) begin x<=0;y<=0;end
@@ -78,6 +78,11 @@ always @(posedge clk or negedge rst_n) begin
    edge_sample_s<=roi_valid && cfg_done && fps!=0 && view_mode[1];
    sample_s<=roi_valid && cfg_done && fps!=0;
    class_s<=!cfg_done || fps==0 || !roi_valid ? 2'd1 : roi_state;
+   // Both labels use the same recent, complete observation and display snapshot.
+   // GRAY+EDGE shows independent tests; it does not fuse or require agreement.
+   gray_state_s<=!cfg_done || fps==0 || !roi_valid ? 2'd1 : roi_mean>=CLASS_THRESHOLD ? 2'd2 : 2'd3;
+   edge_state_s<=!cfg_done || fps==0 || !roi_valid || !view_mode[1] ? 2'd1 :
+    edge_count>=96 && edge_sum>=32768 ? 2'd2 : edge_count<=48 && edge_sum<=16384 ? 2'd3 : 2'd1;
    reason_s<=!cfg_done ? 2'd0 : fps==0 ? 2'd1 : !roi_valid ? 2'd2 : 2'd3;
    lane_s<=lane_errors;format_s<=format_errors;i2c_s<=i2c_errors;gap_s<=gaps;
    frames_s<=frames;uptime_s<=uptime;cfg_s<=cfg_done;
@@ -208,6 +213,9 @@ function [6:0] mode_glyph;
  end
 endfunction
 wire [23:0] result_color=class_s==0 ? 24'hf7b955 : class_s==2 ? 24'h74dbc7 : class_s==3 ? 24'hffae64 : 24'hb0c0d4;
+wire direct_label=DIRECT_DETECTION && x>=SAMPLE_X0 && x<SAMPLE_X0+112 && y>=SAMPLE_Y0-56 && y<SAMPLE_Y0-4;
+wire direct_gray_row=y<SAMPLE_Y0-30;
+wire [1:0] direct_state=direct_gray_row ? gray_state_s : edge_state_s;
 reg pocket_border,pocket_label;reg [23:0] pocket_color;
 reg [1:0] pocket_state;reg [10:0] pocket_label_x;reg [9:0] pocket_label_y;
 integer pi;reg [10:0] px;reg [9:0] py;reg [1:0] ps;
@@ -635,10 +643,10 @@ always @* begin
    0:glyph="R";1:glyph="O";2:glyph="W";3:glyph=" ";4:glyph=hexchar({1'b0,track_rows_s});5:glyph=" ";
   endcase
  end
- if(TRACKING && y>=8 && y<24 && x>=128 && x<232) begin
+ if((TRACKING || DIRECT_DETECTION) && y>=8 && y<24 && x>=128 && x<232) begin
   glyph_cjk=0;glyph_row=y-8;glyph_col=(x-128)%8;
   case((x-128)/8)
-   0:glyph="D";1:glyph=MULTI_POCKETS ? "4" : "3";2:glyph=" ";3:glyph="P";
+   0:glyph="D";1:glyph=DIRECT_DETECTION ? "5" : MULTI_POCKETS ? "4" : "3";2:glyph=" ";3:glyph="P";
    4:glyph=hexchar(publish_s[24:21]);5:glyph=hexchar(publish_s[20:17]);
    6:glyph=" ";7:glyph=publish_s[25] ? "M" : "W";8:glyph=hexchar({3'd0,publish_s[16]});
    9:glyph=hexchar(publish_s[15:12]);10:glyph=hexchar(publish_s[11:8]);
@@ -649,8 +657,32 @@ always @* begin
   glyph_cjk=0;glyph_row=y-8;glyph_col=(x-240)%8;
   case((x-240)/8)
    0:glyph="A";1:glyph="U";2:glyph="T";3:glyph="O";4:glyph="4";5:glyph=" ";
-   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph="2";default:glyph=" ";
+   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph="3";default:glyph=" ";
   endcase
+ end
+ if(DIRECT_DETECTION && y>=8 && y<24 && x>=240 && x<344) begin
+  glyph_cjk=0;glyph_row=y-8;glyph_col=(x-240)%8;
+  case((x-240)/8)
+   0:glyph="F";1:glyph="I";2:glyph="X";3:glyph="E";4:glyph="D";5:glyph=" ";
+   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph="4";default:glyph=" ";
+  endcase
+ end
+ if(direct_label) begin
+  glyph_row=direct_gray_row ? y-(SAMPLE_Y0-56) : y-(SAMPLE_Y0-30);
+  ink_color=direct_state==2 ? 24'h74dbc7 : direct_state==3 ? 24'hffae64 : 24'hb0c0d4;
+  if(x<SAMPLE_X0+40) begin
+   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-SAMPLE_X0)%8;
+   case((x-SAMPLE_X0)/8)
+    0:glyph=direct_gray_row ? "G" : "E";1:glyph=direct_gray_row ? "R" : "D";
+    2:glyph=direct_gray_row ? "A" : "G";3:glyph=direct_gray_row ? "Y" : "E";default:glyph=" ";
+   endcase
+  end else if(!direct_gray_row && !mode_s[1]) begin
+   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-SAMPLE_X0-40)%8;
+   case((x-SAMPLE_X0-40)/8) 0:glyph="O";1:glyph="F";2:glyph="F";default:glyph=" ";endcase
+  end else begin
+   glyph_cjk=1;glyph_col=(x-SAMPLE_X0-40)%24;
+   glyph=result_glyph(direct_state,(x-SAMPLE_X0-40)/24);
+  end
  end
  if(pocket_label) begin
   glyph_cjk=1;glyph_row=y-pocket_label_y;glyph_col=(x-pocket_label_x)%24;
@@ -694,7 +726,7 @@ always @(posedge clk or negedge rst_n) begin
   cjk_address<={glyph[5:0],glyph_row};
   logo_address<={logo_y,logo_x};
   hs_p<={hs_p[0],hs};vs_p<={vs_p[0],vs};de_p<={de_p[0],de};
-  panel_p<={panel_p[0],(de && (pocket_label || y<80 || y>=504 || (TRACKING && y>=148 && y<164 && x>=256 && x<544)))};
+  panel_p<={panel_p[0],(de && (direct_label || pocket_label || y<80 || y>=504 || (TRACKING && y>=148 && y<164 && x>=256 && x<544)))};
   logo_p<={logo_p[0],(x>=16 && x<112 && y>=8 && y<72)};
   cjk_p<={cjk_p[0],glyph_cjk};col0<=glyph_col;col1<=col0;
   rgb0<=picture;rgb1<=rgb0;ink0<=ink_color;ink1<=ink0;

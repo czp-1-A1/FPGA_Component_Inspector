@@ -1,7 +1,7 @@
 // Frame-complete features only. Thresholds are provisional black-tape trials.
 // RAW/GRAY use the existing brightness recipe; EDGE does not consult MEAN.
 module roi_mode_classifier #(
- parameter CORE_AREA=6400,
+ parameter CORE_AREA=6400,FUSE_FEATURES=1,
  parameter [12:0] EDGE_LOW=13'd48,EDGE_HIGH=13'd96,
  parameter [23:0] SUM_LOW=24'd16384,SUM_HIGH=24'd32768
 )(
@@ -19,6 +19,7 @@ always @* begin
   if(!scene_ok) state=WAIT_SAMPLE;
   else if(mode[1]) begin
    if(core_pixels!=CORE_AREA) state=WAIT_SAMPLE;
+   else if(mode[0] && !FUSE_FEATURES) state=gray_state;
    else if(mode[0] && gray_state!=edge_state) state=WAIT_SAMPLE;
    else state=edge_state;
   end
