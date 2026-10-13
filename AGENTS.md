@@ -35,10 +35,11 @@
 ## 当前断点（2026-10-13，AUTO4黑屏修复实验v2已发布，待现场）
 
 - **目标/断点**：用户反馈RAW/复位黑屏、顶部仍在，P1B W1C200/FPS27/CFG1/VF增长/OF0/UF0。已复现近源FS合并造成独立帧号永久漂移并修复；完整视频与可选检测结果隔离，缺结果清空当前槽标签/统计并待检测。现场根因与该缺陷相符但未实物证明；不称上板恢复或分类通过。
-- **分支/基线**：lj4747-contest-work，镜像构建前基线3be3967f2457622566fb20b7cef3aa5038e7d885；累计代码/证据提交d9b8d2d0d8073ab127325776b7828c9780349dd6已推送并远端核对。当前交接文字更新不改变冻结输入。基于AUTO4 v1，211项生产输入只改video_in/design_top_wrapper/experiment_osd三项，208项及SDC不变。r2/r3/r4/r5冻结与当前生产源码逐项一致。
+- **分支/基线**：lj4747-contest-work，镜像构建前基线3be3967f2457622566fb20b7cef3aa5038e7d885；累计代码/证据提交d9b8d2d0d8073ab127325776b7828c9780349dd6已推送并远端核对。当前交接文字更新不改变冻结输入。基于AUTO4 v1，211项生产输入只改video_in/design_top_wrapper/experiment_osd三项，208项及SDC不变。r2/r3/r4/r5冻结与已推送V2源码逐项一致；上传后的工作区新增V3修改，不能将V2测试结论直接套用于当前全部工作区。
 - **实现**：writer在同步FS沿绑定源camera_epoch；仅AUTO4 METADATA_REQUIRED=0，完整无错/精确写足字数才发布，metadata失配则518位全零，迟到结果不补改已发布槽，默认旧严格模式保留。D4/AUTO4 EXP V2新增W/M ready/接收epoch/写入epoch诊断与METADATA WAIT。孔搜索/几何/分类门限和曝光2244/增益48/R100B100不改。
 - **验证/证据**：14项本轮独立冻结测试PASS，8种近FS相位恢复、缺/迟到/旧epoch/复位、384精确RGB像素、614400请求完整DDR竞争读出及坏帧拒绝、632064 OSD像素、实际ISP严格元数据/完整尾帧/停钟/短帧。r2TD Routed慢快角建立+0.142ns/保持+0.020ns/TNS0，STA92.66%；Slice15717/21216=74.08%，ERAM48/108、DSP8/40；37max_delay匹配/ignored0/SDC不变，综合125/物理10告警无增量。记录开发实施/验收记录/20261013_BAUTO4黑屏元数据排查_轮次1.md；417文件归档含source_snapshot/测试/TD/失败证据/manifest。
 - **镜像**：fpga/component_inspector/release/multi_pocket_video_fix_v2_20261013/camera_to_dsi_display.bit；1789539字节；SHA b3d775b19f7ceb31cb34bb952ebacf27df739ae18bced699d8492ae61e79f51a。上板说明开发实施/47_BAUTO4帧号漂移黑屏修复_v2上板说明.md。current_codex_build.json已指向本轮。
 - **失败保留/限制**：旧近FS源码P1B失败、r1集成声明错误、r2约315FPS压力坏帧被误要求发布、r2测试筛选误插入导致0/1项、r3旧OSD窄输入浮空及复测均分别保留。额外TD单路径查询无有效目标，记INCONCLUSIVE，未冒充单路径通过。几何孔距96±24、孔→穴(+48,-80)、80×80、Y340～443及阈值仍待实物配对；慢移、一帧滞后、最多4穴，无永久ID/NG/置信度。面积仍在已审查70～75%实验区，扩功能前优化。
 - **下一条操作**：用户下载V2并核对AUTO4 EXP V2/D4，先RAW确认连续更新，再停稳核对孔→穴框/有件空穴真值、慢移恢复。若持续METADATA WAIT，记录D4的M五位（ready/接收低8/写入低8）及FPS/CFG/VF/OF/UF，区分结果未到和epoch失配；仍黑时先确认镜像版本和新诊断，不继续改分类阈值。
+- **同步末尾发现**：三处RTL在上传期间出现V3未提交改动：experiment_osd.v版本改V3、isp/isp_top.v改视场/元数据标签、multi_pocket_detector.v改孔排方向与几何。同步操作未生成或修改这些RTL，未将其纳入V2提交；当前源码工作区不再等于已发布V2。先确认正在写入的实现端与V3验证进度，不覆盖、回退或把这些改动当作已验收内容。
 - **进程/设备/提交**：ModelSim/TD全部完成，无本轮运行中进程；主线程唯一写入，未启动新代理/JTAG/Flash。2026-10-13用户授权同步当前进度；源码、发布镜像及验收资料已随d9b8d2d0d8073ab127325776b7828c9780349dd6推送origin/lj4747-contest-work，远端HEAD一致。同步结果与当前交接入口已更新，随独立文档提交上传。旧镜像和失败证据保留。
