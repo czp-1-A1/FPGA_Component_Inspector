@@ -1,9 +1,9 @@
 {
   "date": "2026-10-13",
-  "status": "V4_commit_and_push_in_progress",
+  "status": "V4_code_release_evidence_pushed_remote_verified",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
   "branch": "lj4747-contest-work",
-  "source_commit": null,
+  "source_commit": "8ff698ddd984eb0a4b81a05907a614961c699c3e",
   "build_base_head": "37d0f9d0473cb4f77660ab5eebd1a7f8f1fe8670",
   "checkout": "latest remote HEAD of lj4747-contest-work",
   "handoff_document": "交接说明.md",
@@ -35,5 +35,8 @@
     "root transient build_console.log and transcript",
     "tool installations"
   ],
-  "note": "Frozen V3/V4 releases and evidence retain original bytes. Repository sync does not upgrade physical acceptance."
+  "note": "V4 code, V3/V4 releases and evidence, field feedback and plan 50 were pushed and remote HEAD verified. Subsequent handoff documentation does not alter frozen release bytes.",
+  "verified_remote_source_head": "8ff698ddd984eb0a4b81a05907a614961c699c3e",
+  "source_commit_input_sha_checks": 211,
+  "staged_archive_sha_checks": 816
 }
