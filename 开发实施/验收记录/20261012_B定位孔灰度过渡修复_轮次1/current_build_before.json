@@ -1,0 +1,22 @@
+{
+  "purpose": "D3_wb_defaults_100_only_hole_tracking_unchanged",
+  "td_version": "6.2.168116",
+  "base_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "source_commit": null,
+  "source_snapshot": "开发实施/验收记录/20261012_B白平衡默认100_轮次1/source_snapshot",
+  "simulation_root": "tmp/wb100_d3_r1_td_20261012",
+  "release": {
+    "path": "fpga/component_inspector/release/wb_defaults100_d3_20261012/camera_to_dsi_display.bit",
+    "bytes": 1789539,
+    "sha256": "be9da1c3856162cab4de89188b614e218d48990657d958009c81133e8d0a78a7"
+  },
+  "validation_record": "开发实施/验收记录/20261012_B白平衡默认100_轮次1.md",
+  "fresh_tests": [
+    "wb_controls",
+    "manual_wb",
+    "fixed_wb",
+    "controls",
+    "isp_metadata_stop"
+  ],
+  "onsite": "PENDING"
+}

@@ -1,0 +1,14 @@
+../user_source/hdl_source/uics500_cfg/uicfgcs500.v:149: warning: Port 2 (REG_DATA) of uics500reg expects 32 bits, got 24.
+../user_source/hdl_source/uics500_cfg/uicfgcs500.v:149:        : Padding 8 high bits of the port.
+../user_source/hdl_source/uics500_cfg/uicfgcs500.v:168: warning: Port 3 (I) of SC500GainTbl expects 7 bits, got 32.
+../user_source/hdl_source/uics500_cfg/uicfgcs500.v:168:        : Pruning 25 high bits of the expression.
+../user_source/hdl_source/uics500_cfg/uicfgcs500.v:170: warning: Port 2 (REG_DATA) of uics500regAE expects 32 bits, got 24.
+../user_source/hdl_source/uics500_cfg/uicfgcs500.v:170:        : Padding 8 high bits of the port.
+PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload
+tb_controls.v:38: $finish called at 125600000 (1ps)
+PASS monitor: bubbled PPC4 input, actual dimensions, bad frame, lane edge, stopped input
+tb_monitor.v:25: $finish called at 12525740000 (1ps)
+PASS actual CSI and RAW10 decoder feeding monitor: 1024 x 600
+tb_csi_monitor.v:22: $finish called at 4100220000 (1ps)
+PASS OSD decimal fields and rendered output
+tb_osd.v:18: $finish called at 1002520000 (1ps)

@@ -1,0 +1,23 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 11:41:29 on Oct 10,2026
+vlog -work test_tracking ../user_source/hdl_source/tape_hole_tracker.v ../user_source/hdl_source/roi_statistics.v 
+-- Compiling module hole_scanline
+-- Compiling module tracking_frame_age
+-- Compiling module tape_hole_tracker
+-- Compiling module roi_statistics
+
+Top level modules:
+	tracking_frame_age
+	tape_hole_tracker
+	roi_statistics
+End time: 11:41:29 on Oct 10,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 11:41:29 on Oct 10,2026
+vlog -sv -work test_tracking tb_tracking.v 
+-- Compiling module tb_tracking
+
+Top level modules:
+	tb_tracking
+End time: 11:41:29 on Oct 10,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

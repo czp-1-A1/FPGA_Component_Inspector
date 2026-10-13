@@ -1,0 +1,22 @@
+{
+  "baseline": "presence_modes_v3_20261008",
+  "inputs": 209,
+  "project_sources": 69,
+  "changed_production_inputs": [
+    "user_source/hdl_source/awb.v",
+    "user_source/hdl_source/isp/isp_top.v"
+  ],
+  "r2_changes_from_attempt1": [
+    "user_source/hdl_source/awb.v"
+  ],
+  "fixed_red_blue_gain": 1.0,
+  "optical_thresholds_unvalidated": true,
+  "reason": "Attempt1 synthesis introduced two HDL-7238 critical warnings on constant clocked gain assignments; use elaboration-time constant nets and preserve original automatic path.",
+  "relevant_retests": [
+    "fixed_wb",
+    "pixel_interface",
+    "isp_writer_stop",
+    "roi_chain"
+  ],
+  "attempt1_preserved": "fixed_wb_tuning_td_20261009"
+}

@@ -1,0 +1,9 @@
+# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload
+# PASS CDC: asynchronous changing payload, atomic pairs, stopped clocks, reset
+# PASS monitor: bubbled PPC4 input, actual dimensions, bad frame, lane edge, stopped input
+# PASS actual CSI and RAW10 decoder feeding monitor: 1024 x 600
+# PASS I2C actual bus: START, four correct bytes, ACK, STOP, NACK detection
+# PASS OSD decimal fields and rendered output
+# OBS packer: reset and frame_start during continuous valid do not restart packing
+# OBS packer: two input beats emit one 128-bit word; remaining 64 bits are discarded by valid gap
+# PASS pack boundary characterization: valid gap restarts phase; reset/SOF are not phase guards

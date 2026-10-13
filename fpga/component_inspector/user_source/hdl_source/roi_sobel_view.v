@@ -1,7 +1,7 @@
 // RAW/GRAY preserve the AWB schedule. EDGE replays whole rows only when the
 // downstream FIFO reserves a row. Unrecoverable cache overrun aborts the frame.
 module roi_sobel_view #(
- parameter WIDTH=1024,HEIGHT=600,
+ parameter DYNAMIC_ROI=0,WIDTH=1024,HEIGHT=600,
  parameter X0=256,X1=768,Y0=172,Y1=428,
  parameter CORE_X0=472,CORE_X1=552,CORE_Y0=260,CORE_Y1=340,
  parameter EDGE_THRESHOLD=80
@@ -12,8 +12,13 @@ module roi_sobel_view #(
  output reg out_valid,out_last,out_early_sof,output reg [95:0] out_rgb,
  output reg [10:0] out_x,output reg [9:0] out_y,
  output reg [12:0] core_pixels,edge_count,output reg [23:0] edge_sum,
- output wire [31:0] timing_debug
+ output wire [31:0] timing_debug,
+ output wire gradient_valid,output wire [10:0] gradient_x,output wire [9:0] gradient_y,
+ output wire [43:0] gradient_magnitudes,output wire [3:0] gradient_neighborhood,
+ input wire [10:0] dynamic_x0,dynamic_x1,input wire [9:0] dynamic_y0,dynamic_y1
 );
+wire [10:0] core_x0=DYNAMIC_ROI ? dynamic_x0 : CORE_X0,core_x1=DYNAMIC_ROI ? dynamic_x1 : CORE_X1;
+wire [9:0] core_y0=DYNAMIC_ROI ? dynamic_y0 : CORE_Y0,core_y1=DYNAMIC_ROI ? dynamic_y1 : CORE_Y1;
 localparam BEATS=WIDTH/4;
 reg [7:0] write_group,read_group;
 reg [9:0] write_y,read_y,ready_rows;
@@ -192,7 +197,7 @@ always @(posedge clk or negedge rst_n) begin
    yn[lane]<={2'd0,t[lane]}+{1'd0,t[lane+1],1'b0}+{2'd0,t[lane+2]};
    magnitude[lane]<={1'b0,dx[lane]}+{1'b0,dy[lane]};
    neighborhood3[lane]<=x_p+lane>X0 && x_p+lane<X1-1 && y_p>Y0 && y_p<Y1-1 && y_p>0 && y_p<HEIGHT-1;
-   core3[lane]<=x_p+lane>=CORE_X0 && x_p+lane<CORE_X1 && y_p>=CORE_Y0 && y_p<CORE_Y1;
+   core3[lane]<=x_p+lane>=core_x0 && x_p+lane<core_x1 && y_p>=core_y0 && y_p<core_y1;
    inside3[lane]<=x_p+lane>=X0 && x_p+lane<X1 && y_p>=Y0 && y_p<Y1;
   end
   if(pixel_sof || early_sof || cache_overrun || frame_bad) begin previous<=0;v3<=0;v4<=0;end
@@ -202,6 +207,10 @@ end
 reg [2:0] beat_pixels,beat_edges;
 reg [12:0] beat_strength; // four 11-bit gradients: maximum 8160.
 reg count_valid,count_enabled;
+// Passive feature tap; the existing row replay and video schedule are unchanged.
+assign gradient_valid=v4 && mode4[1] && !early_sof && !frame_bad && !cache_overrun;
+assign gradient_x=x4;assign gradient_y=y4;assign gradient_neighborhood=neighborhood4;
+assign gradient_magnitudes={magnitude[3],magnitude[2],magnitude[1],magnitude[0]};
 wire [3:0] selected=core4 & neighborhood4;
 wire [3:0] edges={magnitude[3]>=EDGE_THRESHOLD,magnitude[2]>=EDGE_THRESHOLD,magnitude[1]>=EDGE_THRESHOLD,magnitude[0]>=EDGE_THRESHOLD};
 wire [10:0] strengths [0:3];

@@ -1,0 +1,27 @@
+{
+  "user_reply": "确认，生成修复版",
+  "transition_max_pixels_per_side": 8,
+  "preserved": {
+    "bright": 120,
+    "dark": 100,
+    "bright_width": [
+      20,
+      64
+    ],
+    "dark_margin_pixels": 8,
+    "pitch": 96,
+    "pitch_tolerance": 24,
+    "scan_rows": [
+      372,
+      380,
+      388
+    ],
+    "wb": [
+      100,
+      100
+    ]
+  },
+  "baseline_before_sha256": "42ca6d1236a02a76c3fdbac49433461419df4f1265e707233289534a519ffcd5",
+  "original_unmet_requirement_sha256": "391c2226a5cd1a063aa1e7fa4937098dd08eb9c6b49902a0e59ee74b89fe1808",
+  "scope": "Only hole_scanline boundary handling; tracking/classification gates unchanged; onsite root cause unproven"
+}

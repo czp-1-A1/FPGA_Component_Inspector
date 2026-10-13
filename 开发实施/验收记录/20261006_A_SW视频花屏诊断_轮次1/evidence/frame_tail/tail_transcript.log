@@ -1,0 +1,36 @@
+# vsim -c -modelsimini modelsim.ini -voptargs="+acc" -onfinish exit -l tail_transcript.log -wlf tail_wave.wlf -do "log /tb_tail_clock/*; run -all; quit -code 1 -force" work.tb_tail_clock 
+# Start time: 22:52:02 on Oct 05,2026
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_tail_clock(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# log /tb_tail_clock/*
+#  run -all
+# OBS early epoch=1 CSIclock=13 output_old=0,0,0
+# OBS control measured beats=2048 words=1536 read_y=8 ready=8
+# OBS control complete frame pixels=8192 packed=1536
+# OBS early epoch=2 CSIclock=4162 output_old=2048,0,0
+# OBS stop CSI after last row +40 clocks: frame2 pixels=6280 packed=1176 read_y=6 read_group=40
+# OBS wall blank 1ms did not advance frame2: pixels=6280 packed=1176
+# OBS new pixel SOF preempts old tail: before SOF frame2 pixels=6688 packed=1253 read_y=6 read_group=142
+# OBS early epoch=3 CSIclock=7855 output_old=2048,1674,0
+# OBS final frame2 pixels=6696/8192 packed=1255/1536; frame3 pixels=8192/8192 packed=1536/1536
+# PASS diagnostic tail interruption reproduced; conditional CSI clock-stop/early-next-SOF stimulus, not board confirmation
+# ** Note: $finish    : D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/tmp/frame_review_20261005/tb_tail_clock.v(46)
+#    Time: 1119075 ns  Iteration: 1  Instance: /tb_tail_clock
+# End time: 22:52:04 on Oct 05,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

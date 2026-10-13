@@ -1,0 +1,7 @@
+请接续阶段A SW版视频花屏修复。工程根目录：
+D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector
+
+先读根AGENTS.md，再读：
+开发实施/验收记录/20261006_A_SW视频修复交接_轮次1/交接说明.md
+
+前实现端已停止，无助手后台任务。沿用当前未提交工作区，保留既有改动和失败证据；用户已批准当前视频稳定性修复范围，无需再次确认。先核实并修复early_sof后残留旧pixel_valid导致新帧frame_bad的失败专项，完成被中断的真实ISP transport proof，再跑回归、冻结新构建输入、TD综合/布局布线和发布候选bit。保持1024×600、UI/Logo、双ROI、四KEY和四SW模式，正式分类仍禁用。当前没有已验收的新修复bit，不要发布tmp预构建镜像。交接说明含准确路径、脚本、通过/失败结果和下一步操作。

@@ -1,0 +1,3151 @@
+{
+  "created_at": "2026-10-06T19:42:27+08:00",
+  "branch": "hx1p35a-contest-work",
+  "HEAD": "f87ccf1c6a38e84b58a4f86cecd532a71ae56e89",
+  "status": "handoff_WIP_not_released_not_board_tested",
+  "final_build_inputs_match_worktree": 207,
+  "changed_build_inputs_vs_before_repair": [
+    {
+      "path": "user_source/hdl_source/design_top_wrapper.v",
+      "before_sha256": "706c74c61d75c280f0abc48f37156abd3373d1c9a5f07f3b28deaba6af10a367",
+      "current_sha256": "7455783adefcb2eb6487a44d8e5f53daadcf81eb4ca31bfd9b79529110232e45"
+    },
+    {
+      "path": "user_source/hdl_source/experiment_osd.v",
+      "before_sha256": "e63ac15fa733789e2c4bb8801fa872bcd22dc24c7ad746dd414bc7208d8897a1",
+      "current_sha256": "1b79bec1f2e242a340291b4890db4db6fcc8ecb67b1fb668561e8b6e4a6dadb0"
+    },
+    {
+      "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+      "before_sha256": "c79a102378c70ce5faacbc46a62b5ae6eaac151b93891379eda2880a7d68fe30",
+      "current_sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+    },
+    {
+      "path": "user_source/hdl_source/isp/isp_top.v",
+      "before_sha256": "b6a9eccb53f2018b6b5356d208eb475bbb8f0dda745a4af5da117165d3f21886",
+      "current_sha256": "dd382a7d131f5c7a2e27e52a93b65a1017ad9e857ae5e6e11253e4343e2de056"
+    },
+    {
+      "path": "user_source/hdl_source/video_in.v",
+      "before_sha256": "ef1f7a358f608a654234efb71924ba8f79c35d606aae46befed738cd198afbfa",
+      "current_sha256": "0af1896eeedef3a31240db44090e1d0dc577b740344e13fbd56af83b09155df3"
+    },
+    {
+      "path": "user_source/hdl_source/video_out.v",
+      "before_sha256": "1bd84f808d9a9d67909d6aa2b4ab99680061c704d485f84a41401f5e19c30617",
+      "current_sha256": "9cf4ef7484fbe292816015f38c54406779ea29d5a0a4039847d482d34df3361c"
+    },
+    {
+      "path": "td_project/camera_to_dsi_display.sdc",
+      "before_sha256": "2ad8463580643c2b9787d5b8a05869c839bce630ebbfd4b0dbd1884683e60431",
+      "current_sha256": "de166814eb4316162f9e13d28a07dd6321a4c35f73d81f360edc03213b64d3ca"
+    },
+    {
+      "path": "user_source/hdl_source/osd_ascii_rom.v",
+      "before_sha256": "e8b1badfd442683cb71c9cbe0edbc7b9b56b6d009a35116967d4f69aa736f70e",
+      "current_sha256": "db206a70b3f64fd1200f1d2c17309337cf8f9214a13ce0ce1626fed1270f81ce"
+    },
+    {
+      "path": "user_source/hdl_source/roi_sobel_view.v",
+      "before_sha256": "a612caa905eb28ef18683beea5cb79fc4bd11bbace9efb7d20d8341610aa7976",
+      "current_sha256": "13738d3d535df505dc675979ac44bfa74ce186be517f7bfdc4fb5ca030312596"
+    },
+    {
+      "path": "user_source/hdl_source/roi_observation_snapshot.v",
+      "before_sha256": "fbc0267a74ac763070929537b0892da3f428f5eff4b11b88c1e6b8433728e940",
+      "current_sha256": "9250ab4ed2223bee6f0621ba1194bfa9278c13e71ea704228bc0b3d97031e43c"
+    }
+  ],
+  "previous_releases": [
+    {
+      "path": "fpga/component_inspector/release/sample_ui_20261005/camera_to_dsi_display.bit",
+      "bytes": 1789539,
+      "sha256": "ab23766b4b51c4df1d331fc14ad7f5bcc8a5ddeeeae3a2aedb8929cf04332ea1"
+    },
+    {
+      "path": "fpga/component_inspector/release/sw_edge_20261005/camera_to_dsi_display.bit",
+      "bytes": 1789539,
+      "sha256": "a43156b8fc076d7940e12b8f7ba46d026a3053466b759724bef79235570bcd8c"
+    }
+  ],
+  "copies": [
+    {
+      "source": "fpga/component_inspector/user_source/constraints_source/pin.adc",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/constraints_source/pin.adc",
+      "bytes": 1815,
+      "sha256": "6d485712dca3f45de14610500b93e8a889ca6ec8e614f48bfd8e9be1944ffe3d"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/constraints_source/timing.sdc",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/constraints_source/timing.sdc",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/audio_arc_calculate.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/audio_arc_calculate.v",
+      "bytes": 1702,
+      "sha256": "552d8d86afd237666b30ae08f31247808e89eb024efde5efc670b82eb617a7dc"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/auto_white_balance.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/auto_white_balance.v",
+      "bytes": 6617,
+      "sha256": "248b841fdc7640d07768b0e6e086704a862da24047de40c80beb8cc201180e0f"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/awb.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/awb.v",
+      "bytes": 13170,
+      "sha256": "27a4cab58b7c9c05912d994e009b8a288792eb6c7cef39ae1263eb13cc6372bd"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/bin16_bcd.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/bin16_bcd.v",
+      "bytes": 730,
+      "sha256": "e8ac13eaa52618336a3475f74cc5f19b725d8440061774f0d3ffbd1027fee4e5"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/csi_unpacket.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/csi_unpacket.v",
+      "bytes": 5029,
+      "sha256": "cc66fec1ee55fff7e8a31964e6c27670006caf294d153fea8823c83fa9890233"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/data_96bit_to_128bit.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/data_96bit_to_128bit.v",
+      "bytes": 2100,
+      "sha256": "6861038b75f2f7010bff99742e4db9470643716c7e6b9b615a27da60d4542924"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v",
+      "bytes": 35366,
+      "sha256": "7455783adefcb2eb6487a44d8e5f53daadcf81eb4ca31bfd9b79529110232e45"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/dsi_tx_packet/config_data.mif",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/dsi_tx_packet/config_data.mif",
+      "bytes": 3338,
+      "sha256": "0f5842f2ca3e46634e0215cc55cf2c9b5afab16517e96d9e5dde6bf3845813ad"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/dsi_tx_packet/config_data.mif.dat",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/dsi_tx_packet/config_data.mif.dat",
+      "bytes": 10240,
+      "sha256": "4e05846962e371e436714ac3268109d6322e333620ad4e95e3391c6da9f432e2"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/experiment_osd.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/experiment_osd.v",
+      "bytes": 27525,
+      "sha256": "1b79bec1f2e242a340291b4890db4db6fcc8ecb67b1fb668561e8b6e4a6dadb0"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v",
+      "bytes": 328975,
+      "sha256": "867e0b0bdd874bc383d00918c9e1be3fe01edf41f343b6a0d73e262776596a63"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/hdmi_mixer.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/hdmi_mixer.v",
+      "bytes": 5072,
+      "sha256": "9507eda6b841ca797bb322372f9c37fc2ddb922f86e98009a190575c02f0fc08"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/hdmi_phy_warpper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/hdmi_phy_warpper.v",
+      "bytes": 4017,
+      "sha256": "416b082b0987001bdbc0a7e20a557cb8fb1dca34e25dc881e6d28a8cb3cf4300"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/hdmi_tx.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/hdmi_tx.v",
+      "bytes": 9994,
+      "sha256": "6565255ce3f9f5255a5493aa8f0a8c509c8897802648d3a0aacdd35c89487625"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/I2S_receiver.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/I2S_receiver.v",
+      "bytes": 4205,
+      "sha256": "08904598b42c2e1a4836cd9fb3293bc6c791ea2f79e35c7663a33127dc97f47b"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/image_correction.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/image_correction.v",
+      "bytes": 2901,
+      "sha256": "6bf43322799bd1b4a727f0571eae2224fcb4c1f8c72575cf005f0b3e56bd2df8"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/input_monitor.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/input_monitor.v",
+      "bytes": 3469,
+      "sha256": "4fb4cae4e342ac796b3101dac0916e69daef27c341c1fbe745d20ec01537c6fc"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/awb/awb.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/awb/awb.v",
+      "bytes": 17237,
+      "sha256": "bd7f8178ecdc372dcaac28195f97cc52e23a8db9824854a10376002b244e428c"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/awb/divider/divider.ipc",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/awb/divider/divider.ipc",
+      "bytes": 717,
+      "sha256": "dc1eb3e758acc300e46284ded33f35e73b70c2fbe8884c82e8c38358fe92f15f"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/awb/divider/divider_gate.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/awb/divider/divider_gate.v",
+      "bytes": 1360590,
+      "sha256": "fc1ac2635a0cf09c98bbc48cea52e0640904a3505eb46b59f0b944935c491c53"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/awb/ram/blk_mem_gen_awb_delay_signal.ipc",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/awb/ram/blk_mem_gen_awb_delay_signal.ipc",
+      "bytes": 1898,
+      "sha256": "c35a61ae1d2f1d5caf95cd9165f441771dfedf44a87a5baabae4c97fe460bcf7"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/awb/ram/blk_mem_gen_awb_delay_signal.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/awb/ram/blk_mem_gen_awb_delay_signal.v",
+      "bytes": 2528,
+      "sha256": "9110444f36261b8a4661056baf88262a648503182467fc5cb1fc0c212ceef44d"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/awb/ram/blk_mem_gen_awb_delay_signal.vhd",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/awb/ram/blk_mem_gen_awb_delay_signal.vhd",
+      "bytes": 2162,
+      "sha256": "3c63595f98a7a38371f5935678a16dc80275bdeafd273fabc17357f422aa398f"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/awb/signal_delay.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/awb/signal_delay.v",
+      "bytes": 4566,
+      "sha256": "c195cefb01385f8436c019940120b8bc4bd4b4ca18d8ff1402600249b3bd23af"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/BLC/BLC.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/BLC/BLC.v",
+      "bytes": 2989,
+      "sha256": "011d09b3e1de47b9e444945c257426836f4947e8dd9b3cd2e9c1539b44129221"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/csi_unpacket_2lane.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/csi_unpacket_2lane.v",
+      "bytes": 4336,
+      "sha256": "b7e093e1e377f5a61a22216e9a4ec404068a3346923758297867b465679dacdd"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/data128_96/data128_96.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/data128_96/data128_96.v",
+      "bytes": 587,
+      "sha256": "b6acceb73cc76058d4afe6ec593360bae6701646fdda780a9264ada3befd5318"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/data96_128/data96_128.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/data96_128/data96_128.v",
+      "bytes": 975,
+      "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v",
+      "bytes": 33840,
+      "sha256": "53a4fc3dea805d59cee9bdab1a090c26c03eb555ab612a1a4698d810c1991baf"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/.m_params_blk_mem_gen_demosaic.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/.m_params_blk_mem_gen_demosaic.txt",
+      "bytes": 412,
+      "sha256": "5e26ea4e1476686542cd496c81a4557aa1b674149ba313b3fd625af5c9fd1a2c"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/.params_blk_mem_gen_demosaic.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/.params_blk_mem_gen_demosaic.txt",
+      "bytes": 3568,
+      "sha256": "fd29c924b47d1e48bdc3a2eab4f7abb679fb23aab23b3c40e29372f0f2c8f1b1"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/.ports_blk_mem_gen_demosaic.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/.ports_blk_mem_gen_demosaic.txt",
+      "bytes": 403,
+      "sha256": "f9882b0975a77f758baa98b74649159c7f4c6590a259591941c039bf1ef8eab9"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.v",
+      "bytes": 1492,
+      "sha256": "f52e1a6ef3da30b6b5342ed21fffc1651b9d0574fd3331215dbc0fb21476b83f"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.xml",
+      "bytes": 7768,
+      "sha256": "ca20f6d2a4eee50df848f510684ad5e96244b6725bba4e755a4fe01e92122efa"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/Design.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/Design.xml",
+      "bytes": 14635,
+      "sha256": "15d9b59feac472cfdc73a0ab4bc78c76c8af7cc9bbd3f1b09b3c10623770a559"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/DesignConfiguration.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/DesignConfiguration.xml",
+      "bytes": 937,
+      "sha256": "b4b0392ba552c1631343ac2c7732075d9aa95460715723994aecabf399da8868"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/include/define.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/include/define.v",
+      "bytes": 256,
+      "sha256": "ce22c429acd5d725b986015db98a3a86609204620dc1ba9158123f1e335b6ac5"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v",
+      "bytes": 2146,
+      "sha256": "4c007b82769a2af9474683ec27711133c735ac776fd1f3d037d4eb00cc20a832"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/.m_params_blk_mem_gen_zhenghe.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/.m_params_blk_mem_gen_zhenghe.txt",
+      "bytes": 412,
+      "sha256": "97a9f87b1f5ac927934d32bebc00206a13b23830facc6b2a2298ccf7924903fc"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/.params_blk_mem_gen_zhenghe.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/.params_blk_mem_gen_zhenghe.txt",
+      "bytes": 3584,
+      "sha256": "902190f496eedd54c33824555ef6af4e5553329c256cc046074f7b8f4468693b"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/.ports_blk_mem_gen_zhenghe.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/.ports_blk_mem_gen_zhenghe.txt",
+      "bytes": 403,
+      "sha256": "f9882b0975a77f758baa98b74649159c7f4c6590a259591941c039bf1ef8eab9"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.v",
+      "bytes": 1491,
+      "sha256": "c6b2064638cf7217b792e8f880840f46151a1c83158dd6e96d8d4c63631432bd"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.xml",
+      "bytes": 7754,
+      "sha256": "da1a6245b690f6e1943d391ca34de46f6801ff381b88c0cc45387cb2338b3d96"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/Design.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/Design.xml",
+      "bytes": 14634,
+      "sha256": "dee91dfd99dee99429c37b0e7d57888c3aff5473464176c1d848573f08143ba4"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/DesignConfiguration.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/DesignConfiguration.xml",
+      "bytes": 936,
+      "sha256": "abf427deb516260163dbfe3677440c5ba3b75ade76de7be5e13b9f02f65b2d33"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/include/define.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/include/define.v",
+      "bytes": 256,
+      "sha256": "104eb8d9b626b944b1e2d3b8070f51c636af132bc00b32ebed0236bbb2c144c0"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v",
+      "bytes": 2146,
+      "sha256": "facbb17d5cf7aa37e7cb63764780c2c7acc655ff421a766701c656adbb9f8c26"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v",
+      "bytes": 4633,
+      "sha256": "95ff3eaa0e99fd1dbe63c153164e36faa1a97b19d071e4a0b0bb3936287f22d4"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v",
+      "bytes": 4449,
+      "sha256": "92270402b98e0177199708de3303d5f0eccfec0e72ecf394d2aa0dbdaa9418e5"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v",
+      "bytes": 2493,
+      "sha256": "b77e678034af9968d0969655f403cac3b992412b109dba889e8ccb3f6f224975"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v",
+      "bytes": 14900,
+      "sha256": "28f19502f5a70b48e9bdeeaddcb84500052b7bd0c6e15b4da1ea9899265577c3"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v",
+      "bytes": 6629,
+      "sha256": "52339158d2f0446b8cbfff211365e9197fc6061f82c1cd2cd1bc5481aa04adae"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/isp_top.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/isp_top.v",
+      "bytes": 7914,
+      "sha256": "dd382a7d131f5c7a2e27e52a93b65a1017ad9e857ae5e6e11253e4343e2de056"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/raw10_unpacket_2lane.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/raw10_unpacket_2lane.v",
+      "bytes": 8377,
+      "sha256": "83f89d7f8e2b19322a7f6a8ddc0cae64fcbd83fed6b742c10f5d2339f59d30fd"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/isp/uial2axis.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/isp/uial2axis.v",
+      "bytes": 3306,
+      "sha256": "8cd4d98799da50285bc381c16405aeb55eb4d28363e20b33836542a32539610e"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/key_remove_shakes.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/key_remove_shakes.v",
+      "bytes": 1762,
+      "sha256": "8832f59e7ba94bfb8cf31e4f5a772ef7177d5257a5a2532d53cbfa1d9b7f5cd9"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/lane_lvds_10_1.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/lane_lvds_10_1.v",
+      "bytes": 4421,
+      "sha256": "de9529321354f04837e051d0ec1681cf44783d4be3284703a788e081147500bc"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/mc_to_user_interface.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/mc_to_user_interface.v",
+      "bytes": 2784,
+      "sha256": "7d00f0058467a0f99e0e2d36fa360d59579b4b73be7fb33b16274fc6b422f438"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/byte_aligner.enc.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/byte_aligner.enc.v",
+      "bytes": 23004,
+      "sha256": "25a3581a512ad89bb43fed2758e32ce089ccca29dec445ef9b71da36423f217c"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/byte_aligner_wrapper.enc.sv",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/byte_aligner_wrapper.enc.sv",
+      "bytes": 6766,
+      "sha256": "d98ae007d77ae262c0c34b53586a5aa8a840edc7dcdbfcc9091eb89cc68a6776"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/channel_aligner.enc.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/channel_aligner.enc.v",
+      "bytes": 7651,
+      "sha256": "3824e224a0b0b4e2b37ca4ac5533002221bcaec2694ee86de5c0f1a104dffebb"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/channel_aligner_wrapper.enc.sv",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/channel_aligner_wrapper.enc.sv",
+      "bytes": 4310,
+      "sha256": "c26aef5aeb40a767633efa21be4e5e59c25b91e79d0ea1f7c05d70a958771846"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/hs_detect.enc.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/hs_detect.enc.v",
+      "bytes": 6389,
+      "sha256": "bbf7a362273291a874793abbbd027a8d668c6281a4dd81240eae45572d5e5c92"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/mipi_dphy_rx_ph1p_mipiio_wrapper.sv",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/mipi_dphy_rx_ph1p_mipiio_wrapper.sv",
+      "bytes": 5148,
+      "sha256": "86b796060b0a133d1d10fc659b85c73ebfc98ebfa51904860a89ad5bdb68fe5a"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/ph1p_mipiio_rx_wrapper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/mipi_dphy_rx/ph1p_mipiio_rx_wrapper.v",
+      "bytes": 26300,
+      "sha256": "f957019576d22a8322889af73f8bfee07f46006959f9efcca0595bc8fa3234ae"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/mipi_rx_error_detect.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/mipi_rx_error_detect.v",
+      "bytes": 2000,
+      "sha256": "7ab5204d168148ec095b7ddc9e8156679d06a428d168cdc88be47e82afa5628e"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/.m_params_ddr2.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/.m_params_ddr2.txt",
+      "bytes": 824,
+      "sha256": "2e7e92f7421ea8cde90c09d90fc68472e2043801f5ab8115518b347e4617546a"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/.params_ddr2.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/.params_ddr2.txt",
+      "bytes": 5566,
+      "sha256": "05c307685a34e4e3faff48b3f67bca22b992ad3a2ca39d67112347ca307d3cfb"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/.ports_ddr2.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/.ports_ddr2.txt",
+      "bytes": 1469,
+      "sha256": "8c870855f11b7288369350fb8cae50196ddad60b7df9108780aca164825ee88f"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.v",
+      "bytes": 4918,
+      "sha256": "99910fcd06d61b728c4333f8eb15dd07b61db32af197ad3871995283461fe29e"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml",
+      "bytes": 30731,
+      "sha256": "1c0928264dcbc2217f7c1015042fc61e02bd444b727eac8b2e8f9bc4b89fc720"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/Design.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/Design.xml",
+      "bytes": 28484,
+      "sha256": "05f2df14236dae523772394418c4bfc68949fd9bc0c5a25fe9a5c82b815b3538"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/DesignConfiguration.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/DesignConfiguration.xml",
+      "bytes": 981,
+      "sha256": "a3b21234cb726166d33141f559b20bfdadea14b5f752e547b07e6ee8a8230fe5"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/ph1p_ddrmc_wrapper_63f4ac254419.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/ph1p_ddrmc_wrapper_63f4ac254419.v",
+      "bytes": 20132,
+      "sha256": "a206d148022c1a5bb46c37932714dc9d57fea32f39fdb344e060e9fc9c6ff1ce"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/sim/fileset/fileset_mis.f",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/sim/fileset/fileset_mis.f",
+      "bytes": 1791,
+      "sha256": "ed60cfa5d7ec730ee1114414cd7c74df3a6b5710e9fe38689710ceec59761e7f"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/adc/ddr2.adc",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/adc/ddr2.adc",
+      "bytes": 6555,
+      "sha256": "7a253fce75dc7fefec5f77015042f28acee6b97bc1bba9b6437435587f617dea"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/clk/ph1p_ddrphy_clk_top.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/clk/ph1p_ddrphy_clk_top.v",
+      "bytes": 4031,
+      "sha256": "372caf69cb0a79e1385be521e5e0ddadd3ff423dbc294d0fe9e89171c73c4b81"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/clk/ph1p_ddrphy_pll0.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/clk/ph1p_ddrphy_pll0.v",
+      "bytes": 10461,
+      "sha256": "a813b819285ca8bf9da9661f6f4bb45a677afb96b66b15415ee842581102512b"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/clk/ph1p_ddrphy_pll1.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/clk/ph1p_ddrphy_pll1.v",
+      "bytes": 10665,
+      "sha256": "34f8d8349cf37c4bd0367458e9773b53833dbf0c66d47fc9fe41a0335481d5df"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/include/ph1p_mis_define.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/include/ph1p_mis_define.vh",
+      "bytes": 245,
+      "sha256": "a0e0bc78eab01cd1815a04f246420b68b4a5a616c43c2f36988c4df94fc1b471"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/init/ph1p_ddrphy_dram_init_ddr2.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/init/ph1p_ddrphy_dram_init_ddr2.v",
+      "bytes": 8822,
+      "sha256": "43f7b13e3c36cd3fa045e60546c272b0ce34cb8b28949b3fc8f946ba6edc38f1"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/mc/alc_mc_top_all.enc.sv",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/mc/alc_mc_top_all.enc.sv",
+      "bytes": 274212,
+      "sha256": "c27828afc436f9545981392ac84e5b710801522cdb55f7dee26174e9a92f0d0a"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/mc/alc_phy2mc_fifo_ctrl.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/mc/alc_phy2mc_fifo_ctrl.v",
+      "bytes": 2018,
+      "sha256": "413651b98967cd55a85fdaa1bec8bd732534add2e5e649da56c409e4c2bb3840"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v",
+      "bytes": 2701,
+      "sha256": "c78340c7d69aa202136da2fb85f02e1b3dfd61a770ed49ffcc634ca8597e8dc8"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddrphy_sync_rst_gen.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddrphy_sync_rst_gen.v",
+      "bytes": 736,
+      "sha256": "2679b2593fbf1200fd431a31b1f6925968307c084f61c65df16b4008de9145f2"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ddrphy_cfg_rom.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ddrphy_cfg_rom.txt",
+      "bytes": 765,
+      "sha256": "91ab9c4a1af350441d53bb2043069c0dbd024431a2dd3d29f45282f0ecbbcab3"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/include/ph1p_ddrphy_board_delay.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/include/ph1p_ddrphy_board_delay.vh",
+      "bytes": 1762,
+      "sha256": "fbb70f7d53984ac052b29ded89fefde7c82a003484fc7fc60e0a816372c0de89"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/include/ph1p_ddrphy_bus_matrix.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/include/ph1p_ddrphy_bus_matrix.vh",
+      "bytes": 6499,
+      "sha256": "615567a0a3a09a6d4f4c3d607d6286e5ec7bdad0ee8c8381e74754720cae64fb"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/include/ph1p_ddrphy_ddrio.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/include/ph1p_ddrphy_ddrio.vh",
+      "bytes": 1603,
+      "sha256": "b8d067a433ee87103a9d360e760c20817f7c603ef72cb1868d4e63851ff12eaa"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/include/ph1p_ddrphy_pad_type.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/include/ph1p_ddrphy_pad_type.vh",
+      "bytes": 782,
+      "sha256": "42b8286862cc6d30ff53eea0a07ac42b3d75a1441cc22d7596ee10d4f0169cbc"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy.v",
+      "bytes": 30560,
+      "sha256": "6ba7055983007da7c51bdac6b1a188564f8f296526930275bad0ab1bfa1ad198"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_apb_bridge.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_apb_bridge.v",
+      "bytes": 8502,
+      "sha256": "8aead394b9fc579f7a5fe3f9d20da9e9427a370e225ac498478c3c3332e29de2"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_bankref_cfg.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_bankref_cfg.v",
+      "bytes": 2726,
+      "sha256": "580ae7e513ed97b2064cfd0ed66369ad531616dd0cf2eb33e3f02dd4dc9e335e"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v",
+      "bytes": 18882,
+      "sha256": "6a7120c8ad617883cddeb5064acb460d7824a06cfcec134d137fe2cde01e1937"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_cmd_decode.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_cmd_decode.v",
+      "bytes": 6963,
+      "sha256": "bfbce70a971eaefcc83d2fcfe342531929609ca2e93f902a4c2c0113eba0e345"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_cmd_execution.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_cmd_execution.v",
+      "bytes": 6615,
+      "sha256": "d7c04a9fb91dfb4758609c8aeffeb85d2b7f60aa1c966ddeda163d38d57b22ca"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_cmd_wrapper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_cmd_wrapper.v",
+      "bytes": 7052,
+      "sha256": "25318ba18baba68c7dbbf8f1f57ca579d9f3d2d16e5c3ea0979d97317fb84bfa"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_dcu.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_dcu.v",
+      "bytes": 10844,
+      "sha256": "db0391c50328c302be748f65fbe074dd2c68041806b72efcbae2e3fe8a5fc222"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_dcu_wrapper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_dcu_wrapper.v",
+      "bytes": 3297,
+      "sha256": "5a09f007371f049b5b8fce463456b4e60d8f823e2cb3890750890b52ebf114d6"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init.v",
+      "bytes": 6958,
+      "sha256": "725e14c8013684352dc62f73b2fe386a4b47efbb2a366f9b92ffd152b6ffabe6"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init_wrapper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init_wrapper.v",
+      "bytes": 18285,
+      "sha256": "a553b8c0bb15c1a320d3fe8cb8dc42740a9a2fde82c3fae044b3007aac2a1394"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v",
+      "bytes": 7313,
+      "sha256": "adaefe20c15215aeb3fbf44640954c7ef028dede189695cf5dba8fa1c87af121"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_mdl_cal.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_mdl_cal.v",
+      "bytes": 15515,
+      "sha256": "9a9f1f84e3ddca138cc10ef8bae8197d189ec2a6277adf26f6a6fe19131c4f13"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_mdl_cal_wrapper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_mdl_cal_wrapper.v",
+      "bytes": 3076,
+      "sha256": "8335a6817cfe0beee50e14ff8e86f076556d690b0f33bc3a8a776738edae413b"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_rphase_ctl.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_rphase_ctl.v",
+      "bytes": 5916,
+      "sha256": "081aed46c855189ff8d558929e6d5de931a2aeeaca7246d5339e7958ae39389b"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_top.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_top.v",
+      "bytes": 31555,
+      "sha256": "f2d8ffc4ec8e693858a9ebf90544531f24b64fb46f75cc6910af9ede0ee14de5"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wphase_ctl.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wphase_ctl.v",
+      "bytes": 8401,
+      "sha256": "5d7b769335d1e7038b9da62717528414a34c74432f28c023f7469a05b8603305"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wrapper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wrapper.v",
+      "bytes": 23093,
+      "sha256": "192d448bd15edd9ff1c8067eac240839b1c248933ecfa2735ce871771a14fdb8"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_1066.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_1066.vh",
+      "bytes": 441,
+      "sha256": "e0e8d53141876851495b7a108ae94e7dffae21d8662f127c9b14482f6cf01ead"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_1333.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_1333.vh",
+      "bytes": 441,
+      "sha256": "067057735ad1f85bb798f28f187c0ca94edca33ebe9f22f6ae405de9803af18c"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_400.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_400.vh",
+      "bytes": 442,
+      "sha256": "7818d324519dca5981678d3b66ac3abf615da713a1621b021ff16af7a7c4dd58"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_533.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_533.vh",
+      "bytes": 441,
+      "sha256": "a3a12307efaad5e8e10eb706c0700a64238242660556de78b8b8804f53a4fd2e"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_667.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_667.vh",
+      "bytes": 441,
+      "sha256": "6145dfb9997f67ecf63190fa3a2adf81a764826061793a864cdfc3914940268f"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_800.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_800.vh",
+      "bytes": 441,
+      "sha256": "dcd56721d9234dcaac2620118ac51dc0eafaf6b603e2880b5a06f3aab3d55d7f"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_parameter.vh",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/timing/ddr2/ddr2_parameter.vh",
+      "bytes": 3315,
+      "sha256": "dcbc3e2315cf9c7a476411f5e2addc6ee8dff38cefb7637dbaee6236a9395eeb"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/top/ph1p_ddrmc_top.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/top/ph1p_ddrmc_top.v",
+      "bytes": 14285,
+      "sha256": "3dff25aa4818321e8bcd5f0a4bdd2eee4f45a00922c1acf7117439c1f264655a"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/sdc/ddr2.sdc",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/sdc/ddr2.sdc",
+      "bytes": 792,
+      "sha256": "adb6317927dfd09095073cad40be8e63d39ea3d941b4c790f2f483b1aed428d6"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2_drc_check.log",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2_drc_check.log",
+      "bytes": 36,
+      "sha256": "2f062fc837a97b724117fe831f0a50b60ca5f40d8493272dc3a0d3ff9037960f"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2_proc.log",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2_proc.log",
+      "bytes": 239,
+      "sha256": "93c904f948d7938ce2fc3bfb1bafc4e702388eeb507da56a4b26aafbfb81c27c"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ph1p35_324_ddr_wrapper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ph1p35_324_ddr_wrapper.v",
+      "bytes": 4507,
+      "sha256": "cda144da5e22b0593ec5ee4783b1c3ca2621fd53b62fcbeef5a65651b1203925"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/pll_hdmi.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/pll_hdmi.v",
+      "bytes": 4079,
+      "sha256": "48ffd2505fbcd51ade9f136906f1014726c75a667d3a57899145e976cd625c81"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/ps_wrapper.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/ps_wrapper.v",
+      "bytes": 5176,
+      "sha256": "46d6f2c8e42724e28ffcd8516bc4f2a2d12e36f920e1f20cd42fe722be461afe"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/raw10_unpacket.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/raw10_unpacket.v",
+      "bytes": 10560,
+      "sha256": "840c54c3ea5c025bea90a751656db98079e773ff7535b27f4ac11e8837d46798"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/raw8_to_rgb888.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/raw8_to_rgb888.v",
+      "bytes": 10942,
+      "sha256": "fcc29ddd6942015d5e5fd43d148a9487cf3689c7c70c896a654a4e934fcade2c"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/signal_delay.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/signal_delay.v",
+      "bytes": 4302,
+      "sha256": "9576d5363a1a0926fb28b8d9f372403aeaf03df684eb61a3877e3d2518868aee"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/status_cdc.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/status_cdc.v",
+      "bytes": 834,
+      "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/uial2axis/uial2axis.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/uial2axis/uial2axis.v",
+      "bytes": 3459,
+      "sha256": "84a820e3643555443aaaade01e0bdf0bf2112ad757f4af37dfa9007d9846068b"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/uics500_cfg/SC500GainTbl.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/uics500_cfg/SC500GainTbl.v",
+      "bytes": 1657,
+      "sha256": "574a37980c5353c8079ae870b0b60df3429b78b301dc58fc97954b9fb79fbfd3"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/uics500_cfg/uicfgcs500.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/uics500_cfg/uicfgcs500.v",
+      "bytes": 5807,
+      "sha256": "4d1dbf17e72d7dc899208e487e3bacc0d0f8e81b2407c3bf1c1f1ef9a83f5c2a"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/uics500_cfg/uics500reg.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/uics500_cfg/uics500reg.v",
+      "bytes": 6226,
+      "sha256": "cedab84dcb0e8944ea3f01492b7192ea943c8c50d35dcfbca0bc438dc25aaaf5"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/uics500_cfg/uics500regAE.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/uics500_cfg/uics500regAE.v",
+      "bytes": 1802,
+      "sha256": "f37e71b95b8aaa8f1a4c3bc7a38492d15c5fbea076d8564c3498f54facb8996f"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/uics500_cfg/uii2c.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/uics500_cfg/uii2c.v",
+      "bytes": 10995,
+      "sha256": "7416a15b6f10a8142c5aa3b0386b2be52fee2e569f641c11ad3c772309dc5329"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/uiisp_beta/ae_set.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/uiisp_beta/ae_set.v",
+      "bytes": 4371,
+      "sha256": "ad2650fb6ede4d8e2355d13787c23a9d61ba681ba11f3ea3d857d9a43cdea141"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/uiisp_beta/csi_unpacket_2lane.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/uiisp_beta/csi_unpacket_2lane.v",
+      "bytes": 4336,
+      "sha256": "b7e093e1e377f5a61a22216e9a4ec404068a3346923758297867b465679dacdd"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/uiisp_beta/raw10_unpacket_2lane.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/uiisp_beta/raw10_unpacket_2lane.v",
+      "bytes": 8393,
+      "sha256": "ff8cefb3f6001339d16a34863151c67dace3ec04d375b2fa16844911bb1dfb10"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/video_cuttting.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/video_cuttting.v",
+      "bytes": 2417,
+      "sha256": "c1131787da9c80029759ee2821c9c042a850cb459b812676d1cc6a144ff14480"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/video_in.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/video_in.v",
+      "bytes": 5332,
+      "sha256": "0af1896eeedef3a31240db44090e1d0dc577b740344e13fbd56af83b09155df3"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/video_out.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/video_out.v",
+      "bytes": 5649,
+      "sha256": "9cf4ef7484fbe292816015f38c54406779ea29d5a0a4039847d482d34df3361c"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/vtc/uivtc.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/vtc/uivtc.v",
+      "bytes": 5798,
+      "sha256": "c7deaea83ea04fae9caaf34644fe089aeba6dc54dee26c377aef1df44648e4db"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/.m_params_blk_mem_gen_awb_delay_signal.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/.m_params_blk_mem_gen_awb_delay_signal.txt",
+      "bytes": 412,
+      "sha256": "c712f469bf120ea38e3d1c91d2d6aae1dd5ca658b26a5ce5dbdb9cc7370eb8dd"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/.params_blk_mem_gen_awb_delay_signal.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/.params_blk_mem_gen_awb_delay_signal.txt",
+      "bytes": 3493,
+      "sha256": "e9157f46121a253584f414d5a95b56a1bdbc958ee45c6cc053cd195ad021d7ea"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/.ports_blk_mem_gen_awb_delay_signal.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/.ports_blk_mem_gen_awb_delay_signal.txt",
+      "bytes": 403,
+      "sha256": "ed060b0a8f1216f9389653e982879185b21022c48dd226da197a76315f1a2a46"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+      "bytes": 1500,
+      "sha256": "7cab7914392384bcc93a3daefe1dc038fc5cd88ac8f4306532fabb71740da93e"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.xml",
+      "bytes": 7729,
+      "sha256": "34a95a66a6755d5fef9373ce20bd48a0021446d0a1d630f6265fdfa045c7ff66"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/Design.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/Design.xml",
+      "bytes": 14286,
+      "sha256": "e436f92f4c57a127cff592927c58dcec6901816ccd324d6a394dec3cdd1ef527"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/DesignConfiguration.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/DesignConfiguration.xml",
+      "bytes": 945,
+      "sha256": "fbd224d860d857522661f5dde1710438d95ff685832a1d61f39b8b77bd005f0b"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+      "bytes": 2721,
+      "sha256": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/divider/divider.ipc",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/divider/divider.ipc",
+      "bytes": 717,
+      "sha256": "fad92838fe3d85951072b68a1b0d1161328d7765e6e7e84b71a8f1ab46a1f669"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/divider/divider_gate.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/divider/divider_gate.v",
+      "bytes": 1360623,
+      "sha256": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/MCU/.m_params_MCU.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/MCU/.m_params_MCU.txt",
+      "bytes": 85,
+      "sha256": "1f489b88483dbd05335a545649f8ea6105a7ec048bb44f3108c936a00428fa8a"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/MCU/.params_MCU.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/MCU/.params_MCU.txt",
+      "bytes": 1260,
+      "sha256": "31f6dc0b6f4e33b05d1897e7b4dc6e61bf48fa2e2b2418d0077174bbad9191fc"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/MCU/.ports_MCU.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/MCU/.ports_MCU.txt",
+      "bytes": 1039,
+      "sha256": "d52dc281a150540fd52e7b745b246d30e0d3558fc6d06f5c02492f8ff95248d3"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/MCU/Design.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/MCU/Design.xml",
+      "bytes": 31231,
+      "sha256": "e3574642f03452e16e4eb4426e984beea0d9135bb55fe8b3a9557df7f927bcc8"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/MCU/DesignConfiguration.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/MCU/DesignConfiguration.xml",
+      "bytes": 924,
+      "sha256": "fecc5e476c99b2064985a8fecae0f597dd770585261b9df48f93a770ec79f7c5"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/MCU/MCU.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/MCU/MCU.v",
+      "bytes": 5824,
+      "sha256": "c21cd2fcf06734642bfdbf2f1cce97bcc40e4a4d1a9351b179ae48302fdb2f97"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/MCU/MCU.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/MCU/MCU.xml",
+      "bytes": 47621,
+      "sha256": "cd09d64b5e6179c2d0a2a49d2a1ad7a42a7cb0448b5b4d7397a2320705075b70"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/MCU/MCU_f9f874759a41.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/MCU/MCU_f9f874759a41.v",
+      "bytes": 5968,
+      "sha256": "cd64e0b8bd05689b3f2beae2214c2f35017d60cb2f96e01c4db6312d90581771"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/PLL/.m_params_PLL.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/PLL/.m_params_PLL.txt",
+      "bytes": 2197,
+      "sha256": "42006ec60f7249d64ddf54cff2bd3cb9794f9e42ce28473af17d046f38eda6f7"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/PLL/.params_PLL.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/PLL/.params_PLL.txt",
+      "bytes": 21181,
+      "sha256": "43fb0ccb33b053a59a504182ddf1ad5c403e086cf0a68438899a86e400bdb5e7"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/PLL/.ports_PLL.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/PLL/.ports_PLL.txt",
+      "bytes": 938,
+      "sha256": "bd8d1143b3926737d797e55f079433d4881e2029314ee46c4ea36802eeb246b4"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/PLL/Design.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/PLL/Design.xml",
+      "bytes": 49983,
+      "sha256": "3114453f50e939ce05153faffa7176aefeaafcf3c4cabde923b811ad3bac7455"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/PLL/DesignConfiguration.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/PLL/DesignConfiguration.xml",
+      "bytes": 964,
+      "sha256": "890ccd3b2faf9f3a2b0d36bd26fe5bfc81cc3a6c8ba9b8110311b97f43d55f65"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/PLL/PLL.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/PLL/PLL.v",
+      "bytes": 3910,
+      "sha256": "2f99e768a454bb5e9b51aebf6da4345c99201d055bb46dc343f0cd2fb0297c25"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/PLL/PLL.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/PLL/PLL.xml",
+      "bytes": 10528,
+      "sha256": "cdd3123c372c914ee1f71c7ede955dc572eba871ebb5752d0ff3220d16b89707"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/PLL/RTL/include/define.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/PLL/RTL/include/define.v",
+      "bytes": 29,
+      "sha256": "6c747d798a21add4498d24776caaa1318e0a20f0b04bc5e6f759ece127b53997"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v",
+      "bytes": 12535,
+      "sha256": "2f6f2560129b950c9f5a36136f128a9304ff858bf1bae0f2129ea0145d941a1e"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/.m_params_w128_d512_fifo.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/.m_params_w128_d512_fifo.txt",
+      "bytes": 131,
+      "sha256": "1a8581b6e24056ea3b566874c652189c227f2b7018e8d15109277a9ddd7f8875"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/.params_w128_d512_fifo.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/.params_w128_d512_fifo.txt",
+      "bytes": 996,
+      "sha256": "9084c1d68af266a4109d691bb7dafa79249d7e4574e66537c55c96469c277602"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/.ports_w128_d512_fifo.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/.ports_w128_d512_fifo.txt",
+      "bytes": 165,
+      "sha256": "572011b96130d64d6f8ca9cdd691e3d159e01cf3c646a18b6e04e74ec3ee926e"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/Design.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/Design.xml",
+      "bytes": 9174,
+      "sha256": "73fb27576629befafb79a6fc5f7319186fd3730ab02b64230d39396b2eef8518"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/DesignConfiguration.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/DesignConfiguration.xml",
+      "bytes": 972,
+      "sha256": "aa7e1a92676245a06f76be11c89d1e6448350746169b2759f2048f2d5ffd43c6"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v",
+      "bytes": 34326,
+      "sha256": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/w128_d512_fifo.tcl",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/w128_d512_fifo.tcl",
+      "bytes": 556,
+      "sha256": "d8c23f200b61011541161d6f7a3afc73958defa23b46d11039c66f2e0e555235"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v",
+      "bytes": 1222,
+      "sha256": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/w128_d512_fifo.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w128_d512_fifo/w128_d512_fifo.xml",
+      "bytes": 8390,
+      "sha256": "274cbd9b09a931859279682d43e97fabb160496f73ca52d731ae2291115015cd"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w155_d512_fifo/.m_params_w155_d512_fifo.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w155_d512_fifo/.m_params_w155_d512_fifo.txt",
+      "bytes": 131,
+      "sha256": "1a8581b6e24056ea3b566874c652189c227f2b7018e8d15109277a9ddd7f8875"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w155_d512_fifo/.params_w155_d512_fifo.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w155_d512_fifo/.params_w155_d512_fifo.txt",
+      "bytes": 976,
+      "sha256": "0827a0ecc7eda30611d9426412018d4200ddd71bfc48137bf8aea0686815e880"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w155_d512_fifo/.ports_w155_d512_fifo.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w155_d512_fifo/.ports_w155_d512_fifo.txt",
+      "bytes": 165,
+      "sha256": "1b00beacfff42ed042379fbb7c7eeb7d74543df3c116cc98f60a194087e5e3ad"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w155_d512_fifo/Design.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w155_d512_fifo/Design.xml",
+      "bytes": 8922,
+      "sha256": "9d55317fcafc1f7770a913def7546a9cf6d528e2e1f5d3053475fbf41e8e3d27"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w155_d512_fifo/DesignConfiguration.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w155_d512_fifo/DesignConfiguration.xml",
+      "bytes": 972,
+      "sha256": "fd3ac947078686af5ac2d07ae9e64b5cddaea3f796163a10c5c1079e47cccdee"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v",
+      "bytes": 29626,
+      "sha256": "198ca29ada4051f0037af040848e416f2b2be6b40e513dd65c531ec557fef424"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w155_d512_fifo/w155_d512_fifo.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w155_d512_fifo/w155_d512_fifo.v",
+      "bytes": 1160,
+      "sha256": "d600bcd8e876691d6cf3a512650e7e69118fc8016e9fdf892ac85e4c63851e37"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w155_d512_fifo/w155_d512_fifo.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w155_d512_fifo/w155_d512_fifo.xml",
+      "bytes": 7923,
+      "sha256": "e8266904b18009b50baa521fe8235331a4d94c91278c5e8ec9f90642bcea473b"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w40_d512_fifo/.m_params_w40_d512_fifo.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w40_d512_fifo/.m_params_w40_d512_fifo.txt",
+      "bytes": 131,
+      "sha256": "1a8581b6e24056ea3b566874c652189c227f2b7018e8d15109277a9ddd7f8875"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w40_d512_fifo/.params_w40_d512_fifo.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w40_d512_fifo/.params_w40_d512_fifo.txt",
+      "bytes": 996,
+      "sha256": "10adde761500631c1a1a1fb136a7cb244ad87f31a7558ce604a2808a47f648b3"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w40_d512_fifo/.ports_w40_d512_fifo.txt",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w40_d512_fifo/.ports_w40_d512_fifo.txt",
+      "bytes": 165,
+      "sha256": "1b00beacfff42ed042379fbb7c7eeb7d74543df3c116cc98f60a194087e5e3ad"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w40_d512_fifo/Design.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w40_d512_fifo/Design.xml",
+      "bytes": 8891,
+      "sha256": "311a0d9843760fe0c341a191ae2da5061f40e027ff675887258723afe1f80c0d"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w40_d512_fifo/DesignConfiguration.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w40_d512_fifo/DesignConfiguration.xml",
+      "bytes": 951,
+      "sha256": "b29c9e3c6965c746a65717db143dfc4ec15e6f739768ac2a504ecaaac85f07a3"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w40_d512_fifo/soft_fifo_al_2758cdf81c93.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w40_d512_fifo/soft_fifo_al_2758cdf81c93.v",
+      "bytes": 29626,
+      "sha256": "505c394e0415942957da0ac0a0f57e329098804caa5e386d4e0eade5266191de"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w40_d512_fifo/w40_d512_fifo.tcl",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w40_d512_fifo/w40_d512_fifo.tcl",
+      "bytes": 556,
+      "sha256": "d8c23f200b61011541161d6f7a3afc73958defa23b46d11039c66f2e0e555235"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w40_d512_fifo/w40_d512_fifo.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w40_d512_fifo/w40_d512_fifo.v",
+      "bytes": 1542,
+      "sha256": "f5ea0f964e59af51bb1fc301570766340e9f4db3fceb4ee635d3024172732af8"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/ip_source/w40_d512_fifo/w40_d512_fifo.xml",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/ip_source/w40_d512_fifo/w40_d512_fifo.xml",
+      "bytes": 7887,
+      "sha256": "2dbc6e71f314d926009b693a3ab14c36a42ed40af5984c202ec8449439e6291d"
+    },
+    {
+      "source": "fpga/component_inspector/td_project/camera_to_dsi_display.sdc",
+      "copy": "source_snapshot/fpga/component_inspector/td_project/camera_to_dsi_display.sdc",
+      "bytes": 6010,
+      "sha256": "de166814eb4316162f9e13d28a07dd6321a4c35f73d81f360edc03213b64d3ca"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/roi_frame_guard.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/roi_frame_guard.v",
+      "bytes": 4033,
+      "sha256": "482a7679bd3c73b4b0738748e5f9e068e15fa319380f1a0c07ad5fc1d6b51669"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/roi_statistics.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/roi_statistics.v",
+      "bytes": 4886,
+      "sha256": "05238f3968c231c59522d52e3f81d4045e30ae50dfb18982fcbee2d733e077a6"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/roi_classifier.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/roi_classifier.v",
+      "bytes": 831,
+      "sha256": "eaa4eeae4c8945dea247d43165890fc056e80a7bd3f8d51812d9eefcbbb0dfa4"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/roi_result_snapshot.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/roi_result_snapshot.v",
+      "bytes": 936,
+      "sha256": "13ab4a3ef1332c3e390f47c073a8e2ad65ffc49e8e3aaf90acd1ff54576b4e6c"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/roi_display_state.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/roi_display_state.v",
+      "bytes": 1561,
+      "sha256": "7a8261be69b97a6534bdb17c7aa9fed653727fc352461fec5b1d9789876e72ee"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/osd_ascii_rom.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/osd_ascii_rom.v",
+      "bytes": 44212,
+      "sha256": "db206a70b3f64fd1200f1d2c17309337cf8f9214a13ce0ce1626fed1270f81ce"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/osd_cjk_rom.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/osd_cjk_rom.v",
+      "bytes": 54452,
+      "sha256": "e06155dedd326471635254ab0a89de368ba60bc61db5e90a12c23e38abcedad9"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/osd_logo_rom.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/osd_logo_rom.v",
+      "bytes": 171187,
+      "sha256": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/observation_controls.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/observation_controls.v",
+      "bytes": 700,
+      "sha256": "d7c8a26e2f9954d2b4277753b1b35c730bd5a0cddfe762a947c5a5bb8e234451"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/roi_sobel_view.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/roi_sobel_view.v",
+      "bytes": 9475,
+      "sha256": "13738d3d535df505dc675979ac44bfa74ce186be517f7bfdc4fb5ca030312596"
+    },
+    {
+      "source": "fpga/component_inspector/user_source/hdl_source/roi_observation_snapshot.v",
+      "copy": "source_snapshot/fpga/component_inspector/user_source/hdl_source/roi_observation_snapshot.v",
+      "bytes": 917,
+      "sha256": "9250ab4ed2223bee6f0621ba1194bfa9278c13e71ea704228bc0b3d97031e43c"
+    },
+    {
+      "source": "fpga/component_inspector/td_project/camera_to_dsi_display.al",
+      "copy": "source_snapshot/fpga/component_inspector/td_project/camera_to_dsi_display.al",
+      "bytes": 28237,
+      "sha256": "723858270c6ba353351fc1af8f92c6b0e163f1b3affbf0d635b8f1010c7edd55"
+    },
+    {
+      "source": "tmp/video_fix_before_20261006/user_source/hdl_source/design_top_wrapper.v",
+      "copy": "before_repair/user_source/hdl_source/design_top_wrapper.v",
+      "bytes": 33860,
+      "sha256": "706c74c61d75c280f0abc48f37156abd3373d1c9a5f07f3b28deaba6af10a367"
+    },
+    {
+      "source": "tmp/video_fix_before_20261006/user_source/hdl_source/experiment_osd.v",
+      "copy": "before_repair/user_source/hdl_source/experiment_osd.v",
+      "bytes": 25363,
+      "sha256": "e63ac15fa733789e2c4bb8801fa872bcd22dc24c7ad746dd414bc7208d8897a1"
+    },
+    {
+      "source": "tmp/video_fix_before_20261006/user_source/hdl_source/isp/data96_128/data96_128.v",
+      "copy": "before_repair/user_source/hdl_source/isp/data96_128/data96_128.v",
+      "bytes": 2365,
+      "sha256": "c79a102378c70ce5faacbc46a62b5ae6eaac151b93891379eda2880a7d68fe30"
+    },
+    {
+      "source": "tmp/video_fix_before_20261006/user_source/hdl_source/isp/isp_top.v",
+      "copy": "before_repair/user_source/hdl_source/isp/isp_top.v",
+      "bytes": 7195,
+      "sha256": "b6a9eccb53f2018b6b5356d208eb475bbb8f0dda745a4af5da117165d3f21886"
+    },
+    {
+      "source": "tmp/video_fix_before_20261006/user_source/hdl_source/video_in.v",
+      "copy": "before_repair/user_source/hdl_source/video_in.v",
+      "bytes": 6913,
+      "sha256": "ef1f7a358f608a654234efb71924ba8f79c35d606aae46befed738cd198afbfa"
+    },
+    {
+      "source": "tmp/video_fix_before_20261006/user_source/hdl_source/video_out.v",
+      "copy": "before_repair/user_source/hdl_source/video_out.v",
+      "bytes": 7000,
+      "sha256": "1bd84f808d9a9d67909d6aa2b4ab99680061c704d485f84a41401f5e19c30617"
+    },
+    {
+      "source": "tmp/video_fix_before_20261006/camera_to_dsi_display.sdc",
+      "copy": "before_repair/td_project/camera_to_dsi_display.sdc",
+      "bytes": 4621,
+      "sha256": "2ad8463580643c2b9787d5b8a05869c839bce630ebbfd4b0dbd1884683e60431"
+    },
+    {
+      "source": "tmp/video_fix_before_20261006/user_source/hdl_source/osd_ascii_rom.v",
+      "copy": "before_repair/user_source/hdl_source/osd_ascii_rom.v",
+      "bytes": 44212,
+      "sha256": "e8b1badfd442683cb71c9cbe0edbc7b9b56b6d009a35116967d4f69aa736f70e"
+    },
+    {
+      "source": "tmp/video_fix_before_20261006/user_source/hdl_source/roi_sobel_view.v",
+      "copy": "before_repair/user_source/hdl_source/roi_sobel_view.v",
+      "bytes": 8404,
+      "sha256": "a612caa905eb28ef18683beea5cb79fc4bd11bbace9efb7d20d8341610aa7976"
+    },
+    {
+      "source": "tmp/video_fix_before_20261006/user_source/hdl_source/roi_observation_snapshot.v",
+      "copy": "before_repair/user_source/hdl_source/roi_observation_snapshot.v",
+      "bytes": 857,
+      "sha256": "fbc0267a74ac763070929537b0892da3f428f5eff4b11b88c1e6b8433728e940"
+    },
+    {
+      "source": "fpga/component_inspector/sim/awb_ram_model.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/awb_ram_model.v",
+      "bytes": 662,
+      "sha256": "0d53949f980544073e83e801971e30765446a7f4e892491abd64ea5fc78f90c9"
+    },
+    {
+      "source": "fpga/component_inspector/sim/cdc_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/cdc_setup.log",
+      "bytes": 1859,
+      "sha256": "28f1c88aa90c63d494cb51f6e83ecd51091b2a07cf4cad426a557dd592aaa833"
+    },
+    {
+      "source": "fpga/component_inspector/sim/classifier_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/classifier_setup.log",
+      "bytes": 1413,
+      "sha256": "7f7ee059f36ed4926c7bb05c66571f2b078f44ff26050bce3da42ffb1426a17d"
+    },
+    {
+      "source": "fpga/component_inspector/sim/controls_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/controls_setup.log",
+      "bytes": 2448,
+      "sha256": "e95eb5173089fed19bdc0d5aa019bea8446159e911e232ff1c6ceca74f137569"
+    },
+    {
+      "source": "fpga/component_inspector/sim/csi_monitor_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/csi_monitor_setup.log",
+      "bytes": 2067,
+      "sha256": "b83d9fd7003e5e57ee955b99a1e99e4602f29b1bbf181c5c00fbb1509acd60e1"
+    },
+    {
+      "source": "fpga/component_inspector/sim/display_state_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/display_state_setup.log",
+      "bytes": 652,
+      "sha256": "75274f2c1816549d5e87349bf721e1b3fa83074078f3a59a62b388b30aa53519"
+    },
+    {
+      "source": "fpga/component_inspector/sim/generate_osd_assets.py",
+      "copy": "source_snapshot/fpga/component_inspector/sim/generate_osd_assets.py",
+      "bytes": 14072,
+      "sha256": "810466c5ba39e60847d70888e7619b9dbc1dd9ae3ed967d876180ee0c4ebbecf"
+    },
+    {
+      "source": "fpga/component_inspector/sim/i2c_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/i2c_setup.log",
+      "bytes": 1859,
+      "sha256": "e93876d450ba74f96dd394743afa96682b879807b669bbd815818e48cd5d70f6"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_controls_verilog2001.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/modelsim_controls_verilog2001.log",
+      "bytes": 528,
+      "sha256": "4cb007dba611c550e0da6ff0e9abd3daae5e659678fd8229ff19138d468ea172"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/modelsim_setup.log",
+      "bytes": 154,
+      "sha256": "6438cd064ea306e6f805e74740fcb0bd06e0f840cb1f11c084d658f3ae0e486e"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_vendor_compile.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/modelsim_vendor_compile.log",
+      "bytes": 2149,
+      "sha256": "914128807b20ab8d5ef2d88fba1dc51239cf409c56e552359eee797ad396f71f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_vendor_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/modelsim_vendor_setup.log",
+      "bytes": 6468,
+      "sha256": "36eba0281b939a693deb6042a14b603152c3ec33b87fdee702f869c23d3607b0"
+    },
+    {
+      "source": "fpga/component_inspector/sim/monitor_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/monitor_setup.log",
+      "bytes": 1963,
+      "sha256": "73c86832d165f55f93d70787af44366ed14c0c11b75bd37c24578b59876d16f2"
+    },
+    {
+      "source": "fpga/component_inspector/sim/observation_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/observation_setup.log",
+      "bytes": 1590,
+      "sha256": "a8693c486d132174df7ab27c64cbba67d2b7e3e29c992eaa18f15ae1e738a53f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_setup.log",
+      "bytes": 2717,
+      "sha256": "a454cbdcfdc6de40365e6726012a5552a178db86327bc7f1a73c7e0923b05246"
+    },
+    {
+      "source": "fpga/component_inspector/sim/pack_boundary_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/pack_boundary_setup.log",
+      "bytes": 2282,
+      "sha256": "157f1c1481f364b41d7b80d399ef7ccfb399bd8ffb5f802ad112153ecddda843"
+    },
+    {
+      "source": "fpga/component_inspector/sim/pixel_interface_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/pixel_interface_setup.log",
+      "bytes": 1873,
+      "sha256": "4ee658e6281b457d18cecfceca3c90c5d16e8e5427db7fd0c9673d4814ccbbf3"
+    },
+    {
+      "source": "fpga/component_inspector/sim/README.md",
+      "copy": "source_snapshot/fpga/component_inspector/sim/README.md",
+      "bytes": 6445,
+      "sha256": "8a228d7e4b4f65584427004985b625fe28aa1158866bcbb96baed179e4ab49f7"
+    },
+    {
+      "source": "fpga/component_inspector/sim/render_osd_reference.py",
+      "copy": "source_snapshot/fpga/component_inspector/sim/render_osd_reference.py",
+      "bytes": 4462,
+      "sha256": "89cc116569c476bbdd55d5205e46ec7f3533aff74722d5f2103bbec7d4ac49ca"
+    },
+    {
+      "source": "fpga/component_inspector/sim/roi_chain_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/roi_chain_setup.log",
+      "bytes": 2015,
+      "sha256": "1d543494fd45bb887cb0a7784c81eeb119514a082845f4389bee6ac2d9cdd351"
+    },
+    {
+      "source": "fpga/component_inspector/sim/roi_core_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/roi_core_setup.log",
+      "bytes": 612,
+      "sha256": "71ddc7faf9c5edb782ee07002ca43f68ead1b2fdd50a5b2b0876d38fdbba317e"
+    },
+    {
+      "source": "fpga/component_inspector/sim/roi_guard_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/roi_guard_setup.log",
+      "bytes": 1860,
+      "sha256": "c6c73b3b735d86c4ee6cda09c8d37d03c9d37a6d285dbdd3034446df3d7dce89"
+    },
+    {
+      "source": "fpga/component_inspector/sim/run.do",
+      "copy": "source_snapshot/fpga/component_inspector/sim/run.do",
+      "bytes": 1224,
+      "sha256": "7e0f8564ab23363e83e83820c0d7b60840834502036fb5ed4903eb3ff4e0c99f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/run_iverilog.ps1",
+      "copy": "source_snapshot/fpga/component_inspector/sim/run_iverilog.ps1",
+      "bytes": 1604,
+      "sha256": "5f55baa6a335c6ccdf91141d40ff47c6bec30e1e6afb375c161eedbe1de63388"
+    },
+    {
+      "source": "fpga/component_inspector/sim/run_modelsim.ps1",
+      "copy": "source_snapshot/fpga/component_inspector/sim/run_modelsim.ps1",
+      "bytes": 9403,
+      "sha256": "b1307c5e364019fa8645128ae36bb4a69b604f02cf8970432bc890a60046a30a"
+    },
+    {
+      "source": "fpga/component_inspector/sim/run_pixel_interface.ps1",
+      "copy": "source_snapshot/fpga/component_inspector/sim/run_pixel_interface.ps1",
+      "bytes": 2450,
+      "sha256": "854390e1f2576bef99e8e76971d3a6efb24ddd7bf9b2bdad2eebe88db00d045b"
+    },
+    {
+      "source": "fpga/component_inspector/sim/run_roi.do",
+      "copy": "source_snapshot/fpga/component_inspector/sim/run_roi.do",
+      "bytes": 570,
+      "sha256": "ca161180a119a625f6c73e122a2a9d3adf20e07197206860599b4e7965f88b47"
+    },
+    {
+      "source": "fpga/component_inspector/sim/sobel_view_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/sobel_view_setup.log",
+      "bytes": 471,
+      "sha256": "3afbeb85a38a4399e7f5c7ba53926b289dd816ca06bf997c452da50bc3e52852"
+    },
+    {
+      "source": "fpga/component_inspector/sim/stop_recovery_setup.log",
+      "copy": "source_snapshot/fpga/component_inspector/sim/stop_recovery_setup.log",
+      "bytes": 815,
+      "sha256": "4ac99b5f8c7756bef9d0b55cd621245c04016afabffc0738a86cbbee2aa2ca0f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_cdc.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_cdc.v",
+      "bytes": 886,
+      "sha256": "7482f48dcb5bf1d8ce4163144de007fc09477312423c50ad395a63e94094b4fa"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_classifier.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_classifier.v",
+      "bytes": 6544,
+      "sha256": "0f76cd0cd622b6d5c3e874f21945bfef37de6176fba46cb3be1fe83998589c78"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_controls.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_controls.v",
+      "bytes": 2784,
+      "sha256": "d1af1aa23bb34e4aa7ab40dbb841943cb40c5837d5b328a6822e90f279a3cb23"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_csi_monitor.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_csi_monitor.v",
+      "bytes": 1440,
+      "sha256": "68ed73dbf5d4ffa84e0b84020bb0050c18963ab8470f1dd82045d572a0c4ba2c"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_display_state.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_display_state.v",
+      "bytes": 3272,
+      "sha256": "8201289fc6bdfb798940aed07373b3686e208dc7045023d7dcfc31ba60bb6a05"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_i2c.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_i2c.v",
+      "bytes": 1940,
+      "sha256": "f7f037f5f1d7c87497b467b0adbaf18c70cf59064cfe920b623324982c6e8f6c"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_monitor.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_monitor.v",
+      "bytes": 1248,
+      "sha256": "6cb1aced9d70c72d9ad0b912b3c074b5ae1f49c10f628493eec6811274913c7a"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_observation.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_observation.v",
+      "bytes": 4156,
+      "sha256": "7abd55c2cd5291da891fde21809500e18af3d90f834d2959818e666a3e61bd03"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_osd.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_osd.v",
+      "bytes": 5364,
+      "sha256": "3ea531a859df28e8ef6eca1ba9775954c0d2811ea2a7c23871499043521ee859"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_pack_boundary.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_pack_boundary.v",
+      "bytes": 1616,
+      "sha256": "75e1d164d8132883b2e07876bbd3f07bbd8e12fc76fa9181bbf4db34bcdae1eb"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_pixel_interface.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_pixel_interface.v",
+      "bytes": 8597,
+      "sha256": "d20433863a9ffc89df1721edf4d243bea78effd9a12a1c1e309bdad79482972d"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_roi_chain.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_roi_chain.v",
+      "bytes": 7930,
+      "sha256": "4387829d311b13e82da3071a4d645e5302747ad23632419eb0eed0ca00082950"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_roi_core.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_roi_core.v",
+      "bytes": 2286,
+      "sha256": "b00b8c548f8f4704251c0cc4803bf5193999d4b1608a76565507a87c4ffa977f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_roi_guard.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_roi_guard.v",
+      "bytes": 3936,
+      "sha256": "e827cf40d7c6d692b40bf4516f5dcece4e12a77e94e8d3570e1daccf4ec2ab7f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_sobel_view.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_sobel_view.v",
+      "bytes": 5468,
+      "sha256": "98701ba5fe315c985d49661adaebbd76eb466b326c4c5653e4f214f80050402d"
+    },
+    {
+      "source": "fpga/component_inspector/sim/tb_stop_recovery.v",
+      "copy": "source_snapshot/fpga/component_inspector/sim/tb_stop_recovery.v",
+      "bytes": 2143,
+      "sha256": "f33434ac0c8375cb1a377dbd64f6e90936bb31d841befae1f54535c239f00954"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/cjk_atlas.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/cjk_atlas.png",
+      "bytes": 7317,
+      "sha256": "daf93985843ca24385fb44ca757ccd9ff9bae3e2af621c44dc82962ae99b1a1f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/logo.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/logo.png",
+      "bytes": 607,
+      "sha256": "1691ab93b6c5f2959f4c92bbbea21e551e6129e9540461161568650164ee9c11"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/manifest.json",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/manifest.json",
+      "bytes": 1447,
+      "sha256": "82657c8fec68b0f444c435d26911e8aafe6ca432c6b62d2df65392b6f20f3ff6"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/mode_0.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/mode_0.hex",
+      "bytes": 4915200,
+      "sha256": "ddd0554521e2d0535e59597a1cc01ea9383d640028d02c1823d3c48dd20a83ba"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/mode_0.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/mode_0.png",
+      "bytes": 9983,
+      "sha256": "0229401f08563ae250da96fce4a1390dac534370f2aa11db2b42711ec8766ad7"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/mode_1.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/mode_1.hex",
+      "bytes": 4915200,
+      "sha256": "3e9eddfd3b4d2d5929d2fd6592ea867b7482bd00d914a0160f17787222fb0064"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/mode_1.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/mode_1.png",
+      "bytes": 10035,
+      "sha256": "b9a8aba987a3e7f740b2b9a20bcd041f824489fb43bc2873fa4d7c716f57329a"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/mode_2.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/mode_2.hex",
+      "bytes": 4915200,
+      "sha256": "938d98ed875515a72854b0a6eceb35a486eda9989c0aeae8060aad9f33875393"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/mode_2.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/mode_2.png",
+      "bytes": 10073,
+      "sha256": "b277a2612e6b2ea763f8677384fc7a30e7bc4804bc621dca691827f130db090f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/mode_3.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/mode_3.hex",
+      "bytes": 4915200,
+      "sha256": "a3b6d7ef2cbdf6bff2b4c6398c888fcbaa1be85bc779b100fedad216a66e372e"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/mode_3.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/mode_3.png",
+      "bytes": 10175,
+      "sha256": "7c8fec237162e39894c3862cfb01f3e39d743fc619eac17bbb3550e806ff787e"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/osd_ascii_rom.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/osd_ascii_rom.hex",
+      "bytes": 8192,
+      "sha256": "e0b9dd8dd593ce799aee2cd9ec09e30c60028dbc48d30b9a8e5eeb9464ad8c83"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/osd_cjk_rom.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/osd_cjk_rom.hex",
+      "bytes": 16384,
+      "sha256": "75abc804c469c52e0adda9f09ec9c8c4a8e73abd19c40eb8f7cc49f7dda54839"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/osd_logo_rom.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/osd_logo_rom.hex",
+      "bytes": 24576,
+      "sha256": "09b0d8bd23b37938d4d8cc7574089e7fd8162daa4af01d88bccda424668fdd66"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/reference.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/reference.hex",
+      "bytes": 4915200,
+      "sha256": "ddd0554521e2d0535e59597a1cc01ea9383d640028d02c1823d3c48dd20a83ba"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/reference.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/reference.png",
+      "bytes": 9983,
+      "sha256": "0229401f08563ae250da96fce4a1390dac534370f2aa11db2b42711ec8766ad7"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_0.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_0.hex",
+      "bytes": 786432,
+      "sha256": "b3452b5f5f82a132c7b68417c9d45195e6d68f17a84d7e6d18c4d03cb311d699"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_0.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_0.png",
+      "bytes": 4948,
+      "sha256": "be1022025463c24cda8263644e654241ee8e8f4a21fd786172dfb933843b2246"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_1.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_1.hex",
+      "bytes": 786432,
+      "sha256": "ab561aa5d46ce53c76c2196da83bcc14b87e076cdebd7019c86f9c7655c933a6"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_1.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_1.png",
+      "bytes": 4518,
+      "sha256": "1855e4687e8592d2b26172bcd2cf94dd49fd60bb59d709e394275ce862ba4701"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_2.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_2.hex",
+      "bytes": 786432,
+      "sha256": "bd02c6541d544910b2ac04161c07c99a3fec9c754afdff6613ebbaa2b37b332d"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_2.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_2.png",
+      "bytes": 4799,
+      "sha256": "0a1fa2fd088085448abb09f14ad5811d6c7eb906c07dd23a536661fdb06bfde2"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_3.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_3.hex",
+      "bytes": 786432,
+      "sha256": "d3b54d6d74cc86660ba3649d761ed1ca3d633fd711e99a0d5cb45d02be56ae31"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_3.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_3.png",
+      "bytes": 4838,
+      "sha256": "2f2c5d74443bd5ef42d46a5c30d29c29453447fcfd02ca0c7c6b15bb4a7b75be"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_4.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_4.hex",
+      "bytes": 786432,
+      "sha256": "e4465d2e39f3535bcb6c0077425b873425f0fae5dc762ca54fffac1bc6b03be2"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_4.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_4.png",
+      "bytes": 4161,
+      "sha256": "1d84332028e45082666eb33710f4e4156423b5b5a0d7efbff262e0209bc4bd72"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_5.hex",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_5.hex",
+      "bytes": 786432,
+      "sha256": "da52b00ad98670f358431d6af1f95d6842a4b1df17fc889c8d66a6f856f65bf0"
+    },
+    {
+      "source": "fpga/component_inspector/sim/osd_assets/state_5.png",
+      "copy": "source_snapshot/fpga/component_inspector/sim/osd_assets/state_5.png",
+      "bytes": 4256,
+      "sha256": "18f49b6bf74b3e704ee9b4298cbc48c267c835d0ce979bf3b974eb3dcaa72e63"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/cdc/compile.log",
+      "copy": "evidence/project_sim/cdc/compile.log",
+      "bytes": 608,
+      "sha256": "1816e6ef3eea65e8191bb7e93876191dadff5946f675d832d7da4d1dbd53eb63"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/cdc/console.log",
+      "copy": "evidence/project_sim/cdc/console.log",
+      "bytes": 1309,
+      "sha256": "d82d4f862db05e9471cb0aa1df206c779621f9e770a85f46499a1e2506afb6a0"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/cdc/transcript.log",
+      "copy": "evidence/project_sim/cdc/transcript.log",
+      "bytes": 1256,
+      "sha256": "3a2373c9d23f7faf2f23117f4862fa69cfd4634e36a91a1dd294cc42d7afa8df"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/classifier/compile.log",
+      "copy": "evidence/project_sim/classifier/compile.log",
+      "bytes": 934,
+      "sha256": "2b3ee61939338029e7679928290d1b455445753b8d5b5a6a5f2e11cdfcd5c21f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/classifier/console.log",
+      "copy": "evidence/project_sim/classifier/console.log",
+      "bytes": 2550,
+      "sha256": "e2310e85e69b7dca63985b4f3d877033e4e4b89e68f2700f29cddb4acaf3b14d"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/classifier/transcript.log",
+      "copy": "evidence/project_sim/classifier/transcript.log",
+      "bytes": 2497,
+      "sha256": "8c9f3dd6d16c854984d38d6e501a220342f24bde9d208edccc534770f873b45b"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/controls/compile.log",
+      "copy": "evidence/project_sim/controls/compile.log",
+      "bytes": 1020,
+      "sha256": "0ed2cfa0e1a7ada55546cf75e8ffdc7bd20d1a805ed7bc410b7a3f754b596a7f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/controls/console.log",
+      "copy": "evidence/project_sim/controls/console.log",
+      "bytes": 2525,
+      "sha256": "e9b987df605b216f4cd820b33833a31a078afa25c386ae3aa5cbb8b4f96d56ca"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/controls/transcript.log",
+      "copy": "evidence/project_sim/controls/transcript.log",
+      "bytes": 2472,
+      "sha256": "5cd2e7dbc458f9f28c387705c93f954e6b1e8b7068fbc15e8a1f5c1f9ccafefc"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/csi_monitor/compile.log",
+      "copy": "evidence/project_sim/csi_monitor/compile.log",
+      "bytes": 958,
+      "sha256": "f43d2d5099ff3a782fb3fe732cb43ae54de1e360bae582835b312b333ecd25cd"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/csi_monitor/console.log",
+      "copy": "evidence/project_sim/csi_monitor/console.log",
+      "bytes": 1489,
+      "sha256": "d2c5753d93a3ef1d3e92da9b79cfd843b3ed65c0656f966040410c98d9e051b3"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/csi_monitor/transcript.log",
+      "copy": "evidence/project_sim/csi_monitor/transcript.log",
+      "bytes": 1436,
+      "sha256": "de7aed512586495cf4f5a5979d7d379187434790db292f752e45e884abb164d7"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/display_state/compile.log",
+      "copy": "evidence/project_sim/display_state/compile.log",
+      "bytes": 970,
+      "sha256": "f774b299635d438bb99b6421926cbe8e4d229d10a5e76f550ea9f04ad26ce5f6"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/display_state/console.log",
+      "copy": "evidence/project_sim/display_state/console.log",
+      "bytes": 1624,
+      "sha256": "b56707517e0f3c2968b2b2d1816cce950e4c8c03bd59c1d005876e357fd42567"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/display_state/transcript.log",
+      "copy": "evidence/project_sim/display_state/transcript.log",
+      "bytes": 1571,
+      "sha256": "bfbc1e416b5c2b168e7ab9fe685168a67009d5cef149011ca779fb109c7bea94"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/i2c/compile.log",
+      "copy": "evidence/project_sim/i2c/compile.log",
+      "bytes": 605,
+      "sha256": "485baac809609a074c8f29b82b57eaaa793f0fc3e3f93500c4a45f4e0ec13780"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/i2c/console.log",
+      "copy": "evidence/project_sim/i2c/console.log",
+      "bytes": 1302,
+      "sha256": "fb261f3d0d05abae69d7e9a69a79453c1aa9082ba777f84717a16eb6ecf7461c"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/i2c/transcript.log",
+      "copy": "evidence/project_sim/i2c/transcript.log",
+      "bytes": 1249,
+      "sha256": "eaf13488416639bb266c9ec3ec8ff059dcb6ede3e68781fd88145326a1893db4"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/monitor/compile.log",
+      "copy": "evidence/project_sim/monitor/compile.log",
+      "bytes": 708,
+      "sha256": "3728b1f356408a4edfe475a8a87e3649f0983e540037055d9310771a65854c6a"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/monitor/console.log",
+      "copy": "evidence/project_sim/monitor/console.log",
+      "bytes": 1397,
+      "sha256": "fe9b032dc8011018800548af5f4a9b295fe451434bb146ff5117169b57a2cf1f"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/monitor/transcript.log",
+      "copy": "evidence/project_sim/monitor/transcript.log",
+      "bytes": 1344,
+      "sha256": "15f3f449a7b7dd4c6673ac7bc0e31770315e2d9907d7b0bf55bfd42547202be0"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/observation/compile.log",
+      "copy": "evidence/project_sim/observation/compile.log",
+      "bytes": 993,
+      "sha256": "be4de4940c9bf19115c26981117fefefb66c04d6fa09728484e0cbce469f8b22"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/observation/console.log",
+      "copy": "evidence/project_sim/observation/console.log",
+      "bytes": 1694,
+      "sha256": "a26877e6d960d878887c812da3f2b719bd61d796f5716c6345a8ed5a39b98684"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/observation/transcript.log",
+      "copy": "evidence/project_sim/observation/transcript.log",
+      "bytes": 1641,
+      "sha256": "04cf1d5075e5d2a3113476ab3b96d145157c77adb25297f912977c4e9741ee26"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/osd/compile.log",
+      "copy": "evidence/project_sim/osd/compile.log",
+      "bytes": 914,
+      "sha256": "89b5dc48009153bd4cf65362327785c9da16ed951ba2c8e06aebb0b5305a773b"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/osd/console.log",
+      "copy": "evidence/project_sim/osd/console.log",
+      "bytes": 1611,
+      "sha256": "00ad7c9a026e91b7530feb6e6144242a60fd91231ffa9e4e6ab03b56ee1fb5ee"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/osd/transcript.log",
+      "copy": "evidence/project_sim/osd/transcript.log",
+      "bytes": 1558,
+      "sha256": "e0966b3be256f3ff77945590ed0a585795d1478db1b6a17bde7b2c8f2a2701ca"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/pack_boundary/compile.log",
+      "copy": "evidence/project_sim/pack_boundary/compile.log",
+      "bytes": 693,
+      "sha256": "6b945ebc0d733eaa6dfd3b8c50aa0790105dd141d7e81ef88090afa59bd8cdaa"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/pack_boundary/console.log",
+      "copy": "evidence/project_sim/pack_boundary/console.log",
+      "bytes": 1454,
+      "sha256": "6c4c9e103c11cead2cd61be261ddf1b95ab116f7b08224bc2456a30edcb76ab3"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/pack_boundary/transcript.log",
+      "copy": "evidence/project_sim/pack_boundary/transcript.log",
+      "bytes": 1401,
+      "sha256": "ebe6995bc13a4b33d7ad4966ea1f9364fa62f62a69150b3e61100ff489282fa5"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/pixel_interface/compile.log",
+      "copy": "evidence/project_sim/pixel_interface/compile.log",
+      "bytes": 1403,
+      "sha256": "c53d3bed6e48fc6f3b1ca53ea244d4b832da04dde37657b2aad27093fbf58da4"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/pixel_interface/console.log",
+      "copy": "evidence/project_sim/pixel_interface/console.log",
+      "bytes": 5728,
+      "sha256": "cd6d6c9a40d50705332d33ad020a89e9961c9eb7bc940d1a736a2796893ddb89"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/pixel_interface/transcript.log",
+      "copy": "evidence/project_sim/pixel_interface/transcript.log",
+      "bytes": 5675,
+      "sha256": "0675c682decf396b088a9ee48dc47e304a53b0224e78165c6e8f595763737403"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/pixel_interface_tied_inputs/compile.log",
+      "copy": "evidence/project_sim/pixel_interface_tied_inputs/compile.log",
+      "bytes": 1472,
+      "sha256": "bb5eb1b5a5c8362974b31529fdec0b22b6c2b69a019a2d728f4594477bca11a4"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/pixel_interface_tied_inputs/console.log",
+      "copy": "evidence/project_sim/pixel_interface_tied_inputs/console.log",
+      "bytes": 35461,
+      "sha256": "486a06bf35f29f11e8c5b49b9856b164285bcdc260a2100147a64348e2d44d61"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/pixel_interface_tied_inputs/transcript.log",
+      "copy": "evidence/project_sim/pixel_interface_tied_inputs/transcript.log",
+      "bytes": 35408,
+      "sha256": "35286e7f036426846276b3300bce9081f64b00dee1c832f271334234cc94bb14"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/roi_chain/compile.log",
+      "copy": "evidence/project_sim/roi_chain/compile.log",
+      "bytes": 3001,
+      "sha256": "6edb9397f315e46db3b631a5e64a1371b5f8afc95c673ee781022523cbb7acb0"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/roi_chain/console.log",
+      "copy": "evidence/project_sim/roi_chain/console.log",
+      "bytes": 10120,
+      "sha256": "7e0debdf624b7fe13378d706bdc65a6c4cba47c1346d987bd4412df0446e4003"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/roi_chain/transcript.log",
+      "copy": "evidence/project_sim/roi_chain/transcript.log",
+      "bytes": 10067,
+      "sha256": "06f86b4d8e5dcf6eca26146f3c2273bdbc85d5a414d08e997a9fada04be7cba8"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/roi_core/compile.log",
+      "copy": "evidence/project_sim/roi_core/compile.log",
+      "bytes": 645,
+      "sha256": "4007331a7cd7411cdca06594660e116c7859cc0c027d3dc63b3f23be909b3a12"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/roi_core/console.log",
+      "copy": "evidence/project_sim/roi_core/console.log",
+      "bytes": 1395,
+      "sha256": "4a435efcbcd414d96f42a69dfac1c1a714575c33bb1292aefa4eabbd441a1cb0"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/roi_core/transcript.log",
+      "copy": "evidence/project_sim/roi_core/transcript.log",
+      "bytes": 1342,
+      "sha256": "6f8c87255359bfaeee3929f0f4336c0203eae7e43a9702936da70173659b97ea"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/roi_guard/compile.log",
+      "copy": "evidence/project_sim/roi_guard/compile.log",
+      "bytes": 749,
+      "sha256": "ac17240c3fb25e310f5aa55d6552aad82f7e3cda939f80944bb00ae68a7c7847"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/roi_guard/console.log",
+      "copy": "evidence/project_sim/roi_guard/console.log",
+      "bytes": 1484,
+      "sha256": "c74593ed3eb7059342714d84239c33904ac2cfec6f20199508ad7b34c761344a"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/roi_guard/transcript.log",
+      "copy": "evidence/project_sim/roi_guard/transcript.log",
+      "bytes": 1431,
+      "sha256": "f6a534d786abf83bdf12b9c7b4904b1d44a7eadae541f5a6a5593f5896c87eea"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/sobel_view/compile.log",
+      "copy": "evidence/project_sim/sobel_view/compile.log",
+      "bytes": 774,
+      "sha256": "269206214ccb5d4f7001218b6d24026201a8ac29ec88fa8d6cb52fee0947304a"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/sobel_view/console.log",
+      "copy": "evidence/project_sim/sobel_view/console.log",
+      "bytes": 2390,
+      "sha256": "f651c69f35ba913c250b34f2f878aa1bbb1b7eea915f04a93e151d4085070ce4"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/sobel_view/transcript.log",
+      "copy": "evidence/project_sim/sobel_view/transcript.log",
+      "bytes": 2337,
+      "sha256": "59422c35c29b1f4060faeccb240d6070a6e3071983f9172a57abc342abe81e5c"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/stop_recovery/compile.log",
+      "copy": "evidence/project_sim/stop_recovery/compile.log",
+      "bytes": 954,
+      "sha256": "c98ab35b3913bb8a225392dd175f75601163df868cb288fadca65bf1662f1edc"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/stop_recovery/console.log",
+      "copy": "evidence/project_sim/stop_recovery/console.log",
+      "bytes": 1771,
+      "sha256": "f86320315354cdea3a34759f11f95e2a66500849dbb5993874f25c7b10bf6ae0"
+    },
+    {
+      "source": "fpga/component_inspector/sim/modelsim_work/stop_recovery/transcript.log",
+      "copy": "evidence/project_sim/stop_recovery/transcript.log",
+      "bytes": 1718,
+      "sha256": "651229b03dc94b6912f39be0378e43ef582aab02b20b6f244528291ecb619d23"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/compile.log",
+      "copy": "evidence/full_transport_test_20261006/compile.log",
+      "bytes": 1807,
+      "sha256": "d089ea00a42d1dc27184dfcc13ec095649fe93c0a21fd784fb4a31075a2da49f"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/faults.compile.log",
+      "copy": "evidence/full_transport_test_20261006/faults.compile.log",
+      "bytes": 322,
+      "sha256": "feb3a9c249f59fc93802846d65170113a3b11df996ee8eabd6c543511848ca1e"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/faults.console.log",
+      "copy": "evidence/full_transport_test_20261006/faults.console.log",
+      "bytes": 4522,
+      "sha256": "a4e99d87c644b29550308eddfcae7b094d49830ab95e120ae9eb4822cfa8d794"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/faults.transcript.log",
+      "copy": "evidence/full_transport_test_20261006/faults.transcript.log",
+      "bytes": 4469,
+      "sha256": "e34b87dbffcd33f92db97fb91c6594eb7a0bed5bea08f201ce67575eb5bd6e02"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/generate_fault_tb.py",
+      "copy": "evidence/full_transport_test_20261006/generate_fault_tb.py",
+      "bytes": 6433,
+      "sha256": "349c21fad80852c98dc8d95c9f2f78c370890af6133c0394fe9e9dc8767d401c"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/manifest.json",
+      "copy": "evidence/full_transport_test_20261006/manifest.json",
+      "bytes": 8722,
+      "sha256": "b194a52fcaf8089f56d2e18a66a1d81084a0f24c7c71051ba218854b7626016a"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/mode_0.console.log",
+      "copy": "evidence/full_transport_test_20261006/mode_0.console.log",
+      "bytes": 4631,
+      "sha256": "82dca139e643548f7bc5460f9bfa8e618ad8d8586930c6381556006169bf2a38"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/mode_0.transcript.log",
+      "copy": "evidence/full_transport_test_20261006/mode_0.transcript.log",
+      "bytes": 4578,
+      "sha256": "06b46370055a74603366b19e0012079d91c5b5fda2b13b9fbbaed6b6764bd484"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/mode_1.console.log",
+      "copy": "evidence/full_transport_test_20261006/mode_1.console.log",
+      "bytes": 2087,
+      "sha256": "fe58b868d7cda672c1cb71da62e62d566a0295422789a99fc99ac15dbb5740e8"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/mode_1.transcript.log",
+      "copy": "evidence/full_transport_test_20261006/mode_1.transcript.log",
+      "bytes": 2034,
+      "sha256": "d8889aa18cd7ee6c7ae678b07427f8bdf7124e4d0bbe4071f60404dfec46a5a4"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/mode_2.console.log",
+      "copy": "evidence/full_transport_test_20261006/mode_2.console.log",
+      "bytes": 2088,
+      "sha256": "cbdb26821ff21ae1adac6bfb86fe859d166eebba528cc8ec3164b8ea75fd3663"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/mode_2.transcript.log",
+      "copy": "evidence/full_transport_test_20261006/mode_2.transcript.log",
+      "bytes": 2035,
+      "sha256": "bf4012d49f2ba5ef831a3a2df94d7c245b908ecfbaa16b80c58ab746b06377ff"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/mode_3.console.log",
+      "copy": "evidence/full_transport_test_20261006/mode_3.console.log",
+      "bytes": 2088,
+      "sha256": "0fc83fe644d1bce8d930263aa7cde61bdcb9bfdc5d4b1a9d09670909f6f639c3"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/mode_3.transcript.log",
+      "copy": "evidence/full_transport_test_20261006/mode_3.transcript.log",
+      "bytes": 2035,
+      "sha256": "174a636de822099154b4a8658ba06184c78c7d8d5b90c7cca84a04a25557b9cd"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/README.md",
+      "copy": "evidence/full_transport_test_20261006/README.md",
+      "bytes": 4228,
+      "sha256": "1cbc80268b63dede4660cacf6ad25bdb20a20100c4d8e13131795d3a5f9057a6"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/reference.py",
+      "copy": "evidence/full_transport_test_20261006/reference.py",
+      "bytes": 1417,
+      "sha256": "82abdd397843cab55d9ae9f2a1ee274012209802e653026ac1d488ccd464f347"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/run.ps1",
+      "copy": "evidence/full_transport_test_20261006/run.ps1",
+      "bytes": 1804,
+      "sha256": "c088b4eacba1996cb47e7ccfeb0a949c109d5391348ad52cfb0372ce67355885"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/run_faults.ps1",
+      "copy": "evidence/full_transport_test_20261006/run_faults.ps1",
+      "bytes": 1115,
+      "sha256": "4c8ff779729121aa5fb622ea59a10ada7d1ce40032b1473509f9b853bb802ebc"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/setup.log",
+      "copy": "evidence/full_transport_test_20261006/setup.log",
+      "bytes": 335,
+      "sha256": "670185cc9841befc344aac96f161dae79a0883d75a5cf3859748972586eee09d"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/tb_full_transport.v",
+      "copy": "evidence/full_transport_test_20261006/tb_full_transport.v",
+      "bytes": 11570,
+      "sha256": "b1317fe29fc24af88ea216e93f9c7777ef89d0ccd0aef4c83b011601656580da"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/tb_transport_faults.v",
+      "copy": "evidence/full_transport_test_20261006/tb_transport_faults.v",
+      "bytes": 15852,
+      "sha256": "6970f8218a351bff9686c41d9dfb11af66c5f7f86c415890d5a6bb808745579a"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/tested_inputs.json",
+      "copy": "evidence/full_transport_test_20261006/tested_inputs.json",
+      "bytes": 1348,
+      "sha256": "c9cc5d3d4e781f07c92e93df037f742421c2f67370502024206640ac03d13d85"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/write_manifest.py",
+      "copy": "evidence/full_transport_test_20261006/write_manifest.py",
+      "bytes": 1488,
+      "sha256": "4fc5bb8d48148eb3a692f9759deb37505a165af803fa2d1d7168250f8c593b33"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/initial_tb_wait_bug/faults_new_prefill_check.console.log",
+      "copy": "evidence/full_transport_test_20261006/initial_tb_wait_bug/faults_new_prefill_check.console.log",
+      "bytes": 3967,
+      "sha256": "5afdadbdfe4c6d06cbb1258348033d2d6ff837119d193e40d103c44fc226e217"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/initial_tb_wait_bug/faults_pipeline_check.console.log",
+      "copy": "evidence/full_transport_test_20261006/initial_tb_wait_bug/faults_pipeline_check.console.log",
+      "bytes": 5271,
+      "sha256": "d4984b27ba955bf8f2cd28e475e0f2791d188ace2b7a422fcf064226ac4a91e6"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/initial_tb_wait_bug/mode_2.console.log",
+      "copy": "evidence/full_transport_test_20261006/initial_tb_wait_bug/mode_2.console.log",
+      "bytes": 2088,
+      "sha256": "cbdb26821ff21ae1adac6bfb86fe859d166eebba528cc8ec3164b8ea75fd3663"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/initial_tb_wait_bug/mode_3.console.log",
+      "copy": "evidence/full_transport_test_20261006/initial_tb_wait_bug/mode_3.console.log",
+      "bytes": 2088,
+      "sha256": "0fc83fe644d1bce8d930263aa7cde61bdcb9bfdc5d4b1a9d09670909f6f639c3"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/tested_rtl/data96_128.v",
+      "copy": "evidence/full_transport_test_20261006/tested_rtl/data96_128.v",
+      "bytes": 975,
+      "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/tested_rtl/roi_sobel_view.v",
+      "copy": "evidence/full_transport_test_20261006/tested_rtl/roi_sobel_view.v",
+      "bytes": 9475,
+      "sha256": "13738d3d535df505dc675979ac44bfa74ce186be517f7bfdc4fb5ca030312596"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/tested_rtl/soft_fifo_al_4057d6b76aa6.v",
+      "copy": "evidence/full_transport_test_20261006/tested_rtl/soft_fifo_al_4057d6b76aa6.v",
+      "bytes": 34326,
+      "sha256": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/tested_rtl/video_in.v",
+      "copy": "evidence/full_transport_test_20261006/tested_rtl/video_in.v",
+      "bytes": 5332,
+      "sha256": "0af1896eeedef3a31240db44090e1d0dc577b740344e13fbd56af83b09155df3"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/tested_rtl/video_out.v",
+      "copy": "evidence/full_transport_test_20261006/tested_rtl/video_out.v",
+      "bytes": 5649,
+      "sha256": "9cf4ef7484fbe292816015f38c54406779ea29d5a0a4039847d482d34df3361c"
+    },
+    {
+      "source": "tmp/full_transport_test_20261006/tested_rtl/w128_d512_fifo.v",
+      "copy": "evidence/full_transport_test_20261006/tested_rtl/w128_d512_fifo.v",
+      "bytes": 1222,
+      "sha256": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/compile.log",
+      "copy": "evidence/io_fix_review_20261006/compile.log",
+      "bytes": 1408,
+      "sha256": "5532ad8486c3fecd8636e45acc4d80f1493b63822aa199859a18e15b1a9e839c"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/console.log",
+      "copy": "evidence/io_fix_review_20261006/console.log",
+      "bytes": 4053,
+      "sha256": "f851fb12d38829c4349b9e5641e3b0ed4cdf5e46a7e8f1a6bdc98535553ba1c1"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/design_review.md",
+      "copy": "evidence/io_fix_review_20261006/design_review.md",
+      "bytes": 5191,
+      "sha256": "62b38b38c1772d474e3308e7c1a33307525e67e02462164e2fe5022e739543b6"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/review_source_hashes.json",
+      "copy": "evidence/io_fix_review_20261006/review_source_hashes.json",
+      "bytes": 2419,
+      "sha256": "3318482523441c651108198587d54cf47b10617cd2791cb374ecc36f13b4e3f8"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/run.ps1",
+      "copy": "evidence/io_fix_review_20261006/run.ps1",
+      "bytes": 2575,
+      "sha256": "201da7578289812dad6ecbcd8aa925a0e0e9896375f8a08374d10ff7208a3ddf"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/setup.log",
+      "copy": "evidence/io_fix_review_20261006/setup.log",
+      "bytes": 335,
+      "sha256": "670185cc9841befc344aac96f161dae79a0883d75a5cf3859748972586eee09d"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/syntax_setup.log",
+      "copy": "evidence/io_fix_review_20261006/syntax_setup.log",
+      "bytes": 280,
+      "sha256": "bfe46b20817166ec3f85b940d2c95970a433ee02cf7053602836a22b313460f2"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/tb_video_transport.sv",
+      "copy": "evidence/io_fix_review_20261006/tb_video_transport.sv",
+      "bytes": 12460,
+      "sha256": "92a845a3152c9aa9997145c7a63c001711c7e91120deaba4a80c13ae39c1f414"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/test_results.md",
+      "copy": "evidence/io_fix_review_20261006/test_results.md",
+      "bytes": 5430,
+      "sha256": "1b48c7b633a985df8ef6bf95405faf1878dc11a74964006483c88500aca4d0d3"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/transcript.log",
+      "copy": "evidence/io_fix_review_20261006/transcript.log",
+      "bytes": 4000,
+      "sha256": "4a2c8db4fc4cc03f10f2c4b3d4b5c7baffd3c9f6e460bb1aee2c9be1c42736c8"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/validated_source_hashes.json",
+      "copy": "evidence/io_fix_review_20261006/validated_source_hashes.json",
+      "bytes": 1509,
+      "sha256": "2016f464fe0a64632d3b725de504159b8322d16baf83d68638eb5677ac109976"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190403/compile.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190403/compile.log",
+      "bytes": 1408,
+      "sha256": "d4a89b3089819c5ae235fcd3b89e20a5b57027e9388ebc6a67160b0c5b1b7cf7"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190403/console.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190403/console.log",
+      "bytes": 4255,
+      "sha256": "e82af3fc6fc99cca7f784bbcfccb4047c863f05de45184b6eeacecf278393ae9"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190403/setup.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190403/setup.log",
+      "bytes": 335,
+      "sha256": "670185cc9841befc344aac96f161dae79a0883d75a5cf3859748972586eee09d"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190403/transcript.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190403/transcript.log",
+      "bytes": 4202,
+      "sha256": "c16596dfe7159279cf2cc766960627af191f130afe6199a7d65191ff98f30c2c"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190450/compile.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190450/compile.log",
+      "bytes": 1408,
+      "sha256": "254728b6cf8bbcf7453e2201bdb5149e5738121766c5182495ad3fbf89337c5f"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190450/console.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190450/console.log",
+      "bytes": 3545,
+      "sha256": "9e8ffe7c1c43253fa11b9b65c249ecad9ac8a423c09eaaae37969857ad9c0a19"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190450/setup.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190450/setup.log",
+      "bytes": 335,
+      "sha256": "670185cc9841befc344aac96f161dae79a0883d75a5cf3859748972586eee09d"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190450/transcript.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190450/transcript.log",
+      "bytes": 3492,
+      "sha256": "f0f3af804f7f44d4de8c688b52ec3bbbb12611b101c52b39897879694d41f855"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190538/compile.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190538/compile.log",
+      "bytes": 1408,
+      "sha256": "1d14bca47aef947c49c8ddf820e0e7d20c98658d9c6041819c91ff74f199c34d"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190538/console.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190538/console.log",
+      "bytes": 3696,
+      "sha256": "e7c92407bcdbe78b50590fd3a1181d0b894d8bbede0da73c61354dc1d81debad"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190538/setup.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190538/setup.log",
+      "bytes": 335,
+      "sha256": "670185cc9841befc344aac96f161dae79a0883d75a5cf3859748972586eee09d"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190538/transcript.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190538/transcript.log",
+      "bytes": 3643,
+      "sha256": "ca75cbc9b4395f5b6821e20f7d583ba94629fe876451ed19e4d74ea24d19ffa4"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190701/compile.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190701/compile.log",
+      "bytes": 1408,
+      "sha256": "acb6285fb43621d21ded77a98983d4b447a999794a8d7631e9fe023dd6cb7c9e"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190701/console.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190701/console.log",
+      "bytes": 4025,
+      "sha256": "49803104a10f4eb1e2518cd718a132588719466cbdb0b331f790ba0900ea3f30"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190701/setup.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190701/setup.log",
+      "bytes": 335,
+      "sha256": "670185cc9841befc344aac96f161dae79a0883d75a5cf3859748972586eee09d"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_190701/transcript.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_190701/transcript.log",
+      "bytes": 3972,
+      "sha256": "3fe61229aff7b353c36b0a2969238247ec5c8e47443c418f9bc43b302efa4bc4"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_192224/compile.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_192224/compile.log",
+      "bytes": 1408,
+      "sha256": "e9c48598aaa6c0f3a36004aa02ee2963dad15603db21977c62bb99b5557bdadb"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_192224/console.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_192224/console.log",
+      "bytes": 4446,
+      "sha256": "360df8393bbc5594101ab5007c57a2b2c6024d48a21c91bd562728236fc02687"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_192224/setup.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_192224/setup.log",
+      "bytes": 335,
+      "sha256": "670185cc9841befc344aac96f161dae79a0883d75a5cf3859748972586eee09d"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_192224/transcript.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_192224/transcript.log",
+      "bytes": 4393,
+      "sha256": "4f67f4e308c431d69a999eb6c34a762e3a0ce4e6ad1cca8ce124b333b1d4b236"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_192227/compile.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_192227/compile.log",
+      "bytes": 1408,
+      "sha256": "5532ad8486c3fecd8636e45acc4d80f1493b63822aa199859a18e15b1a9e839c"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_192227/console.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_192227/console.log",
+      "bytes": 4053,
+      "sha256": "f851fb12d38829c4349b9e5641e3b0ed4cdf5e46a7e8f1a6bdc98535553ba1c1"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_192227/setup.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_192227/setup.log",
+      "bytes": 335,
+      "sha256": "670185cc9841befc344aac96f161dae79a0883d75a5cf3859748972586eee09d"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_20261006_192227/transcript.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_20261006_192227/transcript.log",
+      "bytes": 4000,
+      "sha256": "4a2c8db4fc4cc03f10f2c4b3d4b5c7baffd3c9f6e460bb1aee2c9be1c42736c8"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_initial_fs_failure/compile.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_initial_fs_failure/compile.log",
+      "bytes": 1408,
+      "sha256": "9c2589bc2945b817bf5af5b24531e5e27daaf74ee6bc2872c44e17f907c4664c"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_initial_fs_failure/console.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_initial_fs_failure/console.log",
+      "bytes": 4108,
+      "sha256": "af4508771e8017a4a35f6181107ba2024b43c86426b437f474c853f55d1863ad"
+    },
+    {
+      "source": "tmp/io_fix_review_20261006/attempt_initial_fs_failure/transcript.log",
+      "copy": "evidence/io_fix_review_20261006/attempt_initial_fs_failure/transcript.log",
+      "bytes": 4055,
+      "sha256": "d7b66b86d4cc4cb0c01a907b715092924b7b7c4f0660799a793ea6f04507530c"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/compile.log",
+      "copy": "evidence/sobel_fix_review_20261006/compile.log",
+      "bytes": 940,
+      "sha256": "1bb29fb83637aac00986a887c118df8bcb8f38c0f53ae44aedfe1bd4b3e1fb12"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/compile_failed_forward_reg.log",
+      "copy": "evidence/sobel_fix_review_20261006/compile_failed_forward_reg.log",
+      "bytes": 3432,
+      "sha256": "3adb114fa77b78884a6a2659a0cde352f30b6708f4663aff870f656c057aaf1e"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/console.log",
+      "copy": "evidence/sobel_fix_review_20261006/console.log",
+      "bytes": 2054,
+      "sha256": "b1e58fde37f885e62c9f4d3623cf2f429db8f155619182812b93d76d8bc4e8e0"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/pre_sof_compile.log",
+      "copy": "evidence/sobel_fix_review_20261006/pre_sof_compile.log",
+      "bytes": 946,
+      "sha256": "81e188124e6cf68422939b612c176192cc380a3ef66ca57672fa9ef79bf81846"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/pre_sof_console.log",
+      "copy": "evidence/sobel_fix_review_20261006/pre_sof_console.log",
+      "bytes": 1913,
+      "sha256": "e62be756a8af915f3f011c58414930def2859711a223fb85d18e39d5dbd87bfc"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/pre_sof_setup.log",
+      "copy": "evidence/sobel_fix_review_20261006/pre_sof_setup.log",
+      "bytes": 335,
+      "sha256": "670185cc9841befc344aac96f161dae79a0883d75a5cf3859748972586eee09d"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/pre_sof_transcript.log",
+      "copy": "evidence/sobel_fix_review_20261006/pre_sof_transcript.log",
+      "bytes": 1860,
+      "sha256": "957871d1fa546fd70b48fa72bd9656cdbc1fdc513088fdff3ced3c624b459b5a"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/roi_compile.log",
+      "copy": "evidence/sobel_fix_review_20261006/roi_compile.log",
+      "bytes": 5381,
+      "sha256": "1254fd0ec70dc54833091cffc5ffe34b4ab146d9a71bc0072aa8deb939edd3b4"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/roi_console.log",
+      "copy": "evidence/sobel_fix_review_20261006/roi_console.log",
+      "bytes": 59735,
+      "sha256": "1d5cf1073dda9e9bc017f980292b2af975d6a44532f09b14824e3a8c28e70d4a"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/roi_proof_inputs_manifest.json",
+      "copy": "evidence/sobel_fix_review_20261006/roi_proof_inputs_manifest.json",
+      "bytes": 8862,
+      "sha256": "6ab44248526d63c77a7f962963e0c74c1c8ff774cea1fd2d0bf40839c0a79536"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/roi_setup.log",
+      "copy": "evidence/sobel_fix_review_20261006/roi_setup.log",
+      "bytes": 448,
+      "sha256": "4bbf9ab61af2fe66507355715b8a8c1cab2feaf6433f49c39a38c958b408466b"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/roi_transcript.log",
+      "copy": "evidence/sobel_fix_review_20261006/roi_transcript.log",
+      "bytes": 59682,
+      "sha256": "ee44a968863fc3ae331250fabaef6c467991f9987bf22ca4abf31e96de846e58"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/roi_vendor_compile.log",
+      "copy": "evidence/sobel_fix_review_20261006/roi_vendor_compile.log",
+      "bytes": 2154,
+      "sha256": "01f63934f44eb062c7bb104e84e29d8da2373de22cc2776ab9bbca391e7c25e7"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/run.ps1",
+      "copy": "evidence/sobel_fix_review_20261006/run.ps1",
+      "bytes": 1559,
+      "sha256": "f77ebcb00b4b5192c3182fc0969aa4b7ff296d19c260a79b81abf7d7a57697eb"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/run_pre_sof.ps1",
+      "copy": "evidence/sobel_fix_review_20261006/run_pre_sof.ps1",
+      "bytes": 1643,
+      "sha256": "152c780c84fff89faaf279759eea0a306d9931dbe393994cedfe91fca4342566"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/run_roi_proof.ps1",
+      "copy": "evidence/sobel_fix_review_20261006/run_roi_proof.ps1",
+      "bytes": 4499,
+      "sha256": "f1c10463daf9e4c8fbc04f463b5ca5816dbd0d78de3732bc2d0221a1f8218e7c"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/setup.log",
+      "copy": "evidence/sobel_fix_review_20261006/setup.log",
+      "bytes": 335,
+      "sha256": "670185cc9841befc344aac96f161dae79a0883d75a5cf3859748972586eee09d"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/tb_pre_sof_tail.v",
+      "copy": "evidence/sobel_fix_review_20261006/tb_pre_sof_tail.v",
+      "bytes": 7136,
+      "sha256": "0efba0b70b7161d75c49dedf91343b731ec7956d43397bbd8d4513e1fb90130a"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/tb_roi_transport_proof.v",
+      "copy": "evidence/sobel_fix_review_20261006/tb_roi_transport_proof.v",
+      "bytes": 10790,
+      "sha256": "8c083db482149f4698e377e7c64bd764cfd7a7e6a8e50e6071309d56e9b2a3f8"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/tb_sobel_flow.v",
+      "copy": "evidence/sobel_fix_review_20261006/tb_sobel_flow.v",
+      "bytes": 7102,
+      "sha256": "f5cf3faa3fab00803d6c535706f87847a8bb1534a2f5789805932cc6c9fabc3e"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/tested_inputs_manifest.json",
+      "copy": "evidence/sobel_fix_review_20261006/tested_inputs_manifest.json",
+      "bytes": 1260,
+      "sha256": "bcfadcc72abdb2438a6a634685fb9e3ad68a865b9af9b079fc629e79334c3d83"
+    },
+    {
+      "source": "tmp/sobel_fix_review_20261006/transcript.log",
+      "copy": "evidence/sobel_fix_review_20261006/transcript.log",
+      "bytes": 2001,
+      "sha256": "8606014253384df8c458bb1a234868d38df7e27cd280fd6bd76519d2bf1c3641"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/inputs.json",
+      "copy": "evidence/video_fix_td_build_20261006/inputs.json",
+      "bytes": 38884,
+      "sha256": "b30d59fc73056fe2d7c3be0c44e4869b1f4ea05e86baa5a25400d4a96994c846"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/build.tcl",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/build.tcl",
+      "bytes": 117,
+      "sha256": "ac91cd49da633fca7db65dfceb327748779a1f5a0a090540de7a23ebffb12892"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/build_console.log",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/build_console.log",
+      "bytes": 176653,
+      "sha256": "ffb057b4f97d772bebdbe1ca3f288e815d7b9701d0db6f9e155bbc83cc619d1e"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.bit",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.bit",
+      "bytes": 1789539,
+      "sha256": "8ba1c11f7393efb3a20897f63573fe82f3a201a010882b9b24639406bbb8e52c"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.prj",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.prj",
+      "bytes": 27776,
+      "sha256": "df1f28e4a098e8668adb9454ef2daf86c3da6855b62dead762be44188c5d2b73"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display_exception.timing",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display_exception.timing",
+      "bytes": 1152689,
+      "sha256": "e8e2c97e440b46d8eacc2a92573dd86de0ffe9ffd7bd0e5f66f9c877a350d748"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display_phy.area",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display_phy.area",
+      "bytes": 56041,
+      "sha256": "106204b6f8fab16d1fa166b5626c6b92300c8aa24313c7efd12731f82607ea2c"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display_place.timing",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display_place.timing",
+      "bytes": 3957108,
+      "sha256": "a1a05c4432a723fdc6aa40c8c9bf090477278349541e75474679554ec822f079"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display_pr.timing",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display_pr.timing",
+      "bytes": 4860898,
+      "sha256": "d28c90b0ffc50811d4a66e3c2c5a5028fcef4232aac071ea9b5fed26edcc90e6"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/constraint_coverage.txt",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/constraint_coverage.txt",
+      "bytes": 14810,
+      "sha256": "57bde050445ac477adb52ec72070fd26433c9118b4d0e0624f4bbc9e0707861f"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/final_timing.rpt",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/final_timing.rpt",
+      "bytes": 4860898,
+      "sha256": "3a9aa18a90357cce2db8d1bb6e049ea0fc944c1191cec473e107b1505d398229"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/place.qor",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/place.qor",
+      "bytes": 2046,
+      "sha256": "b750fc4c7519160fff77d6a86fa92718eb6c3d6ee1373c4c6d151417e8567ddf"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/place_clock_utilization.txt",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/place_clock_utilization.txt",
+      "bytes": 56474,
+      "sha256": "90fb8d84ec1026cd5acab341085efb4e5ea08b777e731def0b30824faa236f99"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/place_flow.status",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/place_flow.status",
+      "bytes": 1455,
+      "sha256": "217f58b0e8783dd6e8b7ab4d56a31b150e6d8736182ae851738417c54f1e8bc5"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/route.qor",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/route.qor",
+      "bytes": 1313,
+      "sha256": "d130d6103e61dc8d0fae944846a9da191eb18c2ceefab0fa9f90755f6e197990"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/route_clock_utilization.txt",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/route_clock_utilization.txt",
+      "bytes": 77919,
+      "sha256": "6c87a2233ab62644c4f4b365634fbd7e959dea9b87ef629996ede84c9f5fa3fa"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/route_flow.status",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/route_flow.status",
+      "bytes": 1653,
+      "sha256": "fc89cc2b04b6d19ccc9c4ae499870c20895a49443f99e1ccd6075558a3a903eb"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/settings.cfg",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/settings.cfg",
+      "bytes": 717,
+      "sha256": "d431e16d7795b8b953e860fc34a6781f1947ae8494e3bce7432cb9aecfe3cee3"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/td_20261006_192105.log",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/td_20261006_192105.log",
+      "bytes": 176651,
+      "sha256": "3f9e3482ff03ce28a6bd0d353f29f628fda92f3978d3e652547a1f083c64fdfa"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/td_20261006_192105.logw",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/phy_1/td_20261006_192105.logw",
+      "bytes": 1568,
+      "sha256": "c3cfad9d92b654999ffffeaeac2f542c28997fae1fdefce5829717999a673a62"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/build.tcl",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/build.tcl",
+      "bytes": 117,
+      "sha256": "ac91cd49da633fca7db65dfceb327748779a1f5a0a090540de7a23ebffb12892"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/build_console.log",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/build_console.log",
+      "bytes": 161721,
+      "sha256": "9e6e0f95d3d878a8f507eed7350b79e6ea0648332caa782c25f283303b6ee76a"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display.prj",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display.prj",
+      "bytes": 27776,
+      "sha256": "df1f28e4a098e8668adb9454ef2daf86c3da6855b62dead762be44188c5d2b73"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_gate.area",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_gate.area",
+      "bytes": 42459,
+      "sha256": "29ef9ba2a1f43352885417abffc2358704e5d276510733f1c827e111b00836c6"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_gate.timing",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_gate.timing",
+      "bytes": 3755564,
+      "sha256": "24f6e072b0671b92269af7652b917a8e8dfa1c3ef979776fee772e14baecaecb"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_rtl.area",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_rtl.area",
+      "bytes": 27699,
+      "sha256": "ace000651dfb3f9261fcfb8275a8c9b8da3c841386072d082b2d8cde985d252b"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/constraint_coverage.txt",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/constraint_coverage.txt",
+      "bytes": 14864,
+      "sha256": "453a3c48f96842590f46f1ce72815ca05e8282ef03d35a11d1a0c0a8a7df2484"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/flow.status",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/flow.status",
+      "bytes": 1653,
+      "sha256": "be27f97218e82a303e086264815876c60373c00a647a503635a2294d774aeb8b"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/gate.qor",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/gate.qor",
+      "bytes": 8953,
+      "sha256": "857c9a7dd729f8f6310640057375beb85b72310b22fb591daf3c642faf9ffbe5"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/settings.cfg",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/settings.cfg",
+      "bytes": 660,
+      "sha256": "0e8c3061915a9be359db76e923b69aae2a70fbf9572bfc242e1585ae0c13acc9"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/td_20261006_191610.log",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/td_20261006_191610.log",
+      "bytes": 161721,
+      "sha256": "9e6e0f95d3d878a8f507eed7350b79e6ea0648332caa782c25f283303b6ee76a"
+    },
+    {
+      "source": "tmp/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/td_20261006_191610.logw",
+      "copy": "evidence/video_fix_td_build_20261006/td_project/camera_to_dsi_display_Runs/syn_1/td_20261006_191610.logw",
+      "bytes": 302199,
+      "sha256": "5c5cc98aaab62f5fec75ae33d4c60a556727e91f7a3226b414bebc8cbfc8b524"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/inputs.json",
+      "copy": "evidence/video_fix_td_final_20261006/inputs.json",
+      "bytes": 38884,
+      "sha256": "7771bfb4cc4e030b98f9581d0c53551b65afe04d8cbdb9d7a6abc3b103d6454a"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/phy_1/build.tcl",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/phy_1/build.tcl",
+      "bytes": 117,
+      "sha256": "ac91cd49da633fca7db65dfceb327748779a1f5a0a090540de7a23ebffb12892"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.prj",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.prj",
+      "bytes": 27776,
+      "sha256": "df1f28e4a098e8668adb9454ef2daf86c3da6855b62dead762be44188c5d2b73"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/phy_1/settings.cfg",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/phy_1/settings.cfg",
+      "bytes": 717,
+      "sha256": "d431e16d7795b8b953e860fc34a6781f1947ae8494e3bce7432cb9aecfe3cee3"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/build.tcl",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/build.tcl",
+      "bytes": 117,
+      "sha256": "ac91cd49da633fca7db65dfceb327748779a1f5a0a090540de7a23ebffb12892"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/build_console.log",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/build_console.log",
+      "bytes": 161694,
+      "sha256": "ae81f9c409cc73814e6e22ca1a0db6ae1e1d4ef5fd520d725933ae23f3c1c6b8"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display.prj",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display.prj",
+      "bytes": 27776,
+      "sha256": "df1f28e4a098e8668adb9454ef2daf86c3da6855b62dead762be44188c5d2b73"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_gate.area",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_gate.area",
+      "bytes": 42459,
+      "sha256": "29ef9ba2a1f43352885417abffc2358704e5d276510733f1c827e111b00836c6"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_gate.timing",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_gate.timing",
+      "bytes": 3755564,
+      "sha256": "bf976fcf568de7104cbe8eab1b241691809c72829284a999c1fb80317701e7de"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_rtl.area",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display_rtl.area",
+      "bytes": 27699,
+      "sha256": "ace000651dfb3f9261fcfb8275a8c9b8da3c841386072d082b2d8cde985d252b"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/constraint_coverage.txt",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/constraint_coverage.txt",
+      "bytes": 14864,
+      "sha256": "453a3c48f96842590f46f1ce72815ca05e8282ef03d35a11d1a0c0a8a7df2484"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/flow.status",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/flow.status",
+      "bytes": 1642,
+      "sha256": "336d0805779f658261b9994dab860b1109ab9c2014fff028ff53923e1aa5e957"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/gate.qor",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/gate.qor",
+      "bytes": 8953,
+      "sha256": "857c9a7dd729f8f6310640057375beb85b72310b22fb591daf3c642faf9ffbe5"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/settings.cfg",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/settings.cfg",
+      "bytes": 660,
+      "sha256": "0e8c3061915a9be359db76e923b69aae2a70fbf9572bfc242e1585ae0c13acc9"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/td_20261006_193030.log",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/td_20261006_193030.log",
+      "bytes": 161694,
+      "sha256": "ae81f9c409cc73814e6e22ca1a0db6ae1e1d4ef5fd520d725933ae23f3c1c6b8"
+    },
+    {
+      "source": "tmp/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/td_20261006_193030.logw",
+      "copy": "evidence/video_fix_td_final_20261006/td_project/camera_to_dsi_display_Runs/syn_1/td_20261006_193030.logw",
+      "bytes": 302199,
+      "sha256": "67fe59556895da8790419d9f16f22265b53c6dfa5a62e4a89af41b473ec0c1d4"
+    },
+    {
+      "source": "开发实施/00_分阶段开发与逐级验证路线.md",
+      "copy": "project_notes/00_分阶段开发与逐级验证路线.md",
+      "bytes": 11225,
+      "sha256": "6ecc8f4d17e2903a3e488e7c441676a295ed8085110766e4c669c14973fc52db"
+    },
+    {
+      "source": "开发实施/01_阶段验收记录模板.md",
+      "copy": "project_notes/01_阶段验收记录模板.md",
+      "bytes": 5799,
+      "sha256": "d26a9d57ea1353473ffa1efa833cec6dfa90329461753f00670a0b992000e7f8"
+    },
+    {
+      "source": "开发实施/02_FPGA资源预算与代码优化规范.md",
+      "copy": "project_notes/02_FPGA资源预算与代码优化规范.md",
+      "bytes": 16834,
+      "sha256": "dfa63c2859bb8a2ca0cb68b9ba173639de5e2291fa8422ad516cc3d0a86a81c6"
+    },
+    {
+      "source": "开发实施/03_系统框架与Codex接力协作流程图.md",
+      "copy": "project_notes/03_系统框架与Codex接力协作流程图.md",
+      "bytes": 15227,
+      "sha256": "b4d6e11aa9085ea2d44e089b3f2742c3026169295e0ebd84c2e042eeb2f103b9"
+    },
+    {
+      "source": "开发实施/04_FPGA接口与异常处理约定.md",
+      "copy": "project_notes/04_FPGA接口与异常处理约定.md",
+      "bytes": 12187,
+      "sha256": "389ec067b55829adbfc253f54a7f9c4bb548874486c7e7e621c5804a2a4f28a3"
+    },
+    {
+      "source": "开发实施/05_计划修订记录_20260907.md",
+      "copy": "project_notes/05_计划修订记录_20260907.md",
+      "bytes": 2555,
+      "sha256": "9d02fa63de68bf9a9b4420cb53536114d6fa2ff8daee80d005b97ae1b2ad9595"
+    },
+    {
+      "source": "开发实施/06_机械结构概念与建模边界_20260908.md",
+      "copy": "project_notes/06_机械结构概念与建模边界_20260908.md",
+      "bytes": 10556,
+      "sha256": "9ade86b0aa01aa3636f7289dbcdde2b281451c7467e87ec1d046ec6e8183a349"
+    },
+    {
+      "source": "开发实施/07_机械定尺寸测量表与制作清单.md",
+      "copy": "project_notes/07_机械定尺寸测量表与制作清单.md",
+      "bytes": 12131,
+      "sha256": "f64b370830c9acd387970b53274f739688d6f9ce2e92ad548b55266cf38edacf"
+    },
+    {
+      "source": "开发实施/08_A版静态载带实验.md",
+      "copy": "project_notes/08_A版静态载带实验.md",
+      "bytes": 5209,
+      "sha256": "fd765d74d7fb5bb4a3c2371eb9969c6c861c0b599801a6abacc3b35f289346c2"
+    },
+    {
+      "source": "开发实施/09_四键成像调参与视频验收.md",
+      "copy": "project_notes/09_四键成像调参与视频验收.md",
+      "bytes": 7950,
+      "sha256": "fdf3e0313bb1d5fba12b43c22a6c61a2f1fefd7037cc9fac927123939208b4c1"
+    },
+    {
+      "source": "开发实施/10_A阶段后续实施确认稿.md",
+      "copy": "project_notes/10_A阶段后续实施确认稿.md",
+      "bytes": 5013,
+      "sha256": "d0f7292da04a13277b5eae6769b20ca32c152d915947783e8e8b32cfaa2db295"
+    },
+    {
+      "source": "开发实施/11_静态成像条件与样本记录.md",
+      "copy": "project_notes/11_静态成像条件与样本记录.md",
+      "bytes": 4399,
+      "sha256": "e56f0d1c793126b424520b530615366ee95388a7597fd00d3d720b2bf9b2033e"
+    },
+    {
+      "source": "开发实施/12_A像素接口验证与接入约定.md",
+      "copy": "project_notes/12_A像素接口验证与接入约定.md",
+      "bytes": 7382,
+      "sha256": "ccc054028250a385754d7e9589fbcaa01084a968a806861d49b68a98e89e1fca"
+    },
+    {
+      "source": "开发实施/13_A检测帧对齐与完整性保护_实施确认稿.md",
+      "copy": "project_notes/13_A检测帧对齐与完整性保护_实施确认稿.md",
+      "bytes": 4464,
+      "sha256": "3ad1152c25892df22af7d1e3767d161f54d710e53d577da0a27291d5b33477a3"
+    },
+    {
+      "source": "开发实施/14_A帧保护与ROI灰度统计_实施说明.md",
+      "copy": "project_notes/14_A帧保护与ROI灰度统计_实施说明.md",
+      "bytes": 4900,
+      "sha256": "c0e7139ad9b5b32735ef80651d86be2ee2f2498d57f9e1e153a08db37e67e1e1"
+    },
+    {
+      "source": "开发实施/15_A单穴判定与离线验证_讨论稿.md",
+      "copy": "project_notes/15_A单穴判定与离线验证_讨论稿.md",
+      "bytes": 5672,
+      "sha256": "d4840cc2607458c218161766c8c2c1315ef3cdecd01c86596de1d85b963d7698"
+    },
+    {
+      "source": "开发实施/16_A均值判定与离线验证_实施说明.md",
+      "copy": "project_notes/16_A均值判定与离线验证_实施说明.md",
+      "bytes": 6840,
+      "sha256": "5cbf5c4bfe75245ec2ba7d9b4bbbd0ffb995b855cae0cb3c6128040a1d183608"
+    },
+    {
+      "source": "开发实施/17_A单穴ROI实物标定_讨论稿.md",
+      "copy": "project_notes/17_A单穴ROI实物标定_讨论稿.md",
+      "bytes": 4337,
+      "sha256": "54aa31e22586f608735713b80dbbc30f4c6a2b48b1c3fba8ab66678e9155579b"
+    },
+    {
+      "source": "开发实施/18_A单穴80x80取样_实施说明.md",
+      "copy": "project_notes/18_A单穴80x80取样_实施说明.md",
+      "bytes": 4171,
+      "sha256": "1140a2d8988a38561cac5e12acfa9781ecfa5a0ae91f1f4f623f2d5304ee248a"
+    },
+    {
+      "source": "开发实施/19_A机构未固定期间推进安排_讨论稿.md",
+      "copy": "project_notes/19_A机构未固定期间推进安排_讨论稿.md",
+      "bytes": 2007,
+      "sha256": "94bfdc7466e942db99551b063cbcf9dc72f4852372d3cb10506c4dc9c8c506c3"
+    },
+    {
+      "source": "开发实施/20_A结果显示字体Logo与状态处理_待确认方案.md",
+      "copy": "project_notes/20_A结果显示字体Logo与状态处理_待确认方案.md",
+      "bytes": 13161,
+      "sha256": "7db4e16752d8c875c3ca9e3dc2aeb57c06333e68bf93973cc4153d3b15406b78"
+    },
+    {
+      "source": "开发实施/21_A取样界面字体Logo与状态处理_实施说明.md",
+      "copy": "project_notes/21_A取样界面字体Logo与状态处理_实施说明.md",
+      "bytes": 6896,
+      "sha256": "ab9f4ea45d99516739b99b82d432cf65c58b5c9afadc5eaf163305b2474ed654"
+    },
+    {
+      "source": "开发实施/22_A黑带黑件特征选择与ROI边缘观测_待确认方案.md",
+      "copy": "project_notes/22_A黑带黑件特征选择与ROI边缘观测_待确认方案.md",
+      "bytes": 7749,
+      "sha256": "39ccecd650be69f78311e9d112e94d3d989addbf88ad9add131841af62769eda"
+    },
+    {
+      "source": "开发实施/23_A检测方案SW切换与按键分工_待确认方案.md",
+      "copy": "project_notes/23_A检测方案SW切换与按键分工_待确认方案.md",
+      "bytes": 7752,
+      "sha256": "949e683ecb333ce9c77d4fdce87109447a9ee07185f4ccce44f564bd64a347cb"
+    },
+    {
+      "source": "开发实施/24_A独立SW灰度边缘实验版_实施说明.md",
+      "copy": "project_notes/24_A独立SW灰度边缘实验版_实施说明.md",
+      "bytes": 7839,
+      "sha256": "ad3b41cf0c05418769bc65bf8bf5367a90fcf7acfacd4efdc85787f94af6777e"
+    },
+    {
+      "source": "tmp/prepare_video_fix_build.py",
+      "copy": "helpers/prepare_video_fix_build.py",
+      "bytes": 1906,
+      "sha256": "6bdbcf2fd2c99b68517274b68d7a2c99096d6306c45ebe95f6dbe34fa255c04c"
+    },
+    {
+      "source": "AGENTS.md",
+      "copy": "AGENTS_before_handoff.md",
+      "bytes": 7041,
+      "sha256": "9fdbc22b3723115fc9ebfe458b7d45d98a58cffb049910995c58c09b1cba4049"
+    },
+    {
+      "source": "fpga/component_inspector/release/sample_ui_20261005/camera_to_dsi_display.bit",
+      "copy": "previous_releases/sample_ui_20261005/camera_to_dsi_display.bit",
+      "bytes": 1789539,
+      "sha256": "ab23766b4b51c4df1d331fc14ad7f5bcc8a5ddeeeae3a2aedb8929cf04332ea1"
+    },
+    {
+      "source": "fpga/component_inspector/release/sw_edge_20261005/camera_to_dsi_display.bit",
+      "copy": "previous_releases/sw_edge_20261005/camera_to_dsi_display.bit",
+      "bytes": 1789539,
+      "sha256": "a43156b8fc076d7940e12b8f7ba46d026a3053466b759724bef79235570bcd8c"
+    }
+  ],
+  "unresolved": [
+    "pre_sof_tail test FAIL; investigate actual AWB residual pixels, then fix and rerun",
+    "actual ISP transport proof INTERRUPTED after frame 6; no final PASS",
+    "latest V-glyph build synthesis only; physical build not started",
+    "no new release; no board validation"
+  ],
+  "copy_exclusions": [
+    "ModelSim compiled libraries",
+    "waveform .wlf",
+    "generated NumPy references (regenerate using reference.py)",
+    "full Git repository/history"
+  ]
+}

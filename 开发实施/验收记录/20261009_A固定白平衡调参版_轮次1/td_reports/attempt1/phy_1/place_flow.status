@@ -1,0 +1,21 @@
+Location         : D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\fixed_wb_tuning_td_20261009\td_project\camera_to_dsi_display_Runs\phy_1
+Running with     : Tang Dynasty v6.2.168116
+                   Copyright (c) 2012-2025 Anlogic Inc.
+Top Model        : design_top_wrapper
+Device           : PH1P35MDG324
+Speed            : 3
+
+Timing Mode      : manhattan
+Setup            : WNS  2665ps  TNS        0ps  NUM_FEPS     0
+Hold             : WNS  -306ps  TNS   -77666ps  NUM_FEPS   589
+
+Flow Statistics  :
+---------------------------------------------------------------------------------------------------
+     command     |  #calls  |  wall time   |  cpu time(s)  |  used memory(mb)  |  peak memory(mb)  
+---------------------------------------------------------------------------------------------------
+      place      |    1     |  2m20s(97%)  |   423(99%)    |       1138        |       1138        
+  import_device  |    1     |    2s(1%)    |     1(0%)     |        323        |        323        
+    import_db    |    1     |    1s(0%)    |     0(0%)     |        520        |        520        
+---------------------------------------------------------------------------------------------------
+      total      |    3     |    2m23s     |      424      |       1138        |       1138        
+---------------------------------------------------------------------------------------------------

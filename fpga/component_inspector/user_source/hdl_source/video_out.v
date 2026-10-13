@@ -1,5 +1,5 @@
 // Drain old DDR responses before resetting or selecting another complete slot.
-module video_out #(parameter WIDTH=1024,HEIGHT=600)(
+module video_out #(parameter WIDTH=1024,HEIGHT=600,META_WIDTH=170)(
  input wire I_rst_n,I_ddr_clk,
  output wire O_video_out_rd_busy,input wire I_video_in_wr_busy,
  input wire [1:0] I_video_out_rp,
@@ -9,7 +9,8 @@ module video_out #(parameter WIDTH=1024,HEIGHT=600)(
  input wire I_ddr_user_ready,I_ddr_user_rd_valid,input wire [127:0] I_ddr_user_rd_data,
  input wire I_dsi_clk,I_video_vsync,I_video_rd_en,
  output reg [23:0] O_vdieo_data,
- output reg O_display_ok,output reg [15:0] O_underflow_frames
+ output reg O_display_ok,output reg [15:0] O_underflow_frames,
+ input wire [META_WIDTH-1:0] I_completed_metadata,output reg [META_WIDTH-1:0] O_active_metadata
 );
 localparam WORDS=WIDTH*HEIGHT*3/16;
 localparam PREFILL=(WIDTH*3/16<192) ? WIDTH*3/16 : 192;
@@ -42,7 +43,7 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
  if(!I_rst_n) begin
   state<=DRAIN;reset_count<=0;vs_sync<=0;outstanding<=0;issued<=0;
   burst_left<=0;S_ddr_rd_valid<=0;O_ddr_user_addr<=0;
-  O_active_valid<=0;O_active_rp<=0;return_bad<=0;
+  O_active_valid<=0;O_active_rp<=0;O_active_metadata<=0;return_bad<=0;
  end else begin
   vs_sync<={vs_sync[1:0],I_video_vsync};
   case({O_ddr_user_rd_en,I_ddr_user_rd_valid && outstanding!=0})
@@ -62,7 +63,7 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
   end
   if(state==DRAIN && outstanding==0) begin
    state<=CLEAR;reset_count<=0;issued<=0;return_bad<=0;
-   O_active_valid<=I_completed_valid;O_active_rp<=I_completed_rp;
+   O_active_valid<=I_completed_valid;O_active_rp<=I_completed_rp;O_active_metadata<=I_completed_metadata;
    O_ddr_user_addr<=base(I_completed_rp);
   end else if(state==CLEAR) begin
    reset_count<=reset_count+1'b1;

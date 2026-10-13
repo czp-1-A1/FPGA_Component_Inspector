@@ -1,0 +1,18 @@
+{
+  "v1": {
+    "top_sha256": "750e292fe2b02de0eef7be5e6b70ebbea168b6bacdbaf48d8d0dfd458a9bfd17",
+    "calibration_expressions": [
+      "CLASS_CALIBRATED && camera_receive[48:33]==CLASS_EXPOSURE && camera_receive[32:17]==CLASS_GAIN",
+      "CLASS_CALIBRATED && cam_display[48:33]==CLASS_EXPOSURE && cam_display[32:17]==CLASS_GAIN"
+    ],
+    "testbench_sha256": "41c6a7d047d25fb17bef889f12cfaea400582c58bfc2f9f3b0b22e95038e3af0"
+  },
+  "v2": {
+    "top_sha256": "b92390a294b5200cf39eb70aad8056c6d9ce98fcd5cdaa3757d85540169c852d",
+    "calibration_expressions": [
+      "CLASS_CALIBRATED",
+      "CLASS_CALIBRATED"
+    ],
+    "testbench_sha256": "5cf94174cd2b1f460c3e5591cb498791058fa8288b1bee4c8df7af7c2a0e88a7"
+  }
+}

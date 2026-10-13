@@ -1,0 +1,18 @@
+{
+  "build_sessions": {
+    "synthesis": 64252,
+    "physical": 24570,
+    "exit_code": 0
+  },
+  "simulation_sessions": {
+    "partial_r2": 80348,
+    "full_r3": 72375,
+    "visual": 45945
+  },
+  "full_regression_exit_code": 0,
+  "hardware": "not_operated",
+  "production_sources": "R1 == R2 == R3",
+  "failure": "R1 fixture AREA default; original console retained; production unchanged",
+  "final_regression": "all 32 from frozen R3",
+  "visual": "PPM dump only, all assertions retained"
+}

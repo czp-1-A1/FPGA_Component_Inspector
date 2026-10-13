@@ -1,0 +1,18 @@
+RUN-1002 : start command "connect_cable -host_name 127.0.0.1:5555 -open"
+RUN-1003 : finish command "connect_cable -host_name 127.0.0.1:5555 -open" in  0.010393s wall, 0.015625s user + 0.000000s system = 0.015625s CPU (150.3%)
+
+RUN-1004 : used memory is 23 MB, reserved memory is 9 MB, peak memory is 23 MB
+RUN-1002 : start command "download -bit D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/tmp/experiment_td_build/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.bit -mode jtag -spd 7 -cable 0"
+PRG-2014 : Chip validation success: PH1P35MDG324
+Anlogic hwserver v1.0c (g1deb3940) Build Date 2024-12-09 17:36:53
+Initialize ftdi
+Use channel A
+Open device vid=0x0403 pid=0x6042
+Error @ mpsse.cpp:90 : usb_open() failed
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+RUN-1003 : finish command "download -bit D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/tmp/experiment_td_build/td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.bit -mode jtag -spd 7 -cable 0" in  11.567455s wall, 0.968750s user + 0.062500s system = 1.031250s CPU (8.9%)
+
+RUN-1004 : used memory is 24 MB, reserved memory is 9 MB, peak memory is 91 MB

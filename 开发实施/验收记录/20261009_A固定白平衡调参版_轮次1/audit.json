@@ -1,0 +1,430 @@
+{
+  "status": "PASS_logic_and_build_only",
+  "timing": {
+    "setup_wns_ns": 0.895,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.35
+  },
+  "corners": [
+    "Slow",
+    "Fast"
+  ],
+  "resources": {
+    "slice_used": 12160,
+    "slice_total": 21216,
+    "slice_percent": 57.32,
+    "eram_used": 48,
+    "eram_total": 108,
+    "eram_percent": 44.44,
+    "dsp_used": 0,
+    "dsp_total": 40,
+    "dsp_percent": 0.0,
+    "lut6_used": 10439,
+    "reg_used": 12099
+  },
+  "resource_delta_v3": {
+    "slice_used": -4441,
+    "lut6_used": -3696,
+    "reg_used": -5463,
+    "eram_used": 0,
+    "dsp_used": -8
+  },
+  "canonical_max_delays": [
+    {
+      "total": 139,
+      "dominated": 120,
+      "shadowed": 19,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_clocks {mipi_rx_ck_pad MIPI_RX_BYTE_CLK sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}]"
+    },
+    {
+      "total": 32,
+      "dominated": 5,
+      "shadowed": 27,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]"
+    },
+    {
+      "total": 10,
+      "dominated": 1,
+      "shadowed": 9,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {MIPI_RX_BYTE_CLK}]"
+    },
+    {
+      "total": 234,
+      "dominated": 96,
+      "shadowed": 138,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_clocks {MIPI_RX_BYTE_CLK}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]"
+    },
+    {
+      "total": 57,
+      "dominated": 2,
+      "shadowed": 55,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {MIPI_RX_BYTE_CLK}]"
+    },
+    {
+      "total": 316,
+      "dominated": 316,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/payload*}] -to [get_regs {u_monitor_display/D_data*}]"
+    },
+    {
+      "total": 72,
+      "dominated": 72,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/payload*}] -to [get_regs {u_camera_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/req}] -to [get_regs {u_monitor_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/ack}] -to [get_regs {u_monitor_display/ack_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/req}] -to [get_regs {u_camera_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/ack}] -to [get_regs {u_camera_display/ack_sync[0]}]"
+    },
+    {
+      "total": 68,
+      "dominated": 68,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/payload*}] -to [get_regs {u_camera_receive/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/req}] -to [get_regs {u_camera_receive/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/ack}] -to [get_regs {u_camera_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 243,
+      "dominated": 243,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/payload*}] -to [get_regs {u_roi_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/req}] -to [get_regs {u_roi_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_roi_display/ack}] -to [get_regs {u_roi_display/ack_sync[0]}]"
+    },
+    {
+      "total": 36,
+      "dominated": 36,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/payload*}] -to [get_regs {u_observation_receive/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/req}] -to [get_regs {u_observation_receive/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_receive/ack}] -to [get_regs {u_observation_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 36,
+      "dominated": 36,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/payload*}] -to [get_regs {u_observation_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/req}] -to [get_regs {u_observation_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/ack}] -to [get_regs {u_observation_display/ack_sync[0]}]"
+    },
+    {
+      "total": 68,
+      "dominated": 68,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/payload*}] -to [get_regs {u_transport_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/req}] -to [get_regs {u_transport_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_transport_display/ack}] -to [get_regs {u_transport_display/ack_sync[0]}]"
+    },
+    {
+      "total": 104,
+      "dominated": 104,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 8.588"
+    },
+    {
+      "total": 19,
+      "dominated": 19,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 14.700"
+    }
+  ],
+  "coverage_summary": [
+    "1. checking no clock(0) (HIGH)",
+    "2. checking clock definition(0) (HIGH)",
+    "3. checking dummy node(3) (HIGH)",
+    "4. checking invalid constraint(0) (HIGH)",
+    "5. checking pll/clock buffer clock constraints(7) (HIGH)",
+    "6. checking combinational loops(0) (HIGH)",
+    "7. checking soft fifo timing exception constraints(0) (HIGH)",
+    "8. checking no path constraints(0) (MEDIUM)",
+    "9. checking shadowed/ignored timing exception constraints(9) (MEDIUM)",
+    "10. checking no input delay(39) (MEDIUM)",
+    "11. checking no output delay(63) (MEDIUM)",
+    "12. checking partial input delay(1) (MEDIUM)",
+    "13. checking partial output delay(0) (MEDIUM)",
+    "14. checking abnormal input delay(0) (MEDIUM)"
+  ],
+  "coverage_categories_unchanged": false,
+  "coverage_review": {
+    "dummy_model_categories_v3": 4,
+    "dummy_model_categories_now": 3,
+    "removed": "AWB DSP mode pins and divider dangling output disappear with fixed-gain synthesis pruning.",
+    "changed_lslice_output": "u_video_in/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/rd_to_wr_cross_inst/sync_r1_reg[7]_syn_2.ofa",
+    "review": "Mapped dangling output changed; FIFO RTL is byte-identical, relevant integrated ISP/writer tests pass. No claim that every physical pin is independently verified.",
+    "other_13_coverage_categories_unchanged": true,
+    "old_dummy_section": "\n---------------------------------------------\nThere are 4 nodes are dangling. (HIGH)\n\nDummyNode in Model: PH1P_PHY_DSPSIOU_V2\n\tu_isp_top/u_awb/mult0_syn_165.mul9_mode\n\tu_isp_top/u_awb/mult0_syn_165.mul9_signed\n\tu_isp_top/u_awb/mult1_syn_165.mul9_mode\n\tu_isp_top/u_awb/mult1_syn_165.mul9_signed\n\tu_isp_top/u_awb/mult2_syn_165.mul9_mode\n\tu_isp_top/u_awb/mult2_syn_165.mul9_signed\n\tu_isp_top/u_awb/mult3_syn_165.mul9_mode\n\tu_isp_top/u_awb/mult3_syn_165.mul9_signed\n\tu_isp_top/u_awb/mult4_syn_165.mul9_mode\n\tu_isp_top/u_awb/mult4_syn_165.mul9_signed\n\tu_isp_top/u_awb/mult5_syn_165.mul9_mode\n\tu_isp_top/u_awb/mult5_syn_165.mul9_signed\n\tu_isp_top/u_awb/mult6_syn_165.mul9_mode\n\tu_isp_top/u_awb/mult6_syn_165.mul9_signed\n\tu_isp_top/u_awb/mult7_syn_165.mul9_mode\n\tu_isp_top/u_awb/mult7_syn_165.mul9_signed\n\nDummyNode in Model: PH1P_PHY_HD_PAD\n\tIO_cam_sda_syn_2.ts\n\nDummyNode in Model: PH1P_PHY_LSLICE\n\tu_isp_top/u_awb/divide_G_B_r1/al_6189b453_syn_3.ofb\n\nDummyNode in Model: PH1P_PHY_PLL_V2\n\tu_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.pllreset\n\tu_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_clk/u_pll0/u_pll_inst.pllreset\n\tu_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_clk/u_pll1/u_pll_inst.pllreset\n\n",
+    "new_dummy_section": "\n---------------------------------------------\nThere are 3 nodes are dangling. (HIGH)\n\nDummyNode in Model: PH1P_PHY_HD_PAD\n\tIO_cam_sda_syn_2.ts\n\nDummyNode in Model: PH1P_PHY_LSLICE\n\tu_video_in/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/rd_to_wr_cross_inst/sync_r1_reg[7]_syn_2.ofa\n\nDummyNode in Model: PH1P_PHY_PLL_V2\n\tu_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.pllreset\n\tu_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_clk/u_pll0/u_pll_inst.pllreset\n\tu_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_clk/u_pll1/u_pll_inst.pllreset\n\n"
+  },
+  "warnings": {
+    "syn_1": {
+      "lines": 124,
+      "prior_lines": 124,
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "lines": 10,
+      "prior_lines": 10,
+      "added": [],
+      "removed": []
+    }
+  },
+  "tests": [
+    {
+      "name": "fixed_wb",
+      "attempt": "fixed_wb_tuning_r2_td_20261009",
+      "console_sha256": "141a3b0479c3dd87d73307f7602fcbcfce9c4c54237dd3b8d6fe0de96155f882",
+      "pass_lines": [
+        "# PASS fixed WB frame case=0 scene=0 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB frame case=1 scene=1 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB frame case=3 scene=0 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB: colored-background invariance, fixed non-unity gains/clipping, four lanes, bubbles, reset, line tails, ready-low; automatic reference changed 2304 beats"
+      ]
+    },
+    {
+      "name": "presence_modes",
+      "attempt": "fixed_wb_tuning_td_20261009",
+      "console_sha256": "231c8df454d88e6fb854f64c9fccf532cf1c6e45e9cbedba3d228346eeff532f",
+      "pass_lines": [
+        "# PASS presence modes: independent EDGE/GRAY, inclusive dual-feature bounds/deadband/conflict, incomplete core, background/one-sided guard, PPC4 weighted gray, 75-percent coverage, bubbles/missing beat, reset/FS/invalidate; locator-circle limitation recorded"
+      ]
+    },
+    {
+      "name": "isp_writer_stop",
+      "attempt": "fixed_wb_tuning_r2_td_20261009",
+      "console_sha256": "d101021c21153460b1c92635d8a867c0b2fc4d55d0eb30c8c2ce8bb2fc05b948",
+      "pass_lines": [
+        "# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual ISP full epoch: native600 rows/614400 pixels, EDGE153600 RGB beats, actual frame_good/guard completion, next early snapshots clean reason0/LP/nonzero/WS0 then clears good/new epoch"
+      ]
+    },
+    {
+      "name": "observation",
+      "attempt": "fixed_wb_tuning_td_20261009",
+      "console_sha256": "fe2897709996221da51bd879bb6525cdce67fc5c1bd4c327618c630e80ef98d9",
+      "pass_lines": [
+        "# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover"
+      ]
+    },
+    {
+      "name": "stop_recovery",
+      "attempt": "fixed_wb_tuning_td_20261009",
+      "console_sha256": "4a93a13afad8d7141643e113a0d78d40a6b1a372113b6442134874bf51e53be9",
+      "pass_lines": [
+        "# PASS stop recovery: real monitor, independent 50MHz reference, two window boundaries, frozen CSI mailbox, no stale rearm, fresh UNCAL statistics"
+      ]
+    },
+    {
+      "name": "display_state",
+      "attempt": "fixed_wb_tuning_td_20261009",
+      "console_sha256": "bbbee81d79a49093c546924e4d53f71228f0d85cc307aeb0d50cae0a6cadcdb8",
+      "pass_lines": [
+        "# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, enabled exposure/gain tuning with fresh tokens, stopped CSI, FPS recovery and reset require fresh sample"
+      ]
+    },
+    {
+      "name": "controls",
+      "attempt": "fixed_wb_tuning_td_20261009",
+      "console_sha256": "73320febdb6fe6ae7111710fbc4f35056b04963df606f193054d760e943752a8",
+      "pass_lines": [
+        "# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload"
+      ]
+    },
+    {
+      "name": "osd",
+      "attempt": "fixed_wb_tuning_td_20261009",
+      "console_sha256": "d68943b1ce9b68016414ef7cf0560ad5bc0dd3472ad2efc7b067e3c35e1bdd77",
+      "pass_lines": [
+        "# PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values and frame snapshot"
+      ]
+    },
+    {
+      "name": "pixel_interface",
+      "attempt": "fixed_wb_tuning_r2_td_20261009",
+      "console_sha256": "77c5eafc71eb087092f383053b2cb39a53a1cef97a6f5e4425f048197652e095",
+      "pass_lines": [
+        "# PASS bilinear: x increases from low 32-bit lane; RGB channels and five-stage markers aligned",
+        "# PASS AWB/packing: full lines, four lanes, small input bubbles, ready-low, reset and frame restart",
+        "# PASS pixel boundary characterization; SOF alignment and incomplete-frame protection remain integration requirements"
+      ]
+    },
+    {
+      "name": "classifier",
+      "attempt": "fixed_wb_tuning_td_20261009",
+      "console_sha256": "f24f586eff2dca12f806ef2737420e9f03eb068db4ffb4634363a1788b8c23cc",
+      "pass_lines": [
+        "# PASS classifier: T58 historical readings/boundary, independent 128-pixel sums, both polarities/equality/0/255, bubbles/outside/specular, UNCAL/rearm/FS/config/lane/truncation/reset/recovery and 27-bit CDC"
+      ]
+    },
+    {
+      "name": "roi_chain",
+      "attempt": "fixed_wb_tuning_r2_td_20261009",
+      "console_sha256": "83d1a982d680fcd004a9ae2cdf83c6c43f8e69eaeb1910ff5ab5313c4c98223c",
+      "pass_lines": [
+        "# PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection and recovery"
+      ]
+    }
+  ],
+  "input_count": 209,
+  "changed_production_inputs": [
+    "user_source/hdl_source/awb.v",
+    "user_source/hdl_source/isp/isp_top.v"
+  ],
+  "attempts": {
+    "first": {
+      "software_tests_passed": 11,
+      "release_accepted": false,
+      "added_warnings": [
+        "HDL-7238 CRITICAL-WARNING: assignment under multiple clock edges is not supported for synthesis in ../../../user_source/hdl_source/awb.v(LINE)",
+        "HDL-7238 CRITICAL-WARNING: assignment under multiple clock edges is not supported for synthesis in ../../../user_source/hdl_source/awb.v(LINE)"
+      ],
+      "reason": "HDL-7238 clocked constant gain assignments"
+    },
+    "second": {
+      "relevant_tests_passed": 4,
+      "unchanged_tests_reused": 7,
+      "change": "Elaboration-time constant gain nets; original automatic path retained"
+    }
+  },
+  "bit": {
+    "sha256": "6905dcab92595971b25232775e75582f1d790896a310371edd50a7dd047e76e1",
+    "bytes": 1789539
+  },
+  "prior_evidence_copies": {
+    "20261008_A灰度边缘独立判定_轮次1": 666,
+    "20261009_A成像参数冻结与计划修订_轮次1": 11
+  },
+  "limits": [
+    "No board flashing, cold-start, long-duration stability or optical accuracy acceptance.",
+    "Fixed red/blue gains 1.0 are a tuning trial, not a calibrated final optical recipe.",
+    "Existing MEAN, EC/GS and dark-strip thresholds are uncalibrated and need new paired samples.",
+    "Black background/locator hole/wrong ROI may pass the tape guard; transparent tape unsupported.",
+    "PLL/I/O/exception limitations retained; STA coverage is not 100 percent.",
+    "Recent acquisition result is not DDR display-frame bound; runtime recipe lifecycle not implemented."
+  ]
+}

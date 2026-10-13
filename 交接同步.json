@@ -1,36 +1,41 @@
 {
-  "date": "2026-10-07",
-  "status": "code_and_frozen_evidence_saved_remote_base_verified",
+  "date": "2026-10-13",
+  "status": "progress_commit_and_push_in_progress",
   "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
   "branch": "lj4747-contest-work",
-  "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
-  "verified_pre_handoff_remote_head": "5d64363beb87f085081712e98bb1494d89445a8e",
+  "source_commit": null,
+  "build_base_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
   "checkout": "latest remote HEAD of lj4747-contest-work",
   "handoff_document": "交接说明.md",
-  "handoff_audit": "开发实施/验收记录/20261007_交接保存_轮次1/content_check.json",
-  "bit": "fpga/component_inspector/release/edge_tail_fix_20261007/camera_to_dsi_display.bit",
-  "bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65",
-  "build_inputs": 207,
-  "frozen_evidence_records": 290,
-  "historical_single_pocket_photos": 9,
-  "sha256_and_git_tracking_checks": 507,
-  "missing_mismatched_untracked": 0,
-  "classification_enabled": false,
-  "physical_video_feedback": "Human reports current views normal; full timed acceptance and independently verified programmed binary pending",
-  "stage_status": "Step 3 mean classifier, offline reference and 80x80 sampling implemented; formal calibration and independent physical acceptance pending; Step 4 UI/logo/views already implemented",
-  "next_step": "Confirm previous writer stopped, inspect branch/HEAD/worktree, read AGENTS and plan 26, then obtain user confirmation for next implementation or test batch",
-  "writer_stops_after_handoff_save": true,
-  "pending": [
-    "Fixed fixture, accurate working distance/coplanar field and repeatability",
-    "Physical sample truth and independent train/test split, real image reference",
-    "Formal threshold/recipe confirmation and classification enable plus fresh simulation/TD/frozen bit",
-    "30-minute video, independent input FPS, Flash/cold boot and remaining constraints"
+  "progress_record": "开发实施/验收记录/20261013_进度仓库同步.md",
+  "build_record": "fpga/component_inspector/td_project/current_codex_build.json",
+  "bit": "fpga/component_inspector/release/multi_pocket_video_fix_v2_20261013/camera_to_dsi_display.bit",
+  "bit_sha256": "b3d775b19f7ceb31cb34bb952ebacf27df739ae18bced699d8492ae61e79f51a",
+  "build_inputs": 211,
+  "frozen_evidence_records": 417,
+  "staged_sha_checks": 629,
+  "missing_mismatched": 0,
+  "stage_status": "3528 manual WB, grayscale/Sobel classification, moving hole/pocket tracking, AUTO4 labels and frame epoch black-screen fix v2 implemented; physical acceptance pending",
+  "onsite": "PENDING",
+  "physical_video_feedback": "V2 has not yet been verified on the board",
+  "software_tests_passed": 14,
+  "slice_percent": 74.08,
+  "next_step": "Read AGENTS, verify V2/D4 programmed image, confirm RAW live video, then stationary/moving pocket truth; report D4 M ready/epoch diagnostics if needed",
+  "previous_handoff_snapshots": [
+    {
+      "path": "开发实施/验收记录/20261013_进度仓库同步/20261007_交接说明.md",
+      "sha256": "a5a4278d7fea0b512fbabf71bc299bbbbe2c38d53dd87d77b7c59e1476435b73"
+    },
+    {
+      "path": "开发实施/验收记录/20261013_进度仓库同步/20261007_交接同步.json",
+      "sha256": "847acaf03510297d3d4134e84a9179d2cca428c1eb1845ea479437dff5032ef6"
+    }
   ],
-  "previous_teammate_sync_snapshot": "开发实施/验收记录/20261007_交接保存_轮次1/hx1p35a_handoff_history.json",
   "local_only": [
-    "tmp build/simulation caches",
-    "tool installations and running GUI/server processes",
+    "tmp build and simulation caches",
+    "root transient build_console.log and transcript",
+    "tool installations",
     "official FD_Release_2026.2.zip"
   ],
-  "note": "Pre-handoff code baseline was already pushed and remotely verified. This file is part of the final handoff documentation commit; use the latest Git branch HEAD for checkout. Source commit and bit identity do not change with documentation commits."
+  "note": "Frozen release identities remain unchanged. Repository progress upload does not establish physical acceptance."
 }

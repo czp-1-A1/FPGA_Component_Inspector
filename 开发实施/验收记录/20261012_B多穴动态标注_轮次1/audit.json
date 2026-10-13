@@ -1,0 +1,290 @@
+{
+  "status": "PASS_source_simulation_and_routed_build",
+  "onsite": "PENDING",
+  "changed_inputs": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/roi_sobel_view.v",
+    "td_project/camera_to_dsi_display.al",
+    "user_source/hdl_source/multi_pocket_detector.v"
+  ],
+  "unchanged_inputs": 205,
+  "timing": {
+    "setup_wns_ns": 0.145,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.65
+  },
+  "resources": {
+    "slice": {
+      "used": 15733,
+      "total": 21216,
+      "percent": 74.16
+    },
+    "eram": {
+      "used": 48,
+      "total": 108,
+      "percent": 44.44
+    },
+    "dsp": {
+      "used": 8,
+      "total": 40,
+      "percent": 20.0
+    }
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 10
+  },
+  "warning_deltas": {
+    "syn_1": {
+      "added": [
+        "HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed"
+      ],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "max_delays_declared": 37,
+  "max_delays_matched": 37,
+  "max_delays_ignored": 0,
+  "sdc_unchanged": true,
+  "shared_sobel_instances": 1,
+  "extra_eram": 0,
+  "extra_dsp": 0,
+  "resource_review": {
+    "slice_used": 15733,
+    "baseline_slice_used": 13508,
+    "slice_increment": 2225,
+    "remaining_slices": 5483,
+    "assessment": "Within experimentally reviewed70-75% band; above preferred70%, reduced timing headroom. Keep four pockets for this trial; optimize before adding algorithms/NG/recipe controls."
+  },
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "c4b156ca50af70564c1b6c597a91a741710c7ccf98af6f7d9d8d46a8833a4c52"
+  },
+  "tests": [
+    {
+      "test": "multi_pockets",
+      "root": "tmp/multi_pocket_r4_td_20261012",
+      "passes": [
+        "PASS multi pockets: 358 assertions; broad automatic acquisition, mixed/empty, PPC4 reference statistics/shared edges/four modes, both directions, fast/y loss and reacquire, malformed holes, cancellation"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "isp_multi",
+      "root": "tmp/multi_pocket_r1_td_20261012",
+      "passes": [
+        "PASS actual ISP multi: RAW10/vendor RAM/full frames, frame-held moving ROI with current-frame lower-hole verification, four views, empty, lost/recovery, coherent metadata"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "multi_metadata",
+      "root": "tmp/multi_pocket_r1_td_20261012",
+      "passes": [
+        "PASS multi metadata: epoch gating, late result, protected old active slot, atomic new slot, bad capture"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "multi_writer",
+      "root": "tmp/multi_pocket_r3_td_20261012",
+      "passes": [
+        "PASS multi writer: RAW10/vendor RAM/full frames/518-bit metadata/actual writer/short rejection, frame-held moving ROI with current-frame lower-hole verification, four views, empty, lost/recovery, coherent metadata"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "multi_osd",
+      "root": "tmp/multi_pocket_r5_td_20261012",
+      "passes": [
+        "PASS multi OSD: 627072 pixels; four independent colored boxes/Chinese labels, AUTO4 version, post-VS frame metadata, no mid-raster jump/stale boxes, three clock RGB/sync alignment"
+      ],
+      "production_differences": []
+    },
+    {
+      "test": "tracking_osd",
+      "root": "tmp/multi_pocket_r5_td_20261012",
+      "passes": [
+        "PASS tracking OSD: post-VS slot metadata, complete rasters, moving box, no mid-frame jump, lost target hides box, D3 publish flags/count frozen per raster"
+      ],
+      "production_differences": []
+    },
+    {
+      "test": "tracking_late",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS tracking late: frame-held ROI, independent 6400-pixel statistics, bounded +/-4 motion, empty, pause, occlusion, over-speed, shape and invalidation"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "tracking_status",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS tracking status: all 4096 gate/reason/class combinations, valid and invalid priorities"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "tracking_age",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS tracking age: new slot, repeated-frame timeout, invalidation and recovery"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "tracking",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS tracking: same-frame bidirectional ROI, empty pocket, pause, occlusion, excessive step, recovery, invalidation"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "dynamic_sobel",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS dynamic Sobel: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "frame_metadata",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS frame metadata: epoch gating, late result, protected old active slot, atomic new slot, bad capture"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "wb_controls",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS WB controls: staggered/short/long chords, one toggle per release, four keys, no camera writes in WB, debounce, repeat, both clamps, epoch and normal controls restored"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "manual_wb",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS manual WB: independent Q2.6 arithmetic/clipping, four lanes, first pixel, bubbles, ready-low, EOL, pending requests held until next frame and reset"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "wb_epoch",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS WB epoch: coherent held request/result, invalidation, change-away/back with stopped CSI, recovery, epoch wrap and fresh-token requirement"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "presence_modes",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS presence modes: independent EDGE/GRAY, inclusive dual-feature bounds/deadband/conflict, incomplete core, background/one-sided guard, PPC4 weighted gray, 75-percent coverage, bubbles/missing beat, reset/FS/invalidate; locator-circle limitation recorded"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "sobel_tail",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS streaming-tail credit loss: partial frame rejected, no later valid output/statistics",
+        "PASS Sobel tail: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "sobel_view",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS Sobel view: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "roi_chain",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection, WB mid-frame sample invalidation without video loss and recovery"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "isp_metadata_stop",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "PASS actual diagnostic latch prefix=4 old_reason=8 old_LP=738 old_WS=1387 new_reason=0 new_LPWS=00000000",
+        "PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "PASS actual ISP metadata stop: real RAW10/ISP/178bit mailbox/writer, short20-cycle tail, full word/epoch proof, precomputed features never publish truncated frame"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    },
+    {
+      "test": "isp_writer_stop",
+      "root": "tmp/multi_pocket_r2_td_20261012",
+      "passes": [
+        "PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "PASS actual ISP full epoch: native600 rows/614400 pixels, EDGE153600 RGB beats, actual frame_good/guard completion, next early snapshots clean reason0/LP/nonzero/WS0 then clears good/new epoch"
+      ],
+      "production_differences": [
+        "user_source/hdl_source/experiment_osd.v"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,743 @@
+{
+  "created_at": "2026-10-08T19:56:52+08:00",
+  "status": "temporary_LED_v2_tuning_enabled_software_verified_board_validation_pending",
+  "branch": "lj4747-contest-work",
+  "base_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "commit_status": "uncommitted_unpushed_workspace_snapshot",
+  "classification_enabled": true,
+  "recipe": {
+    "material": "current_3528_LED_black_tape_white_part",
+    "historical_part_number_verified": false,
+    "threshold": 58,
+    "present_high": true,
+    "exposure_gain_binding": false,
+    "historical_reference_exposure": 2244,
+    "historical_reference_gain": 48,
+    "sample_roi": [
+      472,
+      552,
+      260,
+      340
+    ],
+    "distance_mm_user_report": 130
+  },
+  "threshold_source": {
+    "present_means": [
+      85,
+      88,
+      78,
+      82
+    ],
+    "empty_means": [
+      36,
+      37,
+      37,
+      37,
+      36
+    ],
+    "duplicate_photo": "08 equals 06",
+    "use": "historical_display_MEAN_replay_only_not_independent_accuracy"
+  },
+  "bit": {
+    "path": "fpga/component_inspector/release/led_presence_demo_v2_20261008/camera_to_dsi_display.bit",
+    "sha256": "40b82b27c229490ac806542552047c86877ccfb7d7e72dd1aaccb70c0f13f382",
+    "bytes": 1789539
+  },
+  "tool": "TD6.2.168116",
+  "simulator": "ModelSim2019.2",
+  "build_inputs_count": 207,
+  "build_inputs_sha256": "3e7aac1f5e5ceb3c49b4f88f384281e67a7e2ebbbfabfad1e4974454cc728f71",
+  "v1_changed": [
+    "user_source/hdl_source/design_top_wrapper.v"
+  ],
+  "timing": {
+    "setup_wns_ns": 0.696,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 94.57
+  },
+  "resources": {
+    "slice_used": 16521,
+    "slice_total": 21216,
+    "slice_percent": 77.87,
+    "eram_used": 48,
+    "eram_total": 108,
+    "eram_percent": 44.44,
+    "dsp_used": 8,
+    "dsp_total": 40,
+    "dsp_percent": 20.0,
+    "lut6_used": 14053,
+    "reg_used": 17493
+  },
+  "coverage_summary": [
+    "1. checking no clock(0) (HIGH)",
+    "2. checking clock definition(0) (HIGH)",
+    "3. checking dummy node(4) (HIGH)",
+    "4. checking invalid constraint(0) (HIGH)",
+    "5. checking pll/clock buffer clock constraints(7) (HIGH)",
+    "6. checking combinational loops(0) (HIGH)",
+    "7. checking soft fifo timing exception constraints(0) (HIGH)",
+    "8. checking no path constraints(0) (MEDIUM)",
+    "9. checking shadowed/ignored timing exception constraints(9) (MEDIUM)",
+    "10. checking no input delay(39) (MEDIUM)",
+    "11. checking no output delay(63) (MEDIUM)",
+    "12. checking partial input delay(1) (MEDIUM)",
+    "13. checking partial output delay(0) (MEDIUM)",
+    "14. checking abnormal input delay(0) (MEDIUM)"
+  ],
+  "register_max_delay_summary": [
+    {
+      "total": 324,
+      "dominated": 324,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/payload*}] -to [get_regs {u_monitor_display/D_data*}]"
+    },
+    {
+      "total": 68,
+      "dominated": 68,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/payload*}] -to [get_regs {u_camera_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/req}] -to [get_regs {u_monitor_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/ack}] -to [get_regs {u_monitor_display/ack_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/req}] -to [get_regs {u_camera_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/ack}] -to [get_regs {u_camera_display/ack_sync[0]}]"
+    },
+    {
+      "total": 156,
+      "dominated": 156,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/payload*}] -to [get_regs {u_camera_receive/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/req}] -to [get_regs {u_camera_receive/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/ack}] -to [get_regs {u_camera_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 568,
+      "dominated": 568,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/payload*}] -to [get_regs {u_roi_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/req}] -to [get_regs {u_roi_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_roi_display/ack}] -to [get_regs {u_roi_display/ack_sync[0]}]"
+    },
+    {
+      "total": 54,
+      "dominated": 54,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/payload*}] -to [get_regs {u_observation_receive/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/req}] -to [get_regs {u_observation_receive/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_receive/ack}] -to [get_regs {u_observation_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 36,
+      "dominated": 36,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/payload*}] -to [get_regs {u_observation_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/req}] -to [get_regs {u_observation_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/ack}] -to [get_regs {u_observation_display/ack_sync[0]}]"
+    },
+    {
+      "total": 34,
+      "dominated": 34,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/payload*}] -to [get_regs {u_transport_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/req}] -to [get_regs {u_transport_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_transport_display/ack}] -to [get_regs {u_transport_display/ack_sync[0]}]"
+    },
+    {
+      "total": 104,
+      "dominated": 104,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/payload*}] -to [get_regs {u_monitor_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/payload*}] -to [get_regs {u_monitor_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/payload*}] -to [get_regs {u_camera_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/payload*}] -to [get_regs {u_camera_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/req}] -to [get_regs {u_monitor_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/req}] -to [get_regs {u_monitor_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/ack}] -to [get_regs {u_monitor_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/ack}] -to [get_regs {u_monitor_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/req}] -to [get_regs {u_camera_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/req}] -to [get_regs {u_camera_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/ack}] -to [get_regs {u_camera_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/ack}] -to [get_regs {u_camera_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/payload*}] -to [get_regs {u_camera_receive/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/payload*}] -to [get_regs {u_camera_receive/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/req}] -to [get_regs {u_camera_receive/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/req}] -to [get_regs {u_camera_receive/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/ack}] -to [get_regs {u_camera_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/ack}] -to [get_regs {u_camera_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/payload*}] -to [get_regs {u_roi_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/payload*}] -to [get_regs {u_roi_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/req}] -to [get_regs {u_roi_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/req}] -to [get_regs {u_roi_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_roi_display/ack}] -to [get_regs {u_roi_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_roi_display/ack}] -to [get_regs {u_roi_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/payload*}] -to [get_regs {u_observation_receive/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/payload*}] -to [get_regs {u_observation_receive/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/req}] -to [get_regs {u_observation_receive/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/req}] -to [get_regs {u_observation_receive/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_receive/ack}] -to [get_regs {u_observation_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_receive/ack}] -to [get_regs {u_observation_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/payload*}] -to [get_regs {u_observation_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/payload*}] -to [get_regs {u_observation_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/req}] -to [get_regs {u_observation_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/req}] -to [get_regs {u_observation_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/ack}] -to [get_regs {u_observation_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/ack}] -to [get_regs {u_observation_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/payload*}] -to [get_regs {u_transport_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/payload*}] -to [get_regs {u_transport_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/req}] -to [get_regs {u_transport_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/req}] -to [get_regs {u_transport_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_transport_display/ack}] -to [get_regs {u_transport_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_transport_display/ack}] -to [get_regs {u_transport_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]"
+    }
+  ],
+  "warning_ids": {
+    "syn_1": {
+      "HDL-5007": 41,
+      "HDL-5317": 20,
+      "HDL-5314": 20,
+      "HDL-5323": 5,
+      "HDL-5369": 1,
+      "HDL-5001": 4,
+      "HDL-5106": 2,
+      "SYN-5065": 1,
+      "SYN-5013": 10,
+      "SYN-5025": 3,
+      "SYN-5011": 12,
+      "SYN-5041": 3,
+      "USR-6135": 2
+    },
+    "phy_1": {
+      "PHY-5060": 1,
+      "PHY-5016": 4,
+      "PHY-5088": 4,
+      "PHY-5079": 1
+    }
+  },
+  "tests": [
+    {
+      "name": "classifier",
+      "console_sha256": "7d7a76c17db513e09b65af19207273d99878c548294269e3422689b4dca279c5",
+      "pass_lines": [
+        "# PASS classifier: T58 historical readings/boundary, independent 128-pixel sums, both polarities/equality/0/255, bubbles/outside/specular, UNCAL/rearm/FS/config/lane/truncation/reset/recovery and 27-bit CDC"
+      ]
+    },
+    {
+      "name": "display_state",
+      "console_sha256": "40f4f9a5ab2fca95eafb5bb5dbb463dd58dd5948877112320a1c322482589285",
+      "pass_lines": [
+        "# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, enabled exposure/gain tuning with fresh tokens, stopped CSI, FPS recovery and reset require fresh sample"
+      ]
+    },
+    {
+      "name": "controls",
+      "console_sha256": "5825986ac6ef0ea5f00a437b14e5c31cd0cf97f3cf70124f1eea30aaad0aff74",
+      "pass_lines": [
+        "# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload"
+      ]
+    },
+    {
+      "name": "observation",
+      "console_sha256": "7611b76c4699d74d4c2e345a23e6016f3d005de71b6dd7a213ced3634a72df1f",
+      "pass_lines": [
+        "# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover"
+      ]
+    },
+    {
+      "name": "stop_recovery",
+      "console_sha256": "79e8eb27ccc9e96d7bb81278976bb344d0fb9a9e7db29036991b2b702c73bc19",
+      "pass_lines": [
+        "# PASS stop recovery: real monitor, independent 50MHz reference, two window boundaries, frozen CSI mailbox, no stale rearm, fresh UNCAL statistics"
+      ]
+    },
+    {
+      "name": "osd",
+      "console_sha256": "fefda6ed9d60e30b1cdff0aff9b481a12e946ebbcf1d24ff1695da487a788da6",
+      "pass_lines": [
+        "# PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values and frame snapshot"
+      ]
+    },
+    {
+      "name": "roi_chain",
+      "console_sha256": "7951eb5c3e13a9a14d2a8cdbb720a4b028e3c639c6b6ae361bb1f80722682920",
+      "pass_lines": [
+        "# PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection and recovery"
+      ]
+    }
+  ],
+  "binding_probe": {
+    "extracted_expressions": {
+      "v1": {
+        "top_sha256": "750e292fe2b02de0eef7be5e6b70ebbea168b6bacdbaf48d8d0dfd458a9bfd17",
+        "calibration_expressions": [
+          "CLASS_CALIBRATED && camera_receive[48:33]==CLASS_EXPOSURE && camera_receive[32:17]==CLASS_GAIN",
+          "CLASS_CALIBRATED && cam_display[48:33]==CLASS_EXPOSURE && cam_display[32:17]==CLASS_GAIN"
+        ],
+        "testbench_sha256": "41c6a7d047d25fb17bef889f12cfaea400582c58bfc2f9f3b0b22e95038e3af0"
+      },
+      "v2": {
+        "top_sha256": "b92390a294b5200cf39eb70aad8056c6d9ce98fcd5cdaa3757d85540169c852d",
+        "calibration_expressions": [
+          "CLASS_CALIBRATED",
+          "CLASS_CALIBRATED"
+        ],
+        "testbench_sha256": "5cf94174cd2b1f460c3e5591cb498791058fa8288b1bee4c8df7af7c2a0e88a7"
+      }
+    },
+    "v1_negative_control_expected_failure": "gain47 disables classification; exact classifier FS assertion",
+    "v2_result": "PASS same tuning/freshness scenarios",
+    "scope": "logic bindings extracted from real wrapper; not full top/board simulation"
+  },
+  "rollback": [
+    {
+      "path": "fpga/component_inspector/release/led_presence_demo_v1_20261007/camera_to_dsi_display.bit",
+      "sha256": "4c8aa1695e06f3218ba5ae01b67e78e188755a61beea9f1229cdd1ef7296e22e"
+    },
+    {
+      "path": "fpga/component_inspector/release/edge_tail_fix_20261007/camera_to_dsi_display.bit",
+      "sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65"
+    }
+  ],
+  "v1_frozen_evidence_files_verified": 364,
+  "vendor_model_hashes": [
+    {
+      "path": "D:\\AAA\\FPGA.....YZW\\sim_release\\common\\al_map_basic.v",
+      "sha256": "ac0aa7f986fdfba39fb7b361b26ace4ba1049807d6feccde09b2fa21eb0903da"
+    },
+    {
+      "path": "D:\\AAA\\FPGA.....YZW\\sim_release\\common\\al_map_lut.v",
+      "sha256": "a8af44de361088c0bb66a58d5af9b8eb5aa6e9b8ca56992d6164a9f689c488f0"
+    },
+    {
+      "path": "D:\\AAA\\FPGA.....YZW\\sim_release\\common\\al_map_adder.v",
+      "sha256": "02dfbc0864687bcba96cbed80c69dada2c511e24c89b0e4e308fed3ccc8ccf84"
+    },
+    {
+      "path": "D:\\AAA\\FPGA.....YZW\\sim_release\\common\\al_phy_glbl.v",
+      "sha256": "c194f5335b54a6d707a8b633b8f4d3a171e52006337600f7433379b11fb3b2ff"
+    },
+    {
+      "path": "D:\\AAA\\FPGA.....YZW\\sim_release\\ph1p\\ph1p_logic_eram.v",
+      "sha256": "70d89b70bdd51812ad86b91e88526b4604ebb117516efda5af976fcddb2e69af"
+    },
+    {
+      "path": "D:\\AAA\\FPGA.....YZW\\sim_release\\ph1p\\ph1p_phy_gsr.v",
+      "sha256": "787312a19b4007bef3b76986bce267966b2d04c1871290ce29905629e38f1524"
+    }
+  ],
+  "flow_sha256": "d1a5d4291706dac224cc33008d8945e79ed2eb1adf8ce86cca46be564975bade",
+  "limits": [
+    "No v2 board flashing, physical classification, continuous video acceptance or cold boot performed.",
+    "T58 accuracy changes with exposure/gain/light; only the hard enable binding was removed.",
+    "Historical photos lack confirmed part number, full static range and repeated placement.",
+    "Optical changes and misplaced ROI are not detected by validity gates.",
+    "DDR PLL, I/O delay and exception coverage findings retained; constraints unchanged and coverage not 100%.",
+    "Result is a recent sample, not bound to DDR display frame.",
+    "Only selected 7 regressions; not all 18 runner entries."
+  ],
+  "test_helper_repairs": [
+    "Initial expression extraction regex required extra characters after CLASS_CALIBRATED; v2 constant expression needed zero. Preparation failure preserved; production/testbench unchanged.",
+    "ModelSim -onfinish exit returned zero at the expected v1 fatal. Negative-control checker now requires exact assertion, gain47 context and one error; positive run must contain PASS and no fatal. Checker failure preserved."
+  ]
+}

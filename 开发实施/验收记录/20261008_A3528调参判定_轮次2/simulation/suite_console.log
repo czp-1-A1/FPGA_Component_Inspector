@@ -1,0 +1,38 @@
+# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover
+# OBS stop window phase=0 clears in 1850 reference clocks (REF_HZ=1000)
+# OBS stop window phase=1 clears in 1020 reference clocks (REF_HZ=1000)
+# PASS stop recovery: real monitor, independent 50MHz reference, two window boundaries, frozen CSI mailbox, no stale rearm, fresh UNCAL statistics
+# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, enabled exposure/gain tuning with fresh tokens, stopped CSI, FPS recovery and reset require fresh sample
+# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload
+# PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values and frame snapshot
+# OBS classifier image=1 sum=10240 mean=80 min/max=40/200 state=0
+# OBS classifier image=2 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=3 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=4 sum=5335 mean=41 min/max=40/255 state=3
+# OBS classifier image=5 sum=7680 mean=60 min/max=60/60 state=2
+# OBS classifier image=6 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=8 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=10 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=12 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=14 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=15 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=16 sum=5120 mean=40 min/max=40/40 state=2
+# OBS classifier image=17 sum=10240 mean=80 min/max=40/200 state=3
+# OBS classifier image=18 sum=7680 mean=60 min/max=60/60 state=2
+# PASS classifier: T58 historical readings/boundary, independent 128-pixel sums, both polarities/equality/0/255, bubbles/outside/specular, UNCAL/rearm/FS/config/lane/truncation/reset/recovery and 27-bit CDC
+# OBS actual ROI chain frame=1 mode=0 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=0/0/0
+# OBS actual ROI chain frame=2 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=151/119/199
+# OBS actual Sobel frame=2 view=0 pixels=614400 packed=115200 edges=6170 sum=534404
+# OBS actual ROI chain frame=3 mode=1 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=151/119/199
+# OBS actual ROI chain frame=4 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=131/99/179
+# OBS actual Sobel frame=4 view=3 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=5 mode=2 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=131/99/179
+# OBS actual ROI chain frame=6 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=151/119/199
+# OBS actual Sobel frame=6 view=2 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=7 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=131/99/179
+# OBS actual Sobel frame=7 view=1 pixels=614400 packed=115200 edges=6400 sum=563200
+# OBS actual ROI chain frame=8 mode=3 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=131/99/179
+# OBS actual ROI chain frame=9 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=151/119/199
+# OBS actual Sobel frame=9 view=1 pixels=614400 packed=115200 edges=6092 sum=530552
+# PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection and recovery
+PASS ModelSim: all 7 tests, including original vendor ERAM model

@@ -1,0 +1,11 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -novopt work.tb_hole_boundary -l transcript.log -do "onbreak {quit -code 1}; onerror {quit -code 1}; run -all; quit -code 0" 
+# Start time: 02:36:20 on Oct 12,2026
+# ** Error (suppressible): (vsim-12110) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Error loading design
+Error loading design
+# End time: 02:36:20 on Oct 12,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0

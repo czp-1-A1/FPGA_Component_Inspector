@@ -1,0 +1,37 @@
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/controls/transcript.log -wlf modelsim_work/controls/wave.wlf -do "log /tb_controls/*; run -all; quit -code 1 -force" test_controls.tb_controls 
+# Start time: 19:14:57 on Oct 06,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_controls(fast)
+# Loading work.ae_set(fast)
+# Loading work.uicfgcs500(fast)
+# Loading work.uii2c(fast)
+# Loading work.uics500reg(fast)
+# Loading work.SC500GainTbl(fast)
+# Loading work.uics500regAE(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (24) for port 'REG_DATA'. The port definition is at: ../user_source/hdl_source/uics500_cfg/uics500reg.v(38).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_controls/cfg/uics500reg_inst File: ../user_source/hdl_source/uics500_cfg/uicfgcs500.v Line: 150
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (32) for port 'I'. The port definition is at: ../user_source/hdl_source/uics500_cfg/SC500GainTbl.v(9).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_controls/cfg/gain_tbl File: ../user_source/hdl_source/uics500_cfg/uicfgcs500.v Line: 168
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (24) for port 'REG_DATA'. The port definition is at: ../user_source/hdl_source/uics500_cfg/uics500regAE.v(36).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_controls/cfg/uics500regAE_inst File: ../user_source/hdl_source/uics500_cfg/uicfgcs500.v Line: 170
+# log /tb_controls/*
+#  run -all
+# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload
+# ** Note: $finish    : tb_controls.v(38)
+#    Time: 125600 ns  Iteration: 1  Instance: /tb_controls
+# End time: 19:14:58 on Oct 06,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 3

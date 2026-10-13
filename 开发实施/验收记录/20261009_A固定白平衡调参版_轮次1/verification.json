@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "frozen_copies": 456,
+  "production_inputs": 209,
+  "previous_evidence_copies": {
+    "20261008_A灰度边缘独立判定_轮次1": 666,
+    "20261009_A成像参数冻结与计划修订_轮次1": 11
+  },
+  "release_sha256": "6905dcab92595971b25232775e75582f1d790896a310371edd50a7dd047e76e1",
+  "head_unchanged": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "staging_empty": true,
+  "diff_check_passed": true,
+  "metadata_docs_checkpoint_match": true,
+  "rollback_unchanged": true,
+  "no_assistant_build_or_simulation_running": true,
+  "process_snapshot_user_tools_untouched": [
+    {
+      "Name": "td.exe",
+      "ProcessId": 27224
+    },
+    {
+      "Name": "bw.exe",
+      "ProcessId": 35732
+    },
+    {
+      "Name": "hwserver.exe",
+      "ProcessId": 46180
+    }
+  ],
+  "board_validation": "not_performed"
+}

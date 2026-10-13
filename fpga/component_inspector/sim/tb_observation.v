@@ -11,13 +11,13 @@ status_cdc #(.WIDTH(18)) request_display(ref_clk,dclk,rst,request,displayed);
 reg [17:0] tag=0;reg [27:0] legacy=0;
 reg [12:0] cp=6400,ec=321;reg [23:0] strength=123456;
 reg cfg=1;reg [15:0] ex=2244,ga=48,fps=27;
-wire [82:0] source_record,record;
+wire [114:0] source_record,record;
 wire invalid=!cfg || tag!=received;
-roi_observation_snapshot snapshot(rx_clk,rst,invalid,tag,legacy,cp,ec,strength,source_record);
-status_cdc #(.WIDTH(83)) result(rx_clk,dclk,rst,source_record,record);
+roi_observation_snapshot snapshot(rx_clk,rst,invalid,tag,32'h00004040,legacy,cp,ec,strength,source_record);
+status_cdc #(.WIDTH(115)) result(rx_clk,dclk,rst,source_record,record);
 wire valid;wire [1:0] state;
 wire [27:0] gated_record={record[27:25],(record[24] && record[45:28]==displayed),record[23:0]};
-roi_display_state gate(dclk,rst,cfg,ex,ga,fps,1'b0,gated_record,displayed,valid,state);
+roi_display_state gate(dclk,rst,cfg,ex,ga,fps,1'b0,gated_record,displayed,32'h00004040,valid,state);
 task rticks;input integer n;begin repeat(n) @(negedge ref_clk);end endtask
 task dticks;input integer n;begin repeat(n) @(negedge dclk);end endtask
 task choose;input [1:0] value;input [15:0] epoch;

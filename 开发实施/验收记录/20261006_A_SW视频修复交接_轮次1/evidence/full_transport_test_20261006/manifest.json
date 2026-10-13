@@ -1,0 +1,246 @@
+{
+  "date": "2026-10-06",
+  "model": "ModelSim 2019.2",
+  "numpy": "2.3.5",
+  "clocks_ns": {
+    "CSI": 8.888,
+    "DDR": 15,
+    "HDMI": 19.23
+  },
+  "tested_inputs": [
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/roi_sobel_view.v",
+      "sha256": "13738d3d535df505dc675979ac44bfa74ce186be517f7bfdc4fb5ca030312596",
+      "copy": "tested_rtl/roi_sobel_view.v"
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/isp/data96_128/data96_128.v",
+      "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5",
+      "copy": "tested_rtl/data96_128.v"
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/video_in.v",
+      "sha256": "0af1896eeedef3a31240db44090e1d0dc577b740344e13fbd56af83b09155df3",
+      "copy": "tested_rtl/video_in.v"
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/video_out.v",
+      "sha256": "9cf4ef7484fbe292816015f38c54406779ea29d5a0a4039847d482d34df3361c",
+      "copy": "tested_rtl/video_out.v"
+    },
+    {
+      "path": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v",
+      "sha256": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751",
+      "copy": "tested_rtl/soft_fifo_al_4057d6b76aa6.v"
+    },
+    {
+      "path": "fpga/component_inspector/user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v",
+      "sha256": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4",
+      "copy": "tested_rtl/w128_d512_fifo.v"
+    }
+  ],
+  "results": {
+    "mode_0": {
+      "pass_lines": [
+        "# PASS: FULL_TRANSPORT mode=0 captures=2 writes=230400 display_frames=2 pixels=1228800 read_commands=230400 ready_stall=300 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0"
+      ],
+      "fatal_lines": []
+    },
+    "mode_1": {
+      "pass_lines": [
+        "# PASS: FULL_TRANSPORT mode=1 captures=2 writes=230400 display_frames=2 pixels=1228800 read_commands=230400 ready_stall=300 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0"
+      ],
+      "fatal_lines": []
+    },
+    "mode_2": {
+      "pass_lines": [
+        "# PASS: FULL_TRANSPORT mode=2 captures=2 writes=230400 display_frames=2 pixels=1228800 read_commands=230400 ready_stall=300 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0"
+      ],
+      "fatal_lines": []
+    },
+    "mode_3": {
+      "pass_lines": [
+        "# PASS: FULL_TRANSPORT mode=3 captures=2 writes=230400 display_frames=2 pixels=1228800 read_commands=230400 ready_stall=300 view_errors=0 pack_errors=0 write_errors=0 address_errors=0 pixel_errors=0 overflow=0 underflow=0"
+      ],
+      "fatal_lines": []
+    },
+    "faults": {
+      "pass_lines": [
+        "# PASS: TRANSPORT_FAULTS stopped_CSI_tail_not_published=1 new_FS_recovered=1 lost_frames=2 underflow_frames=1 remainder_black=256 across_VS_drain=1 cache_overrun_rejected=1 new_good_recovered=1 word_pixel_errors=0"
+      ],
+      "fatal_lines": []
+    }
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 4228,
+      "sha256": "1cbc80268b63dede4660cacf6ad25bdb20a20100c4d8e13131795d3a5f9057a6"
+    },
+    {
+      "path": "compile.log",
+      "bytes": 1807,
+      "sha256": "d089ea00a42d1dc27184dfcc13ec095649fe93c0a21fd784fb4a31075a2da49f"
+    },
+    {
+      "path": "faults.compile.log",
+      "bytes": 322,
+      "sha256": "feb3a9c249f59fc93802846d65170113a3b11df996ee8eabd6c543511848ca1e"
+    },
+    {
+      "path": "faults.console.log",
+      "bytes": 4522,
+      "sha256": "a4e99d87c644b29550308eddfcae7b094d49830ab95e120ae9eb4822cfa8d794"
+    },
+    {
+      "path": "generate_fault_tb.py",
+      "bytes": 6433,
+      "sha256": "349c21fad80852c98dc8d95c9f2f78c370890af6133c0394fe9e9dc8767d401c"
+    },
+    {
+      "path": "initial_tb_wait_bug/faults_new_prefill_check.console.log",
+      "bytes": 3967,
+      "sha256": "5afdadbdfe4c6d06cbb1258348033d2d6ff837119d193e40d103c44fc226e217"
+    },
+    {
+      "path": "initial_tb_wait_bug/faults_pipeline_check.console.log",
+      "bytes": 5271,
+      "sha256": "d4984b27ba955bf8f2cd28e475e0f2791d188ace2b7a422fcf064226ac4a91e6"
+    },
+    {
+      "path": "initial_tb_wait_bug/mode_2.console.log",
+      "bytes": 2088,
+      "sha256": "cbdb26821ff21ae1adac6bfb86fe859d166eebba528cc8ec3164b8ea75fd3663"
+    },
+    {
+      "path": "initial_tb_wait_bug/mode_3.console.log",
+      "bytes": 2088,
+      "sha256": "0fc83fe644d1bce8d930263aa7cde61bdcb9bfdc5d4b1a9d09670909f6f639c3"
+    },
+    {
+      "path": "mode_0.console.log",
+      "bytes": 4631,
+      "sha256": "82dca139e643548f7bc5460f9bfa8e618ad8d8586930c6381556006169bf2a38"
+    },
+    {
+      "path": "mode_0_pixels.hex",
+      "bytes": 9830400,
+      "sha256": "f7d63808457e39348d938ae36638fa44f53e04e9b3316e58dd330ceabee777f3"
+    },
+    {
+      "path": "mode_0_words.hex",
+      "bytes": 7833600,
+      "sha256": "319ac4f2f5cda6e2e3f373647e598d83cee1e8243aafd8bd30953285d0bf8854"
+    },
+    {
+      "path": "mode_1.console.log",
+      "bytes": 2087,
+      "sha256": "fe58b868d7cda672c1cb71da62e62d566a0295422789a99fc99ac15dbb5740e8"
+    },
+    {
+      "path": "mode_1_pixels.hex",
+      "bytes": 9830400,
+      "sha256": "f428926d607c8ac8e002a6798a0cdc1464d1fcd0370169f1059e9bd504159fa2"
+    },
+    {
+      "path": "mode_1_words.hex",
+      "bytes": 7833600,
+      "sha256": "f3165df84c66748d6674aa075bc0bd42e09161308ce94385f1a3e51a6d6a3479"
+    },
+    {
+      "path": "mode_2.console.log",
+      "bytes": 2088,
+      "sha256": "cbdb26821ff21ae1adac6bfb86fe859d166eebba528cc8ec3164b8ea75fd3663"
+    },
+    {
+      "path": "mode_2_pixels.hex",
+      "bytes": 9830400,
+      "sha256": "6083bdd8899cff7fd064e377a278f3209fcd81d558c3b5d7454cab13f84e6e84"
+    },
+    {
+      "path": "mode_2_words.hex",
+      "bytes": 7833600,
+      "sha256": "86a28a8e645d46a70b0c9e7095a5c61e459a0f37803729e0e47379c7a1cc9fe1"
+    },
+    {
+      "path": "mode_3.console.log",
+      "bytes": 2088,
+      "sha256": "0fc83fe644d1bce8d930263aa7cde61bdcb9bfdc5d4b1a9d09670909f6f639c3"
+    },
+    {
+      "path": "mode_3_pixels.hex",
+      "bytes": 9830400,
+      "sha256": "914c6ec4b855656cf81bccefc196a2835ffb1bdd86eda630dd3ee258c25f1e3c"
+    },
+    {
+      "path": "mode_3_words.hex",
+      "bytes": 7833600,
+      "sha256": "c44fcc40ed639602b20bee350c8b0d541d02a8ae2b1490e330d810a1341da5f8"
+    },
+    {
+      "path": "reference.py",
+      "bytes": 1417,
+      "sha256": "82abdd397843cab55d9ae9f2a1ee274012209802e653026ac1d488ccd464f347"
+    },
+    {
+      "path": "run.ps1",
+      "bytes": 1804,
+      "sha256": "c088b4eacba1996cb47e7ccfeb0a949c109d5391348ad52cfb0372ce67355885"
+    },
+    {
+      "path": "run_faults.ps1",
+      "bytes": 1115,
+      "sha256": "4c8ff779729121aa5fb622ea59a10ada7d1ce40032b1473509f9b853bb802ebc"
+    },
+    {
+      "path": "tb_full_transport.v",
+      "bytes": 11570,
+      "sha256": "b1317fe29fc24af88ea216e93f9c7777ef89d0ccd0aef4c83b011601656580da"
+    },
+    {
+      "path": "tb_transport_faults.v",
+      "bytes": 15852,
+      "sha256": "6970f8218a351bff9686c41d9dfb11af66c5f7f86c415890d5a6bb808745579a"
+    },
+    {
+      "path": "tested_inputs.json",
+      "bytes": 1348,
+      "sha256": "c9cc5d3d4e781f07c92e93df037f742421c2f67370502024206640ac03d13d85"
+    },
+    {
+      "path": "tested_rtl/data96_128.v",
+      "bytes": 975,
+      "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+    },
+    {
+      "path": "tested_rtl/roi_sobel_view.v",
+      "bytes": 9475,
+      "sha256": "13738d3d535df505dc675979ac44bfa74ce186be517f7bfdc4fb5ca030312596"
+    },
+    {
+      "path": "tested_rtl/soft_fifo_al_4057d6b76aa6.v",
+      "bytes": 34326,
+      "sha256": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751"
+    },
+    {
+      "path": "tested_rtl/video_in.v",
+      "bytes": 5332,
+      "sha256": "0af1896eeedef3a31240db44090e1d0dc577b740344e13fbd56af83b09155df3"
+    },
+    {
+      "path": "tested_rtl/video_out.v",
+      "bytes": 5649,
+      "sha256": "9cf4ef7484fbe292816015f38c54406779ea29d5a0a4039847d482d34df3361c"
+    },
+    {
+      "path": "tested_rtl/w128_d512_fifo.v",
+      "bytes": 1222,
+      "sha256": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4"
+    },
+    {
+      "path": "write_manifest.py",
+      "bytes": 1488,
+      "sha256": "4fc5bb8d48148eb3a692f9759deb37505a165af803fa2d1d7168250f8c593b33"
+    }
+  ]
+}

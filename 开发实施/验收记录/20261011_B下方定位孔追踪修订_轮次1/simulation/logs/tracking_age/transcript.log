@@ -1,0 +1,26 @@
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/tracking_age/transcript.log -wlf modelsim_work/tracking_age/wave.wlf -do "log /tb_tracking_age/*; run -all; quit -code 1 -force" test_tracking_age.tb_tracking_age 
+# Start time: 19:37:22 on Oct 11,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_tracking_age(fast)
+# Loading work.tracking_frame_age(fast)
+# log /tb_tracking_age/*
+#  run -all
+# PASS tracking age: new slot, repeated-frame timeout, invalidation and recovery
+# ** Note: $finish    : tb_tracking_age.v(13)
+#    Time: 170 ns  Iteration: 1  Instance: /tb_tracking_age
+# End time: 19:37:24 on Oct 11,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

@@ -1,0 +1,13 @@
+{
+  "reason": "Added three full frames exceed original 50 ms watchdog; increase bound to 70 ms only, all functional checks retained.",
+  "failed_attempt": "tmp/presence_modes_v3_td_20261008/sim/modelsim_work/roi_chain/console.log",
+  "production_inputs_identical": true,
+  "tb_old_sha256": "1a44464088a84101c4cffd0ccf591d0b6ad51b0c2dddab769fa8bdbada80eaf9",
+  "tb_new_sha256": "f1e1dd9b4a4329d4544a878d2940b4d37573668539cf889380a44678534989f0",
+  "tb_current_sha256": "b214694c1968329e710d33dea05272df0e09cdf25e9c19c4bd551291d12719ba",
+  "only_semantic_change": "50 ms to 70 ms watchdog",
+  "frozen_retry_newline_only_difference": "LF; current restored first-attempt CRLF convention",
+  "selected_tests": [
+    "roi_chain"
+  ]
+}

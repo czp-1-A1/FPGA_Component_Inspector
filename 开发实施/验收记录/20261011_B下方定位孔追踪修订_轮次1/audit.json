@@ -1,0 +1,593 @@
+{
+  "status": "PASS_logic_and_build_only",
+  "build_root": "tmp/tracking_late_r1_td_20261011",
+  "simulation_root": "tmp/tracking_late_r3_td_20261011",
+  "input_count": 210,
+  "source_entries": 70,
+  "changed_production_inputs": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/tape_hole_tracker.v"
+  ],
+  "timing": {
+    "setup_wns_ns": 0.195,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.4
+  },
+  "resources": {
+    "slice_used": 13540,
+    "slice_total": 21216,
+    "slice_percent": 63.82,
+    "eram_used": 48,
+    "eram_total": 108,
+    "eram_percent": 44.44,
+    "dsp_used": 8,
+    "dsp_total": 40,
+    "dsp_percent": 20.0,
+    "lut6_used": 11414,
+    "reg_used": 13676
+  },
+  "canonical_max_delays": [
+    {
+      "total": 312,
+      "dominated": 120,
+      "shadowed": 192,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_clocks {mipi_rx_ck_pad MIPI_RX_BYTE_CLK sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}]"
+    },
+    {
+      "total": 190,
+      "dominated": 5,
+      "shadowed": 185,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]"
+    },
+    {
+      "total": 11,
+      "dominated": 1,
+      "shadowed": 10,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {MIPI_RX_BYTE_CLK}]"
+    },
+    {
+      "total": 183,
+      "dominated": 96,
+      "shadowed": 87,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_clocks {MIPI_RX_BYTE_CLK}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]"
+    },
+    {
+      "total": 89,
+      "dominated": 2,
+      "shadowed": 87,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {MIPI_RX_BYTE_CLK}]"
+    },
+    {
+      "total": 324,
+      "dominated": 324,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/payload*}] -to [get_regs {u_monitor_display/D_data*}]"
+    },
+    {
+      "total": 139,
+      "dominated": 139,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/payload*}] -to [get_regs {u_camera_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/req}] -to [get_regs {u_monitor_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/ack}] -to [get_regs {u_monitor_display/ack_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/req}] -to [get_regs {u_camera_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/ack}] -to [get_regs {u_camera_display/ack_sync[0]}]"
+    },
+    {
+      "total": 132,
+      "dominated": 132,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/payload*}] -to [get_regs {u_camera_receive/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/req}] -to [get_regs {u_camera_receive/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/ack}] -to [get_regs {u_camera_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 36,
+      "dominated": 36,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/payload*}] -to [get_regs {u_observation_receive/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/req}] -to [get_regs {u_observation_receive/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_receive/ack}] -to [get_regs {u_observation_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 36,
+      "dominated": 36,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/payload*}] -to [get_regs {u_observation_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/req}] -to [get_regs {u_observation_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/ack}] -to [get_regs {u_observation_display/ack_sync[0]}]"
+    },
+    {
+      "total": 34,
+      "dominated": 34,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/payload*}] -to [get_regs {u_transport_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/req}] -to [get_regs {u_transport_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_transport_display/ack}] -to [get_regs {u_transport_display/ack_sync[0]}]"
+    },
+    {
+      "total": 168,
+      "dominated": 168,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]"
+    },
+    {
+      "total": 345,
+      "dominated": 345,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/payload*}] -to [get_regs {*crossing/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/req}] -to [get_regs {*crossing/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {*crossing/ack}] -to [get_regs {*crossing/ack_sync[0]}]"
+    },
+    {
+      "total": 474,
+      "dominated": 474,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/payload*}] -to [get_regs {u_active_frame_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/req}] -to [get_regs {u_active_frame_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}] -to [get_regs {u_active_frame_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 8.588"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 14.700"
+    }
+  ],
+  "warnings": {
+    "syn_1": {
+      "lines": 124,
+      "prior_lines": 124,
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "lines": 10,
+      "prior_lines": 10,
+      "added": [],
+      "removed": []
+    }
+  },
+  "coverage_summary": [
+    "1. checking no clock(0) (HIGH)",
+    "2. checking clock definition(0) (HIGH)",
+    "3. checking dummy node(4) (HIGH)",
+    "4. checking invalid constraint(0) (HIGH)",
+    "5. checking pll/clock buffer clock constraints(7) (HIGH)",
+    "6. checking combinational loops(0) (HIGH)",
+    "7. checking soft fifo timing exception constraints(0) (HIGH)",
+    "8. checking no path constraints(0) (MEDIUM)",
+    "9. checking shadowed/ignored timing exception constraints(9) (MEDIUM)",
+    "10. checking no input delay(39) (MEDIUM)",
+    "11. checking no output delay(63) (MEDIUM)",
+    "12. checking partial input delay(1) (MEDIUM)",
+    "13. checking partial output delay(0) (MEDIUM)",
+    "14. checking abnormal input delay(0) (MEDIUM)"
+  ],
+  "prior_coverage_summary": [
+    "1. checking no clock(0) (HIGH)",
+    "2. checking clock definition(0) (HIGH)",
+    "3. checking dummy node(4) (HIGH)",
+    "4. checking invalid constraint(0) (HIGH)",
+    "5. checking pll/clock buffer clock constraints(7) (HIGH)",
+    "6. checking combinational loops(0) (HIGH)",
+    "7. checking soft fifo timing exception constraints(0) (HIGH)",
+    "8. checking no path constraints(0) (MEDIUM)",
+    "9. checking shadowed/ignored timing exception constraints(9) (MEDIUM)",
+    "10. checking no input delay(39) (MEDIUM)",
+    "11. checking no output delay(63) (MEDIUM)",
+    "12. checking partial input delay(1) (MEDIUM)",
+    "13. checking partial output delay(0) (MEDIUM)",
+    "14. checking abnormal input delay(0) (MEDIUM)"
+  ],
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "0c1fe0ded306b532e3cb31310e556387de2d4c6caceeb53d80195b33a380745f"
+  },
+  "tests": [
+    {
+      "name": "tracking_late",
+      "console_sha256": "48723ff569df31148ec8dbd9bbadc15c034b1361aab72f2e8bbd6e0d19c9b6f9",
+      "compile_sha256": "203becdac409bab640b1a34b7642f081c43f9a5005bea42bc1d824fac0d9cfe8",
+      "pass_lines": [
+        "# PASS tracking late: frame-held ROI, independent 6400-pixel statistics, bounded +/-4 motion, empty, pause, occlusion, over-speed, shape and invalidation"
+      ]
+    },
+    {
+      "name": "tracking_status",
+      "console_sha256": "be48aea264d970345c978ee57473dacffbda4d9fd5fc753b3968da65734dd4ba",
+      "compile_sha256": "6a2d3bb284655aba6652023caff1c1fdf3c40f801b13b003a1803f8a1c51b31a",
+      "pass_lines": [
+        "# PASS tracking status: all 4096 gate/reason/class combinations, valid and invalid priorities"
+      ]
+    },
+    {
+      "name": "isp_tracking_late",
+      "console_sha256": "1227c70a1a13d6cc74f42e5276c91a250da6dbab3463a547080b8f0c5a766aaf",
+      "compile_sha256": "36ae9fb8a4dd8d56240db9b2094ea7014999888dfc0fb8af970e4ff460f113f7",
+      "pass_lines": [
+        "# PASS actual ISP tracking late: RAW10/vendor RAM/full frames, frame-held moving ROI with current-frame lower-hole verification, four views, empty, lost/recovery, coherent metadata"
+      ]
+    },
+    {
+      "name": "tracking_age",
+      "console_sha256": "7a6d9904484532f530528379edabd1ad55712c451135f0e32ed3e34581184822",
+      "compile_sha256": "4febc6e7b304b8b9320a82eec614c10f90743cbd156d00bfdb295e82608d971f",
+      "pass_lines": [
+        "# PASS tracking age: new slot, repeated-frame timeout, invalidation and recovery"
+      ]
+    },
+    {
+      "name": "isp_tracking",
+      "console_sha256": "fbb4397720053e1caa7d5e23ab0d9a7d2ca96ff5fd3bcd249f848f4a2a7a30f6",
+      "compile_sha256": "d68536ea7b60e97458a40fcec1da32ea032fd0823be49478ae8aa88029783e83",
+      "pass_lines": [
+        "# PASS actual ISP tracking: RAW10/vendor RAM/full frames, same-frame moving ROI, four views, empty, lost/recovery, coherent metadata"
+      ]
+    },
+    {
+      "name": "tracking_osd",
+      "console_sha256": "af66d62d3c5e52acb05b73e78efa35d9ed1bd023e001522032f4deae063b19eb",
+      "compile_sha256": "2f6e433b62d614d535ec84371c694248dca5e79ad09f0ccd2eb7743d815350ce",
+      "pass_lines": [
+        "# PASS tracking OSD: post-VS slot metadata, complete rasters, moving box, no mid-frame jump, lost target hides box"
+      ]
+    },
+    {
+      "name": "tracking",
+      "console_sha256": "8f8f9562dd36d8673a8b54d5b6cff90617c6a491d2dfa961a0d8b659eb653dbe",
+      "compile_sha256": "b3c11189e021693162a5c57bab06196f31e02036133d91c2d6fe918ed907ab20",
+      "pass_lines": [
+        "# PASS tracking: same-frame bidirectional ROI, empty pocket, pause, occlusion, excessive step, recovery, invalidation"
+      ]
+    },
+    {
+      "name": "dynamic_sobel",
+      "console_sha256": "19dadde90ae067eb2ee16c69785f12bf9a23aae061a09218b7157bc4ca387944",
+      "compile_sha256": "9c09bc60ee56ede7d9d67679e622f794519b0003c06aebf59393883d25f73ae6",
+      "pass_lines": [
+        "# PASS dynamic Sobel: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup"
+      ]
+    },
+    {
+      "name": "frame_metadata",
+      "console_sha256": "79df1b7e78e98eabe90cb75b8a13ac4eb1d8579a9e2fafeb5c7808481a284a95",
+      "compile_sha256": "8da9708bc953bd07a071de81d694a1ace738d60714de656de51ed05ebecdfa6b",
+      "pass_lines": [
+        "# PASS frame metadata: epoch gating, late result, protected old active slot, atomic new slot, bad capture"
+      ]
+    },
+    {
+      "name": "wb_controls",
+      "console_sha256": "3c168eeaa9bb6760ee4d2a58d7039b533a9fbf0d7de4148b14b9fbc63a788612",
+      "compile_sha256": "423c7d47c90b997b2eb44e4da1486e5f2e0f128cf7f654bd3eb94b862ffba704",
+      "pass_lines": [
+        "# PASS WB controls: staggered/short/long chords, one toggle per release, four keys, no camera writes in WB, debounce, repeat, both clamps, epoch and normal controls restored"
+      ]
+    },
+    {
+      "name": "manual_wb",
+      "console_sha256": "8340f223b9b871cfdcf21c0b0625c3b2073431c74cfe00220d2e163b63869973",
+      "compile_sha256": "8decb4965a9d46efaccdc6b10dc8c3c562ecbfe182aec5f4a062391e70ff60c3",
+      "pass_lines": [
+        "# PASS manual WB: independent Q2.6 arithmetic/clipping, four lanes, first pixel, bubbles, ready-low, EOL, pending requests held until next frame and reset"
+      ]
+    },
+    {
+      "name": "wb_epoch",
+      "console_sha256": "53b1de2dc45cc466de1eeb22e827088faf804323c4fb6c94ddc8195036656589",
+      "compile_sha256": "575582c897ccf6505138b516f92087f7340ae95f3d504c6b493ee9a4235f3935",
+      "pass_lines": [
+        "# PASS WB epoch: coherent held request/result, invalidation, change-away/back with stopped CSI, recovery, epoch wrap and fresh-token requirement"
+      ]
+    },
+    {
+      "name": "fixed_wb",
+      "console_sha256": "c14adef8bbf43bac7259e5dafacc18e53d45b734c429ef0cb364b941411e33d9",
+      "compile_sha256": "c07bafda83a2442a53dce2ffacf349d61c1fe6c5093a5c73793680cb24a1f050",
+      "pass_lines": [
+        "# PASS fixed WB frame case=0 scene=0 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB frame case=1 scene=1 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB frame case=3 scene=0 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB: colored-background invariance, fixed non-unity gains/clipping, four lanes, bubbles, reset, line tails, ready-low; automatic reference changed 2304 beats"
+      ]
+    },
+    {
+      "name": "presence_modes",
+      "console_sha256": "347564315f75d36aa147f6f31aba7f660d715e531e66a9f2d025734e87de08ad",
+      "compile_sha256": "d6502f489a954abdd9d6cce2fe739c095f5dc0e8a269a7c355a075ac8b8ebd57",
+      "pass_lines": [
+        "# PASS presence modes: independent EDGE/GRAY, inclusive dual-feature bounds/deadband/conflict, incomplete core, background/one-sided guard, PPC4 weighted gray, 75-percent coverage, bubbles/missing beat, reset/FS/invalidate; locator-circle limitation recorded"
+      ]
+    },
+    {
+      "name": "isp_writer_stop",
+      "console_sha256": "0eb005c5887c3a5a1ad488c9e1991e3095495ebc21c9891b564070fa7a515092",
+      "compile_sha256": "4906912c7da3bb10ad9a7ef776e0d4d49359c8884ac4538b54509b655808b295",
+      "pass_lines": [
+        "# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual ISP full epoch: native600 rows/614400 pixels, EDGE153600 RGB beats, actual frame_good/guard completion, next early snapshots clean reason0/LP/nonzero/WS0 then clears good/new epoch"
+      ]
+    },
+    {
+      "name": "sobel_tail",
+      "console_sha256": "f0a4d6e7f2f507c79607a67035a810e4bd63d752534ef94c04cde362b10ecc43",
+      "compile_sha256": "ca017eb1b3b5b27351179f9267c7b5f274b2102f11bf7c269d0d93ee181ef446",
+      "pass_lines": [
+        "# PASS streaming-tail credit loss: partial frame rejected, no later valid output/statistics",
+        "# PASS Sobel tail: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup"
+      ]
+    },
+    {
+      "name": "sobel_view",
+      "console_sha256": "4ea94507f9c5954cf1952400d8d591afa69199ffe6b2d718b2ab2276b67549df",
+      "compile_sha256": "4cb4aa96cdd1ac9f353768b392425d1a0dc71ba7a5897a0219dc8f6d703a5bc9",
+      "pass_lines": [
+        "# PASS Sobel view: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup"
+      ]
+    },
+    {
+      "name": "observation",
+      "console_sha256": "2cf0a6a3edeb05c12277d892fa1c3b36afccb93e6ae3773416155cc40848434a",
+      "compile_sha256": "459f0646eb070eac9bb236dab531b5730d7a0380a98e02610f631248859ff1a7",
+      "pass_lines": [
+        "# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover"
+      ]
+    },
+    {
+      "name": "stop_recovery",
+      "console_sha256": "70a1c9c9c868ff9dfd20165166ae9b998c9b4db7c0d33beed8bae7a447b1d5c5",
+      "compile_sha256": "3e81958dff1b3b9c34d3f0d738bfc8dcaf57e9783fb216c4b35f6f1816437472",
+      "pass_lines": [
+        "# PASS stop recovery: real monitor, independent 50MHz reference, two window boundaries, frozen CSI mailbox, no stale rearm, fresh UNCAL statistics"
+      ]
+    },
+    {
+      "name": "display_state",
+      "console_sha256": "24fe6d66e64d1fa6ec51acaff7d541a6732490615092451e6937cc241b86e114",
+      "compile_sha256": "c55df77b92e96fb7a16e79bf003e171a84ceed47a0be53a5c9268496f2467697",
+      "pass_lines": [
+        "# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, enabled exposure/gain tuning with fresh tokens, stopped CSI, FPS recovery and reset require fresh sample"
+      ]
+    },
+    {
+      "name": "controls",
+      "console_sha256": "7672e6739466d7641c4d4ead6f9711e9cc18c044096dbcdb49f248e3e1085509",
+      "compile_sha256": "acabdc9d7dd461e20706e5e84b29f37d075f83aee06a01cc58189b237be0d68e",
+      "pass_lines": [
+        "# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload"
+      ]
+    },
+    {
+      "name": "cdc",
+      "console_sha256": "c872263574160247b8167ecd370dc758b9a40678923bcc14c3d2ebe04edc74ad",
+      "compile_sha256": "dd7a39fe402a903321173c6c69485fde82cba4b514b5f3d20df4c0c90b85b1ba",
+      "pass_lines": [
+        "# PASS CDC: asynchronous changing payload, atomic pairs, stopped clocks, reset"
+      ]
+    },
+    {
+      "name": "monitor",
+      "console_sha256": "1017ef33643fb1a467704e204b16a4b775a294f5fdd1e4f804566d4b85437952",
+      "compile_sha256": "ab48b278a2cb210cc3897aea48c4fc65f02d2f6f2d6e9a41d87b8d6bffcf1a07",
+      "pass_lines": [
+        "# PASS monitor: bubbled PPC4 input, actual dimensions, bad frame, lane edge, stopped input"
+      ]
+    },
+    {
+      "name": "csi_monitor",
+      "console_sha256": "2e0267e1c78b23c490a683ba76b09cd17e7777b8e2be03d814165eaaf1ba9575",
+      "compile_sha256": "7bc4ea040b5715eb772194c46abc290e37896bff6fa9a98ce286d3855a34374e",
+      "pass_lines": [
+        "# PASS actual CSI and RAW10 decoder feeding monitor: 1024 x 600"
+      ]
+    },
+    {
+      "name": "i2c",
+      "console_sha256": "b51e3b18ea537dc3af38f408ee44d85c9745f281417de962eabcd2a3ff2afb08",
+      "compile_sha256": "787f860874774ed71a7e346c4ea9f8686fd14e729f0dff2e2cfdc277c2834c80",
+      "pass_lines": [
+        "# PASS I2C actual bus: START, four correct bytes, ACK, STOP, NACK detection"
+      ]
+    },
+    {
+      "name": "osd",
+      "console_sha256": "10ef40760404a1fe574e64a73ec9178bc2c5a153a63bd07cc0779b2d94eaf2a8",
+      "compile_sha256": "ed01b2d634373854d7ea6ed69d36089310e96cd18a42e857356a53604a1a895d",
+      "pass_lines": [
+        "# PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values, WB actual coefficients/TUNE/LOCK/pending and frame snapshot"
+      ]
+    },
+    {
+      "name": "pack_boundary",
+      "console_sha256": "45b7bf9a73dc53097f9c9277bfaffb8f04bedaa4c9886e5cd1a1d99011933172",
+      "compile_sha256": "71c33e37bf5eff3b90cb34b3fbea3ae366b97aeda73385cde87d6f359fea85e0",
+      "pass_lines": [
+        "# PASS pack boundary characterization: valid gaps preserve bytes; reset and early FS discard partial groups"
+      ]
+    },
+    {
+      "name": "pixel_interface",
+      "console_sha256": "f8dfb8c400e37b215f27028ff2eade9b309e0526991cc480cc4cb0540305f420",
+      "compile_sha256": "5b694056b2ebdc57874035b0c04e111d55125dcbd18ea5c152e7e4d8b3ce7d11",
+      "pass_lines": [
+        "# PASS bilinear: x increases from low 32-bit lane; RGB channels and five-stage markers aligned",
+        "# PASS AWB/packing: full lines, four lanes, small input bubbles, ready-low, reset and frame restart",
+        "# PASS pixel boundary characterization; SOF alignment and incomplete-frame protection remain integration requirements"
+      ]
+    },
+    {
+      "name": "roi_guard",
+      "console_sha256": "9c293abfcefb5c0c0b7177eab5ae7d6c4a2813f6192fe83d6c19e695412b2dd4",
+      "compile_sha256": "9a81ce7539751b299a791af5cccdab52efe8ef8d9837436e277d45500fd07c97",
+      "pass_lines": [
+        "# PASS ROI guard: independent RGB math, unaligned ROI, first/last beat, completion ordering, FE collision, malformed/overrun/config/lane/overlap and recovery"
+      ]
+    },
+    {
+      "name": "roi_core",
+      "console_sha256": "70bc3ee93f4ec5afb86d0e7f98586a2fefb1d7365c2455042db8192acb54e141",
+      "compile_sha256": "d8f2da01fb0d1be998b62341612decae140192a9766a52c09ee481606d7ebe75",
+      "pass_lines": [
+        "# PASS core ROI: 6400 pixels, independent sum/mean/min/max, outside black/white unchanged, full-scale and bubbles"
+      ]
+    },
+    {
+      "name": "classifier",
+      "console_sha256": "f13033bb8b8af9ca9eabd3249a0cbfc99ab255a5e1fc7f5595c4b106218bae5a",
+      "compile_sha256": "5664567cf2997844fb0a5db0ec49d279a692c0813da11cfdab7ce8b26729d77b",
+      "pass_lines": [
+        "# PASS classifier: T58 historical readings/boundary, independent 128-pixel sums, both polarities/equality/0/255, bubbles/outside/specular, UNCAL/rearm/FS/config/lane/truncation/reset/recovery and 27-bit CDC"
+      ]
+    },
+    {
+      "name": "roi_chain",
+      "console_sha256": "840018bb8af64a152651ebf34b842a9c2d99ac9f023116f6ff85f4ff10c0cce4",
+      "compile_sha256": "45492bbb78667176853288645cd87a0c8511b17a1741b17f2923fb8029641f88",
+      "pass_lines": [
+        "# PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection, WB mid-frame sample invalidation without video loss and recovery"
+      ]
+    }
+  ],
+  "rollback_sha256": "a93d219750d3d76564a4677895f63c8f3b811277fcc8007a9828f38c4608a379",
+  "prior_evidence_copies": 517
+}

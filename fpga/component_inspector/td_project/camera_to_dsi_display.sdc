@@ -43,9 +43,6 @@ set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/ack}] -to [g
 set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/payload*}] -to [get_regs {u_camera_receive/D_data*}]
 set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/req}] -to [get_regs {u_camera_receive/req_sync[0]}]
 set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/ack}] -to [get_regs {u_camera_receive/ack_sync[0]}]
-set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/payload*}] -to [get_regs {u_roi_display/D_data*}]
-set_max_delay -datapath_only 19.0 -from [get_regs {u_roi_display/req}] -to [get_regs {u_roi_display/req_sync[0]}]
-set_max_delay -datapath_only 8.0 -from [get_regs {u_roi_display/ack}] -to [get_regs {u_roi_display/ack_sync[0]}]
 
 # SW levels feed only the first synchronizer in the independent 50MHz domain.
 set_false_path -from [get_ports {I_switch[*]}]
@@ -63,3 +60,16 @@ set_max_delay -datapath_only 14.0 -from [get_regs {u_transport_display/ack}] -to
 set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]
 set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]
 set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]
+
+# Complete-frame metadata uses the existing held-payload CDC protocol.
+set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/payload*}] -to [get_regs {*crossing/D_data*}]
+set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/req}] -to [get_regs {*crossing/req_sync[0]}]
+set_max_delay -datapath_only 8.0 -from [get_regs {*crossing/ack}] -to [get_regs {*crossing/ack_sync[0]}]
+set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/payload*}] -to [get_regs {u_active_frame_display/D_data*}]
+set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/req}] -to [get_regs {u_active_frame_display/req_sync[0]}]
+set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}] -to [get_regs {u_active_frame_display/ack_sync[0]}]
+
+# Read-only writer publishing diagnostics use the same held-payload mailbox.
+set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/payload*}] -to [get_regs {u_publish_display/D_data*}]
+set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/req}] -to [get_regs {u_publish_display/req_sync[0]}]
+set_max_delay -datapath_only 14.0 -from [get_regs {u_publish_display/ack}] -to [get_regs {u_publish_display/ack_sync[0]}]

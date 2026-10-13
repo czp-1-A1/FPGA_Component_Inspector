@@ -1,0 +1,38 @@
+{
+  "purpose": "3528_AUTO4_multi_pocket_experiment_v1",
+  "td_version": "6.2.168116",
+  "base_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "source_commit": null,
+  "source_snapshot": "开发实施/验收记录/20261012_B多穴动态标注_轮次1/source_snapshot",
+  "build_root": "tmp/multi_pocket_r5_td_20261012",
+  "release": {
+    "path": "fpga/component_inspector/release/multi_pocket_experiment_v1_20261012/camera_to_dsi_display.bit",
+    "bytes": 1789539,
+    "sha256": "c4b156ca50af70564c1b6c597a91a741710c7ccf98af6f7d9d8d46a8833a4c52"
+  },
+  "validation_record": "开发实施/验收记录/20261012_B多穴动态标注_轮次1.md",
+  "fresh_tests": [
+    "multi_pockets",
+    "isp_multi",
+    "multi_metadata",
+    "multi_writer",
+    "multi_osd",
+    "tracking_osd",
+    "tracking_late",
+    "tracking_status",
+    "tracking_age",
+    "tracking",
+    "dynamic_sobel",
+    "frame_metadata",
+    "wb_controls",
+    "manual_wb",
+    "wb_epoch",
+    "presence_modes",
+    "sobel_tail",
+    "sobel_view",
+    "roi_chain",
+    "isp_metadata_stop",
+    "isp_writer_stop"
+  ],
+  "onsite": "PENDING"
+}

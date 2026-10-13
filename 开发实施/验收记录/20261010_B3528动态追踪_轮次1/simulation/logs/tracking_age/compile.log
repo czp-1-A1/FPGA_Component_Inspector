@@ -1,0 +1,21 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 11:34:57 on Oct 10,2026
+vlog -work test_tracking_age ../user_source/hdl_source/tape_hole_tracker.v 
+-- Compiling module hole_scanline
+-- Compiling module tracking_frame_age
+-- Compiling module tape_hole_tracker
+
+Top level modules:
+	tracking_frame_age
+	tape_hole_tracker
+End time: 11:34:57 on Oct 10,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 11:34:57 on Oct 10,2026
+vlog -sv -work test_tracking_age tb_tracking_age.v 
+-- Compiling module tb_tracking_age
+
+Top level modules:
+	tb_tracking_age
+End time: 11:34:57 on Oct 10,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

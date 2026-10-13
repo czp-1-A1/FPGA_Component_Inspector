@@ -1,0 +1,1872 @@
+{
+  "status": "PASS_logic_and_build_only",
+  "build_root": "tmp/tracking_black_fix_r2_td_20261011",
+  "input_count": 210,
+  "source_entries": 70,
+  "changed_production_inputs": [
+    "user_source/hdl_source/isp/isp_top.v"
+  ],
+  "timing": {
+    "setup_wns_ns": 0.28,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.49
+  },
+  "resources": {
+    "slice_used": 13463,
+    "slice_total": 21216,
+    "slice_percent": 63.46,
+    "eram_used": 48,
+    "eram_total": 108,
+    "eram_percent": 44.44,
+    "dsp_used": 8,
+    "dsp_total": 40,
+    "dsp_percent": 20.0,
+    "lut6_used": 11304,
+    "reg_used": 13669
+  },
+  "canonical_max_delays": [
+    {
+      "total": 312,
+      "dominated": 120,
+      "shadowed": 192,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_clocks {mipi_rx_ck_pad MIPI_RX_BYTE_CLK sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}]"
+    },
+    {
+      "total": 191,
+      "dominated": 6,
+      "shadowed": 185,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]"
+    },
+    {
+      "total": 11,
+      "dominated": 1,
+      "shadowed": 10,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {MIPI_RX_BYTE_CLK}]"
+    },
+    {
+      "total": 183,
+      "dominated": 96,
+      "shadowed": 87,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_clocks {MIPI_RX_BYTE_CLK}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]"
+    },
+    {
+      "total": 89,
+      "dominated": 2,
+      "shadowed": 87,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {MIPI_RX_BYTE_CLK}]"
+    },
+    {
+      "total": 322,
+      "dominated": 322,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/payload*}] -to [get_regs {u_monitor_display/D_data*}]"
+    },
+    {
+      "total": 147,
+      "dominated": 147,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/payload*}] -to [get_regs {u_camera_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/req}] -to [get_regs {u_monitor_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/ack}] -to [get_regs {u_monitor_display/ack_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/req}] -to [get_regs {u_camera_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/ack}] -to [get_regs {u_camera_display/ack_sync[0]}]"
+    },
+    {
+      "total": 131,
+      "dominated": 131,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/payload*}] -to [get_regs {u_camera_receive/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/req}] -to [get_regs {u_camera_receive/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/ack}] -to [get_regs {u_camera_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 36,
+      "dominated": 36,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/payload*}] -to [get_regs {u_observation_receive/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/req}] -to [get_regs {u_observation_receive/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_receive/ack}] -to [get_regs {u_observation_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 36,
+      "dominated": 36,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/payload*}] -to [get_regs {u_observation_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/req}] -to [get_regs {u_observation_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/ack}] -to [get_regs {u_observation_display/ack_sync[0]}]"
+    },
+    {
+      "total": 34,
+      "dominated": 34,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/payload*}] -to [get_regs {u_transport_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/req}] -to [get_regs {u_transport_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 0,
+      "shadowed": 1,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_transport_display/ack}] -to [get_regs {u_transport_display/ack_sync[0]}]"
+    },
+    {
+      "total": 168,
+      "dominated": 168,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]"
+    },
+    {
+      "total": 958,
+      "dominated": 958,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/payload*}] -to [get_regs {*crossing/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/req}] -to [get_regs {*crossing/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {*crossing/ack}] -to [get_regs {*crossing/ack_sync[0]}]"
+    },
+    {
+      "total": 316,
+      "dominated": 316,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/payload*}] -to [get_regs {u_active_frame_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/req}] -to [get_regs {u_active_frame_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}] -to [get_regs {u_active_frame_display/ack_sync[0]}]"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 8.588"
+    },
+    {
+      "total": 18,
+      "dominated": 18,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 14.700"
+    }
+  ],
+  "warnings": {
+    "syn_1": {
+      "lines": 124,
+      "prior_lines": 124,
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "lines": 10,
+      "prior_lines": 10,
+      "added": [],
+      "removed": []
+    }
+  },
+  "coverage_summary": [
+    "1. checking no clock(0) (HIGH)",
+    "2. checking clock definition(0) (HIGH)",
+    "3. checking dummy node(4) (HIGH)",
+    "4. checking invalid constraint(0) (HIGH)",
+    "5. checking pll/clock buffer clock constraints(7) (HIGH)",
+    "6. checking combinational loops(0) (HIGH)",
+    "7. checking soft fifo timing exception constraints(0) (HIGH)",
+    "8. checking no path constraints(0) (MEDIUM)",
+    "9. checking shadowed/ignored timing exception constraints(9) (MEDIUM)",
+    "10. checking no input delay(39) (MEDIUM)",
+    "11. checking no output delay(63) (MEDIUM)",
+    "12. checking partial input delay(1) (MEDIUM)",
+    "13. checking partial output delay(0) (MEDIUM)",
+    "14. checking abnormal input delay(0) (MEDIUM)"
+  ],
+  "prior_coverage_summary": [
+    "1. checking no clock(0) (HIGH)",
+    "2. checking clock definition(0) (HIGH)",
+    "3. checking dummy node(4) (HIGH)",
+    "4. checking invalid constraint(0) (HIGH)",
+    "5. checking pll/clock buffer clock constraints(7) (HIGH)",
+    "6. checking combinational loops(0) (HIGH)",
+    "7. checking soft fifo timing exception constraints(0) (HIGH)",
+    "8. checking no path constraints(0) (MEDIUM)",
+    "9. checking shadowed/ignored timing exception constraints(9) (MEDIUM)",
+    "10. checking no input delay(39) (MEDIUM)",
+    "11. checking no output delay(63) (MEDIUM)",
+    "12. checking partial input delay(1) (MEDIUM)",
+    "13. checking partial output delay(0) (MEDIUM)",
+    "14. checking abnormal input delay(0) (MEDIUM)"
+  ],
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "20149f678aabd974d80d2bfec9a15bf2f7225eca0feb031a7f791f1de9a662e9"
+  },
+  "tests": [
+    {
+      "name": "tracking_late",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/tape_hole_tracker.v",
+          "sha256": "42ca6d1236a02a76c3fdbac49433461419df4f1265e707233289534a519ffcd5"
+        },
+        {
+          "path": "user_source/hdl_source/roi_statistics.v",
+          "sha256": "b8cfc127c97bfea9cfb5869ae387a1beb9a36812e92009955ded59fe74d1d9ae"
+        },
+        {
+          "path": "sim/tb_tracking_late.v",
+          "sha256": "3a9e02764857505c46d6fb2d8a5a503a55bdeb96e38bf1f27538e5af7785b707"
+        }
+      ],
+      "console_sha256": "48723ff569df31148ec8dbd9bbadc15c034b1361aab72f2e8bbd6e0d19c9b6f9",
+      "compile_sha256": "203becdac409bab640b1a34b7642f081c43f9a5005bea42bc1d824fac0d9cfe8",
+      "pass_lines": [
+        "# PASS tracking late: frame-held ROI, independent 6400-pixel statistics, bounded +/-4 motion, empty, pause, occlusion, over-speed, shape and invalidation"
+      ]
+    },
+    {
+      "name": "tracking_status",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/tape_hole_tracker.v",
+          "sha256": "42ca6d1236a02a76c3fdbac49433461419df4f1265e707233289534a519ffcd5"
+        },
+        {
+          "path": "sim/tb_tracking_status.v",
+          "sha256": "0def29e41b0c637d16f7ec4edb06305649f9e1f0e8c6446a8045019c6213babe"
+        }
+      ],
+      "console_sha256": "be48aea264d970345c978ee57473dacffbda4d9fd5fc753b3968da65734dd4ba",
+      "compile_sha256": "6a2d3bb284655aba6652023caff1c1fdf3c40f801b13b003a1803f8a1c51b31a",
+      "pass_lines": [
+        "# PASS tracking status: all 4096 gate/reason/class combinations, valid and invalid priorities"
+      ]
+    },
+    {
+      "name": "isp_tracking_late",
+      "execution": "fresh_R2",
+      "source": "tmp/tracking_black_fix_r2_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/isp/uial2axis.v",
+          "sha256": "8cd4d98799da50285bc381c16405aeb55eb4d28363e20b33836542a32539610e"
+        },
+        {
+          "path": "user_source/hdl_source/isp/isp_top.v",
+          "sha256": "5ada1e1eec9c27d21f09d0f9fbac6d92b7b76c3c3ef63f51de25b2abb403f5d7"
+        },
+        {
+          "path": "user_source/hdl_source/tape_hole_tracker.v",
+          "sha256": "42ca6d1236a02a76c3fdbac49433461419df4f1265e707233289534a519ffcd5"
+        },
+        {
+          "path": "user_source/hdl_source/roi_frame_guard.v",
+          "sha256": "482a7679bd3c73b4b0738748e5f9e068e15fa319380f1a0c07ad5fc1d6b51669"
+        },
+        {
+          "path": "user_source/hdl_source/roi_statistics.v",
+          "sha256": "b8cfc127c97bfea9cfb5869ae387a1beb9a36812e92009955ded59fe74d1d9ae"
+        },
+        {
+          "path": "user_source/hdl_source/roi_classifier.v",
+          "sha256": "eaa4eeae4c8945dea247d43165890fc056e80a7bd3f8d51812d9eefcbbb0dfa4"
+        },
+        {
+          "path": "user_source/hdl_source/roi_mode_classifier.v",
+          "sha256": "d2e3192285db281ed67b4ea90681945773fa623d743f793d527e5c8e3892920a"
+        },
+        {
+          "path": "user_source/hdl_source/roi_tape_guard.v",
+          "sha256": "2092ae3f7f383ba516c696516f147b3178f18442969e6f0dff139bf93c53e9ea"
+        },
+        {
+          "path": "user_source/hdl_source/roi_result_snapshot.v",
+          "sha256": "13ab4a3ef1332c3e390f47c073a8e2ad65ffc49e8e3aaf90acd1ff54576b4e6c"
+        },
+        {
+          "path": "user_source/hdl_source/roi_sobel_view.v",
+          "sha256": "13df2c8ead187ebf4c766f14f395a0e800d34063a2d6502e8ed064374c4619d3"
+        },
+        {
+          "path": "user_source/hdl_source/roi_observation_snapshot.v",
+          "sha256": "7513e3013a408f7b60ca0a6cdbdb01152f06396557feb1b07a0054d920a15b2b"
+        },
+        {
+          "path": "user_source/hdl_source/awb.v",
+          "sha256": "b5e9283ee19ad49ac7457081dcb96dc9c9d5ee7264fbfdc925226e2231276fc6"
+        },
+        {
+          "path": "user_source/hdl_source/signal_delay.v",
+          "sha256": "9576d5363a1a0926fb28b8d9f372403aeaf03df684eb61a3877e3d2518868aee"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data128_96/data128_96.v",
+          "sha256": "b6acceb73cc76058d4afe6ec593360bae6701646fdda780a9264ada3befd5318"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+          "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v",
+          "sha256": "95ff3eaa0e99fd1dbe63c153164e36faa1a97b19d071e4a0b0bb3936287f22d4"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v",
+          "sha256": "28f19502f5a70b48e9bdeeaddcb84500052b7bd0c6e15b4da1ea9899265577c3"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v",
+          "sha256": "52339158d2f0446b8cbfff211365e9197fc6061f82c1cd2cd1bc5481aa04adae"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v",
+          "sha256": "92270402b98e0177199708de3303d5f0eccfec0e72ecf394d2aa0dbdaa9418e5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v",
+          "sha256": "b77e678034af9968d0969655f403cac3b992412b109dba889e8ccb3f6f224975"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v",
+          "sha256": "53a4fc3dea805d59cee9bdab1a090c26c03eb555ab612a1a4698d810c1991baf"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.v",
+          "sha256": "f52e1a6ef3da30b6b5342ed21fffc1651b9d0574fd3331215dbc0fb21476b83f"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v",
+          "sha256": "4c007b82769a2af9474683ec27711133c735ac776fd1f3d037d4eb00cc20a832"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.v",
+          "sha256": "c6b2064638cf7217b792e8f880840f46151a1c83158dd6e96d8d4c63631432bd"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v",
+          "sha256": "facbb17d5cf7aa37e7cb63764780c2c7acc655ff421a766701c656adbb9f8c26"
+        },
+        {
+          "path": "user_source/ip_source/divider/divider_gate.v",
+          "sha256": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+          "sha256": "7cab7914392384bcc93a3daefe1dc038fc5cd88ac8f4306532fabb71740da93e"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+          "sha256": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785"
+        },
+        {
+          "path": "sim/tb_isp_tracking_late.v",
+          "sha256": "57f4b65fec2bee6879d6eb4737f5682a949ab219e6fd97c8513b5019a4dd4d4e"
+        }
+      ],
+      "console_sha256": "5b1f947a4c4e7b8f3a8c67db4e035218024c41f052bdc56c1612b4dc3f8fc51e",
+      "compile_sha256": "15c96842c9609d21db62aa8d704afe2796a7b99881931b31c36dbd1f24531f62",
+      "pass_lines": [
+        "# PASS actual ISP tracking late: RAW10/vendor RAM/full frames, frame-held moving ROI with current-frame lower-hole verification, four views, empty, lost/recovery, coherent metadata"
+      ]
+    },
+    {
+      "name": "tracking_age",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/tape_hole_tracker.v",
+          "sha256": "42ca6d1236a02a76c3fdbac49433461419df4f1265e707233289534a519ffcd5"
+        },
+        {
+          "path": "sim/tb_tracking_age.v",
+          "sha256": "cb366046225c20b57a93aa686a58abb5e8fcdc9611afaa3970e9482f2d176a38"
+        }
+      ],
+      "console_sha256": "7a6d9904484532f530528379edabd1ad55712c451135f0e32ed3e34581184822",
+      "compile_sha256": "4febc6e7b304b8b9320a82eec614c10f90743cbd156d00bfdb295e82608d971f",
+      "pass_lines": [
+        "# PASS tracking age: new slot, repeated-frame timeout, invalidation and recovery"
+      ]
+    },
+    {
+      "name": "isp_tracking",
+      "execution": "fresh_R2",
+      "source": "tmp/tracking_black_fix_r2_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/isp/uial2axis.v",
+          "sha256": "8cd4d98799da50285bc381c16405aeb55eb4d28363e20b33836542a32539610e"
+        },
+        {
+          "path": "user_source/hdl_source/isp/isp_top.v",
+          "sha256": "5ada1e1eec9c27d21f09d0f9fbac6d92b7b76c3c3ef63f51de25b2abb403f5d7"
+        },
+        {
+          "path": "user_source/hdl_source/tape_hole_tracker.v",
+          "sha256": "42ca6d1236a02a76c3fdbac49433461419df4f1265e707233289534a519ffcd5"
+        },
+        {
+          "path": "user_source/hdl_source/roi_frame_guard.v",
+          "sha256": "482a7679bd3c73b4b0738748e5f9e068e15fa319380f1a0c07ad5fc1d6b51669"
+        },
+        {
+          "path": "user_source/hdl_source/roi_statistics.v",
+          "sha256": "b8cfc127c97bfea9cfb5869ae387a1beb9a36812e92009955ded59fe74d1d9ae"
+        },
+        {
+          "path": "user_source/hdl_source/roi_classifier.v",
+          "sha256": "eaa4eeae4c8945dea247d43165890fc056e80a7bd3f8d51812d9eefcbbb0dfa4"
+        },
+        {
+          "path": "user_source/hdl_source/roi_mode_classifier.v",
+          "sha256": "d2e3192285db281ed67b4ea90681945773fa623d743f793d527e5c8e3892920a"
+        },
+        {
+          "path": "user_source/hdl_source/roi_tape_guard.v",
+          "sha256": "2092ae3f7f383ba516c696516f147b3178f18442969e6f0dff139bf93c53e9ea"
+        },
+        {
+          "path": "user_source/hdl_source/roi_result_snapshot.v",
+          "sha256": "13ab4a3ef1332c3e390f47c073a8e2ad65ffc49e8e3aaf90acd1ff54576b4e6c"
+        },
+        {
+          "path": "user_source/hdl_source/roi_sobel_view.v",
+          "sha256": "13df2c8ead187ebf4c766f14f395a0e800d34063a2d6502e8ed064374c4619d3"
+        },
+        {
+          "path": "user_source/hdl_source/roi_observation_snapshot.v",
+          "sha256": "7513e3013a408f7b60ca0a6cdbdb01152f06396557feb1b07a0054d920a15b2b"
+        },
+        {
+          "path": "user_source/hdl_source/awb.v",
+          "sha256": "b5e9283ee19ad49ac7457081dcb96dc9c9d5ee7264fbfdc925226e2231276fc6"
+        },
+        {
+          "path": "user_source/hdl_source/signal_delay.v",
+          "sha256": "9576d5363a1a0926fb28b8d9f372403aeaf03df684eb61a3877e3d2518868aee"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data128_96/data128_96.v",
+          "sha256": "b6acceb73cc76058d4afe6ec593360bae6701646fdda780a9264ada3befd5318"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+          "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v",
+          "sha256": "95ff3eaa0e99fd1dbe63c153164e36faa1a97b19d071e4a0b0bb3936287f22d4"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v",
+          "sha256": "28f19502f5a70b48e9bdeeaddcb84500052b7bd0c6e15b4da1ea9899265577c3"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v",
+          "sha256": "52339158d2f0446b8cbfff211365e9197fc6061f82c1cd2cd1bc5481aa04adae"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v",
+          "sha256": "92270402b98e0177199708de3303d5f0eccfec0e72ecf394d2aa0dbdaa9418e5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v",
+          "sha256": "b77e678034af9968d0969655f403cac3b992412b109dba889e8ccb3f6f224975"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v",
+          "sha256": "53a4fc3dea805d59cee9bdab1a090c26c03eb555ab612a1a4698d810c1991baf"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.v",
+          "sha256": "f52e1a6ef3da30b6b5342ed21fffc1651b9d0574fd3331215dbc0fb21476b83f"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v",
+          "sha256": "4c007b82769a2af9474683ec27711133c735ac776fd1f3d037d4eb00cc20a832"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.v",
+          "sha256": "c6b2064638cf7217b792e8f880840f46151a1c83158dd6e96d8d4c63631432bd"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v",
+          "sha256": "facbb17d5cf7aa37e7cb63764780c2c7acc655ff421a766701c656adbb9f8c26"
+        },
+        {
+          "path": "user_source/ip_source/divider/divider_gate.v",
+          "sha256": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+          "sha256": "7cab7914392384bcc93a3daefe1dc038fc5cd88ac8f4306532fabb71740da93e"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+          "sha256": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785"
+        },
+        {
+          "path": "sim/tb_isp_tracking.v",
+          "sha256": "bcf7d773b4ea55bf4c33e879b60f1dd65a010dbdff39c84882549cdaff20a085"
+        }
+      ],
+      "console_sha256": "5286b22b595b8d07a1abd3ca9a3283a6dfa30a585e7a01c8c4cf18b2bec70771",
+      "compile_sha256": "7151e94b5de6bd9607257e7b7f1ed57250489bc199c5be34d816ef34d2bbe038",
+      "pass_lines": [
+        "# PASS actual ISP tracking: RAW10/vendor RAM/full frames, same-frame moving ROI, four views, empty, lost/recovery, coherent metadata"
+      ]
+    },
+    {
+      "name": "tracking_osd",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/bin16_bcd.v",
+          "sha256": "e8ac13eaa52618336a3475f74cc5f19b725d8440061774f0d3ffbd1027fee4e5"
+        },
+        {
+          "path": "user_source/hdl_source/osd_ascii_rom.v",
+          "sha256": "c084869524e0ebfc4c9d002bb6f3b14d212d6bca88ed097216347f10dceff754"
+        },
+        {
+          "path": "user_source/hdl_source/osd_cjk_rom.v",
+          "sha256": "5e86cb3f5a752cf3bf812c17f38844dc4e54afd2a09fb7c615c29db9de3d979d"
+        },
+        {
+          "path": "user_source/hdl_source/osd_logo_rom.v",
+          "sha256": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1"
+        },
+        {
+          "path": "user_source/hdl_source/experiment_osd.v",
+          "sha256": "d42112168d0bbba2cf76ffb2fe887b79295e99723e6e3fcc80fd5bb2461bc147"
+        },
+        {
+          "path": "sim/tb_tracking_osd.v",
+          "sha256": "81af0f95747ed25173cfe61bc35971d3ea50dcf6e6f83723b0472e9113785708"
+        }
+      ],
+      "console_sha256": "af66d62d3c5e52acb05b73e78efa35d9ed1bd023e001522032f4deae063b19eb",
+      "compile_sha256": "2f6e433b62d614d535ec84371c694248dca5e79ad09f0ccd2eb7743d815350ce",
+      "pass_lines": [
+        "# PASS tracking OSD: post-VS slot metadata, complete rasters, moving box, no mid-frame jump, lost target hides box"
+      ]
+    },
+    {
+      "name": "tracking",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/tape_hole_tracker.v",
+          "sha256": "42ca6d1236a02a76c3fdbac49433461419df4f1265e707233289534a519ffcd5"
+        },
+        {
+          "path": "user_source/hdl_source/roi_statistics.v",
+          "sha256": "b8cfc127c97bfea9cfb5869ae387a1beb9a36812e92009955ded59fe74d1d9ae"
+        },
+        {
+          "path": "sim/tb_tracking.v",
+          "sha256": "09d9b69781a84d6ba4d73bd163de9cf13e4ee898bf0577f22eb3f18c012f9668"
+        }
+      ],
+      "console_sha256": "8f8f9562dd36d8673a8b54d5b6cff90617c6a491d2dfa961a0d8b659eb653dbe",
+      "compile_sha256": "b3c11189e021693162a5c57bab06196f31e02036133d91c2d6fe918ed907ab20",
+      "pass_lines": [
+        "# PASS tracking: same-frame bidirectional ROI, empty pocket, pause, occlusion, excessive step, recovery, invalidation"
+      ]
+    },
+    {
+      "name": "dynamic_sobel",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/roi_sobel_view.v",
+          "sha256": "13df2c8ead187ebf4c766f14f395a0e800d34063a2d6502e8ed064374c4619d3"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+          "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+        },
+        {
+          "path": "sim/tb_dynamic_sobel.v",
+          "sha256": "3f6432f23c4a19cf4a61e6e2520ca88c7d18bda5fef4e091cb15dc1bdb261d94"
+        }
+      ],
+      "console_sha256": "19dadde90ae067eb2ee16c69785f12bf9a23aae061a09218b7157bc4ca387944",
+      "compile_sha256": "9c09bc60ee56ede7d9d67679e622f794519b0003c06aebf59393883d25f73ae6",
+      "pass_lines": [
+        "# PASS dynamic Sobel: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup"
+      ]
+    },
+    {
+      "name": "frame_metadata",
+      "execution": "fresh_R2",
+      "source": "tmp/tracking_black_fix_r2_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "user_source/hdl_source/video_in.v",
+          "sha256": "d5f44b7352c2cbdd3d59e0b83cb382b4a45db922b0cc6f23690c860998aba068"
+        },
+        {
+          "path": "user_source/hdl_source/video_out.v",
+          "sha256": "c512bd746d38e99f7c56fc3a6a95d71cca377ef22a242a5b89109ab9127fec93"
+        },
+        {
+          "path": "user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v",
+          "sha256": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4"
+        },
+        {
+          "path": "user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v",
+          "sha256": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751"
+        },
+        {
+          "path": "sim/tb_frame_metadata.v",
+          "sha256": "c4f1d7fc6a79923103ab5a9eb86425b3d8c4a8af5ca601f439252ae6b155b585"
+        }
+      ],
+      "console_sha256": "9bea9a61f41abea5b9923b0699b291319f826f4134b48f5eff53baddcf4414eb",
+      "compile_sha256": "c78195ba79c467085b222dfa67eba19495f2a0c71eea3f4eaaecc5002fdf0b3e",
+      "pass_lines": [
+        "# PASS frame metadata: epoch gating, late result, protected old active slot, atomic new slot, bad capture"
+      ]
+    },
+    {
+      "name": "wb_controls",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/uiisp_beta/ae_set.v",
+          "sha256": "63a759f6f30b129518e38639f26a042cb9faa75e623581be63021b239314636a"
+        },
+        {
+          "path": "sim/tb_wb_controls.v",
+          "sha256": "f10c632438d250ae255059bd652d0ebc209673139c6e12d4db2b92902d9e4735"
+        }
+      ],
+      "console_sha256": "3c168eeaa9bb6760ee4d2a58d7039b533a9fbf0d7de4148b14b9fbc63a788612",
+      "compile_sha256": "423c7d47c90b997b2eb44e4da1486e5f2e0f128cf7f654bd3eb94b862ffba704",
+      "pass_lines": [
+        "# PASS WB controls: staggered/short/long chords, one toggle per release, four keys, no camera writes in WB, debounce, repeat, both clamps, epoch and normal controls restored"
+      ]
+    },
+    {
+      "name": "manual_wb",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/awb.v",
+          "sha256": "b5e9283ee19ad49ac7457081dcb96dc9c9d5ee7264fbfdc925226e2231276fc6"
+        },
+        {
+          "path": "user_source/hdl_source/signal_delay.v",
+          "sha256": "9576d5363a1a0926fb28b8d9f372403aeaf03df684eb61a3877e3d2518868aee"
+        },
+        {
+          "path": "user_source/ip_source/divider/divider_gate.v",
+          "sha256": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+          "sha256": "7cab7914392384bcc93a3daefe1dc038fc5cd88ac8f4306532fabb71740da93e"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+          "sha256": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785"
+        },
+        {
+          "path": "sim/tb_manual_wb.v",
+          "sha256": "db7cfd57293e5b74192336a2989c678f3098774704e22ff948f64c6314a36fa4"
+        }
+      ],
+      "console_sha256": "8340f223b9b871cfdcf21c0b0625c3b2073431c74cfe00220d2e163b63869973",
+      "compile_sha256": "8decb4965a9d46efaccdc6b10dc8c3c562ecbfe182aec5f4a062391e70ff60c3",
+      "pass_lines": [
+        "# PASS manual WB: independent Q2.6 arithmetic/clipping, four lanes, first pixel, bubbles, ready-low, EOL, pending requests held until next frame and reset"
+      ]
+    },
+    {
+      "name": "wb_epoch",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "user_source/hdl_source/roi_observation_snapshot.v",
+          "sha256": "7513e3013a408f7b60ca0a6cdbdb01152f06396557feb1b07a0054d920a15b2b"
+        },
+        {
+          "path": "user_source/hdl_source/roi_display_state.v",
+          "sha256": "248c1372e983f676b5209852f17540a9ce3cae2bdbc70efe2fb4a772d7d59ad2"
+        },
+        {
+          "path": "sim/tb_wb_epoch.v",
+          "sha256": "ecb23c920b4a64bbe2b5a646dd88d32a034ddcbee4bcbda7428160e743421441"
+        }
+      ],
+      "console_sha256": "53b1de2dc45cc466de1eeb22e827088faf804323c4fb6c94ddc8195036656589",
+      "compile_sha256": "575582c897ccf6505138b516f92087f7340ae95f3d504c6b493ee9a4235f3935",
+      "pass_lines": [
+        "# PASS WB epoch: coherent held request/result, invalidation, change-away/back with stopped CSI, recovery, epoch wrap and fresh-token requirement"
+      ]
+    },
+    {
+      "name": "fixed_wb",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/awb.v",
+          "sha256": "b5e9283ee19ad49ac7457081dcb96dc9c9d5ee7264fbfdc925226e2231276fc6"
+        },
+        {
+          "path": "user_source/hdl_source/signal_delay.v",
+          "sha256": "9576d5363a1a0926fb28b8d9f372403aeaf03df684eb61a3877e3d2518868aee"
+        },
+        {
+          "path": "user_source/ip_source/divider/divider_gate.v",
+          "sha256": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+          "sha256": "7cab7914392384bcc93a3daefe1dc038fc5cd88ac8f4306532fabb71740da93e"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+          "sha256": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785"
+        },
+        {
+          "path": "sim/tb_fixed_wb.v",
+          "sha256": "7784d39300eaec56dfbab7a71c52cebf3783e3e248912ee20ea19e6260ea0a9f"
+        }
+      ],
+      "console_sha256": "c14adef8bbf43bac7259e5dafacc18e53d45b734c429ef0cb364b941411e33d9",
+      "compile_sha256": "c07bafda83a2442a53dce2ffacf349d61c1fe6c5093a5c73793680cb24a1f050",
+      "pass_lines": [
+        "# PASS fixed WB frame case=0 scene=0 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB frame case=1 scene=1 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB frame case=3 scene=0 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB: colored-background invariance, fixed non-unity gains/clipping, four lanes, bubbles, reset, line tails, ready-low; automatic reference changed 2304 beats"
+      ]
+    },
+    {
+      "name": "presence_modes",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/roi_mode_classifier.v",
+          "sha256": "d2e3192285db281ed67b4ea90681945773fa623d743f793d527e5c8e3892920a"
+        },
+        {
+          "path": "user_source/hdl_source/roi_tape_guard.v",
+          "sha256": "2092ae3f7f383ba516c696516f147b3178f18442969e6f0dff139bf93c53e9ea"
+        },
+        {
+          "path": "user_source/hdl_source/roi_classifier.v",
+          "sha256": "eaa4eeae4c8945dea247d43165890fc056e80a7bd3f8d51812d9eefcbbb0dfa4"
+        },
+        {
+          "path": "user_source/hdl_source/roi_result_snapshot.v",
+          "sha256": "13ab4a3ef1332c3e390f47c073a8e2ad65ffc49e8e3aaf90acd1ff54576b4e6c"
+        },
+        {
+          "path": "user_source/hdl_source/roi_display_state.v",
+          "sha256": "248c1372e983f676b5209852f17540a9ce3cae2bdbc70efe2fb4a772d7d59ad2"
+        },
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "sim/tb_presence_modes.v",
+          "sha256": "9537a89c493effeff9290e17cfc7f32fcbe00f0ddf5ef5addd9f3bb939d0a650"
+        }
+      ],
+      "console_sha256": "347564315f75d36aa147f6f31aba7f660d715e531e66a9f2d025734e87de08ad",
+      "compile_sha256": "d6502f489a954abdd9d6cce2fe739c095f5dc0e8a269a7c355a075ac8b8ebd57",
+      "pass_lines": [
+        "# PASS presence modes: independent EDGE/GRAY, inclusive dual-feature bounds/deadband/conflict, incomplete core, background/one-sided guard, PPC4 weighted gray, 75-percent coverage, bubbles/missing beat, reset/FS/invalidate; locator-circle limitation recorded"
+      ]
+    },
+    {
+      "name": "isp_metadata_stop",
+      "execution": "fresh_R3",
+      "source": "tmp/tracking_black_fix_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/isp/uial2axis.v",
+          "sha256": "8cd4d98799da50285bc381c16405aeb55eb4d28363e20b33836542a32539610e"
+        },
+        {
+          "path": "user_source/hdl_source/isp/isp_top.v",
+          "sha256": "5ada1e1eec9c27d21f09d0f9fbac6d92b7b76c3c3ef63f51de25b2abb403f5d7"
+        },
+        {
+          "path": "user_source/hdl_source/tape_hole_tracker.v",
+          "sha256": "42ca6d1236a02a76c3fdbac49433461419df4f1265e707233289534a519ffcd5"
+        },
+        {
+          "path": "user_source/hdl_source/roi_frame_guard.v",
+          "sha256": "482a7679bd3c73b4b0738748e5f9e068e15fa319380f1a0c07ad5fc1d6b51669"
+        },
+        {
+          "path": "user_source/hdl_source/roi_statistics.v",
+          "sha256": "b8cfc127c97bfea9cfb5869ae387a1beb9a36812e92009955ded59fe74d1d9ae"
+        },
+        {
+          "path": "user_source/hdl_source/roi_classifier.v",
+          "sha256": "eaa4eeae4c8945dea247d43165890fc056e80a7bd3f8d51812d9eefcbbb0dfa4"
+        },
+        {
+          "path": "user_source/hdl_source/roi_mode_classifier.v",
+          "sha256": "d2e3192285db281ed67b4ea90681945773fa623d743f793d527e5c8e3892920a"
+        },
+        {
+          "path": "user_source/hdl_source/roi_tape_guard.v",
+          "sha256": "2092ae3f7f383ba516c696516f147b3178f18442969e6f0dff139bf93c53e9ea"
+        },
+        {
+          "path": "user_source/hdl_source/roi_result_snapshot.v",
+          "sha256": "13ab4a3ef1332c3e390f47c073a8e2ad65ffc49e8e3aaf90acd1ff54576b4e6c"
+        },
+        {
+          "path": "user_source/hdl_source/roi_sobel_view.v",
+          "sha256": "13df2c8ead187ebf4c766f14f395a0e800d34063a2d6502e8ed064374c4619d3"
+        },
+        {
+          "path": "user_source/hdl_source/roi_observation_snapshot.v",
+          "sha256": "7513e3013a408f7b60ca0a6cdbdb01152f06396557feb1b07a0054d920a15b2b"
+        },
+        {
+          "path": "user_source/hdl_source/awb.v",
+          "sha256": "b5e9283ee19ad49ac7457081dcb96dc9c9d5ee7264fbfdc925226e2231276fc6"
+        },
+        {
+          "path": "user_source/hdl_source/signal_delay.v",
+          "sha256": "9576d5363a1a0926fb28b8d9f372403aeaf03df684eb61a3877e3d2518868aee"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data128_96/data128_96.v",
+          "sha256": "b6acceb73cc76058d4afe6ec593360bae6701646fdda780a9264ada3befd5318"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+          "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v",
+          "sha256": "95ff3eaa0e99fd1dbe63c153164e36faa1a97b19d071e4a0b0bb3936287f22d4"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v",
+          "sha256": "28f19502f5a70b48e9bdeeaddcb84500052b7bd0c6e15b4da1ea9899265577c3"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v",
+          "sha256": "52339158d2f0446b8cbfff211365e9197fc6061f82c1cd2cd1bc5481aa04adae"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v",
+          "sha256": "92270402b98e0177199708de3303d5f0eccfec0e72ecf394d2aa0dbdaa9418e5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v",
+          "sha256": "b77e678034af9968d0969655f403cac3b992412b109dba889e8ccb3f6f224975"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v",
+          "sha256": "53a4fc3dea805d59cee9bdab1a090c26c03eb555ab612a1a4698d810c1991baf"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.v",
+          "sha256": "f52e1a6ef3da30b6b5342ed21fffc1651b9d0574fd3331215dbc0fb21476b83f"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v",
+          "sha256": "4c007b82769a2af9474683ec27711133c735ac776fd1f3d037d4eb00cc20a832"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.v",
+          "sha256": "c6b2064638cf7217b792e8f880840f46151a1c83158dd6e96d8d4c63631432bd"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v",
+          "sha256": "facbb17d5cf7aa37e7cb63764780c2c7acc655ff421a766701c656adbb9f8c26"
+        },
+        {
+          "path": "user_source/ip_source/divider/divider_gate.v",
+          "sha256": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+          "sha256": "7cab7914392384bcc93a3daefe1dc038fc5cd88ac8f4306532fabb71740da93e"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+          "sha256": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785"
+        },
+        {
+          "path": "user_source/hdl_source/observation_controls.v",
+          "sha256": "d7c8a26e2f9954d2b4277753b1b35c730bd5a0cddfe762a947c5a5bb8e234451"
+        },
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "user_source/hdl_source/video_in.v",
+          "sha256": "d5f44b7352c2cbdd3d59e0b83cb382b4a45db922b0cc6f23690c860998aba068"
+        },
+        {
+          "path": "user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v",
+          "sha256": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4"
+        },
+        {
+          "path": "user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v",
+          "sha256": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751"
+        },
+        {
+          "path": "sim/tb_isp_metadata_stop.v",
+          "sha256": "0930eababbdef3377aa257fa1e6723800c5a597c8c8e530692cbf75d9510891b"
+        }
+      ],
+      "console_sha256": "345edf8dc080a933327372a62098f55106e04f2d1b5970b47e55ca65620cd145",
+      "compile_sha256": "a29f354ad5424f7a28f3cb758737ca019599c5eef42fbb4da40c48906ee77554",
+      "pass_lines": [
+        "# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=4 old_reason=8 old_LP=738 old_WS=1387 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual ISP metadata stop: real RAW10/ISP/178bit mailbox/writer, short20-cycle tail, full word/epoch proof, precomputed features never publish truncated frame"
+      ]
+    },
+    {
+      "name": "isp_writer_stop",
+      "execution": "fresh_R3",
+      "source": "tmp/tracking_black_fix_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/isp/uial2axis.v",
+          "sha256": "8cd4d98799da50285bc381c16405aeb55eb4d28363e20b33836542a32539610e"
+        },
+        {
+          "path": "user_source/hdl_source/isp/isp_top.v",
+          "sha256": "5ada1e1eec9c27d21f09d0f9fbac6d92b7b76c3c3ef63f51de25b2abb403f5d7"
+        },
+        {
+          "path": "user_source/hdl_source/tape_hole_tracker.v",
+          "sha256": "42ca6d1236a02a76c3fdbac49433461419df4f1265e707233289534a519ffcd5"
+        },
+        {
+          "path": "user_source/hdl_source/roi_frame_guard.v",
+          "sha256": "482a7679bd3c73b4b0738748e5f9e068e15fa319380f1a0c07ad5fc1d6b51669"
+        },
+        {
+          "path": "user_source/hdl_source/roi_statistics.v",
+          "sha256": "b8cfc127c97bfea9cfb5869ae387a1beb9a36812e92009955ded59fe74d1d9ae"
+        },
+        {
+          "path": "user_source/hdl_source/roi_classifier.v",
+          "sha256": "eaa4eeae4c8945dea247d43165890fc056e80a7bd3f8d51812d9eefcbbb0dfa4"
+        },
+        {
+          "path": "user_source/hdl_source/roi_mode_classifier.v",
+          "sha256": "d2e3192285db281ed67b4ea90681945773fa623d743f793d527e5c8e3892920a"
+        },
+        {
+          "path": "user_source/hdl_source/roi_tape_guard.v",
+          "sha256": "2092ae3f7f383ba516c696516f147b3178f18442969e6f0dff139bf93c53e9ea"
+        },
+        {
+          "path": "user_source/hdl_source/roi_result_snapshot.v",
+          "sha256": "13ab4a3ef1332c3e390f47c073a8e2ad65ffc49e8e3aaf90acd1ff54576b4e6c"
+        },
+        {
+          "path": "user_source/hdl_source/roi_sobel_view.v",
+          "sha256": "13df2c8ead187ebf4c766f14f395a0e800d34063a2d6502e8ed064374c4619d3"
+        },
+        {
+          "path": "user_source/hdl_source/roi_observation_snapshot.v",
+          "sha256": "7513e3013a408f7b60ca0a6cdbdb01152f06396557feb1b07a0054d920a15b2b"
+        },
+        {
+          "path": "user_source/hdl_source/awb.v",
+          "sha256": "b5e9283ee19ad49ac7457081dcb96dc9c9d5ee7264fbfdc925226e2231276fc6"
+        },
+        {
+          "path": "user_source/hdl_source/signal_delay.v",
+          "sha256": "9576d5363a1a0926fb28b8d9f372403aeaf03df684eb61a3877e3d2518868aee"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data128_96/data128_96.v",
+          "sha256": "b6acceb73cc76058d4afe6ec593360bae6701646fdda780a9264ada3befd5318"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+          "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v",
+          "sha256": "95ff3eaa0e99fd1dbe63c153164e36faa1a97b19d071e4a0b0bb3936287f22d4"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v",
+          "sha256": "28f19502f5a70b48e9bdeeaddcb84500052b7bd0c6e15b4da1ea9899265577c3"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v",
+          "sha256": "52339158d2f0446b8cbfff211365e9197fc6061f82c1cd2cd1bc5481aa04adae"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v",
+          "sha256": "92270402b98e0177199708de3303d5f0eccfec0e72ecf394d2aa0dbdaa9418e5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v",
+          "sha256": "b77e678034af9968d0969655f403cac3b992412b109dba889e8ccb3f6f224975"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v",
+          "sha256": "53a4fc3dea805d59cee9bdab1a090c26c03eb555ab612a1a4698d810c1991baf"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.v",
+          "sha256": "f52e1a6ef3da30b6b5342ed21fffc1651b9d0574fd3331215dbc0fb21476b83f"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v",
+          "sha256": "4c007b82769a2af9474683ec27711133c735ac776fd1f3d037d4eb00cc20a832"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.v",
+          "sha256": "c6b2064638cf7217b792e8f880840f46151a1c83158dd6e96d8d4c63631432bd"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v",
+          "sha256": "facbb17d5cf7aa37e7cb63764780c2c7acc655ff421a766701c656adbb9f8c26"
+        },
+        {
+          "path": "user_source/ip_source/divider/divider_gate.v",
+          "sha256": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+          "sha256": "7cab7914392384bcc93a3daefe1dc038fc5cd88ac8f4306532fabb71740da93e"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+          "sha256": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785"
+        },
+        {
+          "path": "user_source/hdl_source/observation_controls.v",
+          "sha256": "d7c8a26e2f9954d2b4277753b1b35c730bd5a0cddfe762a947c5a5bb8e234451"
+        },
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "user_source/hdl_source/video_in.v",
+          "sha256": "d5f44b7352c2cbdd3d59e0b83cb382b4a45db922b0cc6f23690c860998aba068"
+        },
+        {
+          "path": "user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v",
+          "sha256": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4"
+        },
+        {
+          "path": "user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v",
+          "sha256": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751"
+        },
+        {
+          "path": "sim/tb_isp_writer_stop.v",
+          "sha256": "affa539aeeeecc9f8d6110e728aaef62abc34de53d7c62587fe6350e14945dde"
+        }
+      ],
+      "console_sha256": "5b5e4b05c97e4feda2260b5c2eb88495d88446ea8da7d6288ca617725c8a7452",
+      "compile_sha256": "e44486e8276f14fabb13599e7e461ede6caa800f92873e975b2c3d6dc12bb8d1",
+      "pass_lines": [
+        "# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual ISP full epoch: native600 rows/614400 pixels, EDGE153600 RGB beats, actual frame_good/guard completion, next early snapshots clean reason0/LP/nonzero/WS0 then clears good/new epoch"
+      ]
+    },
+    {
+      "name": "sobel_tail",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/roi_sobel_view.v",
+          "sha256": "13df2c8ead187ebf4c766f14f395a0e800d34063a2d6502e8ed064374c4619d3"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+          "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+        },
+        {
+          "path": "sim/tb_sobel_tail.v",
+          "sha256": "f15d762c06a5c3ac8e1768c5ab56182754c7fc6328bece278a1f76eb8a81afec"
+        }
+      ],
+      "console_sha256": "f0a4d6e7f2f507c79607a67035a810e4bd63d752534ef94c04cde362b10ecc43",
+      "compile_sha256": "ca017eb1b3b5b27351179f9267c7b5f274b2102f11bf7c269d0d93ee181ef446",
+      "pass_lines": [
+        "# PASS streaming-tail credit loss: partial frame rejected, no later valid output/statistics",
+        "# PASS Sobel tail: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup"
+      ]
+    },
+    {
+      "name": "sobel_view",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/roi_sobel_view.v",
+          "sha256": "13df2c8ead187ebf4c766f14f395a0e800d34063a2d6502e8ed064374c4619d3"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+          "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+        },
+        {
+          "path": "sim/tb_sobel_view.v",
+          "sha256": "f68dde786d34523fd613317d7ac0096791fe85699dd0172d325761da342d9257"
+        }
+      ],
+      "console_sha256": "4ea94507f9c5954cf1952400d8d591afa69199ffe6b2d718b2ab2276b67549df",
+      "compile_sha256": "4cb4aa96cdd1ac9f353768b392425d1a0dc71ba7a5897a0219dc8f6d703a5bc9",
+      "pass_lines": [
+        "# PASS Sobel view: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup"
+      ]
+    },
+    {
+      "name": "observation",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/observation_controls.v",
+          "sha256": "d7c8a26e2f9954d2b4277753b1b35c730bd5a0cddfe762a947c5a5bb8e234451"
+        },
+        {
+          "path": "user_source/hdl_source/roi_observation_snapshot.v",
+          "sha256": "7513e3013a408f7b60ca0a6cdbdb01152f06396557feb1b07a0054d920a15b2b"
+        },
+        {
+          "path": "user_source/hdl_source/roi_display_state.v",
+          "sha256": "248c1372e983f676b5209852f17540a9ce3cae2bdbc70efe2fb4a772d7d59ad2"
+        },
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "sim/tb_observation.v",
+          "sha256": "2aebce0d728cb89bc701b5e5be673fc9d305118615210d4892fa343a3bf01744"
+        }
+      ],
+      "console_sha256": "2cf0a6a3edeb05c12277d892fa1c3b36afccb93e6ae3773416155cc40848434a",
+      "compile_sha256": "459f0646eb070eac9bb236dab531b5730d7a0380a98e02610f631248859ff1a7",
+      "pass_lines": [
+        "# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover"
+      ]
+    },
+    {
+      "name": "stop_recovery",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/input_monitor.v",
+          "sha256": "4fb4cae4e342ac796b3101dac0916e69daef27c341c1fbe745d20ec01537c6fc"
+        },
+        {
+          "path": "user_source/hdl_source/roi_result_snapshot.v",
+          "sha256": "13ab4a3ef1332c3e390f47c073a8e2ad65ffc49e8e3aaf90acd1ff54576b4e6c"
+        },
+        {
+          "path": "user_source/hdl_source/roi_display_state.v",
+          "sha256": "248c1372e983f676b5209852f17540a9ce3cae2bdbc70efe2fb4a772d7d59ad2"
+        },
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "sim/tb_stop_recovery.v",
+          "sha256": "7932471967e2a4555109999f62bfcbc02282b36ad39e222c36122fabc781c516"
+        }
+      ],
+      "console_sha256": "70a1c9c9c868ff9dfd20165166ae9b998c9b4db7c0d33beed8bae7a447b1d5c5",
+      "compile_sha256": "3e81958dff1b3b9c34d3f0d738bfc8dcaf57e9783fb216c4b35f6f1816437472",
+      "pass_lines": [
+        "# PASS stop recovery: real monitor, independent 50MHz reference, two window boundaries, frozen CSI mailbox, no stale rearm, fresh UNCAL statistics"
+      ]
+    },
+    {
+      "name": "display_state",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/roi_classifier.v",
+          "sha256": "eaa4eeae4c8945dea247d43165890fc056e80a7bd3f8d51812d9eefcbbb0dfa4"
+        },
+        {
+          "path": "user_source/hdl_source/roi_result_snapshot.v",
+          "sha256": "13ab4a3ef1332c3e390f47c073a8e2ad65ffc49e8e3aaf90acd1ff54576b4e6c"
+        },
+        {
+          "path": "user_source/hdl_source/roi_display_state.v",
+          "sha256": "248c1372e983f676b5209852f17540a9ce3cae2bdbc70efe2fb4a772d7d59ad2"
+        },
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "sim/tb_display_state.v",
+          "sha256": "d6800b9ee9a4f3962cb7b1350d3303d312cdd606a3258941f61af3a0e6f39c10"
+        }
+      ],
+      "console_sha256": "24fe6d66e64d1fa6ec51acaff7d541a6732490615092451e6937cc241b86e114",
+      "compile_sha256": "c55df77b92e96fb7a16e79bf003e171a84ceed47a0be53a5c9268496f2467697",
+      "pass_lines": [
+        "# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, enabled exposure/gain tuning with fresh tokens, stopped CSI, FPS recovery and reset require fresh sample"
+      ]
+    },
+    {
+      "name": "controls",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/uiisp_beta/ae_set.v",
+          "sha256": "63a759f6f30b129518e38639f26a042cb9faa75e623581be63021b239314636a"
+        },
+        {
+          "path": "user_source/hdl_source/uics500_cfg/uicfgcs500.v",
+          "sha256": "4d1dbf17e72d7dc899208e487e3bacc0d0f8e81b2407c3bf1c1f1ef9a83f5c2a"
+        },
+        {
+          "path": "user_source/hdl_source/uics500_cfg/uics500reg.v",
+          "sha256": "cedab84dcb0e8944ea3f01492b7192ea943c8c50d35dcfbca0bc438dc25aaaf5"
+        },
+        {
+          "path": "user_source/hdl_source/uics500_cfg/uics500regAE.v",
+          "sha256": "f37e71b95b8aaa8f1a4c3bc7a38492d15c5fbea076d8564c3498f54facb8996f"
+        },
+        {
+          "path": "user_source/hdl_source/uics500_cfg/SC500GainTbl.v",
+          "sha256": "574a37980c5353c8079ae870b0b60df3429b78b301dc58fc97954b9fb79fbfd3"
+        },
+        {
+          "path": "sim/tb_controls.v",
+          "sha256": "f475bde9b85e13e0525401131b1a7082b08a80dbad6f8925316a436c496387e8"
+        }
+      ],
+      "console_sha256": "7672e6739466d7641c4d4ead6f9711e9cc18c044096dbcdb49f248e3e1085509",
+      "compile_sha256": "acabdc9d7dd461e20706e5e84b29f37d075f83aee06a01cc58189b237be0d68e",
+      "pass_lines": [
+        "# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload"
+      ]
+    },
+    {
+      "name": "cdc",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "sim/tb_cdc.v",
+          "sha256": "7482f48dcb5bf1d8ce4163144de007fc09477312423c50ad395a63e94094b4fa"
+        }
+      ],
+      "console_sha256": "c872263574160247b8167ecd370dc758b9a40678923bcc14c3d2ebe04edc74ad",
+      "compile_sha256": "dd7a39fe402a903321173c6c69485fde82cba4b514b5f3d20df4c0c90b85b1ba",
+      "pass_lines": [
+        "# PASS CDC: asynchronous changing payload, atomic pairs, stopped clocks, reset"
+      ]
+    },
+    {
+      "name": "monitor",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "user_source/hdl_source/input_monitor.v",
+          "sha256": "4fb4cae4e342ac796b3101dac0916e69daef27c341c1fbe745d20ec01537c6fc"
+        },
+        {
+          "path": "sim/tb_monitor.v",
+          "sha256": "6cb1aced9d70c72d9ad0b912b3c074b5ae1f49c10f628493eec6811274913c7a"
+        }
+      ],
+      "console_sha256": "1017ef33643fb1a467704e204b16a4b775a294f5fdd1e4f804566d4b85437952",
+      "compile_sha256": "ab48b278a2cb210cc3897aea48c4fc65f02d2f6f2d6e9a41d87b8d6bffcf1a07",
+      "pass_lines": [
+        "# PASS monitor: bubbled PPC4 input, actual dimensions, bad frame, lane edge, stopped input"
+      ]
+    },
+    {
+      "name": "csi_monitor",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "user_source/hdl_source/input_monitor.v",
+          "sha256": "4fb4cae4e342ac796b3101dac0916e69daef27c341c1fbe745d20ec01537c6fc"
+        },
+        {
+          "path": "user_source/hdl_source/isp/csi_unpacket_2lane.v",
+          "sha256": "b7e093e1e377f5a61a22216e9a4ec404068a3346923758297867b465679dacdd"
+        },
+        {
+          "path": "user_source/hdl_source/isp/raw10_unpacket_2lane.v",
+          "sha256": "83f89d7f8e2b19322a7f6a8ddc0cae64fcbd83fed6b742c10f5d2339f59d30fd"
+        },
+        {
+          "path": "sim/tb_csi_monitor.v",
+          "sha256": "68ed73dbf5d4ffa84e0b84020bb0050c18963ab8470f1dd82045d572a0c4ba2c"
+        }
+      ],
+      "console_sha256": "2e0267e1c78b23c490a683ba76b09cd17e7777b8e2be03d814165eaaf1ba9575",
+      "compile_sha256": "7bc4ea040b5715eb772194c46abc290e37896bff6fa9a98ce286d3855a34374e",
+      "pass_lines": [
+        "# PASS actual CSI and RAW10 decoder feeding monitor: 1024 x 600"
+      ]
+    },
+    {
+      "name": "i2c",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/uics500_cfg/uii2c.v",
+          "sha256": "7416a15b6f10a8142c5aa3b0386b2be52fee2e569f641c11ad3c772309dc5329"
+        },
+        {
+          "path": "sim/tb_i2c.v",
+          "sha256": "f7f037f5f1d7c87497b467b0adbaf18c70cf59064cfe920b623324982c6e8f6c"
+        }
+      ],
+      "console_sha256": "b51e3b18ea537dc3af38f408ee44d85c9745f281417de962eabcd2a3ff2afb08",
+      "compile_sha256": "787f860874774ed71a7e346c4ea9f8686fd14e729f0dff2e2cfdc277c2834c80",
+      "pass_lines": [
+        "# PASS I2C actual bus: START, four correct bytes, ACK, STOP, NACK detection"
+      ]
+    },
+    {
+      "name": "osd",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/bin16_bcd.v",
+          "sha256": "e8ac13eaa52618336a3475f74cc5f19b725d8440061774f0d3ffbd1027fee4e5"
+        },
+        {
+          "path": "user_source/hdl_source/osd_ascii_rom.v",
+          "sha256": "c084869524e0ebfc4c9d002bb6f3b14d212d6bca88ed097216347f10dceff754"
+        },
+        {
+          "path": "user_source/hdl_source/osd_cjk_rom.v",
+          "sha256": "5e86cb3f5a752cf3bf812c17f38844dc4e54afd2a09fb7c615c29db9de3d979d"
+        },
+        {
+          "path": "user_source/hdl_source/osd_logo_rom.v",
+          "sha256": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1"
+        },
+        {
+          "path": "user_source/hdl_source/experiment_osd.v",
+          "sha256": "d42112168d0bbba2cf76ffb2fe887b79295e99723e6e3fcc80fd5bb2461bc147"
+        },
+        {
+          "path": "sim/tb_osd.v",
+          "sha256": "f9c2f27031b248a588e465fe7ca34990b9f8b5b45f545056dfc5046229263fda"
+        }
+      ],
+      "console_sha256": "10ef40760404a1fe574e64a73ec9178bc2c5a153a63bd07cc0779b2d94eaf2a8",
+      "compile_sha256": "ed01b2d634373854d7ea6ed69d36089310e96cd18a42e857356a53604a1a895d",
+      "pass_lines": [
+        "# PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values, WB actual coefficients/TUNE/LOCK/pending and frame snapshot"
+      ]
+    },
+    {
+      "name": "pack_boundary",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+          "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+        },
+        {
+          "path": "sim/tb_pack_boundary.v",
+          "sha256": "75e1d164d8132883b2e07876bbd3f07bbd8e12fc76fa9181bbf4db34bcdae1eb"
+        }
+      ],
+      "console_sha256": "45b7bf9a73dc53097f9c9277bfaffb8f04bedaa4c9886e5cd1a1d99011933172",
+      "compile_sha256": "71c33e37bf5eff3b90cb34b3fbea3ae366b97aeda73385cde87d6f359fea85e0",
+      "pass_lines": [
+        "# PASS pack boundary characterization: valid gaps preserve bytes; reset and early FS discard partial groups"
+      ]
+    },
+    {
+      "name": "pixel_interface",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/awb.v",
+          "sha256": "b5e9283ee19ad49ac7457081dcb96dc9c9d5ee7264fbfdc925226e2231276fc6"
+        },
+        {
+          "path": "user_source/hdl_source/signal_delay.v",
+          "sha256": "9576d5363a1a0926fb28b8d9f372403aeaf03df684eb61a3877e3d2518868aee"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data128_96/data128_96.v",
+          "sha256": "b6acceb73cc76058d4afe6ec593360bae6701646fdda780a9264ada3befd5318"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+          "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v",
+          "sha256": "53a4fc3dea805d59cee9bdab1a090c26c03eb555ab612a1a4698d810c1991baf"
+        },
+        {
+          "path": "user_source/ip_source/divider/divider_gate.v",
+          "sha256": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+          "sha256": "7cab7914392384bcc93a3daefe1dc038fc5cd88ac8f4306532fabb71740da93e"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+          "sha256": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785"
+        },
+        {
+          "path": "sim/tb_pixel_interface.v",
+          "sha256": "d20433863a9ffc89df1721edf4d243bea78effd9a12a1c1e309bdad79482972d"
+        }
+      ],
+      "console_sha256": "f8dfb8c400e37b215f27028ff2eade9b309e0526991cc480cc4cb0540305f420",
+      "compile_sha256": "5b694056b2ebdc57874035b0c04e111d55125dcbd18ea5c152e7e4d8b3ce7d11",
+      "pass_lines": [
+        "# PASS bilinear: x increases from low 32-bit lane; RGB channels and five-stage markers aligned",
+        "# PASS AWB/packing: full lines, four lanes, small input bubbles, ready-low, reset and frame restart",
+        "# PASS pixel boundary characterization; SOF alignment and incomplete-frame protection remain integration requirements"
+      ]
+    },
+    {
+      "name": "roi_guard",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/roi_frame_guard.v",
+          "sha256": "482a7679bd3c73b4b0738748e5f9e068e15fa319380f1a0c07ad5fc1d6b51669"
+        },
+        {
+          "path": "user_source/hdl_source/roi_statistics.v",
+          "sha256": "b8cfc127c97bfea9cfb5869ae387a1beb9a36812e92009955ded59fe74d1d9ae"
+        },
+        {
+          "path": "sim/tb_roi_guard.v",
+          "sha256": "e827cf40d7c6d692b40bf4516f5dcece4e12a77e94e8d3570e1daccf4ec2ab7f"
+        }
+      ],
+      "console_sha256": "9c293abfcefb5c0c0b7177eab5ae7d6c4a2813f6192fe83d6c19e695412b2dd4",
+      "compile_sha256": "9a81ce7539751b299a791af5cccdab52efe8ef8d9837436e277d45500fd07c97",
+      "pass_lines": [
+        "# PASS ROI guard: independent RGB math, unaligned ROI, first/last beat, completion ordering, FE collision, malformed/overrun/config/lane/overlap and recovery"
+      ]
+    },
+    {
+      "name": "roi_core",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/roi_statistics.v",
+          "sha256": "b8cfc127c97bfea9cfb5869ae387a1beb9a36812e92009955ded59fe74d1d9ae"
+        },
+        {
+          "path": "sim/tb_roi_core.v",
+          "sha256": "b00b8c548f8f4704251c0cc4803bf5193999d4b1608a76565507a87c4ffa977f"
+        }
+      ],
+      "console_sha256": "70bc3ee93f4ec5afb86d0e7f98586a2fefb1d7365c2455042db8192acb54e141",
+      "compile_sha256": "d8f2da01fb0d1be998b62341612decae140192a9766a52c09ee481606d7ebe75",
+      "pass_lines": [
+        "# PASS core ROI: 6400 pixels, independent sum/mean/min/max, outside black/white unchanged, full-scale and bubbles"
+      ]
+    },
+    {
+      "name": "classifier",
+      "execution": "prior_R3_unchanged_source_closure",
+      "source": "tmp/tracking_late_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/roi_frame_guard.v",
+          "sha256": "482a7679bd3c73b4b0738748e5f9e068e15fa319380f1a0c07ad5fc1d6b51669"
+        },
+        {
+          "path": "user_source/hdl_source/roi_statistics.v",
+          "sha256": "b8cfc127c97bfea9cfb5869ae387a1beb9a36812e92009955ded59fe74d1d9ae"
+        },
+        {
+          "path": "user_source/hdl_source/roi_classifier.v",
+          "sha256": "eaa4eeae4c8945dea247d43165890fc056e80a7bd3f8d51812d9eefcbbb0dfa4"
+        },
+        {
+          "path": "user_source/hdl_source/status_cdc.v",
+          "sha256": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+        },
+        {
+          "path": "sim/tb_classifier.v",
+          "sha256": "b2eea641ef9640f75f7a4619bb0dee8299231924e323abfcb5ec1aba3d5d3781"
+        }
+      ],
+      "console_sha256": "f13033bb8b8af9ca9eabd3249a0cbfc99ab255a5e1fc7f5595c4b106218bae5a",
+      "compile_sha256": "5664567cf2997844fb0a5db0ec49d279a692c0813da11cfdab7ce8b26729d77b",
+      "pass_lines": [
+        "# PASS classifier: T58 historical readings/boundary, independent 128-pixel sums, both polarities/equality/0/255, bubbles/outside/specular, UNCAL/rearm/FS/config/lane/truncation/reset/recovery and 27-bit CDC"
+      ]
+    },
+    {
+      "name": "roi_chain",
+      "execution": "fresh_R3",
+      "source": "tmp/tracking_black_fix_r3_td_20261011",
+      "compiled_inputs": [
+        {
+          "path": "user_source/hdl_source/isp/uial2axis.v",
+          "sha256": "8cd4d98799da50285bc381c16405aeb55eb4d28363e20b33836542a32539610e"
+        },
+        {
+          "path": "user_source/hdl_source/isp/isp_top.v",
+          "sha256": "5ada1e1eec9c27d21f09d0f9fbac6d92b7b76c3c3ef63f51de25b2abb403f5d7"
+        },
+        {
+          "path": "user_source/hdl_source/tape_hole_tracker.v",
+          "sha256": "42ca6d1236a02a76c3fdbac49433461419df4f1265e707233289534a519ffcd5"
+        },
+        {
+          "path": "user_source/hdl_source/roi_frame_guard.v",
+          "sha256": "482a7679bd3c73b4b0738748e5f9e068e15fa319380f1a0c07ad5fc1d6b51669"
+        },
+        {
+          "path": "user_source/hdl_source/roi_statistics.v",
+          "sha256": "b8cfc127c97bfea9cfb5869ae387a1beb9a36812e92009955ded59fe74d1d9ae"
+        },
+        {
+          "path": "user_source/hdl_source/roi_classifier.v",
+          "sha256": "eaa4eeae4c8945dea247d43165890fc056e80a7bd3f8d51812d9eefcbbb0dfa4"
+        },
+        {
+          "path": "user_source/hdl_source/roi_mode_classifier.v",
+          "sha256": "d2e3192285db281ed67b4ea90681945773fa623d743f793d527e5c8e3892920a"
+        },
+        {
+          "path": "user_source/hdl_source/roi_tape_guard.v",
+          "sha256": "2092ae3f7f383ba516c696516f147b3178f18442969e6f0dff139bf93c53e9ea"
+        },
+        {
+          "path": "user_source/hdl_source/roi_result_snapshot.v",
+          "sha256": "13ab4a3ef1332c3e390f47c073a8e2ad65ffc49e8e3aaf90acd1ff54576b4e6c"
+        },
+        {
+          "path": "user_source/hdl_source/roi_sobel_view.v",
+          "sha256": "13df2c8ead187ebf4c766f14f395a0e800d34063a2d6502e8ed064374c4619d3"
+        },
+        {
+          "path": "user_source/hdl_source/roi_observation_snapshot.v",
+          "sha256": "7513e3013a408f7b60ca0a6cdbdb01152f06396557feb1b07a0054d920a15b2b"
+        },
+        {
+          "path": "user_source/hdl_source/awb.v",
+          "sha256": "b5e9283ee19ad49ac7457081dcb96dc9c9d5ee7264fbfdc925226e2231276fc6"
+        },
+        {
+          "path": "user_source/hdl_source/signal_delay.v",
+          "sha256": "9576d5363a1a0926fb28b8d9f372403aeaf03df684eb61a3877e3d2518868aee"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data128_96/data128_96.v",
+          "sha256": "b6acceb73cc76058d4afe6ec593360bae6701646fdda780a9264ada3befd5318"
+        },
+        {
+          "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+          "sha256": "c34f391a44fb5496a095bd0f9b3c1edbd85ebb67eabfeb7d11d48fef74fd6eb5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v",
+          "sha256": "95ff3eaa0e99fd1dbe63c153164e36faa1a97b19d071e4a0b0bb3936287f22d4"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v",
+          "sha256": "28f19502f5a70b48e9bdeeaddcb84500052b7bd0c6e15b4da1ea9899265577c3"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v",
+          "sha256": "52339158d2f0446b8cbfff211365e9197fc6061f82c1cd2cd1bc5481aa04adae"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v",
+          "sha256": "92270402b98e0177199708de3303d5f0eccfec0e72ecf394d2aa0dbdaa9418e5"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v",
+          "sha256": "b77e678034af9968d0969655f403cac3b992412b109dba889e8ccb3f6f224975"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v",
+          "sha256": "53a4fc3dea805d59cee9bdab1a090c26c03eb555ab612a1a4698d810c1991baf"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.v",
+          "sha256": "f52e1a6ef3da30b6b5342ed21fffc1651b9d0574fd3331215dbc0fb21476b83f"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v",
+          "sha256": "4c007b82769a2af9474683ec27711133c735ac776fd1f3d037d4eb00cc20a832"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.v",
+          "sha256": "c6b2064638cf7217b792e8f880840f46151a1c83158dd6e96d8d4c63631432bd"
+        },
+        {
+          "path": "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v",
+          "sha256": "facbb17d5cf7aa37e7cb63764780c2c7acc655ff421a766701c656adbb9f8c26"
+        },
+        {
+          "path": "user_source/ip_source/divider/divider_gate.v",
+          "sha256": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+          "sha256": "7cab7914392384bcc93a3daefe1dc038fc5cd88ac8f4306532fabb71740da93e"
+        },
+        {
+          "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+          "sha256": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785"
+        },
+        {
+          "path": "sim/tb_roi_chain.v",
+          "sha256": "b32e5acb2211fdd2d2b45b522287034d346a5881927ddbe0d9cbef7ac05b431d"
+        }
+      ],
+      "console_sha256": "5c39b335fc2279e8fc204936cdb6e75604a48ba6ab99fd91f295c0b4e735c20e",
+      "compile_sha256": "6a38935eb57b9c1e9361e5a72f2e0e12767e1b84b7e597c45bc8ac6fef51725e",
+      "pass_lines": [
+        "# PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection, WB mid-frame sample invalidation without video loss and recovery"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "mode": 0,
+      "console_sha256": "90595873effa07e4d180918353b4f811f63d925b061552953d05cafee812db70",
+      "pass_lines": [
+        "# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=4 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual ISP metadata stop: real RAW10/ISP/178bit mailbox/writer, short20-cycle tail, full word/epoch proof, precomputed features never publish truncated frame"
+      ]
+    },
+    {
+      "mode": 1,
+      "console_sha256": "a1810fdcfc56c6ed2b54927cd4a0741cb9a043cb2b15b2ce7534fdce6f46b6a3",
+      "pass_lines": [
+        "# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=4 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual ISP metadata stop: real RAW10/ISP/178bit mailbox/writer, short20-cycle tail, full word/epoch proof, precomputed features never publish truncated frame"
+      ]
+    },
+    {
+      "mode": 2,
+      "console_sha256": "fad5f8fa9a55425e7d23b04924f9349913966d90ce9e12bb29ed7803bcd5b5ac",
+      "pass_lines": [
+        "# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000",
+        "# PASS actual diagnostic latch prefix=4 old_reason=8 old_LP=738 old_WS=1387 new_reason=0 new_LPWS=00000000",
+        "# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738",
+        "# PASS actual ISP metadata stop: real RAW10/ISP/178bit mailbox/writer, short20-cycle tail, full word/epoch proof, precomputed features never publish truncated frame"
+      ]
+    }
+  ],
+  "preserved_evidence": [
+    {
+      "record": "20261011_B下方定位孔追踪修订_轮次1",
+      "copies": 538
+    },
+    {
+      "record": "20261010_B3528动态追踪_轮次1",
+      "copies": 517
+    },
+    {
+      "record": "20261009_A可调白平衡_轮次1",
+      "copies": 456
+    }
+  ]
+}

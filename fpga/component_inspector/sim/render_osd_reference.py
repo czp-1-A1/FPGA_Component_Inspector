@@ -22,6 +22,7 @@ def text(x,y,t,scale=1,color='text',cjk=False):
   mask=mask.resize((w*scale,h*scale),Image.Resampling.NEAREST)
   im.paste(colors[color],(x+i*w*scale,y),mask)
 text(128,24,'ANLOGIC',2)
+text(528,8,'WB LOCK');text(528,32,'R 064 B 064');text(528,56,'/64')
 text(128,56,'ER 1 LP 0280 WS 0123',color='orange')
 text(360,8,'曝光',cjk=True);text(424,8,'EXP',2);text(360,40,' 1460',2);text(456,44,'半行',cjk=True)
 text(688,8,'增益',cjk=True);text(752,8,'GAIN',2);text(688,40,'   48',2);text(784,44,'档号',cjk=True)
@@ -38,6 +39,12 @@ text(536,576,'OF 0012',color='orange');text(752,576,'VF 0034',color='orange');te
 im.save(a/'reference.png')
 (a/'reference.hex').write_text(''.join('%02x%02x%02x\n'%rgb for rgb in im.getdata()),encoding='ascii')
 base=im.copy()
+for index,(r,b,tune,pending) in enumerate([(64,64,False,False),(96,32,True,False),(192,80,True,True)]):
+ im=base.copy();d=ImageDraw.Draw(im);d.rectangle((528,8,639,71),fill=colors['bg'])
+ text(528,8,'WB TUNE' if tune else 'WB LOCK');text(528,32,f'R {r:03d} B {b:03d}');text(528,56,'/64 *' if pending else '/64')
+ im.save(a/f'wb_{index}.png')
+ (a/f'wb_{index}.hex').write_text(''.join('%02x%02x%02x\n'%rgb for rgb in im.getdata()),encoding='ascii')
+
 for index,word in enumerate(['RAW','GRAY','EDGE','GRAY+EDGE']):
  im=base.copy();d=ImageDraw.Draw(im)
  d.rectangle((864,40,1007,71),fill=colors['bg']);text(864,40,word,2)
@@ -46,9 +53,10 @@ for index,word in enumerate(['RAW','GRAY','EDGE','GRAY+EDGE']):
  im.save(a/f'mode_{index}.png')
  (a/f'mode_{index}.hex').write_text(''.join('%02x%02x%02x\n'%rgb for rgb in im.getdata()),encoding='ascii')
 for index,(word,color,valid,cfg,fps,reason) in enumerate([
- ('未标定','amber',True,1,30,'采样有效'),('等待采样','muted',False,1,30,'等待有效帧'),
+ ('未标定','amber',True,1,30,'采样有效'),('待检测','muted',False,1,30,'等待有效帧'),
  ('有件','green',True,1,30,'采样有效'),('空穴','orange',True,1,30,'采样有效'),
- ('等待采样','muted',False,0,30,'配置中'),('等待采样','muted',False,1,0,'无输入')]):
+ ('待检测','muted',False,0,30,'配置中'),('待检测','muted',False,1,0,'无输入'),
+ ('待检测','muted',True,1,30,'采样有效')]):
  colors['orange']=(255,174,100);colors['red']=(239,113,134)
  im=base.copy();d=ImageDraw.Draw(im)
  d.rectangle((16,540,279,599),fill=colors['bg']);text(16,540,word,2,color,True)

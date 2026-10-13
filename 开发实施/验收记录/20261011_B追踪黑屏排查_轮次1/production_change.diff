@@ -1,0 +1,71 @@
+--- lower_v1
+
++++ black_fix
+
+@@ -147,6 +147,15 @@
+
+ wire [10:0] roi_x;
+ wire [9:0] roi_y;
+ wire roi_accept,roi_commit,roi_invalidate,sample_new;
++// Finish features while CSI is still clocking rows, not after native FE.
++// The lower hole search and the core's Sobel neighborhood are complete here.
++// These are provisional results: the writer still requires the entire frame.
++localparam RESULT_ROW=(HOLE_Y+10>ROI_Y1+2) ? HOLE_Y+10 : ROI_Y1+2;
++wire result_commit=TRACKING ? (roi_accept && roi_x==0 && roi_y==RESULT_ROW) : roi_commit;
++wire result_valid;
++assign sample_valid=result_valid && (!TRACKING || video_frame_good);
++wire [1:0] result_class;
++assign class_state=TRACKING && !video_frame_good ? 2'd1 : result_class;
+ // Cancel pending statistics on native FS, including an old in-flight division.
+ assign sample_cancel=roi_invalidate || !config_ok || |lane_error || !observation_match || !wb_match;
+ roi_frame_guard u_roi_guard(
+@@ -167,14 +176,14 @@
+
+  assign track_x0=ROI_X0;assign track_x1=ROI_X1;assign track_y0=ROI_Y0;assign track_y1=ROI_Y1;assign track_locked=1'b1;
+  assign track_diagnostic=0;
+ end endgenerate
+-// The result settles after the complete-frame proof and the 28-cycle divider.
+-// Freeze it for the writer; metadata cannot be republished in another epoch.
++// The result settles after the ROI/search rows and the 28-cycle divider.
++// Freeze it early; frame proof, word count and epoch still gate publication.
+ reg [5:0] metadata_wait;reg metadata_pending;reg [31:0] frame_config;
+ always @(posedge axi4s_video_aclk or negedge I_rst_n) begin
+  if(!I_rst_n) begin frame_metadata<=0;frame_metadata_ready<=0;metadata_wait<=0;metadata_pending<=0;frame_config<=0;end
+  else if(raw_start) begin frame_metadata_ready<=0;metadata_pending<=0;frame_config<=image_config;end
+  else if(sample_cancel) begin frame_metadata_ready<=0;metadata_pending<=0;end
+- else if(roi_commit) begin metadata_pending<=1;metadata_wait<=48;end
++ else if(result_commit) begin metadata_pending<=1;metadata_wait<=48;end
+  else if(metadata_pending) begin
+   metadata_wait<=metadata_wait-1'b1;
+   if(metadata_wait==1) begin
+@@ -202,7 +211,7 @@
+
+  .dynamic_x0(track_x0),.dynamic_x1(track_x1),.dynamic_y0(track_y0),.dynamic_y1(track_y1),
+     .clk(axi4s_video_aclk),.rst_n(I_rst_n),.pixel_accept(roi_accept),.pixel_sof(awb_pixel_sof),
+     .pixel_x(roi_x),.pixel_y(roi_y),.rgb(awb_O_tdata),
+-    .frame_commit(roi_commit),.invalidate(sample_cancel),.sample_valid(sample_valid),
++    .frame_commit(result_commit),.invalidate(sample_cancel),.sample_valid(result_valid),
+     .mean(sample_mean),.minimum(sample_min),.maximum(sample_max),.sample_pixels(),.sample_sum(),.sample_new(sample_new),.frame_start(raw_start));
+ wire scene_ok;
+ wire [1:0] gray_class_state;
+@@ -213,15 +222,15 @@
+
+     .invalidate(sample_cancel),.scene_ok(scene_ok));
+ roi_classifier u_roi_classifier(
+     .clk(axi4s_video_aclk),.rst_n(I_rst_n),.calibration_ok(calibration_ok),
+-    .frame_start(raw_start),.invalidate(sample_cancel),.sample_valid(sample_valid),.sample_new(sample_new),
++    .frame_start(raw_start),.invalidate(sample_cancel),.sample_valid(result_valid),.sample_new(sample_new),
+     .mean(sample_mean),.threshold(threshold),.present_high(present_high),.state(gray_class_state));
+ roi_mode_classifier #(.CORE_AREA((ROI_X1-ROI_X0)*(ROI_Y1-ROI_Y0))) u_roi_mode_classifier(
+     .mode(observation_tag[1:0]),.gray_state(gray_class_state),.scene_ok(scene_ok && (!TRACKING || track_locked)),
+-    .core_pixels(edge_pixels),.edge_count(edge_count),.edge_sum(edge_sum),.state(class_state));
++    .core_pixels(edge_pixels),.edge_count(edge_count),.edge_sum(edge_sum),.state(result_class));
+ roi_result_snapshot u_roi_result_snapshot(
+     .clk(axi4s_video_aclk),.rst_n(I_rst_n),.frame_start(raw_start),.invalidate(sample_cancel),
+-    .calibration_ok(calibration_ok),.sample_valid(sample_valid),.sample_new(sample_new),
+-    .class_state(class_state),.mean(sample_mean),.minimum(sample_min),.maximum(sample_max),
++    .calibration_ok(calibration_ok),.sample_valid(result_valid),.sample_new(sample_new),
++    .class_state(result_class),.mean(sample_mean),.minimum(sample_min),.maximum(sample_max),
+     .record(display_record));
+ 
+     data_96bit_to_128bit u_data_96bit_to_128bit(

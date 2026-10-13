@@ -1,0 +1,19 @@
+# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload
+# PASS CDC: asynchronous changing payload, atomic pairs, stopped clocks, reset
+# PASS monitor: bubbled PPC4 input, actual dimensions, bad frame, lane edge, stopped input
+# PASS actual CSI and RAW10 decoder feeding monitor: 1024 x 600
+# PASS I2C actual bus: START, four correct bytes, ACK, STOP, NACK detection
+# PASS OSD decimal fields and rendered output: ROI gray/border/outside and WAIT
+# OBS packer: reset and frame_start during continuous valid do not restart packing
+# OBS packer: two input beats emit one 128-bit word; remaining 64 bits are discarded by valid gap
+# PASS pack boundary characterization: valid gap restarts phase; reset/SOF are not phase guards
+# PASS bilinear: x increases from low 32-bit lane; RGB channels and five-stage markers aligned
+# OBS case=0 input-to-first-pixel=53 clocks, SOF lead=53 clocks, in=768 out=768 packed=576 EOL=3
+# OBS case=1 input-to-first-pixel=55 clocks, SOF lead=55 clocks, in=768 out=768 packed=576 EOL=3
+# OBS ready-low output beats=180; ready is passthrough, not effective backpressure
+# OBS case=3 input-to-first-pixel=53 clocks, SOF lead=53 clocks, in=768 out=768 packed=576 EOL=3
+# PASS AWB/packing: full lines, four lanes, small input bubbles, ready-low, reset and frame restart
+# OBS incomplete line: input=64 beats, output=256 beats, unknown=0; valid alone cannot prove frame completeness
+# PASS pixel boundary characterization; SOF alignment and incomplete-frame protection remain integration requirements
+# PASS ROI guard: independent RGB math, unaligned ROI, first/last beat, completion ordering, FE collision, malformed/overrun/config/lane/overlap and recovery
+PASS ModelSim: all 9 tests, including original vendor ERAM model

@@ -1,0 +1,40 @@
+{
+  "reviewer": "read-only led_history_review agent",
+  "status": "current_constrained_paths_meet_timing_no_new_unmatched_or_ignored_budget_found",
+  "metrics_confirmed": true,
+  "max_delay_rules": 31,
+  "mailbox_register_rules": 24,
+  "payload_rules": 8,
+  "all_matched": true,
+  "all_ignored_zero": true,
+  "existing_equal_budget_shadowed_rules": [
+    "monitor_display req/ack covered by observation_display 19ns",
+    "roi_display req/ack covered by overflow_display 19ns/8ns"
+  ],
+  "old_local_diagnostic_comparison": "Same TD6.2.168116, coverage summary dummy4/shadowed9/PLL7/no_input_delay39/no_output_delay63/partial_input_delay1 matches. Normalized 808 synthesis warnings and physical warning lines match; not a strict same-source incremental baseline.",
+  "dummy_difference": "AWB divider dangling G/R ofa changed to G/B ofb; physical significance remains unresolved.",
+  "classifier_in_final_area": "1 LUT, 2 registers",
+  "limits": [
+    "No classifier-specific per-path report; default endpoint report does not list it.",
+    "Different-tool teammate baseline does not establish pure tool causation.",
+    "No complete constraint closure or board classification acceptance."
+  ],
+  "report_hashes": [
+    {
+      "path": "camera_to_dsi_display_pr.timing",
+      "sha256": "fcb2f751042d171fff66df6e07705b65786855b3754a08d8de9d0602a7df9e53"
+    },
+    {
+      "path": "camera_to_dsi_display_phy.area",
+      "sha256": "2ece4d98d8d30b94480d4fe2646a42cbc03eb3bac858e9fdfc48d3bc5c954098"
+    },
+    {
+      "path": "camera_to_dsi_display_exception.timing",
+      "sha256": "aa1c8a0ada545d09dc41d66a55b3de9b76dc5dc1e7dff7a6327c2d4e3348b2fd"
+    },
+    {
+      "path": "constraint_coverage.txt",
+      "sha256": "39b215f5583b16550a127d2e5756100a63deb4d063fc7bd8cf7065b07990c5f3"
+    }
+  ]
+}

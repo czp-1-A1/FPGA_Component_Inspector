@@ -125,6 +125,10 @@ initial begin
  good_image(0,255,5120,40,40,40,2);
  good_image(1,0,10240,80,40,200,3);
  good_image(3,255,7680,60,60,60,2);
+ // Temporary LED profile: historical readings and the 57/58/59 boundary.
+ probe(36,58,1,3);probe(37,58,1,3);
+ probe(78,58,1,2);probe(82,58,1,2);probe(85,58,1,2);probe(88,58,1,2);
+ probe(57,58,1,3);probe(58,58,1,2);probe(59,58,1,2);
  probe(59,60,1,3);probe(60,60,1,2);probe(61,60,1,2);
  probe(59,60,0,2);probe(60,60,0,2);probe(61,60,0,3);
  probe(0,0,1,2);probe(255,255,1,2);probe(254,255,1,3);
@@ -132,7 +136,7 @@ initial begin
  ufs=1;#1;if(ustate!==1) $fatal(1,"FS did not suppress result immediately");ticks(1);ufs=0;
  unew=1;ticks(1);unew=0;uinvalid=1;#1;if(ustate!==1) $fatal(1,"invalidate suppression");ticks(1);uinvalid=0;
  rst=0;ticks(2);rst=1;ticks(2);expect_state(1);if(ustate!==1) $fatal(1,"reset revived classification");
- $display("PASS classifier: independent 128-pixel sums, both polarities/equality/0/255, bubbles/outside/specular, UNCAL/rearm/FS/config/lane/truncation/reset/recovery and 27-bit CDC");
+ $display("PASS classifier: T58 historical readings/boundary, independent 128-pixel sums, both polarities/equality/0/255, bubbles/outside/specular, UNCAL/rearm/FS/config/lane/truncation/reset/recovery and 27-bit CDC");
  $finish;
 end
 initial begin #1000000;$fatal(1,"classifier watchdog");end

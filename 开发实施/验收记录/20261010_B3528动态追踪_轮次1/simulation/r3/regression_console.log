@@ -1,0 +1,34 @@
+# PASS tracking age: new slot, repeated-frame timeout, invalidation and recovery
+# OBS ISP initial line-span learning frame good=0 bad=1 ready=0
+# OBS ISP tracking frame=2 mode=1 shift=0 present=1 lock=0 x0=472 mean=167
+# OBS ISP tracking frame=3 mode=1 shift=0 present=1 lock=1 x0=472 mean=167
+# OBS ISP tracking frame=4 mode=1 shift=12 present=1 lock=1 x0=484 mean=167
+# OBS ISP tracking frame=5 mode=2 shift=24 present=0 lock=1 x0=496 mean=20
+# OBS ISP tracking frame=6 mode=3 shift=12 present=0 lock=1 x0=484 mean=20
+# OBS ISP tracking frame=7 mode=0 shift=0 present=1 lock=1 x0=472 mean=167
+# OBS ISP tracking frame=8 mode=1 shift=0 present=1 lock=0 x0=472 mean=167
+# OBS ISP tracking frame=9 mode=1 shift=0 present=0 lock=0 x0=472 mean=20
+# OBS ISP tracking frame=10 mode=1 shift=0 present=0 lock=1 x0=472 mean=20
+# PASS actual ISP tracking: RAW10/vendor RAM/full frames, same-frame moving ROI, four views, empty, lost/recovery, coherent metadata
+# PASS tracking OSD: post-VS slot metadata, complete rasters, moving box, no mid-frame jump, lost target hides box
+# PASS tracking: same-frame bidirectional ROI, empty pocket, pause, occlusion, excessive step, recovery, invalidation
+# OBS Sobel frame=1 mode=0 pattern=1 bubbles=0 core=0 edges=0 strength=0
+# OBS Sobel frame=2 mode=1 pattern=1 bubbles=1 core=0 edges=0 strength=0
+# OBS Sobel frame=3 mode=2 pattern=1 bubbles=0 core=40 edges=4 strength=2720
+# OBS Sobel frame=4 mode=3 pattern=1 bubbles=1 core=40 edges=8 strength=5440
+# OBS Sobel frame=5 mode=3 pattern=0 bubbles=0 core=40 edges=0 strength=0
+# OBS Sobel frame=6 mode=3 pattern=2 bubbles=1 core=40 edges=20 strength=14080
+# OBS Sobel frame=7 mode=3 pattern=3 bubbles=0 core=40 edges=13 strength=11826
+# OBS Sobel frame=8 mode=3 pattern=4 bubbles=0 core=40 edges=37 strength=13128
+# OBS Sobel frame=9 mode=3 pattern=4 bubbles=1 core=0 edges=0 strength=0
+# OBS Sobel frame=10 mode=3 pattern=4 bubbles=1 core=40 edges=37 strength=13128
+# OBS Sobel frame=11 mode=0 pattern=4 bubbles=0 core=0 edges=0 strength=0
+# PASS dynamic Sobel: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup
+# PASS frame metadata: epoch gating, late result, protected old active slot, atomic new slot, bad capture
+# PASS WB controls: staggered/short/long chords, one toggle per release, four keys, no camera writes in WB, debounce, repeat, both clamps, epoch and normal controls restored
+# PASS manual WB: independent Q2.6 arithmetic/clipping, four lanes, first pixel, bubbles, ready-low, EOL, pending requests held until next frame and reset
+# PASS WB epoch: coherent held request/result, invalidation, change-away/back with stopped CSI, recovery, epoch wrap and fresh-token requirement
+# PASS fixed WB frame case=0 scene=0 beats=768 ROI=20 ready_low=180
+# PASS fixed WB frame case=1 scene=1 beats=768 ROI=20 ready_low=180
+# PASS fixed WB frame case=3 scene=0 beats=768 ROI=20 ready_low=180
+# PASS fixed WB: colored-background invariance, fixed non-unity gains/clipping, four lanes, bubbles, reset, line tails, ready-low; automatic reference changed 2304 beats

@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "frozen_main_copies": 666,
+  "production_inputs": 209,
+  "previous_evidence_copies": {
+    "20261007_A3528临时判定_轮次1": 364,
+    "20261008_A3528调参判定_轮次1": 372,
+    "20261008_A3528调参判定_轮次2": 355,
+    "20261008_A均值误判与边缘判定核查_轮次1": 9
+  },
+  "release_sha256": "87703eeb66262a4ebecd6f27ea57be78c4993204396250d24c04604f52842398",
+  "head_unchanged": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "staging_empty": true,
+  "diff_check_passed": true,
+  "metadata_docs_checkpoint_match": true,
+  "rollback_unchanged": true,
+  "no_assistant_td_or_modelsim_running": true,
+  "process_snapshot_user_tools_untouched": [
+    {
+      "ProcessName": "bw",
+      "Id": 35732
+    },
+    {
+      "ProcessName": "hwserver",
+      "Id": 9480
+    },
+    {
+      "ProcessName": "td",
+      "Id": 27224
+    }
+  ],
+  "board_validation": "not_performed"
+}

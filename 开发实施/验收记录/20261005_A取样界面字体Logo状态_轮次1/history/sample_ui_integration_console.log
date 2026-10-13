@@ -1,0 +1,4 @@
+# OBS stop window phase=0 clears in 0 reference clocks (REF_HZ=1000)
+# OBS stop window phase=1 clears in 1020 reference clocks (REF_HZ=1000)
+# PASS stop recovery: real monitor, independent 50MHz reference, two window boundaries, frozen CSI mailbox, no stale rearm, fresh UNCAL statistics
+PASS ModelSim: all 1 tests, including original vendor ERAM model

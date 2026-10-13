@@ -1,0 +1,151 @@
+============================================================
+   Tang Dynasty, V6.2.168116
+   Copyright (c) 2012-2025 Anlogic Inc.
+   Executable = D:/AAA/FPGA.....YZW/bin/td_commands_prompt.exe
+   Built at =   16:32:07 Jun 12 2025
+   Run by =     yiziw
+   Run Date =   Sun Oct  4 00:10:39 2026
+
+   Run on =     XIAOYI
+============================================================
+RUN-1002 : start command "import_device ph1_35p.db -package PH1P35MDG324 -speed 3"
+ARC-1001 : Device Initialization.
+ARC-1001 : ----------------------------------------------------------------
+ARC-1001 :           OPTION          |          IO           |   SETTING   
+ARC-1001 : ----------------------------------------------------------------
+ARC-1001 :   non_jtag_persist(none)  |        35 IOs         |    gpio    
+ARC-1001 :            jtag           |  P13/P15/L14/R13/T13  |  dedicate  
+ARC-1001 : ----------------------------------------------------------------
+RUN-1003 : finish command "import_device ph1_35p.db -package PH1P35MDG324 -speed 3" in  5.725466s wall, 5.109375s user + 0.359375s system = 5.468750s CPU (95.5%)
+
+RUN-1004 : used memory is 325 MB, reserved memory is 321 MB, peak memory is 325 MB
+RUN-1002 : start command "open_project camera_to_dsi_display.prj"
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/ip_source/PLL/PLL.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/ip_source/PLL/PLL.xml error, the IP's generated file D doesn't exist.
+PRJ-9205 ERROR: Load IPC file ../../../user_source/ip_source/PLL/PLL.xml error.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.xml error, the IP's generated file D doesn't exist.
+PRJ-9205 ERROR: Load IPC file ../../../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.xml error.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/ip_source/w155_d512_fifo/w155_d512_fifo.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/ip_source/w155_d512_fifo/w155_d512_fifo.xml error, the IP's generated file D doesn't exist.
+PRJ-9205 ERROR: Load IPC file ../../../user_source/ip_source/w155_d512_fifo/w155_d512_fifo.xml error.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.xml error, the IP's generated file D doesn't exist.
+PRJ-9205 ERROR: Load IPC file ../../../user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.xml error.
+PRJ-7002 CRITICAL-WARNING: Load IPC file . error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 Similar messages will be suppressed.
+PRJ-9205 ERROR: Load IPC file ../../../user_source/hdl_source/ph1p35_ddr/ddr2/ddr2.xml error.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.xml error, the IP's generated file D doesn't exist.
+PRJ-9205 ERROR: Load IPC file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.xml error.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.xml error, the IP's generated file D doesn't exist.
+PRJ-7002 CRITICAL-WARNING: Load IPC file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.xml error, the IP's generated file D doesn't exist.
+PRJ-9205 ERROR: Load IPC file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.xml error.
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :     Parameters    |   Settings   |  Default Values  |  Note  
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 :    enable_seed    |     off      |       off        |        
+RUN-1001 :    hfn_to_clock   |  1000000000  |    1000000000    |        
+RUN-1001 :      message      |   standard   |     standard     |        
+RUN-1001 :    qor_monitor    |      on      |        on        |        
+RUN-1001 :   speedup_effort  |      0       |        0         |        
+RUN-1001 :    syn_ip_flow    |     off      |       off        |        
+RUN-1001 :       thread      |     auto     |       auto       |        
+RUN-1001 : -------------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/design_top_wrapper.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/mipi_dphy_rx/mipi_dphy_rx_ph1p_mipiio_wrapper.sv
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/mipi_dphy_rx/ph1p_mipiio_rx_wrapper.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/video_in.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/video_out.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/mc_to_user_interface.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/mipi_dphy_rx/byte_aligner.enc.v
+Copyright (c) 1998-2019 The OpenSSL Project.  All rights reserved.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit (http://www.openssl.org/)
+Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+All rights reserved.
+This product includes cryptographic software written by Eric Young (eay@cryptsoft.com)
+HDL-1007 : back to file '../../../user_source/hdl_source/mipi_dphy_rx/byte_aligner.enc.v' in ../../../user_source/hdl_source/mipi_dphy_rx/byte_aligner.enc.v(18)
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/mipi_dphy_rx/byte_aligner_wrapper.enc.sv
+HDL-1007 : back to file '../../../user_source/hdl_source/mipi_dphy_rx/byte_aligner_wrapper.enc.sv' in ../../../user_source/hdl_source/mipi_dphy_rx/byte_aligner_wrapper.enc.sv(20)
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/mipi_dphy_rx/channel_aligner.enc.v
+HDL-1007 : back to file '../../../user_source/hdl_source/mipi_dphy_rx/channel_aligner.enc.v' in ../../../user_source/hdl_source/mipi_dphy_rx/channel_aligner.enc.v(17)
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/mipi_dphy_rx/channel_aligner_wrapper.enc.sv
+HDL-1007 : back to file '../../../user_source/hdl_source/mipi_dphy_rx/channel_aligner_wrapper.enc.sv' in ../../../user_source/hdl_source/mipi_dphy_rx/channel_aligner_wrapper.enc.sv(17)
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/mipi_dphy_rx/hs_detect.enc.v
+HDL-1007 : back to file '../../../user_source/hdl_source/mipi_dphy_rx/hs_detect.enc.v' in ../../../user_source/hdl_source/mipi_dphy_rx/hs_detect.enc.v(13)
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/signal_delay.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/awb.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/ph1p35_ddr/ph1p35_324_ddr_wrapper.v
+HDL-1007 : undeclared symbol 'dhi_clk', assumed default net type 'wire' in ../../../user_source/hdl_source/ph1p35_ddr/ph1p35_324_ddr_wrapper.v(83)
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/csi_unpacket_2lane.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/isp_top.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/raw10_unpacket_2lane.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/uial2axis.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v
+HDL-5007 WARNING: /* is inside a comment in ../../../user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v(89)
+HDL-5007 WARNING: /* is inside a comment in ../../../user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v(100)
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v
+HDL-1007 : undeclared symbol 'rd_valid', assumed default net type 'wire' in ../../../user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v(146)
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/data128_96/data128_96.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/isp/data96_128/data96_128.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/image_correction.v
+HDL-1007 : undeclared symbol 'I_raw_tready', assumed default net type 'wire' in ../../../user_source/hdl_source/image_correction.v(74)
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/uics500_cfg/SC500GainTbl.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/uics500_cfg/uicfgcs500.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/uics500_cfg/uics500reg.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/uics500_cfg/uics500regAE.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/uics500_cfg/uii2c.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/uiisp_beta/ae_set.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/hdmi_tx.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in ../../../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(2614)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in ../../../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(2716)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in ../../../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(2724)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in ../../../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(4936)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in ../../../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(5989)
+HDL-1007 : back to file '../../../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v' in ../../../user_source/hdl_source/hdmi_1_4b_transmitter_core_wrapper.enc.v(77)
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/hdmi_phy_warpper.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/lane_lvds_10_1.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/vtc/uivtc.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/hdmi_mixer.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/I2S_receiver.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/audio_arc_calculate.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/key_remove_shakes.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/experiment_osd.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/bin16_bcd.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/input_monitor.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/status_cdc.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/roi_frame_guard.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/roi_statistics.v
+HDL-1007 : analyze verilog file ../../../user_source/hdl_source/roi_classifier.v
+PRJ-1401 : Successfully analyzed 49 source files.
+PRJ-8644 ERROR: Failed to analyze source file(s).
+RUN-1003 : finish command "open_project camera_to_dsi_display.prj" in  1.370925s wall, 0.593750s user + 0.234375s system = 0.828125s CPU (60.4%)
+
+RUN-1004 : used memory is 330 MB, reserved memory is 321 MB, peak memory is 330 MB
+
+td > 

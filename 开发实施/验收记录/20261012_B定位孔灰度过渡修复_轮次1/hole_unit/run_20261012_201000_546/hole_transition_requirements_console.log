@@ -1,0 +1,166 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c work.tb_hole_transition_requirements -l hole_transition_requirements_transcript.log -do "onbreak {quit -code 1}; onerror {quit -code 1}; run -all; quit -code 1" 
+# Start time: 20:10:02 on Oct 12,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_hole_transition_requirements(fast)
+# Loading work.hole_scanline(fast)
+# onbreak {quit -code 1}
+#  Warning: onbreak command for use within macro
+#  onerror {quit -code 1}
+#  Warning: onerror command for use within macro
+#  run -all
+# CASE 1 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=101 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 2 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=101 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 3 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=101 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 4 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=101 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 5 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=101 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 6 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=101 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 7 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=101 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 8 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=101 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 9 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=101 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 10 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 11 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 12 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 13 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 14 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 15 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 16 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 17 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 18 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 19 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=119 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 20 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=119 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 21 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=119 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 22 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=119 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 23 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=119 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 24 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=119 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 25 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=119 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 26 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=119 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 27 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=119 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 28 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=101 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 29 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=101 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 30 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=101 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 31 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=101 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 32 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=101 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 33 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=101 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 34 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=101 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 35 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=101 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 36 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=101 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 37 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=110 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 38 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=110 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 39 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=110 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 40 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=110 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 41 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=110 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 42 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=110 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 43 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=110 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 44 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=110 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 45 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 46 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=119 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 47 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=119 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 48 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=119 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 49 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=119 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 50 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=119 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 51 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=119 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 52 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=119 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 53 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=119 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 54 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=119 shift=1 pattern=0 found=1 center=468 width=32
+# CASE 55 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=101 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 56 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=101 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 57 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=101 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 58 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=101 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 59 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=101 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 60 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=101 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 61 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=101 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 62 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=101 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 63 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=101 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 64 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=110 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 65 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=110 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 66 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=110 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 67 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=110 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 68 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=110 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 69 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=110 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 70 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=110 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 71 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=110 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 72 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 73 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=119 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 74 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=119 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 75 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=119 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 76 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=119 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 77 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=119 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 78 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=119 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 79 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=119 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 80 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=119 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 81 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=119 shift=2 pattern=0 found=1 center=468 width=32
+# CASE 82 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=101 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 83 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=101 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 84 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=101 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 85 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=101 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 86 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=101 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 87 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=101 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 88 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=101 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 89 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=101 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 90 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=101 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 91 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=110 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 92 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=110 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 93 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=110 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 94 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=110 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 95 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=110 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 96 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=110 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 97 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=110 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 98 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=110 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 99 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 100 w=32 pitch=96 bg=20 fg=180 left=0 right=0 mid=119 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 101 w=32 pitch=96 bg=20 fg=180 left=0 right=4 mid=119 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 102 w=32 pitch=96 bg=20 fg=180 left=0 right=8 mid=119 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 103 w=32 pitch=96 bg=20 fg=180 left=4 right=0 mid=119 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 104 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=119 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 105 w=32 pitch=96 bg=20 fg=180 left=4 right=8 mid=119 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 106 w=32 pitch=96 bg=20 fg=180 left=8 right=0 mid=119 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 107 w=32 pitch=96 bg=20 fg=180 left=8 right=4 mid=119 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 108 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=119 shift=3 pattern=0 found=1 center=468 width=32
+# CASE 109 w=32 pitch=96 bg=20 fg=180 left=12 right=0 mid=110 shift=0 pattern=0 found=0 center=468 width=32
+# CASE 110 w=32 pitch=96 bg=20 fg=180 left=0 right=12 mid=110 shift=0 pattern=0 found=0 center=468 width=32
+# CASE 111 w=32 pitch=96 bg=20 fg=180 left=12 right=12 mid=110 shift=0 pattern=0 found=0 center=468 width=32
+# CASE 112 w=32 pitch=96 bg=20 fg=180 left=16 right=16 mid=110 shift=0 pattern=0 found=0 center=468 width=32
+# CASE 113 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=100 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 114 w=32 pitch=96 bg=20 fg=180 left=4 right=4 mid=120 shift=0 pattern=0 found=1 center=464 width=40
+# CASE 115 w=32 pitch=96 bg=100 fg=120 left=8 right=8 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 116 w=32 pitch=96 bg=20 fg=119 left=0 right=0 mid=110 shift=0 pattern=0 found=0 center=464 width=32
+# CASE 117 w=32 pitch=96 bg=101 fg=180 left=0 right=0 mid=110 shift=0 pattern=0 found=0 center=464 width=32
+# CASE 118 w=16 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=0 found=0 center=464 width=32
+# CASE 119 w=20 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=0 found=1 center=466 width=20
+# CASE 120 w=64 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=0 found=1 center=464 width=64
+# CASE 121 w=68 pitch=96 bg=20 fg=180 left=0 right=0 mid=110 shift=0 pattern=0 found=0 center=464 width=64
+# CASE 122 w=32 pitch=72 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 123 w=32 pitch=120 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=0 found=1 center=464 width=32
+# CASE 124 w=32 pitch=68 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=0 found=0 center=464 width=32
+# CASE 125 w=32 pitch=124 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=0 found=0 center=464 width=32
+# CASE 126 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=24 pattern=0 found=1 center=488 width=32
+# CASE 127 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=28 pattern=0 found=0 center=488 width=32
+# CASE 128 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=1 found=0 center=488 width=32
+# CASE 129 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=2 found=0 center=464 width=32
+# CASE 130 w=64 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=3 found=0 center=464 width=32
+# CASE 131 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=4 found=0 center=464 width=32
+# CASE 132 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=5 found=0 center=464 width=32
+# CASE 133 w=32 pitch=96 bg=20 fg=180 left=8 right=8 mid=110 shift=0 pattern=6 found=0 center=464 width=32
+# PASS bounded hole transition requirements: 133 cases
+# ** Note: $finish    : D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/tmp/hole_transition_unit_r1_20261012/tb_hole_transition_requirements.v(90)
+#    Time: 399050 ns  Iteration: 1  Instance: /tb_hole_transition_requirements
+# End time: 20:10:03 on Oct 12,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

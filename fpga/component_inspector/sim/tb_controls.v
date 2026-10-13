@@ -5,7 +5,8 @@ reg [3:0] btn=15;
 wire req,camdone,aedone; wire [15:0] ae,ag,errors;
 wire scl; tri1 sda;
 ae_set #(.CLK_HZ(10000),.DEBOUNCE_MS(3),.HOLD_MS(8),.REPEAT_MS(2)) dut
- (clk,rst,btn,aedone,camdone,req,ae,ag);
+ (.I_clk(clk),.I_rst(rst),.I_btn(btn),.I_ae_cfg_done(aedone),.I_cam_cfg_done(camdone),
+ .O_ae_req(req),.O_ae(ae),.O_ag(ag),.O_wb_tune(),.O_wb_request());
 uicfgcs500 cfg(.I_clk(clk),.I_rst_n(~rst),.I_ae_req(req),.I_ae(ae),.I_ag(ag),
  .O_cam_scl(scl),.IO_cam_sda(sda),.O_i2c_errors(errors),.O_cfg_done(camdone),.O_ae_cfg_done(aedone));
 task cycles; input integer n; begin repeat(n) @(negedge clk); end endtask

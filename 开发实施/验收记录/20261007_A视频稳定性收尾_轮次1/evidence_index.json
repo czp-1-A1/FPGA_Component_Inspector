@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-07",
+  "status": "field_snapshots_received_long_run_pending",
+  "designated_bit": "fpga/component_inspector/release/edge_tail_fix_20261007/camera_to_dsi_display.bit",
+  "designated_bit_sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65",
+  "actual_loaded_bit_confirmed": true,
+  "actual_test_duration_seconds": null,
+  "physical_operator": null,
+  "camera_distance_mm": 130,
+  "distance_fixed": null,
+  "exposure": 2244,
+  "gain": 48,
+  "material_part_number": null,
+  "evidence": [
+    {
+      "id": "E01",
+      "type": "material_view_exploration_photos",
+      "manifest": "开发实施/验收记录/20261007_三类物料视图探索_轮次1/photo_manifest.json",
+      "readings": "开发实施/验收记录/20261007_三类物料视图探索_轮次1/readings.json",
+      "attachment_count": 28,
+      "unique_images": 27,
+      "actual_continuous_duration_seconds": null
+    },
+    {
+      "id": "E04",
+      "type": "user_field_observation",
+      "normal_picture_updates": true,
+      "vf_increases_only_on_mode_switch": true,
+      "vf_stable_while_mode_held": true,
+      "strips_with_components": true,
+      "empty_pocket_pairs_provided": false,
+      "source": "User replies in this chat, 2026-10-07",
+      "no_freeze_reported": true,
+      "no_corruption_reported": true,
+      "no_flicker_reported": true
+    }
+  ],
+  "measured_segments": [],
+  "classification_test_performed": false,
+  "cold_boot_test_performed": false,
+  "note": "28 attachment copies, 27 unique images, 9 material/view groups. User reports normal updates and VF increases only at switches. No empty-pocket pairs; no actual continuous-duration claim.",
+  "loaded_bit_confirmation_source": "User says the flashed bit is the fix just pulled from teammate; disk SHA independently checked, board identity not read back.",
+  "distance_source": "user_report",
+  "distance_reference_planes": null,
+  "materials": [
+    {
+      "id": "M01",
+      "carrier": "black",
+      "body": "white",
+      "name": "3528贴片LED",
+      "manufacturer_part_number": null
+    },
+    {
+      "id": "M02",
+      "carrier": "black",
+      "body": "black",
+      "name": "MMBT3904",
+      "marking": "1AM",
+      "package": "SOT-23"
+    },
+    {
+      "id": "M03",
+      "carrier": "transparent",
+      "name": "3216贴片钽电容",
+      "type": "A型"
+    }
+  ],
+  "conditions_updated_at": "2026-10-07T21:54:11.366255+08:00",
+  "evidence_collection_method": "User supplies paired full-screen photos and manual duration/moving-picture observations; video upload is not required.",
+  "moving_picture_review_by": "human_user",
+  "ai_video_review_performed": false,
+  "input_dimensions": [
+    1024,
+    600
+  ],
+  "observed_fps": [
+    26,
+    27
+  ],
+  "snapshot_sec_span": 282,
+  "current_priority": "Temporary 3528 LED presence/empty demo; user confirmed LED first, other materials later",
+  "temporary_fixed_state_reported": true
+}

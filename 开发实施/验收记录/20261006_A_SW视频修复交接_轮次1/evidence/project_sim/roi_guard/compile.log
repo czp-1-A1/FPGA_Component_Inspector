@@ -1,0 +1,20 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:17:37 on Oct 06,2026
+vlog -work test_roi_guard ../user_source/hdl_source/roi_frame_guard.v ../user_source/hdl_source/roi_statistics.v 
+-- Compiling module roi_frame_guard
+-- Compiling module roi_statistics
+
+Top level modules:
+	roi_frame_guard
+	roi_statistics
+End time: 19:17:37 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:17:37 on Oct 06,2026
+vlog -sv -work test_roi_guard tb_roi_guard.v 
+-- Compiling module tb_roi_guard
+
+Top level modules:
+	tb_roi_guard
+End time: 19:17:38 on Oct 06,2026, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0

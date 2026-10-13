@@ -4,19 +4,19 @@ reg clk=0,rst=0,vs=0,hs=0,de=0,sv=1,cfg=1;
 reg [15:0] ex=1460,ga=48,rate=30;
 reg [23:0] rgb=24'h556677;
 reg [35:0] diagnostics=36'h1_0280_0123;
-reg [1:0] class_state=0;
+reg [1:0] class_state=0;reg [7:0] wb_r=64,wb_b=64;reg wb_tune=0,wb_pending=0;
 reg [1:0] view=0;reg [12:0] ec=12;reg [23:0] es=345;
 always #5 clk=~clk;
 wire ov,oh,od,bv,bh,bd;wire [23:0] color,bypass_color;
 experiment_osd dut(.clk(clk),.rst_n(rst),.vs(vs),.hs(hs),.de(de),.rgb(rgb),
  .diagnostics(diagnostics),.overflow_frames(16'h12),.lost_frames(16'h34),.underflow_frames(16'h56),
- .exposure(ex),.gain(ga),.view_mode(view),.edge_count(ec),.edge_sum(es),.roi_valid(sv),.roi_state(class_state),.roi_mean(8'd102),.roi_min(8'd20),.roi_max(8'd240),
+ .wb_r(wb_r),.wb_b(wb_b),.wb_tune(wb_tune),.wb_pending(wb_pending),.exposure(ex),.gain(ga),.view_mode(view),.edge_count(ec),.edge_sum(es),.roi_valid(sv),.roi_state(class_state),.roi_mean(8'd102),.roi_min(8'd20),.roi_max(8'd240),
  .width(16'd1024),.height(16'd600),.fps(rate),.lane_errors(16'd1),.format_errors(16'd2),
  .i2c_errors(16'd3),.gaps(16'd4),.frames(32'h1234abcd),.uptime(32'd1800),.cfg_done(cfg),
  .out_vs(ov),.out_hs(oh),.out_de(od),.out_rgb(color));
 experiment_osd #(.ENABLE(0)) bypass(.clk(clk),.rst_n(rst),.vs(vs),.hs(hs),.de(de),.rgb(rgb),
  .diagnostics(diagnostics),.overflow_frames(16'h12),.lost_frames(16'h34),.underflow_frames(16'h56),
- .exposure(ex),.gain(ga),.view_mode(2'd0),.edge_count(13'd12),.edge_sum(24'd345),.roi_valid(sv),.roi_state(class_state),.roi_mean(8'd102),.roi_min(8'd20),.roi_max(8'd240),
+ .wb_r(wb_r),.wb_b(wb_b),.wb_tune(wb_tune),.wb_pending(wb_pending),.exposure(ex),.gain(ga),.view_mode(2'd0),.edge_count(13'd12),.edge_sum(24'd345),.roi_valid(sv),.roi_state(class_state),.roi_mean(8'd102),.roi_min(8'd20),.roi_max(8'd240),
  .width(16'd1024),.height(16'd600),.fps(rate),.lane_errors(16'd1),.format_errors(16'd2),
  .i2c_errors(16'd3),.gaps(16'd4),.frames(32'h1234abcd),.uptime(32'd1800),.cfg_done(cfg),
  .out_vs(bv),.out_hs(bh),.out_de(bd),.out_rgb(bypass_color));
@@ -46,6 +46,22 @@ begin
  end
  repeat(4) @(negedge clk);$fclose(f);f=0;
  if(n!=614400) $fatal(1,"mode raster pixel count");
+end endtask
+task check_wb;input integer index;input [7:0] r,b;input tune,pending;
+begin
+ view=0;sv=1;cfg=1;rate=30;class_state=0;ex=1460;ga=48;diagnostics=36'h1_0280_0123;
+ wb_r=r;wb_b=b;wb_tune=tune;wb_pending=pending;frame_start;
+ if(dut.wb_r_bcd[11:0]!=={4'(r/100),4'((r/10)%10),4'(r%10)} ||
+    dut.wb_b_bcd[11:0]!=={4'(b/100),4'((b/10)%10),4'(b%10)})$fatal(1,"WB decimal coefficients");
+ wb_r=32;wb_b=192;wb_tune=!tune;wb_pending=!pending;
+ $readmemh($sformatf("osd_assets/wb_%0d.hex",index),reference);
+ n=0;f=$fopen($sformatf("osd_wb_%0d.ppm",index),"w");$fwrite(f,"P3\n1024 600\n255\n");
+ for(y=0;y<600;y=y+1)begin
+  de=1;hs=1;for(x=0;x<1024;x=x+1)@(negedge clk);
+  de=0;hs=0;repeat(20)@(negedge clk);
+ end
+ repeat(4)@(negedge clk);$fclose(f);f=0;
+ if(n!=614400)$fatal(1,"WB raster coverage");
 end endtask
 task check_state;input integer index;input [1:0] value;input valid_value,config_value;input [15:0] fps_value;
 input [1:0] expected,reason;
@@ -80,10 +96,12 @@ initial begin
  check_state(0,0,1,1,30,0,3);check_state(1,1,0,1,30,1,2);
  check_state(2,2,1,1,30,2,3);check_state(3,3,1,1,30,3,3);
  view=3;check_state(4,2,1,0,30,1,0);check_state(5,3,1,1,0,1,1);
+ view=0;check_state(6,1,1,1,30,1,3);
  if(dut.exp_bcd!==20'h65535 || dut.gain_bcd!==20'h65535) $fatal(1,"maximum parameters");
  if(dut.decimal(20'h00000,4)!==7'd48 || dut.decimal(20'h00000,0)!==7'd32 || dut.decimal(20'h65535,0)!==7'd54) $fatal(1,"trim leading zeros");
  check_mode(0);check_mode(1);check_mode(2);check_mode(3);
- $display("PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values and frame snapshot");$finish;
+ check_wb(0,64,64,0,0);check_wb(1,96,32,1,0);check_wb(2,192,80,1,1);
+ $display("PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values, WB actual coefficients/TUNE/LOCK/pending and frame snapshot");$finish;
 end
 always @(negedge clk) if(od && f!=0) begin
  if(panel_test) begin

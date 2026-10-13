@@ -1,0 +1,13 @@
+{
+  "characterization": "PASS_22_cases_actual_behavior_only",
+  "soft_hole_acceptance": "FAILED_expected_ROW7_actual_ROW0",
+  "physical_root_cause": "NOT_ESTABLISHED",
+  "production_inputs_checked_unchanged": 210,
+  "release_bit_unchanged": true,
+  "modelsim_version": "2019.2",
+  "runner_notes": [
+    "Initial -novopt invocation failed before loading design; logs retained. Default optimization invocation succeeded without changing sources.",
+    "Soft-hole run contained a Verilog fatal even though vsim quit returned exit0. Acceptance result is FAILED, determined from assertions/log, not process code."
+  ],
+  "scope": "Frozen D3 only; no production edits, synthesis, board or Flash action."
+}

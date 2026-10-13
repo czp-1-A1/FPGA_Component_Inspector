@@ -1,0 +1,50 @@
+# vsim -c work.tb_hole_boundary -l transcript.log -do "onbreak {quit -code 1}; onerror {quit -code 1}; run -all; quit -code 0" 
+# Start time: 02:36:39 on Oct 12,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_hole_boundary(fast)
+# onbreak {quit -code 1}
+#  Warning: onbreak command for use within macro
+#  onerror {quit -code 1}
+#  Warning: onerror command for use within macro
+#  run -all
+# CASE id=0 width=32 pitch=96 bg=20 fg=180 left=0 right=0 shoulder=0 shift=0 found=1 measured_center=464 measured_width=32 ROW=7 reason=5 lock=0
+# CASE id=1 width=32 pitch=96 bg=20 fg=180 left=0 right=0 shoulder=0 shift=0 found=1 measured_center=464 measured_width=32 ROW=7 reason=0 lock=1
+# CASE id=2 width=32 pitch=96 bg=20 fg=180 left=1 right=0 shoulder=110 shift=0 found=0 measured_center=464 measured_width=32 ROW=0 reason=2 lock=0
+# CASE id=3 width=32 pitch=96 bg=20 fg=180 left=0 right=1 shoulder=110 shift=0 found=0 measured_center=464 measured_width=32 ROW=0 reason=2 lock=0
+# CASE id=4 width=32 pitch=96 bg=20 fg=180 left=1 right=1 shoulder=110 shift=0 found=0 measured_center=464 measured_width=32 ROW=0 reason=2 lock=0
+# CASE id=5 width=32 pitch=96 bg=20 fg=180 left=1 right=1 shoulder=100 shift=0 found=1 measured_center=464 measured_width=32 ROW=7 reason=5 lock=0
+# CASE id=6 width=32 pitch=96 bg=20 fg=180 left=1 right=1 shoulder=101 shift=0 found=0 measured_center=464 measured_width=32 ROW=0 reason=2 lock=0
+# CASE id=7 width=32 pitch=96 bg=20 fg=180 left=1 right=1 shoulder=119 shift=0 found=0 measured_center=464 measured_width=32 ROW=0 reason=2 lock=0
+# CASE id=8 width=32 pitch=96 bg=20 fg=180 left=1 right=1 shoulder=120 shift=0 found=1 measured_center=464 measured_width=40 ROW=7 reason=5 lock=0
+# CASE id=9 width=32 pitch=96 bg=100 fg=120 left=0 right=0 shoulder=0 shift=0 found=1 measured_center=464 measured_width=32 ROW=7 reason=0 lock=1
+# CASE id=10 width=32 pitch=96 bg=20 fg=119 left=0 right=0 shoulder=0 shift=0 found=0 measured_center=464 measured_width=32 ROW=0 reason=2 lock=0
+# CASE id=11 width=32 pitch=96 bg=101 fg=180 left=0 right=0 shoulder=0 shift=0 found=0 measured_center=464 measured_width=32 ROW=0 reason=2 lock=0
+# CASE id=12 width=16 pitch=96 bg=20 fg=180 left=0 right=0 shoulder=0 shift=0 found=0 measured_center=464 measured_width=32 ROW=0 reason=2 lock=0
+# CASE id=13 width=20 pitch=96 bg=20 fg=180 left=0 right=0 shoulder=0 shift=0 found=1 measured_center=466 measured_width=20 ROW=7 reason=5 lock=0
+# CASE id=14 width=64 pitch=96 bg=20 fg=180 left=0 right=0 shoulder=0 shift=0 found=1 measured_center=464 measured_width=64 ROW=7 reason=0 lock=1
+# CASE id=15 width=68 pitch=96 bg=20 fg=180 left=0 right=0 shoulder=0 shift=0 found=0 measured_center=464 measured_width=64 ROW=0 reason=2 lock=0
+# CASE id=16 width=32 pitch=72 bg=20 fg=180 left=0 right=0 shoulder=0 shift=0 found=1 measured_center=464 measured_width=32 ROW=7 reason=5 lock=0
+# CASE id=17 width=32 pitch=120 bg=20 fg=180 left=0 right=0 shoulder=0 shift=0 found=1 measured_center=464 measured_width=32 ROW=7 reason=0 lock=1
+# CASE id=18 width=32 pitch=68 bg=20 fg=180 left=0 right=0 shoulder=0 shift=0 found=0 measured_center=464 measured_width=32 ROW=0 reason=2 lock=0
+# CASE id=19 width=32 pitch=124 bg=20 fg=180 left=0 right=0 shoulder=0 shift=0 found=0 measured_center=464 measured_width=32 ROW=0 reason=2 lock=0
+# CASE id=20 width=32 pitch=96 bg=20 fg=180 left=0 right=0 shoulder=0 shift=24 found=1 measured_center=488 measured_width=32 ROW=7 reason=5 lock=0
+# CASE id=21 width=32 pitch=96 bg=20 fg=180 left=0 right=0 shoulder=0 shift=28 found=0 measured_center=488 measured_width=32 ROW=0 reason=2 lock=0
+# PASS frozen D3 hole boundary characterization: 22 cases, abrupt acquisition, gray transition rejection, brightness/width/pitch/anchor limits and bubbles
+# ** Note: $finish    : tb_hole_boundary.v(73)
+#    Time: 198710 ns  Iteration: 1  Instance: /tb_hole_boundary
+# End time: 02:36:41 on Oct 12,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

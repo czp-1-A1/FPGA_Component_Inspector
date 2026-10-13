@@ -1,0 +1,99 @@
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/pixel_interface/transcript.log -wlf modelsim_work/pixel_interface/wave.wlf -do "log /tb_pixel_interface/*; run -all; quit -code 1 -force" test_pixel_interface.tb_pixel_interface anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 19:17:31 on Oct 06,2026
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_pixel_interface(fast)
+# Loading work.data128_96(fast)
+# Loading work.awb(fast)
+# Loading work.divider(fast)
+# Loading anlogic_sim.AL_DFF_X(fast)
+# Loading anlogic_sim.AL_MUX(fast)
+# Loading anlogic_sim.AL_DFF(fast)
+# Loading anlogic_sim.AL_MAP_LUT5(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT2(fast)
+# Loading anlogic_sim.AL_MAP_LUT3(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT4(fast)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__13)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__14)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__15)
+# Loading work.signal_delay(fast)
+# Loading work.blk_mem_gen_awb_delay_signal(fast)
+# Loading work.ram_f84573da5ab5(fast)
+# Loading anlogic_sim.PH1P_LOGIC_ERAM(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# Loading work.bilinear_interpolation(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_pixel_interface/dut/signal_delay_d/blk_mem_gen_awb_delay_signal_d/ram_f84573da5ab5_Inst/username_inst File: ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v Line: 60
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_pixel_interface/dut/signal_delay_d/blk_mem_gen_awb_delay_signal_d/ram_f84573da5ab5_Inst/username_inst File: ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v Line: 60
+# log /tb_pixel_interface/*
+#  run -all
+# PASS bilinear: x increases from low 32-bit lane; RGB channels and five-stage markers aligned
+# OBS case=0 input-to-first-pixel=53 clocks, SOF lead=53 clocks, in=768 out=768 packed=576 EOL=3
+# OBS case=1 input-to-first-pixel=55 clocks, SOF lead=55 clocks, in=768 out=768 packed=576 EOL=3
+# OBS ready-low output beats=180; ready is passthrough, not effective backpressure
+# OBS case=3 input-to-first-pixel=53 clocks, SOF lead=53 clocks, in=768 out=768 packed=576 EOL=3
+# PASS AWB/packing: full lines, four lanes, small input bubbles, ready-low, reset and frame restart
+# OBS incomplete line: input=64 beats, output=256 beats, unknown=0; valid alone cannot prove frame completeness
+# PASS pixel boundary characterization; SOF alignment and incomplete-frame protection remain integration requirements
+# ** Note: $finish    : tb_pixel_interface.v(188)
+#    Time: 38460 ns  Iteration: 1  Instance: /tb_pixel_interface
+# End time: 19:17:37 on Oct 06,2026, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 2

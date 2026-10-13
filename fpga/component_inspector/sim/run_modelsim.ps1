@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$ModelSimBin = "D:/modelsim/win64",
     [string]$TdSimRoot = "D:/AAA/FPGA.....YZW/sim_release",
     [switch]$TieUnusedAwbRamInputs,
@@ -44,7 +44,7 @@ try {
     $ip = "../user_source/ip_source"
     $demosaic = "$hdl/isp/demosaic_4x_2_0"
     $ispSources = @(
-        "$hdl/isp/uial2axis.v", "$hdl/isp/isp_top.v", "$hdl/roi_frame_guard.v", "$hdl/roi_statistics.v", "$hdl/roi_classifier.v", "$hdl/roi_result_snapshot.v", "$hdl/roi_sobel_view.v", "$hdl/roi_observation_snapshot.v",
+        "$hdl/isp/uial2axis.v", "$hdl/isp/isp_top.v", "$hdl/tape_hole_tracker.v", "$hdl/multi_pocket_detector.v", "$hdl/roi_frame_guard.v", "$hdl/roi_statistics.v", "$hdl/roi_classifier.v", "$hdl/roi_mode_classifier.v", "$hdl/roi_tape_guard.v", "$hdl/roi_result_snapshot.v", "$hdl/roi_sobel_view.v", "$hdl/roi_observation_snapshot.v",
         "$hdl/awb.v", "$hdl/signal_delay.v", "$hdl/isp/data128_96/data128_96.v", "$hdl/isp/data96_128/data96_128.v",
         "$demosaic/demosaic.v", "$demosaic/raw_matrix_3x3_buffer.v", "$demosaic/zhenghe.v",
         "$demosaic/line_buffer_demosaic.v", "$demosaic/mipi_to_raw_converter.v", "$demosaic/bilinear_interpolation.v",
@@ -53,6 +53,31 @@ try {
         "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
         "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v")
     $tests = @(
+        @{Name="video_fallback_display"; Pass="PASS video fallback display:"; Sources=@("$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_video_fallback_display.v")},
+        @{Name="multi_video"; Pass="PASS multi video:"; Sources=($ispSources + @("$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_multi_video.v"))},
+        @{Name="video_metadata_fallback"; Pass="PASS video metadata fallback:"; Sources=@("$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_video_metadata_fallback.v")},
+        @{Name="writer_epoch"; Pass="PASS writer epoch:"; Sources=@("$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_writer_epoch.v")},
+        @{Name="multi_writer"; Pass="PASS multi writer:"; Sources=($ispSources + @("$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_multi_writer.v"))},
+        @{Name="multi_pockets"; Pass="PASS multi pockets:"; Sources=@("$hdl/multi_pocket_detector.v", "$hdl/roi_sobel_view.v", "tb_multi_pockets.v")},
+        @{Name="isp_multi"; Pass="PASS actual ISP multi:"; Sources=($ispSources + @("tb_isp_multi.v"))},
+        @{Name="multi_osd"; Pass="PASS multi OSD:"; Sources=@("$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/experiment_osd.v", "tb_multi_osd.v")},
+        @{Name="multi_metadata"; Pass="PASS multi metadata:"; Sources=@("$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_multi_metadata.v")},
+        @{Name="publish_diag"; Pass="PASS publish diagnostic:"; Sources=@("$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_publish_diag.v")},
+        @{Name="tracking_late"; Pass="PASS tracking late:"; Sources=@("$hdl/tape_hole_tracker.v", "$hdl/roi_statistics.v", "tb_tracking_late.v")},
+        @{Name="tracking_status"; Pass="PASS tracking status:"; Sources=@("$hdl/tape_hole_tracker.v", "tb_tracking_status.v")},
+        @{Name="isp_tracking_late"; Pass="PASS actual ISP tracking late:"; Sources=($ispSources + @("tb_isp_tracking_late.v"))},
+        @{Name="tracking_age"; Pass="PASS tracking age:"; Sources=@("$hdl/tape_hole_tracker.v", "tb_tracking_age.v")},
+        @{Name="isp_tracking"; Pass="PASS actual ISP tracking:"; Sources=($ispSources + @("tb_isp_tracking.v"))},
+        @{Name="tracking_osd"; Pass="PASS tracking OSD:"; Sources=@("$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/experiment_osd.v", "tb_tracking_osd.v")},
+        @{Name="tracking"; Pass="PASS tracking:"; Sources=@("$hdl/tape_hole_tracker.v", "$hdl/roi_statistics.v", "tb_tracking.v")},
+        @{Name="dynamic_sobel"; Pass="PASS dynamic Sobel:"; Sources=@("$hdl/roi_sobel_view.v", "$hdl/isp/data96_128/data96_128.v", "tb_dynamic_sobel.v")},
+        @{Name="frame_metadata"; Pass="PASS frame metadata:"; Sources=@("$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_frame_metadata.v")},
+        @{Name="wb_controls"; Pass="PASS WB controls:"; Sources=@("$hdl/uiisp_beta/ae_set.v", "tb_wb_controls.v")},
+        @{Name="manual_wb"; Pass="PASS manual WB:"; Sources=@("$hdl/awb.v", "$hdl/signal_delay.v", "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v", "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v", "tb_manual_wb.v")},
+        @{Name="wb_epoch"; Pass="PASS WB epoch:"; Sources=@("$hdl/status_cdc.v", "$hdl/roi_observation_snapshot.v", "$hdl/roi_display_state.v", "tb_wb_epoch.v")},
+        @{Name="fixed_wb"; Pass="PASS fixed WB:"; Sources=@("$hdl/awb.v", "$hdl/signal_delay.v", "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v", "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v", "tb_fixed_wb.v")},
+        @{Name="presence_modes"; Pass="PASS presence modes:"; Sources=@("$hdl/roi_mode_classifier.v", "$hdl/roi_tape_guard.v", "$hdl/roi_classifier.v", "$hdl/roi_result_snapshot.v", "$hdl/roi_display_state.v", "$hdl/status_cdc.v", "tb_presence_modes.v")},
+        @{Name="isp_metadata_stop"; Pass="PASS actual ISP metadata stop:"; Sources=($ispSources + @("$hdl/observation_controls.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_isp_metadata_stop.v"))},
         @{Name="isp_writer_stop"; Pass="PASS actual ISP full epoch:"; Sources=($ispSources + @("$hdl/observation_controls.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_isp_writer_stop.v"))},
         @{Name="sobel_tail"; Pass="PASS Sobel tail:"; Sources=@("$hdl/roi_sobel_view.v", "$hdl/isp/data96_128/data96_128.v", "tb_sobel_tail.v")},
         @{Name="sobel_view"; Pass="PASS Sobel view:"; Sources=@("$hdl/roi_sobel_view.v", "$hdl/isp/data96_128/data96_128.v", "tb_sobel_view.v")},
@@ -81,6 +106,7 @@ try {
             if ($requested -notin $tests.Name) { throw "Unknown test: $requested" }
         }
         $tests = @($tests | Where-Object { $_.Name -in $OnlyTests })
+        if ($tests.Count -eq 0) { throw "Requested tests were not selected" }
     }
     foreach ($test in $tests) {
         $library = "test_" + $test.Name
@@ -107,10 +133,10 @@ try {
         & "$ModelSimBin/vlog.exe" -sv -work $library @defines $testbench >> "$directory/compile.log" 2>&1
         if ($LASTEXITCODE -ne 0) { throw "Testbench compile failed: $($test.Name); see $directory/compile.log" }
         $tops = @("$library.tb_$($test.Name)")
-        if ($test.Name -in @("pixel_interface", "roi_chain", "isp_writer_stop")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
+        if ($test.Name -in @("fixed_wb", "manual_wb", "pixel_interface", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
         $commands = "log /tb_$($test.Name)/*; run -all; quit -code 1 -force"
         $access = "+acc"
-        if ($test.Name -in @("roi_chain", "isp_writer_stop")) { $access = "+acc=rn+/tb_$($test.Name)" }
+        if ($test.Name -in @("roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video")) { $access = "+acc=rn+/tb_$($test.Name)" }
         & "$ModelSimBin/vsim.exe" -c -L anlogic_sim "-voptargs=$access" -onfinish exit -l "$directory/transcript.log" -wlf "$directory/wave.wlf" -do $commands @tops *> "$directory/console.log"
         if ($LASTEXITCODE -ne 0) { throw "Simulation failed: $($test.Name); see $directory/console.log" }
         $output = Get-Content -LiteralPath "$directory/console.log" -Raw

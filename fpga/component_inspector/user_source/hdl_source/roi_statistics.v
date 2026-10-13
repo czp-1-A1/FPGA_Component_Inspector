@@ -1,7 +1,7 @@
 // Half-open ROI. Four pixels retain the AWB high-to-low display order.
 // Approximate luminance is floor((R+2G+B)/4); no pixel-rate multiplication/divide.
 module roi_statistics #(
- parameter X0=256,X1=768,Y0=172,Y1=428
+ parameter DYNAMIC_ROI=0,X0=256,X1=768,Y0=172,Y1=428
 )(
  input wire clk,rst_n,pixel_accept,pixel_sof,
  input wire [10:0] pixel_x,input wire [9:0] pixel_y,input wire [95:0] rgb,
@@ -9,8 +9,11 @@ module roi_statistics #(
  output reg sample_valid,output reg [7:0] mean,minimum,maximum,
  output reg [19:0] sample_pixels,output reg [27:0] sample_sum,
  output reg sample_new,
- input wire frame_start
+ input wire frame_start,
+ input wire [10:0] dynamic_x0,dynamic_x1,input wire [9:0] dynamic_y0,dynamic_y1
 );
+wire [10:0] x0=DYNAMIC_ROI ? dynamic_x0 : X0,x1=DYNAMIC_ROI ? dynamic_x1 : X1;
+wire [9:0] y0=DYNAMIC_ROI ? dynamic_y0 : Y0,y1=DYNAMIC_ROI ? dynamic_y1 : Y1;
 localparam [20:0] AREA=(X1-X0)*(Y1-Y0);
 reg [27:0] sum;
 reg [19:0] count;
@@ -49,7 +52,7 @@ always @(posedge clk or negedge rst_n) begin
  end else begin
   for(lane=0;lane<4;lane=lane+1) begin
    lane_gray[lane]<=channel_sum[lane][9:2];
-   selected[lane]<=pixel_x+lane>=X0 && pixel_x+lane<X1 && pixel_y>=Y0 && pixel_y<Y1;
+   selected[lane]<=pixel_x+lane>=x0 && pixel_x+lane<x1 && pixel_y>=y0 && pixel_y<y1;
   end
   beat_sum<=({3'd0,selected_gray[0]}+{3'd0,selected_gray[1]})+({3'd0,selected_gray[2]}+{3'd0,selected_gray[3]});
   beat_count<=({2'd0,selected[0]}+{2'd0,selected[1]})+({2'd0,selected[2]}+{2'd0,selected[3]});

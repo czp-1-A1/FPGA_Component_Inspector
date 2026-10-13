@@ -1,0 +1,31 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish exit -l diff1s300.log -wlf diff1s300.wlf "+GAP=512" "+STALL=300" "+BYPASS=1" -do "run -all; quit -force" work.tb_ddr_capacity 
+# Start time: 22:54:32 on Oct 05,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_ddr_capacity(fast)
+# Loading work.roi_sobel_view(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# Loading work.video_in(fast)
+# run -all
+# CAPACITY RAW bypass=1 gap=512 stall=300 trigger=190 produced=3840 written=3840 expected=3840 peak=506 dropped=0 mismatches=0 readstarts=1
+# ** Note: $finish    : tb_ddr_capacity.v(68)
+#    Time: 190443176 ps  Iteration: 1  Instance: /tb_ddr_capacity
+# End time: 22:54:33 on Oct 05,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

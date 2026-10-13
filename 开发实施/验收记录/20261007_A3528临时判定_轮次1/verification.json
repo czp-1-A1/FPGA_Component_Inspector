@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "main_evidence_files_verified": 364,
+  "build_inputs_verified": 207,
+  "old_stable_bit_unchanged": true,
+  "release_bit_sha256": "4c8aa1695e06f3218ba5ae01b67e78e188755a61beea9f1229cdd1ef7296e22e",
+  "supplemental_files": [
+    {
+      "path": "README.zh-CN.md",
+      "bytes": 2112,
+      "sha256": "dac4e6bf804a89df0b2dc144680d51c2b5ba2cb90a0fd8a64d850c056848d0f8"
+    },
+    {
+      "path": "AGENTS_checkpoint.md",
+      "bytes": 7328,
+      "sha256": "3d91fd15bb5c48d7a36e61eb34f514d7a62868ebadc931da6b9d0f33046b9db3"
+    },
+    {
+      "path": "independent_review.json",
+      "bytes": 1837,
+      "sha256": "496d0674b65631422b8dccfa11948c8a5563cd2f34509c67a68d0b3abd4d5bc9"
+    },
+    {
+      "path": "threshold_source/historical_manifest.json",
+      "bytes": 12656,
+      "sha256": "ba282742187317dd91ff3a87360eb12a20177d8261ee8f5d354cabaeada7a9dc"
+    },
+    {
+      "path": "build_scripts/finish_led_presence_v1_docs_20261007.py",
+      "bytes": 11029,
+      "sha256": "449b348f7879e169876f689a402ac6962cdbbc3c086b0f8198d0bac7866fd263"
+    },
+    {
+      "path": "build_scripts/verify_led_presence_v1_20261007.py",
+      "bytes": 4860,
+      "sha256": "a6bc999ae30838e7b1d4eee36fce71eb581769317ffd111b98af34ebb319f963"
+    }
+  ],
+  "final_documents": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "3d91fd15bb5c48d7a36e61eb34f514d7a62868ebadc931da6b9d0f33046b9db3"
+    },
+    {
+      "path": "开发实施/验收记录/20261007_A3528临时判定_轮次1.md",
+      "sha256": "a051257f0b5421199c91a1a3a09426e636edd111346da9fd44ca3cfdb4a5a211"
+    },
+    {
+      "path": "开发实施/28_A临时固定条件有件空穴演示_准备协议.md",
+      "sha256": "718fbeda5cc30bc02099e065dc10dfb5b20bbe10ad6cef60a440ebf060f88c61"
+    },
+    {
+      "path": "开发实施/29_A3528_LED临时有件空穴_实施说明.md",
+      "sha256": "2429932f1ec5260e8bbc15bd01c334f0a8ba2638087777996f12d4690d60b81f"
+    },
+    {
+      "path": "fpga/component_inspector/release/led_presence_demo_v1_20261007/README.zh-CN.md",
+      "sha256": "dac4e6bf804a89df0b2dc144680d51c2b5ba2cb90a0fd8a64d850c056848d0f8"
+    }
+  ],
+  "commit_status": "uncommitted_unpushed",
+  "physical_status": "not_flashed_not_board_tested"
+}

@@ -1,0 +1,24 @@
+{
+  "baseline": "fixed_wb_tuning_r2_td_20261009",
+  "changed_production_inputs": [
+    "user_source/hdl_source/awb.v",
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/uiisp_beta/ae_set.v",
+    "user_source/hdl_source/roi_display_state.v",
+    "user_source/hdl_source/osd_ascii_rom.v",
+    "user_source/hdl_source/roi_observation_snapshot.v"
+  ],
+  "source_files": 69,
+  "red_blue_gain_code": {
+    "default": 64,
+    "minimum": 32,
+    "maximum": 192,
+    "denominator": 64
+  },
+  "frame_boundary": "native request snapshot then AWB early SOF hold / first multiplication apply",
+  "sample_tag": "WB 16-bit epoch plus 8-bit red and blue codes; coherent snapshot",
+  "constraints_unchanged": true,
+  "hardware_accuracy_unvalidated": true
+}

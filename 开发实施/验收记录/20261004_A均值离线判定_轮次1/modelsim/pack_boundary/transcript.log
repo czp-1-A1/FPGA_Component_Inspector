@@ -1,0 +1,28 @@
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/pack_boundary/transcript.log -wlf modelsim_work/pack_boundary/wave.wlf -do "log /tb_pack_boundary/*; run -all; quit -code 1 -force" test_pack_boundary.tb_pack_boundary 
+# Start time: 00:15:44 on Oct 04,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_pack_boundary(fast)
+# Loading work.data_96bit_to_128bit(fast)
+# log /tb_pack_boundary/*
+#  run -all
+# OBS packer: reset and frame_start during continuous valid do not restart packing
+# OBS packer: two input beats emit one 128-bit word; remaining 64 bits are discarded by valid gap
+# PASS pack boundary characterization: valid gap restarts phase; reset/SOF are not phase guards
+# ** Note: $finish    : tb_pack_boundary.v(38)
+#    Time: 160 ns  Iteration: 1  Instance: /tb_pack_boundary
+# End time: 00:15:45 on Oct 04,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

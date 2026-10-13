@@ -1,0 +1,25 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 20:58:30 on Oct 11,2026
+vlog -work test_frame_metadata ../user_source/hdl_source/status_cdc.v ../user_source/hdl_source/video_in.v ../user_source/hdl_source/video_out.v ../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v 
+-- Compiling module status_cdc
+-- Compiling module video_in
+-- Compiling module video_out
+-- Compiling module w128_d512_fifo
+-- Compiling module soft_fifo_al_4057d6b76aa6
+-- Compiling module fifo_cross_domain_addr_process_al_4057d6b76aa6
+-- Compiling module ram_infer_4057d6b76aa6
+
+Top level modules:
+	video_in
+	video_out
+End time: 20:58:30 on Oct 11,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 20:58:30 on Oct 11,2026
+vlog -sv -work test_frame_metadata tb_frame_metadata.v 
+-- Compiling module tb_frame_metadata
+
+Top level modules:
+	tb_frame_metadata
+End time: 20:58:30 on Oct 11,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

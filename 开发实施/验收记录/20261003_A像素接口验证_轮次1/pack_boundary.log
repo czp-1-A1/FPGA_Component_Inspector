@@ -1,0 +1,4 @@
+OBS packer: reset and frame_start during continuous valid do not restart packing
+OBS packer: two input beats emit one 128-bit word; remaining 64 bits are discarded by valid gap
+PASS pack boundary characterization: valid gap restarts phase; reset/SOF are not phase guards
+tb_pack_boundary.v:38: $finish called at 160000 (1ps)

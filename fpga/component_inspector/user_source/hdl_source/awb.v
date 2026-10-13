@@ -19,7 +19,11 @@ version:     :
 *****************************************************************/
 module awb  #(   
     parameter IMG_HEIGHT = 1080,
-    parameter IMG_WIDTH  = 1920
+    parameter IMG_WIDTH  = 1920,
+    parameter FIXED_GAIN = 0,
+    parameter MANUAL_GAIN = 0,
+    parameter [19:0] FIXED_R_GAIN = 20'h10000,
+    parameter [19:0] FIXED_B_GAIN = 20'h10000
 ) 
 (
     input                   I_clk  ,
@@ -37,7 +41,9 @@ module awb  #(
     output                  O_pixel_sof,
     output [95:0]           O_tdata  ,
     output                  O_tvalid ,
-    input                   O_tready
+    input                   O_tready,
+    input [31:0]            I_wb_request,
+    output [31:0]           O_wb_active
 );
 
 /*****************************************************************
@@ -206,24 +212,57 @@ assign  rgb888_b_d0[0] = I_tdata_d0[0+:8];
                             ��������                                      
 *****************************************************************/
 
-    reg  [19:0]   in_r_r1;
-    reg  [19:0]   in_b_r1;
-    always @(posedge I_clk or negedge I_rst_n)begin 
-        if(!I_rst_n || I_tuser)begin
-            in_r_r1 <= 20'h10000;
-            in_b_r1 <= 20'h10000;
+    wire [19:0] in_r_r1;
+    wire [19:0] in_b_r1;
+    // Select constant gains without a clocked constant-assignment process.
+    // The original pixel/sync pipeline and automatic path are retained.
+    generate
+        if(MANUAL_GAIN)begin : manual_gain
+            reg [31:0] pending,active;
+            wire first_pixel = I_tuser_r1 && valid_d1;
+            // Snapshot at AWB early SOF, apply at the first multiplication.
+            // First-beat bypass avoids one pixel group using the old gains.
+            wire [31:0] color_gain = first_pixel ? pending : active;
+            assign in_r_r1 = {2'd0,color_gain[15:8],10'd0};
+            assign in_b_r1 = {2'd0,color_gain[7:0],10'd0};
+            assign O_wb_active = active;
+            always @(posedge I_clk or negedge I_rst_n)begin
+                if(!I_rst_n)begin pending<=32'h00006464;active<=32'h00006464;end
+                else begin
+                    if(I_tuser) pending<=I_wb_request;
+                    if(first_pixel) active<=pending;
+                end
+            end
         end
-        else if(done[0])begin
-            if(|in_r_x1[47:20])
-                in_r_r1 <= 20'hfffff;
-            else 
-                in_r_r1 <= in_r_x1[19:0];
-            if(|in_b_x1[47:20])
-                in_b_r1 <= 20'hfffff;
-            else 
-                in_b_r1 <= in_b_x1[19:0];
+        else if(FIXED_GAIN)begin : fixed_gain
+            assign in_r_r1 = FIXED_R_GAIN;
+            assign in_b_r1 = FIXED_B_GAIN;
+            assign O_wb_active = 32'h00004040;
         end
-    end
+        else begin : automatic_gain
+            reg [19:0] red_gain;
+            reg [19:0] blue_gain;
+            assign in_r_r1 = red_gain;
+            assign in_b_r1 = blue_gain;
+            assign O_wb_active = 32'h00004040;
+            always @(posedge I_clk or negedge I_rst_n)begin
+                if(!I_rst_n || I_tuser)begin
+                    red_gain <= 20'h10000;
+                    blue_gain <= 20'h10000;
+                end
+                else if(done[0])begin
+                    if(|in_r_x1[47:20])
+                        red_gain <= 20'hfffff;
+                    else
+                        red_gain <= in_r_x1[19:0];
+                    if(|in_b_x1[47:20])
+                        blue_gain <= 20'hfffff;
+                    else
+                        blue_gain <= in_b_x1[19:0];
+                end
+            end
+        end
+    endgenerate
 
 
     ////信号同步

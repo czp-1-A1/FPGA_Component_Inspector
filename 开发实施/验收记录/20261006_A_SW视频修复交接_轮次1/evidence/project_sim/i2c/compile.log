@@ -1,0 +1,18 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:15:11 on Oct 06,2026
+vlog -work test_i2c ../user_source/hdl_source/uics500_cfg/uii2c.v 
+-- Compiling module uii2c
+
+Top level modules:
+	uii2c
+End time: 19:15:11 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:15:11 on Oct 06,2026
+vlog -sv -work test_i2c tb_i2c.v 
+-- Compiling module tb_i2c
+
+Top level modules:
+	tb_i2c
+End time: 19:15:11 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

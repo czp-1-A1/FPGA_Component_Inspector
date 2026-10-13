@@ -1,0 +1,326 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -voptargs="+acc" -onfinish exit -l transcript.log -wlf wave.wlf -do "log /tb_ram_map/*; run -all; quit -code 1 -force" work.tb_ram_map work.glbl work.PH1P_PHY_GSR 
+# Start time: 22:52:52 on Oct 05,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2685) [TFMPC] - Too few port connections for 'ramread0_syn_105'.  Expected 35, found 9.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'doa_extra'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'dib_extra'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(169): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2685) [TFMPC] - Too few port connections for 'ramread0_syn_23'.  Expected 35, found 13.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(287): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2685) [TFMPC] - Too few port connections for 'ramread0_syn_64'.  Expected 35, found 13.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(409): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2685) [TFMPC] - Too few port connections for 'ramread1_syn_105'.  Expected 35, found 9.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'doa_extra'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'dib_extra'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(531): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2685) [TFMPC] - Too few port connections for 'ramread1_syn_23'.  Expected 35, found 13.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(649): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2685) [TFMPC] - Too few port connections for 'ramread1_syn_64'.  Expected 35, found 13.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(771): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2685) [TFMPC] - Too few port connections for 'ramread2_syn_105'.  Expected 35, found 9.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'doa_extra'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'dib_extra'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(893): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2685) [TFMPC] - Too few port connections for 'ramread2_syn_23'.  Expected 35, found 13.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(1011): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2685) [TFMPC] - Too few port connections for 'ramread2_syn_64'.  Expected 35, found 13.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(1133): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2685) [TFMPC] - Too few port connections for 'ramread3_syn_105'.  Expected 35, found 9.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'doa_extra'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'dib_extra'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(1255): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2685) [TFMPC] - Too few port connections for 'ramread3_syn_23'.  Expected 35, found 13.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(1373): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2685) [TFMPC] - Too few port connections for 'ramread3_syn_64'.  Expected 35, found 13.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pb'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'probe_redmeet_pa'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'pib_rst_redmeet_n'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casout'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casout'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'addrb_casin'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'addra_casin'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_re'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_we'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_raddr'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'fifoctrl_waddr'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterrinj'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_dbiterr'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'ecc_sbiterr'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'orstb'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'web'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'oceb'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'csb'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'orsta'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'wea'.
+# ** Warning: mapped_rgb_ram.v(1495): (vopt-2718) [TFMPC] - Missing connection for port 'ocea'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_ram_map(fast)
+# Loading work.mapped_rgb_ram(fast)
+# Loading work.PH1P_PHY_ERAM_V2(fast)
+# Loading work.PH1P_PHY_ERAM_V2(fast__1)
+# Loading work.glbl(fast)
+# Loading work.PH1P_PHY_GSR(fast)
+# log /tb_ram_map/*
+#  run -all
+# PASS mapped physical RGB RAM: 12 exact ERAM instances, four 256x96 banks, 34797 comparisons, 1-cycle synchronous read; read/write same-bank same-address excluded
+# ** Note: $finish    : tb_ram_map.v(57)
+#    Time: 96488128 ps  Iteration: 1  Instance: /tb_ram_map
+# End time: 22:52:56 on Oct 05,2026, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 292

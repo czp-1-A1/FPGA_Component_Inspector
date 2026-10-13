@@ -1,0 +1,19 @@
+# PASS WB controls: staggered/short/long chords, one toggle per release, four keys, no camera writes in WB, debounce, repeat, both clamps, epoch and normal controls restored
+# PASS manual WB: independent Q2.6 arithmetic/clipping, four lanes, first pixel, bubbles, ready-low, EOL, pending requests held until next frame and reset
+# PASS fixed WB frame case=0 scene=0 beats=768 ROI=20 ready_low=180
+# PASS fixed WB frame case=1 scene=1 beats=768 ROI=20 ready_low=180
+# PASS fixed WB frame case=3 scene=0 beats=768 ROI=20 ready_low=180
+# PASS fixed WB: colored-background invariance, fixed non-unity gains/clipping, four lanes, bubbles, reset, line tails, ready-low; automatic reference changed 2304 beats
+# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=1 rows=4 request=0 receive=0 tag=0 frame_mode=0 early_cycle=1047 pixel_cycle=1101 AWB=1024 view=1024 guard_bad=1 video_bad=1 invalid_after_early=704 bad_after_early=2772 good=0
+# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=2 rows=600 request=7 receive=7 tag=7 frame_mode=3 early_cycle=5364 pixel_cycle=5418 AWB=153600 view=153600 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=1
+# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738
+# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=3 rows=599 request=7 receive=7 tag=7 frame_mode=3 early_cycle=449111 pixel_cycle=449165 AWB=153344 view=153344 guard_bad=1 video_bad=1 invalid_after_early=1 bad_after_early=19 good=0
+# PASS actual diagnostic latch prefix=4 old_reason=8 old_LP=738 old_WS=1387 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=4 rows=600 request=7 receive=7 tag=7 frame_mode=3 early_cycle=892120 pixel_cycle=892174 AWB=153600 view=153600 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=1
+# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738
+# PASS actual ISP metadata stop: real RAW10/ISP/178bit mailbox/writer, short20-cycle tail, full word/epoch proof, precomputed features never publish truncated frame
+# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload
+PASS ModelSim: all 5 tests, including original vendor ERAM model

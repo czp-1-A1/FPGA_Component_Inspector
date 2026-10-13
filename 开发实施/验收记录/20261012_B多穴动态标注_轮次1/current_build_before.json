@@ -1,0 +1,28 @@
+{
+  "purpose": "bounded_hole_gray_transition_fix_v1_default_R100_B100",
+  "td_version": "6.2.168116",
+  "base_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "source_commit": null,
+  "source_snapshot": "开发实施/验收记录/20261012_B定位孔灰度过渡修复_轮次1/source_snapshot",
+  "simulation_root": "tmp/hole_transition_r1_td_20261012",
+  "release": {
+    "path": "fpga/component_inspector/release/hole_transition_fix_v1_20261012/camera_to_dsi_display.bit",
+    "bytes": 1789539,
+    "sha256": "ce410fe4c0d523307ebaae5c0952c1c2bc8e008f15ac28d6ea03f3912c2f149d"
+  },
+  "validation_record": "开发实施/验收记录/20261012_B定位孔灰度过渡修复_轮次1.md",
+  "fresh_tests": [
+    "hole_transition_requirements",
+    "hole_soft_requirement",
+    "tracking_late",
+    "tracking_status",
+    "isp_tracking_late",
+    "tracking_age",
+    "isp_tracking",
+    "tracking",
+    "isp_metadata_stop",
+    "isp_writer_stop",
+    "roi_chain"
+  ],
+  "onsite": "PENDING"
+}

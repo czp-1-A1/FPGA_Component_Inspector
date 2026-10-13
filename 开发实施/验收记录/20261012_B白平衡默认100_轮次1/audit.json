@@ -1,0 +1,50 @@
+{
+  "status": "PASS_source_simulation_and_routed_build",
+  "onsite": "PENDING",
+  "changed_production_inputs": [
+    "user_source/hdl_source/awb.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/uiisp_beta/ae_set.v"
+  ],
+  "tests": [
+    "wb_controls",
+    "manual_wb",
+    "fixed_wb",
+    "controls",
+    "isp_metadata_stop"
+  ],
+  "timing": {
+    "setup_wns_ns": 0.1,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.36
+  },
+  "resources": {
+    "slice": {
+      "used": 13598,
+      "total": 21216,
+      "percent": 64.09
+    },
+    "eram": {
+      "used": 48,
+      "total": 108,
+      "percent": 44.44
+    },
+    "dsp": {
+      "used": 8,
+      "total": 40,
+      "percent": 20.0
+    }
+  },
+  "warnings": {
+    "syn_1": 124,
+    "phy_1": 10
+  },
+  "max_delays_matched": 37,
+  "max_delays_ignored": 0,
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "be9da1c3856162cab4de89188b614e218d48990657d958009c81133e8d0a78a7"
+  }
+}

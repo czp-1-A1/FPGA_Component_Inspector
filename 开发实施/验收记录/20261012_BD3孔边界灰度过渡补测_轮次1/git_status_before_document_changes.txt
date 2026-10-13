@@ -1,0 +1,153 @@
+ M AGENTS.md
+ M fpga/component_inspector/sim/generate_osd_assets.py
+ M fpga/component_inspector/sim/osd_assets/manifest.json
+ M fpga/component_inspector/sim/osd_assets/mode_0.hex
+ M fpga/component_inspector/sim/osd_assets/mode_1.hex
+ M fpga/component_inspector/sim/osd_assets/mode_2.hex
+ M fpga/component_inspector/sim/osd_assets/mode_3.hex
+ M fpga/component_inspector/sim/osd_assets/osd_ascii_rom.hex
+ M fpga/component_inspector/sim/osd_assets/osd_cjk_rom.hex
+ M fpga/component_inspector/sim/osd_assets/reference.hex
+ M fpga/component_inspector/sim/osd_assets/state_1.hex
+ M fpga/component_inspector/sim/osd_assets/state_4.hex
+ M fpga/component_inspector/sim/osd_assets/state_5.hex
+ M fpga/component_inspector/sim/render_osd_reference.py
+ M fpga/component_inspector/sim/run_modelsim.ps1
+ M fpga/component_inspector/sim/tb_classifier.v
+ M fpga/component_inspector/sim/tb_controls.v
+ M fpga/component_inspector/sim/tb_display_state.v
+ M fpga/component_inspector/sim/tb_isp_writer_stop.v
+ M fpga/component_inspector/sim/tb_observation.v
+ M fpga/component_inspector/sim/tb_osd.v
+ M fpga/component_inspector/sim/tb_roi_chain.v
+ M fpga/component_inspector/sim/tb_stop_recovery.v
+ M fpga/component_inspector/td_project/camera_to_dsi_display.al
+ M fpga/component_inspector/td_project/camera_to_dsi_display.sdc
+ M fpga/component_inspector/td_project/current_codex_build.json
+ M fpga/component_inspector/user_source/hdl_source/awb.v
+ M fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v
+ M fpga/component_inspector/user_source/hdl_source/experiment_osd.v
+ M fpga/component_inspector/user_source/hdl_source/isp/isp_top.v
+ M fpga/component_inspector/user_source/hdl_source/osd_ascii_rom.v
+ M fpga/component_inspector/user_source/hdl_source/osd_cjk_rom.v
+ M fpga/component_inspector/user_source/hdl_source/roi_display_state.v
+ M fpga/component_inspector/user_source/hdl_source/roi_observation_snapshot.v
+ M fpga/component_inspector/user_source/hdl_source/roi_sobel_view.v
+ M fpga/component_inspector/user_source/hdl_source/roi_statistics.v
+ M fpga/component_inspector/user_source/hdl_source/uiisp_beta/ae_set.v
+ M fpga/component_inspector/user_source/hdl_source/video_in.v
+ M fpga/component_inspector/user_source/hdl_source/video_out.v
+ M 开发实施/00_分阶段开发与逐级验证路线.md
+?? build_console.log
+?? fpga/component_inspector/release/dynamic_tracking_v1_20261010/
+?? fpga/component_inspector/release/fixed_wb_tuning_v1_20261009/
+?? fpga/component_inspector/release/led_presence_demo_v1_20261007/
+?? fpga/component_inspector/release/led_presence_demo_v2_20261008/
+?? fpga/component_inspector/release/led_presence_demo_v2_r2_20261008/
+?? fpga/component_inspector/release/manual_wb_tuning_v1_20261009/
+?? fpga/component_inspector/release/presence_modes_v3_20261008/
+?? fpga/component_inspector/release/tracking_lower_holes_v1_20261011/
+?? fpga/component_inspector/release/tracking_lower_holes_v2_blackfix_20261011/
+?? fpga/component_inspector/release/tracking_publish_diag_d3_20261011/
+?? fpga/component_inspector/sim/osd_assets/state_6.hex
+?? fpga/component_inspector/sim/osd_assets/wb_0.hex
+?? fpga/component_inspector/sim/osd_assets/wb_1.hex
+?? fpga/component_inspector/sim/osd_assets/wb_2.hex
+?? fpga/component_inspector/sim/tb_dynamic_sobel.v
+?? fpga/component_inspector/sim/tb_fixed_wb.v
+?? fpga/component_inspector/sim/tb_frame_metadata.v
+?? fpga/component_inspector/sim/tb_isp_metadata_stop.v
+?? fpga/component_inspector/sim/tb_isp_tracking.v
+?? fpga/component_inspector/sim/tb_isp_tracking_late.v
+?? fpga/component_inspector/sim/tb_manual_wb.v
+?? fpga/component_inspector/sim/tb_presence_modes.v
+?? fpga/component_inspector/sim/tb_publish_diag.v
+?? fpga/component_inspector/sim/tb_tracking.v
+?? fpga/component_inspector/sim/tb_tracking_age.v
+?? fpga/component_inspector/sim/tb_tracking_late.v
+?? fpga/component_inspector/sim/tb_tracking_osd.v
+?? fpga/component_inspector/sim/tb_tracking_status.v
+?? fpga/component_inspector/sim/tb_wb_controls.v
+?? fpga/component_inspector/sim/tb_wb_epoch.v
+?? fpga/component_inspector/user_source/hdl_source/roi_mode_classifier.v
+?? fpga/component_inspector/user_source/hdl_source/roi_tape_guard.v
+?? fpga/component_inspector/user_source/hdl_source/tape_hole_tracker.v
+?? 开发实施/27_A黑带白件标定与独立测试_准备协议.md
+?? 开发实施/28_A临时固定条件有件空穴演示_准备协议.md
+?? 开发实施/29_A3528_LED临时有件空穴_实施说明.md
+?? 开发实施/30_AHDMI自动有件空穴_上板试用.md
+?? 开发实施/31_A3528调参后自动判定_第二版说明.md
+?? 开发实施/32_A灰度与边缘独立判定_第三版说明.md
+?? 开发实施/33_A3528成像冻结与物料配方实施方案.md
+?? 开发实施/34_A固定白平衡调参版_上板说明.md
+?? 开发实施/35_A可调白平衡_上板说明.md
+?? 开发实施/36_A3528固定成像_首轮配对采样表.md
+?? 开发实施/37_B3528手动横移动态追踪_待确认方案.md
+?? 开发实施/38_B3528手动横移动态追踪_上板说明.md
+?? 开发实施/39_B3528下方定位孔追踪与诊断_上板说明.md
+?? 开发实施/40_B追踪黑屏修复_上板说明.md
+?? 开发实施/41_B黑屏D3发布诊断_上板说明.md
+?? 开发实施/验收记录/20261001_步骤1_轮次1/
+?? 开发实施/验收记录/20261001_步骤1_轮次2_JTAG驱动复测/
+?? 开发实施/验收记录/20261003_A像素接口验证_轮次1/
+?? 开发实施/验收记录/20261003_ModelSim复核_轮次1/
+?? 开发实施/验收记录/20261003_RAM只读端口修复_轮次1/
+?? 开发实施/验收记录/20261003_ROI上板反馈_轮次1/
+?? 开发实施/验收记录/20261003_ROI扩大512x256_轮次1/
+?? 开发实施/验收记录/20261003_ROI灰度统计_轮次1/
+?? 开发实施/验收记录/20261003_按键调参与输入测量_轮次1/
+?? 开发实施/验收记录/20261004_A均值离线判定_轮次1/
+?? 开发实施/验收记录/20261005_A单穴80x80取样_轮次1/
+?? 开发实施/验收记录/20261005_A取样界面字体Logo状态_轮次1/
+?? 开发实施/验收记录/20261005_A独立SW灰度边缘实验_轮次1/
+?? 开发实施/验收记录/20261006_A_SW视频修复交接_轮次1/
+?? 开发实施/验收记录/20261006_A_SW视频花屏诊断_轮次1/
+?? 开发实施/验收记录/20261007_A3528临时判定_轮次1.md
+?? 开发实施/验收记录/20261007_A3528临时判定_轮次1/
+?? 开发实施/验收记录/20261007_A约束只读复核_轮次1.md
+?? 开发实施/验收记录/20261007_A约束只读复核_轮次1/
+?? 开发实施/验收记录/20261007_A视频稳定性收尾_轮次1.md
+?? 开发实施/验收记录/20261007_A视频稳定性收尾_轮次1/
+?? 开发实施/验收记录/20261007_三类物料视图探索_轮次1.md
+?? 开发实施/验收记录/20261007_三类物料视图探索_轮次1/
+?? 开发实施/验收记录/20261007_队员代码拉取核对_轮次1.md
+?? 开发实施/验收记录/20261007_队员代码拉取核对_轮次1/
+?? 开发实施/验收记录/20261008_A3528调参判定_轮次1.md
+?? 开发实施/验收记录/20261008_A3528调参判定_轮次1/
+?? 开发实施/验收记录/20261008_A3528调参判定_轮次2.md
+?? 开发实施/验收记录/20261008_A3528调参判定_轮次2/
+?? 开发实施/验收记录/20261008_AHDMI自动判定显示确认_轮次1.md
+?? 开发实施/验收记录/20261008_AHDMI自动判定显示确认_轮次1/
+?? 开发实施/验收记录/20261008_A均值误判与边缘判定核查_轮次1.md
+?? 开发实施/验收记录/20261008_A均值误判与边缘判定核查_轮次1/
+?? 开发实施/验收记录/20261008_A灰度边缘独立判定_轮次1.md
+?? 开发实施/验收记录/20261008_A灰度边缘独立判定_轮次1/
+?? 开发实施/验收记录/20261009_A可调白平衡_轮次1.md
+?? 开发实施/验收记录/20261009_A可调白平衡_轮次1/
+?? 开发实施/验收记录/20261009_A固定白平衡偏青反馈_轮次1.md
+?? 开发实施/验收记录/20261009_A固定白平衡偏青反馈_轮次1/
+?? 开发实施/验收记录/20261009_A固定白平衡调参版_轮次1.md
+?? 开发实施/验收记录/20261009_A固定白平衡调参版_轮次1/
+?? 开发实施/验收记录/20261009_A成像参数冻结与计划修订_轮次1.md
+?? 开发实施/验收记录/20261009_A成像参数冻结与计划修订_轮次1/
+?? 开发实施/验收记录/20261010_A3528固定成像配对采样_准备.md
+?? 开发实施/验收记录/20261010_A白平衡左右色差_用户更正.md
+?? 开发实施/验收记录/20261010_A白平衡左右色差反馈_轮次1.md
+?? 开发实施/验收记录/20261010_A白平衡左右色差反馈_轮次1/
+?? 开发实施/验收记录/20261010_B3528动态追踪_轮次1.md
+?? 开发实施/验收记录/20261010_B3528动态追踪_轮次1/
+?? 开发实施/验收记录/20261011_BD3视频恢复与孔定位阻塞_轮次1.md
+?? 开发实施/验收记录/20261011_BD3视频恢复与孔定位阻塞_轮次1/
+?? 开发实施/验收记录/20261011_B下方定位孔追踪修订_轮次1.md
+?? 开发实施/验收记录/20261011_B下方定位孔追踪修订_轮次1/
+?? 开发实施/验收记录/20261011_B动态追踪始终待检测_轮次1.md
+?? 开发实施/验收记录/20261011_B动态追踪始终待检测_轮次1/
+?? 开发实施/验收记录/20261011_B动态追踪始终待检测_轮次2.md
+?? 开发实施/验收记录/20261011_B动态追踪始终待检测_轮次2/
+?? 开发实施/验收记录/20261011_B追踪黑屏排查_轮次1.md
+?? 开发实施/验收记录/20261011_B追踪黑屏排查_轮次1/
+?? 开发实施/验收记录/20261011_B追踪黑屏排查_轮次2.md
+?? 开发实施/验收记录/20261011_B追踪黑屏排查_轮次2/
+?? 开发实施/验收记录/20261012_BD3孔边界灰度过渡补测_轮次1/
+?? 开发实施/验收记录/video_fix_handoff_20261006.json
+?? 开发实施/验收记录/video_fix_handoff_20261006.zip

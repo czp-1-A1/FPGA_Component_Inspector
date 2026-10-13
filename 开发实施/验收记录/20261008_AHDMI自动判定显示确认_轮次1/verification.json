@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-08",
+  "status": "PASS existing_HDMI_auto_display_connection_and_artifact_identity",
+  "main_evidence_files_verified": 364,
+  "build_inputs_verified": 207,
+  "bit_sha256": "4c8aa1695e06f3218ba5ae01b67e78e188755a61beea9f1229cdd1ef7296e22e",
+  "old_stable_bit_unchanged": true,
+  "new_rtl": false,
+  "new_build_or_simulation": false,
+  "board_validation": "pending",
+  "process_snapshot": [
+    {
+      "Id": 35732,
+      "ProcessName": "bw"
+    },
+    {
+      "Id": 21964,
+      "ProcessName": "hwserver"
+    },
+    {
+      "Id": 27224,
+      "ProcessName": "td"
+    }
+  ],
+  "source_checks": [
+    {
+      "path": "design_top_wrapper.v",
+      "sha256": "750e292fe2b02de0eef7be5e6b70ebbea168b6bacdbaf48d8d0dfd458a9bfd17"
+    },
+    {
+      "path": "experiment_osd.v",
+      "sha256": "3aaba12cdabbac399291a32fe37e2834dcd6e4d2ea58faaa49567bffdc129da8"
+    },
+    {
+      "path": "roi_display_state.v",
+      "sha256": "7a8261be69b97a6534bdb17c7aa9fed653727fc352461fec5b1d9789876e72ee"
+    }
+  ],
+  "documentation": [
+    {
+      "path": "开发实施\\30_AHDMI自动有件空穴_上板试用.md",
+      "sha256": "886422d7749048fe403b35c340f17a44a1608135c65b8c1a9d47fe3a8daa82ba"
+    },
+    {
+      "path": "开发实施\\验收记录\\20261008_AHDMI自动判定显示确认_轮次1.md",
+      "sha256": "926a8f68cac65682eca5af3468a6714ae67569ac8138042b8fe55a6228446252"
+    },
+    {
+      "path": "开发实施\\验收记录\\20261008_AHDMI自动判定显示确认_轮次1\\AGENTS_checkpoint.md",
+      "sha256": "f73b6bc37fb38fd32cf710c278efc824eb8bef25e9ffa90aaab70e7d5f9c2702"
+    }
+  ]
+}

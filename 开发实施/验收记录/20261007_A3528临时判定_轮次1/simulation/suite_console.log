@@ -1,0 +1,60 @@
+# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=1 rows=4 request=0 receive=0 tag=0 frame_mode=0 early_cycle=1047 pixel_cycle=1101 AWB=1024 view=1024 guard_bad=1 video_bad=1 invalid_after_early=704 bad_after_early=2952 good=0
+# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=2 rows=600 request=6 receive=6 tag=6 frame_mode=2 early_cycle=5544 pixel_cycle=5598 AWB=153600 view=153600 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=1
+# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738
+# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=3 rows=4 request=6 receive=6 tag=6 frame_mode=2 early_cycle=449471 pixel_cycle=449525 AWB=1024 view=691 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=0
+# PASS actual ISP full epoch: native600 rows/614400 pixels, EDGE153600 RGB beats, actual frame_good/guard completion, next early snapshots clean reason0/LP/nonzero/WS0 then clears good/new epoch
+# OBS Sobel frame=1 mode=0 pattern=1 bubbles=0 core=0 edges=0 strength=0
+# OBS Sobel frame=2 mode=1 pattern=1 bubbles=1 core=0 edges=0 strength=0
+# OBS Sobel frame=3 mode=2 pattern=1 bubbles=0 core=40 edges=8 strength=5440
+# OBS Sobel frame=4 mode=3 pattern=1 bubbles=1 core=40 edges=8 strength=5440
+# OBS Sobel frame=5 mode=3 pattern=0 bubbles=0 core=40 edges=0 strength=0
+# OBS Sobel frame=6 mode=3 pattern=2 bubbles=1 core=40 edges=20 strength=14080
+# OBS Sobel frame=7 mode=3 pattern=3 bubbles=0 core=40 edges=16 strength=14016
+# OBS Sobel frame=8 mode=3 pattern=4 bubbles=0 core=40 edges=37 strength=13128
+# OBS Sobel frame=9 mode=3 pattern=4 bubbles=1 core=0 edges=0 strength=0
+# OBS Sobel frame=10 mode=3 pattern=4 bubbles=1 core=40 edges=37 strength=13128
+# OBS Sobel frame=11 mode=0 pattern=4 bubbles=0 core=0 edges=0 strength=0
+# OBS Sobel frame=12 mode=2 pattern=4 bubbles=2 core=40 edges=37 strength=13128
+# OBS Sobel frame=13 mode=3 pattern=4 bubbles=2 core=40 edges=37 strength=13128
+# PASS streaming-tail credit loss: partial frame rejected, no later valid output/statistics
+# OBS Sobel frame=15 mode=3 pattern=4 bubbles=2 core=40 edges=37 strength=13128
+# PASS Sobel tail: independent all-pixel 4-mode RGB, 3x3 gradients, nonaligned ROI, horizontal/vertical/diagonal/color, bubbles, 128-bit packing, pre-SOF old pixels, tail, cancellation and reset warmup
+# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover
+# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, stopped CSI, FPS recovery and reset require fresh sample
+# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload
+# PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values and frame snapshot
+# PASS core ROI: 6400 pixels, independent sum/mean/min/max, outside black/white unchanged, full-scale and bubbles
+# OBS classifier image=1 sum=10240 mean=80 min/max=40/200 state=0
+# OBS classifier image=2 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=3 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=4 sum=5335 mean=41 min/max=40/255 state=3
+# OBS classifier image=5 sum=7680 mean=60 min/max=60/60 state=2
+# OBS classifier image=6 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=8 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=10 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=12 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=14 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=15 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=16 sum=5120 mean=40 min/max=40/40 state=2
+# OBS classifier image=17 sum=10240 mean=80 min/max=40/200 state=3
+# OBS classifier image=18 sum=7680 mean=60 min/max=60/60 state=2
+# PASS classifier: T58 historical readings/boundary, independent 128-pixel sums, both polarities/equality/0/255, bubbles/outside/specular, UNCAL/rearm/FS/config/lane/truncation/reset/recovery and 27-bit CDC
+# OBS actual ROI chain frame=1 mode=0 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=0/0/0
+# OBS actual ROI chain frame=2 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=151/119/199
+# OBS actual Sobel frame=2 view=0 pixels=614400 packed=115200 edges=6170 sum=534404
+# OBS actual ROI chain frame=3 mode=1 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=151/119/199
+# OBS actual ROI chain frame=4 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=131/99/179
+# OBS actual Sobel frame=4 view=3 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=5 mode=2 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=131/99/179
+# OBS actual ROI chain frame=6 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=151/119/199
+# OBS actual Sobel frame=6 view=2 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=7 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=131/99/179
+# OBS actual Sobel frame=7 view=1 pixels=614400 packed=115200 edges=6400 sum=563200
+# OBS actual ROI chain frame=8 mode=3 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=131/99/179
+# OBS actual ROI chain frame=9 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=151/119/199
+# OBS actual Sobel frame=9 view=1 pixels=614400 packed=115200 edges=6092 sum=530552
+# PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection and recovery
+PASS ModelSim: all 9 tests, including original vendor ERAM model

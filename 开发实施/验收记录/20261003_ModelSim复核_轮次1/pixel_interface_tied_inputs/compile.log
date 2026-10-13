@@ -1,0 +1,28 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:34:24 on Oct 03,2026
+vlog -work test_pixel_interface_tied_inputs ../user_source/hdl_source/awb.v ../user_source/hdl_source/signal_delay.v ../user_source/hdl_source/isp/data128_96/data128_96.v ../user_source/hdl_source/isp/data96_128/data96_128.v ../user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v ../user_source/ip_source/divider/divider_gate.v ../user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v 
+-- Compiling module awb
+-- Compiling module signal_delay
+-- Compiling module data128_96
+-- Compiling module data_96bit_to_128bit
+-- Compiling module bilinear_interpolation
+-- Compiling module divider
+-- Compiling module blk_mem_gen_awb_delay_signal
+-- Compiling module ram_f84573da5ab5
+
+Top level modules:
+	awb
+	data128_96
+	data_96bit_to_128bit
+	bilinear_interpolation
+End time: 19:34:25 on Oct 03,2026, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:34:25 on Oct 03,2026
+vlog -sv -work test_pixel_interface_tied_inputs "+define+MODELSIM_TIE_UNUSED_AWB_RAM_INPUTS" tb_pixel_interface.v 
+-- Compiling module tb_pixel_interface
+
+Top level modules:
+	tb_pixel_interface
+End time: 19:34:25 on Oct 03,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

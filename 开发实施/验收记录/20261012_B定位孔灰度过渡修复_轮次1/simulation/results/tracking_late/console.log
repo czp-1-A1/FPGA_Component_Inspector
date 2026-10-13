@@ -1,0 +1,34 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/tracking_late/transcript.log -wlf modelsim_work/tracking_late/wave.wlf -do "log /tb_tracking_late/*; run -all; quit -code 1 -force" test_tracking_late.tb_tracking_late 
+# Start time: 20:12:32 on Oct 12,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_tracking_late(fast)
+# Loading work.tape_hole_tracker(fast)
+# Loading work.hole_scanline(fast)
+# Loading work.hole_scanline(fast__1)
+# Loading work.hole_scanline(fast__2)
+# Loading work.roi_statistics(fast)
+# log /tb_tracking_late/*
+#  run -all
+# PASS tracking late: frame-held ROI, independent 6400-pixel statistics, bounded +/-4 motion, empty, pause, occlusion, over-speed, shape and invalidation
+# ** Note: $finish    : tb_tracking_late.v(57)
+#    Time: 14566650 ns  Iteration: 1  Instance: /tb_tracking_late
+# End time: 20:12:37 on Oct 12,2026, Elapsed time: 0:00:05
+# Errors: 0, Warnings: 0

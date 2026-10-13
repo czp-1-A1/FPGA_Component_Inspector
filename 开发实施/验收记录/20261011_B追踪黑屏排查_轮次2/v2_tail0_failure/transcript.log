@@ -1,0 +1,90 @@
+# vsim -modelsimini modelsim.ini -c -L anlogic_sim -voptargs="+acc=rn+/tb_isp_metadata_stop" -onfinish exit -l transcript.log -wlf measured.wlf -do "run -all; quit -code 1 -force" test_isp_metadata_stop.tb_isp_metadata_stop anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR "+TAIL=0" 
+# Start time: 21:58:58 on Oct 11,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_isp_metadata_stop(fast)
+# Loading work.observation_controls(fast)
+# Loading work.status_cdc(fast)
+# Loading work.uial2axis(fast)
+# Loading work.isp_top(fast)
+# Loading work.divider(fast)
+# Loading anlogic_sim.AL_MAP_LUT5(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT2(fast)
+# Loading anlogic_sim.AL_MAP_LUT3(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT4(fast)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__13)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__14)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__15)
+# Loading work.video_in(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# run -all
+# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000
+# WRITER_RESULT frame=1 tail=0 LP=738 reason=8 AWB=1024 VIEW=1024 PACK=768 WR=0 camera_count=60 written=0 good=0 bad=1 completed=0 capture=0 lost=0 overflow=0 core=0 legacy=2000000 observation=00000000000000000000002000000
+# WRITER_TAIL mode=3 stop=1 raw_fe=-1 AWB_last=-1 view_last=-1 pack_last=-1 frame_good=-1 count=60 words=0 done=00
+# META_DIAG ready=0 pending=0 wait=0 camera_epoch=1 writer_epoch=1 receive_ready=0 receive_epoch=1 matches=0
+# OBS ISP prefix=1 rows=4 request=0 receive=0 tag=0 frame_mode=0 early_cycle=1047 pixel_cycle=1101 AWB=1024 view=1024 guard_bad=1 video_bad=1 invalid_after_early=704 bad_after_early=2752 good=0
+# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# WRITER_RESULT frame=2 tail=0 LP=738 reason=0 AWB=153586 VIEW=153585 PACK=115188 WR=114960 camera_count=115188 written=114960 good=0 bad=0 completed=0 capture=0 lost=1 overflow=0 core=6400 legacy=b646464 observation=0000202000000000000007b646464
+# WRITER_TAIL mode=3 stop=1 raw_fe=447701 AWB_last=-1 view_last=-1 pack_last=-1 frame_good=-1 count=115188 words=114960 done=00
+# META_DIAG ready=1 pending=0 wait=0 camera_epoch=2 writer_epoch=2 receive_ready=1 receive_epoch=2 matches=1
+# ** Fatal: full actual frame not published by real writer
+#    Time: 65577212 ns  Scope: tb_isp_metadata_stop.prefix File: D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/tmp/tracking_black_fix_r3_td_20261011/sim/tb_isp_metadata_stop.v Line: 132
+# ** Note: $finish    : D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/tmp/tracking_black_fix_r3_td_20261011/sim/tb_isp_metadata_stop.v(132)
+#    Time: 65577212 ns  Iteration: 0  Instance: /tb_isp_metadata_stop
+# End time: 21:59:40 on Oct 11,2026, Elapsed time: 0:00:42
+# Errors: 1, Warnings: 0

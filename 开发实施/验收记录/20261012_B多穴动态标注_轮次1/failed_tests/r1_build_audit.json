@@ -1,0 +1,79 @@
+{
+  "status": "PASS_routed_build_software_tests_still_pending",
+  "onsite": "PENDING",
+  "changed_inputs": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/roi_sobel_view.v",
+    "td_project/camera_to_dsi_display.al",
+    "user_source/hdl_source/multi_pocket_detector.v"
+  ],
+  "unchanged_inputs": 205,
+  "timing": {
+    "setup_wns_ns": 0.134,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.64
+  },
+  "resources": {
+    "slice": {
+      "used": 15731,
+      "total": 21216,
+      "percent": 74.15
+    },
+    "eram": {
+      "used": 48,
+      "total": 108,
+      "percent": 44.44
+    },
+    "dsp": {
+      "used": 8,
+      "total": 40,
+      "percent": 20.0
+    }
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 22
+  },
+  "warning_deltas": {
+    "syn_1": {
+      "added": [
+        "HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed"
+      ],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [
+        "USR-6001 WARNING: No nets matched 'get_regs u_publish_display/payload*'",
+        "USR-6001 WARNING: No nets matched 'get_regs u_publish_display/payload*'",
+        "USR-6001 WARNING: No nets matched 'get_regs u_publish_display/payload*'",
+        "USR-6001 WARNING: No nets matched 'get_regs u_publish_display/D_data*'",
+        "USR-6001 WARNING: No nets matched 'get_regs u_publish_display/D_data*'",
+        "USR-6001 WARNING: No nets matched 'get_regs u_publish_display/D_data*'",
+        "USR-8012 CRITICAL-WARNING: value for option -from is invalid.",
+        "USR-8012 CRITICAL-WARNING: value for option -from is invalid.",
+        "USR-8012 CRITICAL-WARNING: value for option -from is invalid.",
+        "USR-8159 CRITICAL-WARNING: Command set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/payload*}] -to [get_regs {u_publish_display/D_data*}] in D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/tmp/multi_pocket_r1_td_20261012/td_project/camera_to_dsi_display.sdc(73) fails.",
+        "USR-8159 CRITICAL-WARNING: Command set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/payload*}] -to [get_regs {u_publish_display/D_data*}] in D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/tmp/multi_pocket_r1_td_20261012/td_project/camera_to_dsi_display.sdc(73) fails.",
+        "USR-8159 CRITICAL-WARNING: Command set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/payload*}] -to [get_regs {u_publish_display/D_data*}] in D:/BaiduNetdiskDownload/HX1P35A_Contest_202606/FPGA_Component_Inspector/tmp/multi_pocket_r1_td_20261012/td_project/camera_to_dsi_display.sdc(73) fails."
+      ],
+      "removed": []
+    }
+  },
+  "max_delays_declared": 37,
+  "max_delays_matched": 36,
+  "optimized_away_constraint": "u_publish_display/payload* -> D_data*: old D3 text unused by AUTO4",
+  "max_delays_ignored": 0,
+  "sdc_unchanged": true,
+  "shared_sobel_instances": 1,
+  "extra_eram": 0,
+  "extra_dsp": 0,
+  "resource_review": "Slice 15731/21216=74.15%; +2223 from baseline13508; remaining5485=25.85%. Within experimental70-75 review band, above preferred70. Full constrained slow/fast routed setup+0.134ns hold+0.020ns; no further feature expansion without optimization.",
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "73d69beb3146dc1e6829d7157feb0727228586bb52fe7a157f51fa1a8c072bde"
+  }
+}

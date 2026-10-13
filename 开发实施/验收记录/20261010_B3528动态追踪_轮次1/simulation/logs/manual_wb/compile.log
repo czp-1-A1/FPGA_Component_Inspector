@@ -1,0 +1,22 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 11:41:46 on Oct 10,2026
+vlog -work test_manual_wb ../user_source/hdl_source/awb.v ../user_source/hdl_source/signal_delay.v ../user_source/ip_source/divider/divider_gate.v ../user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v 
+-- Compiling module awb
+-- Compiling module signal_delay
+-- Compiling module divider
+-- Compiling module blk_mem_gen_awb_delay_signal
+-- Compiling module ram_f84573da5ab5
+
+Top level modules:
+	awb
+End time: 11:41:46 on Oct 10,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 11:41:46 on Oct 10,2026
+vlog -sv -work test_manual_wb tb_manual_wb.v 
+-- Compiling module tb_manual_wb
+
+Top level modules:
+	tb_manual_wb
+End time: 11:41:46 on Oct 10,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

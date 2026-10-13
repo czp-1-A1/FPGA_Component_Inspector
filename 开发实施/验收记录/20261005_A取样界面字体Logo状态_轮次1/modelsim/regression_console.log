@@ -1,0 +1,47 @@
+# OBS stop window phase=0 clears in 1850 reference clocks (REF_HZ=1000)
+# OBS stop window phase=1 clears in 1020 reference clocks (REF_HZ=1000)
+# PASS stop recovery: real monitor, independent 50MHz reference, two window boundaries, frozen CSI mailbox, no stale rearm, fresh UNCAL statistics
+# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, stopped CSI, FPS recovery and reset require fresh sample
+# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload
+# PASS CDC: asynchronous changing payload, atomic pairs, stopped clocks, reset
+# PASS monitor: bubbled PPC4 input, actual dimensions, bad frame, lane edge, stopped input
+# PASS actual CSI and RAW10 decoder feeding monitor: 1024 x 600
+# PASS I2C actual bus: START, four correct bytes, ACK, STOP, NACK detection
+# PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values and frame snapshot
+# OBS packer: reset and frame_start during continuous valid do not restart packing
+# OBS packer: two input beats emit one 128-bit word; remaining 64 bits are discarded by valid gap
+# PASS pack boundary characterization: valid gap restarts phase; reset/SOF are not phase guards
+# PASS bilinear: x increases from low 32-bit lane; RGB channels and five-stage markers aligned
+# OBS case=0 input-to-first-pixel=53 clocks, SOF lead=53 clocks, in=768 out=768 packed=576 EOL=3
+# OBS case=1 input-to-first-pixel=55 clocks, SOF lead=55 clocks, in=768 out=768 packed=576 EOL=3
+# OBS ready-low output beats=180; ready is passthrough, not effective backpressure
+# OBS case=3 input-to-first-pixel=53 clocks, SOF lead=53 clocks, in=768 out=768 packed=576 EOL=3
+# PASS AWB/packing: full lines, four lanes, small input bubbles, ready-low, reset and frame restart
+# OBS incomplete line: input=64 beats, output=256 beats, unknown=0; valid alone cannot prove frame completeness
+# PASS pixel boundary characterization; SOF alignment and incomplete-frame protection remain integration requirements
+# PASS ROI guard: independent RGB math, unaligned ROI, first/last beat, completion ordering, FE collision, malformed/overrun/config/lane/overlap and recovery
+# PASS core ROI: 6400 pixels, independent sum/mean/min/max, outside black/white unchanged, full-scale and bubbles
+# OBS classifier image=1 sum=10240 mean=80 min/max=40/200 state=0
+# OBS classifier image=2 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=3 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=4 sum=5335 mean=41 min/max=40/255 state=3
+# OBS classifier image=5 sum=7680 mean=60 min/max=60/60 state=2
+# OBS classifier image=6 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=8 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=10 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=12 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=14 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=15 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=16 sum=5120 mean=40 min/max=40/40 state=2
+# OBS classifier image=17 sum=10240 mean=80 min/max=40/200 state=3
+# OBS classifier image=18 sum=7680 mean=60 min/max=60/60 state=2
+# PASS classifier: independent 128-pixel sums, both polarities/equality/0/255, bubbles/outside/specular, UNCAL/rearm/FS/config/lane/truncation/reset/recovery and 27-bit CDC
+# OBS actual ROI chain frame=1 mode=0 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=0/0/0
+# OBS actual ROI chain frame=2 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=120/120/120
+# OBS actual ROI chain frame=3 mode=1 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=120/120/120
+# OBS actual ROI chain frame=4 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=100/100/100
+# OBS actual ROI chain frame=5 mode=2 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=100/100/100
+# OBS actual ROI chain frame=6 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=120/120/120
+# OBS actual ROI chain frame=7 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=100/100/100
+# PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection and recovery
+PASS ModelSim: all 14 tests, including original vendor ERAM model

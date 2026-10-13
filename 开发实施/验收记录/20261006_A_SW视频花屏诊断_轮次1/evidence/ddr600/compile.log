@@ -1,0 +1,30 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 18:27:50 on Oct 06,2026
+vlog -work work D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/hdl_source/roi_sobel_view.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/hdl_source/isp/data96_128/data96_128.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/hdl_source/video_in.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\sw_edge_flicker_diagnosis_20261005/ddr_review/roi_sobel_view_tailgap.v 
+-- Compiling module roi_sobel_view
+-- Compiling module data_96bit_to_128bit
+-- Compiling module video_in
+-- Compiling module soft_fifo_al_4057d6b76aa6
+-- Compiling module fifo_cross_domain_addr_process_al_4057d6b76aa6
+-- Compiling module ram_infer_4057d6b76aa6
+-- Compiling module w128_d512_fifo
+-- Compiling module roi_sobel_view_tailgap
+
+Top level modules:
+	roi_sobel_view
+	data_96bit_to_128bit
+	video_in
+	roi_sobel_view_tailgap
+End time: 18:27:50 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 18:27:50 on Oct 06,2026
+vlog -sv -work work tb_ddr_full.v tb_ddr_full_tailgap.v 
+-- Compiling module tb_ddr_full
+-- Compiling module tb_ddr_full_tailgap
+
+Top level modules:
+	tb_ddr_full
+	tb_ddr_full_tailgap
+End time: 18:27:50 on Oct 06,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

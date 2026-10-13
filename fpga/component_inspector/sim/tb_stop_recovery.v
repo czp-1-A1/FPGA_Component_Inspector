@@ -10,7 +10,7 @@ input_monitor #(.REF_HZ(1000)) monitor(rx,refclk,rst,fs,1'b0,1'b0,1'b0,2'b0,w,h,
 wire [27:0] sr,dr;wire valid;wire [1:0] state;
 roi_result_snapshot snapshot(rx,rst,fs,1'b0,1'b0,sv,sn,2'd0,8'd85,8'd27,8'd255,sr);
 status_cdc #(.WIDTH(28)) mailbox(rx,pixel,rst,sr,dr);
-roi_display_state gate(pixel,rst,1'b1,16'd2244,16'd48,fps,1'b0,dr,18'd0,valid,state);
+roi_display_state gate(pixel,rst,1'b1,16'd2244,16'd48,fps,1'b0,dr,18'd0,32'h00004040,valid,state);
 task fs_pulse;begin @(negedge rx);fs=1;@(negedge rx);fs=0;end endtask
 task publish;begin
  @(negedge rx);sv=1;sn=1;@(negedge rx);sn=0;

@@ -1,0 +1,35 @@
+{
+  "production_build": "r5",
+  "syn_session": 46674,
+  "phy_session": 70452,
+  "test_groups": [
+    {
+      "snapshot": "r3",
+      "session": 17765,
+      "used_tests": 9,
+      "excluded": [
+        "tracking_osd",
+        "failed presence_modes"
+      ]
+    },
+    {
+      "snapshot": "r4",
+      "session": 84897,
+      "used_tests": 18,
+      "excluded": [
+        "osd"
+      ]
+    },
+    {
+      "snapshot": "r5",
+      "session": 59606,
+      "used_tests": 2,
+      "tests": [
+        "tracking_osd",
+        "osd"
+      ]
+    }
+  ],
+  "source_identity_policy": "Every reused compiled Verilog/testbench file must match final R5 byte-for-byte, checked from vlog command lines.",
+  "visual_session": 11942
+}

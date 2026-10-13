@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-03",
+  "branch": "hx1p35a-contest-work",
+  "head": "f87ccf1c6a38e84b58a4f86cecd532a71ae56e89",
+  "scope": "用户确认批次1：成像条件记录与像素接口验证；未新增综合RTL/bit",
+  "tool": "Icarus Verilog 12.0",
+  "dependencies": [
+    {
+      "path": "sim/tb_pixel_interface.v",
+      "sha256": "241efb02516c07e0b9fef418f0754311ccdb423df2df78f6987cb00c6a8ed86d"
+    },
+    {
+      "path": "sim/tb_pack_boundary.v",
+      "sha256": "7779ba0f655bcc3ebc52b19b1ecd2efcff82c0ab2349d0e147c0be5eb0f7bb48"
+    },
+    {
+      "path": "sim/awb_ram_model.v",
+      "sha256": "4674d48826cd01485d8f9341d21d91bae06d919aaa369eddfe37b1f31fd11951"
+    },
+    {
+      "path": "sim/run_pixel_interface.ps1",
+      "sha256": "854390e1f2576bef99e8e76971d3a6efb24ddd7bf9b2bdad2eebe88db00d045b"
+    },
+    {
+      "path": "user_source/hdl_source/awb.v",
+      "sha256": "b6d9d83a6b48952cc9531daf39bc6c6b94c4e45ddefe603908e9cb275533e50a"
+    },
+    {
+      "path": "user_source/hdl_source/signal_delay.v",
+      "sha256": "b7a8156bc59bee5de2c1af20cb31079388ace1f4e767a18288a7dff8bae3d5fd"
+    },
+    {
+      "path": "user_source/hdl_source/isp/data128_96/data128_96.v",
+      "sha256": "b6acceb73cc76058d4afe6ec593360bae6701646fdda780a9264ada3befd5318"
+    },
+    {
+      "path": "user_source/hdl_source/isp/data96_128/data96_128.v",
+      "sha256": "c79a102378c70ce5faacbc46a62b5ae6eaac151b93891379eda2880a7d68fe30"
+    },
+    {
+      "path": "user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v",
+      "sha256": "53a4fc3dea805d59cee9bdab1a090c26c03eb555ab612a1a4698d810c1991baf"
+    },
+    {
+      "path": "user_source/ip_source/divider/divider_gate.v",
+      "sha256": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d"
+    },
+    {
+      "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+      "sha256": "7cab7914392384bcc93a3daefe1dc038fc5cd88ac8f4306532fabb71740da93e"
+    },
+    {
+      "path": "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v",
+      "sha256": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785"
+    }
+  ],
+  "vendor_plain_simulation_libraries": [
+    {
+      "path": "D:\\AAA\\FPGA.....YZW\\sim_release\\common\\al_map_basic.v",
+      "sha256": "ac0aa7f986fdfba39fb7b361b26ace4ba1049807d6feccde09b2fa21eb0903da",
+      "plain_copy_sha256": "88861dff60cfbcd3c0b4e4f8b16deea5637a122e979567b32f1d077fa2087e40"
+    },
+    {
+      "path": "D:\\AAA\\FPGA.....YZW\\sim_release\\common\\al_map_lut.v",
+      "sha256": "a8af44de361088c0bb66a58d5af9b8eb5aa6e9b8ca56992d6164a9f689c488f0",
+      "plain_copy_sha256": "004d339a5d487c8c1e8b140c03b53300f8e4a9ade520c7cbb171f35c37dd34a6"
+    },
+    {
+      "path": "D:\\AAA\\FPGA.....YZW\\sim_release\\common\\al_map_adder.v",
+      "sha256": "02dfbc0864687bcba96cbed80c69dada2c511e24c89b0e4e308fed3ccc8ccf84",
+      "plain_copy_sha256": "0f9ee92c1df301828858ef30c1cfed8f52a6520a0dfc3b0565e00e4e3996c5d9"
+    },
+    {
+      "path": "D:\\AAA\\FPGA.....YZW\\sim_release\\common\\al_phy_glbl.v",
+      "sha256": "c194f5335b54a6d707a8b633b8f4d3a171e52006337600f7433379b11fb3b2ff",
+      "plain_copy_sha256": "e504a708332491f2ed1ddaa4ccbd300f8c1837166cfd72755ca77e0b995e459e"
+    }
+  ],
+  "ram_model_limit": "96x2048同步读一拍、读前写；厂商加密ERAM模型未执行，不是物理时序或完整IP验收",
+  "frozen_design_inputs_unchanged": 195,
+  "existing_bit_sha256": "0b1a72e36772b852195fd16275d9540bd694d849a3dae2b110596f2eac6c907a",
+  "operator_report": {
+    "component": "LM358DR",
+    "distance_mm_approx": 280,
+    "mechanical_adjustable_mm_approx": [
+      60,
+      400
+    ],
+    "exposure_half_lines": 1460,
+    "reported_gain_index": 90,
+    "gain_note": "源码上限89，用户口述90保留待核对",
+    "light_intensity": "未测",
+    "frame_capture_method": "尚不确定"
+  }
+}

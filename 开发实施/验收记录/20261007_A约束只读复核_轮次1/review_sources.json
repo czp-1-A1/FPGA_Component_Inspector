@@ -1,0 +1,213 @@
+{
+  "reviewed_at": "2026-10-07T21:52:56.474034+08:00",
+  "head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
+  "read_only": true,
+  "new_build_run": false,
+  "board_clock_measured": false,
+  "complete_constraint_acceptance_passed": false,
+  "sources": [
+    {
+      "path": "开发实施/验收记录/20261007_A_EDGE帧尾修复_轮次1/td_reports/phy_1/final_timing.rpt",
+      "sha256": "88925ddcb75cedf155babc3771a667d8cad3ad15d747e310ab306b78f4246152",
+      "bytes": 4839754
+    },
+    {
+      "path": "开发实施/验收记录/20261007_A_EDGE帧尾修复_轮次1/td_reports/phy_1/camera_to_dsi_display_chk.timing",
+      "sha256": "df02bdac7716eba96f0a4a2f9eb30cd5e778e730d47a3b30732980f31c9a6f9a",
+      "bytes": 13556
+    },
+    {
+      "path": "fpga/component_inspector/td_project/camera_to_dsi_display.sdc",
+      "sha256": "de166814eb4316162f9e13d28a07dd6321a4c35f73d81f360edc03213b64d3ca",
+      "bytes": 6010
+    },
+    {
+      "path": "fpga/component_inspector/user_source/ip_source/PLL/PLL.v",
+      "sha256": "2f99e768a454bb5e9b51aebf6da4345c99201d055bb46dc343f0cd2fb0297c25",
+      "bytes": 3910
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v",
+      "sha256": "a418a3403a36c7d5e65ee5665477480e2dbd758f0e04c482d1db70c91d5d13ee",
+      "bytes": 35503
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ph1p35_324_ddr_wrapper.v",
+      "sha256": "cda144da5e22b0593ec5ee4783b1c3ca2621fd53b62fcbeef5a65651b1203925",
+      "bytes": 4507
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/.params_ddr2.txt",
+      "sha256": "05c307685a34e4e3faff48b3f67bca22b992ad3a2ca39d67112347ca307d3cfb",
+      "bytes": 5566
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/clk/ph1p_ddrphy_pll0.v",
+      "sha256": "a813b819285ca8bf9da9661f6f4bb45a677afb96b66b15415ee842581102512b",
+      "bytes": 10461
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/clk/ph1p_ddrphy_pll1.v",
+      "sha256": "34f8d8349cf37c4bd0367458e9773b53833dbf0c66d47fc9fe41a0335481d5df",
+      "bytes": 10665
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/ph1p35_ddr/ddr2/src/sdc/ddr2.sdc",
+      "sha256": "adb6317927dfd09095073cad40be8e63d39ea3d941b4c790f2f483b1aed428d6",
+      "bytes": 792
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/observation_controls.v",
+      "sha256": "d7c8a26e2f9954d2b4277753b1b35c730bd5a0cddfe762a947c5a5bb8e234451",
+      "bytes": 700
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/experiment_osd.v",
+      "sha256": "3aaba12cdabbac399291a32fe37e2834dcd6e4d2ea58faaa49567bffdc129da8",
+      "bytes": 29253
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/input_monitor.v",
+      "sha256": "4fb4cae4e342ac796b3101dac0916e69daef27c341c1fbe745d20ec01537c6fc",
+      "bytes": 3469
+    }
+  ],
+  "saved_report_facts": {
+    "input_delay_missing": 39,
+    "input_groups": {
+      "camera/control": 1,
+      "MIPI pads": 9,
+      "mechanical async inputs": 6,
+      "reset": 1,
+      "DDR": 22
+    },
+    "output_delay_missing": 63,
+    "output_groups": {
+      "camera/control": 4,
+      "MIPI pads": 10,
+      "HDMI TMDS": 4,
+      "DDR": 45
+    },
+    "input_ports": [
+      "IO_cam_sda",
+      "IO_rx_clk_pad_n",
+      "IO_rx_data_pad_n[3]",
+      "IO_rx_data_pad_n[2]",
+      "IO_rx_data_pad_n[1]",
+      "IO_rx_data_pad_n[0]",
+      "IO_rx_data_pad_p[3]",
+      "IO_rx_data_pad_p[2]",
+      "IO_rx_data_pad_p[1]",
+      "IO_rx_data_pad_p[0]",
+      "I_button[3]",
+      "I_button[2]",
+      "I_button[1]",
+      "I_button[0]",
+      "I_rst_n",
+      "I_switch[1]",
+      "I_switch[0]",
+      "ddr_dm[1]",
+      "ddr_dm[0]",
+      "ddr_dq[15]",
+      "ddr_dq[14]",
+      "ddr_dq[13]",
+      "ddr_dq[12]",
+      "ddr_dq[11]",
+      "ddr_dq[10]",
+      "ddr_dq[9]",
+      "ddr_dq[8]",
+      "ddr_dq[7]",
+      "ddr_dq[6]",
+      "ddr_dq[5]",
+      "ddr_dq[4]",
+      "ddr_dq[3]",
+      "ddr_dq[2]",
+      "ddr_dq[1]",
+      "ddr_dq[0]",
+      "ddr_dqs_n[1]",
+      "ddr_dqs_n[0]",
+      "ddr_dqs_p[1]",
+      "ddr_dqs_p[0]"
+    ],
+    "output_ports": [
+      "IO_cam_sda",
+      "IO_rx_clk_pad_n",
+      "IO_rx_clk_pad_p",
+      "IO_rx_data_pad_n[3]",
+      "IO_rx_data_pad_n[2]",
+      "IO_rx_data_pad_n[1]",
+      "IO_rx_data_pad_n[0]",
+      "IO_rx_data_pad_p[3]",
+      "IO_rx_data_pad_p[2]",
+      "IO_rx_data_pad_p[1]",
+      "IO_rx_data_pad_p[0]",
+      "O_cam_rst",
+      "O_cam_scl",
+      "O_screen_pwm",
+      "O_tmds_ch0_p",
+      "O_tmds_ch1_p",
+      "O_tmds_ch2_p",
+      "O_tmds_clk_p",
+      "ddr_addr[12]",
+      "ddr_addr[11]",
+      "ddr_addr[10]",
+      "ddr_addr[9]",
+      "ddr_addr[8]",
+      "ddr_addr[7]",
+      "ddr_addr[6]",
+      "ddr_addr[5]",
+      "ddr_addr[4]",
+      "ddr_addr[3]",
+      "ddr_addr[2]",
+      "ddr_addr[1]",
+      "ddr_addr[0]",
+      "ddr_ba[1]",
+      "ddr_ba[0]",
+      "ddr_cas_n",
+      "ddr_ck_n[0]",
+      "ddr_ck_p[0]",
+      "ddr_cke[0]",
+      "ddr_cs_n[0]",
+      "ddr_dm[1]",
+      "ddr_dm[0]",
+      "ddr_dq[15]",
+      "ddr_dq[14]",
+      "ddr_dq[13]",
+      "ddr_dq[12]",
+      "ddr_dq[11]",
+      "ddr_dq[10]",
+      "ddr_dq[9]",
+      "ddr_dq[8]",
+      "ddr_dq[7]",
+      "ddr_dq[6]",
+      "ddr_dq[5]",
+      "ddr_dq[4]",
+      "ddr_dq[3]",
+      "ddr_dq[2]",
+      "ddr_dq[1]",
+      "ddr_dq[0]",
+      "ddr_dqs_n[1]",
+      "ddr_dqs_n[0]",
+      "ddr_dqs_p[1]",
+      "ddr_dqs_p[0]",
+      "ddr_odt[0]",
+      "ddr_ras_n",
+      "ddr_we_n"
+    ],
+    "setup_wns_ns": 1.384,
+    "hold_wns_ns": 0.02,
+    "setup_tns_ns": 0,
+    "hold_tns_ns": 0,
+    "sta_coverage_percent": 94.59,
+    "pll_frequency_warnings": 7,
+    "dummy_nodes": 2,
+    "shadowed_constraint_groups": 5
+  },
+  "pending": [
+    "actual board reference clock and DDR IP setting reconciliation",
+    "reset release and port fanout review",
+    "hard PHY/DDR/HDMI external timing basis",
+    "effective CDC exception overlap review"
+  ]
+}

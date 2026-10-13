@@ -1,14 +1,31 @@
 {
-  "syn": "C:\\Users\\Li47\\Desktop\\aa\\edge_tail_td_20261007_178840\\td_project\\camera_to_dsi_display_Runs\\syn_1",
-  "phy": "C:\\Users\\Li47\\Desktop\\aa\\edge_tail_td_20261007_178840\\td_project\\camera_to_dsi_display_Runs\\phy_1",
-  "flow": "D:/td6.2.1/scripts/DefaultFlow.tcl",
-  "tool": "D:/td6.2.1/bin/td_commands_prompt.exe",
-  "td_version": "6.2.178840",
-  "source_commit": "43a3da6cf36da923835f4e7fb5f03e3bdb5c779f",
+  "purpose": "3528_AUTO4_video_metadata_blackfix_v2",
+  "td_version": "6.2.168116",
+  "base_head": "3be3967f2457622566fb20b7cef3aa5038e7d885",
+  "source_commit": null,
+  "source_snapshot": "开发实施/验收记录/20261013_BAUTO4黑屏元数据排查_轮次1/source_snapshot",
+  "build_root": "tmp/multi_video_fix_r2_20261013",
   "release": {
-    "path": "fpga/component_inspector/release/edge_tail_fix_20261007/camera_to_dsi_display.bit",
-    "sha256": "bb6a71443b74790c64ceec562236799dc5b9418c07f4634c141b4df2a8bb9d65",
-    "bytes": 1789539
+    "path": "fpga/component_inspector/release/multi_pocket_video_fix_v2_20261013/camera_to_dsi_display.bit",
+    "bytes": 1789539,
+    "sha256": "b3d775b19f7ceb31cb34bb952ebacf27df739ae18bced699d8492ae61e79f51a"
   },
-  "validation_record": "开发实施/验收记录/20261007_A_EDGE帧尾修复_轮次1.md"
+  "validation_record": "开发实施/验收记录/20261013_BAUTO4黑屏元数据排查_轮次1.md",
+  "fresh_tests": [
+    "writer_epoch",
+    "video_metadata_fallback",
+    "publish_diag",
+    "frame_metadata",
+    "multi_metadata",
+    "multi_osd",
+    "video_fallback_display",
+    "multi_writer",
+    "tracking_osd",
+    "isp_metadata_stop",
+    "isp_writer_stop",
+    "wb_epoch",
+    "cdc",
+    "multi_video"
+  ],
+  "onsite": "PENDING"
 }

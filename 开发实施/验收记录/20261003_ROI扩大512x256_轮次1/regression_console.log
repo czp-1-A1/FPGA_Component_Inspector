@@ -1,0 +1,11 @@
+# PASS OSD decimal fields and rendered output: ROI gray/border/outside and WAIT
+# PASS ROI guard: independent RGB math, unaligned ROI, first/last beat, completion ordering, FE collision, malformed/overrun/config/lane/overlap and recovery
+# OBS actual ROI chain frame=1 mode=0 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=0/0/0
+# OBS actual ROI chain frame=2 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=120/120/120
+# OBS actual ROI chain frame=3 mode=1 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=120/120/120
+# OBS actual ROI chain frame=4 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=100/100/100
+# OBS actual ROI chain frame=5 mode=2 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=100/100/100
+# OBS actual ROI chain frame=6 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=120/120/120
+# OBS actual ROI chain frame=7 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=100/100/100
+# PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection and recovery
+PASS ModelSim: all 3 tests, including original vendor ERAM model

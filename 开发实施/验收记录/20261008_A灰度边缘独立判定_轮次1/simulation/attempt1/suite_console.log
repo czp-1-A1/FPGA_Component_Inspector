@@ -1,0 +1,41 @@
+# OBS tape pattern=0 valid=1 counts=1280/1280 dark=1280/1280
+# OBS tape pattern=1 valid=0 counts=1280/1280 dark=0/0
+# OBS tape pattern=2 valid=0 counts=1280/1280 dark=1280/0
+# OBS tape pattern=3 valid=1 counts=1280/1280 dark=1280/1280
+# OBS tape pattern=4 valid=0 counts=1280/1280 dark=0/0
+# OBS tape pattern=5 valid=1 counts=1280/1280 dark=960/960
+# OBS tape pattern=6 valid=0 counts=1280/1280 dark=959/959
+# OBS tape pattern=7 valid=0 counts=1280/1276 dark=1280/1276
+# OBS tape pattern=8 valid=1 counts=1280/1280 dark=1280/1280
+# OBS tape pattern=0 valid=1 counts=1280/1280 dark=1280/1280
+# OBS tape pattern=0 valid=1 counts=1280/1280 dark=1280/1280
+# PASS presence modes: independent EDGE/GRAY, inclusive dual-feature bounds/deadband/conflict, incomplete core, background/one-sided guard, PPC4 weighted gray, 75-percent coverage, bubbles/missing beat, reset/FS/invalidate; locator-circle limitation recorded
+# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=1 rows=4 request=0 receive=0 tag=0 frame_mode=0 early_cycle=1047 pixel_cycle=1101 AWB=1024 view=1024 guard_bad=1 video_bad=1 invalid_after_early=704 bad_after_early=2952 good=0
+# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=2 rows=600 request=6 receive=6 tag=6 frame_mode=2 early_cycle=5544 pixel_cycle=5598 AWB=153600 view=153600 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=1
+# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738
+# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=3 rows=4 request=6 receive=6 tag=6 frame_mode=2 early_cycle=449471 pixel_cycle=449525 AWB=1024 view=691 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=0
+# PASS actual ISP full epoch: native600 rows/614400 pixels, EDGE153600 RGB beats, actual frame_good/guard completion, next early snapshots clean reason0/LP/nonzero/WS0 then clears good/new epoch
+# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover
+# OBS stop window phase=0 clears in 1850 reference clocks (REF_HZ=1000)
+# OBS stop window phase=1 clears in 1020 reference clocks (REF_HZ=1000)
+# PASS stop recovery: real monitor, independent 50MHz reference, two window boundaries, frozen CSI mailbox, no stale rearm, fresh UNCAL statistics
+# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, enabled exposure/gain tuning with fresh tokens, stopped CSI, FPS recovery and reset require fresh sample
+# PASS OSD decimal fields: independent 614400-pixel reference, Chinese/fonts/Logo, recent states, invalid priority, three-clock RGB/sync/bypass, maximum values and frame snapshot
+# OBS classifier image=1 sum=10240 mean=80 min/max=40/200 state=0
+# OBS classifier image=2 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=3 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=4 sum=5335 mean=41 min/max=40/255 state=3
+# OBS classifier image=5 sum=7680 mean=60 min/max=60/60 state=2
+# OBS classifier image=6 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=8 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=10 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=12 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=14 sum=5120 mean=40 min/max=40/40 state=3
+# OBS classifier image=15 sum=10240 mean=80 min/max=40/200 state=2
+# OBS classifier image=16 sum=5120 mean=40 min/max=40/40 state=2
+# OBS classifier image=17 sum=10240 mean=80 min/max=40/200 state=3
+# OBS classifier image=18 sum=7680 mean=60 min/max=60/60 state=2
+# PASS classifier: T58 historical readings/boundary, independent 128-pixel sums, both polarities/equality/0/255, bubbles/outside/specular, UNCAL/rearm/FS/config/lane/truncation/reset/recovery and 27-bit CDC

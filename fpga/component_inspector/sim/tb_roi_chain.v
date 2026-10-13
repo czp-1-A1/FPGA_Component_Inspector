@@ -12,11 +12,11 @@ wire packed_valid,packed_sof,packed_last,in_ready,sv;
 wire [7:0] mean,minimum,maximum;
 wire [1:0] class_state;
 wire [27:0] display_record;
-reg [17:0] request=1;
-wire [82:0] observation_record;
+reg [17:0] request=1;reg [31:0] wb_request=32'h00004040;
+wire [114:0] observation_record;
 uial2axis #(.IMG_WIDTH(1024),.IMG_HEIGHT(600),.INPUT_DATA_WIDTH(40)) bridge(
  clk,rst,raw,rv,fs,fe,av,adata,asof,alast);
-isp_top dut(.axi4s_video_aclk(clk),.I_rst_n(rst),.I_tlast(alast),.I_tuser(asof),
+isp_top dut(.wb_request(wb_request),.wb_active(),.axi4s_video_aclk(clk),.I_rst_n(rst),.I_tlast(alast),.I_tuser(asof),
  .view_ready(1'b1),.video_frame_good(),.video_frame_bad(),
  .I_tdata(adata),.I_tvalid(av),.I_tdest(10'd0),.O_tready(ready),
  .O_tdata(packed_data),.O_tlast(packed_last),.O_tuser(packed_sof),.O_tvalid(packed_valid),.I_tready(in_ready),
@@ -31,6 +31,9 @@ reg [23:0] pixels [0:614399];
 integer luminance [0:614399];
 integer output_beat=0,expected_edges=0,expected_strength=0,packed_beats=0,clock_no=0,early_clock=0;
 integer vx,vy,li,gx,gy,mag,expected_rgb,frame_mode;
+integer left_reference,right_reference,left_dark_reference,right_dark_reference;
+reg expected_scene;
+reg [1:0] expected_gray_state,expected_edge_state,expected_class_state;
 always @(posedge clk) begin
  clock_no=clock_no+1;
  if(!rst) begin beat=0;commits=0;end
@@ -39,6 +42,7 @@ always @(posedge clk) begin
    if(!dut.awb_O_tvalid) $fatal(1,"SOF without valid");
    beat=0;reference_count=0;reference_sum=0;reference_min=255;reference_max=0;
    output_beat=0;packed_beats=0;expected_edges=0;expected_strength=0;frame_mode=dut.observation_tag[1:0];
+   left_reference=0;right_reference=0;left_dark_reference=0;right_dark_reference=0;
   end
   if(dut.awb_O_tvalid) begin
    xx=(beat%256)*4;yy=beat/256;
@@ -48,6 +52,10 @@ always @(posedge clk) begin
     r=dut.awb_O_tdata[95-k*24-:8];g=dut.awb_O_tdata[87-k*24-:8];blue=dut.awb_O_tdata[79-k*24-:8];
     gray=(r+2*g+blue)/4;
     pixels[yy*1024+xx+k]=dut.awb_O_tdata[95-k*24-:24];luminance[yy*1024+xx+k]=gray;
+    if(yy>=260 && yy<340) begin
+     if(xx+k>=456 && xx+k<472) begin left_reference=left_reference+1;if(gray<=100)left_dark_reference=left_dark_reference+1;end
+     if(xx+k>=552 && xx+k<568) begin right_reference=right_reference+1;if(gray<=100)right_dark_reference=right_dark_reference+1;end
+    end
     if(xx+k>=472 && xx+k<552 && yy>=260 && yy<340) begin
     if((^dut.awb_O_tdata[95-k*24-:24])===1'bx) $fatal(1,"unknown ROI pixel");
     reference_sum=reference_sum+gray;reference_count=reference_count+1;
@@ -97,6 +105,7 @@ begin
   for(b=0;b<((mode==1 && row==100)?192:256);b=b+1) begin
    if(mode==2 && row==100 && b==100) begin rv=0;ticks(240);end
    if(mode==3 && row==200 && b==100) request=request+18'd5;
+   if(mode==4 && row==200 && b==100) wb_request=32'h00016020;
    raw={4{10'((level+((b>=130) ? 50 : 0)+((row>=300) ? 30 : 0))*4)}};rv=1;ready=!(row==300 && b>=60 && b<120);
    ticks(1);rv=0;ticks((b%2)==0 ? 1 : 2);
   end
@@ -110,11 +119,15 @@ task expect_good;begin
     dut.u_roi_statistics.sample_sum!=reference_sum || mean!=reference_sum/6400 ||
     minimum!=reference_min || maximum!=reference_max)
   $fatal(1,"full-frame ROI comparison failed frame %0d count=%0d sum=%0d reference=%0d",frame_no,reference_count,dut.u_roi_statistics.sample_sum,reference_sum);
-if(class_state!==(mean>=110 ? 2'd2 : 2'd3)) $fatal(1,"actual chain classification");
+expected_scene=left_reference==1280 && right_reference==1280 && left_dark_reference>=960 && right_dark_reference>=960;
+expected_gray_state=reference_sum/6400>=110 ? 2'd2 : 2'd3;
+expected_edge_state=expected_edges>=96 && expected_strength>=32768 ? 2'd2 : expected_edges<=48 && expected_strength<=16384 ? 2'd3 : 2'd1;
+expected_class_state=!expected_scene ? 2'd1 : !frame_mode[1] ? expected_gray_state : frame_mode[0] && expected_gray_state!=expected_edge_state ? 2'd1 : expected_edge_state;
+if(dut.scene_ok!==expected_scene || class_state!==expected_class_state) $fatal(1,"actual chain mode classification scene=%b/%b state=%d/%d",dut.scene_ok,expected_scene,class_state,expected_class_state);
 if(display_record[26:0]!=={class_state,1'b1,mean,minimum,maximum}) $fatal(1,"actual ISP snapshot publication");
 if(output_beat!=153600 || packed_beats!=115200 || (frame_mode[1] ? (dut.edge_pixels!=6400 || dut.edge_count!=expected_edges || dut.edge_sum!=expected_strength) : (dut.edge_pixels!=0 || dut.edge_count!=0 || dut.edge_sum!=0)))
  $fatal(1,"actual Sobel frame/count/pack mismatch %0d edges=%0d/%0d sum=%0d/%0d",frame_no,dut.edge_count,expected_edges,dut.edge_sum,expected_strength);
-if(observation_record!=={24'(frame_mode[1] ? expected_strength : 0),13'(frame_mode[1] ? expected_edges : 0),request,display_record}) $fatal(1,"actual tagged observation snapshot");
+if(observation_record!=={wb_request,24'(frame_mode[1] ? expected_strength : 0),13'(frame_mode[1] ? expected_edges : 0),request,display_record}) $fatal(1,"actual tagged observation snapshot");
  $display("OBS actual Sobel frame=%0d view=%0d pixels=%0d packed=%0d edges=%0d sum=%0d",frame_no,frame_mode,output_beat*4,packed_beats,expected_edges,expected_strength);
 end endtask
 initial begin
@@ -131,8 +144,20 @@ initial begin
  if(sv || display_record[24] || observation_record[24] || dut.observation_tag!=18'd20 || frame_mode!=0)
   $fatal(1,"mid-frame mode request accepted or changed active frame view");
  frame(0,120);expect_good;
- $display("PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection and recovery");
+ request=18'd26;frame(0,0);expect_good;
+ if(!expected_scene || expected_gray_state!=3 || class_state!=2) $fatal(1,"EDGE did not override low-MEAN recipe in actual ISP");
+ request=18'd29;frame(0,0);expect_good;
+ if(!expected_scene || class_state!=3) $fatal(1,"GRAY did not keep low-MEAN recipe in actual ISP");
+ request=18'd31;frame(0,0);expect_good;
+ if(!expected_scene || class_state!=1) $fatal(1,"combined conflict was not WAIT in actual ISP");
+ request=18'd34;frame(4,0);
+ if(sv || display_record[24] || observation_record[24] || dut.video_frame_bad || output_beat!=153600 || packed_beats!=115200)
+  $fatal(1,"WB change retained old sample or interrupted full video");
+ if(dut.wb_active!==32'h00004040)$fatal(1,"WB changed within native frame");
+ frame(0,0);expect_good;
+ if(dut.wb_active!==wb_request)$fatal(1,"WB request not applied on fresh complete frame");
+ $display("PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection, WB mid-frame sample invalidation without video loss and recovery");
  $finish;
 end
-initial begin #50000000; $fatal(1,"ROI chain watchdog");end
+initial begin #70000000; $fatal(1,"ROI chain watchdog");end
 endmodule

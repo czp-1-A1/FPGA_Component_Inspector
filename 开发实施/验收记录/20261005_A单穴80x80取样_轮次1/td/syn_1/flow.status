@@ -1,0 +1,23 @@
+Location         : D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\roi_core_td_build_20261005\td_project\camera_to_dsi_display_Runs\syn_1
+Running with     : Tang Dynasty v6.2.168116
+                   Copyright (c) 2012-2025 Anlogic Inc.
+Top Model        : design_top_wrapper
+Device           : PH1P35MDG324
+Speed            : 3
+
+Timing Mode      : basic
+Setup            : WNS  1503ps  TNS        0ps  NUM_FEPS     0
+Hold             : WNS   114ps  TNS        0ps  NUM_FEPS     0
+
+Flow Statistics  :
+---------------------------------------------------------------------------------------------------
+     command     |  #calls  |  wall time   |  cpu time(s)  |  used memory(mb)  |  peak memory(mb)  
+---------------------------------------------------------------------------------------------------
+  optimize_gate  |    1     |  1m21s(54%)  |    77(55%)    |       1115        |       1115        
+  optimize_rtl   |    1     |  1m5s(43%)   |    60(42%)    |        874        |        920        
+  import_device  |    1     |    3s(2%)    |     2(1%)     |        323        |        323        
+    read_adc     |    1     |    1s(0%)    |     1(0%)     |        612        |        613        
+    read_sdc     |    3     |    0s(0%)    |     0(0%)     |        608        |        613        
+---------------------------------------------------------------------------------------------------
+      total      |    7     |    2m30s     |      140      |       1115        |       1115        
+---------------------------------------------------------------------------------------------------

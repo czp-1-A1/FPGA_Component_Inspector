@@ -1,0 +1,71 @@
+{
+  "status": "PASS_routed_build_software_tests_still_pending",
+  "onsite": "PENDING",
+  "changed_inputs": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/roi_sobel_view.v",
+    "td_project/camera_to_dsi_display.al",
+    "user_source/hdl_source/multi_pocket_detector.v"
+  ],
+  "unchanged_inputs": 205,
+  "timing": {
+    "setup_wns_ns": 0.145,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.65
+  },
+  "resources": {
+    "slice": {
+      "used": 15733,
+      "total": 21216,
+      "percent": 74.16
+    },
+    "eram": {
+      "used": 48,
+      "total": 108,
+      "percent": 44.44
+    },
+    "dsp": {
+      "used": 8,
+      "total": 40,
+      "percent": 20.0
+    }
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 10
+  },
+  "warning_deltas": {
+    "syn_1": {
+      "added": [
+        "HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed"
+      ],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "max_delays_declared": 37,
+  "max_delays_matched": 37,
+  "max_delays_ignored": 0,
+  "sdc_unchanged": true,
+  "shared_sobel_instances": 1,
+  "extra_eram": 0,
+  "extra_dsp": 0,
+  "resource_review": {
+    "slice_used": 15733,
+    "percent": 74.16,
+    "increment": 2225,
+    "remaining": 5483,
+    "assessment": "Experimental70-75% reviewed band; no expansion before optimization"
+  },
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "c4b156ca50af70564c1b6c597a91a741710c7ccf98af6f7d9d8d46a8833a4c52"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "status": "PASS_routed_build_software_tests_pending",
+  "onsite": "PENDING",
+  "changed_inputs": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/video_in.v"
+  ],
+  "unchanged_inputs": 208,
+  "timing": {
+    "setup_wns_ns": 0.142,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.66
+  },
+  "resources": {
+    "slice": {
+      "used": 15717,
+      "total": 21216,
+      "percent": 74.08
+    },
+    "eram": {
+      "used": 48,
+      "total": 108,
+      "percent": 44.44
+    },
+    "dsp": {
+      "used": 8,
+      "total": 40,
+      "percent": 20.0
+    }
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 10
+  },
+  "warning_deltas": {
+    "syn_1": {
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "max_delays_declared": 37,
+  "max_delays_matched": 37,
+  "max_delays_ignored": 0,
+  "sdc_unchanged": true,
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "b3d775b19f7ceb31cb34bb952ebacf27df739ae18bced699d8492ae61e79f51a"
+  }
+}

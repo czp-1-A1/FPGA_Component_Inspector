@@ -1,0 +1,73 @@
+# PASS tracking late: frame-held ROI, independent 6400-pixel statistics, bounded +/-4 motion, empty, pause, occlusion, over-speed, shape and invalidation
+# PASS tracking status: all 4096 gate/reason/class combinations, valid and invalid priorities
+# OBS ISP initial line-span learning frame good=0 bad=1 ready=0
+# OBS ISP tracking frame=2 mode=1 shift=0 present=1 lock=0 x0=472 mean=167
+# OBS ISP tracking frame=3 mode=1 shift=0 present=1 lock=1 x0=472 mean=167
+# OBS ISP tracking frame=4 mode=1 shift=4 present=1 lock=1 x0=472 mean=159
+# OBS ISP tracking frame=5 mode=2 shift=8 present=0 lock=1 x0=476 mean=20
+# OBS ISP tracking frame=6 mode=3 shift=4 present=0 lock=1 x0=480 mean=20
+# OBS ISP tracking frame=7 mode=0 shift=0 present=1 lock=1 x0=476 mean=174
+# OBS ISP tracking frame=8 mode=1 shift=0 present=1 lock=0 x0=472 mean=167
+# OBS ISP tracking frame=9 mode=1 shift=0 present=0 lock=0 x0=472 mean=20
+# OBS ISP tracking frame=10 mode=1 shift=0 present=0 lock=1 x0=472 mean=20
+# OBS ISP tracking frame=11 mode=1 shift=12 present=1 lock=0 x0=472 mean=143
+# OBS ISP tracking frame=12 mode=1 shift=0 present=1 lock=0 x0=472 mean=167
+# OBS ISP tracking frame=13 mode=1 shift=0 present=1 lock=1 x0=472 mean=167
+# PASS actual ISP tracking late: RAW10/vendor RAM/full frames, frame-held moving ROI with current-frame lower-hole verification, four views, empty, lost/recovery, coherent metadata
+# PASS tracking age: new slot, repeated-frame timeout, invalidation and recovery
+# OBS ISP initial line-span learning frame good=0 bad=1 ready=0
+# OBS ISP tracking frame=2 mode=1 shift=0 present=1 lock=0 x0=472 mean=167
+# OBS ISP tracking frame=3 mode=1 shift=0 present=1 lock=1 x0=472 mean=167
+# OBS ISP tracking frame=4 mode=1 shift=12 present=1 lock=1 x0=484 mean=167
+# OBS ISP tracking frame=5 mode=2 shift=24 present=0 lock=1 x0=496 mean=20
+# OBS ISP tracking frame=6 mode=3 shift=12 present=0 lock=1 x0=484 mean=20
+# OBS ISP tracking frame=7 mode=0 shift=0 present=1 lock=1 x0=472 mean=167
+# OBS ISP tracking frame=8 mode=1 shift=0 present=1 lock=0 x0=472 mean=167
+# OBS ISP tracking frame=9 mode=1 shift=0 present=0 lock=0 x0=472 mean=20
+# OBS ISP tracking frame=10 mode=1 shift=0 present=0 lock=1 x0=472 mean=20
+# PASS actual ISP tracking: RAW10/vendor RAM/full frames, same-frame moving ROI, four views, empty, lost/recovery, coherent metadata
+# PASS tracking: same-frame bidirectional ROI, empty pocket, pause, occlusion, excessive step, recovery, invalidation
+# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=1 rows=4 request=0 receive=0 tag=0 frame_mode=0 early_cycle=1047 pixel_cycle=1101 AWB=1024 view=1024 guard_bad=1 video_bad=1 invalid_after_early=704 bad_after_early=2772 good=0
+# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=2 rows=600 request=7 receive=7 tag=7 frame_mode=3 early_cycle=5364 pixel_cycle=5418 AWB=153600 view=153600 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=1
+# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738
+# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=3 rows=599 request=7 receive=7 tag=7 frame_mode=3 early_cycle=449111 pixel_cycle=449165 AWB=153344 view=153344 guard_bad=1 video_bad=1 invalid_after_early=1 bad_after_early=19 good=0
+# PASS actual diagnostic latch prefix=4 old_reason=8 old_LP=738 old_WS=1387 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=4 rows=600 request=7 receive=7 tag=7 frame_mode=3 early_cycle=892120 pixel_cycle=892174 AWB=153600 view=153600 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=1
+# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738
+# PASS actual ISP metadata stop: real RAW10/ISP/178bit mailbox/writer, short20-cycle tail, full word/epoch proof, precomputed features never publish truncated frame
+# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=1 rows=4 request=0 receive=0 tag=0 frame_mode=0 early_cycle=1047 pixel_cycle=1101 AWB=1024 view=1024 guard_bad=1 video_bad=1 invalid_after_early=704 bad_after_early=2952 good=0
+# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=2 rows=600 request=6 receive=6 tag=6 frame_mode=2 early_cycle=5544 pixel_cycle=5598 AWB=153600 view=153600 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=1
+# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738
+# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=3 rows=4 request=6 receive=6 tag=6 frame_mode=2 early_cycle=449471 pixel_cycle=449525 AWB=1024 view=691 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=0
+# PASS actual ISP full epoch: native600 rows/614400 pixels, EDGE153600 RGB beats, actual frame_good/guard completion, next early snapshots clean reason0/LP/nonzero/WS0 then clears good/new epoch
+# OBS actual ROI chain frame=1 mode=0 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=0/0/0
+# OBS actual ROI chain frame=2 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=152/120/200
+# OBS actual Sobel frame=2 view=0 pixels=614400 packed=115200 edges=6170 sum=534396
+# OBS actual ROI chain frame=3 mode=1 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=152/120/200
+# OBS actual ROI chain frame=4 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=132/100/180
+# OBS actual Sobel frame=4 view=3 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=5 mode=2 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=132/100/180
+# OBS actual ROI chain frame=6 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=152/120/200
+# OBS actual Sobel frame=6 view=2 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=7 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=132/100/180
+# OBS actual Sobel frame=7 view=1 pixels=614400 packed=115200 edges=6400 sum=563200
+# OBS actual ROI chain frame=8 mode=3 commits=0 sample_valid=0 AWBbeats=153600 mean/min/max=132/100/180
+# OBS actual ROI chain frame=9 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=152/120/200
+# OBS actual Sobel frame=9 view=1 pixels=614400 packed=115200 edges=6092 sum=530552
+# OBS actual ROI chain frame=10 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=32/0/80
+# OBS actual Sobel frame=10 view=2 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=11 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=32/0/80
+# OBS actual Sobel frame=11 view=1 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=12 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=32/0/80
+# OBS actual Sobel frame=12 view=3 pixels=614400 packed=115200 edges=316 sum=51200
+# OBS actual ROI chain frame=13 mode=4 commits=1 sample_valid=0 AWBbeats=153600 mean/min/max=32/0/80
+# OBS actual ROI chain frame=14 mode=0 commits=1 sample_valid=1 AWBbeats=153600 mean/min/max=31/0/80
+# OBS actual Sobel frame=14 view=2 pixels=614400 packed=115200 edges=317 sum=51200
+# PASS actual ROI chain: 1024x600, bubbled RAW10, real demosaic/AWB/vendor RAM, independent stats, ready-low, malformed/replay rejection, WB mid-frame sample invalidation without video loss and recovery
+PASS ModelSim: all 9 tests, including original vendor ERAM model

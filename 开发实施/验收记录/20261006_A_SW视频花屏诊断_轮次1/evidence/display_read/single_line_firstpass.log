@@ -1,0 +1,57 @@
+# do run.do
+# Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+# Start time: 18:28:28 on Oct 06,2026
+# vlog ../../fpga/component_inspector/user_source/hdl_source/video_out.v ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v tb_video_out_underflow.v 
+# -- Compiling module video_out
+# -- Compiling module w128_d512_fifo
+# -- Compiling module soft_fifo_al_4057d6b76aa6
+# -- Compiling module fifo_cross_domain_addr_process_al_4057d6b76aa6
+# -- Compiling module ram_infer_4057d6b76aa6
+# -- Compiling module tb_video_out_underflow
+# 
+# Top level modules:
+# 	tb_video_out_underflow
+# End time: 18:28:28 on Oct 06,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -c -voptargs="+acc" work.tb_video_out_underflow 
+# Start time: 18:28:29 on Oct 06,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.tb_video_out_underflow(fast)
+# Loading work.video_out(fast)
+# Loading work.w128_d512_fifo(fast)
+# Loading work.soft_fifo_al_4057d6b76aa6(fast)
+# Loading work.fifo_cross_domain_addr_process_al_4057d6b76aa6(fast)
+# Loading work.ram_infer_4057d6b76aa6(fast)
+# Loading work.video_out(fast__1)
+# Loading work.w128_d512_fifo(fast__1)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ceb'. The port definition is at: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_video_out_underflow/baseline/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v Line: 221
+# ** Warning: (vsim-3015) [PCDPC] - Port size (9) does not match connection size (32) for port 'addrb'. The port definition is at: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_video_out_underflow/baseline/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v Line: 221
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ceb'. The port definition is at: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_video_out_underflow/starved/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v Line: 221
+# ** Warning: (vsim-3015) [PCDPC] - Port size (9) does not match connection size (32) for port 'addrb'. The port definition is at: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_video_out_underflow/starved/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../../fpga/component_inspector/user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v Line: 221
+# FIRST_SUCCESSFUL_STARVED_READ display_x=128 time=6317000
+# SUMMARY baseline_errors=0 shifted_errors=0 baseline_underflows=0 starved_underflows=24 baseline_reads=192 starved_reads=168 baseline_marker=256 starved_marker=384 remaining=24
+# PASS: actual video_out and FIFO reproduce a 128-pixel right shift after 24 suppressed empty reads; no underflow baseline has zero pixel mismatches.
+# ** Note: $finish    : tb_video_out_underflow.v(125)
+#    Time: 23633670 ps  Iteration: 1  Instance: /tb_video_out_underflow
+# End time: 18:28:30 on Oct 06,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 7
