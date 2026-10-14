@@ -1,0 +1,6 @@
+# PASS shape snapshot: atomic 37-bit model/WB/mode/legacy tuple, no stale Sobel fields, completion token, cancellation and fresh recovery
+# PASS shape OSD: 706432 pixels, SHAPE V5/D6, MODEL P/E/NO TARGET/UNCERTAIN, EDGE ON/OFF, native FG/W/H, invalidation, fixed core and three-clock/frame-held raster
+# PASS WB epoch: coherent held request/result, invalidation, change-away/back with stopped CSI, recovery, epoch wrap and fresh-token requirement
+# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover
+# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, enabled exposure/gain tuning with fresh tokens, stopped CSI, FPS recovery and reset require fresh sample
+PASS ModelSim: all 5 tests, including original vendor ERAM model

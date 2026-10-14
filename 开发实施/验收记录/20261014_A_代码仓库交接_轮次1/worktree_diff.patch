@@ -1,0 +1,1295 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index 9da828e..bd246c8 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -32,17 +32,13 @@
+ 
+ 交接需包含代码、必要未跟踪文件与证据，不能只传本文。按授权提交/推送，不混入无关暂存文件；成功推送才可称已同步。接棒端核对工具依赖、实际文件与日志；Git不传未提交文件、进程或聊天。意外断额度时由人保存改动，接棒端恢复实际断点，WIP不当作稳定版。
+ 
+-## 当前断点（2026-10-13，V4已同步，3528空间形状识别方案已整理）
+-
+-- **目标/断点**：用户明确直接生成代码、先用旧阈值、融合后续规划。V4恢复固定80×80核心，孔搜索/暗参考条不再阻塞分类；RAW/GRAY用均值，EDGE用EC/GS，GRAY+EDGE主结果灰度、框上两种标签独立。不是动态追踪或全图自动识别。
+-- **分支/代码基线**：lj4747-contest-work，镜像构建前基线37d0f9d0473cb4f77660ab5eebd1a7f8f1fe8670；V3/V4及当前计划已随源码进度提交8ff698ddd984eb0a4b81a05907a614961c699c3e推送并远端核对，后续交接文字更新不改变冻结输入。生产211输入相对V3改design_top_wrapper/isp_top/roi_mode_classifier/experiment_osd/SDC五项，其余206项不变。
+-- **实现**：top默认TRACKING/MULTI=0，直接核心[472,552)×[260,340)。MEAN≥58有件；EDGE G≥80计EC，EC≥96且GS≥32768有件，EC≤48且GS≤16384空穴，中间等待。GRAY+EDGE不融合；OSD完整GRAY/EDGE中文结果与EDGE OFF，顶部FIXED EXP V4/D5。EXP2244、GAIN48、R100B100、视频writer/reader和帧完整性保护不变。固定“最近采样”非DDR逐帧绑定结果。
+-- **验证/证据**：r2九项冻结测试PASS：23门限/模式断言、真实RAW10/vendor RAM/Sobel独立像素参考、14输入帧、两类特征冲突、无孔及亮参考条不阻塞、四视图、短帧/模式/WB撤销恢复、614400竞争读出(613200非零)/OFUF0、672000 OSD检查像素、WB epoch/显示新鲜度/8种近FS相位/视频fallback回归。r3全部非SDC生产输入和测试台与r2一致。归档408文件逐项SHA验证。记录开发实施/验收记录/20261013_A灰度边缘独立检测恢复_V4轮次1.md。
+-- **资源/时序**：TD6.2.168116 r3 Slice12226/21216=57.63%，ERAM48/108、DSP8/40；Routed慢快角建立+0.787ns、保持+0.020ns、TNS0，STA92.6%。 静态版实际不存在的两个metadata邮箱六条命名约束移除，其他预算/时钟/I/O不改。29显式+2vendor FIFO max_delay全匹配/ignored0，综合125/物理10告警无新增。恢复跟踪前必须恢复V3对应六条约束后完整重跑STA。
+-- **镜像**：fpga/component_inspector/release/direct_detection_v4_20261013/camera_to_dsi_display.bit；1789539字节；SHA 40348043fd499e9eedfed62ba9fe3fb30114742998ee521d28be44dd4b95ec3b。上板说明开发实施/49_A灰度边缘独立检测_V4上板说明.md。current_codex_build.json指向V4。V3/V2旧镜像与归档保留。
+-- **发布后复核**：2026-10-13自动续接核对211生产输入、408归档项、镜像及SHA文件、构建指针/审计、当前与冻结文档全部一致；没有重复测试或修改RTL。证据开发实施/验收记录/20261013_A_V4发布完整性复核_轮次1.md及同名目录。现场仍PENDING；无遗漏的软件收尾项。
+-- **现场最新反馈**：三张D5/V4照片：背景MEAN187/EC17/GS177620却灰度有件；LED MEAN122/EC1925/GS403432；圆孔状区MEAN38/EC211/GS78524，灰度空穴但边缘有件。证明完整采样不等于对象有效、EDGE待检测不等于无边缘，边缘总量也会被孔轮廓触发。第三张是否真实器件空穴尚需真值；仅凭版本文字不证明bit SHA。记录开发实施/验收记录/20261013_A_V4现场对象有效性与边缘语义_轮次1.md及照片目录。本轮仅评价/规划，不改RTL、门限或冻结发布审计。
+-- **最新范围/方案**：仍先处理3528白色器件，黑色/透明后续。同步末尾新增开发实施/51_A工业视觉调研与3528形状模型修订方案.md，50计划已链接该修订：送料定位孔同时被GRAY/EDGE报有件，说明背景检查不够，下一版应先设计空间形状/区域特征或轻量模型的识别层。51为方案，未训练模板、实施RTL或生成新bit；V4仍只是特征采样实验。
+-- **失败/未决**：冻结V3水平控制锁定，圆孔中心每96px仅错开1px等8倾斜场景均NO HOLE，确认同时弦宽峰过严；不是现场照片native回放，先前测试漏了轻微倾斜。V4 r1新OSD台多余end编译失败保留，r2修fixture；r1 TD六空约束告警未发布，r3按实际静态电路修SDC后通过。旧门限未完成实物有件/真正空穴配对，软件通过不代表现场准确率。
+-- **下一条具体操作**：先读51修订方案，固定成像后取得相机原始帧及正常3528/真正空穴/定位孔/白背景/错位反例，离线验证空间形状与区域特征或小模板的最小识别方案；区分目标有效、有件、空穴和不确定。MEAN/EC/GS旧门限保持调试用途，不能单独当目标识别。模型/位置/结果须同帧同参数，新实现另冻结验证；不扩黑色或透明、不恢复V3过严孔锁定。本次只同步方案，不开始新RTL批次。
+-- **进程/设备/提交**：本轮ModelSim/TD均结束；无代理/JTAG/Flash/烧板；用户授权的V3/V4/计划同步已随8ff698ddd984eb0a4b81a05907a614961c699c3e推送origin/lj4747-contest-work并核对；source_commit和根交接入口已指向V4。本次同步末尾交接文字另提交。源码、测试、镜像、告警审计与失败证据已归档。不得覆盖旧轮次或拿V3成功水平仿真冒充现场定位已通过。
++## 当前断点（2026-10-14，V8现场黑屏，V9连续处理链路修复中）
++
++- 目标：修复D9 V8黑屏，保留同一3528、全画面算法、两穴位独立框/结果；不把模型诊断当实际偏移/旋转/立起/翻面质量真值。
++- 基线：lj4747-contest-work，HEAD e604d4fbe4bd40f0d7b40e5fce4ecfda10ea4351；工作区未提交/推送。V8 bit SHA 2f5bd322d3243443adb5437c7b2ff6aaab4074207aa8e633f780b812477b7852和完整档案保留，不再称现场待验/已通过。
++- 现场：原图/SHA/人工抄数在20261014_A_V8黑屏现场反馈_轮次1。用户确认RAW和复位也黑；FPS27/CFG1，P59/W1C124、VF031E、LP02E2、OF/UF0。照片不证明bit SHA。
++- 复现：frame_stop_v8_r1/r2冻结同214生产输入，LP738、FE后200拍停CSI33ms。RAW完整视频能超时发布但没有双结果；EDGE缺帧尾，W1C020/114949 packed/metadata0，FAIL。与现场RAW仍黑差别保留，尚不声称物理根因闭合。V8常开CSI仿真漏了此反例。
++- 修复：新frame_process_bridge使用原128×512异步FIFO，将AWB像素/原生完整证明/取消事件有序转到既有连续100MHz；原生guard/去马赛克/WB仍CSI。下游Sobel、全帧搜索、统计、metadata和video_in输入在连续时钟运行，溢出拒帧并需复位。isp_top/wrapper/.al及测试修改中，尚未新bit。
++- 验证：process_v9_r1为UTF8编辑脚本失败后的旧端口夹具轮，保留；process_v9_r2正在frame_stop/搜索/guard仿真，未判通过。SDC尚未变；待新增FIFO CDC预算和最终完整TD审计。原V8/V7/V6/V5发布不覆盖。
++- 下一步：读r2日志，连续处理8帧/停钟/独立FIFO精确载荷回归，修复后冻结215生产输入，完整TD资源/双角STA/全部CDC约束，生成V9新独立镜像/说明/证据。
++- 进程/设备：ModelSim r2任务进行中；无JTAG/Flash，无提交/推送；用户负责烧录现场复测。历史V8 checkpoint在现场反馈previous_checkpoint.md。
+diff --git a/fpga/component_inspector/sim/run_modelsim.ps1 b/fpga/component_inspector/sim/run_modelsim.ps1
+index fdb0af7..885eef2 100644
+--- a/fpga/component_inspector/sim/run_modelsim.ps1
++++ b/fpga/component_inspector/sim/run_modelsim.ps1
+@@ -44,7 +44,7 @@ try {
+     $ip = "../user_source/ip_source"
+     $demosaic = "$hdl/isp/demosaic_4x_2_0"
+     $ispSources = @(
+-        "$hdl/isp/uial2axis.v", "$hdl/isp/isp_top.v", "$hdl/tape_hole_tracker.v", "$hdl/multi_pocket_detector.v", "$hdl/roi_frame_guard.v", "$hdl/roi_statistics.v", "$hdl/roi_classifier.v", "$hdl/roi_mode_classifier.v", "$hdl/roi_tape_guard.v", "$hdl/roi_result_snapshot.v", "$hdl/roi_sobel_view.v", "$hdl/roi_observation_snapshot.v",
++        "$hdl/frame_process_bridge.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "$hdl/frame_shape_search.v", "$hdl/roi_shape_search.v", "$hdl/roi_shape_model.v", "$hdl/isp/uial2axis.v", "$hdl/isp/isp_top.v", "$hdl/tape_hole_tracker.v", "$hdl/multi_pocket_detector.v", "$hdl/roi_frame_guard.v", "$hdl/roi_statistics.v", "$hdl/roi_classifier.v", "$hdl/roi_mode_classifier.v", "$hdl/roi_tape_guard.v", "$hdl/roi_result_snapshot.v", "$hdl/roi_sobel_view.v", "$hdl/roi_observation_snapshot.v",
+         "$hdl/awb.v", "$hdl/signal_delay.v", "$hdl/isp/data128_96/data128_96.v", "$hdl/isp/data96_128/data96_128.v",
+         "$demosaic/demosaic.v", "$demosaic/raw_matrix_3x3_buffer.v", "$demosaic/zhenghe.v",
+         "$demosaic/line_buffer_demosaic.v", "$demosaic/mipi_to_raw_converter.v", "$demosaic/bilinear_interpolation.v",
+@@ -53,15 +53,33 @@ try {
+         "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
+         "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v")
+     $tests = @(
++        @{Name="process_bridge"; Pass="PASS process bridge:"; Sources=@("$hdl/frame_process_bridge.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_process_bridge.v")},
++        @{Name="frame_search"; Pass="PASS frame search:"; Sources=@("$hdl/frame_shape_search.v", "tb_frame_search.v")},
++        @{Name="presence_review"; Pass="PASS presence review:"; Sources=@("$hdl/roi_shape_search.v", "tb_presence_review.v")},
++        @{Name="frame_osd"; Pass="PASS frame OSD:"; Sources=@("$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/experiment_osd.v", "tb_frame_osd.v")},
++        @{Name="local_osd"; Pass="PASS local OSD:"; Sources=@("$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/experiment_osd.v", "tb_local_osd.v")},
++        @{Name="local_isp"; Pass="PASS local ISP:"; Sources=($ispSources + @("tb_local_isp.v"))},
++        @{Name="local_search"; Pass="PASS local search:"; Sources=@("$hdl/roi_shape_search.v", "tb_local_search.v")},
++        @{Name="shape_snapshot"; Pass="PASS shape snapshot:"; Sources=@("$hdl/roi_observation_snapshot.v", "tb_shape_snapshot.v")},
++        @{Name="shape_model"; Pass="PASS shape model:"; Sources=@("$hdl/roi_shape_model.v", "tb_shape_model.v")},
++        @{Name="shape_isp"; Pass="PASS shape ISP:"; Sources=($ispSources + @("tb_shape_isp.v"))},
+         @{Name="direct_modes"; Pass="PASS direct modes:"; Sources=@("$hdl/roi_mode_classifier.v", "tb_direct_modes.v")},
+         @{Name="direct_isp"; Pass="PASS direct ISP:"; Sources=($ispSources + @("tb_direct_isp.v"))},
+         @{Name="direct_video"; Pass="PASS direct video:"; Sources=($ispSources + @("$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_direct_video.v"))},
++        @{Name="shape_video"; Pass="PASS shape video:"; Sources=($ispSources + @("$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_shape_video.v"))},
++        @{Name="frame_tailproof"; Pass="PASS frame tail proof:"; Sources=($ispSources + @("$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_frame_tailproof.v"))},
++        @{Name="frame_stop"; Pass="PASS frame stop:"; Sources=($ispSources + @("$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_frame_stop.v"))},
++        @{Name="frame_process"; Pass="PASS frame process:"; Sources=($ispSources + @("$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_frame_process.v"))},
++        @{Name="frame_video"; Pass="PASS frame video:"; Sources=($ispSources + @("$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_frame_video.v"))},
++        @{Name="local_video"; Pass="PASS local video:"; Sources=($ispSources + @("$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_local_video.v"))},
+         @{Name="direct_osd"; Pass="PASS direct OSD:"; Sources=@("$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/experiment_osd.v", "tb_direct_osd.v")},
++        @{Name="shape_osd"; Pass="PASS shape OSD:"; Sources=@("$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/experiment_osd.v", "tb_shape_osd.v")},
+         @{Name="geometry_polarity"; Pass="PASS geometry polarity:"; Sources=@("$hdl/multi_pocket_detector.v", "tb_geometry_polarity.v")},
+         @{Name="rectangular_anchors"; Pass="PASS rectangular anchors:"; Sources=@("$hdl/multi_pocket_detector.v", "tb_rectangular_anchors.v")},
+         @{Name="multi_first_invalid"; Pass="PASS multi first invalid:"; Sources=($ispSources + @("tb_multi_first_invalid.v"))},
+         @{Name="video_fallback_display"; Pass="PASS video fallback display:"; Sources=@("$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_video_fallback_display.v")},
+         @{Name="multi_video"; Pass="PASS multi video:"; Sources=($ispSources + @("$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_multi_video.v"))},
++        @{Name="frame_wait_metadata"; Pass="PASS frame wait metadata:"; Sources=@("$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_frame_wait_metadata.v")},
+         @{Name="video_metadata_fallback"; Pass="PASS video metadata fallback:"; Sources=@("$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_video_metadata_fallback.v")},
+         @{Name="writer_epoch"; Pass="PASS writer epoch:"; Sources=@("$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_writer_epoch.v")},
+         @{Name="multi_writer"; Pass="PASS multi writer:"; Sources=($ispSources + @("$hdl/status_cdc.v", "$hdl/video_in.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_multi_writer.v"))},
+@@ -140,10 +158,11 @@ try {
+         & "$ModelSimBin/vlog.exe" -sv -work $library @defines $testbench >> "$directory/compile.log" 2>&1
+         if ($LASTEXITCODE -ne 0) { throw "Testbench compile failed: $($test.Name); see $directory/compile.log" }
+         $tops = @("$library.tb_$($test.Name)")
+-        if ($test.Name -in @("fixed_wb", "manual_wb", "pixel_interface", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
++        if ($test.Name -in @("fixed_wb", "manual_wb", "pixel_interface", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
+         $commands = "log /tb_$($test.Name)/*; run -all; quit -code 1 -force"
++        if ($test.Name -in @("shape_isp", "local_isp", "frame_video", "frame_tailproof", "frame_stop", "frame_process")) { $commands = "log /tb_$($test.Name)/frame_no; run -all; quit -code 1 -force" }
+         $access = "+acc"
+-        if ($test.Name -in @("roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video")) { $access = "+acc=rn+/tb_$($test.Name)" }
++        if ($test.Name -in @("roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process")) { $access = "+acc=rn+/tb_$($test.Name)" }
+         & "$ModelSimBin/vsim.exe" -c -L anlogic_sim "-voptargs=$access" -onfinish exit -l "$directory/transcript.log" -wlf "$directory/wave.wlf" -do $commands @tops *> "$directory/console.log"
+         if ($LASTEXITCODE -ne 0) { throw "Simulation failed: $($test.Name); see $directory/console.log" }
+         $output = Get-Content -LiteralPath "$directory/console.log" -Raw
+diff --git a/fpga/component_inspector/sim/tb_observation.v b/fpga/component_inspector/sim/tb_observation.v
+index 767da98..e8c12c5 100644
+--- a/fpga/component_inspector/sim/tb_observation.v
++++ b/fpga/component_inspector/sim/tb_observation.v
+@@ -13,7 +13,7 @@ reg [12:0] cp=6400,ec=321;reg [23:0] strength=123456;
+ reg cfg=1;reg [15:0] ex=2244,ga=48,fps=27;
+ wire [114:0] source_record,record;
+ wire invalid=!cfg || tag!=received;
+-roi_observation_snapshot snapshot(rx_clk,rst,invalid,tag,32'h00004040,legacy,cp,ec,strength,source_record);
++roi_observation_snapshot snapshot(rx_clk,rst,invalid,tag,32'h00004040,legacy,cp,ec,1'b0,37'd0,strength,source_record);
+ status_cdc #(.WIDTH(115)) result(rx_clk,dclk,rst,source_record,record);
+ wire valid;wire [1:0] state;
+ wire [27:0] gated_record={record[27:25],(record[24] && record[45:28]==displayed),record[23:0]};
+diff --git a/fpga/component_inspector/sim/tb_wb_epoch.v b/fpga/component_inspector/sim/tb_wb_epoch.v
+index 2ff9dfc..99f9764 100644
+--- a/fpga/component_inspector/sim/tb_wb_epoch.v
++++ b/fpga/component_inspector/sim/tb_wb_epoch.v
+@@ -1,37 +1,37 @@
+-`timescale 1ns/1ps
+-module tb_wb_epoch;
+-reg src=0,rx=0,pix=0,rst=0,running=1;
+-always #20 src=~src;always #4 if(running)rx=~rx;always #9 pix=~pix;
+-reg [31:0] request=32'h00004040,tag=32'h00004040;
+-wire [31:0] received,displayed;
+-status_cdc #(.WIDTH(32)) c0(src,rx,rst,request,received);
+-status_cdc #(.WIDTH(32)) c1(src,pix,rst,request,displayed);
+-reg [27:0] legacy=0;wire [114:0] sample,published;
+-wire invalid=tag!=received;
+-roi_observation_snapshot snapshot(rx,rst,invalid,18'd0,tag,legacy,13'd6400,13'd99,24'd40000,sample);
+-status_cdc #(.WIDTH(115)) c2(rx,pix,rst,sample,published);
+-wire [27:0] record={published[27:25],(published[24] && published[114:83]==displayed),published[23:0]};
+-wire valid;wire [1:0] state;
+-roi_display_state gate(pix,rst,1'b1,16'd2244,16'd48,16'd27,1'b1,record,18'd0,displayed,valid,state);
+-task ticks;input integer n;begin repeat(n)@(negedge pix);end endtask
+-task complete;begin
+- repeat(40)@(negedge rx);tag=received;legacy[24]=0;repeat(5)@(negedge rx);
+- legacy={~legacy[27],2'd2,1'b1,8'd100,8'd20,8'd200};ticks(100);
+- if(!valid || state!=2 || published[114:83]!=request)$fatal(1,"fresh WB sample rejected");
+-end endtask
+-initial begin
+- ticks(5);rst=1;ticks(100);complete;
+- request=32'h00016020;ticks(100);
+- if(valid || state!=1)$fatal(1,"old sample survived WB change");
+- complete;
+- @(negedge rx);running=0;
+- request=32'h0002c020;ticks(100);request=32'h00036020;ticks(100);
+- if(valid || state!=1)$fatal(1,"old coefficients reused stale result after round trip");
+- running=1;ticks(100);if(valid)$fatal(1,"clock resume reused old token");
+- complete;
+- request=32'hffff4040;ticks(100);complete;
+- request=32'h00004040;ticks(100);if(valid)$fatal(1,"epoch wrap reused prior token");complete;
+- $display("PASS WB epoch: coherent held request/result, invalidation, change-away/back with stopped CSI, recovery, epoch wrap and fresh-token requirement");$finish;
+-end
+-initial begin #200000;$fatal(1,"WB epoch watchdog");end
+-endmodule
++`timescale 1ns/1ps
++module tb_wb_epoch;
++reg src=0,rx=0,pix=0,rst=0,running=1;
++always #20 src=~src;always #4 if(running)rx=~rx;always #9 pix=~pix;
++reg [31:0] request=32'h00004040,tag=32'h00004040;
++wire [31:0] received,displayed;
++status_cdc #(.WIDTH(32)) c0(src,rx,rst,request,received);
++status_cdc #(.WIDTH(32)) c1(src,pix,rst,request,displayed);
++reg [27:0] legacy=0;wire [114:0] sample,published;
++wire invalid=tag!=received;
++roi_observation_snapshot snapshot(rx,rst,invalid,18'd0,tag,legacy,13'd6400,13'd99,1'b0,37'd0,24'd40000,sample);
++status_cdc #(.WIDTH(115)) c2(rx,pix,rst,sample,published);
++wire [27:0] record={published[27:25],(published[24] && published[114:83]==displayed),published[23:0]};
++wire valid;wire [1:0] state;
++roi_display_state gate(pix,rst,1'b1,16'd2244,16'd48,16'd27,1'b1,record,18'd0,displayed,valid,state);
++task ticks;input integer n;begin repeat(n)@(negedge pix);end endtask
++task complete;begin
++ repeat(40)@(negedge rx);tag=received;legacy[24]=0;repeat(5)@(negedge rx);
++ legacy={~legacy[27],2'd2,1'b1,8'd100,8'd20,8'd200};ticks(100);
++ if(!valid || state!=2 || published[114:83]!=request)$fatal(1,"fresh WB sample rejected");
++end endtask
++initial begin
++ ticks(5);rst=1;ticks(100);complete;
++ request=32'h00016020;ticks(100);
++ if(valid || state!=1)$fatal(1,"old sample survived WB change");
++ complete;
++ @(negedge rx);running=0;
++ request=32'h0002c020;ticks(100);request=32'h00036020;ticks(100);
++ if(valid || state!=1)$fatal(1,"old coefficients reused stale result after round trip");
++ running=1;ticks(100);if(valid)$fatal(1,"clock resume reused old token");
++ complete;
++ request=32'hffff4040;ticks(100);complete;
++ request=32'h00004040;ticks(100);if(valid)$fatal(1,"epoch wrap reused prior token");complete;
++ $display("PASS WB epoch: coherent held request/result, invalidation, change-away/back with stopped CSI, recovery, epoch wrap and fresh-token requirement");$finish;
++end
++initial begin #200000;$fatal(1,"WB epoch watchdog");end
++endmodule
+diff --git a/fpga/component_inspector/td_project/camera_to_dsi_display.al b/fpga/component_inspector/td_project/camera_to_dsi_display.al
+index e0c8d67..ffa1995 100644
+--- a/fpga/component_inspector/td_project/camera_to_dsi_display.al
++++ b/fpga/component_inspector/td_project/camera_to_dsi_display.al
+@@ -11,6 +11,12 @@
+     </HardWare>
+     <Source_Files>
+         <Verilog>
++            <File Path="../user_source/hdl_source/frame_process_bridge.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="124"/></FileInfo></File>
++            <File Path="../user_source/hdl_source/frame_shape_search.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="123"/></FileInfo></File>
++            <File Path="../user_source/hdl_source/roi_shape_search.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="122"/></FileInfo></File>
++            <File Path="../user_source/hdl_source/roi_shape_model.v">
++                <FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="121"/></FileInfo>
++            </File>
+             <File Path="../user_source/hdl_source/multi_pocket_detector.v">
+                 <FileInfo>
+                     <Attr Name="UsedInSyn" Val="true"/>
+diff --git a/fpga/component_inspector/td_project/camera_to_dsi_display.sdc b/fpga/component_inspector/td_project/camera_to_dsi_display.sdc
+index 02e3e13..877c4fe 100644
+--- a/fpga/component_inspector/td_project/camera_to_dsi_display.sdc
++++ b/fpga/component_inspector/td_project/camera_to_dsi_display.sdc
+@@ -61,12 +61,26 @@ set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}]
+ set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]
+ set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]
+ 
+-# FIXED EXP V4 disables tracking/frame-metadata transport; these two mailboxes
+-# are compiled out. Their six named constraints remain in the frozen V3 SDC.
+-# Restore them before enabling ENABLE_TRACKING again; active CDC budgets above
+-# and publishing diagnostics below are unchanged.
++# FIXED EXP V4 disables tracking/frame-metadata transport; these two mailboxes
++# are compiled out. Their six named constraints remain in the frozen V3 SDC.
++# Restore them before enabling ENABLE_TRACKING again; active CDC budgets above
++# and publishing diagnostics below are unchanged.
++
++# Read-only writer publishing diagnostics use the same held-payload mailbox.
++set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/payload*}] -to [get_regs {u_publish_display/D_data*}]
++set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/req}] -to [get_regs {u_publish_display/req_sync[0]}]
++set_max_delay -datapath_only 14.0 -from [get_regs {u_publish_display/ack}] -to [get_regs {u_publish_display/ack_sync[0]}]
++
++# Local-search boxes are bound to DDR frames: restore metadata mailbox budgets.
++set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/payload*}] -to [get_regs {*crossing/D_data*}]
++set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/req}] -to [get_regs {*crossing/req_sync[0]}]
++set_max_delay -datapath_only 8.0 -from [get_regs {*crossing/ack}] -to [get_regs {*crossing/ack_sync[0]}]
++set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/payload*}] -to [get_regs {u_active_frame_display/D_data*}]
++set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/req}] -to [get_regs {u_active_frame_display/req_sync[0]}]
++set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}] -to [get_regs {u_active_frame_display/ack_sync[0]}]
+ 
+-# Read-only writer publishing diagnostics use the same held-payload mailbox.
+-set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/payload*}] -to [get_regs {u_publish_display/D_data*}]
+-set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/req}] -to [get_regs {u_publish_display/req_sync[0]}]
+-set_max_delay -datapath_only 14.0 -from [get_regs {u_publish_display/ack}] -to [get_regs {u_publish_display/ack_sync[0]}]
++# Native WB status to continuous 100MHz post-processing. Payload is held until
++# acknowledgement; 9ns is below the two-stage 20ns destination settling time.
++set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/payload*}] -to [get_regs {u_wb_process/D_data*}]
++set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/req}] -to [get_regs {u_wb_process/req_sync[0]}]
++set_max_delay -datapath_only 8.0 -from [get_regs {u_wb_process/ack}] -to [get_regs {u_wb_process/ack_sync[0]}]
+diff --git a/fpga/component_inspector/td_project/current_codex_build.json b/fpga/component_inspector/td_project/current_codex_build.json
+index 02584ee..6d4f04e 100644
+--- a/fpga/component_inspector/td_project/current_codex_build.json
++++ b/fpga/component_inspector/td_project/current_codex_build.json
+@@ -1,26 +1,32 @@
+ {
+-  "purpose": "3528_FIXED_DIRECT_GRAY_EDGE_INDEPENDENT_V4",
++  "purpose": "3528_SAME_MATERIAL_FULLFRAME_DUAL_V8",
+   "td_version": "6.2.168116",
+-  "base_head": "37d0f9d0473cb4f77660ab5eebd1a7f8f1fe8670",
+-  "source_commit": "8ff698ddd984eb0a4b81a05907a614961c699c3e",
+-  "source_snapshot": "开发实施/验收记录/20261013_A灰度边缘独立检测恢复_V4轮次1/source_snapshot",
+-  "build_root": "tmp/direct_detection_v4_r3_20261013",
++  "base_head": "e604d4fbe4bd40f0d7b40e5fce4ecfda10ea4351",
++  "source_commit": null,
++  "source_snapshot": "开发实施/验收记录/20261014_A_3528全画面双穴位_V8轮次1/source_snapshot",
++  "build_root": "tmp/fullframe_v8_r12_20261014",
+   "release": {
+-    "path": "fpga/component_inspector/release/direct_detection_v4_20261013/camera_to_dsi_display.bit",
++    "path": "fpga/component_inspector/release/fullframe_dual_v8_20261014/camera_to_dsi_display.bit",
+     "bytes": 1789539,
+-    "sha256": "40348043fd499e9eedfed62ba9fe3fb30114742998ee521d28be44dd4b95ec3b"
++    "sha256": "2f5bd322d3243443adb5437c7b2ff6aaab4074207aa8e633f780b812477b7852"
+   },
+-  "validation_record": "开发实施/验收记录/20261013_A灰度边缘独立检测恢复_V4轮次1.md",
++  "validation_record": "开发实施/验收记录/20261014_A_3528全画面双穴位_V8轮次1.md",
+   "fresh_tests": [
+-    "direct_modes",
+-    "direct_isp",
+-    "direct_video",
+-    "direct_osd",
+-    "presence_modes",
+-    "display_state",
+-    "wb_epoch",
++    "frame_search",
++    "frame_osd",
++    "frame_wait_metadata",
++    "shape_snapshot",
++    "shape_model",
++    "shape_osd",
++    "video_fallback_display",
++    "video_metadata_fallback",
+     "writer_epoch",
+-    "video_fallback_display"
++    "wb_epoch",
++    "observation",
++    "display_state",
++    "roi_guard",
++    "frame_tailproof",
++    "frame_video"
+   ],
+   "onsite": "PENDING"
+-}
++}
+\ No newline at end of file
+diff --git a/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v b/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v
+index d4cb48b..35777e6 100644
+--- a/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v
++++ b/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v
+@@ -1,6 +1,6 @@
+ 
+ 
+-module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0) (
++module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,ENABLE_SHAPE_MODEL=1,ENABLE_LOCAL_SEARCH=1) (
+     input wire        I_sys_clk,
+     input wire        I_rst_n,
+       
+@@ -211,7 +211,7 @@ module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0)
+             S_dbg_raw_seen <= 1'b1;
+     end
+ 
+-    always @(posedge S_csi_rx_clk or negedge S_rst_n) begin
++    always @(posedge S_process_clk or negedge S_rst_n) begin
+         if(!S_rst_n)
+             S_dbg_isp_seen <= 1'b0;
+         else if(S_ISP_O_tuser | S_ISP_O_tvalid)
+@@ -260,14 +260,14 @@ module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0)
+             S_dbg_raw10_seen <= 1'b1;
+     end
+ 
+-    always @(posedge S_csi_rx_clk or negedge S_rst_n) begin
++    always @(posedge S_process_clk or negedge S_rst_n) begin
+         if(!S_rst_n)
+             S_dbg_isp_fs_seen <= 1'b0;
+         else if(S_ISP_O_tuser)
+             S_dbg_isp_fs_seen <= 1'b1;
+     end
+ 
+-    always @(posedge S_csi_rx_clk or negedge S_rst_n) begin
++    always @(posedge S_process_clk or negedge S_rst_n) begin
+         if(!S_rst_n)
+             S_dbg_isp_valid_seen <= 1'b0;
+         else if(S_ISP_O_tvalid)
+@@ -539,6 +539,17 @@ raw10_unpacket_2lane u_raw10_unpacket (
+   );
+ 
+ 
++localparam MULTI_POCKETS=ENABLE_TRACKING && ENABLE_MULTI_POCKETS;
++localparam LOCAL_SEARCH=ENABLE_LOCAL_SEARCH && ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS;
++wire S_process_clk=LOCAL_SEARCH ? S_100m_clk : S_csi_rx_clk;
++// Keep out-of-packet RAW data out of the legacy formatter. The native guard
++// still sees the unfiltered signal and rejects the offending frame.
++reg csi_frame_open;
++always @(posedge S_csi_rx_clk or negedge S_rst_n)begin
++ if(!S_rst_n)csi_frame_open<=0;
++ else if(S_raw10_frame_start)csi_frame_open<=1;
++ else if(S_raw10_frame_end)csi_frame_open<=0;
++end
+ //将数据转为stream流
+ uial2axis #(
+ .IMG_WIDTH(1024),
+@@ -549,7 +560,7 @@ u_uial2axis (
+ .I_native_clk(S_csi_rx_clk),
+ .I_rst_n     (S_rst_n),
+ .I_data      (S_raw10_data       ),
+-.I_data_valid(S_raw10_valid      ),
++.I_data_valid(S_raw10_valid && (!LOCAL_SEARCH || (csi_frame_open && !S_raw10_frame_end))),
+ .I_data_start(S_raw10_frame_start),
+ .I_data_end  (S_raw10_frame_end  ),
+ .axis_tvalid (S_axis_tvalid),
+@@ -635,13 +646,14 @@ wire video_frame_good,video_frame_bad,camera_row_ready;
+ wire [35:0] video_diagnostics;
+ wire completed_valid,active_valid,capture_ok,display_ok;
+ wire [1:0] completed_rp,active_rp;
+-localparam MULTI_POCKETS=ENABLE_TRACKING && ENABLE_MULTI_POCKETS;
+-localparam FRAME_META_WIDTH=178+340*MULTI_POCKETS;
++localparam FRAME_BOUND=ENABLE_TRACKING || LOCAL_SEARCH;
++localparam FRAME_META_WIDTH=178+340*MULTI_POCKETS+172*LOCAL_SEARCH;
+ wire [FRAME_META_WIDTH-1:0] camera_metadata,completed_metadata,active_metadata;
+ wire camera_metadata_ready;
+ wire [15:0] lost_frames,overflow_frames,underflow_frames;
+-wire [25:0] publish_diagnostic,publish_display;
+-isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
++wire [25:0] publish_diagnostic,publish_display;
++isp_top #(.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
++.processing_clk(S_process_clk),
+ .axi4s_video_aclk(S_csi_rx_clk),
+ .I_rst_n         (S_rst_n),
+ .I_tlast         (S_raw_tlast	),
+@@ -669,12 +681,12 @@ isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRA
+   );
+ 
+ 
+-    video_in #(.METADATA(ENABLE_TRACKING),.META_WIDTH(FRAME_META_WIDTH),.METADATA_REQUIRED(!MULTI_POCKETS)) u_video_in(
++    video_in #(.METADATA(FRAME_BOUND),.META_WIDTH(FRAME_META_WIDTH),.METADATA_REQUIRED(LOCAL_SEARCH ? 0 : !MULTI_POCKETS),.METADATA_WAIT_CYCLES(LOCAL_SEARCH ? 1500000 : 0)) u_video_in(
+         .I_frame_metadata(camera_metadata),.I_frame_metadata_ready(camera_metadata_ready),.O_completed_metadata(completed_metadata),
+         .O_publish_diagnostic(publish_diagnostic),
+         .I_rst_n              (  S_rst_n             ),
+ 
+-        .I_camera_clk         ( S_csi_rx_clk          ),
++        .I_camera_clk         ( S_process_clk         ),
+         .I_camera_frame_start ( S_ISP_O_tuser  ),
+         .I_camera_valid       ( S_ISP_O_tvalid ),
+         .I_camera_data        ( S_ISP_O_tdata  ),
+@@ -868,24 +880,27 @@ isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRA
+      .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+      .S_data({active_valid,active_rp,active_metadata}),.D_data(active_frame_display));
+     wire [114:0] latest_observation_data;
+-    wire [114:0] observation_data=ENABLE_TRACKING ? active_frame_display[114:0] : latest_observation_data;
++    wire [114:0] observation_data=FRAME_BOUND ? active_frame_display[114:0] : latest_observation_data;
+     wire tracking_match=active_frame_display[FRAME_META_WIDTH+2] && active_frame_display[169:138]==cam_display[48:17];
+     wire observation_match=observation_data[45:28]==observation_display && observation_data[114:83]==cam_display[80:49];
+     wire [27:0] roi_display={observation_data[27:25],(observation_data[24] && observation_match),observation_data[23:0]};
+     status_cdc #(.WIDTH(115)) u_roi_display(
+-        .S_clk(S_csi_rx_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
++        .S_clk(S_process_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+         .S_data(observation_record),.D_data(latest_observation_data));
+     wire [16:0] transport_display;
+-    status_cdc #(.WIDTH(26)) u_publish_display(
++    status_cdc #(.WIDTH(26)) u_publish_display(
+      .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+      .S_data(publish_diagnostic),.D_data(publish_display));
+     wire [83:0] overflow_display;
++    wire [31:0] wb_process;
++    status_cdc #(.WIDTH(32)) u_wb_process(
++     .S_clk(S_csi_rx_clk),.D_clk(S_process_clk),.rst_n(S_rst_n),.S_data(wb_active),.D_data(wb_process));
+     status_cdc #(.WIDTH(17)) u_transport_display(
+      .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+      .S_data({capture_ok,lost_frames}),.D_data(transport_display));
+     status_cdc #(.WIDTH(84)) u_overflow_display(
+-     .S_clk(S_csi_rx_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+-     .S_data({wb_active,video_diagnostics,overflow_frames}),.D_data(overflow_display));
++     .S_clk(S_process_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
++     .S_data({wb_process,video_diagnostics,overflow_frames}),.D_data(overflow_display));
+     wire transport_ok=transport_display[16] && display_ok;
+     wire tracking_fresh;
+     tracking_frame_age u_tracking_age(.clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),.valid(active_frame_display[FRAME_META_WIDTH+2]),.slot(active_frame_display[FRAME_META_WIDTH+1:FRAME_META_WIDTH]),.fresh(tracking_fresh));
+@@ -896,8 +911,10 @@ isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRA
+      .fps_ok(mon_display[127:112]!=0),.transport_ok(transport_ok),.params_match(tracking_match && observation_match),
+      .track_locked(active_frame_display[137]),.sample_valid(observation_data[24]),.class_wait(observation_data[26:25]==1),
+      .hole_reason(active_frame_display[177:174]),.valid(tracked_display_valid),.reason(tracking_reason));
+-    wire roi_display_valid=ENABLE_TRACKING ? tracked_display_valid : legacy_display_valid;
+-    wire [1:0] roi_display_state_code=ENABLE_TRACKING ? (roi_display_valid ? observation_data[26:25] : 2'd1) : legacy_display_state_code;
++    wire local_display_valid=active_frame_display[FRAME_META_WIDTH+2] && tracking_fresh && cam_display[0] &&
++     mon_display[127:112]!=0 && transport_ok && tracking_match && observation_match && observation_data[24];
++    wire roi_display_valid=LOCAL_SEARCH ? local_display_valid : ENABLE_TRACKING ? tracked_display_valid : legacy_display_valid;
++    wire [1:0] roi_display_state_code=LOCAL_SEARCH ? (local_display_valid ? observation_data[26:25] : 2'd1) : ENABLE_TRACKING ? (roi_display_valid ? observation_data[26:25] : 2'd1) : legacy_display_state_code;
+     roi_display_state u_roi_display_state(
+         .clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),.cfg_done(cam_display[0] && transport_ok),
+         .exposure(cam_display[48:33]),.gain(cam_display[32:17]),.fps(mon_display[127:112]),
+@@ -910,8 +927,18 @@ isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRA
+     end else begin : single_display
+      assign display_pockets=0;
+     end endgenerate
++    wire [151:0] display_objects;
++    wire local_box_valid;wire [10:0] local_x0,local_x1;wire [9:0] local_y0,local_y1;
++    generate if(LOCAL_SEARCH) begin : local_box
++     assign display_objects=local_display_valid ? active_frame_display[198+:152] : 152'd0;
++     assign local_box_valid=local_display_valid && active_frame_display[137];
++     assign local_x0=active_frame_display[136:126];assign local_x1=active_frame_display[125:115];
++     assign local_y0=active_frame_display[197:188];assign local_y1=active_frame_display[187:178];
++    end else begin : no_local_box
++     assign display_objects=0;assign local_box_valid=0;assign local_x0=0;assign local_x1=0;assign local_y0=0;assign local_y1=0;
++    end endgenerate
+     wire any_pocket_valid=display_pockets[63] || display_pockets[148] || display_pockets[233] || display_pockets[318];
+-    experiment_osd #(.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
++    experiment_osd #(.FRAME_OBJECTS(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
+  .SAMPLE_X0(SAMPLE_X0),.SAMPLE_X1(SAMPLE_X1),.SAMPLE_Y0(SAMPLE_Y0),.SAMPLE_Y1(SAMPLE_Y1)) u_experiment_osd(
+         .clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+         .vs(S_hdmi_out_vsync),.hs(S_hdmi_out_hsync),.de(S_hdmi_out_de),.rgb(S_hdmi_out_data),
+@@ -922,10 +949,11 @@ isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRA
+         .publish_diagnostic(publish_display),
+         .wb_r(overflow_display[67:60]),.wb_b(overflow_display[59:52]),.wb_tune(cam_display[81]),
+         .wb_pending(overflow_display[83:52]!=cam_display[80:49]),
+-        .roi_valid(roi_display_valid),
++        .frame_objects(display_objects),.roi_valid(roi_display_valid),.local_box_valid(local_box_valid),
++        .local_x0(local_x0),.local_x1(local_x1),.local_y0(local_y0),.local_y1(local_y1),
+         .pocket_records(display_pockets),.pocket_enable(pocket_overlay_ok),
+         .track_valid(MULTI_POCKETS ? (pocket_overlay_ok && any_pocket_valid) : (roi_display_valid && active_frame_display[137])),.track_x0(active_frame_display[136:126]),.track_x1(active_frame_display[125:115]),
+-        .track_reason(MULTI_POCKETS && tracking_reason==12 && active_frame_display[169:138]==0 ? 4'd15 : tracking_reason),.track_rows(active_frame_display[172:170]),
++        .track_reason(MULTI_POCKETS && tracking_reason==12 && active_frame_display[169:138]==0 ? 4'd15 : tracking_reason),.track_rows(active_frame_display[172:170]),
+         .roi_state(roi_display_state_code),
+         .roi_mean(roi_display[23:16]),.roi_min(roi_display[15:8]),.roi_max(roi_display[7:0]),
+         .i2c_errors(cam_display[16:1]),.cfg_done(cam_display[0]),
+diff --git a/fpga/component_inspector/user_source/hdl_source/experiment_osd.v b/fpga/component_inspector/user_source/hdl_source/experiment_osd.v
+index 4b32f5d..9d580a4 100644
+--- a/fpga/component_inspector/user_source/hdl_source/experiment_osd.v
++++ b/fpga/component_inspector/user_source/hdl_source/experiment_osd.v
+@@ -1,27 +1,31 @@
+ // Sampling UI. Three pixel clocks for RGB, DE, HS, VS and ENABLE bypass.
+ module experiment_osd #(
+- parameter TRACKING=0,MULTI_POCKETS=0,DIRECT_DETECTION=0,CLASS_THRESHOLD=58,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
+- parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340,HOLE_Y=220
++ parameter LOCAL_SEARCH=0,SHAPE_MODEL=0,TRACKING=0,MULTI_POCKETS=0,DIRECT_DETECTION=0,CLASS_THRESHOLD=58,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
++ parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340,HOLE_Y=220,FRAME_OBJECTS=0
+ )(
+  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,
+  input wire [15:0] exposure,gain,
+  input wire [7:0] wb_r,wb_b,input wire wb_tune,wb_pending,
+  input wire [1:0] view_mode,input wire [12:0] edge_count,input wire [23:0] edge_sum,
++ input wire local_box_valid,input wire [10:0] local_x0,local_x1,input wire [9:0] local_y0,local_y1,
+  input wire roi_valid,input wire [7:0] roi_mean,roi_min,roi_max,input wire [1:0] roi_state,
+  input wire [15:0] width,height,fps,lane_errors,format_errors,i2c_errors,gaps,
+  input wire [31:0] frames,uptime,input wire cfg_done,
+  input wire [15:0] overflow_frames,lost_frames,underflow_frames,
+  input wire [35:0] diagnostics,
+- input wire [25:0] publish_diagnostic,
++ input wire [25:0] publish_diagnostic,
+  input wire [339:0] pocket_records,input wire pocket_enable,
+  input wire track_valid,input wire [10:0] track_x0,track_x1,
+  input wire [3:0] track_reason,input wire [2:0] track_rows,
+- output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb
++ output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb,
++ input wire [151:0] frame_objects
+ );
+ reg [339:0] pockets_s;reg pockets_enabled_s;
++reg local_box_s;reg [10:0] local_x0_s,local_x1_s;reg [9:0] local_y0_s,local_y1_s;
++reg [151:0] frame_objects_s;
+ reg vs_d,de_d;reg [10:0] x;reg [9:0] y;
+ // DDR slot selection follows VS. Wait until its metadata has crossed during blanking.
+-wire start=TRACKING ? de && !de_d && y==0 : vs && !vs_d;
++wire start=(TRACKING || LOCAL_SEARCH) ? de && !de_d && y==0 : vs && !vs_d;
+ reg track_valid_s;reg [10:0] track_x0_s,track_x1_s;
+ reg [3:0] track_reason_s;reg [2:0] track_rows_s;
+ reg [127:0] track_message;
+@@ -34,7 +38,7 @@ always @* begin
+   8:track_message="FRAME STALE     ";9:track_message="CONFIG WAIT     ";
+   10:track_message="NO INPUT FPS    ";11:track_message="VIDEO WAIT      ";
+   12:track_message="PARAM CHANGED   ";13:track_message="ROI INCOMPLETE  ";
+-  14:track_message="CHECK CORE ROI  ";15:track_message="METADATA WAIT   ";default:track_message="UNKNOWN         ";
++  14:track_message="CHECK CORE ROI  ";15:track_message="METADATA WAIT   ";default:track_message="UNKNOWN         ";
+  endcase
+ end
+ wire [19:0] exp_bcd,gain_bcd,mean_bcd,min_bcd,max_bcd,w_bcd,h_bcd,fps_bcd;
+@@ -53,22 +57,25 @@ reg wb_tune_s,wb_pending_s;
+ reg [15:0] lane_s,format_s,i2c_s,gap_s,overflow_s,lost_s,underflow_s;
+ reg [31:0] frames_s,uptime_s;
+ reg [35:0] diagnostics_s;
+-reg [25:0] publish_s;
+-reg sample_s,cfg_s,error_s,edge_sample_s;reg [1:0] class_s,reason_s,mode_s,gray_state_s,edge_state_s;
++reg [25:0] publish_s;
++reg sample_s,cfg_s,error_s,edge_sample_s;reg [1:0] class_s,reason_s,mode_s,gray_state_s,edge_state_s;
+ reg [15:0] edge_count_s;reg [23:0] edge_sum_s;
+ always @(posedge clk or negedge rst_n) begin
+  if(!rst_n) begin
++  frame_objects_s<=0;local_box_s<=0;local_x0_s<=0;local_x1_s<=0;local_y0_s<=0;local_y1_s<=0;
+   pockets_s<=0;pockets_enabled_s<=0;
+   track_valid_s<=0;track_reason_s<=1;track_rows_s<=0;track_x0_s<=SAMPLE_X0;track_x1_s<=SAMPLE_X1;vs_d<=0;de_d<=0;x<=0;y<=0;sample_s<=0;cfg_s<=0;error_s<=0;wb_tune_s<=0;wb_pending_s<=0;
+   overflow_s<=0;lost_s<=0;underflow_s<=0;diagnostics_s<=0;publish_s<=0;
+   mode_s<=0;edge_sample_s<=0;edge_count_s<=0;edge_sum_s<=0;
+-  class_s<=1;gray_state_s<=1;edge_state_s<=1;reason_s<=0;lane_s<=0;format_s<=0;i2c_s<=0;gap_s<=0;frames_s<=0;uptime_s<=0;
++  class_s<=1;gray_state_s<=1;edge_state_s<=1;reason_s<=0;lane_s<=0;format_s<=0;i2c_s<=0;gap_s<=0;frames_s<=0;uptime_s<=0;
+  end else begin
+   vs_d<=vs;de_d<=de;
+   if(vs) begin x<=0;y<=0;end
+   else if(de) x<=x+1'b1;
+   else if(de_d) begin x<=0;y<=y+1'b1;end
+   if(start) begin
++   frame_objects_s<=roi_valid ? frame_objects : 152'd0;
++   local_box_s<=local_box_valid;local_x0_s<=local_x0;local_x1_s<=local_x1;local_y0_s<=local_y0;local_y1_s<=local_y1;
+    pockets_s<=pocket_records;pockets_enabled_s<=pocket_enable;
+    track_valid_s<=track_valid;track_x0_s<=track_x0;track_x1_s<=track_x1;
+    track_reason_s<=track_reason;track_rows_s<=track_rows;
+@@ -77,12 +84,12 @@ always @(posedge clk or negedge rst_n) begin
+    mode_s<=view_mode;edge_count_s<={3'd0,edge_count};edge_sum_s<=edge_sum;
+    edge_sample_s<=roi_valid && cfg_done && fps!=0 && view_mode[1];
+    sample_s<=roi_valid && cfg_done && fps!=0;
+-   class_s<=!cfg_done || fps==0 || !roi_valid ? 2'd1 : roi_state;
+-   // Both labels use the same recent, complete observation and display snapshot.
+-   // GRAY+EDGE shows independent tests; it does not fuse or require agreement.
+-   gray_state_s<=!cfg_done || fps==0 || !roi_valid ? 2'd1 : roi_mean>=CLASS_THRESHOLD ? 2'd2 : 2'd3;
+-   edge_state_s<=!cfg_done || fps==0 || !roi_valid || !view_mode[1] ? 2'd1 :
+-    edge_count>=96 && edge_sum>=32768 ? 2'd2 : edge_count<=48 && edge_sum<=16384 ? 2'd3 : 2'd1;
++   class_s<=!cfg_done || fps==0 || !roi_valid ? 2'd1 : roi_state;
++   // Both labels use the same recent, complete observation and display snapshot.
++   // GRAY+EDGE shows independent tests; it does not fuse or require agreement.
++   gray_state_s<=!cfg_done || fps==0 || !roi_valid ? 2'd1 : SHAPE_MODEL ? roi_state : roi_mean>=CLASS_THRESHOLD ? 2'd2 : 2'd3;
++   edge_state_s<=SHAPE_MODEL || !cfg_done || fps==0 || !roi_valid || !view_mode[1] ? 2'd1 :
++    edge_count>=96 && edge_sum>=32768 ? 2'd2 : edge_count<=48 && edge_sum<=16384 ? 2'd3 : 2'd1;
+    reason_s<=!cfg_done ? 2'd0 : fps==0 ? 2'd1 : !roi_valid ? 2'd2 : 2'd3;
+    lane_s<=lane_errors;format_s<=format_errors;i2c_s<=i2c_errors;gap_s<=gaps;
+    frames_s<=frames;uptime_s<=uptime;cfg_s<=cfg_done;
+@@ -107,6 +114,20 @@ endfunction
+ function [6:0] hexchar;
+  input [3:0] value;begin hexchar=value<10 ? 7'd48+value : 7'd55+value;end
+ endfunction
++// English labels avoid confusing non-target with the legacy UNCAL state.
++function [7:0] shape_status_char;
++ input [1:0] status;input integer pos;
++ begin
++  if(status==0) case(pos)
++   0:shape_status_char="N";1:shape_status_char="O";2:shape_status_char=" ";3:shape_status_char="T";
++   4:shape_status_char="A";5:shape_status_char="R";6:shape_status_char="G";7:shape_status_char="E";8:shape_status_char="T";default:shape_status_char=" ";endcase
++  else case(pos)
++   0:shape_status_char="U";1:shape_status_char="N";2:shape_status_char="C";3:shape_status_char="E";
++   4:shape_status_char="R";5:shape_status_char="T";6:shape_status_char="A";7:shape_status_char="I";8:shape_status_char="N";default:shape_status_char=" ";endcase
++ end
++endfunction
++wire [36:0] model_features_s={edge_sum_s,edge_count_s[12:0]};
++wire local_review=LOCAL_SEARCH && sample_s && class_s==2 && model_features_s[35];
+ function [5:0] result_glyph;
+  input [1:0] code;input [2:0] position;
+  begin
+@@ -212,10 +233,12 @@ function [6:0] mode_glyph;
+  endcase
+  end
+ endfunction
+-wire [23:0] result_color=class_s==0 ? 24'hf7b955 : class_s==2 ? 24'h74dbc7 : class_s==3 ? 24'hffae64 : 24'hb0c0d4;
+-wire direct_label=DIRECT_DETECTION && x>=SAMPLE_X0 && x<SAMPLE_X0+112 && y>=SAMPLE_Y0-56 && y<SAMPLE_Y0-4;
+-wire direct_gray_row=y<SAMPLE_Y0-30;
+-wire [1:0] direct_state=direct_gray_row ? gray_state_s : edge_state_s;
++wire [23:0] result_color=local_review ? 24'hffcc55 : class_s==0 ? 24'hf7b955 : class_s==2 ? 24'h74dbc7 : class_s==3 ? 24'hffae64 : 24'hb0c0d4;
++wire [10:0] label_x=LOCAL_SEARCH ? (local_box_s ? local_x0_s : 11'd416) : SAMPLE_X0;
++wire [9:0] label_y=LOCAL_SEARCH ? (local_box_s ? local_y0_s : 10'd228) : SAMPLE_Y0;
++wire direct_label=!FRAME_OBJECTS && DIRECT_DETECTION && x>=label_x && x<label_x+112 && y>=label_y-56 && y<label_y-4;
++wire direct_gray_row=y<label_y-30;
++wire [1:0] direct_state=direct_gray_row ? gray_state_s : edge_state_s;
+ reg pocket_border,pocket_label;reg [23:0] pocket_color;
+ reg [1:0] pocket_state;reg [10:0] pocket_label_x;reg [9:0] pocket_label_y;
+ integer pi;reg [10:0] px;reg [9:0] py;reg [1:0] ps;
+@@ -233,6 +256,41 @@ always @* begin
+   end
+  end
+ end
++// Freeze both records at the first active pixel of the selected DDR frame.
++// Numbering is left-to-right in this image, not a persistent tape ID.
++reg frame_border,frame_label;reg [23:0] frame_color;
++reg [1:0] frame_state;reg [3:0] frame_reason;reg frame_number;
++reg [10:0] frame_lx;reg [9:0] frame_ly;
++integer fi;reg [75:0] object_value;reg [10:0] fx0,fx1,flx;reg [9:0] fy0,fy1,fly;
++always @*begin
++ frame_border=0;frame_label=0;frame_color=24'hb0c0d4;frame_state=1;frame_reason=0;frame_number=0;frame_lx=0;frame_ly=0;
++ object_value=0;fx0=0;fx1=0;fy0=0;fy1=0;flx=0;fly=0;
++ for(fi=0;fi<2;fi=fi+1)begin
++  object_value=frame_objects_s[fi*76+:76];
++  fx0=object_value[41:31];fx1=object_value[30:20];fy0=object_value[19:10];fy1=object_value[9:0];
++  flx=fx0>936 ? 936 : fx0;
++  // Stagger neighboring cards so adjacent pockets do not share one label.
++  fly=fi==1 && fy1<448 ? fy1+4 : fy0>=136 ? fy0-56 : fy1+4;
++  if(fly>448)fly=448;
++  if(FRAME_OBJECTS && sample_s && object_value[75])begin
++   if(x>=fx0 && x<fx1 && y>=fy0 && y<fy1 && (x==fx0 || x==fx1-1 || y==fy0 || y==fy1-1))begin
++    frame_border=1;
++    frame_color=object_value[74:73]==2 ? (|object_value[72:69] ? 24'hffcc55 : 24'h74dbc7) : object_value[74:73]==3 ? 24'hffae64 : 24'hb0c0d4;
++   end
++   if(x>=flx && x<flx+88 && y>=fly && y<fly+56)begin
++    frame_label=1;frame_lx=flx;frame_ly=fly;frame_number=fi;frame_state=object_value[74:73];frame_reason=object_value[72:69];
++    frame_color=frame_state==2 ? (|frame_reason ? 24'hffcc55 : 24'h74dbc7) : frame_state==3 ? 24'hffae64 : 24'hb0c0d4;
++   end
++  end
++ end
++end
++reg [63:0] frame_text;
++always @*begin
++ if(frame_state==2 && |frame_reason)begin
++  if(y<frame_ly+40)frame_text={frame_reason[0] ? "SIZE" : "----",8'd32,frame_reason[1] ? "ASP" : "---"};
++  else frame_text={frame_reason[2] ? "FILL" : "----",8'd32,frame_reason[3] ? "REF" : "---"};
++ end else frame_text=y<frame_ly+40 ? (frame_state>=2 ? "MODEL OK" : "CHECK   ") : mode_s[1] ? "EDGE ON " : "EDGE OFF";
++end
+ reg [6:0] glyph;reg glyph_cjk;reg [4:0] glyph_col,glyph_row;reg [23:0] ink_color;
+ always @* begin
+  glyph=0;glyph_cjk=0;glyph_col=0;glyph_row=0;ink_color=24'hffffff;
+@@ -643,64 +701,109 @@ always @* begin
+    0:glyph="R";1:glyph="O";2:glyph="W";3:glyph=" ";4:glyph=hexchar({1'b0,track_rows_s});5:glyph=" ";
+   endcase
+  end
+- if((TRACKING || DIRECT_DETECTION) && y>=8 && y<24 && x>=128 && x<232) begin
++ if((TRACKING || DIRECT_DETECTION) && y>=8 && y<24 && x>=128 && x<232) begin
+   glyph_cjk=0;glyph_row=y-8;glyph_col=(x-128)%8;
+   case((x-128)/8)
+-   0:glyph="D";1:glyph=DIRECT_DETECTION ? "5" : MULTI_POCKETS ? "4" : "3";2:glyph=" ";3:glyph="P";
++   0:glyph="D";1:glyph=FRAME_OBJECTS ? "A" : LOCAL_SEARCH ? "8" : SHAPE_MODEL ? "6" : DIRECT_DETECTION ? "5" : MULTI_POCKETS ? "4" : "3";2:glyph=" ";3:glyph="P";
+    4:glyph=hexchar(publish_s[24:21]);5:glyph=hexchar(publish_s[20:17]);
+-   6:glyph=" ";7:glyph=publish_s[25] ? "M" : "W";8:glyph=hexchar({3'd0,publish_s[16]});
++   6:glyph=" ";7:glyph=publish_s[25] ? "M" : "W";8:glyph=hexchar({3'd0,publish_s[16]});
+    9:glyph=hexchar(publish_s[15:12]);10:glyph=hexchar(publish_s[11:8]);
+    11:glyph=hexchar(publish_s[7:4]);12:glyph=hexchar(publish_s[3:0]);
+   endcase
+  end
+- if(MULTI_POCKETS && y>=8 && y<24 && x>=240 && x<344) begin
++ if(MULTI_POCKETS && y>=8 && y<24 && x>=240 && x<344) begin
+   glyph_cjk=0;glyph_row=y-8;glyph_col=(x-240)%8;
+   case((x-240)/8)
+    0:glyph="A";1:glyph="U";2:glyph="T";3:glyph="O";4:glyph="4";5:glyph=" ";
+-   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph="3";default:glyph=" ";
++   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph="3";default:glyph=" ";
+   endcase
+- end
+- if(DIRECT_DETECTION && y>=8 && y<24 && x>=240 && x<344) begin
+-  glyph_cjk=0;glyph_row=y-8;glyph_col=(x-240)%8;
+-  case((x-240)/8)
+-   0:glyph="F";1:glyph="I";2:glyph="X";3:glyph="E";4:glyph="D";5:glyph=" ";
+-   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph="4";default:glyph=" ";
+-  endcase
+- end
+- if(direct_label) begin
+-  glyph_row=direct_gray_row ? y-(SAMPLE_Y0-56) : y-(SAMPLE_Y0-30);
+-  ink_color=direct_state==2 ? 24'h74dbc7 : direct_state==3 ? 24'hffae64 : 24'hb0c0d4;
+-  if(x<SAMPLE_X0+40) begin
+-   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-SAMPLE_X0)%8;
+-   case((x-SAMPLE_X0)/8)
+-    0:glyph=direct_gray_row ? "G" : "E";1:glyph=direct_gray_row ? "R" : "D";
+-    2:glyph=direct_gray_row ? "A" : "G";3:glyph=direct_gray_row ? "Y" : "E";default:glyph=" ";
+-   endcase
+-  end else if(!direct_gray_row && !mode_s[1]) begin
+-   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-SAMPLE_X0-40)%8;
+-   case((x-SAMPLE_X0-40)/8) 0:glyph="O";1:glyph="F";2:glyph="F";default:glyph=" ";endcase
+-  end else begin
+-   glyph_cjk=1;glyph_col=(x-SAMPLE_X0-40)%24;
+-   glyph=result_glyph(direct_state,(x-SAMPLE_X0-40)/24);
+-  end
+- end
++ end
++ if(DIRECT_DETECTION && y>=8 && y<24 && x>=240 && x<344) begin
++  glyph_cjk=0;glyph_row=y-8;glyph_col=(x-240)%8;
++  case((x-240)/8)
++   0:glyph=FRAME_OBJECTS ? "F" : LOCAL_SEARCH ? "L" : SHAPE_MODEL ? "S" : "F";1:glyph=FRAME_OBJECTS ? "R" : LOCAL_SEARCH ? "O" : SHAPE_MODEL ? "H" : "I";
++   2:glyph=FRAME_OBJECTS ? "A" : LOCAL_SEARCH ? "C" : SHAPE_MODEL ? "A" : "X";3:glyph=FRAME_OBJECTS ? "M" : LOCAL_SEARCH ? "A" : SHAPE_MODEL ? "P" : "E";
++   4:glyph=FRAME_OBJECTS ? "E" : LOCAL_SEARCH ? "L" : SHAPE_MODEL ? "E" : "D";5:glyph=" ";
++   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph=FRAME_OBJECTS ? "9" : LOCAL_SEARCH ? "7" : SHAPE_MODEL ? "5" : "4";default:glyph=" ";
++  endcase
++ end
++ if(SHAPE_MODEL && sample_s && class_s<2 && y>=540 && y<588 && x>=16 && x<208) begin
++  glyph_cjk=0;glyph=shape_status_char(class_s,(x-16)/16);glyph_col=((x-16)/2)%8;glyph_row=(y-540)/2;
++  if(y>=572) glyph=" ";
++ end
++ // FG/W/H are native feature measurements in hex, T is decimal.
++ if(SHAPE_MODEL && y>=548 && y<564 && x>=808 && x<1008) begin
++  glyph_cjk=0;glyph_col=(x-808)%8;glyph_row=y-548;ink_color=24'hb0c0d4;
++  case((x-808)/8)
++   0:glyph="F";1:glyph="G";2:glyph=" ";
++   3:glyph=sample_s ? hexchar({3'd0,model_features_s[34]}) : "-";
++   4:glyph=sample_s ? hexchar(model_features_s[33:30]) : "-";
++   5:glyph=sample_s ? hexchar(model_features_s[29:26]) : "-";
++   6:glyph=sample_s ? hexchar(model_features_s[25:22]) : "-";
++   7:glyph=" ";8:glyph="W";9:glyph=" ";
++   10:glyph=sample_s ? hexchar({1'b0,model_features_s[21:19]}) : "-";
++   11:glyph=sample_s ? hexchar(model_features_s[18:15]) : "-";
++   12:glyph=" ";13:glyph="H";14:glyph=" ";
++   15:glyph=sample_s ? hexchar({1'b0,model_features_s[14:12]}) : "-";
++   16:glyph=sample_s ? hexchar(model_features_s[11:8]) : "-";
++   17:glyph=" ";18:glyph="T";19:glyph=" ";20:glyph="1";21:glyph="0";22:glyph="0";default:glyph=" ";
++  endcase
++ end
++ if(direct_label) begin
++  glyph_row=direct_gray_row ? y-(label_y-56) : y-(label_y-30);
++  ink_color=local_review ? 24'hffcc55 : direct_state==2 ? 24'h74dbc7 : direct_state==3 ? 24'hffae64 : 24'hb0c0d4;
++  if(x<label_x+40) begin
++   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-label_x)%8;
++   case((x-label_x)/8)
++    0:glyph=direct_gray_row ? (SHAPE_MODEL ? "M" : "G") : local_review ? "F" : "E";1:glyph=direct_gray_row ? (SHAPE_MODEL ? "O" : "R") : local_review ? "I" : "D";
++    2:glyph=direct_gray_row ? (SHAPE_MODEL ? "D" : "A") : local_review ? "T" : "G";3:glyph=direct_gray_row ? (SHAPE_MODEL ? "E" : "Y") : local_review ? " " : "E";
++    default:glyph=SHAPE_MODEL && direct_gray_row ? "L" : " ";
++   endcase
++  end else if(SHAPE_MODEL && direct_gray_row && sample_s && direct_state<2) begin
++   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-label_x-40)%8;
++   glyph=shape_status_char(direct_state,(x-label_x-40)/8);
++  end else if(!direct_gray_row && (SHAPE_MODEL || !mode_s[1])) begin
++   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-label_x-40)%8;
++   if(local_review)case((x-label_x-40)/8) 0:glyph="C";1:glyph="H";2:glyph="E";3:glyph="C";4:glyph="K";default:glyph=" ";endcase
++   else case((x-label_x-40)/8) 0:glyph="O";1:glyph=SHAPE_MODEL && mode_s[1] ? "N" : "F";2:glyph=SHAPE_MODEL && mode_s[1] ? " " : "F";default:glyph=" ";endcase
++  end else begin
++   glyph_cjk=1;glyph_col=(x-label_x-40)%24;
++   glyph=result_glyph(direct_state,(x-label_x-40)/24);
++  end
++ end
+  if(pocket_label) begin
+   glyph_cjk=1;glyph_row=y-pocket_label_y;glyph_col=(x-pocket_label_x)%24;
+   glyph=result_glyph(pocket_state,(x-pocket_label_x)/24);ink_color=pocket_color;
+  end
++ if(frame_label)begin
++  ink_color=frame_color;
++  if(y<frame_ly+24)begin
++   glyph_row=y-frame_ly;
++   if(x<frame_lx+16)begin glyph_cjk=0;glyph_col=(x-frame_lx)%8;glyph_row=(y>=frame_ly+4 && y<frame_ly+20) ? y-frame_ly-4 : 0;glyph=x<frame_lx+8 && y>=frame_ly+4 && y<frame_ly+20 ? (frame_number ? "2" : "1") : " ";end
++   else if(frame_state<2)begin glyph_cjk=0;glyph_row=(y>=frame_ly+4 && y<frame_ly+20) ? y-frame_ly-4 : 0;glyph_col=(x-frame_lx-16)%8;glyph=y>=frame_ly+4 && y<frame_ly+20 ? shape_status_char(frame_state,(x-frame_lx-16)/8) : " ";end
++   else begin glyph_cjk=1;glyph_col=(x-frame_lx-16)%24;glyph=result_glyph(frame_state,(x-frame_lx-16)/24);end
++  end else begin
++   glyph_cjk=0;glyph_row=(y-frame_ly-24)%16;glyph_col=(x-frame_lx)%8;
++   glyph=x<frame_lx+64 ? frame_text[63-((x-frame_lx)/8)*8-:8] : " ";
++  end
++ end
+ end
+ wire roi_inside=x>=ROI_X0 && x<ROI_X1 && y>=ROI_Y0 && y<ROI_Y1;
+ wire roi_border=roi_inside && (x==ROI_X0 || x==ROI_X1-1 || y==ROI_Y0 || y==ROI_Y1-1);
+ wire [10:0] sample_x0=TRACKING ? track_x0_s : SAMPLE_X0,sample_x1=TRACKING ? track_x1_s : SAMPLE_X1;
+-wire sample_inside=(!TRACKING || track_valid_s) && x>=sample_x0 && x<sample_x1 && y>=SAMPLE_Y0 && y<SAMPLE_Y1;
+-wire sample_border=sample_inside && (x==sample_x0 || x==sample_x1-1 || y==SAMPLE_Y0 || y==SAMPLE_Y1-1);
++wire [9:0] sample_y0=LOCAL_SEARCH ? local_y0_s : SAMPLE_Y0,sample_y1=LOCAL_SEARCH ? local_y1_s : SAMPLE_Y1;
++wire [10:0] box_x0=LOCAL_SEARCH ? local_x0_s : sample_x0,box_x1=LOCAL_SEARCH ? local_x1_s : sample_x1;
++wire sample_inside=(LOCAL_SEARCH ? local_box_s : (!TRACKING || track_valid_s)) && x>=box_x0 && x<box_x1 && y>=sample_y0 && y<sample_y1;
++wire sample_border=sample_inside && (x==box_x0 || x==box_x1-1 || y==sample_y0 || y==sample_y1-1);
++wire local_search_border=LOCAL_SEARCH && x>=416 && x<608 && y>=228 && y<372 &&
++ (x==416 || x==607 || y==228 || y==371) && ((x==416 || x==607) ? y[1:0]==0 : x[1:0]==0);
+ wire [9:0] gray_sum={2'd0,rgb[23:16]}+{1'd0,rgb[15:8],1'b0}+{2'd0,rgb[7:0]};
+ wire [7:0] gray=gray_sum[9:2];
+ wire align_border=TRACKING && !track_valid_s && x>=SAMPLE_X0 && x<SAMPLE_X1 && y>=SAMPLE_Y0 && y<SAMPLE_Y1 &&
+  (x==SAMPLE_X0 || x==SAMPLE_X1-1 || y==SAMPLE_Y0 || y==SAMPLE_Y1-1) && (x[2:0]==0 || y[2:0]==0);
+ wire search_guide=TRACKING && ((x>=256 && x<768 && x[3:0]==0 && (y==HOLE_Y-8 || y==HOLE_Y || y==HOLE_Y+8)) || (x==464 && y>=HOLE_Y-12 && y<=HOLE_Y+12));
+-wire [23:0] picture=MULTI_POCKETS ? (ENABLE && pocket_border ? pocket_color : rgb) :
+- ENABLE && sample_border ? 24'h00ffff :
++wire [23:0] picture=FRAME_OBJECTS ? (ENABLE && frame_border ? frame_color : rgb) : MULTI_POCKETS ? (ENABLE && pocket_border ? pocket_color : rgb) :
++ ENABLE && (sample_border || local_search_border) ? 24'h00ffff :
+  ENABLE && roi_border ? 24'h00ff40 : ENABLE && (search_guide || align_border) ? 24'hffff00 : rgb;
+ reg [10:0] ascii_address;
+ reg [10:0] cjk_address;
+@@ -726,7 +829,7 @@ always @(posedge clk or negedge rst_n) begin
+   cjk_address<={glyph[5:0],glyph_row};
+   logo_address<={logo_y,logo_x};
+   hs_p<={hs_p[0],hs};vs_p<={vs_p[0],vs};de_p<={de_p[0],de};
+-  panel_p<={panel_p[0],(de && (direct_label || pocket_label || y<80 || y>=504 || (TRACKING && y>=148 && y<164 && x>=256 && x<544)))};
++  panel_p<={panel_p[0],(de && (frame_label || direct_label || pocket_label || ((y<80 || y>=504) && !frame_border) || (TRACKING && y>=148 && y<164 && x>=256 && x<544)))};
+   logo_p<={logo_p[0],(x>=16 && x<112 && y>=8 && y<72)};
+   cjk_p<={cjk_p[0],glyph_cjk};col0<=glyph_col;col1<=col0;
+   rgb0<=picture;rgb1<=rgb0;ink0<=ink_color;ink1<=ink0;
+diff --git a/fpga/component_inspector/user_source/hdl_source/isp/isp_top.v b/fpga/component_inspector/user_source/hdl_source/isp/isp_top.v
+index 8c4beaf..718191d 100644
+--- a/fpga/component_inspector/user_source/hdl_source/isp/isp_top.v
++++ b/fpga/component_inspector/user_source/hdl_source/isp/isp_top.v
+@@ -1,8 +1,9 @@
+ module isp_top #(
+-    parameter TRACKING=0,DIRECT_DETECTION=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
++    parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
+     parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,
+-    parameter META_WIDTH=178+340*MULTI_POCKETS
++    parameter META_WIDTH=178+340*MULTI_POCKETS+172*LOCAL_SEARCH
+ ) (
++    input processing_clk,
+     input 			axi4s_video_aclk,
+     input 			I_rst_n			,
+     input 			I_tlast			,
+@@ -137,64 +138,132 @@ wire gradient_valid;wire [10:0] gradient_x;wire [9:0] gradient_y;
+ wire [43:0] gradient_magnitudes;wire [3:0] gradient_neighborhood;
+ wire [339:0] pocket_records;wire multi_new;
+ wire [43:0] pocket_x0;wire [39:0] pocket_y0;wire [3:0] pocket_mask,pocket_verified;
++localparam USE_SHAPE=SHAPE_MODEL && DIRECT_DETECTION && !TRACKING && !MULTI_POCKETS;
++localparam USE_SEARCH=LOCAL_SEARCH && USE_SHAPE;
++wire roi_accept,roi_commit,roi_invalidate,sample_new;
++wire [10:0] roi_x;wire [9:0] roi_y;
++// Once native and processed completeness have both committed, this source
++// epoch is closed. The legacy demosaic can emit idle replay beats in long
++// vertical blanking; do not let them revoke a proved frame while full-frame
++// analysis is running. Native packet/config/error checks remain active.
++reg frame_input_closed;
++always @(posedge axi4s_video_aclk or negedge I_rst_n)begin
++ if(!I_rst_n)frame_input_closed<=0;
++ else if(raw_start)frame_input_closed<=0;
++ else if(USE_SEARCH && roi_commit)frame_input_closed<=1;
++end
++wire source_pixel_valid=awb_O_tvalid && !frame_input_closed;
++wire source_pixel_sof=awb_pixel_sof && !frame_input_closed;
++wire [151:0] search_objects;
++wire search_ready,search_new,search_located,search_review;wire [1:0] search_state;
++wire [12:0] search_fg;wire [6:0] search_w,search_h;
++wire [10:0] search_x0,search_x1;wire [9:0] search_y0,search_y1;
++wire shape_valid;wire [1:0] shape_state;wire [12:0] shape_foreground;wire [6:0] shape_width,shape_height;
++wire [36:0] shape_features={1'b0,(USE_SEARCH && search_review),shape_foreground,shape_width,shape_height,8'd100};
++wire [1:0] legacy_mode_class;
+ wire legacy_valid,legacy_new;wire [7:0] legacy_mean,legacy_min,legacy_max;wire [1:0] legacy_class;
+-roi_sobel_view #(.X0(MULTI_POCKETS ? 96 : 256),.X1(MULTI_POCKETS ? 928 : 768),.Y1(MULTI_POCKETS ? 464 : 428),.DYNAMIC_ROI(TRACKING),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
++// Native packet proof is never inferred from FIFO output or pixel count alone.
++roi_frame_guard u_roi_guard(
++    .clk(axi4s_video_aclk),.rst_n(I_rst_n),
++    .raw_start(raw_start),.raw_end(raw_end),.hs_valid(hs_valid),.raw_valid(raw_valid),
++    .lane_error(lane_error),.config_ok(config_ok && observation_match),
++    .pixel_valid(source_pixel_valid),.pixel_sof(source_pixel_sof),.pixel_last(awb_O_tlast),
++    .pixel_x(roi_x),.pixel_y(roi_y),.pixel_accept(roi_accept),
++    .frame_commit(roi_commit),.invalidate(roi_invalidate));
++wire native_cancel=roi_invalidate || !config_ok || |lane_error || !observation_match || !wb_match;
++wire [3:0] native_video_fault={(roi_invalidate && !raw_start),(|lane_error),!config_ok,1'b0};
++wire post_clk=ASYNC_PROCESSING ? processing_clk : axi4s_video_aclk;
++wire post_start,post_early,post_valid,post_sof,post_last,post_accept,post_commit,post_cancel,post_overflow;
++wire [95:0] post_rgb;wire [3:0] post_native_fault;
++wire [10:0] post_x;wire [9:0] post_y;
++wire [17:0] post_tag;wire [31:0] post_wb,post_config;
++generate if(ASYNC_PROCESSING)begin : continuous_processing
++ reg cancel_d;reg [3:0] fault_d;
++ always @(posedge axi4s_video_aclk or negedge I_rst_n)begin
++  if(!I_rst_n)begin cancel_d<=0;fault_d<=0;end
++  else begin cancel_d<=native_cancel;fault_d<=native_video_fault;end
++ end
++ wire [127:0] received;wire received_valid;
++ wire send_event=raw_start || (awb_O_tuser && !frame_input_closed) || source_pixel_valid || roi_commit ||
++  native_cancel!=cancel_d || native_video_fault!=fault_d;
++ wire [115:0] payload=raw_start ? {33'd0,image_config,wb_request,observation_request,config_ok} : {20'd0,awb_O_tdata};
++ frame_process_bridge bridge(.source_clk(axi4s_video_aclk),.process_clk(processing_clk),.rst_n(I_rst_n),
++  .source_data({raw_start,(awb_O_tuser && !frame_input_closed),source_pixel_valid,source_pixel_sof,awb_O_tlast,
++   roi_accept,roi_commit,native_cancel,native_video_fault,payload}),.source_valid(send_event),
++  .process_data(received),.process_valid(received_valid),.process_overflow(post_overflow));
++ assign {post_start,post_early,post_valid,post_sof,post_last,post_accept,post_commit,post_cancel,post_native_fault}=
++  received_valid ? received[127:116] : 12'd0;
++ assign post_rgb=received[95:0];
++ reg [17:0] tag;reg [31:0] wb,cfg;
++ reg [10:0] x;reg [9:0] y;
++ always @(posedge processing_clk or negedge I_rst_n)begin
++  if(!I_rst_n)begin tag<=0;wb<=32'h00006464;cfg<=0;x<=0;y<=0;end
++  else begin
++   if(post_start)begin tag<=received[18:1];wb<=received[50:19];cfg<=received[82:51];x<=0;y<=0;end
++   if(post_sof && post_valid)begin x<=4;y<=0;end
++   else if(post_valid)begin
++    if(post_last)begin x<=0;y<=y+1'b1;end else x<=x+11'd4;
++   end
++  end
++ end
++ assign post_x=post_sof ? 11'd0 : x;assign post_y=post_sof ? 10'd0 : y;
++ assign post_tag=post_start ? received[18:1] : tag;
++ assign post_wb=post_start ? received[50:19] : wb;
++ assign post_config=post_start ? received[82:51] : cfg;
++end else begin : native_processing
++ assign post_start=raw_start;assign post_early=awb_O_tuser && !frame_input_closed;
++ assign post_valid=source_pixel_valid;assign post_sof=source_pixel_sof;assign post_last=awb_O_tlast;
++ assign post_accept=roi_accept;assign post_commit=roi_commit;assign post_cancel=native_cancel;assign post_overflow=0;
++ assign post_rgb=awb_O_tdata;assign post_native_fault=native_video_fault;
++ assign post_x=roi_x;assign post_y=roi_y;assign post_tag=observation_tag;assign post_wb=wb_frame_request;assign post_config=image_config;
++end endgenerate
++roi_sobel_view #(.X0(USE_SEARCH ? 0 : MULTI_POCKETS ? 96 : 256),.X1(USE_SEARCH ? 1024 : MULTI_POCKETS ? 928 : 768),.Y0(USE_SEARCH ? 0 : 172),.Y1(USE_SEARCH ? 600 : MULTI_POCKETS ? 464 : 428),.DYNAMIC_ROI(TRACKING),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
+  .dynamic_x0(track_x0),.dynamic_x1(track_x1),.dynamic_y0(track_y0),.dynamic_y1(track_y1),
+- .clk(axi4s_video_aclk),.rst_n(I_rst_n),.pixel_valid(awb_O_tvalid),
+- .pixel_sof(awb_pixel_sof),.pixel_last(awb_O_tlast),.early_sof(awb_O_tuser),
+- .rgb(awb_O_tdata),.mode(observation_tag[1:0]),.invalidate(sample_cancel),
++ .clk(post_clk),.rst_n(I_rst_n),.pixel_valid(post_valid),
++ .pixel_sof(post_sof),.pixel_last(post_last),.early_sof(post_early),
++ .rgb(post_rgb),.mode(post_tag[1:0]),.invalidate(sample_cancel),
+  .view_ready(view_ready),.frame_bad(view_frame_bad),
+  .out_valid(view_valid),.out_last(view_last),.out_early_sof(view_early),.out_rgb(view_rgb),
+  .gradient_valid(gradient_valid),.gradient_x(gradient_x),.gradient_y(gradient_y),
+  .gradient_magnitudes(gradient_magnitudes),.gradient_neighborhood(gradient_neighborhood),
+  .out_x(),.out_y(),.core_pixels(edge_pixels),.edge_count(edge_count),.edge_sum(edge_sum),.timing_debug(view_timing));
+-roi_observation_snapshot #(.CORE_AREA((ROI_X1-ROI_X0)*(ROI_Y1-ROI_Y0))) u_roi_observation_snapshot(
+- .clk(axi4s_video_aclk),.rst_n(I_rst_n),.invalidate(sample_cancel),.tag(observation_tag),.wb_tag(wb_frame_request),
++roi_observation_snapshot #(.SHAPE_MODEL(USE_SHAPE),.CORE_AREA((ROI_X1-ROI_X0)*(ROI_Y1-ROI_Y0))) u_roi_observation_snapshot(
++ .clk(post_clk),.rst_n(I_rst_n),.invalidate(sample_cancel),.tag(post_tag),.wb_tag(post_wb),
+  .legacy_record(display_record),.core_pixels(edge_pixels),.edge_count(edge_count),.edge_sum(edge_sum),
+- .record(observation_record));
+-wire [10:0] roi_x;
+-wire [9:0] roi_y;
+-wire roi_accept,roi_commit,roi_invalidate,sample_new;
++ .model_valid(shape_valid),.model_features(shape_features),.record(observation_record));
+ // Finish features while CSI is still clocking rows, not after native FE.
+-// The upper hole search and the lower core's Sobel neighborhood finish here.
++// The upper hole search and the lower core's Sobel neighborhood finish here.
+ // These are provisional results: the writer still requires the entire frame.
+ localparam RESULT_ROW=MULTI_POCKETS ? 456 : (HOLE_Y+10>ROI_Y1+2) ? HOLE_Y+10 : ROI_Y1+2;
+-wire result_commit=TRACKING ? (roi_accept && roi_x==0 && roi_y==RESULT_ROW) : roi_commit;
++wire result_commit=USE_SEARCH ? search_new : TRACKING ? (post_accept && post_x==0 && post_y==RESULT_ROW) : post_commit;
+ wire result_valid;
+ assign sample_valid=result_valid && (!TRACKING || video_frame_good);
+ wire [1:0] result_class;
+ assign class_state=TRACKING && !video_frame_good ? 2'd1 : result_class;
+ // Cancel pending statistics on native FS, including an old in-flight division.
+-assign sample_cancel=roi_invalidate || !config_ok || |lane_error || !observation_match || !wb_match;
+-roi_frame_guard u_roi_guard(
+-    .clk(axi4s_video_aclk),.rst_n(I_rst_n),
+-    .raw_start(raw_start),.raw_end(raw_end),.hs_valid(hs_valid),.raw_valid(raw_valid),
+-    .lane_error(lane_error),.config_ok(config_ok && observation_match),
+-    .pixel_valid(awb_O_tvalid),.pixel_sof(awb_pixel_sof),.pixel_last(awb_O_tlast),
+-    .pixel_x(roi_x),.pixel_y(roi_y),.pixel_accept(roi_accept),
+-    .frame_commit(roi_commit),.invalidate(roi_invalidate));
++assign sample_cancel=post_cancel || post_overflow;
+ // Tracking coordinates become immutable after the hole search and before core Y0.
+ generate if(MULTI_POCKETS) begin : multi_tracking
+  multi_pocket_tracker tracker(
+-  .clk(axi4s_video_aclk),.rst_n(I_rst_n),.frame_start(raw_start),.pixel_sof(awb_pixel_sof),
+-  .accept(roi_accept),.frame_commit(roi_commit),.invalidate(sample_cancel),.x(roi_x),.y(roi_y),.rgb(awb_O_tdata),
++  .clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
++  .accept(post_accept),.frame_commit(post_commit),.invalidate(sample_cancel),.x(post_x),.y(post_y),.rgb(post_rgb),
+   .sample_x0(pocket_x0),.sample_y0(pocket_y0),.sample_mask(pocket_mask),.verified_mask(pocket_verified),.located(),.diagnostic(track_diagnostic));
+  assign track_x0=pocket_x0[10:0];assign track_x1=pocket_x0[10:0]+11'd80;
+  assign track_y0=pocket_y0[9:0];assign track_y1=pocket_y0[9:0]+10'd80;assign track_locked=|pocket_verified;
+  multi_pocket_statistics statistics(
+-  .clk(axi4s_video_aclk),.rst_n(I_rst_n),.frame_start(raw_start),.pixel_sof(awb_pixel_sof),.accept(roi_accept),
+-  .commit(result_commit),.invalidate(sample_cancel),.x(roi_x),.y(roi_y),.rgb(awb_O_tdata),
++  .clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),.accept(post_accept),
++  .commit(result_commit),.invalidate(sample_cancel),.x(post_x),.y(post_y),.rgb(post_rgb),
+   .x0(pocket_x0),.y0(pocket_y0),.sample_mask(pocket_mask),.verified_mask(pocket_verified),
+   .edge_valid(gradient_valid),.edge_x(gradient_x),.edge_y(gradient_y),.magnitudes(gradient_magnitudes),.edge_neighborhood(gradient_neighborhood),
+-  .mode(observation_tag[1:0]),.calibration_ok(calibration_ok),.present_high(present_high),.threshold(threshold),
++  .mode(post_tag[1:0]),.calibration_ok(calibration_ok),.present_high(present_high),.threshold(threshold),
+   .records(pocket_records),.sample_new(multi_new));
+ end else begin : legacy_geometry
+  assign pocket_records=0;assign multi_new=0;assign pocket_x0=0;assign pocket_y0=0;assign pocket_mask=0;assign pocket_verified=0;
+  if(TRACKING) begin : tracking
+  tape_hole_tracker #(.HOLE_Y(HOLE_Y),.LATE_HOLE(LATE_HOLE),.ROI_W(ROI_X1-ROI_X0),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1)) tracker(
+-  .clk(axi4s_video_aclk),.rst_n(I_rst_n),.frame_start(raw_start),.pixel_sof(awb_pixel_sof),
+-  .pixel_accept(roi_accept),.frame_commit(roi_commit),.invalidate(sample_cancel),
+-  .pixel_x(roi_x),.pixel_y(roi_y),.rgb(awb_O_tdata),.frame_locked(track_locked),
++  .clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
++  .pixel_accept(post_accept),.frame_commit(post_commit),.invalidate(sample_cancel),
++  .pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),.frame_locked(track_locked),
+   .roi_x0(track_x0),.roi_x1(track_x1),.roi_y0(track_y0),.roi_y1(track_y1),.located(),.diagnostic(track_diagnostic));
+ end else begin : static_roi
+  assign track_x0=ROI_X0;assign track_x1=ROI_X1;assign track_y0=ROI_Y0;assign track_y1=ROI_Y1;assign track_locked=1'b1;
+@@ -204,18 +273,19 @@ end endgenerate
+ // The result settles after the ROI/search rows and the 28-cycle divider.
+ // Freeze it early; frame proof, word count and epoch still gate publication.
+ reg [7:0] metadata_wait;reg metadata_pending;reg [31:0] frame_config;
+-always @(posedge axi4s_video_aclk or negedge I_rst_n) begin
++always @(posedge post_clk or negedge I_rst_n) begin
+  if(!I_rst_n) begin frame_metadata<=0;frame_metadata_ready<=0;metadata_wait<=0;metadata_pending<=0;frame_config<=0;end
+- else if(raw_start) begin frame_metadata_ready<=0;metadata_pending<=0;frame_config<=image_config;end
++ else if(post_start) begin frame_metadata_ready<=0;metadata_pending<=0;frame_config<=post_config;end
+  else if(sample_cancel) begin frame_metadata_ready<=0;metadata_pending<=0;end
+  else if(result_commit) begin metadata_pending<=1;metadata_wait<=MULTI_POCKETS ? 192 : 48;end
+  else if(metadata_pending) begin
+   metadata_wait<=metadata_wait-1'b1;
+   if(metadata_wait==1) begin
+-   // Frame configuration tags exist even if the first pocket has no valid sample.
+-   // Other pockets must not be hidden by the first pocket's missing history tag.
+-   if(MULTI_POCKETS) frame_metadata<={pocket_records,track_diagnostic,frame_config,track_locked,track_x0,track_x1,
+-    wb_frame_request,observation_record[82:46],observation_tag,observation_record[27:0]};
++   // Frame configuration tags exist even if the first pocket has no valid sample.
++   // Other pockets must not be hidden by the first pocket's missing history tag.
++   if(MULTI_POCKETS) frame_metadata<={pocket_records,track_diagnostic,frame_config,track_locked,track_x0,track_x1,
++    post_wb,observation_record[82:46],post_tag,observation_record[27:0]};
++   else if(USE_SEARCH) frame_metadata<={search_objects,search_y0,search_y1,4'd0,4'd0,frame_config,search_located,search_x0,search_x1,observation_record};
+    else frame_metadata<={track_diagnostic,frame_config,track_locked,track_x0,track_x1,observation_record};
+    frame_metadata_ready<=1;metadata_pending<=0;
+   end
+@@ -223,41 +293,61 @@ always @(posedge axi4s_video_aclk or negedge I_rst_n) begin
+ end
+ // Capture proof belongs to the AWB early-FS epoch, not the native FS that
+ // precedes it. A normal next FS must not revoke an old, completed edge tail.
+-wire [3:0] video_fault={(roi_invalidate && !raw_start),(|lane_error),!config_ok,view_frame_bad};
++wire [3:0] video_fault=post_native_fault | {3'd0,(view_frame_bad || post_overflow)};
+ reg [3:0] video_reject_reason;
+-always @(posedge axi4s_video_aclk or negedge I_rst_n) begin
++always @(posedge post_clk or negedge I_rst_n) begin
+  if(!I_rst_n) begin video_frame_good<=0;video_frame_bad<=0;video_reject_reason<=0;video_diagnostics<=0;end
+- else if(awb_O_tuser) begin
++ else if(post_early) begin
+   video_frame_good<=0;video_frame_bad<=0;video_reject_reason<=0;
+   video_diagnostics<={video_reject_reason,view_timing};
+  end
+  else if(|video_fault) begin
+   video_frame_good<=0;video_frame_bad<=1;
+   video_reject_reason<=video_reject_reason | video_fault;
+- end else if(roi_commit && !video_frame_bad) video_frame_good<=1;
++ end else if(post_commit && !video_frame_bad) video_frame_good<=1;
+ end
+ roi_statistics #(.DYNAMIC_ROI(TRACKING),.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(ROI_Y1)) u_roi_statistics(
+  .dynamic_x0(track_x0),.dynamic_x1(track_x1),.dynamic_y0(track_y0),.dynamic_y1(track_y1),
+-    .clk(axi4s_video_aclk),.rst_n(I_rst_n),.pixel_accept(roi_accept),.pixel_sof(awb_pixel_sof),
+-    .pixel_x(roi_x),.pixel_y(roi_y),.rgb(awb_O_tdata),
++    .clk(post_clk),.rst_n(I_rst_n),.pixel_accept(post_accept),.pixel_sof(post_sof),
++    .pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),
+     .frame_commit(result_commit),.invalidate(sample_cancel),.sample_valid(legacy_valid),
+-    .mean(legacy_mean),.minimum(legacy_min),.maximum(legacy_max),.sample_pixels(),.sample_sum(),.sample_new(legacy_new),.frame_start(raw_start));
++    .mean(legacy_mean),.minimum(legacy_min),.maximum(legacy_max),.sample_pixels(),.sample_sum(),.sample_new(legacy_new),.frame_start(post_start));
++generate if(USE_SEARCH) begin : local_shape_detection
++ frame_shape_search detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
++  .pixel_accept(post_accept),.invalidate(sample_cancel),.pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),
++  .ready(search_ready),.sample_new(search_new),.located(search_located),.state(search_state),.foreground_count(search_fg),
++  .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(search_objects));
++end else begin : no_local_search
++ assign search_objects=0;assign search_ready=0;assign search_new=0;assign search_located=0;assign search_state=1;assign search_review=0;
++ assign search_fg=0;assign search_w=0;assign search_h=0;assign search_x0=0;assign search_x1=0;assign search_y0=0;assign search_y1=0;
++end
++if(USE_SEARCH) begin : search_features
++ assign shape_valid=search_ready;assign shape_state=search_state;assign shape_foreground=search_fg;assign shape_width=search_w;assign shape_height=search_h;
++end else if(USE_SHAPE) begin : shape_detection
++ roi_shape_model #(.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(ROI_Y1)) detector(
++  .clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_accept(post_accept),.pixel_sof(post_sof),
++  .pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),.frame_commit(result_commit),.invalidate(sample_cancel),
++  .valid(shape_valid),.state(shape_state),.foreground_count(shape_foreground),.box_width(shape_width),.box_height(shape_height));
++end else begin : no_shape_detection
++ assign shape_valid=0;assign shape_state=1;assign shape_foreground=0;assign shape_width=0;assign shape_height=0;
++end endgenerate
+ wire scene_ok;
+ wire [1:0] gray_class_state;
+ roi_tape_guard #(.DYNAMIC_ROI(TRACKING),.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(ROI_Y1)) u_roi_tape_guard(
+  .dynamic_x0(track_x0),.dynamic_x1(track_x1),.dynamic_y0(track_y0),.dynamic_y1(track_y1),
+-    .clk(axi4s_video_aclk),.rst_n(I_rst_n),.pixel_accept(roi_accept),.pixel_sof(awb_pixel_sof),
+-    .pixel_x(roi_x),.pixel_y(roi_y),.rgb(awb_O_tdata),.frame_start(raw_start),
++    .clk(post_clk),.rst_n(I_rst_n),.pixel_accept(post_accept),.pixel_sof(post_sof),
++    .pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),.frame_start(post_start),
+     .invalidate(sample_cancel),.scene_ok(scene_ok));
+ roi_classifier u_roi_classifier(
+-    .clk(axi4s_video_aclk),.rst_n(I_rst_n),.calibration_ok(calibration_ok),
+-    .frame_start(raw_start),.invalidate(sample_cancel),.sample_valid(legacy_valid),.sample_new(legacy_new),
++    .clk(post_clk),.rst_n(I_rst_n),.calibration_ok(calibration_ok),
++    .frame_start(post_start),.invalidate(sample_cancel),.sample_valid(legacy_valid),.sample_new(legacy_new),
+     .mean(legacy_mean),.threshold(threshold),.present_high(present_high),.state(gray_class_state));
+-// Direct fixed-core trials use the complete sample, independent of hole search
+-// and dark reference strips. The operator aligns a real pocket in the cyan box.
+-roi_mode_classifier #(.FUSE_FEATURES(!DIRECT_DETECTION),.CORE_AREA((ROI_X1-ROI_X0)*(ROI_Y1-ROI_Y0))) u_roi_mode_classifier(
+-    .mode(observation_tag[1:0]),.gray_state(gray_class_state),.scene_ok(DIRECT_DETECTION || (scene_ok && (!TRACKING || track_locked))),
+-    .core_pixels(edge_pixels),.edge_count(edge_count),.edge_sum(edge_sum),.state(legacy_class));
++// Direct fixed-core trials use the complete sample, independent of hole search
++// and dark reference strips. The operator aligns a real pocket in the cyan box.
++roi_mode_classifier #(.FUSE_FEATURES(!DIRECT_DETECTION),.CORE_AREA((ROI_X1-ROI_X0)*(ROI_Y1-ROI_Y0))) u_roi_mode_classifier(
++    .mode(post_tag[1:0]),.gray_state(gray_class_state),.scene_ok(DIRECT_DETECTION || (scene_ok && (!TRACKING || track_locked))),
++    .core_pixels(edge_pixels),.edge_count(edge_count),.edge_sum(edge_sum),.state(legacy_mode_class));
++assign legacy_class=USE_SHAPE ? ((post_start || sample_cancel || !calibration_ok || !legacy_valid || !shape_valid) ? 2'd1 : (!USE_SEARCH && !scene_ok) ? 2'd0 : shape_state) : legacy_mode_class;
+ assign result_valid=MULTI_POCKETS ? pocket_records[63] : legacy_valid;
+ assign sample_new=MULTI_POCKETS ? multi_new : legacy_new;
+ assign sample_mean=MULTI_POCKETS ? pocket_records[60:53] : legacy_mean;
+@@ -265,13 +355,13 @@ assign sample_min=MULTI_POCKETS ? pocket_records[52:45] : legacy_min;
+ assign sample_max=MULTI_POCKETS ? pocket_records[44:37] : legacy_max;
+ assign result_class=MULTI_POCKETS ? pocket_records[62:61] : legacy_class;
+ roi_result_snapshot u_roi_result_snapshot(
+-    .clk(axi4s_video_aclk),.rst_n(I_rst_n),.frame_start(raw_start),.invalidate(sample_cancel),
++    .clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.invalidate(sample_cancel),
+     .calibration_ok(calibration_ok),.sample_valid(result_valid),.sample_new(sample_new),
+     .class_state(result_class),.mean(sample_mean),.minimum(sample_min),.maximum(sample_max),
+     .record(display_record));
+ 
+     data_96bit_to_128bit u_data_96bit_to_128bit(
+-        .I_clk              ( axi4s_video_aclk  ),
++        .I_clk              ( post_clk  ),
+         .I_rst_n            ( I_rst_n           ),
+ 	
+         .I_96b_frame_start  ( view_early        ),
+@@ -286,7 +376,7 @@ roi_result_snapshot u_roi_result_snapshot(
+ 
+ 
+ //data96_128 u_data96_128 (
+-//    .I_tdata(awb_O_tdata),
++//    .I_tdata(post_rgb),
+ //    .O_tdata(awb_O_tdata_128)
+ //);
+ 	
+diff --git a/fpga/component_inspector/user_source/hdl_source/roi_observation_snapshot.v b/fpga/component_inspector/user_source/hdl_source/roi_observation_snapshot.v
+index b43cb8b..122d60f 100644
+--- a/fpga/component_inspector/user_source/hdl_source/roi_observation_snapshot.v
++++ b/fpga/component_inspector/user_source/hdl_source/roi_observation_snapshot.v
+@@ -1,9 +1,10 @@
+ // Atomic extension of the existing mean/min/max completion record.
+ // Bits: [114:83] WB epoch/red/blue, [82:59] G sum, [58:46] thresholded edge count, [45:28] epoch/mode,
+ // [27:0] legacy completion token, state, validity and mean/min/max.
+-module roi_observation_snapshot #(parameter CORE_AREA=6400)(
++module roi_observation_snapshot #(parameter CORE_AREA=6400,SHAPE_MODEL=0)(
+  input wire clk,rst_n,invalidate,input wire [17:0] tag,input wire [31:0] wb_tag,
+  input wire [27:0] legacy_record,input wire [12:0] core_pixels,edge_count,
++ input wire model_valid,input wire [36:0] model_features,
+  input wire [23:0] edge_sum,output reg [114:0] record
+ );
+ reg token;
+@@ -13,7 +14,9 @@ always @(posedge clk or negedge rst_n) begin
+   token<=legacy_record[27];record[27]<=legacy_record[27];record[26:24]<={2'd1,1'b0};
+  end else if(legacy_record[27]!=token) begin
+   token<=legacy_record[27];
+-  record<={wb_tag,edge_sum,edge_count,tag,legacy_record[27:25],(!tag[1] || core_pixels==CORE_AREA),legacy_record[23:0]};
++  // Shape mode reuses the atomic 37-bit feature field; no new CDC path.
++  record<={wb_tag,(SHAPE_MODEL ? model_features : {edge_sum,edge_count}),tag,legacy_record[27:25],
++   ((!SHAPE_MODEL || model_valid) && (!tag[1] || core_pixels==CORE_AREA)),legacy_record[23:0]};
+  end
+ end
+ endmodule
+diff --git a/fpga/component_inspector/user_source/hdl_source/video_in.v b/fpga/component_inspector/user_source/hdl_source/video_in.v
+index a245f82..ce21bc3 100644
+--- a/fpga/component_inspector/user_source/hdl_source/video_in.v
++++ b/fpga/component_inspector/user_source/hdl_source/video_in.v
+@@ -1,5 +1,5 @@
+ // A slot is published only after every packed word has reached the MC port.
+-module video_in #(parameter WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,METADATA_REQUIRED=1)(
++module video_in #(parameter WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,METADATA_REQUIRED=1,METADATA_WAIT_CYCLES=0)(
+  input wire I_rst_n,I_camera_clk,I_camera_frame_start,I_camera_valid,
+  input wire [127:0] I_camera_data,input wire I_mipi_rx_error,
+  input wire I_frame_good,I_frame_bad,
+@@ -13,8 +13,8 @@ module video_in #(parameter WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,META
+  output reg O_ddr_user_wr_en,output reg [24:0] O_ddr_user_addr,
+  output wire [127:0] O_ddr_user_wr_data,input wire I_ddr_user_ready,
+  input wire [META_WIDTH-1:0] I_frame_metadata,input wire I_frame_metadata_ready,
+- output reg [META_WIDTH-1:0] O_completed_metadata,
+- output reg [25:0] O_publish_diagnostic
++ output reg [META_WIDTH-1:0] O_completed_metadata,
++ output reg [25:0] O_publish_diagnostic
+ );
+ reg [15:0] camera_epoch,writer_epoch;
+ wire [META_WIDTH+16:0] metadata_receive;
+@@ -25,7 +25,7 @@ generate if(METADATA) begin : metadata
+ end else begin : no_metadata
+  assign metadata_receive=0;
+ end endgenerate
+-wire metadata_matches=!METADATA || (metadata_receive[META_WIDTH] && metadata_receive[META_WIDTH+16:META_WIDTH+1]==writer_epoch);
++wire metadata_matches=!METADATA || (metadata_receive[META_WIDTH] && metadata_receive[META_WIDTH+16:META_WIDTH+1]==writer_epoch);
+ always @(posedge I_camera_clk or negedge I_rst_n) begin
+  if(!I_rst_n) camera_epoch<=0;
+  else if(I_camera_frame_start) camera_epoch<=camera_epoch+1'b1;
+@@ -35,7 +35,7 @@ reg [3:0] extend_count;
+ reg S_camera_frame_start_extend;
+ reg [2:0] frame_sync;
+ wire S_frame_start=frame_sync[1] && !frame_sync[2];
+-wire S_fifo_rst=!I_rst_n || frame_sync[2];
++wire S_fifo_rst=!I_rst_n || frame_sync[2];
+ wire [8:0] S_fifo_rd_num,camera_used;
+ wire camera_full,fifo_empty;
+ reg [16:0] camera_count;
+@@ -67,19 +67,24 @@ always @(posedge I_camera_clk or negedge I_rst_n) begin
+  end
+ end
+ reg [1:0] S_video_in_wp;
+-reg frame_open,published;
+-reg [16:0] written;
+-wire complete_frame=frame_open && !published && written==WORDS && done_sync[1] &&
+-                    good_sync[1] && !bad_sync[1] && !S_fifo_rst && !S_frame_start;
+-// Read-only previous-frame evidence. Seen bits are not a replacement for
+-// the simultaneous publish predicate below: published/epoch/metadata/done/
+-// good/bad/exact/open. Count MC commands, including one on the closing edge.
+-reg [7:0] publish_seen;
+-wire [16:0] diagnostic_written=written+{16'd0,O_ddr_user_wr_en};
+-wire [7:0] publish_conditions={published,
+- (!METADATA || metadata_receive[META_WIDTH+16:META_WIDTH+1]==writer_epoch),
+- metadata_matches,done_sync[1],good_sync[1],bad_sync[1],
+- (diagnostic_written==WORDS),frame_open};
++reg frame_open,published;
++// Full-frame analysis completes in vertical blanking. Hold this completed slot
++// until matching metadata arrives, or a bounded timeout releases video without
++// results. A new source epoch still cancels the old frame; no late relabeling.
++reg [21:0] metadata_wait;
++wire metadata_timeout=METADATA_WAIT_CYCLES==0 || metadata_wait>=METADATA_WAIT_CYCLES;
++reg [16:0] written;
++wire complete_frame=frame_open && !published && written==WORDS && done_sync[1] &&
++                    good_sync[1] && !bad_sync[1] && !S_fifo_rst && !S_frame_start;
++// Read-only previous-frame evidence. Seen bits are not a replacement for
++// the simultaneous publish predicate below: published/epoch/metadata/done/
++// good/bad/exact/open. Count MC commands, including one on the closing edge.
++reg [7:0] publish_seen;
++wire [16:0] diagnostic_written=written+{16'd0,O_ddr_user_wr_en};
++wire [7:0] publish_conditions={published,
++ (!METADATA || metadata_receive[META_WIDTH+16:META_WIDTH+1]==writer_epoch),
++ metadata_matches,done_sync[1],good_sync[1],bad_sync[1],
++ (diagnostic_written==WORDS),frame_open};
+ reg S_ddr_wr_valid;
+ reg [8:0] burst_left;
+ wire S_fifo_rd_en=S_ddr_wr_valid && I_ddr_user_ready && !fifo_empty &&
+@@ -106,10 +111,10 @@ w128_d512_fifo U_w128_d512_fifo(
+  .afull(),.full_flag(camera_full),.wrusedw(camera_used),
+  .clkr(I_ddr_clk),.re(S_fifo_rd_en),.dout(O_ddr_user_wr_data),
+  .rdusedw(S_fifo_rd_num),.valid(),.empty_flag(fifo_empty),.aempty());
+-always @(posedge I_ddr_clk or negedge I_rst_n) begin
++always @(posedge I_ddr_clk or negedge I_rst_n) begin
+  if(!I_rst_n) begin
+   frame_sync<=0;bad_sync<=0;done_sync<=0;good_sync<=0;
+-  S_video_in_wp<=0;frame_open<=0;published<=0;written<=0;
++  metadata_wait<=0;S_video_in_wp<=0;frame_open<=0;published<=0;written<=0;
+   S_ddr_wr_valid<=0;burst_left<=0;O_ddr_user_wr_en<=0;O_ddr_user_addr<=0;
+   O_completed_metadata<=0;writer_epoch<=0;O_completed_valid<=0;O_completed_rp<=0;O_capture_ok<=0;O_lost_frames<=0;
+  end else begin
+@@ -135,37 +140,38 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
+     S_ddr_wr_valid<=1;burst_left<=S_fifo_rd_num;
+    end
+   end
+-  if(complete_frame && (!METADATA_REQUIRED || metadata_matches)) begin
+-   O_completed_valid<=1;O_completed_rp<=S_video_in_wp;
+-   // Missing results must never inherit coordinates or classes from an old slot.
+-   O_completed_metadata<=metadata_matches ? metadata_receive[META_WIDTH-1:0] : {META_WIDTH{1'b0}};
++  if(complete_frame && !metadata_matches && !metadata_timeout)metadata_wait<=metadata_wait+1'b1;
++  if(complete_frame && (metadata_matches || (!METADATA_REQUIRED && metadata_timeout))) begin
++   O_completed_valid<=1;O_completed_rp<=S_video_in_wp;
++   // Missing results must never inherit coordinates or classes from an old slot.
++   O_completed_metadata<=metadata_matches ? metadata_receive[META_WIDTH-1:0] : {META_WIDTH{1'b0}};
+    O_capture_ok<=1;published<=1;
+   end
+   if(S_frame_start) begin
+-   // The extended, synchronized marker carries a source-held epoch bundle.
+-   // Independent counters drift permanently when close source markers coalesce.
+-   // camera_epoch settles before this edge; CSI->DDR max_delay bounds the bundle.
+-   writer_epoch<=camera_epoch;
++   // The extended, synchronized marker carries a source-held epoch bundle.
++   // Independent counters drift permanently when close source markers coalesce.
++   // camera_epoch settles before this edge; CSI->DDR max_delay bounds the bundle.
++   writer_epoch<=camera_epoch;
+    if(frame_open && !published) begin O_lost_frames<=O_lost_frames+1'b1;O_capture_ok<=0;end
+    S_video_in_wp<=next_slot;O_ddr_user_addr<=base(next_slot);
+-   written<=0;published<=0;frame_open<=1;
++   metadata_wait<=0;written<=0;published<=0;frame_open<=1;
+    S_ddr_wr_valid<=0;burst_left<=0;O_ddr_user_wr_en<=0;
+   end
+  end
+-end
+-always @(posedge I_ddr_clk or negedge I_rst_n) begin
+- if(!I_rst_n) begin publish_seen<=0;O_publish_diagnostic<=0;end
+- else if(S_frame_start) begin
+-  if(frame_open && (METADATA_REQUIRED || !published))
+-   O_publish_diagnostic<={1'b0,publish_seen | (S_fifo_rst ? 8'd0 : publish_conditions),diagnostic_written};
+-  publish_seen<=0;
+- end else if(frame_open && !S_fifo_rst) begin
+-  publish_seen<=publish_seen | publish_conditions;
+-  // AUTO4 snapshots at publication, before the following source FS clears ready.
+-  // W: MC word count. M: ready / received epoch low byte / writer epoch low byte.
+-  if(!METADATA_REQUIRED && complete_frame)
+-   O_publish_diagnostic<={(!metadata_matches),publish_seen | publish_conditions | 8'h80,
+-    (metadata_matches ? diagnostic_written : {metadata_receive[META_WIDTH],metadata_receive[META_WIDTH+8:META_WIDTH+1],writer_epoch[7:0]})};
+- end
+-end
+-endmodule
++end
++always @(posedge I_ddr_clk or negedge I_rst_n) begin
++ if(!I_rst_n) begin publish_seen<=0;O_publish_diagnostic<=0;end
++ else if(S_frame_start) begin
++  if(frame_open && (METADATA_REQUIRED || !published))
++   O_publish_diagnostic<={1'b0,publish_seen | (S_fifo_rst ? 8'd0 : publish_conditions),diagnostic_written};
++  publish_seen<=0;
++ end else if(frame_open && !S_fifo_rst) begin
++  publish_seen<=publish_seen | publish_conditions;
++  // AUTO4 snapshots at publication, before the following source FS clears ready.
++  // W: MC word count. M: ready / received epoch low byte / writer epoch low byte.
++  if(!METADATA_REQUIRED && complete_frame && (metadata_matches || metadata_timeout))
++   O_publish_diagnostic<={(!metadata_matches),publish_seen | publish_conditions | 8'h80,
++    (metadata_matches ? diagnostic_written : {metadata_receive[META_WIDTH],metadata_receive[META_WIDTH+8:META_WIDTH+1],writer_epoch[7:0]})};
++ end
++end
++endmodule

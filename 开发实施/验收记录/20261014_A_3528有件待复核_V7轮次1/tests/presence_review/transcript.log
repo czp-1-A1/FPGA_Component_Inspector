@@ -1,0 +1,47 @@
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/presence_review/transcript.log -wlf modelsim_work/presence_review/wave.wlf -do "log /tb_presence_review/*; run -all; quit -code 1 -force" test_presence_review.tb_presence_review 
+# Start time: 15:52:17 on Oct 14,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "roi_shape_search(fast)".
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_presence_review(fast)
+# Loading work.roi_shape_search(fast)
+# log /tb_presence_review/*
+#  run -all
+# OBS presence review case=1 FG=4239 W/H=61/76 context_bad=0 class=2 CHECK=0 cycles=107823
+# OBS presence review case=2 FG=4240 W/H=62/76 context_bad=0 class=2 CHECK=0 cycles=107843
+# OBS presence review case=3 FG=4191 W/H=61/76 context_bad=0 class=2 CHECK=0 cycles=106863
+# OBS presence review case=4 FG=4353 W/H=68/82 context_bad=1 class=2 CHECK=1 cycles=135706
+# OBS presence review case=5 FG=4089 W/H=62/76 context_bad=1 class=2 CHECK=1 cycles=130426
+# OBS presence review case=6 FG=4227 W/H=74/62 context_bad=1 class=2 CHECK=1 cycles=133186
+# OBS presence review case=7 FG=2702 W/H=46/75 context_bad=1 class=2 CHECK=1 cycles=102686
+# OBS presence review case=8 FG=4103 W/H=64/76 context_bad=0 class=2 CHECK=1 cycles=105103
+# OBS presence review case=9 FG=211 W/H=16/17 context_bad=0 class=3 CHECK=0 cycles=27263
+# OBS presence review case=10 FG=234 W/H=19/16 context_bad=0 class=3 CHECK=0 cycles=27723
+# OBS presence review case=11 FG=227 W/H=17/18 context_bad=0 class=3 CHECK=0 cycles=27583
+# OBS presence review case=12 FG=583 W/H=28/30 context_bad=0 class=0 CHECK=0 cycles=34703
+# OBS presence review case=13 FG=3648 W/H=64/76 context_bad=0 class=2 CHECK=1 cycles=96003
+# OBS presence review case=14 FG=3647 W/H=64/76 context_bad=0 class=1 CHECK=0 cycles=95983
+# OBS presence review case=15 FG=2400 W/H=40/72 context_bad=0 class=2 CHECK=1 cycles=71043
+# OBS presence review case=16 FG=2400 W/H=40/73 context_bad=0 class=1 CHECK=0 cycles=71043
+# OBS presence review case=17 FG=3000 W/H=60/60 context_bad=0 class=1 CHECK=0 cycles=83043
+# OBS presence review case=18 FG=5000 W/H=64/87 context_bad=0 class=1 CHECK=0 cycles=123043
+# OBS presence review case=19 FG=4725 W/H=63/75 context_bad=1 class=2 CHECK=1 cycles=143146
+# OBS presence review case=20 FG=4725 W/H=63/75 context_bad=0 class=2 CHECK=0 cycles=117543
+# PASS presence review: 20 independently counted connected masks, photograph feature replays, unchanged empty/feed models, CHECK distinctions, 75% and aspect boundaries, context recovery and cancellation
+# ** Note: $finish    : tb_presence_review.v(58)
+#    Time: 21243680 ns  Iteration: 1  Instance: /tb_presence_review
+# End time: 15:52:23 on Oct 14,2026, Elapsed time: 0:00:06
+# Errors: 0, Warnings: 0

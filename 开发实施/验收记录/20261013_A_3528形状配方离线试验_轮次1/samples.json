@@ -1,0 +1,217 @@
+{
+  "status": "SCREEN_PHOTO_TRIAL",
+  "ground_truth": "User confirmed smaller round openings are real emptied 3528 pockets; upper larger round openings are sprockets.",
+  "photos": {
+    "a": {
+      "path": "开发实施/验收记录/20261013_A_V4现场对象有效性与边缘语义_轮次1/photo_2_led.jpg",
+      "scale_reference_roi": [
+        182,
+        565,
+        292,
+        675
+      ]
+    },
+    "b": {
+      "path": "开发实施/验收记录/20261013_A_V4现场对象有效性与边缘语义_轮次1/photo_3_hole_region.jpg",
+      "scale_reference_roi": [
+        205,
+        500,
+        331,
+        640
+      ]
+    },
+    "c": {
+      "path": "开发实施/验收记录/20261013_A_工业视觉调研与定位孔误报_轮次1/sprocket_hole_false_present.jpg",
+      "scale_reference_roi": [
+        644,
+        544,
+        818,
+        698
+      ]
+    }
+  },
+  "samples": [
+    {
+      "id": "a_led_raw",
+      "photo": "a",
+      "roi": [
+        182,
+        565,
+        292,
+        675
+      ],
+      "truth": "present",
+      "split": "teach",
+      "processing": "raw_display"
+    },
+    {
+      "id": "a_empty_raw",
+      "photo": "a",
+      "roi": [
+        333,
+        597,
+        386,
+        652
+      ],
+      "truth": "empty",
+      "split": "teach",
+      "processing": "raw_display"
+    },
+    {
+      "id": "a_feed_raw",
+      "photo": "a",
+      "roi": [
+        248,
+        491,
+        319,
+        562
+      ],
+      "truth": "sprocket",
+      "split": "teach",
+      "processing": "raw_display"
+    },
+    {
+      "id": "b_led_raw2",
+      "photo": "b",
+      "roi": [
+        341,
+        497,
+        471,
+        642
+      ],
+      "truth": "present",
+      "split": "holdout",
+      "processing": "raw_display"
+    },
+    {
+      "id": "b_empty_raw",
+      "photo": "b",
+      "roi": [
+        123,
+        525,
+        186,
+        594
+      ],
+      "truth": "empty",
+      "split": "holdout",
+      "processing": "raw_display"
+    },
+    {
+      "id": "b_feed_raw",
+      "photo": "b",
+      "roi": [
+        176,
+        411,
+        245,
+        489
+      ],
+      "truth": "sprocket",
+      "split": "holdout",
+      "processing": "raw_display"
+    },
+    {
+      "id": "a_led_edge",
+      "photo": "a",
+      "roi": [
+        532,
+        560,
+        650,
+        697
+      ],
+      "truth": "present",
+      "split": "overlay_probe",
+      "processing": "gray_edge_overlay"
+    },
+    {
+      "id": "a_empty_edge",
+      "photo": "a",
+      "roi": [
+        912,
+        600,
+        973,
+        661
+      ],
+      "truth": "empty",
+      "split": "overlay_probe",
+      "processing": "gray_edge_overlay"
+    },
+    {
+      "id": "a_feed_edge",
+      "photo": "a",
+      "roi": [
+        491,
+        488,
+        567,
+        560
+      ],
+      "truth": "sprocket",
+      "split": "overlay_probe",
+      "processing": "gray_edge_overlay"
+    },
+    {
+      "id": "b_empty_edge",
+      "photo": "b",
+      "roi": [
+        875,
+        551,
+        944,
+        617
+      ],
+      "truth": "empty",
+      "split": "overlay_probe",
+      "processing": "gray_edge_overlay"
+    },
+    {
+      "id": "b_feed_edge",
+      "photo": "b",
+      "roi": [
+        561,
+        420,
+        644,
+        499
+      ],
+      "truth": "sprocket",
+      "split": "overlay_probe",
+      "processing": "gray_edge_overlay"
+    },
+    {
+      "id": "c_empty_edge",
+      "photo": "c",
+      "roi": [
+        850,
+        567,
+        918,
+        635
+      ],
+      "truth": "empty",
+      "split": "overlay_probe",
+      "processing": "gray_edge_overlay"
+    },
+    {
+      "id": "c_feed_false",
+      "photo": "c",
+      "roi": [
+        741,
+        452,
+        834,
+        535
+      ],
+      "truth": "sprocket",
+      "split": "challenge",
+      "processing": "gray_edge_overlay"
+    },
+    {
+      "id": "c_background",
+      "photo": "c",
+      "roi": [
+        365,
+        328,
+        520,
+        456
+      ],
+      "truth": "background",
+      "split": "challenge",
+      "processing": "raw_display"
+    }
+  ]
+}

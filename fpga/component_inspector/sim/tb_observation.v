@@ -13,7 +13,7 @@ reg [12:0] cp=6400,ec=321;reg [23:0] strength=123456;
 reg cfg=1;reg [15:0] ex=2244,ga=48,fps=27;
 wire [114:0] source_record,record;
 wire invalid=!cfg || tag!=received;
-roi_observation_snapshot snapshot(rx_clk,rst,invalid,tag,32'h00004040,legacy,cp,ec,strength,source_record);
+roi_observation_snapshot snapshot(rx_clk,rst,invalid,tag,32'h00004040,legacy,cp,ec,1'b0,37'd0,strength,source_record);
 status_cdc #(.WIDTH(115)) result(rx_clk,dclk,rst,source_record,record);
 wire valid;wire [1:0] state;
 wire [27:0] gated_record={record[27:25],(record[24] && record[45:28]==displayed),record[23:0]};

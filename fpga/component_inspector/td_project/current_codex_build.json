@@ -1,26 +1,38 @@
 {
-  "purpose": "3528_FIXED_DIRECT_GRAY_EDGE_INDEPENDENT_V4",
+  "purpose": "3528_SAME_MATERIAL_FULLFRAME_DUAL_V8",
   "td_version": "6.2.168116",
-  "base_head": "37d0f9d0473cb4f77660ab5eebd1a7f8f1fe8670",
-  "source_commit": "8ff698ddd984eb0a4b81a05907a614961c699c3e",
-  "source_snapshot": "开发实施/验收记录/20261013_A灰度边缘独立检测恢复_V4轮次1/source_snapshot",
-  "build_root": "tmp/direct_detection_v4_r3_20261013",
+  "base_head": "e604d4fbe4bd40f0d7b40e5fce4ecfda10ea4351",
+  "source_commit": null,
+  "source_snapshot": "开发实施/验收记录/20261014_A_3528全画面双穴位_V8轮次1/source_snapshot",
+  "build_root": "tmp/fullframe_v8_r12_20261014",
   "release": {
-    "path": "fpga/component_inspector/release/direct_detection_v4_20261013/camera_to_dsi_display.bit",
+    "path": "fpga/component_inspector/release/fullframe_dual_v8_20261014/camera_to_dsi_display.bit",
     "bytes": 1789539,
-    "sha256": "40348043fd499e9eedfed62ba9fe3fb30114742998ee521d28be44dd4b95ec3b"
+    "sha256": "2f5bd322d3243443adb5437c7b2ff6aaab4074207aa8e633f780b812477b7852"
   },
-  "validation_record": "开发实施/验收记录/20261013_A灰度边缘独立检测恢复_V4轮次1.md",
+  "validation_record": "开发实施/验收记录/20261014_A_3528全画面双穴位_V8轮次1.md",
   "fresh_tests": [
-    "direct_modes",
-    "direct_isp",
-    "direct_video",
-    "direct_osd",
-    "presence_modes",
-    "display_state",
-    "wb_epoch",
+    "frame_search",
+    "frame_osd",
+    "frame_wait_metadata",
+    "shape_snapshot",
+    "shape_model",
+    "shape_osd",
+    "video_fallback_display",
+    "video_metadata_fallback",
     "writer_epoch",
-    "video_fallback_display"
+    "wb_epoch",
+    "observation",
+    "display_state",
+    "roi_guard",
+    "frame_tailproof",
+    "frame_video"
   ],
-  "onsite": "PENDING"
+  "onsite": "FAIL_BLACK_SCREEN_REPORTED",
+  "onsite_feedback": "开发实施/验收记录/20261014_A_V8黑屏现场反馈_轮次1",
+  "worktree_variant": "V9_WIP_NOT_RELEASED_NOT_ACCEPTED",
+  "worktree_source_snapshot": "开发实施/验收记录/20261014_A_代码仓库交接_轮次1/source_snapshot",
+  "handoff_guide": "开发实施/58_A3528现阶段代码仓库交接.md",
+  "archived_build_root": "开发实施/验收记录/20261014_A_3528全画面双穴位_V8轮次1/source_snapshot",
+  "build_root_note": "Original machine-local build path; use archived source_snapshot for portable replay."
 }

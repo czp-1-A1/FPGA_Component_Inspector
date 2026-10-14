@@ -1,12 +1,13 @@
 // Sampling UI. Three pixel clocks for RGB, DE, HS, VS and ENABLE bypass.
 module experiment_osd #(
- parameter TRACKING=0,MULTI_POCKETS=0,DIRECT_DETECTION=0,CLASS_THRESHOLD=58,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
- parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340,HOLE_Y=220
+ parameter LOCAL_SEARCH=0,SHAPE_MODEL=0,TRACKING=0,MULTI_POCKETS=0,DIRECT_DETECTION=0,CLASS_THRESHOLD=58,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
+ parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340,HOLE_Y=220,FRAME_OBJECTS=0
 )(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,
  input wire [15:0] exposure,gain,
  input wire [7:0] wb_r,wb_b,input wire wb_tune,wb_pending,
  input wire [1:0] view_mode,input wire [12:0] edge_count,input wire [23:0] edge_sum,
+ input wire local_box_valid,input wire [10:0] local_x0,local_x1,input wire [9:0] local_y0,local_y1,
  input wire roi_valid,input wire [7:0] roi_mean,roi_min,roi_max,input wire [1:0] roi_state,
  input wire [15:0] width,height,fps,lane_errors,format_errors,i2c_errors,gaps,
  input wire [31:0] frames,uptime,input wire cfg_done,
@@ -16,12 +17,15 @@ module experiment_osd #(
  input wire [339:0] pocket_records,input wire pocket_enable,
  input wire track_valid,input wire [10:0] track_x0,track_x1,
  input wire [3:0] track_reason,input wire [2:0] track_rows,
- output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb
+ output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb,
+ input wire [151:0] frame_objects
 );
 reg [339:0] pockets_s;reg pockets_enabled_s;
+reg local_box_s;reg [10:0] local_x0_s,local_x1_s;reg [9:0] local_y0_s,local_y1_s;
+reg [151:0] frame_objects_s;
 reg vs_d,de_d;reg [10:0] x;reg [9:0] y;
 // DDR slot selection follows VS. Wait until its metadata has crossed during blanking.
-wire start=TRACKING ? de && !de_d && y==0 : vs && !vs_d;
+wire start=(TRACKING || LOCAL_SEARCH) ? de && !de_d && y==0 : vs && !vs_d;
 reg track_valid_s;reg [10:0] track_x0_s,track_x1_s;
 reg [3:0] track_reason_s;reg [2:0] track_rows_s;
 reg [127:0] track_message;
@@ -58,6 +62,7 @@ reg sample_s,cfg_s,error_s,edge_sample_s;reg [1:0] class_s,reason_s,mode_s,gray_
 reg [15:0] edge_count_s;reg [23:0] edge_sum_s;
 always @(posedge clk or negedge rst_n) begin
  if(!rst_n) begin
+  frame_objects_s<=0;local_box_s<=0;local_x0_s<=0;local_x1_s<=0;local_y0_s<=0;local_y1_s<=0;
   pockets_s<=0;pockets_enabled_s<=0;
   track_valid_s<=0;track_reason_s<=1;track_rows_s<=0;track_x0_s<=SAMPLE_X0;track_x1_s<=SAMPLE_X1;vs_d<=0;de_d<=0;x<=0;y<=0;sample_s<=0;cfg_s<=0;error_s<=0;wb_tune_s<=0;wb_pending_s<=0;
   overflow_s<=0;lost_s<=0;underflow_s<=0;diagnostics_s<=0;publish_s<=0;
@@ -69,6 +74,8 @@ always @(posedge clk or negedge rst_n) begin
   else if(de) x<=x+1'b1;
   else if(de_d) begin x<=0;y<=y+1'b1;end
   if(start) begin
+   frame_objects_s<=roi_valid ? frame_objects : 152'd0;
+   local_box_s<=local_box_valid;local_x0_s<=local_x0;local_x1_s<=local_x1;local_y0_s<=local_y0;local_y1_s<=local_y1;
    pockets_s<=pocket_records;pockets_enabled_s<=pocket_enable;
    track_valid_s<=track_valid;track_x0_s<=track_x0;track_x1_s<=track_x1;
    track_reason_s<=track_reason;track_rows_s<=track_rows;
@@ -80,8 +87,8 @@ always @(posedge clk or negedge rst_n) begin
    class_s<=!cfg_done || fps==0 || !roi_valid ? 2'd1 : roi_state;
    // Both labels use the same recent, complete observation and display snapshot.
    // GRAY+EDGE shows independent tests; it does not fuse or require agreement.
-   gray_state_s<=!cfg_done || fps==0 || !roi_valid ? 2'd1 : roi_mean>=CLASS_THRESHOLD ? 2'd2 : 2'd3;
-   edge_state_s<=!cfg_done || fps==0 || !roi_valid || !view_mode[1] ? 2'd1 :
+   gray_state_s<=!cfg_done || fps==0 || !roi_valid ? 2'd1 : SHAPE_MODEL ? roi_state : roi_mean>=CLASS_THRESHOLD ? 2'd2 : 2'd3;
+   edge_state_s<=SHAPE_MODEL || !cfg_done || fps==0 || !roi_valid || !view_mode[1] ? 2'd1 :
     edge_count>=96 && edge_sum>=32768 ? 2'd2 : edge_count<=48 && edge_sum<=16384 ? 2'd3 : 2'd1;
    reason_s<=!cfg_done ? 2'd0 : fps==0 ? 2'd1 : !roi_valid ? 2'd2 : 2'd3;
    lane_s<=lane_errors;format_s<=format_errors;i2c_s<=i2c_errors;gap_s<=gaps;
@@ -107,6 +114,20 @@ endfunction
 function [6:0] hexchar;
  input [3:0] value;begin hexchar=value<10 ? 7'd48+value : 7'd55+value;end
 endfunction
+// English labels avoid confusing non-target with the legacy UNCAL state.
+function [7:0] shape_status_char;
+ input [1:0] status;input integer pos;
+ begin
+  if(status==0) case(pos)
+   0:shape_status_char="N";1:shape_status_char="O";2:shape_status_char=" ";3:shape_status_char="T";
+   4:shape_status_char="A";5:shape_status_char="R";6:shape_status_char="G";7:shape_status_char="E";8:shape_status_char="T";default:shape_status_char=" ";endcase
+  else case(pos)
+   0:shape_status_char="U";1:shape_status_char="N";2:shape_status_char="C";3:shape_status_char="E";
+   4:shape_status_char="R";5:shape_status_char="T";6:shape_status_char="A";7:shape_status_char="I";8:shape_status_char="N";default:shape_status_char=" ";endcase
+ end
+endfunction
+wire [36:0] model_features_s={edge_sum_s,edge_count_s[12:0]};
+wire local_review=LOCAL_SEARCH && sample_s && class_s==2 && model_features_s[35];
 function [5:0] result_glyph;
  input [1:0] code;input [2:0] position;
  begin
@@ -212,9 +233,11 @@ function [6:0] mode_glyph;
  endcase
  end
 endfunction
-wire [23:0] result_color=class_s==0 ? 24'hf7b955 : class_s==2 ? 24'h74dbc7 : class_s==3 ? 24'hffae64 : 24'hb0c0d4;
-wire direct_label=DIRECT_DETECTION && x>=SAMPLE_X0 && x<SAMPLE_X0+112 && y>=SAMPLE_Y0-56 && y<SAMPLE_Y0-4;
-wire direct_gray_row=y<SAMPLE_Y0-30;
+wire [23:0] result_color=local_review ? 24'hffcc55 : class_s==0 ? 24'hf7b955 : class_s==2 ? 24'h74dbc7 : class_s==3 ? 24'hffae64 : 24'hb0c0d4;
+wire [10:0] label_x=LOCAL_SEARCH ? (local_box_s ? local_x0_s : 11'd416) : SAMPLE_X0;
+wire [9:0] label_y=LOCAL_SEARCH ? (local_box_s ? local_y0_s : 10'd228) : SAMPLE_Y0;
+wire direct_label=!FRAME_OBJECTS && DIRECT_DETECTION && x>=label_x && x<label_x+112 && y>=label_y-56 && y<label_y-4;
+wire direct_gray_row=y<label_y-30;
 wire [1:0] direct_state=direct_gray_row ? gray_state_s : edge_state_s;
 reg pocket_border,pocket_label;reg [23:0] pocket_color;
 reg [1:0] pocket_state;reg [10:0] pocket_label_x;reg [9:0] pocket_label_y;
@@ -232,6 +255,41 @@ always @* begin
    end
   end
  end
+end
+// Freeze both records at the first active pixel of the selected DDR frame.
+// Numbering is left-to-right in this image, not a persistent tape ID.
+reg frame_border,frame_label;reg [23:0] frame_color;
+reg [1:0] frame_state;reg [3:0] frame_reason;reg frame_number;
+reg [10:0] frame_lx;reg [9:0] frame_ly;
+integer fi;reg [75:0] object_value;reg [10:0] fx0,fx1,flx;reg [9:0] fy0,fy1,fly;
+always @*begin
+ frame_border=0;frame_label=0;frame_color=24'hb0c0d4;frame_state=1;frame_reason=0;frame_number=0;frame_lx=0;frame_ly=0;
+ object_value=0;fx0=0;fx1=0;fy0=0;fy1=0;flx=0;fly=0;
+ for(fi=0;fi<2;fi=fi+1)begin
+  object_value=frame_objects_s[fi*76+:76];
+  fx0=object_value[41:31];fx1=object_value[30:20];fy0=object_value[19:10];fy1=object_value[9:0];
+  flx=fx0>936 ? 936 : fx0;
+  // Stagger neighboring cards so adjacent pockets do not share one label.
+  fly=fi==1 && fy1<448 ? fy1+4 : fy0>=136 ? fy0-56 : fy1+4;
+  if(fly>448)fly=448;
+  if(FRAME_OBJECTS && sample_s && object_value[75])begin
+   if(x>=fx0 && x<fx1 && y>=fy0 && y<fy1 && (x==fx0 || x==fx1-1 || y==fy0 || y==fy1-1))begin
+    frame_border=1;
+    frame_color=object_value[74:73]==2 ? (|object_value[72:69] ? 24'hffcc55 : 24'h74dbc7) : object_value[74:73]==3 ? 24'hffae64 : 24'hb0c0d4;
+   end
+   if(x>=flx && x<flx+88 && y>=fly && y<fly+56)begin
+    frame_label=1;frame_lx=flx;frame_ly=fly;frame_number=fi;frame_state=object_value[74:73];frame_reason=object_value[72:69];
+    frame_color=frame_state==2 ? (|frame_reason ? 24'hffcc55 : 24'h74dbc7) : frame_state==3 ? 24'hffae64 : 24'hb0c0d4;
+   end
+  end
+ end
+end
+reg [63:0] frame_text;
+always @*begin
+ if(frame_state==2 && |frame_reason)begin
+  if(y<frame_ly+40)frame_text={frame_reason[0] ? "SIZE" : "----",8'd32,frame_reason[1] ? "ASP" : "---"};
+  else frame_text={frame_reason[2] ? "FILL" : "----",8'd32,frame_reason[3] ? "REF" : "---"};
+ end else frame_text=y<frame_ly+40 ? (frame_state>=2 ? "MODEL OK" : "CHECK   ") : mode_s[1] ? "EDGE ON " : "EDGE OFF";
 end
 reg [6:0] glyph;reg glyph_cjk;reg [4:0] glyph_col,glyph_row;reg [23:0] ink_color;
 always @* begin
@@ -646,7 +704,7 @@ always @* begin
  if((TRACKING || DIRECT_DETECTION) && y>=8 && y<24 && x>=128 && x<232) begin
   glyph_cjk=0;glyph_row=y-8;glyph_col=(x-128)%8;
   case((x-128)/8)
-   0:glyph="D";1:glyph=DIRECT_DETECTION ? "5" : MULTI_POCKETS ? "4" : "3";2:glyph=" ";3:glyph="P";
+   0:glyph="D";1:glyph=FRAME_OBJECTS ? "A" : LOCAL_SEARCH ? "8" : SHAPE_MODEL ? "6" : DIRECT_DETECTION ? "5" : MULTI_POCKETS ? "4" : "3";2:glyph=" ";3:glyph="P";
    4:glyph=hexchar(publish_s[24:21]);5:glyph=hexchar(publish_s[20:17]);
    6:glyph=" ";7:glyph=publish_s[25] ? "M" : "W";8:glyph=hexchar({3'd0,publish_s[16]});
    9:glyph=hexchar(publish_s[15:12]);10:glyph=hexchar(publish_s[11:8]);
@@ -663,44 +721,89 @@ always @* begin
  if(DIRECT_DETECTION && y>=8 && y<24 && x>=240 && x<344) begin
   glyph_cjk=0;glyph_row=y-8;glyph_col=(x-240)%8;
   case((x-240)/8)
-   0:glyph="F";1:glyph="I";2:glyph="X";3:glyph="E";4:glyph="D";5:glyph=" ";
-   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph="4";default:glyph=" ";
+   0:glyph=FRAME_OBJECTS ? "F" : LOCAL_SEARCH ? "L" : SHAPE_MODEL ? "S" : "F";1:glyph=FRAME_OBJECTS ? "R" : LOCAL_SEARCH ? "O" : SHAPE_MODEL ? "H" : "I";
+   2:glyph=FRAME_OBJECTS ? "A" : LOCAL_SEARCH ? "C" : SHAPE_MODEL ? "A" : "X";3:glyph=FRAME_OBJECTS ? "M" : LOCAL_SEARCH ? "A" : SHAPE_MODEL ? "P" : "E";
+   4:glyph=FRAME_OBJECTS ? "E" : LOCAL_SEARCH ? "L" : SHAPE_MODEL ? "E" : "D";5:glyph=" ";
+   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph=FRAME_OBJECTS ? "9" : LOCAL_SEARCH ? "7" : SHAPE_MODEL ? "5" : "4";default:glyph=" ";
+  endcase
+ end
+ if(SHAPE_MODEL && sample_s && class_s<2 && y>=540 && y<588 && x>=16 && x<208) begin
+  glyph_cjk=0;glyph=shape_status_char(class_s,(x-16)/16);glyph_col=((x-16)/2)%8;glyph_row=(y-540)/2;
+  if(y>=572) glyph=" ";
+ end
+ // FG/W/H are native feature measurements in hex, T is decimal.
+ if(SHAPE_MODEL && y>=548 && y<564 && x>=808 && x<1008) begin
+  glyph_cjk=0;glyph_col=(x-808)%8;glyph_row=y-548;ink_color=24'hb0c0d4;
+  case((x-808)/8)
+   0:glyph="F";1:glyph="G";2:glyph=" ";
+   3:glyph=sample_s ? hexchar({3'd0,model_features_s[34]}) : "-";
+   4:glyph=sample_s ? hexchar(model_features_s[33:30]) : "-";
+   5:glyph=sample_s ? hexchar(model_features_s[29:26]) : "-";
+   6:glyph=sample_s ? hexchar(model_features_s[25:22]) : "-";
+   7:glyph=" ";8:glyph="W";9:glyph=" ";
+   10:glyph=sample_s ? hexchar({1'b0,model_features_s[21:19]}) : "-";
+   11:glyph=sample_s ? hexchar(model_features_s[18:15]) : "-";
+   12:glyph=" ";13:glyph="H";14:glyph=" ";
+   15:glyph=sample_s ? hexchar({1'b0,model_features_s[14:12]}) : "-";
+   16:glyph=sample_s ? hexchar(model_features_s[11:8]) : "-";
+   17:glyph=" ";18:glyph="T";19:glyph=" ";20:glyph="1";21:glyph="0";22:glyph="0";default:glyph=" ";
   endcase
  end
  if(direct_label) begin
-  glyph_row=direct_gray_row ? y-(SAMPLE_Y0-56) : y-(SAMPLE_Y0-30);
-  ink_color=direct_state==2 ? 24'h74dbc7 : direct_state==3 ? 24'hffae64 : 24'hb0c0d4;
-  if(x<SAMPLE_X0+40) begin
-   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-SAMPLE_X0)%8;
-   case((x-SAMPLE_X0)/8)
-    0:glyph=direct_gray_row ? "G" : "E";1:glyph=direct_gray_row ? "R" : "D";
-    2:glyph=direct_gray_row ? "A" : "G";3:glyph=direct_gray_row ? "Y" : "E";default:glyph=" ";
+  glyph_row=direct_gray_row ? y-(label_y-56) : y-(label_y-30);
+  ink_color=local_review ? 24'hffcc55 : direct_state==2 ? 24'h74dbc7 : direct_state==3 ? 24'hffae64 : 24'hb0c0d4;
+  if(x<label_x+40) begin
+   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-label_x)%8;
+   case((x-label_x)/8)
+    0:glyph=direct_gray_row ? (SHAPE_MODEL ? "M" : "G") : local_review ? "F" : "E";1:glyph=direct_gray_row ? (SHAPE_MODEL ? "O" : "R") : local_review ? "I" : "D";
+    2:glyph=direct_gray_row ? (SHAPE_MODEL ? "D" : "A") : local_review ? "T" : "G";3:glyph=direct_gray_row ? (SHAPE_MODEL ? "E" : "Y") : local_review ? " " : "E";
+    default:glyph=SHAPE_MODEL && direct_gray_row ? "L" : " ";
    endcase
-  end else if(!direct_gray_row && !mode_s[1]) begin
-   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-SAMPLE_X0-40)%8;
-   case((x-SAMPLE_X0-40)/8) 0:glyph="O";1:glyph="F";2:glyph="F";default:glyph=" ";endcase
+  end else if(SHAPE_MODEL && direct_gray_row && sample_s && direct_state<2) begin
+   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-label_x-40)%8;
+   glyph=shape_status_char(direct_state,(x-label_x-40)/8);
+  end else if(!direct_gray_row && (SHAPE_MODEL || !mode_s[1])) begin
+   glyph_cjk=0;glyph_row=(glyph_row>=5 && glyph_row<21) ? glyph_row-5 : 0;glyph_col=(x-label_x-40)%8;
+   if(local_review)case((x-label_x-40)/8) 0:glyph="C";1:glyph="H";2:glyph="E";3:glyph="C";4:glyph="K";default:glyph=" ";endcase
+   else case((x-label_x-40)/8) 0:glyph="O";1:glyph=SHAPE_MODEL && mode_s[1] ? "N" : "F";2:glyph=SHAPE_MODEL && mode_s[1] ? " " : "F";default:glyph=" ";endcase
   end else begin
-   glyph_cjk=1;glyph_col=(x-SAMPLE_X0-40)%24;
-   glyph=result_glyph(direct_state,(x-SAMPLE_X0-40)/24);
+   glyph_cjk=1;glyph_col=(x-label_x-40)%24;
+   glyph=result_glyph(direct_state,(x-label_x-40)/24);
   end
  end
  if(pocket_label) begin
   glyph_cjk=1;glyph_row=y-pocket_label_y;glyph_col=(x-pocket_label_x)%24;
   glyph=result_glyph(pocket_state,(x-pocket_label_x)/24);ink_color=pocket_color;
  end
+ if(frame_label)begin
+  ink_color=frame_color;
+  if(y<frame_ly+24)begin
+   glyph_row=y-frame_ly;
+   if(x<frame_lx+16)begin glyph_cjk=0;glyph_col=(x-frame_lx)%8;glyph_row=(y>=frame_ly+4 && y<frame_ly+20) ? y-frame_ly-4 : 0;glyph=x<frame_lx+8 && y>=frame_ly+4 && y<frame_ly+20 ? (frame_number ? "2" : "1") : " ";end
+   else if(frame_state<2)begin glyph_cjk=0;glyph_row=(y>=frame_ly+4 && y<frame_ly+20) ? y-frame_ly-4 : 0;glyph_col=(x-frame_lx-16)%8;glyph=y>=frame_ly+4 && y<frame_ly+20 ? shape_status_char(frame_state,(x-frame_lx-16)/8) : " ";end
+   else begin glyph_cjk=1;glyph_col=(x-frame_lx-16)%24;glyph=result_glyph(frame_state,(x-frame_lx-16)/24);end
+  end else begin
+   glyph_cjk=0;glyph_row=(y-frame_ly-24)%16;glyph_col=(x-frame_lx)%8;
+   glyph=x<frame_lx+64 ? frame_text[63-((x-frame_lx)/8)*8-:8] : " ";
+  end
+ end
 end
 wire roi_inside=x>=ROI_X0 && x<ROI_X1 && y>=ROI_Y0 && y<ROI_Y1;
 wire roi_border=roi_inside && (x==ROI_X0 || x==ROI_X1-1 || y==ROI_Y0 || y==ROI_Y1-1);
 wire [10:0] sample_x0=TRACKING ? track_x0_s : SAMPLE_X0,sample_x1=TRACKING ? track_x1_s : SAMPLE_X1;
-wire sample_inside=(!TRACKING || track_valid_s) && x>=sample_x0 && x<sample_x1 && y>=SAMPLE_Y0 && y<SAMPLE_Y1;
-wire sample_border=sample_inside && (x==sample_x0 || x==sample_x1-1 || y==SAMPLE_Y0 || y==SAMPLE_Y1-1);
+wire [9:0] sample_y0=LOCAL_SEARCH ? local_y0_s : SAMPLE_Y0,sample_y1=LOCAL_SEARCH ? local_y1_s : SAMPLE_Y1;
+wire [10:0] box_x0=LOCAL_SEARCH ? local_x0_s : sample_x0,box_x1=LOCAL_SEARCH ? local_x1_s : sample_x1;
+wire sample_inside=(LOCAL_SEARCH ? local_box_s : (!TRACKING || track_valid_s)) && x>=box_x0 && x<box_x1 && y>=sample_y0 && y<sample_y1;
+wire sample_border=sample_inside && (x==box_x0 || x==box_x1-1 || y==sample_y0 || y==sample_y1-1);
+wire local_search_border=LOCAL_SEARCH && x>=416 && x<608 && y>=228 && y<372 &&
+ (x==416 || x==607 || y==228 || y==371) && ((x==416 || x==607) ? y[1:0]==0 : x[1:0]==0);
 wire [9:0] gray_sum={2'd0,rgb[23:16]}+{1'd0,rgb[15:8],1'b0}+{2'd0,rgb[7:0]};
 wire [7:0] gray=gray_sum[9:2];
 wire align_border=TRACKING && !track_valid_s && x>=SAMPLE_X0 && x<SAMPLE_X1 && y>=SAMPLE_Y0 && y<SAMPLE_Y1 &&
  (x==SAMPLE_X0 || x==SAMPLE_X1-1 || y==SAMPLE_Y0 || y==SAMPLE_Y1-1) && (x[2:0]==0 || y[2:0]==0);
 wire search_guide=TRACKING && ((x>=256 && x<768 && x[3:0]==0 && (y==HOLE_Y-8 || y==HOLE_Y || y==HOLE_Y+8)) || (x==464 && y>=HOLE_Y-12 && y<=HOLE_Y+12));
-wire [23:0] picture=MULTI_POCKETS ? (ENABLE && pocket_border ? pocket_color : rgb) :
- ENABLE && sample_border ? 24'h00ffff :
+wire [23:0] picture=FRAME_OBJECTS ? (ENABLE && frame_border ? frame_color : rgb) : MULTI_POCKETS ? (ENABLE && pocket_border ? pocket_color : rgb) :
+ ENABLE && (sample_border || local_search_border) ? 24'h00ffff :
  ENABLE && roi_border ? 24'h00ff40 : ENABLE && (search_guide || align_border) ? 24'hffff00 : rgb;
 reg [10:0] ascii_address;
 reg [10:0] cjk_address;
@@ -726,7 +829,7 @@ always @(posedge clk or negedge rst_n) begin
   cjk_address<={glyph[5:0],glyph_row};
   logo_address<={logo_y,logo_x};
   hs_p<={hs_p[0],hs};vs_p<={vs_p[0],vs};de_p<={de_p[0],de};
-  panel_p<={panel_p[0],(de && (direct_label || pocket_label || y<80 || y>=504 || (TRACKING && y>=148 && y<164 && x>=256 && x<544)))};
+  panel_p<={panel_p[0],(de && (frame_label || direct_label || pocket_label || ((y<80 || y>=504) && !frame_border) || (TRACKING && y>=148 && y<164 && x>=256 && x<544)))};
   logo_p<={logo_p[0],(x>=16 && x<112 && y>=8 && y<72)};
   cjk_p<={cjk_p[0],glyph_cjk};col0<=glyph_col;col1<=col0;
   rgb0<=picture;rgb1<=rgb0;ink0<=ink_color;ink1<=ink0;

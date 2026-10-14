@@ -1,0 +1,3 @@
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS frame video: 8 real correction/RAW10/vendor RAM frames, all four views, 2P and P+E outside old ROI, foreground background, late metadata bounded within 27-FPS source period, both records bound to DDR slot, WB zero-result fallback, mode cancellation and recovery; accepted=6 OF=0 UF=0
+PASS ModelSim: all 1 tests, including original vendor ERAM model

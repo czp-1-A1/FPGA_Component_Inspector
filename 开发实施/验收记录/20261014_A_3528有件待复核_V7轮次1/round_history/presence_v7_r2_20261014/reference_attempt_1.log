@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\check_presence_native.py", line 13, in <module>
+    labels,lab,stats,centroids=cv2.connectedComponentsWithStats(binary,connectivity=4)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'cv2' has no attribute 'connectedComponentsWithStats'

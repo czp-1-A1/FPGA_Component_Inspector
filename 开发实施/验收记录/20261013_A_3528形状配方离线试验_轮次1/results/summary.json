@@ -1,0 +1,192 @@
+[
+  {
+    "id": "a_led_raw",
+    "split": "teach",
+    "truth": "present",
+    "processing": "raw_display",
+    "match": "present",
+    "distance": 0.0,
+    "margin": 1.260729138542521,
+    "distances": {
+      "present": 0.0,
+      "sprocket": 1.260729138542521,
+      "empty": 1.490251581310938
+    }
+  },
+  {
+    "id": "a_empty_raw",
+    "split": "teach",
+    "truth": "empty",
+    "processing": "raw_display",
+    "match": "empty",
+    "distance": 0.0,
+    "margin": 0.22952244276841705,
+    "distances": {
+      "empty": 0.0,
+      "sprocket": 0.22952244276841705,
+      "present": 1.490251581310938
+    }
+  },
+  {
+    "id": "a_feed_raw",
+    "split": "teach",
+    "truth": "sprocket",
+    "processing": "raw_display",
+    "match": "sprocket",
+    "distance": 0.0,
+    "margin": 0.22952244276841705,
+    "distances": {
+      "sprocket": 0.0,
+      "empty": 0.22952244276841705,
+      "present": 1.260729138542521
+    }
+  },
+  {
+    "id": "b_led_raw2",
+    "split": "holdout",
+    "truth": "present",
+    "processing": "raw_display",
+    "match": "present",
+    "distance": 0.05695468343969415,
+    "margin": 1.2099825142215888,
+    "distances": {
+      "present": 0.05695468343969415,
+      "sprocket": 1.2669371976612829,
+      "empty": 1.4964596404297
+    }
+  },
+  {
+    "id": "b_empty_raw",
+    "split": "holdout",
+    "truth": "empty",
+    "processing": "raw_display",
+    "match": "empty",
+    "distance": 0.18041048317552735,
+    "margin": 0.21331671859905496,
+    "distances": {
+      "empty": 0.18041048317552735,
+      "sprocket": 0.3937272017745823,
+      "present": 1.334018388419251
+    }
+  },
+  {
+    "id": "b_feed_raw",
+    "split": "holdout",
+    "truth": "sprocket",
+    "processing": "raw_display",
+    "match": "sprocket",
+    "distance": 0.04856635394983821,
+    "margin": 0.16700270129655242,
+    "distances": {
+      "sprocket": 0.04856635394983821,
+      "empty": 0.21556905524639064,
+      "present": 1.2772078499553423
+    }
+  },
+  {
+    "id": "a_led_edge",
+    "split": "overlay_probe",
+    "truth": "present",
+    "processing": "gray_edge_overlay",
+    "match": "present",
+    "distance": 0.2596530615661792,
+    "margin": 1.1076243036316629,
+    "distances": {
+      "present": 0.2596530615661792,
+      "sprocket": 1.367277365197842,
+      "empty": 1.596799807966259
+    }
+  },
+  {
+    "id": "a_empty_edge",
+    "split": "overlay_probe",
+    "truth": "empty",
+    "processing": "gray_edge_overlay",
+    "match": "UNCERTAIN",
+    "distance": 0.20607573932430714,
+    "margin": 0.0767841286312971,
+    "distances": {
+      "empty": 0.20607573932430714,
+      "sprocket": 0.28285986795560425,
+      "present": 1.3922218189981252
+    }
+  },
+  {
+    "id": "a_feed_edge",
+    "split": "overlay_probe",
+    "truth": "sprocket",
+    "processing": "gray_edge_overlay",
+    "match": "sprocket",
+    "distance": 0.25733471387567897,
+    "margin": 0.20602043438288398,
+    "distances": {
+      "sprocket": 0.25733471387567897,
+      "empty": 0.46335514825856294,
+      "present": 1.174050563432364
+    }
+  },
+  {
+    "id": "b_empty_edge",
+    "split": "overlay_probe",
+    "truth": "empty",
+    "processing": "gray_edge_overlay",
+    "match": "UNCERTAIN",
+    "distance": 0.1455426969346051,
+    "margin": 0.09068994711646661,
+    "distances": {
+      "empty": 0.1455426969346051,
+      "sprocket": 0.2362326440510717,
+      "present": 1.3674361571036058
+    }
+  },
+  {
+    "id": "b_feed_edge",
+    "split": "overlay_probe",
+    "truth": "sprocket",
+    "processing": "gray_edge_overlay",
+    "match": "sprocket",
+    "distance": 0.25794547692125497,
+    "margin": 0.20602043438288392,
+    "distances": {
+      "sprocket": 0.25794547692125497,
+      "empty": 0.4639659113041389,
+      "present": 1.2627845443962986
+    }
+  },
+  {
+    "id": "c_empty_edge",
+    "split": "overlay_probe",
+    "truth": "empty",
+    "processing": "gray_edge_overlay",
+    "match": "empty",
+    "distance": 0.144840765975785,
+    "margin": 0.17721393065591612,
+    "distances": {
+      "empty": 0.144840765975785,
+      "sprocket": 0.3220546966317011,
+      "present": 1.4521444720688097
+    }
+  },
+  {
+    "id": "c_feed_false",
+    "split": "challenge",
+    "truth": "sprocket",
+    "processing": "gray_edge_overlay",
+    "match": "sprocket",
+    "distance": 0.055355986500364676,
+    "margin": 0.17585503705265287,
+    "distances": {
+      "sprocket": 0.055355986500364676,
+      "empty": 0.23121102355301754,
+      "present": 1.2734083738498745
+    }
+  },
+  {
+    "id": "c_background",
+    "split": "challenge",
+    "truth": "background",
+    "processing": "raw_display",
+    "match": "REJECT_CROP",
+    "reason": "TOUCHES_CROP_BORDER"
+  }
+]

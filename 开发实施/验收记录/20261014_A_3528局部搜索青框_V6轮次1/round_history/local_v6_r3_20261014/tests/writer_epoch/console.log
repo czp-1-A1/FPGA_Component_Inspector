@@ -1,0 +1,60 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/writer_epoch/transcript.log -wlf modelsim_work/writer_epoch/wave.wlf -do "log /tb_writer_epoch/*; run -all; quit -code 1 -force" test_writer_epoch.tb_writer_epoch 
+# Start time: 01:20:32 on Oct 14,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: tb_writer_epoch.v(8): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 29, found 20.
+# ** Warning: tb_writer_epoch.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'O_publish_diagnostic'.
+# ** Warning: tb_writer_epoch.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'O_ddr_user_wr_data'.
+# ** Warning: tb_writer_epoch.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'O_ddr_user_addr'.
+# ** Warning: tb_writer_epoch.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'O_ddr_user_wr_en'.
+# ** Warning: tb_writer_epoch.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'O_overflow_frames'.
+# ** Warning: tb_writer_epoch.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'O_lost_frames'.
+# ** Warning: tb_writer_epoch.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'O_completed_rp'.
+# ** Warning: tb_writer_epoch.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'O_video_out_rp'.
+# ** Warning: tb_writer_epoch.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'O_video_in_wr_busy'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_writer_epoch(fast)
+# Loading work.video_in(fast)
+# Loading work.status_cdc(fast)
+# Loading work.w128_d512_fifo(fast)
+# Loading work.soft_fifo_al_4057d6b76aa6(fast)
+# Loading work.fifo_cross_domain_addr_process_al_4057d6b76aa6(fast)
+# Loading work.ram_infer_4057d6b76aa6(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ceb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writer_epoch/dut/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v Line: 221
+# ** Warning: (vsim-3015) [PCDPC] - Port size (9) does not match connection size (32) for port 'addrb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_writer_epoch/dut/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v Line: 221
+# log /tb_writer_epoch/*
+#  run -all
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# PASS writer epoch: 8 clock phases/close-marker gaps, next complete frame recovers with matching source epoch and metadata
+# ** Note: $finish    : tb_writer_epoch.v(34)
+#    Time: 20860136 ps  Iteration: 1  Instance: /tb_writer_epoch
+# End time: 01:20:33 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 15

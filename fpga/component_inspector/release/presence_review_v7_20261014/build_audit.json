@@ -1,0 +1,151 @@
+{
+  "status": "PASS_SOFTWARE_EXPERIMENT_ONSITE_PENDING",
+  "onsite": "PENDING",
+  "variant": "3528_PRESENCE_REVIEW_V7",
+  "changed_inputs": [
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/roi_shape_search.v"
+  ],
+  "unchanged_inputs": 210,
+  "timing": {
+    "setup_wns_ns": 0.203,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.47
+  },
+  "resources": {
+    "slice": {
+      "used": 13564,
+      "total": 21216,
+      "percent": 63.93
+    },
+    "eram": {
+      "used": 53,
+      "total": 108,
+      "percent": 49.07
+    },
+    "dsp": {
+      "used": 18,
+      "total": 40,
+      "percent": 45.0
+    }
+  },
+  "resource_delta_from_v6": {
+    "slice": -95,
+    "eram": 0,
+    "dsp": 1
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 10
+  },
+  "warning_deltas": {
+    "syn_1": {
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "sdc_unchanged_from_v6": true,
+  "explicit_max_delays": 35,
+  "vendor_fifo_max_delays": 2,
+  "max_delays_matched": 37,
+  "max_delays_ignored": 0,
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "a3d1164e41690a93c9113c6620cc081c63954f0191bffe3d445bcab91d0dfc2c"
+  },
+  "tests": [
+    {
+      "name": "presence_review",
+      "round": "presence_v7_r1_20261014",
+      "status": "PASS",
+      "console_sha256": "8013fc164487b70ee298f5baccb4266e58ea6a13981bb29c1ebe30a65f50141c"
+    },
+    {
+      "name": "local_search",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "79ebfb20ff2c85581c9674ae459e4b57ec3362e9f1422ecb256242e5d0baf8ae"
+    },
+    {
+      "name": "local_osd",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "d76dfb0663a557bd38a78ad739fbfc1bb039dd3a75061ae11119bce2bec331a5"
+    },
+    {
+      "name": "shape_snapshot",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "4dd9004db7a8494e3ccd641de17d5f6a58572d3446176b1080f9a7ad71e10f01"
+    },
+    {
+      "name": "shape_model",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "ee03dd2432af6522315f9c20b6dd37fef37c315b8ae849e07f93889e44cd55ec"
+    },
+    {
+      "name": "shape_osd",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "7728293df0d7fec63b74b121a61adff6edb61b58205b280c6a657a80e06adfe6"
+    },
+    {
+      "name": "video_fallback_display",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "550bd4fcbd559aff34b6e2a14a2c51e7d1b81474a11cf2b4cc97f9a4b6de927c"
+    },
+    {
+      "name": "video_metadata_fallback",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "3be48c84871847b60b23d5ac82b2c9516c7866015018d01c63644b9f4ee6cde9"
+    },
+    {
+      "name": "writer_epoch",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "a04161e4ed10f3e22bd826d89de3e6955a4bc09663560362fc02814f8e601046"
+    },
+    {
+      "name": "wb_epoch",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "f5a42aa96acf095e13dac284bfaa69bec731a26f4a8ce6c4d75e5f25f8fd995d"
+    },
+    {
+      "name": "observation",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "43f7f8754be2b26b25ac1650c374aa6a989490d58b27208a2891f4e7c91cb684"
+    },
+    {
+      "name": "display_state",
+      "round": "presence_v7_r4_20261014",
+      "status": "PASS",
+      "console_sha256": "446ba2c1f3452af6316c0ebdcfd632154c8f1d5cb8a9cf1111bf70ec8830bc37"
+    },
+    {
+      "name": "local_isp",
+      "round": "presence_v7_r2_20261014",
+      "status": "PASS",
+      "console_sha256": "0a20a7c898ba1cfdfe0d487c506be4c5b55d7e33932fec74218d6cdda759d3d2"
+    },
+    {
+      "name": "local_video",
+      "round": "presence_v7_r3_20261014",
+      "status": "PASS",
+      "console_sha256": "c675a2b92fc3f04a698fc8f66bb8e62c7dea25a439e195358decaa8ddf69b715"
+    }
+  ],
+  "independent_native_reference_frames": 12,
+  "scope": "Same 3528 white LED and tape, bounded local search, original strict model plus experimental CHECK envelope; onsite pending"
+}

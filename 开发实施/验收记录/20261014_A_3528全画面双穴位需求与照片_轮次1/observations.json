@@ -1,0 +1,35 @@
+{
+  "scope": "同一3528白色LED与同一载带；随后用户要求去掉算法区域框，全画面检测",
+  "quality_truth_available": [
+    "穴位内偏移",
+    "旋转",
+    "立起",
+    "翻面"
+  ],
+  "quality_samples_received": false,
+  "photos": [
+    {
+      "truth": "有件，具体缺陷未标注",
+      "foreground_hex": "1123",
+      "width_hex": "42",
+      "height_hex": "50",
+      "foreground": 4387,
+      "width": 66,
+      "height": 80,
+      "strict_size_fail": true,
+      "strict_fill_fail": true,
+      "fill_percent": 83.0871212121212,
+      "file": "photo_1.jpg",
+      "sha256": "fc2046f1714bda3ba2df2db88ab2644d098e1c253a13dc161f020c833401a60b"
+    },
+    {
+      "truth": "搜索区内有两个器件；要求各自框与结果",
+      "display_status": "等待有效帧",
+      "mean": null,
+      "features": null,
+      "cause": "仅凭照片未证明原因；代码/仿真另查处理期限与帧发布",
+      "file": "photo_2.jpg",
+      "sha256": "0bc5c643ec028521e1a867bdc3271c0a8e66b8a511be04ccdac91abd2044d761"
+    }
+  ]
+}

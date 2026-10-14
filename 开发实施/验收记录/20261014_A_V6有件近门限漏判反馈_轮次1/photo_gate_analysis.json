@@ -1,0 +1,33 @@
+{
+  "source": "manual transcription of attached phone photograph",
+  "photo_sha256": "26aec3ded5ce40af39a5fa6ed0d9a844f35bff201cd5296eac1aae440f3acbb3",
+  "visible_version": "D7 LOCAL EXP V6",
+  "bit_sha256_proven_by_photo": false,
+  "settings": {
+    "exposure": 2244,
+    "gain": 48,
+    "wb_r": 100,
+    "wb_b": 100
+  },
+  "human_truth": "present, reported by user",
+  "misalignment_measured": false,
+  "displayed_result": "UNCERTAIN",
+  "displayed_sample_valid": true,
+  "foreground_hex": "1007",
+  "foreground_pixels": 4103,
+  "width_hex": "40",
+  "width": 64,
+  "height_hex": "4C",
+  "height": 76,
+  "bbox_area": 4864,
+  "fill_percent": 84.35444078947368,
+  "minimum_foreground_for_85_percent": 4135,
+  "missing_pixels_for_strict_gate": 32,
+  "gates": {
+    "long_52_78": true,
+    "short_40_72": true,
+    "aspect_1_05_1_55": true,
+    "fill_85_percent": false
+  },
+  "interpretation": "The selected component passes size and aspect but fails strict fill. In released V6, failed dark references return NO TARGET; the shown UNCERTAIN with a component box is consistent with shape rejection, not failed localization. Position relative to a pocket has not been measured."
+}

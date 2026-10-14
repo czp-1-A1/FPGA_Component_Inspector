@@ -8,7 +8,7 @@ status_cdc #(.WIDTH(32)) c0(src,rx,rst,request,received);
 status_cdc #(.WIDTH(32)) c1(src,pix,rst,request,displayed);
 reg [27:0] legacy=0;wire [114:0] sample,published;
 wire invalid=tag!=received;
-roi_observation_snapshot snapshot(rx,rst,invalid,18'd0,tag,legacy,13'd6400,13'd99,24'd40000,sample);
+roi_observation_snapshot snapshot(rx,rst,invalid,18'd0,tag,legacy,13'd6400,13'd99,1'b0,37'd0,24'd40000,sample);
 status_cdc #(.WIDTH(115)) c2(rx,pix,rst,sample,published);
 wire [27:0] record={published[27:25],(published[24] && published[114:83]==displayed),published[23:0]};
 wire valid;wire [1:0] state;

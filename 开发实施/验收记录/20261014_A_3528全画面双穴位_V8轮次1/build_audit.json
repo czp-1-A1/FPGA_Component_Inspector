@@ -1,0 +1,161 @@
+{
+  "status": "PASS_SOFTWARE_EXPERIMENT_ONSITE_PENDING",
+  "onsite": "PENDING",
+  "variant": "3528_FULLFRAME_DUAL_DIAGNOSTICS_V8",
+  "changed_inputs": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/video_in.v",
+    "td_project/camera_to_dsi_display.al",
+    "user_source/hdl_source/frame_shape_search.v"
+  ],
+  "unchanged_inputs": 208,
+  "timing": {
+    "setup_wns_ns": 0.147,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.88
+  },
+  "resources": {
+    "slice": {
+      "used": 14298,
+      "total": 21216,
+      "percent": 67.39
+    },
+    "eram": {
+      "used": 69,
+      "total": 108,
+      "percent": 63.89
+    },
+    "dsp": {
+      "used": 20,
+      "total": 40,
+      "percent": 50.0
+    }
+  },
+  "resource_delta_from_v7": {
+    "slice": 734,
+    "eram": 16,
+    "dsp": 2
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 10
+  },
+  "warning_deltas": {
+    "syn_1": {
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "sdc_unchanged_from_v7": true,
+  "explicit_max_delays": 35,
+  "vendor_fifo_max_delays": 2,
+  "max_delays_matched": 37,
+  "max_delays_ignored": 0,
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "2f5bd322d3243443adb5437c7b2ff6aaab4074207aa8e633f780b812477b7852"
+  },
+  "tests": [
+    {
+      "name": "frame_search",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "6ec6c4ea8bd4f91f94718e84f83f30fd121290e1f3f003bfc3e21c64b67b9ada"
+    },
+    {
+      "name": "frame_osd",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "42659cf9847579e7daeb21c27519c79b5f65c1bd06fab5577bdd51ad1060cf24"
+    },
+    {
+      "name": "frame_wait_metadata",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "fe4533e6f398dfbaf6c80d4bbfdc381a9261b1899088bf5085329baff9f27615"
+    },
+    {
+      "name": "shape_snapshot",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "1df18a0029f26b883b7bbee23fb0946486205e0ca90e83b6f8612934bd28218b"
+    },
+    {
+      "name": "shape_model",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "05a3dfb0d53e14af69cddb21b71301d2c217188919a7a81dc73141aad3b10930"
+    },
+    {
+      "name": "shape_osd",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "be18302ca5e8bed922e1e0154dcf0c1995219980f87d8203d1899df405a341f1"
+    },
+    {
+      "name": "video_fallback_display",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "cece496258b37694fb478ed6396cb0a8c580cdc869506cba389258b601e60c54"
+    },
+    {
+      "name": "video_metadata_fallback",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "1172974082345976eafe9c2d65ea834ac635589f828facc8e145cc0dd46a7f6a"
+    },
+    {
+      "name": "writer_epoch",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "523af69edacc45be386042c5ec886b594c5154a74d047cb85bf449d2e7fa23ec"
+    },
+    {
+      "name": "wb_epoch",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "557971ccf2a6ae6088d32d04e4bd93008fbfb65e0a5c4986754ac2ea8866734e"
+    },
+    {
+      "name": "observation",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "23d60f48cdf7face0dcb9c380a6faa144cd85cfa26d6dbe58354a6c853d436ae"
+    },
+    {
+      "name": "display_state",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "594d401d8786bb0e4d5097ef55d3e44b6b402ea1243fb8ce649b80a7b262dc4f"
+    },
+    {
+      "name": "roi_guard",
+      "round": "fullframe_v8_r12_20261014",
+      "status": "PASS",
+      "console_sha256": "3964a251524be3cad01af31416fac09bf413c51a6e4ecdcd7e843ef73385c85d"
+    },
+    {
+      "name": "frame_tailproof",
+      "round": "fullframe_v8_r13_20261014",
+      "status": "PASS",
+      "console_sha256": "1303b002a1c7f0d874354fe3bda206cca776c54f4d5e875b7264212f37c16d99"
+    },
+    {
+      "name": "frame_video",
+      "round": "fullframe_v8_r13_20261014",
+      "status": "PASS",
+      "console_sha256": "3ca492feed61fab43bb091d885eb98f6ea79cac77de97a3380cc9d0e1dc047ad"
+    }
+  ],
+  "independent_reference_images": 17,
+  "native_input_frames": 11,
+  "scope": "Same 3528 white LED and tape; full-frame 2x2 reduction; up to two independent results; model diagnostics, no calibrated quality labels"
+}

@@ -1,0 +1,155 @@
+{
+  "status": "PASS_SOFTWARE_EXPERIMENT_ONSITE_PENDING",
+  "onsite": "PENDING",
+  "variant": "SHAPE_LOCAL_V6",
+  "changed_inputs": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "td_project/camera_to_dsi_display.sdc",
+    "td_project/camera_to_dsi_display.al",
+    "user_source/hdl_source/roi_shape_search.v"
+  ],
+  "unchanged_inputs": 207,
+  "timing": {
+    "setup_wns_ns": 0.245,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.39
+  },
+  "resources": {
+    "slice": {
+      "used": 13659,
+      "total": 21216,
+      "percent": 64.38
+    },
+    "eram": {
+      "used": 53,
+      "total": 108,
+      "percent": 49.07
+    },
+    "dsp": {
+      "used": 17,
+      "total": 40,
+      "percent": 42.5
+    }
+  },
+  "resource_delta_from_v5": {
+    "slice": 1112,
+    "eram": 5,
+    "dsp": 0
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 10
+  },
+  "warning_deltas": {
+    "syn_1": {
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "sdc_restored_metadata_budgets": [
+    "set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/payload*}] -to [get_regs {*crossing/D_data*}]",
+    "set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/req}] -to [get_regs {*crossing/req_sync[0]}]",
+    "set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}] -to [get_regs {u_active_frame_display/ack_sync[0]}]",
+    "set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/payload*}] -to [get_regs {u_active_frame_display/D_data*}]",
+    "set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/req}] -to [get_regs {u_active_frame_display/req_sync[0]}]",
+    "set_max_delay -datapath_only 8.0 -from [get_regs {*crossing/ack}] -to [get_regs {*crossing/ack_sync[0]}]"
+  ],
+  "explicit_max_delays": 35,
+  "vendor_fifo_max_delays": 2,
+  "max_delays_matched": 37,
+  "max_delays_ignored": 0,
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "79d63d1878309c0a2fce58f664aa6ac50b5cc0f740b631fcdb492c244a026a9b"
+  },
+  "tests": [
+    {
+      "name": "local_search",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "f4d67ed372e949504967cc1fe093daac998d1888b70e068f164e53ac692a7e91"
+    },
+    {
+      "name": "local_osd",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "d1826b437e7e9a97277e5afa1958b0ffece7e987924fd8aaaeec198860dd0c52"
+    },
+    {
+      "name": "shape_snapshot",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "f126f6f4f80471769f395d343316e98978fb563e514bc14f52f576e0f7ca25bc"
+    },
+    {
+      "name": "shape_model",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "a32b7fa5770c38bafd011195552b7bac3d31e9fc5ca2a44872722eb9bddd0ee3"
+    },
+    {
+      "name": "shape_osd",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "8f6984dc0d34446d431e8b8626d72131fe16adf8e3315401de3b0c1a53915b23"
+    },
+    {
+      "name": "video_fallback_display",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "b7943a46265eaef3f98f634930f99ac053c7b6a0427bbc1df04c428814872d7d"
+    },
+    {
+      "name": "video_metadata_fallback",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "08f937229755ad93330f27d3c82a5f39e32d75ce3c0a2ad68e825a07b595b391"
+    },
+    {
+      "name": "writer_epoch",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "0196af1174e245e559036e65cbd4ddccfc4c28c42c941eac4452b5bcb6a4ceef"
+    },
+    {
+      "name": "wb_epoch",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "279c34d2a0d6f95b745952eb799145e68722f0e66de22c1117c4c7590c02647d"
+    },
+    {
+      "name": "observation",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "b3d8ab9443d4a61db5c6e80e309c195a9e36c513293a256820a6058944b1440e"
+    },
+    {
+      "name": "display_state",
+      "round": "local_v6_r11_20261014",
+      "status": "PASS",
+      "console_sha256": "26cd759a5239efcd8dfc47a1d05064f3ee77da21b3d7cfeb5b8113abfb4196c4"
+    },
+    {
+      "name": "local_isp",
+      "round": "local_v6_r14_20261014",
+      "status": "PASS",
+      "console_sha256": "1c6065cad6311dba96912835c948e38f608b24fb3bb95f9c1ac77d75f4f7ce41"
+    },
+    {
+      "name": "local_video",
+      "round": "local_v6_r17_20261014",
+      "status": "PASS",
+      "console_sha256": "ee59ead73f57a7ec18abef9cb8192a9b5ae9c173ac94be162abf490d26968155"
+    }
+  ],
+  "independent_native_reference_frames": 8,
+  "scope": "3528 white LED, bounded 192x144 local search; unchanged V5 shape limits; onsite pending"
+}

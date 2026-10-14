@@ -1,0 +1,20 @@
+# OBS ISP initial line-span learning frame good=0 bad=1 ready=0
+# OBS direct video frame=2 view=1 mean=194 EC=0 GS=0 class=0
+# OBS direct video frame=3 view=1 mean=194 EC=0 GS=0 class=0
+# OBS direct video frame=4 view=0 mean=194 EC=0 GS=0 class=0
+# OBS direct video frame=5 view=2 mean=194 EC=3888 GS=940554 class=0
+# OBS competing DDR stress rejects incomplete view frame=6 reason=1
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS shape video: actual correction/RAW10/vendor RAM/fixed sample metadata-disabled writer/DDR reader arbitration; accepted=4 rejected=1; complete 614400-pixel raster, no underflow, bad view preserves previous slot
+# PASS direct OSD: 672000 pixels, FIXED V4/D5, full Chinese GRAY/EDGE labels, OFF/invalidation, conflicting results stay independent, fixed core and three-clock/frame-held raster
+# PASS shape OSD: 706432 pixels, SHAPE V5/D6, full Chinese GRAY/EDGE labels, OFF/invalidation, conflicting results stay independent, fixed core and three-clock/frame-held raster
+# PASS video fallback display: 384 exact RGB pixels, normal/zero metadata/recovery slots, unchanged metadata binding, no black video or underflow
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# PASS writer epoch: 8 clock phases/close-marker gaps, next complete frame recovers with matching source epoch and metadata

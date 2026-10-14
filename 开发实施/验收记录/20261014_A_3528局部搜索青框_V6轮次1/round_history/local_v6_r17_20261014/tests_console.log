@@ -1,0 +1,8 @@
+# OBS ISP initial line-span learning frame good=0 bad=1 ready=0
+# OBS direct video frame=2 view=1 mean=0 EC=0 GS=0 class=1
+# OBS direct video frame=3 view=0 mean=167 EC=0 GS=0 class=2
+# OBS direct video frame=4 view=3 mean=115 EC=568 GS=230040 class=2
+# OBS direct video frame=5 view=2 mean=151 EC=689 GS=278114 class=2
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS local video: actual correction/RAW10/vendor RAM, optional metadata writer and competing DDR reader, zero-metadata video fallback, independent native component bbox/area, shifted frame geometry tied to slot; accepted=4 rejected=0 OF=0 UF=0
+PASS ModelSim: all 1 tests, including original vendor ERAM model

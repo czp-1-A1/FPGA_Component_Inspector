@@ -1,6 +1,6 @@
 
 
-module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0) (
+module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,ENABLE_SHAPE_MODEL=1,ENABLE_LOCAL_SEARCH=1) (
     input wire        I_sys_clk,
     input wire        I_rst_n,
       
@@ -211,7 +211,7 @@ module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0) 
             S_dbg_raw_seen <= 1'b1;
     end
 
-    always @(posedge S_csi_rx_clk or negedge S_rst_n) begin
+    always @(posedge S_process_clk or negedge S_rst_n) begin
         if(!S_rst_n)
             S_dbg_isp_seen <= 1'b0;
         else if(S_ISP_O_tuser | S_ISP_O_tvalid)
@@ -260,14 +260,14 @@ module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0) 
             S_dbg_raw10_seen <= 1'b1;
     end
 
-    always @(posedge S_csi_rx_clk or negedge S_rst_n) begin
+    always @(posedge S_process_clk or negedge S_rst_n) begin
         if(!S_rst_n)
             S_dbg_isp_fs_seen <= 1'b0;
         else if(S_ISP_O_tuser)
             S_dbg_isp_fs_seen <= 1'b1;
     end
 
-    always @(posedge S_csi_rx_clk or negedge S_rst_n) begin
+    always @(posedge S_process_clk or negedge S_rst_n) begin
         if(!S_rst_n)
             S_dbg_isp_valid_seen <= 1'b0;
         else if(S_ISP_O_tvalid)
@@ -539,6 +539,17 @@ raw10_unpacket_2lane u_raw10_unpacket (
   );
 
 
+localparam MULTI_POCKETS=ENABLE_TRACKING && ENABLE_MULTI_POCKETS;
+localparam LOCAL_SEARCH=ENABLE_LOCAL_SEARCH && ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS;
+wire S_process_clk=LOCAL_SEARCH ? S_100m_clk : S_csi_rx_clk;
+// Keep out-of-packet RAW data out of the legacy formatter. The native guard
+// still sees the unfiltered signal and rejects the offending frame.
+reg csi_frame_open;
+always @(posedge S_csi_rx_clk or negedge S_rst_n)begin
+ if(!S_rst_n)csi_frame_open<=0;
+ else if(S_raw10_frame_start)csi_frame_open<=1;
+ else if(S_raw10_frame_end)csi_frame_open<=0;
+end
 //将数据转为stream流
 uial2axis #(
 .IMG_WIDTH(1024),
@@ -549,7 +560,7 @@ u_uial2axis (
 .I_native_clk(S_csi_rx_clk),
 .I_rst_n     (S_rst_n),
 .I_data      (S_raw10_data       ),
-.I_data_valid(S_raw10_valid      ),
+.I_data_valid(S_raw10_valid && (!LOCAL_SEARCH || (csi_frame_open && !S_raw10_frame_end))),
 .I_data_start(S_raw10_frame_start),
 .I_data_end  (S_raw10_frame_end  ),
 .axis_tvalid (S_axis_tvalid),
@@ -635,13 +646,14 @@ wire video_frame_good,video_frame_bad,camera_row_ready;
 wire [35:0] video_diagnostics;
 wire completed_valid,active_valid,capture_ok,display_ok;
 wire [1:0] completed_rp,active_rp;
-localparam MULTI_POCKETS=ENABLE_TRACKING && ENABLE_MULTI_POCKETS;
-localparam FRAME_META_WIDTH=178+340*MULTI_POCKETS;
+localparam FRAME_BOUND=ENABLE_TRACKING || LOCAL_SEARCH;
+localparam FRAME_META_WIDTH=178+340*MULTI_POCKETS+172*LOCAL_SEARCH;
 wire [FRAME_META_WIDTH-1:0] camera_metadata,completed_metadata,active_metadata;
 wire camera_metadata_ready;
 wire [15:0] lost_frames,overflow_frames,underflow_frames;
 wire [25:0] publish_diagnostic,publish_display;
-isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
+isp_top #(.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
+.processing_clk(S_process_clk),
 .axi4s_video_aclk(S_csi_rx_clk),
 .I_rst_n         (S_rst_n),
 .I_tlast         (S_raw_tlast	),
@@ -669,12 +681,12 @@ isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRA
   );
 
 
-    video_in #(.METADATA(ENABLE_TRACKING),.META_WIDTH(FRAME_META_WIDTH),.METADATA_REQUIRED(!MULTI_POCKETS)) u_video_in(
+    video_in #(.METADATA(FRAME_BOUND),.META_WIDTH(FRAME_META_WIDTH),.METADATA_REQUIRED(LOCAL_SEARCH ? 0 : !MULTI_POCKETS),.METADATA_WAIT_CYCLES(LOCAL_SEARCH ? 1500000 : 0)) u_video_in(
         .I_frame_metadata(camera_metadata),.I_frame_metadata_ready(camera_metadata_ready),.O_completed_metadata(completed_metadata),
         .O_publish_diagnostic(publish_diagnostic),
         .I_rst_n              (  S_rst_n             ),
 
-        .I_camera_clk         ( S_csi_rx_clk          ),
+        .I_camera_clk         ( S_process_clk         ),
         .I_camera_frame_start ( S_ISP_O_tuser  ),
         .I_camera_valid       ( S_ISP_O_tvalid ),
         .I_camera_data        ( S_ISP_O_tdata  ),
@@ -868,24 +880,27 @@ isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRA
      .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
      .S_data({active_valid,active_rp,active_metadata}),.D_data(active_frame_display));
     wire [114:0] latest_observation_data;
-    wire [114:0] observation_data=ENABLE_TRACKING ? active_frame_display[114:0] : latest_observation_data;
+    wire [114:0] observation_data=FRAME_BOUND ? active_frame_display[114:0] : latest_observation_data;
     wire tracking_match=active_frame_display[FRAME_META_WIDTH+2] && active_frame_display[169:138]==cam_display[48:17];
     wire observation_match=observation_data[45:28]==observation_display && observation_data[114:83]==cam_display[80:49];
     wire [27:0] roi_display={observation_data[27:25],(observation_data[24] && observation_match),observation_data[23:0]};
     status_cdc #(.WIDTH(115)) u_roi_display(
-        .S_clk(S_csi_rx_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+        .S_clk(S_process_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
         .S_data(observation_record),.D_data(latest_observation_data));
     wire [16:0] transport_display;
     status_cdc #(.WIDTH(26)) u_publish_display(
      .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
      .S_data(publish_diagnostic),.D_data(publish_display));
     wire [83:0] overflow_display;
+    wire [31:0] wb_process;
+    status_cdc #(.WIDTH(32)) u_wb_process(
+     .S_clk(S_csi_rx_clk),.D_clk(S_process_clk),.rst_n(S_rst_n),.S_data(wb_active),.D_data(wb_process));
     status_cdc #(.WIDTH(17)) u_transport_display(
      .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
      .S_data({capture_ok,lost_frames}),.D_data(transport_display));
     status_cdc #(.WIDTH(84)) u_overflow_display(
-     .S_clk(S_csi_rx_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
-     .S_data({wb_active,video_diagnostics,overflow_frames}),.D_data(overflow_display));
+     .S_clk(S_process_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+     .S_data({wb_process,video_diagnostics,overflow_frames}),.D_data(overflow_display));
     wire transport_ok=transport_display[16] && display_ok;
     wire tracking_fresh;
     tracking_frame_age u_tracking_age(.clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),.valid(active_frame_display[FRAME_META_WIDTH+2]),.slot(active_frame_display[FRAME_META_WIDTH+1:FRAME_META_WIDTH]),.fresh(tracking_fresh));
@@ -896,8 +911,10 @@ isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRA
      .fps_ok(mon_display[127:112]!=0),.transport_ok(transport_ok),.params_match(tracking_match && observation_match),
      .track_locked(active_frame_display[137]),.sample_valid(observation_data[24]),.class_wait(observation_data[26:25]==1),
      .hole_reason(active_frame_display[177:174]),.valid(tracked_display_valid),.reason(tracking_reason));
-    wire roi_display_valid=ENABLE_TRACKING ? tracked_display_valid : legacy_display_valid;
-    wire [1:0] roi_display_state_code=ENABLE_TRACKING ? (roi_display_valid ? observation_data[26:25] : 2'd1) : legacy_display_state_code;
+    wire local_display_valid=active_frame_display[FRAME_META_WIDTH+2] && tracking_fresh && cam_display[0] &&
+     mon_display[127:112]!=0 && transport_ok && tracking_match && observation_match && observation_data[24];
+    wire roi_display_valid=LOCAL_SEARCH ? local_display_valid : ENABLE_TRACKING ? tracked_display_valid : legacy_display_valid;
+    wire [1:0] roi_display_state_code=LOCAL_SEARCH ? (local_display_valid ? observation_data[26:25] : 2'd1) : ENABLE_TRACKING ? (roi_display_valid ? observation_data[26:25] : 2'd1) : legacy_display_state_code;
     roi_display_state u_roi_display_state(
         .clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),.cfg_done(cam_display[0] && transport_ok),
         .exposure(cam_display[48:33]),.gain(cam_display[32:17]),.fps(mon_display[127:112]),
@@ -910,8 +927,18 @@ isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRA
     end else begin : single_display
      assign display_pockets=0;
     end endgenerate
+    wire [151:0] display_objects;
+    wire local_box_valid;wire [10:0] local_x0,local_x1;wire [9:0] local_y0,local_y1;
+    generate if(LOCAL_SEARCH) begin : local_box
+     assign display_objects=local_display_valid ? active_frame_display[198+:152] : 152'd0;
+     assign local_box_valid=local_display_valid && active_frame_display[137];
+     assign local_x0=active_frame_display[136:126];assign local_x1=active_frame_display[125:115];
+     assign local_y0=active_frame_display[197:188];assign local_y1=active_frame_display[187:178];
+    end else begin : no_local_box
+     assign display_objects=0;assign local_box_valid=0;assign local_x0=0;assign local_x1=0;assign local_y0=0;assign local_y1=0;
+    end endgenerate
     wire any_pocket_valid=display_pockets[63] || display_pockets[148] || display_pockets[233] || display_pockets[318];
-    experiment_osd #(.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
+    experiment_osd #(.FRAME_OBJECTS(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
  .SAMPLE_X0(SAMPLE_X0),.SAMPLE_X1(SAMPLE_X1),.SAMPLE_Y0(SAMPLE_Y0),.SAMPLE_Y1(SAMPLE_Y1)) u_experiment_osd(
         .clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
         .vs(S_hdmi_out_vsync),.hs(S_hdmi_out_hsync),.de(S_hdmi_out_de),.rgb(S_hdmi_out_data),
@@ -922,7 +949,8 @@ isp_top #(.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRA
         .publish_diagnostic(publish_display),
         .wb_r(overflow_display[67:60]),.wb_b(overflow_display[59:52]),.wb_tune(cam_display[81]),
         .wb_pending(overflow_display[83:52]!=cam_display[80:49]),
-        .roi_valid(roi_display_valid),
+        .frame_objects(display_objects),.roi_valid(roi_display_valid),.local_box_valid(local_box_valid),
+        .local_x0(local_x0),.local_x1(local_x1),.local_y0(local_y0),.local_y1(local_y1),
         .pocket_records(display_pockets),.pocket_enable(pocket_overlay_ok),
         .track_valid(MULTI_POCKETS ? (pocket_overlay_ok && any_pocket_valid) : (roi_display_valid && active_frame_display[137])),.track_x0(active_frame_display[136:126]),.track_x1(active_frame_display[125:115]),
         .track_reason(MULTI_POCKETS && tracking_reason==12 && active_frame_display[169:138]==0 ? 4'd15 : tracking_reason),.track_rows(active_frame_display[172:170]),

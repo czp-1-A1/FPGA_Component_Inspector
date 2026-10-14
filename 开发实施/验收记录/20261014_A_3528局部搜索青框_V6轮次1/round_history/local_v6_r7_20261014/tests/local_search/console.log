@@ -1,0 +1,43 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/local_search/transcript.log -wlf modelsim_work/local_search/wave.wlf -do "log /tb_local_search/*; run -all; quit -code 1 -force" test_local_search.tb_local_search 
+# Start time: 01:28:40 on Oct 14,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "roi_shape_search(fast)".
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_local_search(fast)
+# Loading work.roi_shape_search(fast)
+# log /tb_local_search/*
+#  run -all
+# OBS local search case=1 p=0 move=0,0 state=2 FG=4725 W/H=63/75 postcapture_cycles=185126
+# OBS local search case=2 p=0 move=20,12 state=2 FG=4725 W/H=63/75 postcapture_cycles=185126
+# OBS local search case=3 p=0 move=-20,-12 state=2 FG=4725 W/H=63/75 postcapture_cycles=185126
+# OBS local search case=4 p=0 move=32,24 state=2 FG=4725 W/H=63/75 postcapture_cycles=185126
+# OBS local search case=5 p=0 move=64,0 state=0 FG=0 W/H=0/0 postcapture_cycles=177296
+# OBS local search case=6 p=6 move=12,6 state=2 FG=4725 W/H=63/75 postcapture_cycles=335998
+# OBS local search case=7 p=1 move=20,12 state=3 FG=253 W/H=19/19 postcapture_cycles=95686
+# OBS local search case=8 p=2 move=0,0 state=0 FG=797 W/H=33/33 postcapture_cycles=106566
+# OBS local search case=9 p=3 move=0,0 state=0 FG=0 W/H=0/0 postcapture_cycles=0
+# OBS local search case=10 p=4 move=0,0 state=1 FG=0 W/H=0/0 postcapture_cycles=0
+# OBS local search case=11 p=5 move=0,0 state=1 FG=400 W/H=20/20 postcapture_cycles=98626
+# OBS local search case=13 p=0 move=0,0 state=2 FG=4725 W/H=63/75 postcapture_cycles=185126
+# PASS local search: 13 independent shape/position cases, outside old 80 core, neighbors/feed/background separated, unchanged strict model, PPC4 bubbles, cancel/recovery
+# ** Note: $finish    : tb_local_search.v(62)
+#    Time: 19471130 ns  Iteration: 1  Instance: /tb_local_search
+# End time: 01:28:44 on Oct 14,2026, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 0

@@ -1,0 +1,32 @@
+# PASS local OSD: 706432 pixels, LOCAL V6/D7, MODEL P/E/NO TARGET/UNCERTAIN, EDGE ON/OFF, native FG/W/H, invalidation, frame-bound moving box, search guide, blanking metadata update, no-box fallback and three-clock raster
+# OBS local search case=1 p=0 move=0,0 state=2 FG=4725 W/H=63/75 postcapture_cycles=117543
+# OBS local search case=2 p=0 move=20,12 state=2 FG=4725 W/H=63/75 postcapture_cycles=117543
+# OBS local search case=3 p=0 move=-20,-12 state=2 FG=4725 W/H=63/75 postcapture_cycles=117543
+# OBS local search case=4 p=0 move=32,24 state=2 FG=4725 W/H=63/75 postcapture_cycles=117543
+# OBS local search case=5 p=0 move=64,0 state=0 FG=0 W/H=0/0 postcapture_cycles=109713
+# OBS local search case=6 p=6 move=12,6 state=2 FG=4725 W/H=63/75 postcapture_cycles=117543
+# OBS local search case=7 p=1 move=20,12 state=3 FG=253 W/H=19/19 postcapture_cycles=28103
+# OBS local search case=8 p=2 move=0,0 state=0 FG=797 W/H=33/33 postcapture_cycles=38983
+# OBS local search case=9 p=3 move=0,0 state=0 FG=0 W/H=0/0 postcapture_cycles=0
+# OBS local search case=10 p=4 move=0,0 state=1 FG=0 W/H=0/0 postcapture_cycles=0
+# OBS local search case=11 p=5 move=0,0 state=1 FG=400 W/H=20/20 postcapture_cycles=31043
+# OBS local search case=13 p=0 move=0,0 state=2 FG=4725 W/H=63/75 postcapture_cycles=117543
+# PASS local search: 13 independent shape/position cases, outside old 80 core, neighbors/feed/background separated, unchanged strict model, PPC4 bubbles, cancel/recovery
+# PASS shape snapshot: atomic 37-bit model/WB/mode/legacy tuple, no stale Sobel fields, completion token, cancellation and fresh recovery
+# PASS shape model: 14 cases, independent foreground/bbox counts, PPC4 unaligned, bubbles, four classes, borders, threshold, missing/duplicate/cancel, recovery
+# PASS shape OSD: 706432 pixels, SHAPE V5/D6, MODEL P/E/NO TARGET/UNCERTAIN, EDGE ON/OFF, native FG/W/H, invalidation, fixed core and three-clock/frame-held raster
+# PASS video fallback display: 384 exact RGB pixels, normal/zero metadata/recovery slots, unchanged metadata binding, no black video or underflow
+# PASS video metadata fallback: normal/absent/late/wrong epoch/recovery, no stale four-pocket labels, strict legacy mode, bad and short pixels rejected, W/M snapshot and reset
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# PASS writer epoch: 8 clock phases/close-marker gaps, next complete frame recovers with matching source epoch and metadata
+# PASS WB epoch: coherent held request/result, invalidation, change-away/back with stopped CSI, recovery, epoch wrap and fresh-token requirement
+# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover
+# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, enabled exposure/gain tuning with fresh tokens, stopped CSI, FPS recovery and reset require fresh sample
+PASS ModelSim: all 11 tests, including original vendor ERAM model

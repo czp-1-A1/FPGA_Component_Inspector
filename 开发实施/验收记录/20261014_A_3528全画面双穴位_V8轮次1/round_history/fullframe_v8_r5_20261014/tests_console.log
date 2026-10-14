@@ -1,0 +1,7 @@
+# PASS frame search: 12 full images, 1843200 independent capture-bit checks, 2P/P+E/2E, far corners, feed rejection, fill reason, bright background, cancel/recovery, PPC4 bubbles
+# PASS frame OSD: 4 rasters/1750016 independent pixels, both boxes/classes/numbers/size-fill reasons, no algorithm ROI or guide, first-active atomic snapshot, zero/stale result suppression, unchanged 3-clock sync
+# PASS local OSD: 1018496 pixels, LOCAL V7/D8, MODEL P/E/NO TARGET/UNCERTAIN, EDGE ON/OFF and FIT CHECK, warning color/recovery, native FG/W/H, invalidation, frame-bound moving box, search guide, blanking metadata update, no-box fallback and three-clock raster
+# PASS shape snapshot: atomic 37-bit model/WB/mode/legacy tuple, no stale Sobel fields, completion token, cancellation and fresh recovery
+# PASS shape model: 14 cases, independent foreground/bbox counts, PPC4 unaligned, bubbles, four classes, borders, threshold, missing/duplicate/cancel, recovery
+# PASS shape OSD: 706432 pixels, SHAPE V5/D6, MODEL P/E/NO TARGET/UNCERTAIN, EDGE ON/OFF, native FG/W/H, invalidation, fixed core and three-clock/frame-held raster
+# PASS video fallback display: 384 exact RGB pixels, normal/zero metadata/recovery slots, unchanged metadata binding, no black video or underflow

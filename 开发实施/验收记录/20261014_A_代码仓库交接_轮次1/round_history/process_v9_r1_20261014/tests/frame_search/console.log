@@ -1,0 +1,42 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/frame_search/transcript.log -wlf modelsim_work/frame_search/wave.wlf -do "log /tb_frame_search/*; run -all; quit -code 1 -force" test_frame_search.tb_frame_search 
+# Start time: 22:37:02 on Oct 14,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "frame_shape_search(fast)".
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_frame_search(fast)
+# Loading work.frame_shape_search(fast)
+# log /tb_frame_search/*
+#  run -all
+# REF frame case=1 objects=c130081310324a41154c13008130d31ea41154 state=2 FG=4864 W=64 H=76 X0=518 X1=586 Y0=260 Y1=340 cycles=145835
+# REF frame case=2 objects=e00f024490f23448938c13008130d31ea41154 state=3 FG=240 W=18 H=18 X0=542 X1=564 Y0=290 Y1=312 cycles=131963
+# REF frame case=3 objects=e00f024490f23448938e00f02448df1d448938 state=3 FG=240 W=18 H=18 X0=542 X1=564 Y0=290 Y1=312 cycles=118091
+# REF frame case=4 objects=0000000000000000000c13008130330aa1b8be state=2 FG=4864 W=64 H=76 X0=102 X1=170 Y0=110 Y1=190 cycles=130515
+# REF frame case=5 objects=c13008131a338a669eac130081317332a669ea state=2 FG=4864 W=64 H=76 X0=742 X1=810 Y0=410 Y1=490 cycles=145835
+# REF frame case=6 objects=c130081310324a41154c8f408130d31ea41154 state=2 FG=4864 W=64 H=76 X0=518 X1=586 Y0=260 Y1=340 cycles=147601
+# REF frame case=7 objects=c130081310324a41154c13008130d31ea41154 state=2 FG=4864 W=64 H=76 X0=518 X1=586 Y0=260 Y1=340 cycles=1256856
+# REF frame case=8 objects=00000000000000000000000000000000000000 state=0 FG=0 W=0 H=0 X0=518 X1=586 Y0=260 Y1=340 cycles=0
+# REF frame case=9 objects=00000000000000000000000000000000000000 state=0 FG=0 W=0 H=0 X0=518 X1=586 Y0=260 Y1=340 cycles=0
+# REF frame case=11 objects=c130081310324a41154c13008130d31ea41154 state=2 FG=4864 W=64 H=76 X0=518 X1=586 Y0=260 Y1=340 cycles=145835
+# REF frame case=12 objects=c140c85390324c41156c140c8538d31ec41156 state=2 FG=5132 W=66 H=78 X0=518 X1=588 Y0=260 Y1=342 cycles=147443
+# PASS frame search: 12 full images, 1843200 independent capture-bit checks, 2P/P+E/2E, far corners, feed rejection, fill reason, bright background, cancel/recovery, PPC4 bubbles
+# ** Note: $finish    : tb_frame_search.v(88)
+#    Time: 41744251824 ps  Iteration: 1  Instance: /tb_frame_search
+# End time: 22:37:13 on Oct 14,2026, Elapsed time: 0:00:11
+# Errors: 0, Warnings: 0

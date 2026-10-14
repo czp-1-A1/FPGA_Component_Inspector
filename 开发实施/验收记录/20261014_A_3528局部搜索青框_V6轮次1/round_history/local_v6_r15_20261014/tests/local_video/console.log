@@ -1,0 +1,937 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc=rn+/tb_local_video" -onfinish exit -l modelsim_work/local_video/transcript.log -wlf modelsim_work/local_video/wave.wlf -do "log /tb_local_video/*; run -all; quit -code 1 -force" test_local_video.tb_local_video anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 01:56:17 on Oct 14,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v(136): (vopt-2241) Connection width does not match width of port 'O_raw_tready'. The port definition is at: ../user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v(37).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v(60): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v(60): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v(167): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_zhenghe_d1'.  Expected 10, found 9.
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v(98): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_demosaic_r0'.  Expected 10, found 9.
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v(98): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: ../user_source/hdl_source/signal_delay.v(120): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_awb_delay_signal_d'.  Expected 10, found 9.
+# ** Warning: ../user_source/hdl_source/signal_delay.v(120): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: ../user_source/hdl_source/awb.v(172): (vopt-2685) [TFMPC] - Too few port connections for 'div_gen_G_R_r1'.  Expected 8, found 7.
+# ** Warning: ../user_source/hdl_source/awb.v(172): (vopt-2718) [TFMPC] - Missing connection for port 'remainder'.
+# ** Warning: ../user_source/hdl_source/awb.v(182): (vopt-2685) [TFMPC] - Too few port connections for 'divide_G_B_r1'.  Expected 8, found 7.
+# ** Warning: ../user_source/hdl_source/awb.v(182): (vopt-2718) [TFMPC] - Missing connection for port 'remainder'.
+# ** Warning: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: tb_local_video.v(19): (vopt-2685) [TFMPC] - Too few port connections for 'writer'.  Expected 29, found 26.
+# ** Warning: tb_local_video.v(19): (vopt-2718) [TFMPC] - Missing connection for port 'O_publish_diagnostic'.
+# ** Warning: tb_local_video.v(19): (vopt-2718) [TFMPC] - Missing connection for port 'O_lost_frames'.
+# ** Warning: tb_local_video.v(19): (vopt-2718) [TFMPC] - Missing connection for port 'O_video_out_rp'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2727): (vopt-2685) [TFMPC] - Too few port connections for 'al_2c3c91d5'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2727): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2727): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2809): (vopt-2685) [TFMPC] - Too few port connections for 'al_17a6d7fa'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2809): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2809): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3781): (vopt-2685) [TFMPC] - Too few port connections for 'al_f683b5d3'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3781): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3781): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3870): (vopt-2685) [TFMPC] - Too few port connections for 'al_f65f531c'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3870): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3870): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4852): (vopt-2685) [TFMPC] - Too few port connections for 'al_8cc7c1e'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4852): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4852): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4948): (vopt-2685) [TFMPC] - Too few port connections for 'al_12836a8f'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4948): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4948): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(5946): (vopt-2685) [TFMPC] - Too few port connections for 'al_5892fcb5'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(5946): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(5946): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(6049): (vopt-2685) [TFMPC] - Too few port connections for 'al_b3f6820d'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(6049): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(6049): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7063): (vopt-2685) [TFMPC] - Too few port connections for 'al_7c3d1a1a'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7063): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7063): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7173): (vopt-2685) [TFMPC] - Too few port connections for 'al_f5789861'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7173): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7173): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8203): (vopt-2685) [TFMPC] - Too few port connections for 'al_3aab319'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8203): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8203): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8320): (vopt-2685) [TFMPC] - Too few port connections for 'al_61a0d7ee'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8320): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8320): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9366): (vopt-2685) [TFMPC] - Too few port connections for 'al_623841ba'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9366): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9366): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9490): (vopt-2685) [TFMPC] - Too few port connections for 'al_2de59830'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9490): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9490): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10546): (vopt-2685) [TFMPC] - Too few port connections for 'al_aa681be'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10546): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10546): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10677): (vopt-2685) [TFMPC] - Too few port connections for 'al_6d616ad8'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10677): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10677): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11749): (vopt-2685) [TFMPC] - Too few port connections for 'al_f70fd955'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11749): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11749): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11887): (vopt-2685) [TFMPC] - Too few port connections for 'al_26555348'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11887): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11887): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(12975): (vopt-2685) [TFMPC] - Too few port connections for 'al_b1b33ac1'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(12975): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(12975): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(13120): (vopt-2685) [TFMPC] - Too few port connections for 'al_9642b13d'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(13120): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(13120): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15068): (vopt-2685) [TFMPC] - Too few port connections for 'al_35ee5592'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15068): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15068): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15220): (vopt-2685) [TFMPC] - Too few port connections for 'al_50e9f109'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15220): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15220): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16340): (vopt-2685) [TFMPC] - Too few port connections for 'al_7f00f7cf'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16340): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16340): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16499): (vopt-2685) [TFMPC] - Too few port connections for 'al_e29bec0b'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16499): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16499): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17629): (vopt-2685) [TFMPC] - Too few port connections for 'al_d51334f9'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17629): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17629): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17795): (vopt-2685) [TFMPC] - Too few port connections for 'al_893284b6'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17795): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17795): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(18941): (vopt-2685) [TFMPC] - Too few port connections for 'al_3d1326ec'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(18941): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(18941): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(19114): (vopt-2685) [TFMPC] - Too few port connections for 'al_fe1a61c8'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(19114): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(19114): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20276): (vopt-2685) [TFMPC] - Too few port connections for 'al_c7f8d01f'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20276): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20276): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20456): (vopt-2685) [TFMPC] - Too few port connections for 'al_cc6624f3'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20456): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20456): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21634): (vopt-2685) [TFMPC] - Too few port connections for 'al_5fe5f689'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21634): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21634): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21821): (vopt-2685) [TFMPC] - Too few port connections for 'al_d9f3f288'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21821): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21821): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23015): (vopt-2685) [TFMPC] - Too few port connections for 'al_614d9b5f'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23015): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23015): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23209): (vopt-2685) [TFMPC] - Too few port connections for 'al_40de5145'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23209): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23209): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24413): (vopt-2685) [TFMPC] - Too few port connections for 'al_2b863aeb'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24413): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24413): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24614): (vopt-2685) [TFMPC] - Too few port connections for 'al_a0f4601c'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24614): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24614): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(25834): (vopt-2685) [TFMPC] - Too few port connections for 'al_b8005145'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(25834): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(25834): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(26042): (vopt-2685) [TFMPC] - Too few port connections for 'al_3728e305'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(26042): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(26042): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27278): (vopt-2685) [TFMPC] - Too few port connections for 'al_33912f9'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27278): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27278): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27493): (vopt-2685) [TFMPC] - Too few port connections for 'al_5379bc02'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27493): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27493): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29636): (vopt-2685) [TFMPC] - Too few port connections for 'al_5984d26f'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29636): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29636): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29858): (vopt-2685) [TFMPC] - Too few port connections for 'al_f4fca905'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29858): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29858): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(31126): (vopt-2685) [TFMPC] - Too few port connections for 'al_5e220ed'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(31126): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(31126): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(32635): (vopt-2685) [TFMPC] - Too few port connections for 'al_4d428833'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(32635): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(32635): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(34151): (vopt-2685) [TFMPC] - Too few port connections for 'al_6defe612'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(34151): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(34151): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(35667): (vopt-2685) [TFMPC] - Too few port connections for 'al_be405246'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(35667): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(35667): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(37183): (vopt-2685) [TFMPC] - Too few port connections for 'al_83514792'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(37183): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(37183): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(38699): (vopt-2685) [TFMPC] - Too few port connections for 'al_fd3e8af2'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(38699): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(38699): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(40215): (vopt-2685) [TFMPC] - Too few port connections for 'al_9425b3df'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(40215): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(40215): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(41731): (vopt-2685) [TFMPC] - Too few port connections for 'al_5c7d50e3'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(41731): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(41731): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(43247): (vopt-2685) [TFMPC] - Too few port connections for 'al_d271eb9'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(43247): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(43247): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(45676): (vopt-2685) [TFMPC] - Too few port connections for 'al_1f358278'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(45676): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(45676): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(47192): (vopt-2685) [TFMPC] - Too few port connections for 'al_6c167d08'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(47192): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(47192): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(48708): (vopt-2685) [TFMPC] - Too few port connections for 'al_6570f066'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(48708): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(48708): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(50224): (vopt-2685) [TFMPC] - Too few port connections for 'al_f8363f33'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(50224): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(50224): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(51740): (vopt-2685) [TFMPC] - Too few port connections for 'al_ca709f8b'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(51740): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(51740): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(53256): (vopt-2685) [TFMPC] - Too few port connections for 'al_20bc1162'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(53256): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(53256): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(54772): (vopt-2685) [TFMPC] - Too few port connections for 'al_dc46bad1'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(54772): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(54772): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(57046): (vopt-2685) [TFMPC] - Too few port connections for 'al_f4af5624'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(57046): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(57046): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58500): (vopt-2685) [TFMPC] - Too few port connections for 'al_7b9955b'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58500): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58500): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58505): (vopt-2685) [TFMPC] - Too few port connections for 'al_2beb57ee'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58505): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58505): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59403): (vopt-2685) [TFMPC] - Too few port connections for 'al_2f3c0b9c'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59403): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59403): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59457): (vopt-2685) [TFMPC] - Too few port connections for 'al_ddf981e2'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59457): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59457): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60365): (vopt-2685) [TFMPC] - Too few port connections for 'al_98b3b8dd'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60365): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60365): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60426): (vopt-2685) [TFMPC] - Too few port connections for 'al_60de78b1'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60426): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60426): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61350): (vopt-2685) [TFMPC] - Too few port connections for 'al_bb9963f6'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61350): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61350): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61418): (vopt-2685) [TFMPC] - Too few port connections for 'al_7241ba4'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61418): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61418): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62358): (vopt-2685) [TFMPC] - Too few port connections for 'al_39ead89a'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62358): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62358): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62433): (vopt-2685) [TFMPC] - Too few port connections for 'al_14fec680'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62433): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62433): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_local_video(fast)
+# Loading work.image_correction(fast)
+# Loading work.uial2axis(fast)
+# Loading work.video_in(fast)
+# Loading work.isp_top(fast)
+# Loading work.divider(fast)
+# Loading anlogic_sim.AL_MAP_LUT5(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT2(fast)
+# Loading anlogic_sim.AL_MAP_LUT3(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT4(fast)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__13)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__14)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__15)
+# Loading work.video_out(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# log /tb_local_video/*
+#  run -all
+# DIAG local video frame=0 native=0/0 active/done=0/0 bad=1 tracking=0 x/y=0/0 raw=0 processed=0 lines=0 line_pixels=0 awb valid/sof/last=0/0/0 tag=00000/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/0 raw=480 processed=484 lines=0 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/1 raw=1504 processed=1508 lines=1 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/2 raw=2528 processed=2532 lines=2 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/3 raw=3552 processed=3556 lines=3 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/4 raw=4576 processed=4580 lines=4 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/5 raw=5600 processed=5604 lines=5 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/6 raw=6624 processed=6628 lines=6 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/7 raw=7648 processed=7652 lines=7 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/8 raw=8672 processed=8676 lines=8 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/9 raw=9696 processed=9700 lines=9 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/10 raw=10720 processed=10724 lines=10 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/11 raw=11744 processed=11748 lines=11 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/12 raw=12768 processed=12772 lines=12 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/13 raw=13792 processed=13796 lines=13 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/14 raw=14816 processed=14820 lines=14 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/15 raw=15840 processed=15844 lines=15 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/16 raw=16864 processed=16868 lines=16 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/17 raw=17888 processed=17892 lines=17 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/18 raw=18912 processed=18916 lines=18 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/19 raw=19936 processed=19940 lines=19 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/20 raw=20960 processed=20964 lines=20 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/21 raw=21984 processed=21988 lines=21 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/22 raw=23008 processed=23012 lines=22 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/23 raw=24032 processed=24036 lines=23 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/24 raw=25056 processed=25060 lines=24 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/25 raw=26080 processed=26084 lines=25 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/26 raw=27104 processed=27108 lines=26 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/27 raw=28128 processed=28132 lines=27 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/28 raw=29152 processed=29156 lines=28 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/29 raw=30176 processed=30180 lines=29 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/30 raw=31200 processed=31204 lines=30 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/31 raw=32224 processed=32228 lines=31 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/32 raw=33248 processed=33252 lines=32 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/33 raw=34272 processed=34276 lines=33 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/34 raw=35296 processed=35300 lines=34 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/35 raw=36320 processed=36324 lines=35 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/36 raw=37344 processed=37348 lines=36 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/37 raw=38368 processed=38372 lines=37 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/38 raw=39392 processed=39396 lines=38 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/39 raw=40416 processed=40420 lines=39 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/40 raw=41440 processed=41444 lines=40 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/41 raw=42464 processed=42468 lines=41 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/42 raw=43488 processed=43492 lines=42 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/43 raw=44512 processed=44516 lines=43 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/44 raw=45536 processed=45540 lines=44 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/45 raw=46560 processed=46564 lines=45 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/46 raw=47584 processed=47588 lines=46 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/47 raw=48608 processed=48612 lines=47 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/48 raw=49632 processed=49636 lines=48 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/49 raw=50656 processed=50660 lines=49 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/50 raw=51680 processed=51684 lines=50 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/51 raw=52704 processed=52708 lines=51 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/52 raw=53728 processed=53732 lines=52 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/53 raw=54752 processed=54756 lines=53 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/54 raw=55776 processed=55780 lines=54 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/55 raw=56800 processed=56804 lines=55 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/56 raw=57824 processed=57828 lines=56 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/57 raw=58848 processed=58852 lines=57 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/58 raw=59872 processed=59876 lines=58 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/59 raw=60896 processed=60900 lines=59 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/60 raw=61920 processed=61924 lines=60 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/61 raw=62944 processed=62948 lines=61 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/62 raw=63968 processed=63972 lines=62 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/63 raw=64992 processed=64996 lines=63 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/64 raw=66016 processed=66020 lines=64 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/65 raw=67040 processed=67044 lines=65 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/66 raw=68064 processed=68068 lines=66 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/67 raw=69088 processed=69092 lines=67 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/68 raw=70112 processed=70116 lines=68 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/69 raw=71136 processed=71140 lines=69 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/70 raw=72160 processed=72164 lines=70 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/71 raw=73184 processed=73188 lines=71 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/72 raw=74208 processed=74212 lines=72 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/73 raw=75232 processed=75236 lines=73 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/74 raw=76256 processed=76260 lines=74 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/75 raw=77280 processed=77284 lines=75 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/76 raw=78304 processed=78308 lines=76 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/77 raw=79328 processed=79332 lines=77 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/78 raw=80352 processed=80356 lines=78 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/79 raw=81376 processed=81380 lines=79 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/80 raw=82400 processed=82404 lines=80 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/81 raw=83424 processed=83428 lines=81 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/82 raw=84448 processed=84452 lines=82 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/83 raw=85472 processed=85476 lines=83 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/84 raw=86496 processed=86500 lines=84 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/85 raw=87520 processed=87524 lines=85 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/86 raw=88544 processed=88548 lines=86 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/87 raw=89568 processed=89572 lines=87 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/88 raw=90592 processed=90596 lines=88 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/89 raw=91616 processed=91620 lines=89 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/90 raw=92640 processed=92644 lines=90 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/91 raw=93664 processed=93668 lines=91 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/92 raw=94688 processed=94692 lines=92 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/93 raw=95712 processed=95716 lines=93 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/94 raw=96736 processed=96740 lines=94 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/95 raw=97760 processed=97764 lines=95 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/96 raw=98784 processed=98788 lines=96 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/97 raw=99808 processed=99812 lines=97 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/98 raw=100832 processed=100836 lines=98 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/99 raw=101856 processed=101860 lines=99 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/100 raw=102880 processed=102884 lines=100 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/101 raw=103904 processed=103908 lines=101 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/102 raw=104928 processed=104932 lines=102 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/103 raw=105952 processed=105956 lines=103 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/104 raw=106976 processed=106980 lines=104 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/105 raw=108000 processed=108004 lines=105 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/106 raw=109024 processed=109028 lines=106 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/107 raw=110048 processed=110052 lines=107 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/108 raw=111072 processed=111076 lines=108 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/109 raw=112096 processed=112100 lines=109 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/110 raw=113120 processed=113124 lines=110 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/111 raw=114144 processed=114148 lines=111 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/112 raw=115168 processed=115172 lines=112 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/113 raw=116192 processed=116196 lines=113 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/114 raw=117216 processed=117220 lines=114 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/115 raw=118240 processed=118244 lines=115 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/116 raw=119264 processed=119268 lines=116 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/117 raw=120288 processed=120292 lines=117 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/118 raw=121312 processed=121316 lines=118 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/119 raw=122336 processed=122340 lines=119 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/120 raw=123360 processed=123364 lines=120 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/121 raw=124384 processed=124388 lines=121 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/122 raw=125408 processed=125412 lines=122 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/123 raw=126432 processed=126436 lines=123 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/124 raw=127456 processed=127460 lines=124 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/125 raw=128480 processed=128484 lines=125 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/126 raw=129504 processed=129508 lines=126 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/127 raw=130528 processed=130532 lines=127 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/128 raw=131552 processed=131556 lines=128 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/129 raw=132576 processed=132580 lines=129 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/130 raw=133600 processed=133604 lines=130 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/131 raw=134624 processed=134628 lines=131 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/132 raw=135648 processed=135652 lines=132 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/133 raw=136672 processed=136676 lines=133 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/134 raw=137696 processed=137700 lines=134 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/135 raw=138720 processed=138724 lines=135 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/136 raw=139744 processed=139748 lines=136 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/137 raw=140768 processed=140772 lines=137 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/138 raw=141792 processed=141796 lines=138 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/139 raw=142816 processed=142820 lines=139 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/140 raw=143840 processed=143844 lines=140 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/141 raw=144864 processed=144868 lines=141 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/142 raw=145888 processed=145892 lines=142 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/143 raw=146912 processed=146916 lines=143 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/144 raw=147936 processed=147940 lines=144 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/145 raw=148960 processed=148964 lines=145 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/146 raw=149984 processed=149988 lines=146 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/147 raw=151008 processed=151012 lines=147 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/148 raw=152032 processed=152036 lines=148 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/149 raw=153056 processed=153060 lines=149 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/150 raw=154080 processed=154084 lines=150 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/151 raw=155104 processed=155108 lines=151 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/152 raw=156128 processed=156132 lines=152 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/153 raw=157152 processed=157156 lines=153 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/154 raw=158176 processed=158180 lines=154 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/155 raw=159200 processed=159204 lines=155 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/156 raw=160224 processed=160228 lines=156 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/157 raw=161248 processed=161252 lines=157 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/158 raw=162272 processed=162276 lines=158 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/159 raw=163296 processed=163300 lines=159 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/160 raw=164320 processed=164324 lines=160 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/161 raw=165344 processed=165348 lines=161 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/162 raw=166368 processed=166372 lines=162 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/163 raw=167392 processed=167396 lines=163 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/164 raw=168416 processed=168420 lines=164 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/165 raw=169440 processed=169444 lines=165 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/166 raw=170464 processed=170468 lines=166 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/167 raw=171488 processed=171492 lines=167 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/168 raw=172512 processed=172516 lines=168 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/169 raw=173536 processed=173540 lines=169 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/170 raw=174560 processed=174564 lines=170 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/171 raw=175584 processed=175588 lines=171 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/172 raw=176608 processed=176612 lines=172 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/173 raw=177632 processed=177636 lines=173 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/174 raw=178656 processed=178660 lines=174 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/175 raw=179680 processed=179684 lines=175 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/176 raw=180704 processed=180708 lines=176 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/177 raw=181728 processed=181732 lines=177 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/178 raw=182752 processed=182756 lines=178 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/179 raw=183776 processed=183780 lines=179 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/180 raw=184800 processed=184804 lines=180 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/181 raw=185824 processed=185828 lines=181 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/182 raw=186848 processed=186852 lines=182 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/183 raw=187872 processed=187876 lines=183 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/184 raw=188896 processed=188900 lines=184 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/185 raw=189920 processed=189924 lines=185 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/186 raw=190944 processed=190948 lines=186 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/187 raw=191968 processed=191972 lines=187 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/188 raw=192992 processed=192996 lines=188 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/189 raw=194016 processed=194020 lines=189 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/190 raw=195040 processed=195044 lines=190 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/191 raw=196064 processed=196068 lines=191 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/192 raw=197088 processed=197092 lines=192 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/193 raw=198112 processed=198116 lines=193 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/194 raw=199136 processed=199140 lines=194 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/195 raw=200160 processed=200164 lines=195 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/196 raw=201184 processed=201188 lines=196 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/197 raw=202208 processed=202212 lines=197 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/198 raw=203232 processed=203236 lines=198 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/199 raw=204256 processed=204260 lines=199 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/200 raw=205280 processed=205284 lines=200 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/201 raw=206304 processed=206308 lines=201 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/202 raw=207328 processed=207332 lines=202 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/203 raw=208352 processed=208356 lines=203 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/204 raw=209376 processed=209380 lines=204 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/205 raw=210400 processed=210404 lines=205 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/206 raw=211424 processed=211428 lines=206 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/207 raw=212448 processed=212452 lines=207 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/208 raw=213472 processed=213476 lines=208 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/209 raw=214496 processed=214500 lines=209 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/210 raw=215520 processed=215524 lines=210 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/211 raw=216544 processed=216548 lines=211 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/212 raw=217568 processed=217572 lines=212 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/213 raw=218592 processed=218596 lines=213 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/214 raw=219616 processed=219620 lines=214 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/215 raw=220640 processed=220644 lines=215 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/216 raw=221664 processed=221668 lines=216 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/217 raw=222688 processed=222692 lines=217 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/218 raw=223712 processed=223716 lines=218 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/219 raw=224736 processed=224740 lines=219 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/220 raw=225760 processed=225764 lines=220 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/221 raw=226784 processed=226788 lines=221 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/222 raw=227808 processed=227812 lines=222 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/223 raw=228832 processed=228836 lines=223 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/224 raw=229856 processed=229860 lines=224 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/225 raw=230880 processed=230884 lines=225 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/226 raw=231904 processed=231908 lines=226 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/227 raw=232928 processed=232932 lines=227 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/228 raw=233952 processed=233956 lines=228 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/229 raw=234976 processed=234980 lines=229 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/230 raw=236000 processed=236004 lines=230 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/231 raw=237024 processed=237028 lines=231 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/232 raw=238048 processed=238052 lines=232 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/233 raw=239072 processed=239076 lines=233 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/234 raw=240096 processed=240100 lines=234 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/235 raw=241120 processed=241124 lines=235 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/236 raw=242144 processed=242148 lines=236 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/237 raw=243168 processed=243172 lines=237 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/238 raw=244192 processed=244196 lines=238 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/239 raw=245216 processed=245220 lines=239 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/240 raw=246240 processed=246244 lines=240 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/241 raw=247264 processed=247268 lines=241 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/242 raw=248288 processed=248292 lines=242 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/243 raw=249312 processed=249316 lines=243 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/244 raw=250336 processed=250340 lines=244 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/245 raw=251360 processed=251364 lines=245 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/246 raw=252384 processed=252388 lines=246 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/247 raw=253408 processed=253412 lines=247 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/248 raw=254432 processed=254436 lines=248 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/249 raw=255456 processed=255460 lines=249 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/250 raw=256480 processed=256484 lines=250 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/251 raw=257504 processed=257508 lines=251 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/252 raw=258528 processed=258532 lines=252 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/253 raw=259552 processed=259556 lines=253 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/254 raw=260576 processed=260580 lines=254 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/255 raw=261600 processed=261604 lines=255 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/256 raw=262624 processed=262628 lines=256 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/257 raw=263648 processed=263652 lines=257 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/258 raw=264672 processed=264676 lines=258 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/259 raw=265696 processed=265700 lines=259 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/260 raw=266720 processed=266724 lines=260 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/261 raw=267744 processed=267748 lines=261 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/262 raw=268768 processed=268772 lines=262 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/263 raw=269792 processed=269796 lines=263 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/264 raw=270816 processed=270820 lines=264 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/265 raw=271840 processed=271844 lines=265 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/266 raw=272864 processed=272868 lines=266 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/267 raw=273888 processed=273892 lines=267 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/268 raw=274912 processed=274916 lines=268 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/269 raw=275936 processed=275940 lines=269 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/270 raw=276960 processed=276964 lines=270 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/271 raw=277984 processed=277988 lines=271 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/272 raw=279008 processed=279012 lines=272 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/273 raw=280032 processed=280036 lines=273 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/274 raw=281056 processed=281060 lines=274 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/275 raw=282080 processed=282084 lines=275 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/276 raw=283104 processed=283108 lines=276 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/277 raw=284128 processed=284132 lines=277 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/278 raw=285152 processed=285156 lines=278 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/279 raw=286176 processed=286180 lines=279 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/280 raw=287200 processed=287204 lines=280 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/281 raw=288224 processed=288228 lines=281 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/282 raw=289248 processed=289252 lines=282 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/283 raw=290272 processed=290276 lines=283 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/284 raw=291296 processed=291300 lines=284 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/285 raw=292320 processed=292324 lines=285 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/286 raw=293344 processed=293348 lines=286 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/287 raw=294368 processed=294372 lines=287 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/288 raw=295392 processed=295396 lines=288 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/289 raw=296416 processed=296420 lines=289 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/290 raw=297440 processed=297444 lines=290 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/291 raw=298464 processed=298468 lines=291 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/292 raw=299488 processed=299492 lines=292 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/293 raw=300512 processed=300516 lines=293 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/294 raw=301536 processed=301540 lines=294 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/295 raw=302560 processed=302564 lines=295 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/296 raw=303584 processed=303588 lines=296 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/297 raw=304608 processed=304612 lines=297 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/298 raw=305632 processed=305636 lines=298 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/299 raw=306656 processed=306660 lines=299 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/300 raw=307680 processed=307684 lines=300 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/301 raw=308704 processed=308708 lines=301 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/302 raw=309728 processed=309732 lines=302 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/303 raw=310752 processed=310756 lines=303 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/304 raw=311776 processed=311780 lines=304 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/305 raw=312800 processed=312804 lines=305 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/306 raw=313824 processed=313828 lines=306 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/307 raw=314848 processed=314852 lines=307 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/308 raw=315872 processed=315876 lines=308 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/309 raw=316896 processed=316900 lines=309 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/310 raw=317920 processed=317924 lines=310 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/311 raw=318944 processed=318948 lines=311 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/312 raw=319968 processed=319972 lines=312 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/313 raw=320992 processed=320996 lines=313 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/314 raw=322016 processed=322020 lines=314 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/315 raw=323040 processed=323044 lines=315 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/316 raw=324064 processed=324068 lines=316 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/317 raw=325088 processed=325092 lines=317 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/318 raw=326112 processed=326116 lines=318 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/319 raw=327136 processed=327140 lines=319 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/320 raw=328160 processed=328164 lines=320 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/321 raw=329184 processed=329188 lines=321 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/322 raw=330208 processed=330212 lines=322 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/323 raw=331232 processed=331236 lines=323 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/324 raw=332256 processed=332260 lines=324 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/325 raw=333280 processed=333284 lines=325 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/326 raw=334304 processed=334308 lines=326 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/327 raw=335328 processed=335332 lines=327 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/328 raw=336352 processed=336356 lines=328 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/329 raw=337376 processed=337380 lines=329 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/330 raw=338400 processed=338404 lines=330 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/331 raw=339424 processed=339428 lines=331 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/332 raw=340448 processed=340452 lines=332 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/333 raw=341472 processed=341476 lines=333 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/334 raw=342496 processed=342500 lines=334 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/335 raw=343520 processed=343524 lines=335 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/336 raw=344544 processed=344548 lines=336 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/337 raw=345568 processed=345572 lines=337 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/338 raw=346592 processed=346596 lines=338 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/339 raw=347616 processed=347620 lines=339 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/340 raw=348640 processed=348644 lines=340 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/341 raw=349664 processed=349668 lines=341 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/342 raw=350688 processed=350692 lines=342 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/343 raw=351712 processed=351716 lines=343 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/344 raw=352736 processed=352740 lines=344 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/345 raw=353760 processed=353764 lines=345 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/346 raw=354784 processed=354788 lines=346 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/347 raw=355808 processed=355812 lines=347 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/348 raw=356832 processed=356836 lines=348 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/349 raw=357856 processed=357860 lines=349 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/350 raw=358880 processed=358884 lines=350 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/351 raw=359904 processed=359908 lines=351 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/352 raw=360928 processed=360932 lines=352 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/353 raw=361952 processed=361956 lines=353 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/354 raw=362976 processed=362980 lines=354 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/355 raw=364000 processed=364004 lines=355 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/356 raw=365024 processed=365028 lines=356 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/357 raw=366048 processed=366052 lines=357 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/358 raw=367072 processed=367076 lines=358 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/359 raw=368096 processed=368100 lines=359 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/360 raw=369120 processed=369124 lines=360 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/361 raw=370144 processed=370148 lines=361 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/362 raw=371168 processed=371172 lines=362 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/363 raw=372192 processed=372196 lines=363 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/364 raw=373216 processed=373220 lines=364 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/365 raw=374240 processed=374244 lines=365 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/366 raw=375264 processed=375268 lines=366 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/367 raw=376288 processed=376292 lines=367 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/368 raw=377312 processed=377316 lines=368 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/369 raw=378336 processed=378340 lines=369 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/370 raw=379360 processed=379364 lines=370 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/371 raw=380384 processed=380388 lines=371 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/372 raw=381408 processed=381412 lines=372 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/373 raw=382432 processed=382436 lines=373 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/374 raw=383456 processed=383460 lines=374 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/375 raw=384480 processed=384484 lines=375 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/376 raw=385504 processed=385508 lines=376 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/377 raw=386528 processed=386532 lines=377 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/378 raw=387552 processed=387556 lines=378 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/379 raw=388576 processed=388580 lines=379 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/380 raw=389600 processed=389604 lines=380 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/381 raw=390624 processed=390628 lines=381 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/382 raw=391648 processed=391652 lines=382 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/383 raw=392672 processed=392676 lines=383 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/384 raw=393696 processed=393700 lines=384 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/385 raw=394720 processed=394724 lines=385 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/386 raw=395744 processed=395748 lines=386 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/387 raw=396768 processed=396772 lines=387 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/388 raw=397792 processed=397796 lines=388 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/389 raw=398816 processed=398820 lines=389 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/390 raw=399840 processed=399844 lines=390 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/391 raw=400864 processed=400868 lines=391 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/392 raw=401888 processed=401892 lines=392 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/393 raw=402912 processed=402916 lines=393 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/394 raw=403936 processed=403940 lines=394 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/395 raw=404960 processed=404964 lines=395 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/396 raw=405984 processed=405988 lines=396 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/397 raw=407008 processed=407012 lines=397 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/398 raw=408032 processed=408036 lines=398 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/399 raw=409056 processed=409060 lines=399 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/400 raw=410080 processed=410084 lines=400 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/401 raw=411104 processed=411108 lines=401 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/402 raw=412128 processed=412132 lines=402 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/403 raw=413152 processed=413156 lines=403 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/404 raw=414176 processed=414180 lines=404 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/405 raw=415200 processed=415204 lines=405 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/406 raw=416224 processed=416228 lines=406 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/407 raw=417248 processed=417252 lines=407 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/408 raw=418272 processed=418276 lines=408 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/409 raw=419296 processed=419300 lines=409 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/410 raw=420320 processed=420324 lines=410 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/411 raw=421344 processed=421348 lines=411 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/412 raw=422368 processed=422372 lines=412 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/413 raw=423392 processed=423396 lines=413 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/414 raw=424416 processed=424420 lines=414 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/415 raw=425440 processed=425444 lines=415 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/416 raw=426464 processed=426468 lines=416 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/417 raw=427488 processed=427492 lines=417 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/418 raw=428512 processed=428516 lines=418 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/419 raw=429536 processed=429540 lines=419 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/420 raw=430560 processed=430564 lines=420 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/421 raw=431584 processed=431588 lines=421 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/422 raw=432608 processed=432612 lines=422 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/423 raw=433632 processed=433636 lines=423 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/424 raw=434656 processed=434660 lines=424 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/425 raw=435680 processed=435684 lines=425 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/426 raw=436704 processed=436708 lines=426 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/427 raw=437728 processed=437732 lines=427 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/428 raw=438752 processed=438756 lines=428 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/429 raw=439776 processed=439780 lines=429 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/430 raw=440800 processed=440804 lines=430 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/431 raw=441824 processed=441828 lines=431 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/432 raw=442848 processed=442852 lines=432 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/433 raw=443872 processed=443876 lines=433 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/434 raw=444896 processed=444900 lines=434 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/435 raw=445920 processed=445924 lines=435 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/436 raw=446944 processed=446948 lines=436 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/437 raw=447968 processed=447972 lines=437 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/438 raw=448992 processed=448996 lines=438 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/439 raw=450016 processed=450020 lines=439 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/440 raw=451040 processed=451044 lines=440 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/441 raw=452064 processed=452068 lines=441 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/442 raw=453088 processed=453092 lines=442 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/443 raw=454112 processed=454116 lines=443 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/444 raw=455136 processed=455140 lines=444 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/445 raw=456160 processed=456164 lines=445 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/446 raw=457184 processed=457188 lines=446 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/447 raw=458208 processed=458212 lines=447 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/448 raw=459232 processed=459236 lines=448 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/449 raw=460256 processed=460260 lines=449 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/450 raw=461280 processed=461284 lines=450 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/451 raw=462304 processed=462308 lines=451 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/452 raw=463328 processed=463332 lines=452 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/453 raw=464352 processed=464356 lines=453 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/454 raw=465376 processed=465380 lines=454 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/455 raw=466400 processed=466404 lines=455 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/456 raw=467424 processed=467428 lines=456 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/457 raw=468448 processed=468452 lines=457 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/458 raw=469472 processed=469476 lines=458 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/459 raw=470496 processed=470500 lines=459 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/460 raw=471520 processed=471524 lines=460 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/461 raw=472544 processed=472548 lines=461 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/462 raw=473568 processed=473572 lines=462 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/463 raw=474592 processed=474596 lines=463 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/464 raw=475616 processed=475620 lines=464 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/465 raw=476640 processed=476644 lines=465 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/466 raw=477664 processed=477668 lines=466 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/467 raw=478688 processed=478692 lines=467 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/468 raw=479712 processed=479716 lines=468 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/469 raw=480736 processed=480740 lines=469 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/470 raw=481760 processed=481764 lines=470 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/471 raw=482784 processed=482788 lines=471 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/472 raw=483808 processed=483812 lines=472 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/473 raw=484832 processed=484836 lines=473 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/474 raw=485856 processed=485860 lines=474 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/475 raw=486880 processed=486884 lines=475 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/476 raw=487904 processed=487908 lines=476 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/477 raw=488928 processed=488932 lines=477 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/478 raw=489952 processed=489956 lines=478 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/479 raw=490976 processed=490980 lines=479 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/480 raw=492000 processed=492004 lines=480 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/481 raw=493024 processed=493028 lines=481 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/482 raw=494048 processed=494052 lines=482 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/483 raw=495072 processed=495076 lines=483 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/484 raw=496096 processed=496100 lines=484 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/485 raw=497120 processed=497124 lines=485 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/486 raw=498144 processed=498148 lines=486 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/487 raw=499168 processed=499172 lines=487 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/488 raw=500192 processed=500196 lines=488 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/489 raw=501216 processed=501220 lines=489 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/490 raw=502240 processed=502244 lines=490 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/491 raw=503264 processed=503268 lines=491 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/492 raw=504288 processed=504292 lines=492 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/493 raw=505312 processed=505316 lines=493 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/494 raw=506336 processed=506340 lines=494 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/495 raw=507360 processed=507364 lines=495 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/496 raw=508384 processed=508388 lines=496 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/497 raw=509408 processed=509412 lines=497 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/498 raw=510432 processed=510436 lines=498 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/499 raw=511456 processed=511460 lines=499 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/500 raw=512480 processed=512484 lines=500 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/501 raw=513504 processed=513508 lines=501 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/502 raw=514528 processed=514532 lines=502 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/503 raw=515552 processed=515556 lines=503 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/504 raw=516576 processed=516580 lines=504 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/505 raw=517600 processed=517604 lines=505 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/506 raw=518624 processed=518628 lines=506 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/507 raw=519648 processed=519652 lines=507 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/508 raw=520672 processed=520676 lines=508 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/509 raw=521696 processed=521700 lines=509 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/510 raw=522720 processed=522724 lines=510 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/511 raw=523744 processed=523748 lines=511 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/512 raw=524768 processed=524772 lines=512 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/513 raw=525792 processed=525796 lines=513 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/514 raw=526816 processed=526820 lines=514 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/515 raw=527840 processed=527844 lines=515 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/516 raw=528864 processed=528868 lines=516 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/517 raw=529888 processed=529892 lines=517 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/518 raw=530912 processed=530916 lines=518 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/519 raw=531936 processed=531940 lines=519 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/520 raw=532960 processed=532964 lines=520 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/521 raw=533984 processed=533988 lines=521 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/522 raw=535008 processed=535012 lines=522 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/523 raw=536032 processed=536036 lines=523 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/524 raw=537056 processed=537060 lines=524 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/525 raw=538080 processed=538084 lines=525 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/526 raw=539104 processed=539108 lines=526 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/527 raw=540128 processed=540132 lines=527 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/528 raw=541152 processed=541156 lines=528 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/529 raw=542176 processed=542180 lines=529 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/530 raw=543200 processed=543204 lines=530 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/531 raw=544224 processed=544228 lines=531 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/532 raw=545248 processed=545252 lines=532 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/533 raw=546272 processed=546276 lines=533 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/534 raw=547296 processed=547300 lines=534 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/535 raw=548320 processed=548324 lines=535 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/536 raw=549344 processed=549348 lines=536 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/537 raw=550368 processed=550372 lines=537 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/538 raw=551392 processed=551396 lines=538 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/539 raw=552416 processed=552420 lines=539 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/540 raw=553440 processed=553444 lines=540 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/541 raw=554464 processed=554468 lines=541 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/542 raw=555488 processed=555492 lines=542 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/543 raw=556512 processed=556516 lines=543 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/544 raw=557536 processed=557540 lines=544 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/545 raw=558560 processed=558564 lines=545 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/546 raw=559584 processed=559588 lines=546 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/547 raw=560608 processed=560612 lines=547 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/548 raw=561632 processed=561636 lines=548 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/549 raw=562656 processed=562660 lines=549 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/550 raw=563680 processed=563684 lines=550 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/551 raw=564704 processed=564708 lines=551 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/552 raw=565728 processed=565732 lines=552 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/553 raw=566752 processed=566756 lines=553 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/554 raw=567776 processed=567780 lines=554 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/555 raw=568800 processed=568804 lines=555 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/556 raw=569824 processed=569828 lines=556 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/557 raw=570848 processed=570852 lines=557 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/558 raw=571872 processed=571876 lines=558 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/559 raw=572896 processed=572900 lines=559 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/560 raw=573920 processed=573924 lines=560 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/561 raw=574944 processed=574948 lines=561 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/562 raw=575968 processed=575972 lines=562 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/563 raw=576992 processed=576996 lines=563 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/564 raw=578016 processed=578020 lines=564 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/565 raw=579040 processed=579044 lines=565 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/566 raw=580064 processed=580068 lines=566 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/567 raw=581088 processed=581092 lines=567 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/568 raw=582112 processed=582116 lines=568 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/569 raw=583136 processed=583140 lines=569 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/570 raw=584160 processed=584164 lines=570 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/571 raw=585184 processed=585188 lines=571 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/572 raw=586208 processed=586212 lines=572 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/573 raw=587232 processed=587236 lines=573 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/574 raw=588256 processed=588260 lines=574 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/575 raw=589280 processed=589284 lines=575 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/576 raw=590304 processed=590308 lines=576 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/577 raw=591328 processed=591332 lines=577 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/578 raw=592352 processed=592356 lines=578 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/579 raw=593376 processed=593380 lines=579 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/580 raw=594400 processed=594404 lines=580 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/581 raw=595424 processed=595428 lines=581 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/582 raw=596448 processed=596452 lines=582 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/583 raw=597472 processed=597476 lines=583 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/584 raw=598496 processed=598500 lines=584 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/585 raw=599520 processed=599524 lines=585 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/586 raw=600544 processed=600548 lines=586 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/587 raw=601568 processed=601572 lines=587 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/588 raw=602592 processed=602596 lines=588 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/589 raw=603616 processed=603620 lines=589 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/590 raw=604640 processed=604644 lines=590 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/591 raw=605664 processed=605668 lines=591 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/592 raw=606688 processed=606692 lines=592 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/593 raw=607712 processed=607716 lines=593 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/594 raw=608736 processed=608740 lines=594 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/595 raw=609760 processed=609764 lines=595 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/596 raw=610784 processed=610788 lines=596 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/597 raw=611808 processed=611812 lines=597 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/598 raw=612832 processed=612836 lines=598 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=1/0 bad=1 tracking=1 x/y=484/599 raw=613856 processed=613860 lines=599 line_pixels=480 awb valid/sof/last=1/0/0 tag=00001/00001
+# DIAG local video frame=1 native=0/0 active/done=0/1 bad=1 tracking=0 x/y=0/599 raw=614400 processed=614400 lines=600 line_pixels=0 awb valid/sof/last=0/0/0 tag=00001/00001
+# OBS ISP initial line-span learning frame good=0 bad=1 ready=0
+# OBS direct video frame=2 view=1 mean=0 EC=0 GS=0 class=1
+# OBS direct video frame=3 view=0 mean=167 EC=0 GS=0 class=2
+# DIAG local video frame=4 native=0/0 active/done=0/1 bad=1 tracking=0 x/y=0/599 raw=614400 processed=614400 lines=600 line_pixels=0 awb valid/sof/last=0/0/0 tag=00000/00003
+# ** Fatal: unexpected fixture integrity failure 8
+#    Time: 13999195496 ps  Scope: tb_local_video.frame File: tb_local_video.v Line: 163
+# ** Note: $finish    : tb_local_video.v(163)
+#    Time: 13999195496 ps  Iteration: 1  Instance: /tb_local_video
+# End time: 01:59:13 on Oct 14,2026, Elapsed time: 0:02:56
+# Errors: 1, Warnings: 245

@@ -1,0 +1,92 @@
+{
+  "captured_at": "2026-10-14T23:02:36.925203+08:00",
+  "status": "V9_WIP_NOT_RELEASED_NOT_ACCEPTED",
+  "branch": "lj4747-contest-work",
+  "base_head": "e604d4fbe4bd40f0d7b40e5fce4ecfda10ea4351",
+  "production_inputs": 215,
+  "current_inputs_match_frozen": true,
+  "tests": [
+    {
+      "round": "frame_stop_v8_r1_20261014",
+      "pass_lines": [],
+      "final_runner_pass": false,
+      "note": "Read-only capture at handoff; absence of final PASS is not a completed verification."
+    },
+    {
+      "round": "frame_stop_v8_r2_20261014",
+      "pass_lines": [],
+      "final_runner_pass": false,
+      "note": "Read-only capture at handoff; absence of final PASS is not a completed verification."
+    },
+    {
+      "round": "process_v9_r1_20261014",
+      "pass_lines": [
+        "# PASS frame search: 12 full images, 1843200 independent capture-bit checks, 2P/P+E/2E, far corners, feed rejection, fill reason, bright background, cancel/recovery, PPC4 bubbles"
+      ],
+      "final_runner_pass": false,
+      "note": "Read-only capture at handoff; absence of final PASS is not a completed verification."
+    },
+    {
+      "round": "process_v9_r2_20261014",
+      "pass_lines": [
+        "# PASS frame search: 12 full images, 1843200 independent capture-bit checks, 2P/P+E/2E, far corners, feed rejection, fill reason, bright background, cancel/recovery, PPC4 bubbles",
+        "# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow",
+        "# PASS frame stop: real native LP738, CSI stopped 33ms after 200 tail clocks, RAW and GRAY+EDGE complete 115200 words and dual metadata, continuous 100MHz post-AWB, full DDR display; accepted=2 OF=0 UF=0",
+        "# PASS ROI guard: independent RGB math, unaligned ROI, first/last beat, completion ordering, FE collision, malformed/overrun/config/lane/overlap and recovery",
+        "PASS ModelSim: all 3 tests, including original vendor ERAM model"
+      ],
+      "final_runner_pass": true,
+      "note": "Read-only capture at handoff; absence of final PASS is not a completed verification."
+    },
+    {
+      "round": "process_v9_r3_20261014",
+      "pass_lines": [
+        "# PASS process bridge: 6827 exact 128-bit ordered payloads, asynchronous phases, dense/bubbled bursts, stopped source drain and resume, overflow latched until reset",
+        "# PASS frame search: 12 full images, 1843200 independent capture-bit checks, 2P/P+E/2E, far corners, feed rejection, fill reason, bright background, cancel/recovery, PPC4 bubbles",
+        "# PASS frame OSD: 4 rasters/1750016 independent pixels, both boxes/classes/numbers/size-fill reasons, no algorithm ROI or guide, first-active atomic snapshot, zero/stale result suppression, unchanged 3-clock sync",
+        "# PASS shape snapshot: atomic 37-bit model/WB/mode/legacy tuple, no stale Sobel fields, completion token, cancellation and fresh recovery",
+        "# PASS shape model: 14 cases, independent foreground/bbox counts, PPC4 unaligned, bubbles, four classes, borders, threshold, missing/duplicate/cancel, recovery",
+        "# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow",
+        "# PASS frame stop: real native LP738, CSI stopped 33ms after 200 tail clocks, RAW and GRAY+EDGE complete 115200 words and dual metadata, continuous 100MHz post-AWB, full DDR display; accepted=2 OF=0 UF=0"
+      ],
+      "final_runner_pass": false,
+      "note": "Read-only capture at handoff; absence of final PASS is not a completed verification."
+    },
+    {
+      "round": "process_v9_r4_20261014",
+      "pass_lines": [
+        "# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow",
+        "# PASS frame tail proof: actual native extra RAW data after full-frame commit is rejected while input is closed; no bad-slot publication, complete dual recovery, full competing DDR raster and no OF/UF"
+      ],
+      "final_runner_pass": false,
+      "note": "Read-only capture at handoff; absence of final PASS is not a completed verification."
+    },
+    {
+      "round": "process_v9_r5_20261014",
+      "pass_lines": [
+        "# PASS process bridge: 6827 exact 128-bit ordered payloads, asynchronous phases, dense/bubbled bursts, stopped source drain and resume, overflow latched until reset",
+        "# PASS frame search: 12 full images, 1843200 independent capture-bit checks, 2P/P+E/2E, far corners, feed rejection, fill reason, bright background, cancel/recovery, PPC4 bubbles",
+        "# PASS frame OSD: 4 rasters/1750016 independent pixels, both boxes/classes/numbers/size-fill reasons, no algorithm ROI or guide, first-active atomic snapshot, zero/stale result suppression, unchanged 3-clock sync",
+        "# PASS shape snapshot: atomic 37-bit model/WB/mode/legacy tuple, no stale Sobel fields, completion token, cancellation and fresh recovery",
+        "# PASS shape model: 14 cases, independent foreground/bbox counts, PPC4 unaligned, bubbles, four classes, borders, threshold, missing/duplicate/cancel, recovery",
+        "# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow",
+        "# PASS frame tail proof: actual native extra RAW data after full-frame commit is rejected while input is closed; no bad-slot publication, complete dual recovery, full competing DDR raster and no OF/UF",
+        "# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow",
+        "# PASS frame stop: real native LP738, CSI stopped 33ms after 200 tail clocks, RAW and GRAY+EDGE complete 115200 words and dual metadata, continuous 100MHz post-AWB, full DDR display; accepted=2 OF=0 UF=0"
+      ],
+      "final_runner_pass": false,
+      "note": "Read-only capture at handoff; absence of final PASS is not a completed verification."
+    }
+  ],
+  "wip_bit": {
+    "path": "wip_build/camera_to_dsi_display.bit",
+    "bytes": 1789539,
+    "sha256": "b0a838d94a9c8c52692983e0e52abe08e60315ba49091be8b79a3291b1b8750c"
+  },
+  "pending": [
+    "Complete r5 regression and independent native reference",
+    "Resolve/audit unmatched constraints and new clock/FIFO/declaration-order warnings",
+    "Fresh fully audited V9 build and onsite verification"
+  ],
+  "previous_release": "V8 has reported onsite black screen; preserve historical build evidence"
+}

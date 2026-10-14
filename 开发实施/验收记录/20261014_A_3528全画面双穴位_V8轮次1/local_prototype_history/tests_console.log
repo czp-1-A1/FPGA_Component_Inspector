@@ -1,0 +1,35 @@
+# OBS presence review case=1 FG=4239 W/H=61/76 context_bad=0 class=2 CHECK=0 cycles=57116
+# OBS presence review case=2 FG=4240 W/H=62/76 context_bad=0 class=2 CHECK=0 cycles=57128
+# OBS presence review case=3 FG=4191 W/H=61/76 context_bad=0 class=2 CHECK=0 cycles=56540
+# OBS presence review case=4 FG=4353 W/H=68/82 context_bad=1 class=2 CHECK=1 cycles=73851
+# OBS presence review case=5 FG=4089 W/H=62/76 context_bad=1 class=2 CHECK=1 cycles=70683
+# OBS presence review case=6 FG=4227 W/H=74/62 context_bad=1 class=2 CHECK=1 cycles=72339
+# OBS presence review case=7 FG=2702 W/H=46/75 context_bad=1 class=2 CHECK=1 cycles=54039
+# OBS presence review case=8 FG=4103 W/H=64/76 context_bad=0 class=2 CHECK=1 cycles=55484
+# OBS presence review case=9 FG=211 W/H=16/17 context_bad=0 class=3 CHECK=0 cycles=8780
+# OBS presence review case=10 FG=234 W/H=19/16 context_bad=0 class=3 CHECK=0 cycles=9056
+# OBS presence review case=11 FG=227 W/H=17/18 context_bad=0 class=3 CHECK=0 cycles=8972
+# OBS presence review case=12 FG=583 W/H=28/30 context_bad=0 class=0 CHECK=0 cycles=13244
+# OBS presence review case=13 FG=3648 W/H=64/76 context_bad=0 class=2 CHECK=1 cycles=50024
+# OBS presence review case=14 FG=3647 W/H=64/76 context_bad=0 class=1 CHECK=0 cycles=50012
+# OBS presence review case=15 FG=2400 W/H=40/72 context_bad=0 class=2 CHECK=1 cycles=35048
+# OBS presence review case=16 FG=2400 W/H=40/73 context_bad=0 class=1 CHECK=0 cycles=35048
+# OBS presence review case=17 FG=3000 W/H=60/60 context_bad=0 class=1 CHECK=0 cycles=42248
+# OBS presence review case=18 FG=5000 W/H=64/87 context_bad=0 class=1 CHECK=0 cycles=66248
+# OBS presence review case=19 FG=4725 W/H=63/75 context_bad=1 class=2 CHECK=1 cycles=78315
+# OBS presence review case=20 FG=4725 W/H=63/75 context_bad=0 class=2 CHECK=0 cycles=62948
+# PASS presence review: 20 independently counted connected masks, photograph feature replays, unchanged empty/feed models, CHECK distinctions, 75% and aspect boundaries, context recovery and cancellation
+# OBS local search case=1 p=0 move=0,0 state=2 FG=4725 W/H=63/75 postcapture_cycles=62948
+# OBS local search case=2 p=0 move=20,12 state=2 FG=4725 W/H=63/75 postcapture_cycles=62948
+# OBS local search case=3 p=0 move=-20,-12 state=2 FG=4725 W/H=63/75 postcapture_cycles=62948
+# OBS local search case=4 p=0 move=32,24 state=2 FG=4725 W/H=63/75 postcapture_cycles=62948
+# OBS local search case=5 p=0 move=64,0 state=0 FG=0 W/H=0/0 postcapture_cycles=60547
+# OBS local search case=6 p=6 move=12,6 state=2 FG=4725 W/H=63/75 postcapture_cycles=62948
+# OBS local search case=7 p=1 move=20,12 state=3 FG=253 W/H=19/19 postcapture_cycles=9284
+# OBS local search case=8 p=2 move=0,0 state=0 FG=797 W/H=33/33 postcapture_cycles=15812
+# OBS local search case=9 p=3 move=0,0 state=0 FG=0 W/H=0/0 postcapture_cycles=0
+# OBS local search case=10 p=4 move=0,0 state=1 FG=0 W/H=0/0 postcapture_cycles=0
+# OBS local search case=11 p=5 move=0,0 state=1 FG=400 W/H=20/20 postcapture_cycles=11048
+# OBS local search case=13 p=0 move=0,0 state=2 FG=4725 W/H=63/75 postcapture_cycles=62948
+# PASS local search: 13 independent shape/position cases, outside old 80 core, neighbors/feed/background separated, unchanged strict model, PPC4 bubbles, cancel/recovery
+PASS ModelSim: all 2 tests, including original vendor ERAM model

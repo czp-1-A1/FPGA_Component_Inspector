@@ -1,0 +1,89 @@
+{
+  "status": "EXPERIMENTAL_NOT_CALIBRATED",
+  "calibration_valid": false,
+  "material": "3528W_WHITE_ON_BLACK_TAPE",
+  "scope": "manual fixed pocket ROI; original RGB before visual overlay",
+  "imaging": {
+    "exposure": 2244,
+    "gain": 48,
+    "red_gain": 100,
+    "blue_gain": 100,
+    "gain_denominator": 64
+  },
+  "roi": {
+    "x0": 472,
+    "x1": 552,
+    "y0": 260,
+    "y1": 340
+  },
+  "segmentation": {
+    "gray_formula": "floor((R+2G+B)/4)",
+    "foreground_at_least": 100
+  },
+  "present": {
+    "long_side": [
+      52,
+      78
+    ],
+    "short_side": [
+      40,
+      72
+    ],
+    "aspect": [
+      1.05,
+      1.55
+    ],
+    "foreground_to_bbox_area_at_least": 0.85
+  },
+  "empty": {
+    "long_side": [
+      10,
+      26
+    ],
+    "short_side": [
+      8,
+      24
+    ],
+    "aspect_at_most": 1.4,
+    "foreground_to_bbox_area": [
+      0.6,
+      0.9
+    ]
+  },
+  "sprocket_non_target": {
+    "long_side": [
+      28,
+      46
+    ],
+    "short_side": [
+      20,
+      42
+    ],
+    "aspect_at_most": 1.4,
+    "foreground_to_bbox_area": [
+      0.6,
+      0.9
+    ]
+  },
+  "tape_context": {
+    "side_strips_width": 16,
+    "gray_at_most": 100,
+    "dark_fraction_at_least": 0.75,
+    "require_both": true
+  },
+  "quality": {
+    "border_contact": "NO TARGET",
+    "missing_foreground": "UNCERTAIN",
+    "no_shape_match": "UNCERTAIN",
+    "unverified_frames": "WAIT",
+    "parameter_changes": "WAIT until new complete observation"
+  },
+  "limitations": [
+    "Ranges are initial geometry priors from datasheet and photographed cyan frame, not native calibration.",
+    "Axis-aligned global foreground bbox and fill do not implement the offline Otsu/minAreaRect/corner model.",
+    "Multiple foreground objects/noise can disturb the bbox; no connected components or arbitrary-rotation matching.",
+    "The operator must distinguish pocket row from sprocket row; a small-circle match is not automatic pocket localization.",
+    "MEAN and Sobel edge totals are diagnostic, not identity decisions.",
+    "Fixed display shows latest sample; no moving or frame-bound boxes."
+  ]
+}

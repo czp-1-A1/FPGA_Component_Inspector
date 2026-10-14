@@ -1,0 +1,22 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 21:01:15 on Oct 13,2026
+vlog -work test_wb_epoch ../user_source/hdl_source/status_cdc.v ../user_source/hdl_source/roi_observation_snapshot.v ../user_source/hdl_source/roi_display_state.v 
+-- Compiling module status_cdc
+-- Compiling module roi_observation_snapshot
+-- Compiling module roi_display_state
+
+Top level modules:
+	status_cdc
+	roi_observation_snapshot
+	roi_display_state
+End time: 21:01:15 on Oct 13,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 21:01:15 on Oct 13,2026
+vlog -sv -work test_wb_epoch tb_wb_epoch.v 
+-- Compiling module tb_wb_epoch
+
+Top level modules:
+	tb_wb_epoch
+End time: 21:01:15 on Oct 13,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

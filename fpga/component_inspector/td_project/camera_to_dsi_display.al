@@ -11,6 +11,12 @@
     </HardWare>
     <Source_Files>
         <Verilog>
+            <File Path="../user_source/hdl_source/frame_process_bridge.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="124"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/frame_shape_search.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="123"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/roi_shape_search.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="122"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/roi_shape_model.v">
+                <FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="121"/></FileInfo>
+            </File>
             <File Path="../user_source/hdl_source/multi_pocket_detector.v">
                 <FileInfo>
                     <Attr Name="UsedInSyn" Val="true"/>
