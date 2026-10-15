@@ -1,0 +1,265 @@
+{
+  "status": "PASS_SOFTWARE_EXPERIMENT_ONSITE_PENDING",
+  "onsite": "PENDING_V10",
+  "previous_v9_onsite": "FAIL_BLACK",
+  "variant": "3528_VIDEO_FIRST_V10",
+  "base_head": "36ef39f2e75be99904c02a5a9a9c9ef693e2da1c",
+  "source_commit": null,
+  "production_inputs": 215,
+  "changed_from_v9": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/video_in.v"
+  ],
+  "tests": [
+    {
+      "name": "process_bridge",
+      "status": "PASS",
+      "console_sha256": "652443e3b121191a455cda74aff368534518de2fee5f5c8ad6dc48e79f463695"
+    },
+    {
+      "name": "frame_search",
+      "status": "PASS",
+      "console_sha256": "efd2fe9c417e694c80b9522285a3a834cbf9bf9417428594a68ef3330d78a3db"
+    },
+    {
+      "name": "frame_osd",
+      "status": "PASS",
+      "console_sha256": "842ceac6e9107afdde1c08a50521f411ce0a7d17e612c15a480d600f9e00f5fe"
+    },
+    {
+      "name": "shape_snapshot",
+      "status": "PASS",
+      "console_sha256": "c54109ae7cc3ca1680d495217c317a465be945f300dd36862c2556a42f098048"
+    },
+    {
+      "name": "shape_model",
+      "status": "PASS",
+      "console_sha256": "e20321937375120153b21a1171f3dff0a29ee2bd44ba73c33a228d62c73ebcfa"
+    },
+    {
+      "name": "frame_tailproof",
+      "status": "PASS",
+      "console_sha256": "e306d0abff9e23c86810beb38bf64aa0742bf766cabf5ab26d851ab948632cfa"
+    },
+    {
+      "name": "frame_stop",
+      "status": "PASS",
+      "console_sha256": "62200c619ffd7f98076d1efd038c02188e3c60b905c17244c89f473d9aef78e5"
+    },
+    {
+      "name": "frame_process",
+      "status": "PASS",
+      "console_sha256": "4d0d3b8064d38ed7dbf76cdcaa2d8af121a16eb52a60eeb56ecd8967f12d6e9d"
+    },
+    {
+      "name": "shape_osd",
+      "status": "PASS",
+      "console_sha256": "058acee751b63562d78ab9fc0280d5d1b5240a85a11e587de8b9aa9de866af9b"
+    },
+    {
+      "name": "video_fallback_display",
+      "status": "PASS",
+      "console_sha256": "e0f428a8573cf2c1d925406012f677b5fd94624de25381768d42079a68dc8067"
+    },
+    {
+      "name": "frame_wait_metadata",
+      "status": "PASS",
+      "console_sha256": "863365ef4b4797f1a7347c26d17f627e012b49e3e79a58dec9f32746f7304641"
+    },
+    {
+      "name": "video_metadata_fallback",
+      "status": "PASS",
+      "console_sha256": "a6f84851b5fdc8b08ff2045a9c2a3148d7219bd6a27f1a0c6096c47b1890235a"
+    },
+    {
+      "name": "writer_epoch",
+      "status": "PASS",
+      "console_sha256": "bb60ee898b3d04463f791346950a004c9c754c6fdaa03803abb4504d8cc596c5"
+    },
+    {
+      "name": "wb_epoch",
+      "status": "PASS",
+      "console_sha256": "846eca0454c78b80beeff3796b16d4ec878d6460602d2225c46a0d55552ca32b"
+    },
+    {
+      "name": "observation",
+      "status": "PASS",
+      "console_sha256": "8dcff2d4d7edc8aef4f3eb1420d47d5aa9cddfaedec5389d3d71b9b9ac0e4c87"
+    },
+    {
+      "name": "display_state",
+      "status": "PASS",
+      "console_sha256": "3e5607ec1458b4e5b806f871f60e0faefb2e7c1441f479615fd89a05a24cb725"
+    },
+    {
+      "name": "roi_guard",
+      "status": "PASS",
+      "console_sha256": "cc30b2c00be023decbb2a2a1c1f9445956e09b83247f44cfa34ceb947cb6e6d1"
+    },
+    {
+      "name": "video_first",
+      "status": "PASS",
+      "console_sha256": "c8fa7a2693e7c266696375173e4537bd94e4c65713103c60f266675ff62dbbc4"
+    },
+    {
+      "name": "video_late_display",
+      "status": "PASS",
+      "console_sha256": "afe9a0aa2eda46f07b9e344ac07588c44937ef2f4123884b7e700e1acff67325"
+    },
+    {
+      "name": "frame_cadence",
+      "status": "PASS",
+      "console_sha256": "c19dc30890180f9b496ffd71e31b17c2d60371b3de4c6ad24649149af08cf934"
+    }
+  ],
+  "independent_reference_images": 24,
+  "current_runner_eol_only_repair": true,
+  "timing": {
+    "setup_wns_ns": 0.122,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_coverage_percent": 92.76
+  },
+  "resources": {
+    "slice": {
+      "used": 14420,
+      "total": 21216,
+      "percent": 67.97
+    },
+    "eram": {
+      "used": 72,
+      "total": 108,
+      "percent": 66.67
+    },
+    "dsp": {
+      "used": 20,
+      "total": 40,
+      "percent": 50.0
+    }
+  },
+  "warnings": {
+    "syn_1": 125,
+    "phy_1": 12
+  },
+  "warning_deltas_from_v9": {
+    "syn_1": {
+      "added": [],
+      "removed": []
+    },
+    "phy_1": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "gray_pointer_logical_bits": 20,
+  "gray_pointer_paths": 20,
+  "gray_pointer_dominated": 20,
+  "gray_pointer_budget_ns": 8.0,
+  "gray_binding": {
+    "GRAY_WRITE_PRIMARY": [
+      "u_isp_top/continuous_processing$bridge/write_bin[9]",
+      "u_isp_top/continuous_processing$bridge/write_gray[0]",
+      "u_isp_top/continuous_processing$bridge/write_gray[1]",
+      "u_isp_top/continuous_processing$bridge/write_gray[2]",
+      "u_isp_top/continuous_processing$bridge/write_gray[3]",
+      "u_isp_top/continuous_processing$bridge/write_gray[4]",
+      "u_isp_top/continuous_processing$bridge/write_gray[5]",
+      "u_isp_top/continuous_processing$bridge/write_gray[6]",
+      "u_isp_top/continuous_processing$bridge/write_gray[7]",
+      "u_isp_top/continuous_processing$bridge/write_gray[8]"
+    ],
+    "GRAY_READ_PRIMARY": [
+      "u_isp_top/continuous_processing$bridge/read_bin[9]",
+      "u_isp_top/continuous_processing$bridge/read_gray[0]",
+      "u_isp_top/continuous_processing$bridge/read_gray[1]",
+      "u_isp_top/continuous_processing$bridge/read_gray[2]",
+      "u_isp_top/continuous_processing$bridge/read_gray[3]",
+      "u_isp_top/continuous_processing$bridge/read_gray[4]",
+      "u_isp_top/continuous_processing$bridge/read_gray[5]",
+      "u_isp_top/continuous_processing$bridge/read_gray[6]",
+      "u_isp_top/continuous_processing$bridge/read_gray[7]",
+      "u_isp_top/continuous_processing$bridge/read_gray[8]"
+    ],
+    "GRAY_WRITE_FIRST": [
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[0]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[1]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[2]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[3]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[4]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[5]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[6]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[7]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[8]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[9]"
+    ],
+    "GRAY_READ_FIRST": [
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[0]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[1]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[2]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[3]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[4]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[5]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[6]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[7]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[8]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[9]"
+    ],
+    "GRAY_SOURCE_BUDGET": [
+      "u_isp_top/continuous_processing$bridge/read_bin[9]",
+      "u_isp_top/continuous_processing$bridge/read_gray[0]",
+      "u_isp_top/continuous_processing$bridge/read_gray[1]",
+      "u_isp_top/continuous_processing$bridge/read_gray[2]",
+      "u_isp_top/continuous_processing$bridge/read_gray[3]",
+      "u_isp_top/continuous_processing$bridge/read_gray[4]",
+      "u_isp_top/continuous_processing$bridge/read_gray[5]",
+      "u_isp_top/continuous_processing$bridge/read_gray[6]",
+      "u_isp_top/continuous_processing$bridge/read_gray[7]",
+      "u_isp_top/continuous_processing$bridge/read_gray[8]",
+      "u_isp_top/continuous_processing$bridge/write_bin[9]",
+      "u_isp_top/continuous_processing$bridge/write_gray[0]",
+      "u_isp_top/continuous_processing$bridge/write_gray[1]",
+      "u_isp_top/continuous_processing$bridge/write_gray[2]",
+      "u_isp_top/continuous_processing$bridge/write_gray[3]",
+      "u_isp_top/continuous_processing$bridge/write_gray[4]",
+      "u_isp_top/continuous_processing$bridge/write_gray[5]",
+      "u_isp_top/continuous_processing$bridge/write_gray[6]",
+      "u_isp_top/continuous_processing$bridge/write_gray[7]",
+      "u_isp_top/continuous_processing$bridge/write_gray[8]"
+    ],
+    "GRAY_DEST_BUDGET": [
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[0]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[1]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[2]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[3]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[4]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[5]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[6]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[7]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[8]",
+      "u_isp_top/continuous_processing$bridge/read_gray_sync1[9]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[0]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[1]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[2]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[3]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[4]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[5]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[6]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[7]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[8]",
+      "u_isp_top/continuous_processing$bridge/write_gray_sync1[9]"
+    ]
+  },
+  "explicit_max_delays": 38,
+  "vendor_fifo_max_delays": 2,
+  "max_delays_matched": 40,
+  "max_delays_ignored": 0,
+  "sdc_changed_from_v9": false,
+  "scope": "Same white 3528/tape, full image, up to two objects; resultless complete video allowed, one exact-epoch/slot metadata attachment, atomic display snapshots; no calibrated physical defects",
+  "prior_black_reproduction": "V9 P5B complete pixels waiting for missing metadata; frozen counterexample retained",
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "e9542e0612e7491e5ff7305cc263a3898c4d8eef32320a126e7c3dc189470cef"
+  }
+}

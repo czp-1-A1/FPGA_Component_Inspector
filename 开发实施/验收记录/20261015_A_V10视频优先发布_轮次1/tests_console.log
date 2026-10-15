@@ -1,0 +1,32 @@
+# PASS process bridge: 6827 exact 128-bit ordered payloads, asynchronous phases, dense/bubbled bursts, stopped source drain and resume, overflow latched until reset
+# PASS frame search: 12 full images, 1843200 independent capture-bit checks, 2P/P+E/2E, far corners, feed rejection, fill reason, bright background, cancel/recovery, PPC4 bubbles
+# PASS frame OSD: 4 rasters/1750016 independent pixels, both boxes/classes/numbers/size-fill reasons, no algorithm ROI or guide, first-active atomic snapshot, zero/stale result suppression, unchanged 3-clock sync
+# PASS shape snapshot: atomic 37-bit model/WB/mode/legacy tuple, no stale Sobel fields, completion token, cancellation and fresh recovery
+# PASS shape model: 14 cases, independent foreground/bbox counts, PPC4 unaligned, bubbles, four classes, borders, threshold, missing/duplicate/cancel, recovery
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS frame tail proof: actual native extra RAW data after full-frame commit is rejected while input is closed; no bad-slot publication, complete dual recovery, full competing DDR raster and no OF/UF
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS frame stop: real native LP738, CSI stopped 33ms after 200 tail clocks, RAW and GRAY+EDGE complete 115200 words and dual metadata, continuous 100MHz post-AWB, full DDR display; accepted=2 OF=0 UF=0
+# PASS frame cadence: native line-clock gaps, LP0CF0 wall-clock, 26-FPS source start-to-start, all four views, live WB-canceled zero-result video, same-slot late dual tuples, full exact RGB rasters=13 pixels=8025234 OF=0 UF=0
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS frame process: 9 real correction/RAW10/vendor RAM frames, native LP738 and CSI stopped after 200 tail clocks, 100MHz continuous post-AWB, all four views, 2P and P+E outside old ROI, foreground background, late metadata bounded within 27-FPS source period, both records bound to DDR slot, WB zero-result fallback, mode cancellation, post-FE extra RAW rejection and next-frame recovery; accepted=6 OF=0 UF=0
+# PASS shape OSD: 706432 pixels, SHAPE V5/D6, MODEL P/E/NO TARGET/UNCERTAIN, EDGE ON/OFF, native FG/W/H, invalidation, fixed core and three-clock/frame-held raster
+# PASS video late display: 384 exact RGB pixels, video before results, same-slot late tuples visible only at display boundary, active slot protected, one attachment per epoch
+# PASS video fallback display: 384 exact RGB pixels, normal/zero metadata/recovery slots, unchanged metadata binding, no black video or underflow
+# PASS video first: prompt complete video despite slower analysis, one same-epoch tuple attachment, no replacement after ready drops, next epoch/partial/bad rejection and recovery
+# PASS frame wait metadata: late matching dual tuple, exact bounded zero-result fallback, no late relabeling, partial-frame and bad-frame rejection, source epoch cancellation/recovery
+# PASS video metadata fallback: normal/absent/late/wrong epoch/recovery, no stale four-pocket labels, strict legacy mode, bad and short pixels rejected, W/M snapshot and reset
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# PASS writer epoch: 8 clock phases/close-marker gaps, next complete frame recovers with matching source epoch and metadata
+# PASS WB epoch: coherent held request/result, invalidation, change-away/back with stopped CSI, recovery, epoch wrap and fresh-token requirement
+# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover
+# PASS display state: coherent 28-bit real CDC; normal FS hold, bad frame, config, late old payload, recipe mismatch/return, enabled exposure/gain tuning with fresh tokens, stopped CSI, FPS recovery and reset require fresh sample
+# PASS ROI guard: independent RGB math, unaligned ROI, first/last beat, completion ordering, FE collision, malformed/overrun/config/lane/overlap and recovery
+PASS ModelSim: all 20 tests, including original vendor ERAM model

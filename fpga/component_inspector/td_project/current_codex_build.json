@@ -1,16 +1,16 @@
 {
-  "purpose": "3528_CONTINUOUS_POST_AWB_V9",
+  "purpose": "3528_VIDEO_FIRST_V10",
   "td_version": "6.2.168116",
-  "base_head": "3c13af36cfd38656a42fb03bf665e4bd922856d2",
+  "base_head": "36ef39f2e75be99904c02a5a9a9c9ef693e2da1c",
   "source_commit": null,
-  "source_snapshot": "开发实施/验收记录/20261015_A_3528连续处理时钟_V9轮次1/source_snapshot",
-  "build_root": "tmp/process_v9_r8_20261015",
+  "source_snapshot": "开发实施/验收记录/20261015_A_V10视频优先发布_轮次1/source_snapshot",
+  "build_root": "tmp/video_first_v10_r4_20261015",
   "release": {
-    "path": "fpga/component_inspector/release/continuous_frame_v9_20261015/camera_to_dsi_display.bit",
+    "path": "fpga/component_inspector/release/video_first_v10_20261015/camera_to_dsi_display.bit",
     "bytes": 1789539,
-    "sha256": "b954f61ae317896169ae6b7607369d7752a7248a4dd4832c5e9db49b25d26268"
+    "sha256": "e9542e0612e7491e5ff7305cc263a3898c4d8eef32320a126e7c3dc189470cef"
   },
-  "validation_record": "开发实施/验收记录/20261015_A_3528连续处理时钟_V9轮次1.md",
+  "validation_record": "开发实施/验收记录/20261015_A_V10视频优先发布_轮次1.md",
   "fresh_tests": [
     "process_bridge",
     "frame_search",
@@ -28,11 +28,13 @@
     "wb_epoch",
     "observation",
     "display_state",
-    "roi_guard"
+    "roi_guard",
+    "video_first",
+    "video_late_display",
+    "frame_cadence"
   ],
-  "test_round": "process_v9_r7_20261015",
-  "onsite": "PENDING_V9",
-  "previous_v8_onsite": "FAIL_BLACK",
-  "verified_source_git_commit": "2f7a891dab92399a2a0b1e3ee0b170659727c251",
-  "repository_upload_receipt": "开发实施/验收记录/20261015_A_V9仓库上传回执.json"
+  "test_round": "tmp/video_first_v10_r4_20261015",
+  "onsite": "PENDING_V10",
+  "previous_v9_onsite": "FAIL_BLACK",
+  "previous_v8_onsite": "FAIL_BLACK"
 }

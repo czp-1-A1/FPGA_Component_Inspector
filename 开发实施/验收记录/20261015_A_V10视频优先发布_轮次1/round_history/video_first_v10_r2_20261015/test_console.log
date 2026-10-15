@@ -1,0 +1,14 @@
+# PASS frame cadence: native line-clock gaps, LP0CF0 wall-clock, 26-FPS source start-to-start, RAW and GRAY+EDGE, live WB-canceled zero-result video, same-slot late dual tuples, full exact RGB rasters=8 pixels=5095739 OF=0 UF=0
+# PASS video first: prompt complete video despite slower analysis, one same-epoch tuple attachment, no replacement after ready drops, next epoch/partial/bad rejection and recovery
+# PASS frame wait metadata: late matching dual tuple, exact bounded zero-result fallback, no late relabeling, partial-frame and bad-frame rejection, source epoch cancellation/recovery
+# PASS video metadata fallback: normal/absent/late/wrong epoch/recovery, no stale four-pocket labels, strict legacy mode, bad and short pixels rejected, W/M snapshot and reset
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# OBS epochs source=3 writer=3 received=3 ready=1 written=24 seen=Pfb
+# PASS writer epoch: 8 clock phases/close-marker gaps, next complete frame recovers with matching source epoch and metadata
+PASS ModelSim: all 5 tests, including original vendor ERAM model

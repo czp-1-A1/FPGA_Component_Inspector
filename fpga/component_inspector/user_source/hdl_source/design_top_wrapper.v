@@ -682,7 +682,7 @@ isp_top #(.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MOD
   );
 
 
-    video_in #(.METADATA(FRAME_BOUND),.META_WIDTH(FRAME_META_WIDTH),.METADATA_REQUIRED(LOCAL_SEARCH ? 0 : !MULTI_POCKETS),.METADATA_WAIT_CYCLES(LOCAL_SEARCH ? 1500000 : 0)) u_video_in(
+    video_in #(.METADATA(FRAME_BOUND),.META_WIDTH(FRAME_META_WIDTH),.METADATA_REQUIRED(LOCAL_SEARCH ? 0 : !MULTI_POCKETS),.VIDEO_FIRST(LOCAL_SEARCH)) u_video_in(
         .I_frame_metadata(camera_metadata),.I_frame_metadata_ready(camera_metadata_ready),.O_completed_metadata(completed_metadata),
         .O_publish_diagnostic(publish_diagnostic),
         .I_rst_n              (  S_rst_n             ),

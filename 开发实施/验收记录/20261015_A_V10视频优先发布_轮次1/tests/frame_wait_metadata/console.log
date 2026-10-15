@@ -1,0 +1,53 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/frame_wait_metadata/transcript.log -wlf modelsim_work/frame_wait_metadata/wave.wlf -do "log /tb_frame_wait_metadata/*; run -all; quit -code 1 -force" test_frame_wait_metadata.tb_frame_wait_metadata 
+# Start time: 11:15:52 on Oct 15,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 29, found 19.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2718) [TFMPC] - Missing connection for port 'O_publish_diagnostic'.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2718) [TFMPC] - Missing connection for port 'O_ddr_user_wr_data'.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2718) [TFMPC] - Missing connection for port 'O_ddr_user_addr'.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2718) [TFMPC] - Missing connection for port 'O_ddr_user_wr_en'.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2718) [TFMPC] - Missing connection for port 'O_overflow_frames'.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2718) [TFMPC] - Missing connection for port 'O_lost_frames'.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2718) [TFMPC] - Missing connection for port 'O_completed_rp'.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2718) [TFMPC] - Missing connection for port 'O_completed_valid'.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2718) [TFMPC] - Missing connection for port 'O_video_out_rp'.
+# ** Warning: tb_frame_wait_metadata.v(6): (vopt-2718) [TFMPC] - Missing connection for port 'O_video_in_wr_busy'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_frame_wait_metadata(fast)
+# Loading work.video_in(fast)
+# Loading work.status_cdc(fast)
+# Loading work.w128_d512_fifo(fast)
+# Loading work.soft_fifo_al_4057d6b76aa6(fast)
+# Loading work.fifo_cross_domain_addr_process_al_4057d6b76aa6(fast)
+# Loading work.ram_infer_4057d6b76aa6(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'ceb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_frame_wait_metadata/dut/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v Line: 221
+# ** Warning: (vsim-3015) [PCDPC] - Port size (9) does not match connection size (32) for port 'addrb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_frame_wait_metadata/dut/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst File: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v Line: 221
+# log /tb_frame_wait_metadata/*
+#  run -all
+# PASS frame wait metadata: late matching dual tuple, exact bounded zero-result fallback, no late relabeling, partial-frame and bad-frame rejection, source epoch cancellation/recovery
+# ** Note: $finish    : tb_frame_wait_metadata.v(36)
+#    Time: 16080 ns  Iteration: 1  Instance: /tb_frame_wait_metadata
+# End time: 11:15:54 on Oct 15,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 16

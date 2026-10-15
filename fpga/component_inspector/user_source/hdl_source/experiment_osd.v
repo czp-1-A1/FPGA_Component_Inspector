@@ -704,7 +704,7 @@ always @* begin
  if((TRACKING || DIRECT_DETECTION) && y>=8 && y<24 && x>=128 && x<232) begin
   glyph_cjk=0;glyph_row=y-8;glyph_col=(x-128)%8;
   case((x-128)/8)
-   0:glyph="D";1:glyph=FRAME_OBJECTS ? "A" : LOCAL_SEARCH ? "8" : SHAPE_MODEL ? "6" : DIRECT_DETECTION ? "5" : MULTI_POCKETS ? "4" : "3";2:glyph=" ";3:glyph="P";
+   0:glyph="D";1:glyph=FRAME_OBJECTS ? "B" : LOCAL_SEARCH ? "8" : SHAPE_MODEL ? "6" : DIRECT_DETECTION ? "5" : MULTI_POCKETS ? "4" : "3";2:glyph=" ";3:glyph="P";
    4:glyph=hexchar(publish_s[24:21]);5:glyph=hexchar(publish_s[20:17]);
    6:glyph=" ";7:glyph=publish_s[25] ? "M" : "W";8:glyph=hexchar({3'd0,publish_s[16]});
    9:glyph=hexchar(publish_s[15:12]);10:glyph=hexchar(publish_s[11:8]);
@@ -724,7 +724,7 @@ always @* begin
    0:glyph=FRAME_OBJECTS ? "F" : LOCAL_SEARCH ? "L" : SHAPE_MODEL ? "S" : "F";1:glyph=FRAME_OBJECTS ? "R" : LOCAL_SEARCH ? "O" : SHAPE_MODEL ? "H" : "I";
    2:glyph=FRAME_OBJECTS ? "A" : LOCAL_SEARCH ? "C" : SHAPE_MODEL ? "A" : "X";3:glyph=FRAME_OBJECTS ? "M" : LOCAL_SEARCH ? "A" : SHAPE_MODEL ? "P" : "E";
    4:glyph=FRAME_OBJECTS ? "E" : LOCAL_SEARCH ? "L" : SHAPE_MODEL ? "E" : "D";5:glyph=" ";
-   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph=FRAME_OBJECTS ? "9" : LOCAL_SEARCH ? "7" : SHAPE_MODEL ? "5" : "4";default:glyph=" ";
+   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph=FRAME_OBJECTS ? "1" : LOCAL_SEARCH ? "7" : SHAPE_MODEL ? "5" : "4";12:glyph=FRAME_OBJECTS ? "0" : " ";default:glyph=" ";
   endcase
  end
  if(SHAPE_MODEL && sample_s && class_s<2 && y>=540 && y<588 && x>=16 && x<208) begin

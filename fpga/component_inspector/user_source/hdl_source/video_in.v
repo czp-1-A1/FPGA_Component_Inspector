@@ -1,5 +1,5 @@
 // A slot is published only after every packed word has reached the MC port.
-module video_in #(parameter WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,METADATA_REQUIRED=1,METADATA_WAIT_CYCLES=0)(
+module video_in #(parameter WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,METADATA_REQUIRED=1,METADATA_WAIT_CYCLES=0,VIDEO_FIRST=0)(
  input wire I_rst_n,I_camera_clk,I_camera_frame_start,I_camera_valid,
  input wire [127:0] I_camera_data,input wire I_mipi_rx_error,
  input wire I_frame_good,I_frame_bad,
@@ -68,14 +68,21 @@ always @(posedge I_camera_clk or negedge I_rst_n) begin
 end
 reg [1:0] S_video_in_wp;
 reg frame_open,published;
-// Full-frame analysis completes in vertical blanking. Hold this completed slot
-// until matching metadata arrives, or a bounded timeout releases video without
-// results. A new source epoch still cancels the old frame; no late relabeling.
+reg late_metadata_pending;
+// Legacy profiles may wait for metadata or a bounded zero-result timeout.
+// VIDEO_FIRST publishes proved pixels immediately; its late tuple attachment
+// below ends at the next source FS. Results never make incomplete pixels valid.
 reg [21:0] metadata_wait;
 wire metadata_timeout=METADATA_WAIT_CYCLES==0 || metadata_wait>=METADATA_WAIT_CYCLES;
 reg [16:0] written;
 wire complete_frame=frame_open && !published && written==WORDS && done_sync[1] &&
                     good_sync[1] && !bad_sync[1] && !S_fifo_rst && !S_frame_start;
+// The full-frame detector must not hold complete video hostage. A late tuple
+// can enrich only this same completed slot/epoch, once, before the next FS.
+// video_out snapshots both slot and metadata together at a display boundary.
+wire attach_metadata=VIDEO_FIRST && METADATA && !METADATA_REQUIRED && published && late_metadata_pending &&
+ metadata_matches && O_completed_valid && O_completed_rp==S_video_in_wp &&
+ !bad_sync[1] && !S_fifo_rst && !S_frame_start;
 // Read-only previous-frame evidence. Seen bits are not a replacement for
 // the simultaneous publish predicate below: published/epoch/metadata/done/
 // good/bad/exact/open. Count MC commands, including one on the closing edge.
@@ -114,7 +121,7 @@ w128_d512_fifo U_w128_d512_fifo(
 always @(posedge I_ddr_clk or negedge I_rst_n) begin
  if(!I_rst_n) begin
   frame_sync<=0;bad_sync<=0;done_sync<=0;good_sync<=0;
-  metadata_wait<=0;S_video_in_wp<=0;frame_open<=0;published<=0;written<=0;
+  metadata_wait<=0;S_video_in_wp<=0;frame_open<=0;published<=0;written<=0;late_metadata_pending<=0;
   S_ddr_wr_valid<=0;burst_left<=0;O_ddr_user_wr_en<=0;O_ddr_user_addr<=0;
   O_completed_metadata<=0;writer_epoch<=0;O_completed_valid<=0;O_completed_rp<=0;O_capture_ok<=0;O_lost_frames<=0;
  end else begin
@@ -128,7 +135,7 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
   if(O_ddr_user_wr_en) begin
    written<=written+1'b1;O_ddr_user_addr<=O_ddr_user_addr+25'd8;
   end
-  if(bad_sync[1]) begin O_capture_ok<=0;S_ddr_wr_valid<=0;end
+  if(bad_sync[1]) begin O_capture_ok<=0;S_ddr_wr_valid<=0;late_metadata_pending<=0;end
   if(S_fifo_rd_en) begin
    burst_left<=burst_left-1'b1;
    if(burst_left==1) S_ddr_wr_valid<=0;
@@ -140,13 +147,15 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
     S_ddr_wr_valid<=1;burst_left<=S_fifo_rd_num;
    end
   end
-  if(complete_frame && !metadata_matches && !metadata_timeout)metadata_wait<=metadata_wait+1'b1;
-  if(complete_frame && (metadata_matches || (!METADATA_REQUIRED && metadata_timeout))) begin
+  if(!VIDEO_FIRST && complete_frame && !metadata_matches && !metadata_timeout)metadata_wait<=metadata_wait+1'b1;
+  if(complete_frame && (metadata_matches || (!METADATA_REQUIRED && (VIDEO_FIRST || metadata_timeout)))) begin
    O_completed_valid<=1;O_completed_rp<=S_video_in_wp;
    // Missing results must never inherit coordinates or classes from an old slot.
    O_completed_metadata<=metadata_matches ? metadata_receive[META_WIDTH-1:0] : {META_WIDTH{1'b0}};
+   late_metadata_pending<=VIDEO_FIRST && !metadata_matches;
    O_capture_ok<=1;published<=1;
   end
+  if(attach_metadata) begin O_completed_metadata<=metadata_receive[META_WIDTH-1:0];late_metadata_pending<=0;end
   if(S_frame_start) begin
    // The extended, synchronized marker carries a source-held epoch bundle.
    // Independent counters drift permanently when close source markers coalesce.
@@ -154,7 +163,7 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
    writer_epoch<=camera_epoch;
    if(frame_open && !published) begin O_lost_frames<=O_lost_frames+1'b1;O_capture_ok<=0;end
    S_video_in_wp<=next_slot;O_ddr_user_addr<=base(next_slot);
-   metadata_wait<=0;written<=0;published<=0;frame_open<=1;
+   metadata_wait<=0;written<=0;published<=0;frame_open<=1;late_metadata_pending<=0;
    S_ddr_wr_valid<=0;burst_left<=0;O_ddr_user_wr_en<=0;
   end
  end
@@ -169,9 +178,10 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
   publish_seen<=publish_seen | publish_conditions;
   // AUTO4 snapshots at publication, before the following source FS clears ready.
   // W: MC word count. M: ready / received epoch low byte / writer epoch low byte.
-  if(!METADATA_REQUIRED && complete_frame && (metadata_matches || metadata_timeout))
+  if(!METADATA_REQUIRED && complete_frame && (metadata_matches || VIDEO_FIRST || metadata_timeout))
    O_publish_diagnostic<={(!metadata_matches),publish_seen | publish_conditions | 8'h80,
     (metadata_matches ? diagnostic_written : {metadata_receive[META_WIDTH],metadata_receive[META_WIDTH+8:META_WIDTH+1],writer_epoch[7:0]})};
+  if(attach_metadata) O_publish_diagnostic<={1'b0,publish_seen | publish_conditions,diagnostic_written};
  end
 end
 endmodule

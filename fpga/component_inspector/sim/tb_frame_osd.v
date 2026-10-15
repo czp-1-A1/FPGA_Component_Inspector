@@ -51,7 +51,7 @@ always @(negedge clk)if(checking && od)begin
   if(rgb!==expected)$fatal(1,"full OSD pixel (%0d,%0d) got%h expected%h frame%0d",px,py,rgb,expected,frames);checked++;
  end
  if(py>=8 && py<24 && ((px>=128 && px<232) || (px>=240 && px<344)))begin
-  version_value=px<232 ? "DA PFB W1C200" : "FRAME EXP V9 ";
+  version_value=px<232 ? "DB PFB W1C200" : "FRAME EXP V10";
   glyph=version_value[103-((px-(px<232?128:240))/8)*8-:8];col=(px-(px<232?128:240))%8;row=py-8;
   expected=ascii_rows[glyph*16+row][7-col] ? 24'hffffff : 24'h142336;
   if(rgb!==expected)$fatal(1,"full OSD version glyph");checked++;
