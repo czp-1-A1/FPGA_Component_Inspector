@@ -52,13 +52,16 @@
   "calibration_220mm": "PENDING_NEW_VIEW_3528_SAMPLES",
   "previous_v11_release": "fpga/component_inspector/release/hd720_v11_r9_20261015",
   "latest_v11_photo": "Visible two-tape wide field; no exact bit SHA binding or completed classification calibration",
-  "source_upload_verified": false,
-  "git_upload": "LOCAL_ONLY_USER_SAID_NO_GITHUB_20261015",
+  "source_upload_verified": true,
+  "git_upload": "V12_SOURCE_VERIFIED_ON_GITHUB_NEXT_VERSION_AWAITS_USER_CONFIRMATION",
   "next_version_gate": {
     "status": "AWAITING_EXPLICIT_USER_CONFIRMATION",
     "required": true,
     "requirement": "下一版必须重新测定3528在新视野中的尺寸参数。先由用户明确确认，才开始重新测定、修改参数及下一版代码或构建。",
     "current_action": "仅提交已完成的V12到本地Git，不启动下一版，不推送GitHub。",
     "record": "开发实施/64_A_V12本地提交与下一版标定确认.md"
-  }
+  },
+  "verified_source_git_commit": "f799f09d3f94a452635f47ee984111a6186468ef",
+  "verified_source_git_tree": "366456d8725654f2905f7bfcf1bff81c26c2ee01",
+  "git_upload_receipt": "开发实施/验收记录/20261015_A_V12仓库上传回执.json"
 }

@@ -1,0 +1,34 @@
+{
+  "status": "PASS_NATIVE_GIT_PUSH_AND_REMOTE_REF_VERIFIED",
+  "verified_at_utc": "2026-10-15T13:52:04.748795+00:00",
+  "authorization": "用户在本地提交完成后明确要求“现在提交”；本轮推送V12到原GitHub分支。",
+  "remote": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
+  "branch": "lj4747-contest-work",
+  "verified_source_commit": "f799f09d3f94a452635f47ee984111a6186468ef",
+  "verified_source_tree": "366456d8725654f2905f7bfcf1bff81c26c2ee01",
+  "remote_ref_at_source_verification": "f799f09d3f94a452635f47ee984111a6186468ef",
+  "transport": "native git push, fast-forward, no force",
+  "source_commit_url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/commit/f799f09d3f94a452635f47ee984111a6186468ef",
+  "source_files": 739,
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "66393158dc0ac7e42100f6388d9bb03989e6eacc3c6d99f998f0d2177d4578db",
+    "path": "fpga/component_inspector/release/regions_v12_20261015/V12_regions_3528_720p60_20261015.bit"
+  },
+  "full_package": {
+    "path": "fpga/component_inspector/release/regions_v12_20261015/V12_regions_3528_720p60_20261015_full.zip",
+    "bytes": 29453084,
+    "sha256": "64aff05aee61d264e65fb387a6090924a273ed684bfd17200ca8e2821fd69766"
+  },
+  "artifact_check": "Committed bit and ZIP bytes match local delivery and their SHA256 values.",
+  "documentation_note": "This receipt verifies the source commit; a later documentation-only commit may become branch HEAD.",
+  "next_version_gate": {
+    "status": "AWAITING_EXPLICIT_USER_CONFIRMATION",
+    "required": true,
+    "requirement": "下一版必须重新测定3528在新视野中的尺寸参数。先由用户明确确认，才开始重新测定、修改参数及下一版代码或构建。",
+    "current_action": "仅提交已完成的V12到本地Git，不启动下一版，不推送GitHub。",
+    "record": "开发实施/64_A_V12本地提交与下一版标定确认.md"
+  },
+  "next_version_started": false,
+  "frozen_release_note": "Immutable build/release metadata retains its packaging-time local-only state; current upload status is recorded here."
+}
