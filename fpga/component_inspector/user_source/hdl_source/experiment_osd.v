@@ -1,6 +1,6 @@
 // Sampling UI. Three pixel clocks for RGB, DE, HS, VS and ENABLE bypass.
 module experiment_osd #(
- parameter WIDTH=1024,HEIGHT=600,DIAG_BITS=26,RESOLUTION_V11=0,
+ parameter WIDTH=1024,HEIGHT=600,DIAG_BITS=26,RESOLUTION_V11=0,REGIONS=0,
  parameter LOCAL_SEARCH=0,SHAPE_MODEL=0,TRACKING=0,MULTI_POCKETS=0,DIRECT_DETECTION=0,CLASS_THRESHOLD=58,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
  parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340,HOLE_Y=220,FRAME_OBJECTS=0
 )(
@@ -19,12 +19,13 @@ module experiment_osd #(
  input wire track_valid,input wire [10:0] track_x0,track_x1,
  input wire [3:0] track_reason,input wire [2:0] track_rows,
  output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb,
- input wire [151:0] frame_objects
+ input wire [(REGIONS ? 304 : 152)-1:0] frame_objects
 );
 localparam [199:0] calibration_text="220MM CAL PENDING        ";
 reg [339:0] pockets_s;reg pockets_enabled_s;
 reg local_box_s;reg [10:0] local_x0_s,local_x1_s;reg [9:0] local_y0_s,local_y1_s;
-reg [151:0] frame_objects_s;
+localparam OBJECTS=REGIONS ? 4 : 2;
+reg [OBJECTS*76-1:0] frame_objects_s;
 reg vs_d,de_d;reg [10:0] x;reg [9:0] y;
 wire [9:0] y_ui=(y>=HEIGHT-96) ? y-(HEIGHT-600) : y;
 // DDR slot selection follows VS. Wait until its metadata has crossed during blanking.
@@ -79,7 +80,7 @@ always @(posedge clk or negedge rst_n) begin
   else if(de) x<=x+1'b1;
   else if(de_d) begin x<=0;y<=y+1'b1;end
   if(start) begin
-   frame_objects_s<=roi_valid ? frame_objects : 152'd0;
+   frame_objects_s<=roi_valid ? frame_objects : {OBJECTS*76{1'b0}};
    local_box_s<=local_box_valid;local_x0_s<=local_x0;local_x1_s<=local_x1;local_y0_s<=local_y0;local_y1_s<=local_y1;
    pockets_s<=pocket_records;pockets_enabled_s<=pocket_enable;
    track_valid_s<=track_valid;track_x0_s<=track_x0;track_x1_s<=track_x1;
@@ -261,31 +262,57 @@ always @* begin
   end
  end
 end
-// Freeze both records at the first active pixel of the selected DDR frame.
+// Freeze all records at the first active pixel of the selected DDR frame.
 // Numbering is left-to-right in this image, not a persistent tape ID.
 reg frame_border,frame_label;reg [23:0] frame_color;
-reg [1:0] frame_state;reg [3:0] frame_reason;reg frame_number;
+reg [1:0] frame_state;reg [3:0] frame_reason;reg [1:0] frame_number;
+localparam CARD_WIDTH=REGIONS ? 104 : 88,CARD_PREFIX=REGIONS ? 24 : 16;
 reg [10:0] frame_lx;reg [9:0] frame_ly;
 integer fi;reg [75:0] object_value;reg [10:0] fx0,fx1,flx;reg [9:0] fy0,fy1,fly;
 always @*begin
  frame_border=0;frame_label=0;frame_color=24'hb0c0d4;frame_state=1;frame_reason=0;frame_number=0;frame_lx=0;frame_ly=0;
  object_value=0;fx0=0;fx1=0;fy0=0;fy1=0;flx=0;fly=0;
- for(fi=0;fi<2;fi=fi+1)begin
+ for(fi=0;fi<OBJECTS;fi=fi+1)begin
   object_value=frame_objects_s[fi*76+:76];
   fx0=object_value[41:31];fx1=object_value[30:20];fy0=object_value[19:10];fy1=object_value[9:0];
-  flx=fx0>WIDTH-88 ? WIDTH-88 : fx0;
+  flx=fx0>WIDTH-CARD_WIDTH ? WIDTH-CARD_WIDTH : fx0;
   // Stagger neighboring cards so adjacent pockets do not share one label.
-  fly=fi==1 && fy1<HEIGHT-152 ? fy1+4 : fy0>=136 ? fy0-56 : fy1+4;
+  fly=fi%2==1 && fy1<HEIGHT-152 ? fy1+4 : fy0>=136 ? fy0-56 : fy1+4;
   if(fly>HEIGHT-152)fly=HEIGHT-152;
   if(FRAME_OBJECTS && sample_s && object_value[75])begin
    if(x>=fx0 && x<fx1 && y>=fy0 && y<fy1 && (x==fx0 || x==fx1-1 || y==fy0 || y==fy1-1))begin
     frame_border=1;
     frame_color=object_value[74:73]==2 ? (|object_value[72:69] ? 24'hffcc55 : 24'h74dbc7) : object_value[74:73]==3 ? 24'hffae64 : 24'hb0c0d4;
    end
-   if(x>=flx && x<flx+88 && y>=fly && y<fly+56)begin
+   if(x>=flx && x<flx+CARD_WIDTH && y>=fly && y<fly+56)begin
     frame_label=1;frame_lx=flx;frame_ly=fly;frame_number=fi;frame_state=object_value[74:73];frame_reason=object_value[72:69];
     frame_color=frame_state==2 ? (|frame_reason ? 24'hffcc55 : 24'h74dbc7) : frame_state==3 ? 24'hffae64 : 24'hb0c0d4;
    end
+  end
+ end
+end
+wire [83:0] region_bounds;wire [31:0] region_models;wire [239:0] unused_recipes;wire [1:0] region_supported;
+generate if(REGIONS)begin : regions
+ inspection_region_config #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) cfg(region_bounds,region_models,unused_recipes,region_supported);
+end else begin
+ assign region_bounds=0;assign region_models=0;assign unused_recipes=0;assign region_supported=0;
+end endgenerate
+reg region_border,region_label;reg [23:0] region_color;
+reg [127:0] region_text;reg [10:0] region_lx;reg [9:0] region_ly;
+integer ri;reg [41:0] rb;reg [9:0] rly;reg region_has_objects;
+always @*begin
+ region_border=0;region_label=0;region_color=24'h00ffff;region_text=0;region_lx=0;region_ly=0;rb=0;rly=0;region_has_objects=0;
+ for(ri=0;ri<2;ri=ri+1)begin
+  rb=region_bounds[ri*42+:42];rly=rb[19:10]>=100 ? rb[19:10]-20 : 80;
+  if(REGIONS && x>=rb[41:31] && x<rb[30:20] && y>=rb[19:10] && y<rb[9:0] &&
+   (((x==rb[41:31] || x==rb[30:20]-1) && !y[2]) || ((y==rb[19:10] || y==rb[9:0]-1) && !x[2])))begin
+   region_border=1;region_color=ri==0 ? 24'h00ffff : 24'hc6a0ff;
+  end
+  if(REGIONS && x>=rb[41:31] && x<rb[41:31]+128 && y>=rly && y<rly+16)begin
+   region_label=1;region_lx=rb[41:31];region_ly=rly;region_color=ri==0 ? 24'h00ffff : 24'hc6a0ff;
+   region_has_objects=frame_objects_s[ri*152+75] || frame_objects_s[ri*152+151];
+   region_text={ri==0 ? "R1 " : "R2 ",region_supported[ri] ? "3528 " : "---- ",
+    !region_supported[ri] ? "UNBOUND " : !sample_s ? "WAIT    " : region_has_objects ? "READY   " : "NO TGT  "};
   end
  end
 end
@@ -709,7 +736,7 @@ always @* begin
  if((TRACKING || DIRECT_DETECTION) && y>=8 && y<24 && x>=128 && x<232) begin
   glyph_cjk=0;glyph_row=y-8;glyph_col=(x-128)%8;
   case((x-128)/8)
-   0:glyph="D";1:glyph=FRAME_OBJECTS ? (RESOLUTION_V11 ? "C" : "B") : LOCAL_SEARCH ? "8" : SHAPE_MODEL ? "6" : DIRECT_DETECTION ? "5" : MULTI_POCKETS ? "4" : "3";2:glyph=" ";3:glyph="P";
+   0:glyph="D";1:glyph=FRAME_OBJECTS ? (REGIONS ? "D" : RESOLUTION_V11 ? "C" : "B") : LOCAL_SEARCH ? "8" : SHAPE_MODEL ? "6" : DIRECT_DETECTION ? "5" : MULTI_POCKETS ? "4" : "3";2:glyph=" ";3:glyph="P";
    4:glyph=hexchar(publish_flags[7:4]);5:glyph=hexchar(publish_flags[3:0]);
    6:glyph=" ";7:glyph=publish_s[DIAG_BITS-1] ? "M" : "W";8:glyph=hexchar(publish_count[19:16]);
    9:glyph=hexchar(publish_count[15:12]);10:glyph=hexchar(publish_count[11:8]);
@@ -729,7 +756,7 @@ always @* begin
    0:glyph=FRAME_OBJECTS ? "F" : LOCAL_SEARCH ? "L" : SHAPE_MODEL ? "S" : "F";1:glyph=FRAME_OBJECTS ? "R" : LOCAL_SEARCH ? "O" : SHAPE_MODEL ? "H" : "I";
    2:glyph=FRAME_OBJECTS ? "A" : LOCAL_SEARCH ? "C" : SHAPE_MODEL ? "A" : "X";3:glyph=FRAME_OBJECTS ? "M" : LOCAL_SEARCH ? "A" : SHAPE_MODEL ? "P" : "E";
    4:glyph=FRAME_OBJECTS ? "E" : LOCAL_SEARCH ? "L" : SHAPE_MODEL ? "E" : "D";5:glyph=" ";
-   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph=FRAME_OBJECTS ? "1" : LOCAL_SEARCH ? "7" : SHAPE_MODEL ? "5" : "4";12:glyph=FRAME_OBJECTS ? (RESOLUTION_V11 ? "1" : "0") : " ";default:glyph=" ";
+   6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph=FRAME_OBJECTS ? "1" : LOCAL_SEARCH ? "7" : SHAPE_MODEL ? "5" : "4";12:glyph=FRAME_OBJECTS ? (REGIONS ? "2" : RESOLUTION_V11 ? "1" : "0") : " ";default:glyph=" ";
   endcase
  end
  if(SHAPE_MODEL && sample_s && class_s<2 && y_ui>=540 && y_ui<588 && x>=16 && x<208) begin
@@ -784,13 +811,27 @@ always @* begin
   ink_color=frame_color;
   if(y<frame_ly+24)begin
    glyph_row=y-frame_ly;
-   if(x<frame_lx+16)begin glyph_cjk=0;glyph_col=(x-frame_lx)%8;glyph_row=(y>=frame_ly+4 && y<frame_ly+20) ? y-frame_ly-4 : 0;glyph=x<frame_lx+8 && y>=frame_ly+4 && y<frame_ly+20 ? (frame_number ? "2" : "1") : " ";end
-   else if(frame_state<2)begin glyph_cjk=0;glyph_row=(y>=frame_ly+4 && y<frame_ly+20) ? y-frame_ly-4 : 0;glyph_col=(x-frame_lx-16)%8;glyph=y>=frame_ly+4 && y<frame_ly+20 ? shape_status_char(frame_state,(x-frame_lx-16)/8) : " ";end
-   else begin glyph_cjk=1;glyph_col=(x-frame_lx-16)%24;glyph=result_glyph(frame_state,(x-frame_lx-16)/24);end
+   if(x<frame_lx+CARD_PREFIX)begin
+    glyph_cjk=0;glyph_col=(x-frame_lx)%8;glyph_row=(y>=frame_ly+4 && y<frame_ly+20) ? y-frame_ly-4 : 0;
+    glyph=" ";
+    if(y>=frame_ly+4 && y<frame_ly+20)begin
+     if(REGIONS)begin
+      case((x-frame_lx)/8)
+       0:glyph=frame_number[1] ? "2" : "1";1:glyph=".";2:glyph=frame_number[0] ? "2" : "1";
+      endcase
+     end else if(x<frame_lx+8)glyph=frame_number[0] ? "2" : "1";
+    end
+   end
+   else if(frame_state<2)begin glyph_cjk=0;glyph_row=(y>=frame_ly+4 && y<frame_ly+20) ? y-frame_ly-4 : 0;glyph_col=(x-frame_lx-CARD_PREFIX)%8;glyph=y>=frame_ly+4 && y<frame_ly+20 ? shape_status_char(frame_state,(x-frame_lx-CARD_PREFIX)/8) : " ";end
+   else begin glyph_cjk=1;glyph_col=(x-frame_lx-CARD_PREFIX)%24;glyph=result_glyph(frame_state,(x-frame_lx-CARD_PREFIX)/24);end
   end else begin
    glyph_cjk=0;glyph_row=(y-frame_ly-24)%16;glyph_col=(x-frame_lx)%8;
    glyph=x<frame_lx+64 ? frame_text[63-((x-frame_lx)/8)*8-:8] : " ";
   end
+ end
+ if(region_label)begin
+  glyph_cjk=0;ink_color=region_color;glyph_row=y-region_ly;glyph_col=(x-region_lx)%8;
+  glyph=region_text[127-((x-region_lx)/8)*8-:8];
  end
  if(RESOLUTION_V11 && x>=1056 && x<1256 && y>=24 && y<40)begin
   glyph_cjk=0;ink_color=24'hffcc55;glyph_row=y-24;glyph_col=(x-1056)%8;
@@ -815,7 +856,7 @@ wire [7:0] gray=gray_sum[9:2];
 wire align_border=TRACKING && !track_valid_s && x>=SAMPLE_X0 && x<SAMPLE_X1 && y>=SAMPLE_Y0 && y<SAMPLE_Y1 &&
  (x==SAMPLE_X0 || x==SAMPLE_X1-1 || y==SAMPLE_Y0 || y==SAMPLE_Y1-1) && (x[2:0]==0 || y[2:0]==0);
 wire search_guide=TRACKING && ((x>=256 && x<768 && x[3:0]==0 && (y==HOLE_Y-8 || y==HOLE_Y || y==HOLE_Y+8)) || (x==464 && y>=HOLE_Y-12 && y<=HOLE_Y+12));
-wire [23:0] picture=FRAME_OBJECTS ? (ENABLE && frame_border ? frame_color : rgb) : MULTI_POCKETS ? (ENABLE && pocket_border ? pocket_color : rgb) :
+wire [23:0] picture=FRAME_OBJECTS ? (ENABLE && frame_border ? frame_color : ENABLE && region_border ? region_color : rgb) : MULTI_POCKETS ? (ENABLE && pocket_border ? pocket_color : rgb) :
  ENABLE && (sample_border || local_search_border) ? 24'h00ffff :
  ENABLE && roi_border ? 24'h00ff40 : ENABLE && (search_guide || align_border) ? 24'hffff00 : rgb;
 reg [10:0] ascii_address;
@@ -842,7 +883,7 @@ always @(posedge clk or negedge rst_n) begin
   cjk_address<={glyph[5:0],glyph_row};
   logo_address<={logo_y,logo_x};
   hs_p<={hs_p[0],hs};vs_p<={vs_p[0],vs};de_p<={de_p[0],de};
-  panel_p<={panel_p[0],(de && (frame_label || direct_label || pocket_label || ((y<80 || y>=HEIGHT-96) && !frame_border) || (TRACKING && y>=148 && y<164 && x>=256 && x<544)))};
+  panel_p<={panel_p[0],(de && (frame_label || region_label || direct_label || pocket_label || ((y<80 || y>=HEIGHT-96) && !frame_border) || (TRACKING && y>=148 && y<164 && x>=256 && x<544)))};
   logo_p<={logo_p[0],(x>=16 && x<112 && y>=8 && y<72)};
   cjk_p<={cjk_p[0],glyph_cjk};col0<=glyph_col;col1<=col0;
   rgb0<=picture;rgb1<=rgb0;ink0<=ink_color;ink1<=ink0;

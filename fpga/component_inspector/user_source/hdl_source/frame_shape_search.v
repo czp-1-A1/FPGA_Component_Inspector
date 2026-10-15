@@ -1,8 +1,8 @@
 // Full-frame PPC4 RGB detector. Native frame guard proves input completeness.
-// Two independently classified 3528 bodies/pockets; no fixed search window.
+// Legacy: two objects. REGIONS: two independently bound zones, two objects each.
 // A shared flood-fill engine runs during vertical blanking, without video backpressure.
 module frame_shape_search #(
- parameter WIDTH=1024,HEIGHT=600,
+ parameter WIDTH=1024,HEIGHT=600,REGIONS=0,
  parameter [7:0] FOREGROUND=100,
  parameter PRESENT_LONG_MIN=26,PRESENT_LONG_MAX=39,PRESENT_SHORT_MIN=20,PRESENT_SHORT_MAX=36,
  parameter REVIEW_LONG_MAX=43,REVIEW_SHORT_MAX=38,
@@ -17,7 +17,8 @@ module frame_shape_search #(
  output reg review_required,
  // Two 76-bit records, left object in [75:0]. Valid,class,reason,FG,W,H,x0,x1,y0,y1.
  // reason[3:0]: side reference, fill, aspect, size; these are model diagnostics.
- output reg [151:0] objects
+ output reg [151:0] objects,
+ output reg [303:0] region_objects
 );
 // Average each 2x2 source block; every source pixel contributes. Detection
 // covers WIDTH x HEIGHT, with a half-size internal mask. 220 mm needs new calibration.
@@ -113,47 +114,74 @@ reg [1:0] direction;
 reg [9:0] q_head,q_tail;reg [10:0] q_count;
 reg [17:0] component_count;reg border;
 reg [17:0] component_area;
-wire [9:0] center_x=({1'b0,xmin}+xmax)>>1,center_y=({1'b0,ymin}+ymax)>>1;
-wire [9:0] dx=center_x>W/2 ? center_x-W/2 : W/2-center_x;
-wire [9:0] dy=center_y>H/2 ? center_y-H/2 : H/2-center_y;
-wire [10:0] distance={1'b0,dx}+dy;
+wire [83:0] region_bounds;wire [31:0] region_models;
+wire [239:0] region_recipes;wire [1:0] region_supported;
+generate if(REGIONS)begin : regions
+ inspection_region_config #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) cfg(region_bounds,region_models,region_recipes,region_supported);
+end else begin : full_frame
+ assign region_bounds=0;assign region_models=0;assign region_recipes=0;assign region_supported=0;
+end endgenerate
+function inside_region;
+ input [10:0] px;input [9:0] py;input [41:0] bounds;
+ begin inside_region=px>=bounds[41:31] && px<bounds[30:20] && py>=bounds[19:10] && py<bounds[9:0];end
+endfunction
+wire [10:0] center_x=({1'b0,xmin}+xmax),center_y=({1'b0,ymin}+ymax);
+wire in_region0=inside_region(center_x,center_y[9:0],region_bounds[41:0]);
+wire in_region1=inside_region(center_x,center_y[9:0],region_bounds[83:42]);
+wire candidate_region=REGIONS && !in_region0 && in_region1;
+wire candidate_allowed=!REGIONS || ((in_region0 || in_region1) && region_supported[candidate_region]);
+wire [41:0] candidate_bounds=candidate_region ? region_bounds[83:42] : region_bounds[41:0];
+wire [10:0] target_x=REGIONS ? ({1'b0,candidate_bounds[41:31]}+candidate_bounds[30:20])/2 : WIDTH/2;
+wire [10:0] target_y=REGIONS ? ({1'b0,candidate_bounds[19:10]}+candidate_bounds[9:0])/2 : HEIGHT/2;
+wire [10:0] dx=center_x>target_x ? center_x-target_x : target_x-center_x;
+wire [10:0] dy=center_y>target_y ? center_y-target_y : target_y-center_y;
+// Distances use source coordinates, avoiding a half-pixel truncation at zone edges.
+wire [9:0] legacy_dx=(center_x>>1)>W/2 ? (center_x>>1)-W/2 : W/2-(center_x>>1);
+wire [9:0] legacy_dy=(center_y>>1)>H/2 ? (center_y>>1)-H/2 : H/2-(center_y>>1);
+wire [11:0] distance=REGIONS ? {1'b0,dx}+dy : {2'b0,legacy_dx}+legacy_dy;
 wire [9:0] width_now={1'b0,xmax}-xmin+1'b1,height_now={1'b0,ymax}-ymin+1'b1;
 reg [9:0] long_side,short_side;
-// Register constant-scaled terms separately from bbox subtraction/sorting.
-// This closes the CSI timing path without changing any shape limit.
 reg [22:0] fg20,area17,fg5,area3,fg10,area9,fg4;
 reg [13:0] long20,short21,short31,long5,short7,short9;
-// Keep the original strict model. The wider envelope only asserts presence
-// with CHECK; it is not an alignment or installation-quality measurement.
-wire present_match=long_side>=PRESENT_LONG_MIN && long_side<=PRESENT_LONG_MAX && short_side>=PRESENT_SHORT_MIN && short_side<=PRESENT_SHORT_MAX &&
+wire [119:0] profile=candidate_region ? region_recipes[239:120] : region_recipes[119:0];
+wire [7:0] p_lmin=REGIONS ? profile[7:0] : PRESENT_LONG_MIN,p_lmax=REGIONS ? profile[15:8] : PRESENT_LONG_MAX;
+wire [7:0] p_smin=REGIONS ? profile[23:16] : PRESENT_SHORT_MIN,p_smax=REGIONS ? profile[31:24] : PRESENT_SHORT_MAX;
+wire [7:0] r_lmax=REGIONS ? profile[39:32] : REVIEW_LONG_MAX,r_smax=REGIONS ? profile[47:40] : REVIEW_SHORT_MAX;
+wire [7:0] e_lmin=REGIONS ? profile[55:48] : EMPTY_LONG_MIN,e_lmax=REGIONS ? profile[63:56] : EMPTY_LONG_MAX;
+wire [7:0] e_smin=REGIONS ? profile[71:64] : EMPTY_SHORT_MIN,e_smax=REGIONS ? profile[79:72] : EMPTY_SHORT_MAX;
+wire [7:0] h_lmin=REGIONS ? profile[87:80] : HOLE_LONG_MIN,h_lmax=REGIONS ? profile[95:88] : HOLE_LONG_MAX;
+wire [7:0] h_smin=REGIONS ? profile[103:96] : HOLE_SHORT_MIN,h_smax=REGIONS ? profile[111:104] : HOLE_SHORT_MAX;
+wire present_match=long_side>=p_lmin && long_side<=p_lmax && short_side>=p_smin && short_side<=p_smax &&
  long20>=short21 && long20<=short31 && fg20>=area17;
-wire present_review_match=long_side>=PRESENT_LONG_MIN && long_side<=REVIEW_LONG_MAX && short_side>=PRESENT_SHORT_MIN && short_side<=REVIEW_SHORT_MAX &&
+wire present_review_match=long_side>=p_lmin && long_side<=r_lmax && short_side>=p_smin && short_side<=r_smax &&
  long20>=short21 && long5<=short9 && fg4>=area3;
 wire circular=long5<=short7 && fg5>=area3 && fg10<=area9;
-wire empty_match=circular && long_side>=EMPTY_LONG_MIN && long_side<=EMPTY_LONG_MAX && short_side>=EMPTY_SHORT_MIN && short_side<=EMPTY_SHORT_MAX;
-wire sprocket_match=circular && long_side>=HOLE_LONG_MIN && long_side<=HOLE_LONG_MAX && short_side>=HOLE_SHORT_MIN && short_side<=HOLE_SHORT_MAX;
-reg found;reg [10:0] best_distance;
-reg [17:0] best_count;reg [XB-1:0] best_xmin,best_xmax;reg [YB-1:0] best_ymin,best_ymax;
-reg [1:0] best_state;
-reg found_second;reg [10:0] second_distance;reg [17:0] second_count;
-reg [XB-1:0] second_xmin,second_xmax;reg [YB-1:0] second_ymin,second_ymax;
-reg [1:0] second_state;reg [3:0] best_reason,second_reason;
+wire empty_match=circular && long_side>=e_lmin && long_side<=e_lmax && short_side>=e_smin && short_side<=e_smax;
+wire sprocket_match=circular && long_side>=h_lmin && long_side<=h_lmax && short_side>=h_smin && short_side<=h_smax;
 wire [1:0] candidate_state=sprocket_match ? 0 : (present_match || present_review_match) ? 2 : empty_match ? 3 : 1;
 wire [3:0] candidate_reason={1'b0,fg20<area17,long20<short21 || long20>short31,
- long_side<PRESENT_LONG_MIN || long_side>PRESENT_LONG_MAX || short_side<PRESENT_SHORT_MIN || short_side>PRESENT_SHORT_MAX};
-// Prefer recognized bodies/empty pockets over feed holes and unclassified blobs.
+ long_side<p_lmin || long_side>p_lmax || short_side<p_smin || short_side>p_smax};
+localparam SLOTS=REGIONS ? 4 : 2;
+reg found_bank [0:SLOTS-1];reg [11:0] distance_bank [0:SLOTS-1];reg [17:0] count_bank [0:SLOTS-1];
+reg [XB-1:0] xmin_bank [0:SLOTS-1],xmax_bank [0:SLOTS-1];
+reg [YB-1:0] ymin_bank [0:SLOTS-1],ymax_bank [0:SLOTS-1];
+reg [1:0] state_bank [0:SLOTS-1];reg [3:0] reason_bank [0:SLOTS-1];
+wire [1:0] bank0=candidate_region ? 2'd2 : 2'd0,bank1=bank0+1'b1;
 wire candidate_preferred=candidate_state>=2;
-wire best_preferred=best_state>=2,second_preferred=second_state>=2;
-wire before_best=!found || (candidate_preferred && !best_preferred) ||
- ((candidate_preferred==best_preferred) && (distance<best_distance || (distance==best_distance && component_count>best_count)));
-wire before_second=!found_second || (candidate_preferred && !second_preferred) ||
- (candidate_preferred==second_preferred && (distance<second_distance || (distance==second_distance && component_count>second_count)));
+wire before_best=!found_bank[bank0] || (candidate_preferred && state_bank[bank0]<2) ||
+ ((candidate_preferred==(state_bank[bank0]>=2)) && (distance<distance_bank[bank0] ||
+ (distance==distance_bank[bank0] && component_count>count_bank[bank0])));
+wire before_second=!found_bank[bank1] || (candidate_preferred && state_bank[bank1]<2) ||
+ ((candidate_preferred==(state_bank[bank1]>=2)) && (distance<distance_bank[bank1] ||
+ (distance==distance_bank[bank1] && component_count>count_bank[bank1])));
+wire found=found_bank[0] || found_bank[1] || (REGIONS && (found_bank[SLOTS-2] || found_bank[SLOTS-1]));
+reg [1:0] ref_index;reg legacy_pair_selected;
 reg [8:0] left_dark,right_dark;
-wire [9:0] best_cx=({1'b0,best_xmin}+best_xmax)>>1,best_cy=({1'b0,best_ymin}+best_ymax)>>1;
-reg ref_second,ref_side,pair_selected;reg [2:0] ref_word;reg [6:0] ref_row;
+reg ref_side;reg [2:0] ref_word;reg [6:0] ref_row;
 reg [9:0] origin_x,origin_y;reg [3:0] ref_mask;integer ref_lane_index;
-wire [9:0] ref_cx=ref_second ? ({1'b0,second_xmin}+second_xmax)>>1 : best_cx;
-wire [9:0] ref_cy=ref_second ? ({1'b0,second_ymin}+second_ymax)>>1 : best_cy;
+wire [9:0] ref_cx=({1'b0,xmin_bank[ref_index]}+xmax_bank[ref_index])>>1;
+wire [9:0] ref_cy=({1'b0,ymin_bank[ref_index]}+ymax_bank[ref_index])>>1;
+wire [7:0] ref_min=REGIONS ? (ref_index[1] ? region_recipes[239:232] : region_recipes[119:112]) : 8'd240;
 wire signed [10:0] strip_start=$signed({1'b0,origin_x})+(ref_side ? 11'sd20 : -11'sd28);
 wire signed [10:0] word_x=(strip_start & -11'sd4)+$signed({6'b0,ref_word,2'b0});
 wire [9:0] word_y=origin_y-20+ref_row;
@@ -161,18 +189,41 @@ reg [2:0] dark_word;integer dark_lane;
 always @*begin
  dark_word=0;
  for(dark_lane=0;dark_lane<4;dark_lane=dark_lane+1)
-  if(ref_mask[dark_lane])
-   dark_word=dark_word+mem_q[4+dark_lane];
+  if(ref_mask[dark_lane])dark_word=dark_word+mem_q[4+dark_lane];
 end
-wire pair_ok=found_second && best_state!=0 && second_state!=0;
-wire [6:0] best_w=(best_xmax-best_xmin+1)*2>127 ? 127 : (best_xmax-best_xmin+1)*2;
-wire [6:0] best_h=(best_ymax-best_ymin+1)*2>127 ? 127 : (best_ymax-best_ymin+1)*2;
-wire [6:0] second_w=(second_xmax-second_xmin+1)*2>127 ? 127 : (second_xmax-second_xmin+1)*2;
-wire [6:0] second_h=(second_ymax-second_ymin+1)*2>127 ? 127 : (second_ymax-second_ymin+1)*2;
-wire [10:0] best_bx0=(best_xmin*2>1 ? best_xmin*2-2 : 0),best_bx1=(best_xmax*2+4<WIDTH ? best_xmax*2+4 : WIDTH),second_bx0=(second_xmin*2>1 ? second_xmin*2-2 : 0),second_bx1=(second_xmax*2+4<WIDTH ? second_xmax*2+4 : WIDTH);
-wire [9:0] best_by0=(best_ymin*2>1 ? best_ymin*2-2 : 0),best_by1=(best_ymax*2+4<HEIGHT ? best_ymax*2+4 : HEIGHT),second_by0=(second_ymin*2>1 ? second_ymin*2-2 : 0),second_by1=(second_ymax*2+4<HEIGHT ? second_ymax*2+4 : HEIGHT);
-wire [75:0] record_best={found,best_state,best_reason,(best_count>2047 ? 13'd8191 : {best_count[10:0],2'b0}),best_w,best_h,best_bx0,best_bx1,best_by0,best_by1};
-wire [75:0] record_second={pair_selected,second_state,second_reason,(second_count>2047 ? 13'd8191 : {second_count[10:0],2'b0}),second_w,second_h,second_bx0,second_bx1,second_by0,second_by1};
+wire [SLOTS*76-1:0] records;
+genvar slot;
+generate for(slot=0;slot<SLOTS;slot=slot+1)begin : packed_records
+ wire [10:0] bw=(xmax_bank[slot]-xmin_bank[slot]+1)*2,bh=(ymax_bank[slot]-ymin_bank[slot]+1)*2;
+ wire [10:0] bx0=xmin_bank[slot]*2>1 ? xmin_bank[slot]*2-2 : 0;
+ wire [10:0] bx1=xmax_bank[slot]*2+4<WIDTH ? xmax_bank[slot]*2+4 : WIDTH;
+ wire [9:0] by0=ymin_bank[slot]*2>1 ? ymin_bank[slot]*2-2 : 0;
+ wire [9:0] by1=ymax_bank[slot]*2+4<HEIGHT ? ymax_bank[slot]*2+4 : HEIGHT;
+ assign records[slot*76+:76]=found_bank[slot] ?
+  {1'b1,state_bank[slot],reason_bank[slot],(count_bank[slot]>2047 ? 13'd8191 : {count_bank[slot][10:0],2'b0}),
+   (bw>127 ? 7'd127 : bw[6:0]),(bh>127 ? 7'd127 : bh[6:0]),bx0,bx1,by0,by1} : 76'd0;
+end endgenerate
+wire [151:0] sorted0=found_bank[1] && xmin_bank[1]<xmin_bank[0] ?
+ {records[75:0],records[151:76]} : records[151:0];
+wire [151:0] sorted1;
+generate if(REGIONS)begin
+ assign sorted1=found_bank[3] && xmin_bank[3]<xmin_bank[2] ?
+ {records[227:152],records[303:228]} : records[303:152];
+end else assign sorted1=0;endgenerate
+wire [75:0] primary_record=!REGIONS ? records[75:0] : sorted0[75] ? sorted0[75:0] :
+ sorted0[151] ? sorted0[151:76] : sorted1[75] ? sorted1[75:0] : sorted1[151:76];
+// Seed only inside an enabled zone. Flood-fill still follows the complete
+// component outside the dashed outline, so a slight overlap cannot crop it.
+wire [3:0] seed_mask;
+generate for(slot=0;slot<4;slot=slot+1)begin : region_seed
+ wire [10:0] seed_x=((sx & ~3)+slot)*2;
+ wire [9:0] seed_y=sy*2;
+ assign seed_mask[slot]=!REGIONS ||
+  (region_supported[0] && inside_region(seed_x,seed_y,region_bounds[41:0])) ||
+  (region_supported[1] && inside_region(seed_x,seed_y,region_bounds[83:42]));
+end endgenerate
+wire [3:0] seed_word=mem_q[3:0] & seed_mask;
+integer bi;
 reg [9:0] trial_x,trial_y;reg neighbor_ok;
 always @*begin
  trial_x={1'b0,cx};trial_y={1'b0,cy};neighbor_ok=1;
@@ -183,44 +234,61 @@ always @*begin
   3:begin trial_y={1'b0,cy}+1'b1;neighbor_ok=cy<H-1;end
  endcase
 end
-// Scan every packed word in the full-frame mask, including the image edges.
+// Scan only the enabled regions; the shared mask still stores complete image context.
+reg scan_region;
+wire [41:0] scan_bounds=scan_region ? region_bounds[83:42] : region_bounds[41:0];
+wire [XB-1:0] scan_x0=REGIONS ? (scan_bounds[41:31]>>3)<<2 : 0;
+wire [XB-1:0] scan_xlast=REGIONS ? ((scan_bounds[30:20]-1)>>3)<<2 : W-4;
+wire [YB-1:0] scan_ylast=REGIONS ? (scan_bounds[9:0]-1)>>1 : H-1;
 task advance_scan;
  begin
-  if(sx>=W-4)begin
-   sx<=0;
-   if(sy==H-1)begin
-    if(found)begin pair_selected<=pair_ok;ref_second<=0;ref_side<=0;ref_word<=0;ref_row<=0;left_dark<=0;right_dark<=0;phase<=REF_ORIGIN;end
+  if(sx>=scan_xlast)begin
+   sx<=scan_x0;
+   if(sy>=scan_ylast)begin
+    if(REGIONS && !scan_region)begin
+     scan_region<=1;sx<=(region_bounds[83:73]>>3)<<2;sy<=region_bounds[61:52]>>1;phase<=SCAN_REQ;
+    end else begin
+    if(found)begin legacy_pair_selected<=found_bank[1] && state_bank[0]!=0 && state_bank[1]!=0;
+     ref_index<=0;ref_side<=0;ref_word<=0;ref_row<=0;left_dark<=0;right_dark<=0;phase<=REF_ORIGIN;end
     else begin ready<=1;sample_new<=1;located<=0;state<=0;phase<=FINISHED;end
+    end
    end else begin sy<=sy+1'b1;phase<=SCAN_REQ;end
   end else begin sx<=(sx & ~3)+4;phase<=SCAN_REQ;end
  end
 endtask
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
-  ready<=0;sample_new<=0;located<=0;state<=1;review_required<=0;objects<=0;foreground_count<=0;box_width<=0;box_height<=0;
+  ready<=0;sample_new<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;foreground_count<=0;box_width<=0;box_height<=0;
   box_x0<=0;box_x1<=0;box_y0<=0;box_y1<=0;seen<=0;cap_count<=0;capture_foreground<=0;phase<=IDLE;
   mem_addr<=0;mem_write_addr<=0;mem_data<=0;mem_write<=0;q_read<=0;q_write_addr<=0;q_data<=0;q_write<=0;
-  sx<=0;sy<=0;cx<=0;cy<=0;nx<=0;ny<=0;xmin<=0;xmax<=0;ymin<=0;ymax<=0;direction<=0;
+  scan_region<=0;sx<=0;sy<=0;cx<=0;cy<=0;nx<=0;ny<=0;xmin<=0;xmax<=0;ymin<=0;ymax<=0;direction<=0;
   q_head<=0;q_tail<=0;q_count<=0;component_count<=0;border<=0;component_area<=0;long_side<=0;short_side<=0;fg20<=0;area17<=0;fg5<=0;area3<=0;fg10<=0;area9<=0;fg4<=0;long20<=0;short21<=0;short31<=0;long5<=0;short7<=0;short9<=0;
-  found<=0;best_distance<=2047;best_count<=0;best_xmin<=0;best_xmax<=0;best_ymin<=0;best_ymax<=0;best_state<=1;
-  found_second<=0;second_distance<=2047;second_count<=0;second_xmin<=0;second_xmax<=0;second_ymin<=0;second_ymax<=0;second_state<=1;best_reason<=0;second_reason<=0;
-  ref_second<=0;ref_side<=0;ref_word<=0;ref_row<=0;pair_selected<=0;
+  for(bi=0;bi<SLOTS;bi=bi+1)begin
+   found_bank[bi]<=0;distance_bank[bi]<=4095;count_bank[bi]<=0;xmin_bank[bi]<=0;xmax_bank[bi]<=0;
+   ymin_bank[bi]<=0;ymax_bank[bi]<=0;state_bank[bi]<=1;reason_bank[bi]<=0;
+  end
+  ref_index<=0;legacy_pair_selected<=0;ref_side<=0;ref_word<=0;ref_row<=0;
   origin_x<=0;origin_y<=0;ref_mask<=0;
   left_dark<=0;right_dark<=0;
  end else begin
   sample_new<=0;mem_write<=0;q_write<=0;
-  if(frame_start || invalidate)begin ready<=0;located<=0;state<=1;review_required<=0;objects<=0;phase<=IDLE;seen<=0;cap_count<=0;capture_foreground<=0;end
+  if(frame_start || invalidate)begin ready<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;phase<=IDLE;seen<=0;cap_count<=0;capture_foreground<=0;end
   else if(pixel_sof)begin
-   seen<=1;cap_count<=0;capture_foreground<=0;ready<=0;located<=0;state<=1;review_required<=0;objects<=0;phase<=IDLE;
-   found<=0;best_distance<=2047;best_count<=0;foreground_count<=0;box_width<=0;box_height<=0;
-   found_second<=0;second_distance<=2047;second_count<=0;best_reason<=0;second_reason<=0;
+   scan_region<=0;seen<=1;cap_count<=0;capture_foreground<=0;ready<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;phase<=IDLE;
+   foreground_count<=0;box_width<=0;box_height<=0;
+   for(bi=0;bi<SLOTS;bi=bi+1)begin
+    found_bank[bi]<=0;distance_bank[bi]<=4095;count_bank[bi]<=0;reason_bank[bi]<=0;
+   end
   end else if(cap_write && seen)begin
    cap_count<=cap_count+1'b1;capture_foreground<=capture_foreground+cap_fg;
    if(cap_last)begin
     if(cap_count==WORDS-1)begin
      if(capture_foreground+cap_fg==0 || capture_foreground+cap_fg==W*H)begin
       ready<=1;sample_new<=1;located<=0;state<=0;phase<=FINISHED;
-     end else begin sx<=0;sy<=0;phase<=SCAN_REQ;end
+     end else begin
+      scan_region<=0;sx<=REGIONS ? (region_bounds[41:31]>>3)<<2 : 0;
+      sy<=REGIONS ? region_bounds[19:10]>>1 : 0;phase<=SCAN_REQ;
+     end
     end
     else begin ready<=1;sample_new<=1;state<=1;located<=0;phase<=FINISHED;end
    end
@@ -228,9 +296,9 @@ always @(posedge clk or negedge rst_n)begin
    SCAN_REQ:begin mem_addr<=address(sx,sy);phase<=SCAN_WAIT;end
    SCAN_WAIT:phase<=SCAN_CHECK;
    SCAN_CHECK:begin
-    if(|mem_q[3:0])begin
+    if(|seed_word)begin
      // Lowest remaining lane; return to this same word after the component.
-     nx<=(sx & ~3)+(mem_q[0] ? 0 : mem_q[1] ? 1 : mem_q[2] ? 2 : 3);phase<=SEED_MARK;
+     nx<=(sx & ~3)+(seed_word[0] ? 0 : seed_word[1] ? 1 : seed_word[2] ? 2 : 3);phase<=SEED_MARK;
     end else advance_scan;
    end
    SEED_MARK:begin
@@ -287,24 +355,31 @@ always @(posedge clk or negedge rst_n)begin
     long5<={4'b0,long_side}*14'd5;short7<={4'b0,short_side}*14'd7;short9<={4'b0,short_side}*14'd9;phase<=COMPARE;
    end
    COMPARE:begin
-    if(!border && component_count>=8 && width_now>=3 && height_now>=3)begin
+    if(candidate_allowed && (!REGIONS || candidate_state!=0) && !border && component_count>=8 && width_now>=3 && height_now>=3)begin
      if(before_best)begin
-      if(found)begin
-       found_second<=1;second_distance<=best_distance;second_count<=best_count;
-       second_xmin<=best_xmin;second_xmax<=best_xmax;second_ymin<=best_ymin;second_ymax<=best_ymax;second_state<=best_state;second_reason<=best_reason;
+      if(found_bank[bank0])begin
+       found_bank[bank1]<=1;distance_bank[bank1]<=distance_bank[bank0];count_bank[bank1]<=count_bank[bank0];
+       xmin_bank[bank1]<=xmin_bank[bank0];xmax_bank[bank1]<=xmax_bank[bank0];ymin_bank[bank1]<=ymin_bank[bank0];ymax_bank[bank1]<=ymax_bank[bank0];
+       state_bank[bank1]<=state_bank[bank0];reason_bank[bank1]<=reason_bank[bank0];
       end
-      found<=1;best_distance<=distance;best_count<=component_count;
-      best_xmin<=xmin;best_xmax<=xmax;best_ymin<=ymin;best_ymax<=ymax;
-      best_state<=candidate_state;best_reason<=candidate_reason;
+      found_bank[bank0]<=1;distance_bank[bank0]<=distance;count_bank[bank0]<=component_count;
+      xmin_bank[bank0]<=xmin;xmax_bank[bank0]<=xmax;ymin_bank[bank0]<=ymin;ymax_bank[bank0]<=ymax;
+      state_bank[bank0]<=candidate_state;reason_bank[bank0]<=candidate_reason;
      end else if(before_second)begin
-      found_second<=1;second_distance<=distance;second_count<=component_count;
-      second_xmin<=xmin;second_xmax<=xmax;second_ymin<=ymin;second_ymax<=ymax;second_state<=candidate_state;second_reason<=candidate_reason;
+      found_bank[bank1]<=1;distance_bank[bank1]<=distance;count_bank[bank1]<=component_count;
+      xmin_bank[bank1]<=xmin;xmax_bank[bank1]<=xmax;ymin_bank[bank1]<=ymin;ymax_bank[bank1]<=ymax;
+      state_bank[bank1]<=candidate_state;reason_bank[bank1]<=candidate_reason;
      end
     end
     phase<=SCAN_REQ;
    end
    // Separate bbox-center arithmetic from dark-pixel counting and thresholds.
-   REF_ORIGIN:begin origin_x<=ref_cx;origin_y<=ref_cy;phase<=REF_REQ;end
+   REF_ORIGIN:begin
+    if(!REGIONS && ref_index==1 && !legacy_pair_selected)phase<=PUBLISH;
+    else if(!found_bank[ref_index])begin
+     if(ref_index==SLOTS-1)phase<=PUBLISH;else ref_index<=ref_index+1'b1;
+    end else begin origin_x<=ref_cx;origin_y<=ref_cy;phase<=REF_REQ;end
+   end
    REF_REQ:begin
     mem_addr<=address(word_x[XB-1:0],word_y[YB-1:0]);
     for(ref_lane_index=0;ref_lane_index<4;ref_lane_index=ref_lane_index+1)ref_mask[ref_lane_index]<=word_x>=0 && word_x<W && word_y<H &&
@@ -317,16 +392,13 @@ always @(posedge clk or negedge rst_n)begin
     if(ref_side && ref_word==2 && ref_row==39)begin
      // Neighboring parts or a tape end may contaminate the side strips.
      // Preserve a recognized 3528 body, but do not assert quality is normal.
-     if(ref_second)begin
-      if(second_state==2)second_reason[3]<=left_dark<240 || right_dark+dark_word<240;
-      else begin second_reason<=0;if(left_dark<240 || right_dark+dark_word<240)second_state<=0;end
-      phase<=PUBLISH;
-     end else begin
-      if(best_state==2)best_reason[3]<=left_dark<240 || right_dark+dark_word<240;
-      else begin best_reason<=0;if(left_dark<240 || right_dark+dark_word<240)best_state<=0;end
-      if(pair_selected)begin ref_second<=1;ref_side<=0;ref_word<=0;ref_row<=0;left_dark<=0;right_dark<=0;phase<=REF_ORIGIN;end
-      else phase<=PUBLISH;
+     if(state_bank[ref_index]==2)reason_bank[ref_index][3]<=left_dark<ref_min || right_dark+dark_word<ref_min;
+     else begin
+      reason_bank[ref_index]<=0;
+      if(left_dark<ref_min || right_dark+dark_word<ref_min)state_bank[ref_index]<=REGIONS ? 1 : 0;
      end
+     if(ref_index==SLOTS-1)phase<=PUBLISH;
+     else begin ref_index<=ref_index+1'b1;ref_side<=0;ref_word<=0;ref_row<=0;left_dark<=0;right_dark<=0;phase<=REF_ORIGIN;end
     end else begin
      if(ref_word==2)begin ref_word<=0;if(ref_row==39)begin ref_row<=0;ref_side<=1;end else ref_row<=ref_row+1'b1;end
      else ref_word<=ref_word+1'b1;
@@ -334,13 +406,12 @@ always @(posedge clk or negedge rst_n)begin
     end
    end
    PUBLISH:begin
-     ready<=1;sample_new<=1;located<=1;state<=best_state;review_required<=best_state==2 && |best_reason;
-     objects<=pair_selected ? (best_xmin<second_xmin ? {record_second,record_best} : {record_best,record_second}) : {76'd0,record_best};
-     foreground_count<=best_count>2047 ? 13'd8191 : {best_count[10:0],2'b0};
-     // Diagnostic sizes/counts saturate for rejected large blobs; matched shapes fit exactly.
-     box_width<=best_w;box_height<=best_h;
-     box_x0<=(best_xmin*2>1 ? best_xmin*2-2 : 0);box_x1<=(best_xmax*2+4<WIDTH ? best_xmax*2+4 : WIDTH);
-     box_y0<=(best_ymin*2>1 ? best_ymin*2-2 : 0);box_y1<=(best_ymax*2+4<HEIGHT ? best_ymax*2+4 : HEIGHT);phase<=FINISHED;
+     ready<=1;sample_new<=1;located<=primary_record[75];state<=primary_record[74:73];
+     review_required<=primary_record[74:73]==2 && |primary_record[72:69];
+     objects<=(!REGIONS && !legacy_pair_selected) ? {76'd0,records[75:0]} : sorted0;
+     region_objects<={sorted1,sorted0};
+     foreground_count<=primary_record[68:56];box_width<=primary_record[55:49];box_height<=primary_record[48:42];
+     box_x0<=primary_record[41:31];box_x1<=primary_record[30:20];box_y0<=primary_record[19:10];box_y1<=primary_record[9:0];phase<=FINISHED;
    end
    default:begin end
   endcase

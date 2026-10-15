@@ -11,6 +11,14 @@
     </HardWare>
     <Source_Files>
         <Verilog>
+            <File Path="../user_source/hdl_source/inspection_region_config.v">
+                <FileInfo>
+                    <Attr Name="UsedInSyn" Val="true"/>
+                    <Attr Name="UsedInP&amp;R" Val="true"/>
+                    <Attr Name="BelongTo" Val="design_1"/>
+                    <Attr Name="CompileOrder" Val="220"/>
+                </FileInfo>
+            </File>
             <File Path="../user_source/hdl_source/rgb_resize_2_3.v">
                 <FileInfo>
                     <Attr Name="UsedInSyn" Val="true"/>

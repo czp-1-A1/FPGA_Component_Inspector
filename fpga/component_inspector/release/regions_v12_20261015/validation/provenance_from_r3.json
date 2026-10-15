@@ -1,0 +1,7 @@
+{
+  "status": "PASS_IDENTICAL_PRODUCTION_INPUTS",
+  "changed_inputs": [
+    "sim/tb_regions.v"
+  ],
+  "reason": "Fix a testbench-only loop variable referenced outside its scope; expectations and production sources unchanged. Build remains bound to original r3 production bytes; corrected fixture separately frozen in r4."
+}

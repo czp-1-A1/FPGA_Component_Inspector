@@ -1,8 +1,8 @@
 module isp_top #(
     parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
-    parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,
-    parameter META_WIDTH=178+340*MULTI_POCKETS+172*LOCAL_SEARCH
+    parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,
+    parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH
 ) (
     input processing_clk,
     input 			axi4s_video_aclk,
@@ -155,7 +155,9 @@ always @(posedge axi4s_video_aclk or negedge I_rst_n)begin
 end
 wire source_pixel_valid=awb_O_tvalid && !frame_input_closed;
 wire source_pixel_sof=awb_pixel_sof && !frame_input_closed;
-wire [151:0] search_objects;
+wire [(REGIONS ? 304 : 152)-1:0] search_objects;
+wire [151:0] legacy_search_objects;wire [303:0] region_search_objects;
+assign search_objects=REGIONS ? region_search_objects : legacy_search_objects;
 wire search_ready,search_new,search_located,search_review;wire [1:0] search_state;
 wire [12:0] search_fg;wire [6:0] search_w,search_h;
 wire [10:0] search_x0,search_x1;wire [9:0] search_y0,search_y1;
@@ -342,12 +344,12 @@ roi_statistics #(.DYNAMIC_ROI(TRACKING),.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(
     .frame_commit(result_commit),.invalidate(sample_cancel),.sample_valid(legacy_valid),
     .mean(legacy_mean),.minimum(legacy_min),.maximum(legacy_max),.sample_pixels(),.sample_sum(),.sample_new(legacy_new),.frame_start(post_start));
 generate if(USE_SEARCH) begin : local_shape_detection
- frame_shape_search #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
+ frame_shape_search #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
   .pixel_accept(post_accept),.invalidate(sample_cancel),.pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),
   .ready(search_ready),.sample_new(search_new),.located(search_located),.state(search_state),.foreground_count(search_fg),
-  .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(search_objects));
+  .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(legacy_search_objects),.region_objects(region_search_objects));
 end else begin : no_local_search
- assign search_objects=0;assign search_ready=0;assign search_new=0;assign search_located=0;assign search_state=1;assign search_review=0;
+ assign legacy_search_objects=0;assign region_search_objects=0;assign search_ready=0;assign search_new=0;assign search_located=0;assign search_state=1;assign search_review=0;
  assign search_fg=0;assign search_w=0;assign search_h=0;assign search_x0=0;assign search_x1=0;assign search_y0=0;assign search_y1=0;
 end
 if(USE_SEARCH) begin : search_features

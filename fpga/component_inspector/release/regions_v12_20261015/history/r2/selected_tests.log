@@ -1,0 +1,10 @@
+# PASS regions osd: 4 rasters/2798592 independent pixels, both boxes/classes/numbers/size-fill reasons, both dashed zones and bound model headers, four independent cards, first-active atomic snapshot, zero/stale result suppression, unchanged 3-clock sync
+# PASS regions chain: native line-clock gaps, LP0CF0 wall-clock, 30-FPS source start-to-start, all four views, live WB-canceled zero-result video, same-slot late dual tuples, full exact RGB rasters=10 pixels=9790262 OF=0 UF=0
+Testbench compile failed: regions; see modelsim_work/regions/compile.log
+At D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\regions_v12_r2_20261015\work\sim\run_mod
+elsim.ps1:176 char:36
++ ... DE -ne 0) { throw "Testbench compile failed: $($test.Name); see $dire ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Testbench compi...ons/compile.log:String) [], RuntimeException
+    + FullyQualifiedErrorId : Testbench compile failed: regions; see modelsim_work/regions/compile.log
+ 

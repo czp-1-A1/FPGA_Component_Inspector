@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\fpga\component_inspector\tools\shape3528\check_regions_reference.py", line 93, in <module>
+    lines=log.read_text(encoding='utf-8-sig')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yiziw\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1028, in read_text
+    return f.read()
+           ^^^^^^^^
+  File "<frozen codecs>", line 322, in decode
+  File "C:\Users\yiziw\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\encodings\utf_8_sig.py", line 69, in _buffer_decode
+    return codecs.utf_8_decode(input, errors, final)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte

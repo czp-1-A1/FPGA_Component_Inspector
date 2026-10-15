@@ -1,0 +1,62 @@
+{
+  "purpose": "V12_TWO_EFFECTIVE_REGIONS_MANUAL_3528_TEMPLATE",
+  "base_head": "2fc4c4318027832f3feda9f193d34565af59a32b",
+  "source_commit_at_build": null,
+  "td_version": "6.2.168116",
+  "source_snapshot": "fpga/component_inspector/release/regions_v12_20261015/source_snapshot",
+  "source_manifest_sha256": "64c10628d56471f84562fe5a389e952cca96a7050c5e19f61991ed343ba88f74",
+  "build_input_manifest": "fpga/component_inspector/release/regions_v12_20261015/history/r3/inputs.json",
+  "build_input_manifest_sha256": "7e66e510b5ee7589f8bd3dc708fd78fe8030da52946b74720c0263557b5fd5cf",
+  "release": {
+    "bytes": 1789539,
+    "sha256": "66393158dc0ac7e42100f6388d9bb03989e6eacc3c6d99f998f0d2177d4578db",
+    "path": "fpga/component_inspector/release/regions_v12_20261015/V12_regions_3528_720p60_20261015.bit"
+  },
+  "full_package": {
+    "path": "fpga/component_inspector/release/regions_v12_20261015/V12_regions_3528_720p60_20261015_full.zip",
+    "bytes": 29453084,
+    "sha256": "64aff05aee61d264e65fb387a6090924a273ed684bfd17200ca8e2821fd69766"
+  },
+  "validation_record": "开发实施/验收记录/20261015_A_V12双区模板_轮次4.md",
+  "software": "PASS_31_TESTS_31_INDEPENDENT_IMAGES",
+  "routed_sta": {
+    "setup_ns": 0.137,
+    "setup_tns_ns": 0.0,
+    "hold_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_percent": 92.91
+  },
+  "resources": {
+    "slice": {
+      "used": 15936,
+      "total": 21216,
+      "percent": 75.11
+    },
+    "eram": {
+      "used": 94,
+      "total": 108,
+      "percent": 87.04
+    },
+    "dsp": {
+      "used": 26,
+      "total": 40,
+      "percent": 65.0
+    },
+    "pll": {
+      "used": 5,
+      "total": 6,
+      "percent": 83.33
+    }
+  },
+  "onsite": "PENDING_V12_BOARD_TEST",
+  "calibration_220mm": "PENDING_NEW_VIEW_3528_SAMPLES",
+  "previous_v11_release": "fpga/component_inspector/release/hd720_v11_r9_20261015",
+  "latest_v11_photo": "Visible two-tape wide field; no exact bit SHA binding or completed classification calibration",
+  "source_upload_verified": false,
+  "git_upload": "LOCAL_ONLY_USER_SAID_NO_GITHUB_20261015",
+  "package_validation": "PASS_719_PAYLOAD_FILES_346_INPUTS_4_HISTORY_SNAPSHOTS_ZIP_CRC_ALL_ARCHIVE_HASHES",
+  "portable_reference_validation": "PASS_13_REGION_AND_18_LEGACY_HD_IMAGES_FROM_ARCHIVED_FILES",
+  "git_state": "LOCAL_UNCOMMITTED_UNPUSHED_AT_USER_REQUEST",
+  "device_action": "NO_JTAG_OR_FLASH",
+  "source_build_binding": "r3 actual TD build; r4 differs only in tb_regions.v; identical production RTL/IP/constraints"
+}
