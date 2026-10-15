@@ -1,0 +1,71 @@
+{
+  "status": "V11_SOURCE_PUSHED_AND_DOWNLOADED_VERIFIED",
+  "repository": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
+  "branch": "lj4747-contest-work",
+  "base_v10_commit": "da195838d8a1df052edeaa86f60312d32eeedf9a",
+  "source_git_commit": "97406f5c5a8c566947ef083cb19ef2471e040158",
+  "source_git_tree": "f2d121fd42f78f8adcf4b9defd7f6cf48f40bdf2",
+  "commit_title": "V11 分辨率修改",
+  "push_mode": "ordinary_fast_forward_no_force",
+  "source_push_remote_head_verified": "97406f5c5a8c566947ef083cb19ef2471e040158",
+  "source_commit_url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/commit/97406f5c5a8c566947ef083cb19ef2471e040158",
+  "frozen_release_path": "fpga/component_inspector/release/hd720_v11_r9_20261015",
+  "frozen_source_manifest_sha256": "9e271eb2588dbfb10a6b73b6a1e9d7325542e83bd46f22ec214fd19ef043f268",
+  "staged_byte_audit": {
+    "status": "PASS_STAGED_FROZEN_BYTES",
+    "base_commit": "da195838d8a1df052edeaa86f60312d32eeedf9a",
+    "files_verified": 1522,
+    "unique_blobs_verified": 582,
+    "unique_bytes_verified": 272108100,
+    "change_counts": {
+      "M": 53,
+      "A": 1243,
+      "D": 100
+    },
+    "changed_files": 1396,
+    "old_releases_unchanged": true,
+    "old_v10_bit_unchanged": true,
+    "code_and_test_files": 331,
+    "metadata_only_differences": [
+      "td_project/camera_to_dsi_display.al",
+      "td_project/camera_to_dsi_display_Runs/phy_1/build.tcl",
+      "td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.prj",
+      "td_project/camera_to_dsi_display_Runs/syn_1/build.tcl",
+      "td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display.prj"
+    ]
+  },
+  "independent_github_downloads": [
+    {
+      "repository_path": "fpga/component_inspector/release/hd720_v11_r9_20261015/V11_FHD_to_720p60_r9_20261015.bit",
+      "url": "https://raw.githubusercontent.com/czp-1-A1/FPGA_Component_Inspector/97406f5c5a8c566947ef083cb19ef2471e040158/fpga/component_inspector/release/hd720_v11_r9_20261015/V11_FHD_to_720p60_r9_20261015.bit",
+      "bytes": 1789539,
+      "sha256": "1c94e3b20ee0bbec708385b8b3254239ae20abfe2fb01a35da387854050a2e4d",
+      "status": "PASS"
+    },
+    {
+      "repository_path": "fpga/component_inspector/release/hd720_v11_r9_20261015/V11_FHD_to_720p60_r9_20261015_full.zip",
+      "url": "https://raw.githubusercontent.com/czp-1-A1/FPGA_Component_Inspector/97406f5c5a8c566947ef083cb19ef2471e040158/fpga/component_inspector/release/hd720_v11_r9_20261015/V11_FHD_to_720p60_r9_20261015_full.zip",
+      "bytes": 58352494,
+      "sha256": "4f221486cbcd1966b0891b5c22a83fd234f4040a3196fa7ebca94103f32efd53",
+      "status": "PASS"
+    },
+    {
+      "repository_path": "fpga/component_inspector/release/hd720_v11_r9_20261015/V11_FHD_to_720p60_r9_20261015_烧录与验收.md",
+      "url": "https://raw.githubusercontent.com/czp-1-A1/FPGA_Component_Inspector/97406f5c5a8c566947ef083cb19ef2471e040158/fpga/component_inspector/release/hd720_v11_r9_20261015/V11_FHD_to_720p60_r9_20261015_%E7%83%A7%E5%BD%95%E4%B8%8E%E9%AA%8C%E6%94%B6.md",
+      "bytes": 3721,
+      "sha256": "baaf5983ec98faa21a0f65aebee35cfec55222825d0594a5fd579b263ab57bcf",
+      "status": "PASS"
+    }
+  ],
+  "previous_v10_preserved": {
+    "path": "fpga/component_inspector/release/video_first_v10_20261015/camera_to_dsi_display.bit",
+    "sha256": "e9542e0612e7491e5ff7305cc263a3898c4d8eef32320a126e7c3dc189470cef"
+  },
+  "software_validation": "28 ModelSim tests and 18 independent images PASS; routed setup +0.117ns / hold +0.020ns / TNS0",
+  "hardware_programmed": false,
+  "onsite_video": "PENDING",
+  "calibration_220mm": "PENDING_NEW_TRUTH_SAMPLES",
+  "frozen_metadata_note": "Archived release/ZIP retain build-time git_committed=false and source_commit=null. This separate receipt binds that exact frozen image and source to the uploaded Git commit.",
+  "nonblocking_remote_notice": "GitHub accepted the 55.65MiB complete ZIP with its standard >50MiB recommendation warning; raw file independently downloaded and SHA256 verified.",
+  "documentation_commit_note": "This receipt is added after the source push in a documentation-only follow-up commit. Its own final tip is verified separately in the local upload state."
+}
