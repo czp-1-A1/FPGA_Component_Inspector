@@ -19,7 +19,9 @@ set_false_path -from [get_ports {I_button[*]}]
 # paths: that would suppress the held transport-status mailbox budgets.
 set_max_delay -datapath_only 14.0 -from [get_clocks {mipi_rx_ck_pad MIPI_RX_BYTE_CLK sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}]
 set_max_delay -datapath_only 19.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]
-set_max_delay -datapath_only 8.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {MIPI_RX_BYTE_CLK}]
+# The V9 writer input now uses pll_clk_100m; its return crossings are covered
+# by the 19ns DDR-to-system bound above and the explicit metadata ack bound.
+# Restore the former 8ns DDR-to-MIPI bound before using the native-clock writer.
 
 # CSI and system clocks are asynchronous. Use physical delay bounds instead of
 # a clock-group cut, which would suppress the mailbox constraints below in TD.
@@ -84,3 +86,9 @@ set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}] 
 set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/payload*}] -to [get_regs {u_wb_process/D_data*}]
 set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/req}] -to [get_regs {u_wb_process/req_sync[0]}]
 set_max_delay -datapath_only 8.0 -from [get_regs {u_wb_process/ack}] -to [get_regs {u_wb_process/ack_sync[0]}]
+
+# The bridge's two 10-bit Gray pointer buses cross 112.5MHz CSI / 100MHz ISP.
+# Keep all pointer-bit route delays below either source period (8.889/10ns).
+# The bridge uses explicit pointers, outside the vendor FIFO's automatic
+# timing patterns. Both directions must match and dominate all 20 paths.
+set_max_delay -datapath_only 8.0 -from [get_regs {*continuous_processing*bridge/write_gray\[*\] *continuous_processing*bridge/read_gray\[*\]}] -to [get_regs {*continuous_processing*bridge/write_gray_sync1\[*\] *continuous_processing*bridge/read_gray_sync1\[*\]}]

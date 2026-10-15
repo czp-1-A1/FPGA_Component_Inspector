@@ -32,14 +32,12 @@
 
 交接需包含代码、必要未跟踪文件与证据，不能只传本文。按授权提交/推送，不混入无关暂存文件；成功推送才可称已同步。接棒端核对工具依赖、实际文件与日志；Git不传未提交文件、进程或聊天。意外断额度时由人保存改动，接棒端恢复实际断点，WIP不当作稳定版。
 
-## 当前断点（2026-10-14，现阶段交接；V9黑屏修复WIP）
+## 当前断点（2026-10-15，V9连续处理时钟实验版完成，准备上传）
 
-- 目标/范围：按用户要求交接上传现阶段代码；同一3528白色LED与同一载带不换型号。主目录为V9修复WIP，保留全画面/双目标；不声称已测实际偏移、旋转、立起或翻面。
-- 分支/基线：lj4747-contest-work，上传前HEAD e604d4fbe4bd40f0d7b40e5fce4ecfda10ea4351。用户授权通知“阶段A (2)”停止写入，该任务已明确确认停止，交接端未改算法。
-- 改动：V5—V8形状/局部/全帧搜索、独立框及显示帧绑定和测试全部保留；V9新增frame_process_bridge.v，AWB后处理跨到连续100MHz，wrapper/isp_top/.al/.sdc/测试已变。当前215生产输入与r3/r5冻结清单完全同SHA。
-- 现场/版本：V8用户确认RAW和复位仍黑，原照片/抄数在20261014_A_V8黑屏现场反馈_轮次1；V8发布bit SHA 2f5bd322d3243443adb5437c7b2ff6aaab4074207aa8e633f780b812477b7852。current_codex_build.json记录最后发布V8及现场失败/当前V9交接信息，不代表当前WIP已有稳定发布。V7/V6/V5回查包保留。
-- V9已验证及限制：r2停CSI33ms的RAW/GRAY+EDGE写满115200字/双metadata/DDR显示通过；r5全部17项ModelSim测试现已PASS（封存后完成，completion_after_freeze保存最终日志）；原生图独立参考仍待执行。r3/r4回退等待夹具短约3.4μs，r5为23ms等待/33ms源帧间隔，失败轮保留。r3 TD已产bit，Slice67.63%/ERAM72/108/setup+.104ns/hold+.020ns；新增告警和无匹配CDC约束审计未完成，V9不能判稳定或已上板。
-- 交付/证据：58_A3528现阶段代码仓库交接.md、验收记录/20261014_A_代码仓库交接_轮次1.md/同名目录：215完整生产/可重放仿真TD/反例与r1—r5日志/报告/WIPbit/541项SHA；V5—V8及反馈归档SHA复核无失败，bit校验一致。V9 WIPbit SHA b0a838d94a9c8c52692983e0e52abe08e60315ba49091be8b79a3291b1b8750c，只作构建证据，不作为发布烧录包。
-- 下一步：读r5最终17项PASS补充日志，完成原生图独立参考、新FIFO全部约束/告警审计，再冻结重构建V9并由用户现场复测。不要重复已验证步骤，不改冻结答案；重放先把source_snapshot复制到ASCII临时目录。
-- 进程/设备：前实现任务已停止写共享源码；TD和ModelSim r5均已结束，无本轮剩余构建进程；工具进程不随Git转移。交接证据为handoff_state.json时点只读拷贝。无JTAG/Flash，AI未烧录。
-- 提交/推送：本轮整理完成，准备提交并核对远端；成功后更新上传回执。根build_console.log、transcript无关未跟踪文件不加入，tmp运行缓存不加入。构建时source_commit=null的历史审计原样保留，用冻结SHA追溯，不能套用本轮WIP提交冒充旧bit源码。
+- 目标/完成：用户授权继续代码并上传现有分支；同一3528白色LED/载带，全1024×600处理、最多两对象各自框/结果保持。修复停CSI反例中的EDGE帧尾不完整及整帧结果无法完成；实际RAW仍黑的全部物理根因尚未闭合，V9现场待复测。未建立真实偏移/旋转/立起/翻面质量标定，SIZE/ASP/FILL/REF仅模型诊断。
+- 基线/修改：lj4747-contest-work，构建基线3c13af36cfd38656a42fb03bf665e4bd922856d2；215生产输入。AWB后处理保持连续100MHz，桥接改显式128×512双时钟ERAM FIFO、两向10位Gray指针/两级同步、两域同步释放复位；wrapper声明前移；SDC精确绑定20指针位/第一级同步器8ns，移除已经不存在的DDR→MIPI返回约束（恢复原生writer前需恢复）。其他型号/阈值/模型/去马赛克/WB/视频槽格式不变。
+- 软件/证据：r7全部17项ModelSim PASS，真实校正/RAW/vendor ERAM/ISP/DDR九帧覆盖LP738、FE后200拍停CSI33ms、四模式、两对象远离旧区域、WB零结果回退、模式取消、帧外RAW拒绝/下一帧恢复；614400显示请求613200非零，OF/UF0。新FIFO6827精确载荷、停钟排空/恢复/溢出复位PASS。独立两遍连通参考19实际PGM/掩码PASS。r8仅收窄SDC选择器，RTL/所有测试/运行器/字体同r7 SHA，未重复无变化的功能检查。
+- 完整TD/r8：TD6.2.168116，Slice14414/21216=67.94%、ERAM72/108、DSP20/40，routed双角setup+.110ns/hold+.020ns/TNS0/STA92.79%；38显式+2厂商共40延迟约束全部匹配、ignored0。路由DB逐位核对两组primary与sync1各10位（最高Gray位优化别名bin[9]），20物理路径全部由8ns实际主导；无clock/invalid constraint/loop/no-path问题。历史DDR/PLL/缺I/O延迟告警保留，主PLL及DDR PLL反馈网络/本地反馈补偿延迟告警已留详细时钟分析，仍需实物复核。
+- 失败保留：V8现场原图/RAW与复位仍黑；V8停钟反例；V9r1端口编辑失败、r3/r4夹具回退少约3.4μs、r5改23ms等待保留33ms源间隔；r6厂商999.7ns覆盖手写预算，审计FAIL；r7宽集合带入同步附加路径141，r8转义总线精确20并恢复同域自然时序。打包初次误假设TD-only轮有仿真目录，失败脚本/日志保留后修正打包，不改生产/测试/bit。
+- 发布/归档：release/continuous_frame_v9_20261015/camera_to_dsi_display.bit，1789539字节，SHA b954f61ae317896169ae6b7607369d7752a7248a4dd4832c5e9db49b25d26268，顶部DA FRAME EXP V9。current_codex_build已指向V9、现场PENDING；旧V8明确FAIL_BLACK，V5—V8与WIP旧bit保留。59_A3528连续处理时钟_V9黑屏修复与上板说明.md；验收记录/20261015_A_3528连续处理时钟_V9轮次1含215完整源/可重放TD仿真/17测试/19参考图/失败历史/绑定检查，1148归档项170950223字节SHA全核对。构建时source_commit=null，后续上传回执用215 SHA绑定提交，不改原构建事实。
+- 下一步/进程/提交：所有本轮TD/ModelSim已结束，无JTAG/Flash，用户负责烧录。准备把新V9源码、镜像、说明和完整证据提交推送现有分支；连接用本次git -c http.sslBackend=openssl（不改全局配置），远端前序3c13af3已核对。根build_console.log/transcript及tmp缓存不加入。成功后写上传回执并核对远端HEAD；之后等待RAW/GRAY+EDGE/复位/双目标实板反馈，无新反例不重复已通过软件/TD。

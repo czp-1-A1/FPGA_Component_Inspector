@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\finish_process_r8.py", line 108, in <module>
+    for test in (src/'sim/modelsim_work').iterdir():
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yiziw\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1056, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\process_v9_r6_20261015\\sim\\modelsim_work'

@@ -1,0 +1,25 @@
+============================================================
+   Tang Dynasty, V6.2.168116
+   Copyright (c) 2012-2025 Anlogic Inc.
+   Executable = D:/AAA/FPGA.....YZW/bin/td_commands_prompt.exe
+   Built at =   16:32:07 Jun 12 2025
+   Run by =     CodexSandboxOffline
+   Run Date =   Thu Oct 15 09:06:34 2026
+
+   Run on =     XIAOYI
+============================================================
+RUN-1002 : start command "import_device ph1_35p.db -package PH1P35MDG324 -speed 3"
+ARC-1001 : Device Initialization.
+ARC-1001 : ----------------------------------------------------------------
+ARC-1001 :           OPTION          |          IO           |   SETTING   
+ARC-1001 : ----------------------------------------------------------------
+ARC-1001 :   non_jtag_persist(none)  |        35 IOs         |    gpio    
+ARC-1001 :            jtag           |  P13/P15/L14/R13/T13  |  dedicate  
+ARC-1001 : ----------------------------------------------------------------
+RUN-1003 : finish command "import_device ph1_35p.db -package PH1P35MDG324 -speed 3" in  2.054476s wall, 1.765625s user + 0.078125s system = 1.843750s CPU (89.7%)
+
+RUN-1004 : used memory is 337 MB, reserved memory is 320 MB, peak memory is 337 MB
+RUN-1002 : start command "open_project td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.prj -noanalyze"
+PRJ-8642 ERROR: Project file td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.prj does not exist.
+
+td > 

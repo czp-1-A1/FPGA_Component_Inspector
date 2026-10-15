@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\audit_process_final.py", line 57, in <module>
+    assert re.search(r'Dominated\s*:\s*18,',detail) and re.search(r'Shadowed\s*:\s*0,',detail),detail
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 
+Check Type     :   Max
+--------------------------------------------------------------------------------
+Total Paths    :           18
+Dominated      :            0,          0.0%
+Shadowed       :           18,        100.0%
+               :           18, by set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 999.700
+
+
+

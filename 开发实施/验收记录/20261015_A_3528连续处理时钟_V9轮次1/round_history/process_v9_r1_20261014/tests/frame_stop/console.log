@@ -1,0 +1,13 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc=rn+/tb_frame_stop" -onfinish exit -l modelsim_work/frame_stop/transcript.log -wlf modelsim_work/frame_stop/wave.wlf -do "log /tb_frame_stop/frame_no; run -all; quit -code 1 -force" test_frame_stop.tb_frame_stop anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 22:37:15 on Oct 14,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Error (suppressible): tb_frame_stop.v(32): (vopt-2732) Module parameter 'ASYNC_PROCESSING' not found for override.
+# Optimization failed
+# Error loading design
+Error loading design
+# End time: 22:37:16 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0

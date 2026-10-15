@@ -1,0 +1,5 @@
+# PASS frame search: 12 full images, 1843200 independent capture-bit checks, 2P/P+E/2E, far corners, feed rejection, fill reason, bright background, cancel/recovery, PPC4 bubbles
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS frame stop: real native LP738, CSI stopped 33ms after 200 tail clocks, RAW and GRAY+EDGE complete 115200 words and dual metadata, continuous 100MHz post-AWB, full DDR display; accepted=2 OF=0 UF=0
+# PASS ROI guard: independent RGB math, unaligned ROI, first/last beat, completion ordering, FE collision, malformed/overrun/config/lane/overlap and recovery
+PASS ModelSim: all 3 tests, including original vendor ERAM model

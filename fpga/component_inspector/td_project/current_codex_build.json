@@ -1,38 +1,36 @@
 {
-  "purpose": "3528_SAME_MATERIAL_FULLFRAME_DUAL_V8",
+  "purpose": "3528_CONTINUOUS_POST_AWB_V9",
   "td_version": "6.2.168116",
-  "base_head": "e604d4fbe4bd40f0d7b40e5fce4ecfda10ea4351",
+  "base_head": "3c13af36cfd38656a42fb03bf665e4bd922856d2",
   "source_commit": null,
-  "source_snapshot": "开发实施/验收记录/20261014_A_3528全画面双穴位_V8轮次1/source_snapshot",
-  "build_root": "tmp/fullframe_v8_r12_20261014",
+  "source_snapshot": "开发实施/验收记录/20261015_A_3528连续处理时钟_V9轮次1/source_snapshot",
+  "build_root": "tmp/process_v9_r8_20261015",
   "release": {
-    "path": "fpga/component_inspector/release/fullframe_dual_v8_20261014/camera_to_dsi_display.bit",
+    "path": "fpga/component_inspector/release/continuous_frame_v9_20261015/camera_to_dsi_display.bit",
     "bytes": 1789539,
-    "sha256": "2f5bd322d3243443adb5437c7b2ff6aaab4074207aa8e633f780b812477b7852"
+    "sha256": "b954f61ae317896169ae6b7607369d7752a7248a4dd4832c5e9db49b25d26268"
   },
-  "validation_record": "开发实施/验收记录/20261014_A_3528全画面双穴位_V8轮次1.md",
+  "validation_record": "开发实施/验收记录/20261015_A_3528连续处理时钟_V9轮次1.md",
   "fresh_tests": [
+    "process_bridge",
     "frame_search",
     "frame_osd",
-    "frame_wait_metadata",
     "shape_snapshot",
     "shape_model",
+    "frame_tailproof",
+    "frame_stop",
+    "frame_process",
     "shape_osd",
     "video_fallback_display",
+    "frame_wait_metadata",
     "video_metadata_fallback",
     "writer_epoch",
     "wb_epoch",
     "observation",
     "display_state",
-    "roi_guard",
-    "frame_tailproof",
-    "frame_video"
+    "roi_guard"
   ],
-  "onsite": "FAIL_BLACK_SCREEN_REPORTED",
-  "onsite_feedback": "开发实施/验收记录/20261014_A_V8黑屏现场反馈_轮次1",
-  "worktree_variant": "V9_WIP_NOT_RELEASED_NOT_ACCEPTED",
-  "worktree_source_snapshot": "开发实施/验收记录/20261014_A_代码仓库交接_轮次1/source_snapshot",
-  "handoff_guide": "开发实施/58_A3528现阶段代码仓库交接.md",
-  "archived_build_root": "开发实施/验收记录/20261014_A_3528全画面双穴位_V8轮次1/source_snapshot",
-  "build_root_note": "Original machine-local build path; use archived source_snapshot for portable replay."
+  "test_round": "process_v9_r7_20261015",
+  "onsite": "PENDING_V9",
+  "previous_v8_onsite": "FAIL_BLACK"
 }

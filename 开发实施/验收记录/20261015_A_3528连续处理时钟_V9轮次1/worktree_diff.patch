@@ -1,0 +1,76 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index c610377..655e89e 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -32,14 +32,12 @@
+ 
+ 交接需包含代码、必要未跟踪文件与证据，不能只传本文。按授权提交/推送，不混入无关暂存文件；成功推送才可称已同步。接棒端核对工具依赖、实际文件与日志；Git不传未提交文件、进程或聊天。意外断额度时由人保存改动，接棒端恢复实际断点，WIP不当作稳定版。
+ 
+-## 当前断点（2026-10-14，现阶段交接；V9黑屏修复WIP）
+-
+-- 目标/范围：按用户要求交接上传现阶段代码；同一3528白色LED与同一载带不换型号。主目录为V9修复WIP，保留全画面/双目标；不声称已测实际偏移、旋转、立起或翻面。
+-- 分支/基线：lj4747-contest-work，上传前HEAD e604d4fbe4bd40f0d7b40e5fce4ecfda10ea4351。用户授权通知“阶段A (2)”停止写入，该任务已明确确认停止，交接端未改算法。
+-- 改动：V5—V8形状/局部/全帧搜索、独立框及显示帧绑定和测试全部保留；V9新增frame_process_bridge.v，AWB后处理跨到连续100MHz，wrapper/isp_top/.al/.sdc/测试已变。当前215生产输入与r3/r5冻结清单完全同SHA。
+-- 现场/版本：V8用户确认RAW和复位仍黑，原照片/抄数在20261014_A_V8黑屏现场反馈_轮次1；V8发布bit SHA 2f5bd322d3243443adb5437c7b2ff6aaab4074207aa8e633f780b812477b7852。current_codex_build.json记录最后发布V8及现场失败/当前V9交接信息，不代表当前WIP已有稳定发布。V7/V6/V5回查包保留。
+-- V9已验证及限制：r2停CSI33ms的RAW/GRAY+EDGE写满115200字/双metadata/DDR显示通过；r5全部17项ModelSim测试现已PASS（封存后完成，completion_after_freeze保存最终日志）；原生图独立参考仍待执行。r3/r4回退等待夹具短约3.4μs，r5为23ms等待/33ms源帧间隔，失败轮保留。r3 TD已产bit，Slice67.63%/ERAM72/108/setup+.104ns/hold+.020ns；新增告警和无匹配CDC约束审计未完成，V9不能判稳定或已上板。
+-- 交付/证据：58_A3528现阶段代码仓库交接.md、验收记录/20261014_A_代码仓库交接_轮次1.md/同名目录：215完整生产/可重放仿真TD/反例与r1—r5日志/报告/WIPbit/541项SHA；V5—V8及反馈归档SHA复核无失败，bit校验一致。V9 WIPbit SHA b0a838d94a9c8c52692983e0e52abe08e60315ba49091be8b79a3291b1b8750c，只作构建证据，不作为发布烧录包。
+-- 下一步：读r5最终17项PASS补充日志，完成原生图独立参考、新FIFO全部约束/告警审计，再冻结重构建V9并由用户现场复测。不要重复已验证步骤，不改冻结答案；重放先把source_snapshot复制到ASCII临时目录。
+-- 进程/设备：前实现任务已停止写共享源码；TD和ModelSim r5均已结束，无本轮剩余构建进程；工具进程不随Git转移。交接证据为handoff_state.json时点只读拷贝。无JTAG/Flash，AI未烧录。
+-- 提交/推送：本轮整理完成，准备提交并核对远端；成功后更新上传回执。根build_console.log、transcript无关未跟踪文件不加入，tmp运行缓存不加入。构建时source_commit=null的历史审计原样保留，用冻结SHA追溯，不能套用本轮WIP提交冒充旧bit源码。
++## 当前断点（2026-10-15，续接V9黑屏修复及仓库上传）
++
++- 用户已要求继续生成代码并上传。阶段A(5)交接端已停止，无构建进程；当前唯一实现端继续V9。同一3528白色LED/载带，全画面/两独立对象/模型诊断保持；无实物偏移/旋转/立起/翻面标定。
++- 基线：lj4747-contest-work，HEAD 3c13af36cfd38656a42fb03bf665e4bd922856d2（交接WIP提交）。Git仅根build_console.log/transcript无关未跟踪。远端schannel读取失败，待按既有连接配置核对/推送；不强推。V8原发布现场黑屏，V9 WIP不得当稳定实板通过。
++- 完成：r5全部17项ModelSim PASS、实际9帧停CSI恢复/四模式/零结果视频回退、614400请求613200非零/OFUF0；本次对19原生PGM/掩码做独立两遍连通参考全部PASS，reference.log/independent_reference_results.json在r5首次新增，未改原测试输入/答案。
++- 修订仅wrapper声明顺序、SDC：S_process_clk声明前移；移除r3已证明0路径的DDR→MIPI旧writer约束（当前writer连续100MHz，原生writer恢复前需恢复）；给新桥接FIFO两向9位Gray pointer加8ns显式预算，不能沿用厂商错误默认999.7ns。其余213项生产输入同r5 SHA、功能RTL/全部回归依赖不变。
++- 断点：r6手写Gray预算实际被厂商999.7ns自动项覆盖，约束审计FAIL并保存audit_console.log。r7桥接改显式双时钟ERAM FIFO，10位含环绕Gray指针/两级同步/两域同步释放复位，20条指针路径单独8ns预算，r7已完成17回归/19参考图/完整TD；宽匹配引入同域附加路径（141），已收窄为转义位总线选择器，正在process_v9_r8_20261015仅重做完整TD；RTL/所有仿真输入同r7，新增analyze_clock详细记录。验证新Gray约束20条物理路径受8ns实际主导、所有启用约束匹配/ignored0、资源/双角STA、旧声明告警消除；厂商clkw/clkr查找/ram_style和时钟别名告警需留痕逐条审计。最终独立V9发布、源/bit SHA绑定、提交推送/远端核对仍未完成。
++- 证据：旧V8停钟FAIL、V9r1端口编辑失败、r3/r4回退夹具少3.4μs、r5修23ms等待/保持33ms源间隔均保留；交接冻结目录20261014_A_代码仓库交接_轮次1不修改。V9旧WIP bit b0a838d94a9c8c52692983e0e52abe08e60315ba49091be8b79a3291b1b8750c保留；current_codex_build仍V8历史指针。
++- 设备/提交：无JTAG/Flash，用户负责烧录。没有实现之外的新提交/推送；ModelSim r7与TD r7已结束；TD r8运行中，tmp/process_v9_r8_20261015，exec会话35150。下一条操作：冻结并运行最终TD，同时核对17项回归编译输入与r6相同、准备归档和仓库连接。待确认现场恢复后才能闭合硬件问题。
+diff --git a/fpga/component_inspector/td_project/camera_to_dsi_display.sdc b/fpga/component_inspector/td_project/camera_to_dsi_display.sdc
+index 877c4fe..1598d80 100644
+--- a/fpga/component_inspector/td_project/camera_to_dsi_display.sdc
++++ b/fpga/component_inspector/td_project/camera_to_dsi_display.sdc
+@@ -19,7 +19,9 @@ set_false_path -from [get_ports {I_button[*]}]
+ # paths: that would suppress the held transport-status mailbox budgets.
+ set_max_delay -datapath_only 14.0 -from [get_clocks {mipi_rx_ck_pad MIPI_RX_BYTE_CLK sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}]
+ set_max_delay -datapath_only 19.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]
+-set_max_delay -datapath_only 8.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {MIPI_RX_BYTE_CLK}]
++# The V9 writer input now uses pll_clk_100m; its return crossings are covered
++# by the 19ns DDR-to-system bound above and the explicit metadata ack bound.
++# Restore the former 8ns DDR-to-MIPI bound before using the native-clock writer.
+ 
+ # CSI and system clocks are asynchronous. Use physical delay bounds instead of
+ # a clock-group cut, which would suppress the mailbox constraints below in TD.
+@@ -84,3 +86,9 @@ set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}]
+ set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/payload*}] -to [get_regs {u_wb_process/D_data*}]
+ set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/req}] -to [get_regs {u_wb_process/req_sync[0]}]
+ set_max_delay -datapath_only 8.0 -from [get_regs {u_wb_process/ack}] -to [get_regs {u_wb_process/ack_sync[0]}]
++
++# The bridge's two 10-bit Gray pointer buses cross 112.5MHz CSI / 100MHz ISP.
++# Keep all pointer-bit route delays below either source period (8.889/10ns).
++# The bridge uses explicit pointers, outside the vendor FIFO's automatic
++# timing patterns. Both directions must match and dominate all 20 paths.
++set_max_delay -datapath_only 8.0 -from [get_regs {*continuous_processing*bridge/write_gray\[*\] *continuous_processing*bridge/read_gray\[*\]}] -to [get_regs {*continuous_processing*bridge/write_gray_sync1\[*\] *continuous_processing*bridge/read_gray_sync1\[*\]}]
+diff --git a/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v b/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v
+index 35777e6..95fee01 100644
+--- a/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v
++++ b/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v
+@@ -43,7 +43,8 @@ module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,E
+     wire        	S_100m_clk;
+     wire        	S_24m_clk;
+     wire        	S_aux_50m_clk;
+-	wire        	S_10m_clk;
++	wire        	S_10m_clk;
++	wire            S_process_clk;
+ 		
+ 	wire        	S_pll_lock;
+     wire        	S_rst_n;
+@@ -541,7 +542,7 @@ raw10_unpacket_2lane u_raw10_unpacket (
+ 
+ localparam MULTI_POCKETS=ENABLE_TRACKING && ENABLE_MULTI_POCKETS;
+ localparam LOCAL_SEARCH=ENABLE_LOCAL_SEARCH && ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS;
+-wire S_process_clk=LOCAL_SEARCH ? S_100m_clk : S_csi_rx_clk;
++assign S_process_clk=LOCAL_SEARCH ? S_100m_clk : S_csi_rx_clk;
+ // Keep out-of-packet RAW data out of the legacy formatter. The native guard
+ // still sees the unfiltered signal and rejects the offending frame.
+ reg csi_frame_open;

@@ -44,6 +44,7 @@ module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,E
     wire        	S_24m_clk;
     wire        	S_aux_50m_clk;
 	wire        	S_10m_clk;
+	wire            S_process_clk;
 		
 	wire        	S_pll_lock;
     wire        	S_rst_n;
@@ -541,7 +542,7 @@ raw10_unpacket_2lane u_raw10_unpacket (
 
 localparam MULTI_POCKETS=ENABLE_TRACKING && ENABLE_MULTI_POCKETS;
 localparam LOCAL_SEARCH=ENABLE_LOCAL_SEARCH && ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS;
-wire S_process_clk=LOCAL_SEARCH ? S_100m_clk : S_csi_rx_clk;
+assign S_process_clk=LOCAL_SEARCH ? S_100m_clk : S_csi_rx_clk;
 // Keep out-of-packet RAW data out of the legacy formatter. The native guard
 // still sees the unfiltered signal and rejects the offending frame.
 reg csi_frame_open;
