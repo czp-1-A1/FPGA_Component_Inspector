@@ -32,7 +32,7 @@
 
 交接需包含代码、必要未跟踪文件与证据，不能只传本文。按授权提交/推送，不混入无关暂存文件；成功推送才可称已同步。接棒端核对工具依赖、实际文件与日志；Git不传未提交文件、进程或聊天。意外断额度时由人保存改动，接棒端恢复实际断点，WIP不当作稳定版。
 
-## 当前断点（2026-10-15，V9连续处理时钟实验版完成，准备上传）
+## 当前断点（2026-10-15，V9连续处理时钟实验版已上传，待实板复测）
 
 - 目标/完成：用户授权继续代码并上传现有分支；同一3528白色LED/载带，全1024×600处理、最多两对象各自框/结果保持。修复停CSI反例中的EDGE帧尾不完整及整帧结果无法完成；实际RAW仍黑的全部物理根因尚未闭合，V9现场待复测。未建立真实偏移/旋转/立起/翻面质量标定，SIZE/ASP/FILL/REF仅模型诊断。
 - 基线/修改：lj4747-contest-work，构建基线3c13af36cfd38656a42fb03bf665e4bd922856d2；215生产输入。AWB后处理保持连续100MHz，桥接改显式128×512双时钟ERAM FIFO、两向10位Gray指针/两级同步、两域同步释放复位；wrapper声明前移；SDC精确绑定20指针位/第一级同步器8ns，移除已经不存在的DDR→MIPI返回约束（恢复原生writer前需恢复）。其他型号/阈值/模型/去马赛克/WB/视频槽格式不变。
@@ -40,4 +40,4 @@
 - 完整TD/r8：TD6.2.168116，Slice14414/21216=67.94%、ERAM72/108、DSP20/40，routed双角setup+.110ns/hold+.020ns/TNS0/STA92.79%；38显式+2厂商共40延迟约束全部匹配、ignored0。路由DB逐位核对两组primary与sync1各10位（最高Gray位优化别名bin[9]），20物理路径全部由8ns实际主导；无clock/invalid constraint/loop/no-path问题。历史DDR/PLL/缺I/O延迟告警保留，主PLL及DDR PLL反馈网络/本地反馈补偿延迟告警已留详细时钟分析，仍需实物复核。
 - 失败保留：V8现场原图/RAW与复位仍黑；V8停钟反例；V9r1端口编辑失败、r3/r4夹具回退少约3.4μs、r5改23ms等待保留33ms源间隔；r6厂商999.7ns覆盖手写预算，审计FAIL；r7宽集合带入同步附加路径141，r8转义总线精确20并恢复同域自然时序。打包初次误假设TD-only轮有仿真目录，失败脚本/日志保留后修正打包，不改生产/测试/bit。
 - 发布/归档：release/continuous_frame_v9_20261015/camera_to_dsi_display.bit，1789539字节，SHA b954f61ae317896169ae6b7607369d7752a7248a4dd4832c5e9db49b25d26268，顶部DA FRAME EXP V9。current_codex_build已指向V9、现场PENDING；旧V8明确FAIL_BLACK，V5—V8与WIP旧bit保留。59_A3528连续处理时钟_V9黑屏修复与上板说明.md；验收记录/20261015_A_3528连续处理时钟_V9轮次1含215完整源/可重放TD仿真/17测试/19参考图/失败历史/绑定检查，1148归档项170950223字节SHA全核对。构建时source_commit=null，后续上传回执用215 SHA绑定提交，不改原构建事实。
-- 下一步/进程/提交：所有本轮TD/ModelSim已结束，无JTAG/Flash，用户负责烧录。准备把新V9源码、镜像、说明和完整证据提交推送现有分支；连接用本次git -c http.sslBackend=openssl（不改全局配置），远端前序3c13af3已核对。根build_console.log/transcript及tmp缓存不加入。成功后写上传回执并核对远端HEAD；之后等待RAW/GRAY+EDGE/复位/双目标实板反馈，无新反例不重复已通过软件/TD。
+- 下一步/进程/提交：V9源提交2f7a891dab92399a2a0b1e3ee0b170659727c251已上传lj4747-contest-work，GitHub远端提交与tree精确一致；1364个已提交文件SHA核对（215生产输入），独立从远端下载bit再次核对1789539字节/SHA通过。上传回执为验收记录/20261015_A_V9仓库上传回执.json，current_codex_build另记verified_source_git_commit；本回执/断点作为后续文档提交，不改冻结档案和构建事实。Git HTTPS多次超时/重置，改官方Git Database API上传同一Git对象并force=false快进；凭据仅走本机Windows Git helper内存，不落盘/不输出，不改全局Git配置。Windows长归档路径需git -c core.longpaths=true。所有TD/ModelSim已结束，无JTAG/Flash，用户负责烧录；根build_console.log/transcript及tmp缓存未上传。下一步烧录确认DA FRAME EXP V9，复测RAW/GRAY/EDGE/GRAY+EDGE、复位、双目标并保留P/W/ER/VF/OF/UF照片；未有新实板反馈不重复已通过软件/TD，物理黑屏与真实质量分类仍待现场闭合。

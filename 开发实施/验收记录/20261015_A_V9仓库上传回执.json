@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-15",
+  "timezone": "Asia/Shanghai",
+  "status": "PASS_REMOTE_SOURCE_AND_BIT",
+  "repository": "https://github.com/czp-1-A1/FPGA_Component_Inspector",
+  "branch": "lj4747-contest-work",
+  "source_commit": "2f7a891dab92399a2a0b1e3ee0b170659727c251",
+  "source_commit_url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/commit/2f7a891dab92399a2a0b1e3ee0b170659727c251",
+  "verified_remote_commit": "2f7a891dab92399a2a0b1e3ee0b170659727c251",
+  "tree_sha": "a121dc638e4f1136c4d1343cbbaf9276517479fc",
+  "transport": "GitHub Git Database REST API; exact blob/tree/commit SHA verified, force=false",
+  "transport_note": "Git HTTPS endpoint repeatedly timed out/reset; existing Windows Git credential used only in process memory for official API; no credential saved or logged",
+  "independently_downloaded_remote_bit": {
+    "path": "fpga/component_inspector/release/continuous_frame_v9_20261015/camera_to_dsi_display.bit",
+    "bytes": 1789539,
+    "git_blob": "cb97dae6a32061c90e0b3c3cefaec5419d154d15",
+    "sha256": "b954f61ae317896169ae6b7607369d7752a7248a4dd4832c5e9db49b25d26268"
+  },
+  "committed_bytes_verification": {
+    "status": "PASS_COMMITTED_BYTES",
+    "source_commit": "2f7a891dab92399a2a0b1e3ee0b170659727c251",
+    "production_inputs": 215,
+    "verified_files": 1364,
+    "unique_blobs": 541,
+    "bit_sha256": "b954f61ae317896169ae6b7607369d7752a7248a4dd4832c5e9db49b25d26268"
+  },
+  "uploaded_unique_blobs": 116,
+  "software": {
+    "modelsim_tests": 17,
+    "independent_reference_images": 19,
+    "status": "PASS"
+  },
+  "td": {
+    "version": "6.2.168116",
+    "routed_setup_wns_ns": 0.11,
+    "routed_hold_wns_ns": 0.02,
+    "tns_ns": 0,
+    "slice_used": 14414,
+    "slice_total": 21216,
+    "eram_used": 72,
+    "eram_total": 108,
+    "dsp_used": 20,
+    "dsp_total": 40,
+    "matched_max_delays": 40,
+    "ignored_max_delays": 0,
+    "gray_pointer_paths_budgeted": 20
+  },
+  "onsite": "PENDING_V9; previous V8 FAIL_BLACK; no JTAG or Flash operation performed",
+  "model_scope": "Same white 3528 and carrier tape; full 1024x600; up to two independent objects; SIZE/ASP/FILL/REF are model diagnostics, not calibrated physical defect classes",
+  "frozen_archive_policy": "Original 1148-file archive, source_commit=null at build time and failed rounds unchanged; this later receipt binds the verified source commit",
+  "windows_checkout_note": "Archived vendor paths exceed legacy Windows limit: use git -c core.longpaths=true clone/fetch/checkout as appropriate; repository parent path should be ASCII",
+  "next_action": "Burn released bit, confirm DA FRAME EXP V9, verify RAW/GRAY/EDGE/GRAY+EDGE/reset/two-object results and preserve P/W/ER/VF/OF/UF photo",
+  "followup_commit": "This receipt and AGENTS checkpoint are committed after the verified source commit; no production input changed"
+}
