@@ -1,4 +1,5 @@
 module isp_top #(
+    parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
     parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,
     parameter META_WIDTH=178+340*MULTI_POCKETS+172*LOCAL_SEARCH
@@ -67,8 +68,8 @@ wire view_valid,view_last,view_early,sample_cancel;
  
  
 demosaic #(
-    .IMG_HEIGHT          (600),  // 图像高度
-    .IMG_WIDTH           (1024),   // 图像宽度
+    .IMG_HEIGHT          (INPUT_HEIGHT),  // 图像高度
+    .IMG_WIDTH           (INPUT_WIDTH),   // 图像宽度
     .data_complete_delay (50  ),
     .BAYER_MODE          ("BGGR")
 )
@@ -101,8 +102,8 @@ always @(posedge axi4s_video_aclk or negedge I_rst_n) begin
 end
 wire wb_match=wb_frame_request==wb_request || raw_start;
 awb #(
-    .IMG_HEIGHT(600),
-    .IMG_WIDTH (1024),
+    .IMG_HEIGHT(INPUT_HEIGHT),
+    .IMG_WIDTH (INPUT_WIDTH),
     .MANUAL_GAIN(1) // Frame-held Q2.6 red/blue gains; green remains unity.
 ) u_awb (
     .I_clk   (axi4s_video_aclk),
@@ -141,7 +142,7 @@ wire [43:0] pocket_x0;wire [39:0] pocket_y0;wire [3:0] pocket_mask,pocket_verifi
 localparam USE_SHAPE=SHAPE_MODEL && DIRECT_DETECTION && !TRACKING && !MULTI_POCKETS;
 localparam USE_SEARCH=LOCAL_SEARCH && USE_SHAPE;
 wire roi_accept,roi_commit,roi_invalidate,sample_new;
-wire [10:0] roi_x;wire [9:0] roi_y;
+wire [10:0] roi_x;wire [$clog2(INPUT_HEIGHT+1)-1:0] roi_y;
 // Once native and processed completeness have both committed, this source
 // epoch is closed. The legacy demosaic can emit idle replay beats in long
 // vertical blanking; do not let them revoke a proved frame while full-frame
@@ -163,7 +164,7 @@ wire [36:0] shape_features={1'b0,(USE_SEARCH && search_review),shape_foreground,
 wire [1:0] legacy_mode_class;
 wire legacy_valid,legacy_new;wire [7:0] legacy_mean,legacy_min,legacy_max;wire [1:0] legacy_class;
 // Native packet proof is never inferred from FIFO output or pixel count alone.
-roi_frame_guard u_roi_guard(
+roi_frame_guard #(.WIDTH(INPUT_WIDTH),.HEIGHT(INPUT_HEIGHT)) u_roi_guard(
     .clk(axi4s_video_aclk),.rst_n(I_rst_n),
     .raw_start(raw_start),.raw_end(raw_end),.hs_valid(hs_valid),.raw_valid(raw_valid),
     .lane_error(lane_error),.config_ok(config_ok && observation_match),
@@ -173,9 +174,9 @@ roi_frame_guard u_roi_guard(
 wire native_cancel=roi_invalidate || !config_ok || |lane_error || !observation_match || !wb_match;
 wire [3:0] native_video_fault={(roi_invalidate && !raw_start),(|lane_error),!config_ok,1'b0};
 wire post_clk=ASYNC_PROCESSING ? processing_clk : axi4s_video_aclk;
-wire post_start,post_early,post_valid,post_sof,post_last,post_accept,post_commit,post_cancel,post_overflow;
-wire [95:0] post_rgb;wire [3:0] post_native_fault;
-wire [10:0] post_x;wire [9:0] post_y;
+wire post_start,native_early,native_valid,native_sof,native_last,native_accept,native_commit,post_cancel,post_overflow;
+wire [95:0] native_rgb;wire [3:0] post_native_fault;
+wire [10:0] native_x;wire [$clog2(INPUT_HEIGHT+1)-1:0] native_y;
 wire [17:0] post_tag;wire [31:0] post_wb,post_config;
 generate if(ASYNC_PROCESSING)begin : continuous_processing
  reg cancel_d;reg [3:0] fault_d;
@@ -191,33 +192,61 @@ generate if(ASYNC_PROCESSING)begin : continuous_processing
   .source_data({raw_start,(awb_O_tuser && !frame_input_closed),source_pixel_valid,source_pixel_sof,awb_O_tlast,
    roi_accept,roi_commit,native_cancel,native_video_fault,payload}),.source_valid(send_event),
   .process_data(received),.process_valid(received_valid),.process_overflow(post_overflow));
- assign {post_start,post_early,post_valid,post_sof,post_last,post_accept,post_commit,post_cancel,post_native_fault}=
+ assign {post_start,native_early,native_valid,native_sof,native_last,native_accept,native_commit,post_cancel,post_native_fault}=
   received_valid ? received[127:116] : 12'd0;
- assign post_rgb=received[95:0];
+ assign native_rgb=received[95:0];
  reg [17:0] tag;reg [31:0] wb,cfg;
- reg [10:0] x;reg [9:0] y;
+ reg [10:0] x;reg [$clog2(INPUT_HEIGHT+1)-1:0] y;
  always @(posedge processing_clk or negedge I_rst_n)begin
   if(!I_rst_n)begin tag<=0;wb<=32'h00006464;cfg<=0;x<=0;y<=0;end
   else begin
    if(post_start)begin tag<=received[18:1];wb<=received[50:19];cfg<=received[82:51];x<=0;y<=0;end
-   if(post_sof && post_valid)begin x<=4;y<=0;end
-   else if(post_valid)begin
-    if(post_last)begin x<=0;y<=y+1'b1;end else x<=x+11'd4;
+   if(native_sof && native_valid)begin x<=4;y<=0;end
+   else if(native_valid)begin
+    if(native_last)begin x<=0;y<=y+1'b1;end else x<=x+11'd4;
    end
   end
  end
- assign post_x=post_sof ? 11'd0 : x;assign post_y=post_sof ? 10'd0 : y;
+ assign native_x=native_sof ? 11'd0 : x;assign native_y=native_sof ? 10'd0 : y;
  assign post_tag=post_start ? received[18:1] : tag;
  assign post_wb=post_start ? received[50:19] : wb;
  assign post_config=post_start ? received[82:51] : cfg;
 end else begin : native_processing
- assign post_start=raw_start;assign post_early=awb_O_tuser && !frame_input_closed;
- assign post_valid=source_pixel_valid;assign post_sof=source_pixel_sof;assign post_last=awb_O_tlast;
- assign post_accept=roi_accept;assign post_commit=roi_commit;assign post_cancel=native_cancel;assign post_overflow=0;
- assign post_rgb=awb_O_tdata;assign post_native_fault=native_video_fault;
- assign post_x=roi_x;assign post_y=roi_y;assign post_tag=observation_tag;assign post_wb=wb_frame_request;assign post_config=image_config;
+ assign post_start=raw_start;assign native_early=awb_O_tuser && !frame_input_closed;
+ assign native_valid=source_pixel_valid;assign native_sof=source_pixel_sof;assign native_last=awb_O_tlast;
+ assign native_accept=roi_accept;assign native_commit=roi_commit;assign post_cancel=native_cancel;assign post_overflow=0;
+ assign native_rgb=awb_O_tdata;assign post_native_fault=native_video_fault;
+ assign native_x=roi_x;assign native_y=roi_y;assign post_tag=observation_tag;assign post_wb=wb_frame_request;assign post_config=image_config;
 end endgenerate
-roi_sobel_view #(.X0(USE_SEARCH ? 0 : MULTI_POCKETS ? 96 : 256),.X1(USE_SEARCH ? 1024 : MULTI_POCKETS ? 928 : 768),.Y0(USE_SEARCH ? 0 : 172),.Y1(USE_SEARCH ? 600 : MULTI_POCKETS ? 464 : 428),.DYNAMIC_ROI(TRACKING),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
+
+wire post_early,post_valid,post_sof,post_last,post_accept,post_commit;
+wire [95:0] post_rgb;wire [10:0] post_x;wire [9:0] post_y;
+wire scale_bad;
+generate if(SCALE_DISPLAY)begin : scaled_processing
+ wire scaled_early,scaled_valid,scaled_last;wire [95:0] scaled_rgb;
+ wire scale_bad_resize,scale_bad_guard;
+ rgb_resize_2_3 #(.WIDTH(INPUT_WIDTH),.HEIGHT(INPUT_HEIGHT)) resize(
+  .clk(post_clk),.rst_n(I_rst_n),.early_sof(native_early),
+  .valid(native_valid && native_accept),.last(native_last),.rgb(native_rgb),
+  .out_early_sof(scaled_early),.out_valid(scaled_valid),.out_last(scaled_last),
+  .out_rgb(scaled_rgb),.frame_bad(scale_bad_resize));
+ scaled_frame_guard #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) guard(
+  .clk(post_clk),.rst_n(I_rst_n),.early_sof(scaled_early),
+  .valid(scaled_valid),.last(scaled_last),.native_commit(native_commit),
+  .invalidate((|post_native_fault) || post_overflow || scale_bad_resize),
+  .pixel_accept(post_accept),.pixel_sof(post_sof),.x(post_x),.y(post_y),
+  .frame_commit(post_commit),.frame_bad(scale_bad_guard));
+ assign post_rgb=scaled_rgb;assign post_valid=post_accept;
+ assign post_last=scaled_last;assign post_early=scaled_early;
+ assign scale_bad=scale_bad_resize || scale_bad_guard;
+end else begin : unscaled_processing
+ assign post_early=native_early;assign post_valid=native_valid;
+ assign post_sof=native_sof;assign post_last=native_last;
+ assign post_accept=native_accept;assign post_commit=native_commit;
+ assign post_rgb=native_rgb;assign post_x=native_x;assign post_y=native_y;
+ assign scale_bad=0;
+end endgenerate
+roi_sobel_view #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.X0(USE_SEARCH ? 0 : MULTI_POCKETS ? 96 : 256),.X1(USE_SEARCH ? WIDTH : MULTI_POCKETS ? 928 : 768),.Y0(USE_SEARCH ? 0 : 172),.Y1(USE_SEARCH ? HEIGHT : MULTI_POCKETS ? 464 : 428),.DYNAMIC_ROI(TRACKING),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
  .dynamic_x0(track_x0),.dynamic_x1(track_x1),.dynamic_y0(track_y0),.dynamic_y1(track_y1),
  .clk(post_clk),.rst_n(I_rst_n),.pixel_valid(post_valid),
  .pixel_sof(post_sof),.pixel_last(post_last),.early_sof(post_early),
@@ -241,7 +270,7 @@ assign sample_valid=result_valid && (!TRACKING || video_frame_good);
 wire [1:0] result_class;
 assign class_state=TRACKING && !video_frame_good ? 2'd1 : result_class;
 // Cancel pending statistics on native FS, including an old in-flight division.
-assign sample_cancel=post_cancel || post_overflow;
+assign sample_cancel=post_cancel || post_overflow || scale_bad;
 // Tracking coordinates become immutable after the hole search and before core Y0.
 generate if(MULTI_POCKETS) begin : multi_tracking
  multi_pocket_tracker tracker(
@@ -293,7 +322,7 @@ always @(posedge post_clk or negedge I_rst_n) begin
 end
 // Capture proof belongs to the AWB early-FS epoch, not the native FS that
 // precedes it. A normal next FS must not revoke an old, completed edge tail.
-wire [3:0] video_fault=post_native_fault | {3'd0,(view_frame_bad || post_overflow)};
+wire [3:0] video_fault=post_native_fault | {3'd0,(view_frame_bad || post_overflow || scale_bad)};
 reg [3:0] video_reject_reason;
 always @(posedge post_clk or negedge I_rst_n) begin
  if(!I_rst_n) begin video_frame_good<=0;video_frame_bad<=0;video_reject_reason<=0;video_diagnostics<=0;end
@@ -313,7 +342,7 @@ roi_statistics #(.DYNAMIC_ROI(TRACKING),.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(
     .frame_commit(result_commit),.invalidate(sample_cancel),.sample_valid(legacy_valid),
     .mean(legacy_mean),.minimum(legacy_min),.maximum(legacy_max),.sample_pixels(),.sample_sum(),.sample_new(legacy_new),.frame_start(post_start));
 generate if(USE_SEARCH) begin : local_shape_detection
- frame_shape_search detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
+ frame_shape_search #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
   .pixel_accept(post_accept),.invalidate(sample_cancel),.pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),
   .ready(search_ready),.sample_new(search_new),.located(search_located),.state(search_state),.foreground_count(search_fg),
   .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(search_objects));
@@ -360,6 +389,11 @@ roi_result_snapshot u_roi_result_snapshot(
     .class_state(result_class),.mean(sample_mean),.minimum(sample_min),.maximum(sample_max),
     .record(display_record));
 
+    generate if(SCALE_DISPLAY)begin : gap_safe_pack
+     rgb96_packetizer pack(.clk(post_clk),.rst_n(I_rst_n),.early_sof(view_early),
+      .valid(view_valid),.rgb(view_rgb),.frame_start(awb_O_tuser_128),
+      .out_valid(awb_O_tvalid_128),.data(awb_O_tdata_128));
+    end else begin : legacy_pack
     data_96bit_to_128bit u_data_96bit_to_128bit(
         .I_clk              ( post_clk  ),
         .I_rst_n            ( I_rst_n           ),
@@ -372,6 +406,7 @@ roi_result_snapshot u_roi_result_snapshot(
         .O_128b_valid       ( awb_O_tvalid_128 	),
         .O_128b_data        ( awb_O_tdata_128  	)
     );
+    end endgenerate
 
 
 

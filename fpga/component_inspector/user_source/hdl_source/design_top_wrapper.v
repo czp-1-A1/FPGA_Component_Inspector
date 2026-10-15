@@ -1,6 +1,7 @@
 
 
-module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,ENABLE_SHAPE_MODEL=1,ENABLE_LOCAL_SEARCH=1) (
+module design_top_wrapper #(parameter INPUT_WIDTH=1920,INPUT_HEIGHT=1080,VIDEO_WIDTH=1280,VIDEO_HEIGHT=720,
+ parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,ENABLE_SHAPE_MODEL=1,ENABLE_LOCAL_SEARCH=1) (
     input wire        I_sys_clk,
     input wire        I_rst_n,
       
@@ -199,11 +200,17 @@ module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,E
 
 
     assign O_screen_pwm = 1'b1;
-    assign S_video_out_vsync = ~S_hdmi_vsync;
+    assign S_video_out_vsync = S_hdmi_vsync;
 	
 	
     assign S_rst_n 		= S_pll_lock;
-    assign S_hdmi_rst_n = S_pll_lock;
+    wire S_hdmi_pll_lock;
+    wire S_hdmi_async_rst_n=S_rst_n && S_hdmi_pll_lock;
+    reg [2:0] hdmi_reset_sync;
+    always @(posedge S_hdmi_pixel_clk or negedge S_hdmi_async_rst_n)
+     if(!S_hdmi_async_rst_n)hdmi_reset_sync<=0;
+     else hdmi_reset_sync<={hdmi_reset_sync[1:0],1'b1};
+    assign S_hdmi_rst_n=hdmi_reset_sync[2];
 
     always @(posedge S_csi_rx_clk or negedge S_rst_n) begin
         if(!S_rst_n)
@@ -423,8 +430,8 @@ module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,E
         .clk0_out    ( S_100m_clk        ),
         .clk1_out    ( S_24m_clk         ),
 
-        .clk4_out    ( S_hdmi_pixel_clk  ),
-        .clk5_out    ( S_hdmi_serial_clk ),
+        .clk4_out    (                   ),
+        .clk5_out    (                   ),
 
         .lock        ( S_pll_lock        )
 
@@ -434,6 +441,9 @@ module design_top_wrapper #(parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,E
 	
 
   
+    HDMI_PLL u_hdmi_pll(.refclk(I_sys_clk),.reset(~I_rst_n),
+     .clk0_out(S_hdmi_pixel_clk),.clk1_out(S_hdmi_serial_clk),.lock(S_hdmi_pll_lock));
+
   wire wb_tune;
   wire [31:0] wb_request,wb_active;
   ae_set u_ae_set (
@@ -553,8 +563,8 @@ always @(posedge S_csi_rx_clk or negedge S_rst_n)begin
 end
 //将数据转为stream流
 uial2axis #(
-.IMG_WIDTH(1024),
-.IMG_HEIGHT(600),
+.IMG_WIDTH(INPUT_WIDTH),
+.IMG_HEIGHT(INPUT_HEIGHT),
 .INPUT_DATA_WIDTH(40)
 ) 
 u_uial2axis (
@@ -609,9 +619,9 @@ image_correction #(
 
 //ISP算法顶层模块
 // One shared set of experimental ROI bounds for statistics and the display.
-localparam ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428;
+localparam ROI_X0=(VIDEO_WIDTH-512)/2,ROI_X1=ROI_X0+512,ROI_Y0=(VIDEO_HEIGHT-256)/2,ROI_Y1=ROI_Y0+256;
 // One pocket core supplies the statistics; the large ROI remains a viewing aid.
-localparam SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340;
+localparam SAMPLE_X0=(VIDEO_WIDTH-80)/2,SAMPLE_X1=SAMPLE_X0+80,SAMPLE_Y0=(VIDEO_HEIGHT-80)/2,SAMPLE_Y1=SAMPLE_Y0+80;
 // Temporary black-tape/white-part demo from historical 130 mm samples.
 // MEAN >= 58: present; below 58: empty. Recalibrate after fixture alignment.
 // Exposure/gain tuning stays enabled; config/fresh-sample guards still apply.
@@ -652,8 +662,9 @@ localparam FRAME_META_WIDTH=178+340*MULTI_POCKETS+172*LOCAL_SEARCH;
 wire [FRAME_META_WIDTH-1:0] camera_metadata,completed_metadata,active_metadata;
 wire camera_metadata_ready;
 wire [15:0] lost_frames,overflow_frames,underflow_frames;
-wire [25:0] publish_diagnostic,publish_display;
-isp_top #(.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
+localparam PUBLISH_BITS=9+$clog2(VIDEO_WIDTH*VIDEO_HEIGHT*3/16+1);
+wire [PUBLISH_BITS-1:0] publish_diagnostic,publish_display;
+isp_top #(.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.SCALE_DISPLAY(1),.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
 .processing_clk(S_process_clk),
 .axi4s_video_aclk(S_csi_rx_clk),
 .I_rst_n         (S_rst_n),
@@ -682,7 +693,7 @@ isp_top #(.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MOD
   );
 
 
-    video_in #(.METADATA(FRAME_BOUND),.META_WIDTH(FRAME_META_WIDTH),.METADATA_REQUIRED(LOCAL_SEARCH ? 0 : !MULTI_POCKETS),.VIDEO_FIRST(LOCAL_SEARCH)) u_video_in(
+    video_in #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.METADATA(FRAME_BOUND),.META_WIDTH(FRAME_META_WIDTH),.METADATA_REQUIRED(LOCAL_SEARCH ? 0 : !MULTI_POCKETS),.VIDEO_FIRST(LOCAL_SEARCH)) u_video_in(
         .I_frame_metadata(camera_metadata),.I_frame_metadata_ready(camera_metadata_ready),.O_completed_metadata(completed_metadata),
         .O_publish_diagnostic(publish_diagnostic),
         .I_rst_n              (  S_rst_n             ),
@@ -723,7 +734,7 @@ isp_top #(.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MOD
 
     assign S_video_out_rst_n = S_hdmi_rst_n;
 
-    video_out #(.META_WIDTH(FRAME_META_WIDTH)) u_video_out(
+    video_out #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.META_WIDTH(FRAME_META_WIDTH)) u_video_out(
         .I_completed_metadata(completed_metadata),.O_active_metadata(active_metadata),
         .I_rst_n             ( S_video_out_rst_n    ),
         .I_ddr_clk           ( S_ddr_clk            ),
@@ -814,47 +825,22 @@ isp_top #(.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MOD
 
 
 
-    uivtc #(
-        .H_ActiveSize ( 1024 ),
-        .H_FrameSize  ( 1344 ),
-        .H_SyncStart  ( 1184 ),
-        .H_SyncEnd    ( 1208 ),
-        .V_ActiveSize ( 600  ),
-        .V_FrameSize  ( 635  ),
-        .V_SyncStart  ( 612  ),
-        .V_SyncEnd    ( 614  )
-    )u_hdmi_vtc(
-        .I_vtc_rstn    ( S_hdmi_rst_n    ),
-        .I_vtc_clk     ( S_hdmi_pixel_clk ),
-        .O_vtc_vs      ( S_hdmi_vsync     ),
-        .O_vtc_hs      ( S_hdmi_hsync     ),
-        .O_vtc_de_valid( S_hdmi_de        ),
-        .O_vtc_user    ( S_hdmi_user      ),
-        .O_vtc_last    ( S_hdmi_last      )
-    );
-
-    hdmi_mixer #(
-        .H_OFFSET   ( 0    ),
-        .V_OFFSET   ( 0    ),
-        .IMG_WIDTH  ( 1024 ),
-        .IMG_HEIGHT ( 600  ),
-        .DEBUG_MODE ( 0    )
-    )u_hdmi_mixer(
-        .I_clk           ( S_hdmi_pixel_clk   ),
-        .I_rst_n         ( S_hdmi_rst_n       ),
-        .I_video_vsync   ( S_hdmi_vsync       ),
-        .I_video_hsync   ( S_hdmi_hsync       ),
-        .I_video_de      ( S_hdmi_de          ),
-        .I_video_user    ( S_hdmi_user        ),
-        .I_video_last    ( S_hdmi_last        ),
-        .I_debug_status  ( S_hdmi_debug_status),
-        .O_video_rd_en   ( S_hdmi_window_rd_en),
-        .I_video_rd_data ( S_video_rd_data    ),
-        .O_hdmi_vsync    ( S_hdmi_out_vsync   ),
-        .O_hdmi_hsync    ( S_hdmi_out_hsync   ),
-        .O_hdmi_de       ( S_hdmi_out_de      ),
-        .O_hdmi_data     ( S_hdmi_out_data    )
-    );
+    wire [11:0] native_x,native_tx_x;
+    wire [10:0] native_y,native_source_x,native_source_y,native_tx_y;
+    wire native_pair,native_field,osd_pair;
+    wire [10:0] native_osd_x,native_osd_y;
+    native_720p60_vtc u_hdmi_vtc(.clk(S_hdmi_pixel_clk),.rst_n(S_hdmi_rst_n),
+     .x(native_x),.y(native_y),.source_x(native_source_x),.source_y(native_source_y),
+     .vs(S_hdmi_vsync),.hs(S_hdmi_hsync),.de(S_hdmi_de),.pair_vs(native_pair),.field(native_field));
+    assign S_hdmi_user=S_hdmi_de && native_x==0 && native_y==0;
+    assign S_hdmi_last=S_hdmi_de && native_x==1279;
+    assign S_hdmi_window_rd_en=S_hdmi_de;
+    native_i60_phase u_native_phase(.clk(S_hdmi_pixel_clk),.rst_n(S_hdmi_rst_n),
+     .x(native_x),.y(native_y),.source_x(native_source_x),.source_y(native_source_y),
+     .vs(S_hdmi_vsync),.hs(S_hdmi_hsync),.de(S_hdmi_de),.pair_vs(native_pair),
+     .osd_vs(S_hdmi_out_vsync),.osd_hs(S_hdmi_out_hsync),.osd_de(S_hdmi_out_de),.osd_pair_vs(osd_pair),
+     .osd_x(native_osd_x),.osd_y(native_osd_y),.tx_x(native_tx_x),.tx_y(native_tx_y));
+    assign S_hdmi_out_data=S_video_rd_data;
 
     wire [15:0] mon_width,mon_height,mon_fps,mon_lane,mon_format,mon_gap;
     wire [31:0] mon_frames,mon_seconds;
@@ -889,7 +875,7 @@ isp_top #(.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MOD
         .S_clk(S_process_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
         .S_data(observation_record),.D_data(latest_observation_data));
     wire [16:0] transport_display;
-    status_cdc #(.WIDTH(26)) u_publish_display(
+    status_cdc #(.WIDTH(PUBLISH_BITS)) u_publish_display(
      .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
      .S_data(publish_diagnostic),.D_data(publish_display));
     wire [83:0] overflow_display;
@@ -939,7 +925,7 @@ isp_top #(.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MOD
      assign display_objects=0;assign local_box_valid=0;assign local_x0=0;assign local_x1=0;assign local_y0=0;assign local_y1=0;
     end endgenerate
     wire any_pocket_valid=display_pockets[63] || display_pockets[148] || display_pockets[233] || display_pockets[318];
-    experiment_osd #(.FRAME_OBJECTS(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
+    experiment_osd #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.DIAG_BITS(PUBLISH_BITS),.RESOLUTION_V11(1),.FRAME_OBJECTS(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
  .SAMPLE_X0(SAMPLE_X0),.SAMPLE_X1(SAMPLE_X1),.SAMPLE_Y0(SAMPLE_Y0),.SAMPLE_Y1(SAMPLE_Y1)) u_experiment_osd(
         .clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
         .vs(S_hdmi_out_vsync),.hs(S_hdmi_out_hsync),.de(S_hdmi_out_de),.rgb(S_hdmi_out_data),
@@ -963,37 +949,10 @@ isp_top #(.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MOD
         .frames(mon_display[63:32]),.uptime(mon_display[31:0]),
         .out_vs(exp_vs),.out_hs(exp_hs),.out_de(exp_de),.out_rgb(exp_rgb));
 
-    hdmi_tx u_hdmi_tx(
-        .I_pixel_clk        ( S_hdmi_pixel_clk  ),
-        .I_serial_clk       ( S_hdmi_serial_clk ),
-        .I_rst              ( ~S_hdmi_rst_n     ),
-        .I_key_in           ( 1'b0              ),
-        .I_edid_read_trig   ( 1'b0              ),
-        .O_edid_read_valid  (                   ),
-        .O_edid_read_data   (                   ),
-        .I_video_rgb_enable ( 1'b1              ),
-        .I_video_in_vs      ( exp_vs            ),
-        .I_video_in_de      ( exp_de            ),
-        .I_video_in_user    ( 1'b0              ),
-        .I_video_in_valid   ( 1'b0              ),
-        .I_video_in_last    ( 1'b0              ),
-        .O_video_in_ready   (                   ),
-        .I_video_in_data    ( exp_rgb           ),
-        .I_audio_valid      ( 1'b0              ),
-        .I_audio_left_data  ( 24'd0             ),
-        .I_audio_right_data ( 24'd0             ),
-        .I_i2s_BCLK         ( 1'b0              ),
-        .I_i2s_LRCK         ( 1'b0              ),
-        .I_i2s_DOUT         ( 1'b0              ),
-        .O_ddc_scl          (                   ),
-        .O_hdmi_clk_p       (                   ),
-        .O_hdmi_tx_p        (                   ),
-        .O_tmds_ch0_p       ( O_tmds_ch0_p      ),
-        .O_tmds_ch1_p       ( O_tmds_ch1_p      ),
-        .O_tmds_ch2_p       ( O_tmds_ch2_p      ),
-        .O_tmds_clk_p       ( O_tmds_clk_p      )
-    );
+    native_i60_tx #(.INTERLACED(0)) u_hdmi_tx(
+     .pixel_clk(S_hdmi_pixel_clk),.serial_clk(S_hdmi_serial_clk),.rst(~S_hdmi_rst_n),
+     .vs(exp_vs),.hs(exp_hs),.de(exp_de),.rgb(exp_rgb),.x(native_tx_x),.y(native_tx_y),
+     .O_tmds_ch0_p(O_tmds_ch0_p),.O_tmds_ch1_p(O_tmds_ch1_p),
+     .O_tmds_ch2_p(O_tmds_ch2_p),.O_tmds_clk_p(O_tmds_clk_p));
 
-
-    
 endmodule

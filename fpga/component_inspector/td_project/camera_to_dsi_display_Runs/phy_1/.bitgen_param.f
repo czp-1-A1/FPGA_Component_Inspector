@@ -1,6 +1,6 @@
 bin off
 bin_compress off
-compress on
+compress off
 data_ram  
 gen_mask off
 header  

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-Command",
+    "& 'D:\\CodexWork\\v11_resume_20261015\\r9\\fpga\\component_inspector\\sim\\run_modelsim.ps1' -ModelSimBin 'D:\\modeltech64_10.5\\win64' -TdSimRoot 'D:\\td6.2.1\\sim_release' -OnlyTests @('roi_guard','frame_process','video_first','video_late_display','hd_pins','hd_pll','process_bridge','frame_search','frame_osd','shape_snapshot','shape_model','frame_tailproof','frame_stop','shape_osd','video_fallback_display','frame_wait_metadata','video_metadata_fallback','writer_epoch','wb_epoch','observation','display_state','frame_cadence','hd_resize','hd_guard','hd_scaled_guard','hd_osd','hd_search','hd_chain')"
+  ],
+  "cwd": "D:\\CodexWork\\v11_resume_20261015\\r9\\fpga\\component_inspector",
+  "exit_code": 0,
+  "elapsed_seconds": 1025.9025597572327
+}

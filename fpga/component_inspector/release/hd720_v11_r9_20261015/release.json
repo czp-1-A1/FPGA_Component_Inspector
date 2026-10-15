@@ -1,0 +1,764 @@
+{
+  "status": "PASS_SOFTWARE_AND_ROUTED_STA_PHYSICAL_PENDING",
+  "physical_video": "NOT_TESTED",
+  "calibration_220mm": "PENDING_NEW_TRUTH_SAMPLES",
+  "tests": {
+    "process_bridge": {
+      "status": "PASS",
+      "console_sha256": "1c0a804ad78915d23dcca9de619611a93da2ad330be5323b73983257de1c9930"
+    },
+    "frame_search": {
+      "status": "PASS",
+      "console_sha256": "005b8842e78219ff42b739fcc6fd6375d4ee55f2ca658453839ce6971d3ada74"
+    },
+    "frame_osd": {
+      "status": "PASS",
+      "console_sha256": "55a2b9efaf971422f33e98044a761076ec36cf0b2044cbd9e5d37a46050e443a"
+    },
+    "shape_snapshot": {
+      "status": "PASS",
+      "console_sha256": "9126479026ef05b2a1cd5956db8d04b3b013add7ddd9ed8aa38bf2f54cab54f4"
+    },
+    "shape_model": {
+      "status": "PASS",
+      "console_sha256": "f4d46154c1592d2d07b3271d4c33893de12de0afd84a24a603840df957a194e1"
+    },
+    "frame_tailproof": {
+      "status": "PASS",
+      "console_sha256": "aa400049d9b36240b3415b33c0ee6293dcf77621ae17e83c2f0a5ea0de008fb2"
+    },
+    "frame_stop": {
+      "status": "PASS",
+      "console_sha256": "72e01d0121d9264c69ee3e1b7f4b5cd8a4112afba512d4f914f99b5250165fe0"
+    },
+    "frame_process": {
+      "status": "PASS",
+      "console_sha256": "df58e4f147425616a845d9f186ad39d60ce1b2052ec003a7736ec3a846f15eda"
+    },
+    "shape_osd": {
+      "status": "PASS",
+      "console_sha256": "1a91a927034acd532459ee45c23ee4a6627d194354cffa0842c4a86adf58256d"
+    },
+    "video_fallback_display": {
+      "status": "PASS",
+      "console_sha256": "9db02abb979108ac1134bd5b4978052b6ab03a7c4480d28df7f4059ad7767202"
+    },
+    "frame_wait_metadata": {
+      "status": "PASS",
+      "console_sha256": "ebeafbf1c5f49858e56bccce697ab4faa74ce6b5b8131bf73fa99c73d5f32d0f"
+    },
+    "video_metadata_fallback": {
+      "status": "PASS",
+      "console_sha256": "0ab53cce31279a8a4f6b794971ae18846813a07d655b3bccfb1d94738d0c4374"
+    },
+    "writer_epoch": {
+      "status": "PASS",
+      "console_sha256": "e496f499916360aa22f7fd71f5c3815da2ae1f51845692b211476514b4a46220"
+    },
+    "wb_epoch": {
+      "status": "PASS",
+      "console_sha256": "914ccf008af36dbd4d6c2787218d0b1d99e7b9c1bda6b7f37175beffd3fae77f"
+    },
+    "observation": {
+      "status": "PASS",
+      "console_sha256": "d6d76db56057926f5b40b6271e904707672756560c6a851a7319f836b147587a"
+    },
+    "display_state": {
+      "status": "PASS",
+      "console_sha256": "66c72dcb0dfd5977cd60c7b3cf3094306c92440a51092120cb5558cd2ccafd31"
+    },
+    "roi_guard": {
+      "status": "PASS",
+      "console_sha256": "7f78ef8064a3aec5edb7a8d9fd5667ed02be54bbf71bd12ebb5bc762d2a328d6"
+    },
+    "video_first": {
+      "status": "PASS",
+      "console_sha256": "df0e9300f74dc38016b5625d6c2036aacaf0c0bf58742fbcf46f1d5de3901003"
+    },
+    "video_late_display": {
+      "status": "PASS",
+      "console_sha256": "ed43f305eca7e4b7d32a7d26393fe1d5badf1c348d87c65d6df3172729fe6154"
+    },
+    "frame_cadence": {
+      "status": "PASS",
+      "console_sha256": "d7dcb320def6c8240f3d73be62bdb8fcbb4665c23ad95065a90cfbf6dd665a99"
+    },
+    "hd_resize": {
+      "status": "PASS",
+      "console_sha256": "fc4b33eb88afeede0c530d0a3be424b4cc22678b8415ce83132d9ba7d4c8b721"
+    },
+    "hd_guard": {
+      "status": "PASS",
+      "console_sha256": "cca98022b66231a2c82c27876452f95754974e5f09b06c8b8ce0db66db88c50b"
+    },
+    "hd_scaled_guard": {
+      "status": "PASS",
+      "console_sha256": "07fe7dbca6895ec92b7ab22832eb769ecb3c94fe6bcfb4f40713cd624de74409"
+    },
+    "hd_osd": {
+      "status": "PASS",
+      "console_sha256": "85f4ecc86019198116001b739292cef9277e277b8787249f7781d68f533b1a05"
+    },
+    "hd_search": {
+      "status": "PASS",
+      "console_sha256": "fb49afdb00ab8444c6464dbcd5b8e54ab7dcc294f7c99750284c5d81cb2612f2"
+    },
+    "hd_chain": {
+      "status": "PASS",
+      "console_sha256": "d454b3a0ed06a8c7521ff9f5f5c7cac43c6106625ab413217d938e3fc6c78dc4"
+    },
+    "hd_pins": {
+      "status": "PASS",
+      "console_sha256": "87bf0e4b608572ec1ffb70e9ce3c643bc462011673d5b4a4236e281a142f019a"
+    },
+    "hd_pll": {
+      "status": "PASS",
+      "console_sha256": "66f2c32452ca21f2ec26b008eaf8a855ce7bffa86e442acb641834de87ad0bc8"
+    }
+  },
+  "build": {
+    "syn_1": {
+      "command": [
+        "D:\\td6.2.1\\bin\\td_commands_prompt.exe",
+        "build_local.tcl"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 108.80843329429626,
+      "vendor_flow": "D:\\td6.2.1\\scripts\\DefaultFlow.tcl",
+      "vendor_flow_sha256": "b739d6d75df6872ba48f8eba9a88b3b11320a6aa92e83c3ab9a55dd666fd8f6a",
+      "source_manifest_sha256": "9e271eb2588dbfb10a6b73b6a1e9d7325542e83bd46f22ec214fd19ef043f268",
+      "warning_code_counts": {
+        "HDL-5007": 41,
+        "HDL-5317": 21,
+        "HDL-5314": 20,
+        "HDL-5323": 4,
+        "HDL-5369": 1,
+        "HDL-5001": 5,
+        "HDL-5106": 2,
+        "SYN-5065": 1,
+        "SYN-5013": 10,
+        "SYN-5025": 3,
+        "SYN-5011": 12,
+        "SYN-5041": 3,
+        "USR-6001": 12,
+        "PHY-5088": 3
+      },
+      "r8_warning_code_counts": {
+        "HDL-5007": 41,
+        "HDL-5317": 21,
+        "HDL-5314": 20,
+        "HDL-5323": 4,
+        "HDL-5369": 1,
+        "HDL-5001": 5,
+        "HDL-5106": 2,
+        "SYN-5065": 1,
+        "SYN-5013": 10,
+        "SYN-5025": 3,
+        "SYN-5011": 12,
+        "SYN-5041": 3,
+        "PHY-5088": 3,
+        "USR-6135": 2
+      },
+      "new_warning_codes": [
+        "USR-6001"
+      ]
+    },
+    "phy_1": {
+      "command": [
+        "D:\\td6.2.1\\bin\\td_commands_prompt.exe",
+        "build_local.tcl"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 266.56131386756897,
+      "vendor_flow": "D:\\td6.2.1\\scripts\\DefaultFlow.tcl",
+      "vendor_flow_sha256": "b739d6d75df6872ba48f8eba9a88b3b11320a6aa92e83c3ab9a55dd666fd8f6a",
+      "source_manifest_sha256": "9e271eb2588dbfb10a6b73b6a1e9d7325542e83bd46f22ec214fd19ef043f268",
+      "warning_code_counts": {
+        "USR-6001": 6,
+        "PHY-5060": 1,
+        "PHY-5016": 5,
+        "PHY-5088": 4
+      },
+      "r8_warning_code_counts": {
+        "PHY-5060": 1,
+        "PHY-5016": 5,
+        "PHY-5088": 6,
+        "PHY-5079": 1
+      },
+      "new_warning_codes": [
+        "USR-6001"
+      ]
+    }
+  },
+  "source_manifest_sha256": "9e271eb2588dbfb10a6b73b6a1e9d7325542e83bd46f22ec214fd19ef043f268",
+  "frozen_files": 342,
+  "production_files": 222,
+  "production_and_test_changes": [
+    "user_source/hdl_source/roi_frame_guard.v"
+  ],
+  "independent_images": 18,
+  "SWNS_ns": [
+    0.117
+  ],
+  "HWNS_ns": [
+    0.02
+  ],
+  "STNS_ns": [
+    0.0
+  ],
+  "HTNS_ns": [
+    0.0
+  ],
+  "coverage": {
+    "no clock": 0,
+    "clock definition": 0,
+    "dummy node": 2,
+    "invalid constraint": 0,
+    "pll/clock buffer clock constraints": 7,
+    "combinational loops": 0,
+    "soft fifo timing exception constraints": 0,
+    "no path constraints": 0,
+    "shadowed/ignored timing exception constraints": 4,
+    "no input delay": 39,
+    "no output delay": 63,
+    "partial input delay": 1,
+    "partial output delay": 0,
+    "abnormal input delay": 0
+  },
+  "max_delay_constraints": [
+    {
+      "total": 591,
+      "dominated": 327,
+      "shadowed": 264,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_clocks {mipi_rx_ck_pad MIPI_RX_BYTE_CLK sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}]"
+    },
+    {
+      "total": 608,
+      "dominated": 314,
+      "shadowed": 294,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_clocks {u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]"
+    },
+    {
+      "total": 142,
+      "dominated": 97,
+      "shadowed": 45,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_clocks {MIPI_RX_BYTE_CLK}] -to [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}]"
+    },
+    {
+      "total": 99,
+      "dominated": 2,
+      "shadowed": 97,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_clocks {sys_clk_50m pll_clk_100m pll_clk_24m HDMI_PIXEL_CLK HDMI_SERIAL_CLK}] -to [get_clocks {MIPI_RX_BYTE_CLK}]"
+    },
+    {
+      "total": 332,
+      "dominated": 332,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/payload*}] -to [get_regs {u_monitor_display/D_data*}]"
+    },
+    {
+      "total": 151,
+      "dominated": 151,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/payload*}] -to [get_regs {u_camera_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/req}] -to [get_regs {u_monitor_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/req}] -to [get_regs {u_observation_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_monitor_display/ack}] -to [get_regs {u_monitor_display/ack_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/ack}] -to [get_regs {u_observation_display/ack_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/req}] -to [get_regs {u_camera_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_camera_display/ack}] -to [get_regs {u_camera_display/ack_sync[0]}]"
+    },
+    {
+      "total": 131,
+      "dominated": 131,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/payload*}] -to [get_regs {u_camera_receive/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/req}] -to [get_regs {u_camera_receive/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_camera_receive/ack}] -to [get_regs {u_camera_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 42,
+      "dominated": 42,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/payload*}] -to [get_regs {u_observation_receive/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_observation_receive/req}] -to [get_regs {u_observation_receive/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_receive/ack}] -to [get_regs {u_observation_receive/ack_sync[0]}]"
+    },
+    {
+      "total": 36,
+      "dominated": 36,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_observation_display/payload*}] -to [get_regs {u_observation_display/D_data*}]"
+    },
+    {
+      "total": 34,
+      "dominated": 34,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/payload*}] -to [get_regs {u_transport_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/req}] -to [get_regs {u_active_frame_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/req}] -to [get_regs {u_publish_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_transport_display/req}] -to [get_regs {u_transport_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}] -to [get_regs {u_active_frame_display/ack_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_publish_display/ack}] -to [get_regs {u_publish_display/ack_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {u_transport_display/ack}] -to [get_regs {u_transport_display/ack_sync[0]}]"
+    },
+    {
+      "total": 360,
+      "dominated": 360,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]"
+    },
+    {
+      "total": 61,
+      "dominated": 61,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/payload*}] -to [get_regs {u_publish_display/D_data*}]"
+    },
+    {
+      "total": 492,
+      "dominated": 492,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/payload*}] -to [get_regs {*crossing/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/req}] -to [get_regs {*crossing/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {*crossing/ack}] -to [get_regs {*crossing/ack_sync[0]}]"
+    },
+    {
+      "total": 460,
+      "dominated": 460,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 19.0 -from [get_regs {u_active_frame_display/payload*}] -to [get_regs {u_active_frame_display/D_data*}]"
+    },
+    {
+      "total": 68,
+      "dominated": 68,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/payload*}] -to [get_regs {u_wb_process/D_data*}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/req}] -to [get_regs {u_wb_process/req_sync[0]}]"
+    },
+    {
+      "total": 1,
+      "dominated": 1,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {u_wb_process/ack}] -to [get_regs {u_wb_process/ack_sync[0]}]"
+    },
+    {
+      "total": 20,
+      "dominated": 20,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -datapath_only 8.0 -from [get_regs {*continuous_processing*bridge/write_gray\\[*\\] *continuous_processing*bridge/read_gray\\[*\\]}] -to [get_regs {*continuous_processing*bridge/write_gray_sync1\\[*\\] *continuous_processing*bridge/read_gray_sync1\\[*\\]}]"
+    },
+    {
+      "total": 109,
+      "dominated": 109,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 9.700"
+    },
+    {
+      "total": 68,
+      "dominated": 68,
+      "shadowed": 0,
+      "ignored": 0,
+      "constraint": "set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 13.168"
+    }
+  ],
+  "gray_bits": {
+    "write_0": {
+      "report_sha256": "57cafce8cd0bcac48ee8fc3b7f13772e429918de5451c68ace6b80301bfddb11",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.056
+      ],
+      "data_path_delays_ns": [
+        0.88
+      ]
+    },
+    "write_1": {
+      "report_sha256": "62ca90c2d2707c8980a9bb08b2303f99172307b440497f9d85542bb41643e34a",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.169
+      ],
+      "data_path_delays_ns": [
+        0.767
+      ]
+    },
+    "write_2": {
+      "report_sha256": "ec00da4119caf10c3f21c86f6a07051ee882a0b050272dcf0a6758209142449c",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.311
+      ],
+      "data_path_delays_ns": [
+        0.625
+      ]
+    },
+    "write_3": {
+      "report_sha256": "7dce3f8d29bfe97a9f73d577b25bbd5f190296f4d750b58603ac9bde9332b5e7",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.293
+      ],
+      "data_path_delays_ns": [
+        0.643
+      ]
+    },
+    "write_4": {
+      "report_sha256": "a651db7ce1001427f28890ce1f0a6c67696e0bb7a05bade0f9035f62af701214",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.111
+      ],
+      "data_path_delays_ns": [
+        0.825
+      ]
+    },
+    "write_5": {
+      "report_sha256": "df541c8b5a2653ae7b0d58bd8e7cf0984f1aaf2e9cd7c9bfb75324b9dd4b38f1",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        6.939
+      ],
+      "data_path_delays_ns": [
+        0.997
+      ]
+    },
+    "write_6": {
+      "report_sha256": "315848145941bda6ffe948981076ff3883c50a698439c5a0c5b2cf601d1124f1",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.195
+      ],
+      "data_path_delays_ns": [
+        0.741
+      ]
+    },
+    "write_7": {
+      "report_sha256": "01c1ad11e6ee099e622cf5cbf7e857e4a531a2f4f73c9cd15caa99e58b7537b2",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.189
+      ],
+      "data_path_delays_ns": [
+        0.747
+      ]
+    },
+    "write_8": {
+      "report_sha256": "68ccd86d3ea3a0b1bc6adcc4b0e679da2b2d339292581bf646ec1449d081fe38",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.349
+      ],
+      "data_path_delays_ns": [
+        0.587
+      ]
+    },
+    "write_9": {
+      "report_sha256": "40472e0fd36e166d8eb9d6fb3b17bd55e16e7128cdff7a13db2527599c28f0c7",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.183
+      ],
+      "data_path_delays_ns": [
+        0.753
+      ]
+    },
+    "read_0": {
+      "report_sha256": "45784a52d2fa8c0e74600972a2083cab97538d7cf7bb24627939fbf4ab06d03a",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        6.996
+      ],
+      "data_path_delays_ns": [
+        0.94
+      ]
+    },
+    "read_1": {
+      "report_sha256": "46dc61a4113f134ac8c2dba7a5485d8fdc612184940bab8724aae7621e02af68",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.439
+      ],
+      "data_path_delays_ns": [
+        0.497
+      ]
+    },
+    "read_2": {
+      "report_sha256": "9a2683053332278c72ae03cc09cfb8d554b9881835de69bbfb4e802c823c19d3",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.102
+      ],
+      "data_path_delays_ns": [
+        0.834
+      ]
+    },
+    "read_3": {
+      "report_sha256": "93e39b2f829366d82c47a86388a8cc0c055f69008b0ca3c08f055f0820b72244",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.231
+      ],
+      "data_path_delays_ns": [
+        0.705
+      ]
+    },
+    "read_4": {
+      "report_sha256": "5ecf5d2e17d9557c66fafeeb56d22941de68d2e5fcb550471a0997cb7dec86cd",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        6.846
+      ],
+      "data_path_delays_ns": [
+        1.09
+      ]
+    },
+    "read_5": {
+      "report_sha256": "e593b944b931a5f38b839fc31dcbfd29eaead7051300d50604fbc4d09e5540f2",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        6.85
+      ],
+      "data_path_delays_ns": [
+        1.086
+      ]
+    },
+    "read_6": {
+      "report_sha256": "105a822d9e848e76a87cf1f58eef77be9cf480d20274e083228e601f00cc9a36",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        6.837
+      ],
+      "data_path_delays_ns": [
+        1.099
+      ]
+    },
+    "read_7": {
+      "report_sha256": "21dccb6a8aa35a79c0a07ca3b7c29206ed7ab7adc2d2b95b701fef6664657e53",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.182
+      ],
+      "data_path_delays_ns": [
+        0.754
+      ]
+    },
+    "read_8": {
+      "report_sha256": "c043c61b3134fa5a8ab83f6ccf7e925ac37406c788d8b1ab0323ec0b0c5d8a80",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        7.161
+      ],
+      "data_path_delays_ns": [
+        0.775
+      ]
+    },
+    "read_9": {
+      "report_sha256": "017a35290ace19080f99ab1bee70701c4a989c85401b4e6b7e897e1d841829e3",
+      "budgets_ns": [
+        8.0
+      ],
+      "slacks_ns": [
+        6.942
+      ],
+      "data_path_delays_ns": [
+        0.994
+      ]
+    }
+  },
+  "slice_area_report_sha256": "87d93bbe03c82f79d9ddf8035e65417add3fc020c990d9995b27b07657db2c2e",
+  "bit": {
+    "path": "D:\\CodexWork\\v11_resume_20261015\\r9\\fpga\\component_inspector\\td_project\\camera_to_dsi_display_Runs\\phy_1\\camera_to_dsi_display.bit",
+    "bytes": 1789539,
+    "sha256": "1c94e3b20ee0bbec708385b8b3254239ae20abfe2fb01a35da387854050a2e4d"
+  },
+  "version": "V11_FHD_to_720p60_r9_20261015",
+  "base_branch": "lj4747-contest-work",
+  "base_commit": "da195838d8a1df052edeaa86f60312d32eeedf9a",
+  "git_committed": false,
+  "git_pushed": false,
+  "hardware_programmed": false
+}

@@ -2,7 +2,8 @@
 
 
 module lane_lvds_10_1 #(
-    parameter DEVICE = "EG"
+    parameter DEVICE = "EG",
+    parameter LOCAL_ODDR_RESET = 0
     )(
     input wire      I_pixel_clk,
     input wire      I_serial_clk,
@@ -21,6 +22,20 @@ module lane_lvds_10_1 #(
     reg      S_load_en_2d;   
     reg[9:0] S_shift_data;   
     reg[1:0] S_oddr_data;    
+
+    wire S_pad_reset;
+    generate if(LOCAL_ODDR_RESET) begin:g_local_pad_reset
+        // A separate final reset driver per lane avoids routing the common
+        // serial reset to eight ODDR pad registers across the TMDS pins.
+        // Preserve equivalent lane drivers; retain normal setup/hold checks.
+        (* dont_touch="true" *) reg pad_reset;
+        always @(posedge I_serial_clk or posedge I_rst)
+            if(I_rst) pad_reset <= 1'b1;
+            else pad_reset <= 1'b0;
+        assign S_pad_reset=pad_reset;
+    end else begin:g_original_pad_reset
+        assign S_pad_reset=I_rst;
+    end endgenerate
 
 
     always @(posedge I_pixel_clk or posedge I_rst) begin
@@ -132,7 +147,7 @@ module lane_lvds_10_1 #(
             begin
                 PH1P_LOGIC_ODDR U_EG4_ODDR(
                     .clk   ( I_serial_clk   ),
-                    .rst   ( I_rst          ),
+                    .rst   ( S_pad_reset    ),
 
                     .d1    ( S_oddr_data[0] ),
                     .d0    ( S_oddr_data[1] ),

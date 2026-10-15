@@ -12,8 +12,8 @@ module video_out #(parameter WIDTH=1024,HEIGHT=600,META_WIDTH=170)(
  output reg O_display_ok,output reg [15:0] O_underflow_frames,
  input wire [META_WIDTH-1:0] I_completed_metadata,output reg [META_WIDTH-1:0] O_active_metadata
 );
-localparam WORDS=WIDTH*HEIGHT*3/16;
-localparam PREFILL=(WIDTH*3/16<192) ? WIDTH*3/16 : 192;
+localparam WORDS=WIDTH*HEIGHT*3/16,WORD_BITS=$clog2(WORDS+1);
+localparam PREFILL=WIDTH*3/16;
 localparam DRAIN=0,CLEAR=1,RUN=2;
 reg [1:0] state;
 reg [3:0] reset_count;
@@ -24,7 +24,7 @@ wire [8:0] S_fifo_wr_num,S_fifo_rd_num;
 wire S_fifo_emtpy,fifo_full;
 wire [127:0] S_fifo_rd_data;
 reg [8:0] outstanding,burst_left;
-reg [16:0] issued;
+reg [WORD_BITS-1:0] issued;
 reg S_ddr_rd_valid,return_bad;
 wire [9:0] reserved={1'b0,S_fifo_wr_num}+{1'b0,outstanding};
 wire S_ddr_rd_trig=state==RUN && O_active_valid && !return_bad &&

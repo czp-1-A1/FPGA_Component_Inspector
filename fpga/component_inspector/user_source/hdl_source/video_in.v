@@ -1,5 +1,5 @@
 // A slot is published only after every packed word has reached the MC port.
-module video_in #(parameter WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,METADATA_REQUIRED=1,METADATA_WAIT_CYCLES=0,VIDEO_FIRST=0)(
+module video_in #(parameter WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,METADATA_REQUIRED=1,METADATA_WAIT_CYCLES=0,VIDEO_FIRST=0,WORD_BITS=($clog2(WIDTH*HEIGHT*3/16+1)<17 ? 17 : $clog2(WIDTH*HEIGHT*3/16+1)),DIAG_BITS=9+WORD_BITS)(
  input wire I_rst_n,I_camera_clk,I_camera_frame_start,I_camera_valid,
  input wire [127:0] I_camera_data,input wire I_mipi_rx_error,
  input wire I_frame_good,I_frame_bad,
@@ -14,7 +14,7 @@ module video_in #(parameter WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,META
  output wire [127:0] O_ddr_user_wr_data,input wire I_ddr_user_ready,
  input wire [META_WIDTH-1:0] I_frame_metadata,input wire I_frame_metadata_ready,
  output reg [META_WIDTH-1:0] O_completed_metadata,
- output reg [25:0] O_publish_diagnostic
+ output reg [DIAG_BITS-1:0] O_publish_diagnostic
 );
 reg [15:0] camera_epoch,writer_epoch;
 wire [META_WIDTH+16:0] metadata_receive;
@@ -38,10 +38,10 @@ wire S_frame_start=frame_sync[1] && !frame_sync[2];
 wire S_fifo_rst=!I_rst_n || frame_sync[2];
 wire [8:0] S_fifo_rd_num,camera_used;
 wire camera_full,fifo_empty;
-reg [16:0] camera_count;
+reg [WORD_BITS-1:0] camera_count;
 reg camera_bad,camera_done;
 reg [1:0] bad_sync,done_sync,good_sync;
-assign O_camera_ready=!S_camera_frame_start_extend && !S_fifo_rst && !camera_bad && !camera_full && camera_used<=288;
+assign O_camera_ready=!S_camera_frame_start_extend && !S_fifo_rst && !camera_bad && !camera_full && camera_used<=(512-WIDTH*3/16-32);
 always @(posedge I_camera_clk or negedge I_rst_n) begin
  if(!I_rst_n) begin
   extend_count<=0;S_camera_frame_start_extend<=0;
@@ -74,7 +74,7 @@ reg late_metadata_pending;
 // below ends at the next source FS. Results never make incomplete pixels valid.
 reg [21:0] metadata_wait;
 wire metadata_timeout=METADATA_WAIT_CYCLES==0 || metadata_wait>=METADATA_WAIT_CYCLES;
-reg [16:0] written;
+reg [WORD_BITS-1:0] written;
 wire complete_frame=frame_open && !published && written==WORDS && done_sync[1] &&
                     good_sync[1] && !bad_sync[1] && !S_fifo_rst && !S_frame_start;
 // The full-frame detector must not hold complete video hostage. A late tuple
@@ -87,7 +87,7 @@ wire attach_metadata=VIDEO_FIRST && METADATA && !METADATA_REQUIRED && published 
 // the simultaneous publish predicate below: published/epoch/metadata/done/
 // good/bad/exact/open. Count MC commands, including one on the closing edge.
 reg [7:0] publish_seen;
-wire [16:0] diagnostic_written=written+{16'd0,O_ddr_user_wr_en};
+wire [WORD_BITS-1:0] diagnostic_written=written+O_ddr_user_wr_en;
 wire [7:0] publish_conditions={published,
  (!METADATA || metadata_receive[META_WIDTH+16:META_WIDTH+1]==writer_epoch),
  metadata_matches,done_sync[1],good_sync[1],bad_sync[1],
@@ -180,7 +180,7 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
   // W: MC word count. M: ready / received epoch low byte / writer epoch low byte.
   if(!METADATA_REQUIRED && complete_frame && (metadata_matches || VIDEO_FIRST || metadata_timeout))
    O_publish_diagnostic<={(!metadata_matches),publish_seen | publish_conditions | 8'h80,
-    (metadata_matches ? diagnostic_written : {metadata_receive[META_WIDTH],metadata_receive[META_WIDTH+8:META_WIDTH+1],writer_epoch[7:0]})};
+    (metadata_matches ? diagnostic_written : {{(WORD_BITS-17){1'b0}},metadata_receive[META_WIDTH],metadata_receive[META_WIDTH+8:META_WIDTH+1],writer_epoch[7:0]})};
   if(attach_metadata) O_publish_diagnostic<={1'b0,publish_seen | publish_conditions,diagnostic_written};
  end
 end

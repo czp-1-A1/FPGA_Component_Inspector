@@ -2,7 +2,12 @@
 // Two independently classified 3528 bodies/pockets; no fixed search window.
 // A shared flood-fill engine runs during vertical blanking, without video backpressure.
 module frame_shape_search #(
- parameter [7:0] FOREGROUND=100
+ parameter WIDTH=1024,HEIGHT=600,
+ parameter [7:0] FOREGROUND=100,
+ parameter PRESENT_LONG_MIN=26,PRESENT_LONG_MAX=39,PRESENT_SHORT_MIN=20,PRESENT_SHORT_MAX=36,
+ parameter REVIEW_LONG_MAX=43,REVIEW_SHORT_MAX=38,
+ parameter EMPTY_LONG_MIN=5,EMPTY_LONG_MAX=13,EMPTY_SHORT_MIN=4,EMPTY_SHORT_MAX=12,
+ parameter HOLE_LONG_MIN=14,HOLE_LONG_MAX=23,HOLE_SHORT_MIN=10,HOLE_SHORT_MAX=21
 )(
  input wire clk,rst_n,frame_start,pixel_sof,pixel_accept,invalidate,
  input wire [10:0] pixel_x,input wire [9:0] pixel_y,input wire [95:0] rgb,
@@ -15,10 +20,11 @@ module frame_shape_search #(
  output reg [151:0] objects
 );
 // Average each 2x2 source block; every source pixel contributes. Detection
-// covers the complete 1024x600 image, at 512x300 internal resolution.
-localparam W=512,H=300,WORDS=W*H/4;
-reg [7:0] mask [0:38399];reg [17:0] queue [0:1023];
-reg [17:0] pair_line [0:255];reg [17:0] pair_q,pair_d;
+// covers WIDTH x HEIGHT, with a half-size internal mask. 220 mm needs new calibration.
+localparam W=WIDTH/2,H=HEIGHT/2,WORDS=W*H/4;
+ localparam XB=$clog2(W),YB=$clog2(H),QB=XB+YB;
+reg [7:0] mask [0:WORDS-1];reg [QB-1:0] queue [0:1023];
+reg [17:0] pair_line [0:WIDTH/4-1];reg [17:0] pair_q,pair_d;
 reg [10:0] x_d;reg [9:0] y_d;reg accept_d;
 wire [9:0] gray_sum [0:3];
 genvar lane;
@@ -34,24 +40,43 @@ wire [1:0] half_dark={block1[9:2]<=FOREGROUND,block0[9:2]<=FOREGROUND};
 reg [1:0] first_fg,first_dark;
 reg [15:0] cap_addr;reg [7:0] cap_data;reg cap_write,cap_last,seen;
 reg [15:0] cap_count;reg [17:0] capture_foreground;
+// Certify only complete four-pixel words connected to a physical border.
+// Removing these cannot remove a valid component: V10 rejects border components.
+// A separate one-bit word map marks contacts so remaining fragments are also
+// rejected, while the original dark-reference plane remains unchanged.
+reg ignored_border [0:WORDS-1];
+reg border_line [0:W/4-1];
+reg border_line_q,border_left,cap_ignored,ignored_q;
+reg [$clog2(W/4)-1:0] cap_column;
+wire [3:0] capture_fg_word={half_fg,first_fg};
+wire ignore_capture_word=(&capture_fg_word) &&
+ (y_d==1 || y_d==HEIGHT-1 || x_d<8 || x_d==WIDTH-4 ||
+  (y_d>1 && border_line_q) || (x_d>=8 && border_left));
 wire [2:0] cap_fg={2'b0,cap_data[0]}+{2'b0,cap_data[1]}+{2'b0,cap_data[2]}+{2'b0,cap_data[3]};
 function [15:0] address;
- input [8:0] ax,ay;
- begin address={ay,7'b0}+(ax>>2);end
+ input [XB-1:0] ax; input [YB-1:0] ay;
+ begin address=ay*(W/4)+(ax>>2);end
 endfunction
 always @(posedge clk)begin
- if(pixel_accept && !pixel_y[0])pair_line[pixel_x[9:2]]<={pair1,pair0};
- pair_q<=pair_line[pixel_x[9:2]];
+ if(pixel_accept && !pixel_y[0])pair_line[pixel_x[10:2]]<={pair1,pair0};
+ pair_q<=pair_line[pixel_x[10:2]];
+ border_line_q<=border_line[pixel_x[10:3]];
+ if(cap_write)begin
+  border_line[cap_column]<=cap_ignored;
+  ignored_border[cap_addr]<=cap_ignored;
+ end
 end
 always @(posedge clk or negedge rst_n)begin
- if(!rst_n)begin accept_d<=0;x_d<=0;y_d<=0;pair_d<=0;first_fg<=0;first_dark<=0;cap_write<=0;cap_last<=0;cap_addr<=0;cap_data<=0;end
+ if(!rst_n)begin accept_d<=0;x_d<=0;y_d<=0;pair_d<=0;first_fg<=0;first_dark<=0;cap_write<=0;cap_last<=0;cap_addr<=0;cap_data<=0;border_left<=0;cap_ignored<=0;cap_column<=0;end
  else begin
   accept_d<=pixel_accept && !invalidate && !frame_start;x_d<=pixel_x;y_d<=pixel_y;pair_d<={pair1,pair0};
   cap_write<=accept_d && y_d[0] && x_d[2] && !invalidate && !frame_start;
-  cap_last<=x_d==1020 && y_d==599;cap_addr<=address(x_d[10:1],y_d[9:1]);
+  cap_last<=x_d==WIDTH-4 && y_d==HEIGHT-1;cap_addr<=address(x_d[10:1],y_d[9:1]);
   if(accept_d && y_d[0] && !x_d[2])begin first_fg<=half_fg;first_dark<=half_dark;end
-  cap_data<={half_dark,first_dark,half_fg,first_fg};
-  if(frame_start || invalidate)begin accept_d<=0;cap_write<=0;end
+  cap_data<={half_dark,first_dark,(ignore_capture_word ? 4'd0 : capture_fg_word)};
+  cap_ignored<=ignore_capture_word;cap_column<=x_d[10:3];
+  if(accept_d && y_d[0] && x_d[2])border_left<=ignore_capture_word;
+  if(frame_start || invalidate)begin accept_d<=0;cap_write<=0;border_left<=0;end
  end
 end
 reg [15:0] mem_addr,mem_write_addr;reg [7:0] mem_data;reg mem_write;
@@ -62,7 +87,7 @@ wire [7:0] mem_q=forward_valid ? forward_data : mask_read;
 wire mask_we=(cap_write || mem_write) && !invalidate && !frame_start;
 wire [15:0] mask_wa=cap_write ? cap_addr : mem_write_addr;
 wire [7:0] mask_wd=cap_write ? cap_data : mem_data;
-reg [9:0] q_read,q_write_addr;reg [17:0] q_data,q_q;reg q_write;
+reg [9:0] q_read,q_write_addr;reg [QB-1:0] q_data,q_q;reg q_write;
 // Independent synchronous capture/read-modify-write port; processing starts
 // after capture completes. Infer RAM, never reset the arrays.
 always @(posedge clk)begin
@@ -70,6 +95,7 @@ always @(posedge clk)begin
  // Explicit forwarding makes a read of the just-cleared packed word independent
  // of the device RAM's read-during-write mode. Read and mark use separate ports.
  mask_read<=mask[mem_addr];
+ ignored_q<=ignored_border[mem_addr];
  if(q_write) queue[q_write_addr]<=q_data;
  q_q<=queue[q_read];
 end
@@ -82,39 +108,39 @@ localparam IDLE=0,SCAN_REQ=1,SCAN_WAIT=2,SCAN_CHECK=3,SEED_MARK=4,
  NEIGH_NEXT=12,AREA_CALC=13,COMPARE=14,
  REF_REQ=15,REF_WAIT=16,REF_CHECK=17,FINISHED=18,SCALE=19,PUBLISH=20,REF_ORIGIN=21;
 reg [4:0] phase;
-reg [8:0] sx,sy,cx,cy,nx,ny,xmin,xmax,ymin,ymax;
+reg [XB-1:0] sx,cx,nx,xmin,xmax;reg [YB-1:0] sy,cy,ny,ymin,ymax;
 reg [1:0] direction;
 reg [9:0] q_head,q_tail;reg [10:0] q_count;
 reg [17:0] component_count;reg border;
 reg [17:0] component_area;
 wire [9:0] center_x=({1'b0,xmin}+xmax)>>1,center_y=({1'b0,ymin}+ymax)>>1;
-wire [9:0] dx=center_x>256 ? center_x-256 : 256-center_x;
-wire [9:0] dy=center_y>150 ? center_y-150 : 150-center_y;
+wire [9:0] dx=center_x>W/2 ? center_x-W/2 : W/2-center_x;
+wire [9:0] dy=center_y>H/2 ? center_y-H/2 : H/2-center_y;
 wire [10:0] distance={1'b0,dx}+dy;
 wire [9:0] width_now={1'b0,xmax}-xmin+1'b1,height_now={1'b0,ymax}-ymin+1'b1;
 reg [9:0] long_side,short_side;
 // Register constant-scaled terms separately from bbox subtraction/sorting.
 // This closes the CSI timing path without changing any shape limit.
-reg [21:0] fg20,area17,fg5,area3,fg10,area9,fg4;
+reg [22:0] fg20,area17,fg5,area3,fg10,area9,fg4;
 reg [13:0] long20,short21,short31,long5,short7,short9;
 // Keep the original strict model. The wider envelope only asserts presence
 // with CHECK; it is not an alignment or installation-quality measurement.
-wire present_match=long_side>=26 && long_side<=39 && short_side>=20 && short_side<=36 &&
+wire present_match=long_side>=PRESENT_LONG_MIN && long_side<=PRESENT_LONG_MAX && short_side>=PRESENT_SHORT_MIN && short_side<=PRESENT_SHORT_MAX &&
  long20>=short21 && long20<=short31 && fg20>=area17;
-wire present_review_match=long_side>=26 && long_side<=43 && short_side>=20 && short_side<=38 &&
+wire present_review_match=long_side>=PRESENT_LONG_MIN && long_side<=REVIEW_LONG_MAX && short_side>=PRESENT_SHORT_MIN && short_side<=REVIEW_SHORT_MAX &&
  long20>=short21 && long5<=short9 && fg4>=area3;
 wire circular=long5<=short7 && fg5>=area3 && fg10<=area9;
-wire empty_match=circular && long_side>=5 && long_side<=13 && short_side>=4 && short_side<=12;
-wire sprocket_match=circular && long_side>=14 && long_side<=23 && short_side>=10 && short_side<=21;
+wire empty_match=circular && long_side>=EMPTY_LONG_MIN && long_side<=EMPTY_LONG_MAX && short_side>=EMPTY_SHORT_MIN && short_side<=EMPTY_SHORT_MAX;
+wire sprocket_match=circular && long_side>=HOLE_LONG_MIN && long_side<=HOLE_LONG_MAX && short_side>=HOLE_SHORT_MIN && short_side<=HOLE_SHORT_MAX;
 reg found;reg [10:0] best_distance;
-reg [17:0] best_count;reg [8:0] best_xmin,best_xmax,best_ymin,best_ymax;
+reg [17:0] best_count;reg [XB-1:0] best_xmin,best_xmax;reg [YB-1:0] best_ymin,best_ymax;
 reg [1:0] best_state;
 reg found_second;reg [10:0] second_distance;reg [17:0] second_count;
-reg [8:0] second_xmin,second_xmax,second_ymin,second_ymax;
+reg [XB-1:0] second_xmin,second_xmax;reg [YB-1:0] second_ymin,second_ymax;
 reg [1:0] second_state;reg [3:0] best_reason,second_reason;
 wire [1:0] candidate_state=sprocket_match ? 0 : (present_match || present_review_match) ? 2 : empty_match ? 3 : 1;
 wire [3:0] candidate_reason={1'b0,fg20<area17,long20<short21 || long20>short31,
- long_side<26 || long_side>39 || short_side<20 || short_side>36};
+ long_side<PRESENT_LONG_MIN || long_side>PRESENT_LONG_MAX || short_side<PRESENT_SHORT_MIN || short_side>PRESENT_SHORT_MAX};
 // Prefer recognized bodies/empty pockets over feed holes and unclassified blobs.
 wire candidate_preferred=candidate_state>=2;
 wire best_preferred=best_state>=2,second_preferred=second_state>=2;
@@ -143,8 +169,8 @@ wire [6:0] best_w=(best_xmax-best_xmin+1)*2>127 ? 127 : (best_xmax-best_xmin+1)*
 wire [6:0] best_h=(best_ymax-best_ymin+1)*2>127 ? 127 : (best_ymax-best_ymin+1)*2;
 wire [6:0] second_w=(second_xmax-second_xmin+1)*2>127 ? 127 : (second_xmax-second_xmin+1)*2;
 wire [6:0] second_h=(second_ymax-second_ymin+1)*2>127 ? 127 : (second_ymax-second_ymin+1)*2;
-wire [10:0] best_bx0=(best_xmin*2>1 ? best_xmin*2-2 : 0),best_bx1=(best_xmax*2+4<1024 ? best_xmax*2+4 : 1024),second_bx0=(second_xmin*2>1 ? second_xmin*2-2 : 0),second_bx1=(second_xmax*2+4<1024 ? second_xmax*2+4 : 1024);
-wire [9:0] best_by0=(best_ymin*2>1 ? best_ymin*2-2 : 0),best_by1=(best_ymax*2+4<600 ? best_ymax*2+4 : 600),second_by0=(second_ymin*2>1 ? second_ymin*2-2 : 0),second_by1=(second_ymax*2+4<600 ? second_ymax*2+4 : 600);
+wire [10:0] best_bx0=(best_xmin*2>1 ? best_xmin*2-2 : 0),best_bx1=(best_xmax*2+4<WIDTH ? best_xmax*2+4 : WIDTH),second_bx0=(second_xmin*2>1 ? second_xmin*2-2 : 0),second_bx1=(second_xmax*2+4<WIDTH ? second_xmax*2+4 : WIDTH);
+wire [9:0] best_by0=(best_ymin*2>1 ? best_ymin*2-2 : 0),best_by1=(best_ymax*2+4<HEIGHT ? best_ymax*2+4 : HEIGHT),second_by0=(second_ymin*2>1 ? second_ymin*2-2 : 0),second_by1=(second_ymax*2+4<HEIGHT ? second_ymax*2+4 : HEIGHT);
 wire [75:0] record_best={found,best_state,best_reason,(best_count>2047 ? 13'd8191 : {best_count[10:0],2'b0}),best_w,best_h,best_bx0,best_bx1,best_by0,best_by1};
 wire [75:0] record_second={pair_selected,second_state,second_reason,(second_count>2047 ? 13'd8191 : {second_count[10:0],2'b0}),second_w,second_h,second_bx0,second_bx1,second_by0,second_by1};
 reg [9:0] trial_x,trial_y;reg neighbor_ok;
@@ -160,13 +186,13 @@ end
 // Scan every packed word in the full-frame mask, including the image edges.
 task advance_scan;
  begin
-  if(sx>=508)begin
+  if(sx>=W-4)begin
    sx<=0;
-   if(sy==299)begin
+   if(sy==H-1)begin
     if(found)begin pair_selected<=pair_ok;ref_second<=0;ref_side<=0;ref_word<=0;ref_row<=0;left_dark<=0;right_dark<=0;phase<=REF_ORIGIN;end
     else begin ready<=1;sample_new<=1;located<=0;state<=0;phase<=FINISHED;end
    end else begin sy<=sy+1'b1;phase<=SCAN_REQ;end
-  end else begin sx<=(sx & 9'h1fc)+4;phase<=SCAN_REQ;end
+  end else begin sx<=(sx & ~3)+4;phase<=SCAN_REQ;end
  end
 endtask
 always @(posedge clk or negedge rst_n)begin
@@ -204,7 +230,7 @@ always @(posedge clk or negedge rst_n)begin
    SCAN_CHECK:begin
     if(|mem_q[3:0])begin
      // Lowest remaining lane; return to this same word after the component.
-     nx<=(sx & 9'h1fc)+(mem_q[0] ? 0 : mem_q[1] ? 1 : mem_q[2] ? 2 : 3);phase<=SEED_MARK;
+     nx<=(sx & ~3)+(mem_q[0] ? 0 : mem_q[1] ? 1 : mem_q[2] ? 2 : 3);phase<=SEED_MARK;
     end else advance_scan;
    end
    SEED_MARK:begin
@@ -214,13 +240,14 @@ always @(posedge clk or negedge rst_n)begin
    end
    POP_REQ:begin q_read<=q_head;phase<=POP_WAIT;end
    POP_WAIT:phase<=POP_VALUE;
-   POP_VALUE:begin cx<=q_q[8:0];cy<=q_q[17:9];q_head<=q_head+1'b1;q_count<=q_count-1'b1;direction<=0;phase<=NEIGH_REQ;end
+   POP_VALUE:begin cx<=q_q[XB-1:0];cy<=q_q[QB-1:XB];q_head<=q_head+1'b1;q_count<=q_count-1'b1;direction<=0;phase<=NEIGH_REQ;end
    NEIGH_REQ:begin
-    if(neighbor_ok)begin nx<=trial_x[8:0];ny<=trial_y[8:0];mem_addr<=address(trial_x[8:0],trial_y[8:0]);phase<=NEIGH_WAIT;end
+    if(neighbor_ok)begin nx<=trial_x[XB-1:0];ny<=trial_y[YB-1:0];mem_addr<=address(trial_x[XB-1:0],trial_y[YB-1:0]);phase<=NEIGH_WAIT;end
     else phase<=NEIGH_NEXT;
    end
    NEIGH_WAIT:phase<=NEIGH_CHECK;
    NEIGH_CHECK:begin
+    if(ignored_q)border<=1;
     if(mem_q[nx[1:0]])begin
      if(q_count==1024 || component_count==W*H)begin ready<=1;sample_new<=1;state<=1;located<=0;phase<=FINISHED;end
      else begin
@@ -252,9 +279,9 @@ always @(posedge clk or negedge rst_n)begin
    AREA_CALC:begin component_area<=width_now*height_now;
     long_side<=width_now>height_now ? width_now : height_now;short_side<=width_now<height_now ? width_now : height_now;phase<=SCALE;end
    SCALE:begin
-    fg20<={4'b0,component_count}*22'd20;area17<={4'b0,component_area}*22'd17;
-    fg5<={4'b0,component_count}*22'd5;area3<={4'b0,component_area}*22'd3;
-    fg10<={4'b0,component_count}*22'd10;area9<={4'b0,component_area}*22'd9;
+    fg20<={4'b0,component_count}*23'd20;area17<={4'b0,component_area}*23'd17;
+    fg5<={4'b0,component_count}*23'd5;area3<={4'b0,component_area}*23'd3;
+    fg10<={4'b0,component_count}*23'd10;area9<={4'b0,component_area}*23'd9;
     fg4<={2'b0,component_count,2'b0};
     long20<={4'b0,long_side}*14'd20;short21<={4'b0,short_side}*14'd21;short31<={4'b0,short_side}*14'd31;
     long5<={4'b0,long_side}*14'd5;short7<={4'b0,short_side}*14'd7;short9<={4'b0,short_side}*14'd9;phase<=COMPARE;
@@ -279,7 +306,7 @@ always @(posedge clk or negedge rst_n)begin
    // Separate bbox-center arithmetic from dark-pixel counting and thresholds.
    REF_ORIGIN:begin origin_x<=ref_cx;origin_y<=ref_cy;phase<=REF_REQ;end
    REF_REQ:begin
-    mem_addr<=address(word_x[8:0],word_y[8:0]);
+    mem_addr<=address(word_x[XB-1:0],word_y[YB-1:0]);
     for(ref_lane_index=0;ref_lane_index<4;ref_lane_index=ref_lane_index+1)ref_mask[ref_lane_index]<=word_x>=0 && word_x<W && word_y<H &&
      (ref_word==1 || (ref_word==0 && ref_lane_index>=origin_x[1:0]) || (ref_word==2 && ref_lane_index<origin_x[1:0]));
     phase<=REF_WAIT;
@@ -312,8 +339,8 @@ always @(posedge clk or negedge rst_n)begin
      foreground_count<=best_count>2047 ? 13'd8191 : {best_count[10:0],2'b0};
      // Diagnostic sizes/counts saturate for rejected large blobs; matched shapes fit exactly.
      box_width<=best_w;box_height<=best_h;
-     box_x0<=(best_xmin*2>1 ? best_xmin*2-2 : 0);box_x1<=(best_xmax*2+4<1024 ? best_xmax*2+4 : 1024);
-     box_y0<=(best_ymin*2>1 ? best_ymin*2-2 : 0);box_y1<=(best_ymax*2+4<600 ? best_ymax*2+4 : 600);phase<=FINISHED;
+     box_x0<=(best_xmin*2>1 ? best_xmin*2-2 : 0);box_x1<=(best_xmax*2+4<WIDTH ? best_xmax*2+4 : WIDTH);
+     box_y0<=(best_ymin*2>1 ? best_ymin*2-2 : 0);box_y1<=(best_ymax*2+4<HEIGHT ? best_ymax*2+4 : HEIGHT);phase<=FINISHED;
    end
    default:begin end
   endcase

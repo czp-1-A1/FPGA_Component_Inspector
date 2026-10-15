@@ -26,7 +26,9 @@ try {
     $vendor = @(
         "$TdSimRoot/common/al_map_basic.v", "$TdSimRoot/common/al_map_lut.v",
         "$TdSimRoot/common/al_map_adder.v", "$TdSimRoot/common/al_phy_glbl.v",
-        "$TdSimRoot/ph1p/ph1p_logic_eram.v", "$TdSimRoot/ph1p/ph1p_phy_gsr.v"
+        "$TdSimRoot/ph1p/ph1p_logic_eram.v", "$TdSimRoot/ph1p/ph1p_phy_gsr.v",
+        "$TdSimRoot/ph1p/ph1p_logic_bufg.v", "$TdSimRoot/ph1p/ph1p_phy_pll_v2.v",
+        "$TdSimRoot/ph1p/ph1p_logic_hrio.v", "$TdSimRoot/ph1p/ph1p_phy_hr_pad.v"
     )
     foreach ($path in $vendor) {
         if (!(Test-Path -LiteralPath $path)) { throw "Missing vendor simulation library: $path" }
@@ -44,6 +46,7 @@ try {
     $ip = "../user_source/ip_source"
     $demosaic = "$hdl/isp/demosaic_4x_2_0"
     $ispSources = @(
+        "$hdl/rgb_resize_2_3.v", "$hdl/rgb96_packetizer.v", "$hdl/scaled_frame_guard.v",
         "$hdl/frame_process_bridge.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "$hdl/frame_shape_search.v", "$hdl/roi_shape_search.v", "$hdl/roi_shape_model.v", "$hdl/isp/uial2axis.v", "$hdl/isp/isp_top.v", "$hdl/tape_hole_tracker.v", "$hdl/multi_pocket_detector.v", "$hdl/roi_frame_guard.v", "$hdl/roi_statistics.v", "$hdl/roi_classifier.v", "$hdl/roi_mode_classifier.v", "$hdl/roi_tape_guard.v", "$hdl/roi_result_snapshot.v", "$hdl/roi_sobel_view.v", "$hdl/roi_observation_snapshot.v",
         "$hdl/awb.v", "$hdl/signal_delay.v", "$hdl/isp/data128_96/data128_96.v", "$hdl/isp/data96_128/data96_128.v",
         "$demosaic/demosaic.v", "$demosaic/raw_matrix_3x3_buffer.v", "$demosaic/zhenghe.v",
@@ -53,6 +56,14 @@ try {
         "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
         "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v")
     $tests = @(
+        @{Name="hd_pll"; Pass="PASS hd pll:"; Sources=@("$hdl/native_hdmi_pll.v", "$ip/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v", "tb_hd_pll.v")},
+        @{Name="hd_pins"; Pass="PASS hd pins:"; Sources=@("hdmi_ideal_pll.v", "$hdl/native_720p60_vtc.v", "$hdl/native_i60_phase.v", "$hdl/native_i60_tx.v", "$hdl/dvi_encoder.v", "$hdl/wide_view_avi.v", "$hdl/hdmi_phy_warpper.v", "$hdl/lane_lvds_10_1.v", "$hdl/video_out.v", "$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/experiment_osd.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_hd_pins.v")},
+        @{Name="hd_guard"; Pass="PASS hd guard:"; Sources=@("$hdl/roi_frame_guard.v", "tb_hd_guard.v")},
+        @{Name="hd_scaled_guard"; Pass="PASS hd scaled guard:"; Sources=@("$hdl/scaled_frame_guard.v", "tb_hd_scaled_guard.v")},
+        @{Name="hd_osd"; Pass="PASS hd osd:"; Sources=@("$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/experiment_osd.v", "tb_hd_osd.v")},
+        @{Name="hd_resize"; Pass="PASS hd resize:"; Sources=@("$hdl/rgb_resize_2_3.v", "$hdl/rgb96_packetizer.v", "tb_hd_resize.v")},
+        @{Name="hd_search"; Pass="PASS hd search:"; Sources=@("$hdl/frame_shape_search.v", "tb_hd_search.v")},
+        @{Name="hd_chain"; Pass="PASS hd chain:"; Sources=($ispSources + @("$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "tb_hd_chain.v"))},
         @{Name="process_bridge"; Pass="PASS process bridge:"; Sources=@("$hdl/frame_process_bridge.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_process_bridge.v")},
         @{Name="frame_search"; Pass="PASS frame search:"; Sources=@("$hdl/frame_shape_search.v", "tb_frame_search.v")},
         @{Name="presence_review"; Pass="PASS presence review:"; Sources=@("$hdl/roi_shape_search.v", "tb_presence_review.v")},
@@ -161,11 +172,12 @@ try {
         & "$ModelSimBin/vlog.exe" -sv -work $library @defines $testbench >> "$directory/compile.log" 2>&1
         if ($LASTEXITCODE -ne 0) { throw "Testbench compile failed: $($test.Name); see $directory/compile.log" }
         $tops = @("$library.tb_$($test.Name)")
-        if ($test.Name -in @("fixed_wb", "manual_wb", "pixel_interface", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
+        if ($test.Name -in @("fixed_wb", "manual_wb", "pixel_interface", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "hd_pins", "hd_pll")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
         $commands = "log /tb_$($test.Name)/*; run -all; quit -code 1 -force"
-        if ($test.Name -in @("shape_isp", "local_isp", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence")) { $commands = "log /tb_$($test.Name)/frame_no; run -all; quit -code 1 -force" }
+        if ($test.Name -in @("hd_pins", "hd_pll")) { $commands = "run -all; quit -code 1 -force" }
+        if ($test.Name -in @("shape_isp", "local_isp", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "hd_pins", "hd_pll")) { $commands = "log /tb_$($test.Name)/frame_no; run -all; quit -code 1 -force" }
         $access = "+acc"
-        if ($test.Name -in @("roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence")) { $access = "+acc=rn+/tb_$($test.Name)" }
+        if ($test.Name -in @("roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "hd_pins", "hd_pll")) { $access = "+acc=rn+/tb_$($test.Name)" }
         & "$ModelSimBin/vsim.exe" -c -L anlogic_sim "-voptargs=$access" -onfinish exit -l "$directory/transcript.log" -wlf "$directory/wave.wlf" -do $commands @tops *> "$directory/console.log"
         if ($LASTEXITCODE -ne 0) { throw "Simulation failed: $($test.Name); see $directory/console.log" }
         $output = Get-Content -LiteralPath "$directory/console.log" -Raw

@@ -19,13 +19,13 @@ module roi_sobel_view #(
 );
 wire [10:0] core_x0=DYNAMIC_ROI ? dynamic_x0 : CORE_X0,core_x1=DYNAMIC_ROI ? dynamic_x1 : CORE_X1;
 wire [9:0] core_y0=DYNAMIC_ROI ? dynamic_y0 : CORE_Y0,core_y1=DYNAMIC_ROI ? dynamic_y1 : CORE_Y1;
-localparam BEATS=WIDTH/4;
-reg [7:0] write_group,read_group;
+localparam BEATS=WIDTH/4,GROUP_BITS=$clog2(BEATS);
+reg [GROUP_BITS-1:0] write_group,read_group;
 reg [9:0] write_y,read_y,ready_rows;
 reg reading,input_armed,tail_bypass;
 reg v1,v2,v3,v4,previous;
 reg [1:0] frame_mode;
-wire [7:0] write_address=pixel_sof ? 8'd0 : write_group;
+wire [GROUP_BITS-1:0] write_address=pixel_sof ? 8'd0 : write_group;
 wire [9:0] write_row=pixel_sof ? 10'd0 : write_y;
 // Ignore residual AWB beats between the early reset and the true pixel SOF.
 wire input_valid=pixel_valid && (input_armed || pixel_sof) && !early_sof;
@@ -44,7 +44,7 @@ wire read_issue=frame_mode[1] && !frame_bad && !cache_overrun &&
  !bypass_tail &&
  !early_sof && !pixel_sof && read_y<HEIGHT &&
  (reading || (ready_rows>read_y && view_ready));
-wire [7:0] read_address=reading ? read_group : 8'd0;
+wire [GROUP_BITS-1:0] read_address=reading ? read_group : 8'd0;
 // Observability only: input line period and longest consecutive row-credit wait.
 // The ISP snapshots these old-epoch values on the same early FS that clears them.
 reg line_seen,period_seen;

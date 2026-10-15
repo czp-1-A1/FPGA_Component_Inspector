@@ -1,7 +1,8 @@
 
 
 module hdmi_phy_wrapper#(
-    parameter DEVICE = "EG"
+    parameter DEVICE = "EG",
+    parameter LOCAL_ODDR_RESET = 0
     )(
     input wire      I_pixel_clk,
     input wire      I_serial_clk,
@@ -69,7 +70,7 @@ module hdmi_phy_wrapper#(
 
 
     lane_lvds_10_1 #(
-        .DEVICE ( DEVICE )    
+        .DEVICE ( DEVICE ), .LOCAL_ODDR_RESET(LOCAL_ODDR_RESET)
     )u0_lane_lvds_8_1(
         .I_pixel_clk  ( I_pixel_clk     ),
         .I_serial_clk ( I_serial_clk    ),
@@ -81,7 +82,7 @@ module hdmi_phy_wrapper#(
 
 
     lane_lvds_10_1 #(
-        .DEVICE ( DEVICE )    
+        .DEVICE ( DEVICE ), .LOCAL_ODDR_RESET(LOCAL_ODDR_RESET)
     )u1_lane_lvds_8_1(
         .I_pixel_clk  ( I_pixel_clk     ),
         .I_serial_clk ( I_serial_clk    ),
@@ -93,7 +94,7 @@ module hdmi_phy_wrapper#(
 
 
     lane_lvds_10_1 #(
-        .DEVICE ( DEVICE )    
+        .DEVICE ( DEVICE ), .LOCAL_ODDR_RESET(LOCAL_ODDR_RESET)
     )u2_lane_lvds_8_1(
         .I_pixel_clk  ( I_pixel_clk     ),
         .I_serial_clk ( I_serial_clk    ),
@@ -105,7 +106,7 @@ module hdmi_phy_wrapper#(
 
 
     lane_lvds_10_1 #(
-        .DEVICE ( DEVICE )    
+        .DEVICE ( DEVICE ), .LOCAL_ODDR_RESET(LOCAL_ODDR_RESET)
     )u3_lane_lvds_8_1(
         .I_pixel_clk  ( I_pixel_clk     ),
         .I_serial_clk ( I_serial_clk    ),

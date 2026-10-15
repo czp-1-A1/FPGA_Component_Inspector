@@ -1,43 +1,28 @@
 {
-  "purpose": "3528_VIDEO_FIRST_V10",
-  "td_version": "6.2.168116",
-  "base_head": "36ef39f2e75be99904c02a5a9a9c9ef693e2da1c",
+  "purpose": "FHD_CAPTURE_RESIZE_HD720_DUAL_TARGET_V11_R9",
+  "base_head": "da195838d8a1df052edeaa86f60312d32eeedf9a",
   "source_commit": null,
-  "source_snapshot": "开发实施/验收记录/20261015_A_V10视频优先发布_轮次1/source_snapshot",
-  "build_root": "tmp/video_first_v10_r4_20261015",
+  "td_version": "6.2.178840",
+  "source_snapshot": "fpga/component_inspector/release/hd720_v11_r9_20261015/source_snapshot",
+  "source_manifest_sha256": "9e271eb2588dbfb10a6b73b6a1e9d7325542e83bd46f22ec214fd19ef043f268",
   "release": {
-    "path": "fpga/component_inspector/release/video_first_v10_20261015/camera_to_dsi_display.bit",
+    "path": "fpga/component_inspector/release/hd720_v11_r9_20261015/V11_FHD_to_720p60_r9_20261015.bit",
     "bytes": 1789539,
-    "sha256": "e9542e0612e7491e5ff7305cc263a3898c4d8eef32320a126e7c3dc189470cef"
+    "sha256": "1c94e3b20ee0bbec708385b8b3254239ae20abfe2fb01a35da387854050a2e4d"
   },
-  "validation_record": "开发实施/验收记录/20261015_A_V10视频优先发布_轮次1.md",
-  "fresh_tests": [
-    "process_bridge",
-    "frame_search",
-    "frame_osd",
-    "shape_snapshot",
-    "shape_model",
-    "frame_tailproof",
-    "frame_stop",
-    "frame_process",
-    "shape_osd",
-    "video_fallback_display",
-    "frame_wait_metadata",
-    "video_metadata_fallback",
-    "writer_epoch",
-    "wb_epoch",
-    "observation",
-    "display_state",
-    "roi_guard",
-    "video_first",
-    "video_late_display",
-    "frame_cadence"
-  ],
-  "test_round": "tmp/video_first_v10_r4_20261015",
-  "onsite": "PENDING_V10",
-  "previous_v9_onsite": "FAIL_BLACK",
-  "previous_v8_onsite": "FAIL_BLACK",
-  "verified_source_git_commit": "cb1f6574bb4504735e4239e8cf21e7e2c9cd70e9",
-  "repository_upload_status": "开发实施/验收记录/20261015_A_V10仓库上传状态.json",
-  "repository_upload_receipt": "开发实施/验收记录/20261015_A_V10仓库上传回执.json"
+  "full_package": {
+    "path": "fpga/component_inspector/release/hd720_v11_r9_20261015/V11_FHD_to_720p60_r9_20261015_full.zip",
+    "sha256": "4f221486cbcd1966b0891b5c22a83fd234f4040a3196fa7ebca94103f32efd53"
+  },
+  "validation_record": "开发实施/验收记录/20261015_A_V11分辨率修改_轮次9.md",
+  "software": "PASS_28_TESTS_AND_18_INDEPENDENT_IMAGES",
+  "routed_sta": {
+    "setup_ns": 0.117,
+    "hold_ns": 0.02,
+    "TNS_ns": 0
+  },
+  "onsite": "PENDING_V11_BOARD_TEST",
+  "calibration_220mm": "PENDING_NEW_SAMPLES",
+  "previous_v10_release": "fpga/component_inspector/release/video_first_v10_20261015/camera_to_dsi_display.bit",
+  "git_status_note": "Source binding and push verification are recorded separately after commit; frozen release metadata records its original build time."
 }

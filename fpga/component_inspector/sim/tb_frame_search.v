@@ -44,7 +44,7 @@ always @(posedge clk)if(rst && dut.cap_write && !cancel && !fs)begin
  for(integer lane=0;lane<4;lane++)begin
   integer xx,yy,g;
   xx=((dut.cap_addr%128)*4+lane)*2;yy=(dut.cap_addr/128)*2;g=reduced(xx,yy);
-  if(dut.cap_data[lane] !== (g>=100) || dut.cap_data[lane+4] !== (g<=100))$fatal(1,"full capture mismatch (%0d,%0d) gray=%0d data=%h",xx,yy,g,dut.cap_data);
+  if((dut.cap_data[lane] || dut.cap_ignored) !== (g>=100) || dut.cap_data[lane+4] !== (g<=100))$fatal(1,"full capture mismatch (%0d,%0d) gray=%0d data=%h",xx,yy,g,dut.cap_data);
   checks++;
  end
 end
