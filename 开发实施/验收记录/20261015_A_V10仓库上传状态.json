@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-15",
+  "timezone": "Asia/Shanghai",
+  "status": "PASS_REMOTE_SOURCE_AND_BIT",
+  "repository": "https://github.com/czp-1-A1/FPGA_Component_Inspector",
+  "branch": "lj4747-contest-work",
+  "local_source_commit": "cb1f6574bb4504735e4239e8cf21e7e2c9cd70e9",
+  "upload_executed": true,
+  "contents_requiring_confirmation": [
+    "source code and simulation fixtures",
+    "V10 bit image and instructions",
+    "complete validation archive including onsite photograph and tool logs"
+  ],
+  "earlier_review_failure": "Earlier attempt was not executed because the automatic review service hit its usage limit. After service recovery a fresh normal approval request was rejected for the scope reason above.",
+  "committed_bytes_verification": {
+    "status": "PASS_COMMITTED_BYTES",
+    "source_commit": "cb1f6574bb4504735e4239e8cf21e7e2c9cd70e9",
+    "production_inputs": 215,
+    "verified_files": 2386,
+    "unique_blobs": 494,
+    "bit_sha256": "e9542e0612e7491e5ff7305cc263a3898c4d8eef32320a126e7c3dc189470cef"
+  },
+  "software": {
+    "modelsim_tests": 20,
+    "independent_reference_images": 24,
+    "status": "PASS"
+  },
+  "td": {
+    "version": "6.2.168116",
+    "routed_setup_wns_ns": 0.122,
+    "routed_hold_wns_ns": 0.02,
+    "tns_ns": 0,
+    "status": "PASS"
+  },
+  "onsite": "PENDING_V10; previous V9 FAIL_BLACK; no JTAG or Flash operation performed",
+  "next_action": "User burns DB FRAME EXP V10 and verifies real hardware video and dual-object results; local verification does not establish onsite recovery.",
+  "previous_status": "BLOCKED_AUTOMATIC_APPROVAL_REJECTION",
+  "authorization_resolution": "User explicitly replied 上传 after being shown exact repository, branch, and inclusion of source, bit, and full archive with onsite photographs and logs.",
+  "verified_source_commit": "cb1f6574bb4504735e4239e8cf21e7e2c9cd70e9",
+  "verified_remote_commit": "cb1f6574bb4504735e4239e8cf21e7e2c9cd70e9",
+  "upload_receipt": "开发实施/验收记录/20261015_A_V10仓库上传回执.json",
+  "previous_review_reason": "Automatic approval rejected uploading the complete commit because the user had not explicitly confirmed the exact external repository and inclusion of bit images and verification archives beyond source code."
+}
