@@ -1,6 +1,6 @@
 
 
-module design_top_wrapper #(parameter INPUT_WIDTH=1920,INPUT_HEIGHT=1080,VIDEO_WIDTH=1280,VIDEO_HEIGHT=720,ENABLE_REGIONS=1,
+module design_top_wrapper #(parameter INPUT_WIDTH=1920,INPUT_HEIGHT=1080,VIDEO_WIDTH=1280,VIDEO_HEIGHT=720,ENABLE_REGIONS=1,ENABLE_CALIBRATION=1,
  parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,ENABLE_SHAPE_MODEL=1,ENABLE_LOCAL_SEARCH=1) (
     input wire        I_sys_clk,
     input wire        I_rst_n,
@@ -660,13 +660,15 @@ wire [1:0] completed_rp,active_rp;
 localparam FRAME_BOUND=ENABLE_TRACKING || LOCAL_SEARCH;
 localparam REGION_MODE=LOCAL_SEARCH && ENABLE_REGIONS;
 localparam OBJECT_BITS=REGION_MODE ? 304 : 152;
-localparam FRAME_META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGION_MODE)*LOCAL_SEARCH;
+localparam CALIBRATION_MODE=ENABLE_CALIBRATION && REGION_MODE && LOCAL_SEARCH;
+localparam BASE_META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGION_MODE)*LOCAL_SEARCH;
+localparam FRAME_META_WIDTH=BASE_META_WIDTH+129*CALIBRATION_MODE;
 wire [FRAME_META_WIDTH-1:0] camera_metadata,completed_metadata,active_metadata;
 wire camera_metadata_ready;
 wire [15:0] lost_frames,overflow_frames,underflow_frames;
 localparam PUBLISH_BITS=9+$clog2(VIDEO_WIDTH*VIDEO_HEIGHT*3/16+1);
 wire [PUBLISH_BITS-1:0] publish_diagnostic,publish_display;
-isp_top #(.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.SCALE_DISPLAY(1),.REGIONS(REGION_MODE),.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
+isp_top #(.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.SCALE_DISPLAY(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
 .processing_clk(S_process_clk),
 .axi4s_video_aclk(S_csi_rx_clk),
 .I_rst_n         (S_rst_n),
@@ -846,7 +848,8 @@ isp_top #(.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WID
 
     wire [15:0] mon_width,mon_height,mon_fps,mon_lane,mon_format,mon_gap;
     wire [31:0] mon_frames,mon_seconds;
-    input_monitor u_input_monitor(
+    // Monitor the native CSI frame, before the 1920x1080 -> 1280x720 scaler.
+    input_monitor #(.EXPECTED_WIDTH(INPUT_WIDTH),.EXPECTED_HEIGHT(INPUT_HEIGHT)) u_input_monitor(
         .rx_clk(S_csi_rx_clk),.ref_clk(I_sys_clk),.rst_n(S_rst_n),
         .frame_start(S_raw10_frame_start),.frame_end(S_raw10_frame_end),
         .hs_valid(S_hs_rx_valid),.raw_valid(S_raw10_valid),.lane_error(S_lane_error),
@@ -900,8 +903,21 @@ isp_top #(.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WID
      .fps_ok(mon_display[127:112]!=0),.transport_ok(transport_ok),.params_match(tracking_match && observation_match),
      .track_locked(active_frame_display[137]),.sample_valid(observation_data[24]),.class_wait(observation_data[26:25]==1),
      .hole_reason(active_frame_display[177:174]),.valid(tracked_display_valid),.reason(tracking_reason));
-    wire local_display_valid=active_frame_display[FRAME_META_WIDTH+2] && tracking_fresh && cam_display[0] &&
-     mon_display[127:112]!=0 && transport_ok && tracking_match && observation_match && observation_data[24];
+    wire local_display_valid;wire [3:0] local_wait_reason;
+    wire [128:0] calibration_display;
+    generate if(CALIBRATION_MODE)begin : calibration_display_extension
+     assign calibration_display=active_frame_display[BASE_META_WIDTH+:129];
+    end else begin : no_calibration_display_extension
+     assign calibration_display=0;
+    end endgenerate
+    local_search_display_status u_local_display_status(
+     .active_valid(active_frame_display[FRAME_META_WIDTH+2]),
+     .metadata_present(!CALIBRATION_MODE || calibration_display[128]),.fresh(tracking_fresh),
+     .config_ok(cam_display[0]),.fps_ok(mon_display[127:112]!=0),.transport_ok(transport_ok),
+     .config_match(tracking_match),.observation_match(observation_match),.sample_valid(observation_data[24]),
+     .valid(local_display_valid),.reason(local_wait_reason));
+    wire calibration_eligible=active_frame_display[FRAME_META_WIDTH+2] && calibration_display[128] && tracking_fresh &&
+     cam_display[0] && mon_display[127:112]!=0 && transport_ok && tracking_match && observation_match;
     wire roi_display_valid=LOCAL_SEARCH ? local_display_valid : ENABLE_TRACKING ? tracked_display_valid : legacy_display_valid;
     wire [1:0] roi_display_state_code=LOCAL_SEARCH ? (local_display_valid ? observation_data[26:25] : 2'd1) : ENABLE_TRACKING ? (roi_display_valid ? observation_data[26:25] : 2'd1) : legacy_display_state_code;
     roi_display_state u_roi_display_state(
@@ -927,7 +943,7 @@ isp_top #(.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WID
      assign display_objects=0;assign local_box_valid=0;assign local_x0=0;assign local_x1=0;assign local_y0=0;assign local_y1=0;
     end endgenerate
     wire any_pocket_valid=display_pockets[63] || display_pockets[148] || display_pockets[233] || display_pockets[318];
-    experiment_osd #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.DIAG_BITS(PUBLISH_BITS),.RESOLUTION_V11(1),.REGIONS(REGION_MODE),.FRAME_OBJECTS(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
+    experiment_osd #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.DIAG_BITS(PUBLISH_BITS),.RESOLUTION_V11(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.FRAME_OBJECTS(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
  .SAMPLE_X0(SAMPLE_X0),.SAMPLE_X1(SAMPLE_X1),.SAMPLE_Y0(SAMPLE_Y0),.SAMPLE_Y1(SAMPLE_Y1)) u_experiment_osd(
         .clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
         .vs(S_hdmi_out_vsync),.hs(S_hdmi_out_hsync),.de(S_hdmi_out_de),.rgb(S_hdmi_out_data),
@@ -938,6 +954,7 @@ isp_top #(.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WID
         .publish_diagnostic(publish_display),
         .wb_r(overflow_display[67:60]),.wb_b(overflow_display[59:52]),.wb_tune(cam_display[81]),
         .wb_pending(overflow_display[83:52]!=cam_display[80:49]),
+        .calibration_record(calibration_display[127:0]),.calibration_valid(calibration_eligible),.local_wait_reason(local_wait_reason),
         .frame_objects(display_objects),.roi_valid(roi_display_valid),.local_box_valid(local_box_valid),
         .local_x0(local_x0),.local_x1(local_x1),.local_y0(local_y0),.local_y1(local_y1),
         .pocket_records(display_pockets),.pocket_enable(pocket_overlay_ok),

@@ -20,7 +20,7 @@ task ticks;input integer n;begin repeat(n)@(negedge clk);end endtask
 task click;input [3:0] key;begin btn=key;ticks(45);btn=15;ticks(55);end endtask
 task chord;begin
  btn=14;ticks(35);btn=12;ticks(370);
- if(ae!=2244 || ag!=48 || wb[15:0]!=16'h6464)$fatal(1,"chord changed parameters");
+ if(ae!=1092 || ag!=40 || wb[15:0]!=16'h6464)$fatal(1,"chord changed parameters");
  ticks(400);btn=14;ticks(40);btn=15;ticks(60);
 end endtask
 integer i,previous_requests;reg [31:0] saved;
@@ -29,13 +29,13 @@ initial begin
  if(tune || wb!==32'h00006464)$fatal(1,"WB reset");
  // A short two-key press is consumed without toggling or a release click.
  btn=12;ticks(100);btn=14;ticks(40);btn=15;ticks(60);
- if(tune || ae!=2244 || requests!=0)$fatal(1,"short chord leaked exposure");
+ if(tune || ae!=1092 || requests!=0)$fatal(1,"short chord leaked exposure");
  chord;if(!tune || requests!=0)$fatal(1,"long chord failed or repeated toggle");
  click(14);if(wb!==32'h00016364)$fatal(1,"red decrement %h",wb);
  click(13);if(wb!==32'h00026464)$fatal(1,"red increment %h",wb);
  click(11);if(wb!==32'h00036463)$fatal(1,"blue decrement %h",wb);
  click(7); if(wb!==32'h00046464)$fatal(1,"blue increment %h",wb);
- if(ae!=2244 || ag!=48 || requests!=0)$fatal(1,"WB keys reached camera writer");
+ if(ae!=1092 || ag!=40 || requests!=0)$fatal(1,"WB keys reached camera writer");
  // Bounce, hold-repeat and both color clamps; saturating presses do not bump epoch.
  saved=wb;btn=14;ticks(10);btn=15;ticks(50);if(wb!==saved)$fatal(1,"WB bounce");
  btn=14;ticks(1800);btn=15;ticks(60);if(wb[15:8]!=32)$fatal(1,"red lower clamp");
@@ -45,10 +45,10 @@ initial begin
  btn=7;ticks(3400);btn=15;ticks(60);if(wb[7:0]!=192)$fatal(1,"blue upper clamp");
  saved=wb;btn=0;ticks(800);btn=15;ticks(60);
  if(tune || wb!==saved || requests!=0)$fatal(1,"exit chord leaked keys");
- click(14);if(ae!=2228 || wb!==saved)$fatal(1,"normal exposure did not resume");
- click(11);if(ag!=47 || wb!==saved)$fatal(1,"normal sensor gain did not resume");
+ click(14);if(ae!=1076 || wb!==saved)$fatal(1,"normal exposure did not resume");
+ click(11);if(ag!=39 || wb!==saved)$fatal(1,"normal sensor gain did not resume");
  rst=1;ticks(5);rst=0;ticks(20);
- if(tune || wb!==32'h00006464 || ae!=2244 || ag!=48)$fatal(1,"reset defaults");
+ if(tune || wb!==32'h00006464 || ae!=1092 || ag!=40)$fatal(1,"reset defaults");
  $display("PASS WB controls: staggered/short/long chords, one toggle per release, four keys, no camera writes in WB, debounce, repeat, both clamps, epoch and normal controls restored");$finish;
 end
 initial begin #300000;$fatal(1,"WB controls watchdog");end

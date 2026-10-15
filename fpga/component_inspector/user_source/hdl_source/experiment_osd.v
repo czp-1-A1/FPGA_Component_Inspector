@@ -1,6 +1,6 @@
 // Sampling UI. Three pixel clocks for RGB, DE, HS, VS and ENABLE bypass.
 module experiment_osd #(
- parameter WIDTH=1024,HEIGHT=600,DIAG_BITS=26,RESOLUTION_V11=0,REGIONS=0,
+ parameter WIDTH=1024,HEIGHT=600,DIAG_BITS=26,RESOLUTION_V11=0,REGIONS=0,CALIBRATION=0,
  parameter LOCAL_SEARCH=0,SHAPE_MODEL=0,TRACKING=0,MULTI_POCKETS=0,DIRECT_DETECTION=0,CLASS_THRESHOLD=58,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
  parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340,HOLE_Y=220,FRAME_OBJECTS=0
 )(
@@ -19,9 +19,11 @@ module experiment_osd #(
  input wire track_valid,input wire [10:0] track_x0,track_x1,
  input wire [3:0] track_reason,input wire [2:0] track_rows,
  output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb,
- input wire [(REGIONS ? 304 : 152)-1:0] frame_objects
+ input wire [(REGIONS ? 304 : 152)-1:0] frame_objects,
+ input wire [127:0] calibration_record,input wire calibration_valid,
+ input wire [3:0] local_wait_reason
 );
-localparam [199:0] calibration_text="220MM CAL PENDING        ";
+localparam [199:0] calibration_text="180MM CAL PENDING        ";
 reg [339:0] pockets_s;reg pockets_enabled_s;
 reg local_box_s;reg [10:0] local_x0_s,local_x1_s;reg [9:0] local_y0_s,local_y1_s;
 localparam OBJECTS=REGIONS ? 4 : 2;
@@ -30,6 +32,16 @@ reg vs_d,de_d;reg [10:0] x;reg [9:0] y;
 wire [9:0] y_ui=(y>=HEIGHT-96) ? y-(HEIGHT-600) : y;
 // DDR slot selection follows VS. Wait until its metadata has crossed during blanking.
 wire start=(TRACKING || LOCAL_SEARCH) ? de && !de_d && y==0 : vs && !vs_d;
+wire cal_panel,cal_border,cal_core;wire [7:0] cal_glyph;
+wire [3:0] cal_col,cal_row;wire [23:0] cal_color;
+generate if(CALIBRATION)begin : calibration_ui
+ calibration_osd #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) ui(
+  .clk(clk),.rst_n(rst_n),.start(start),.record(calibration_record),.eligible(calibration_valid),
+  .reason(local_wait_reason),.x(x),.y(y),.panel(cal_panel),.border(cal_border),.core(cal_core),
+  .glyph(cal_glyph),.col(cal_col),.row(cal_row),.color(cal_color));
+end else begin : no_calibration_ui
+ assign cal_panel=0;assign cal_border=0;assign cal_core=0;assign cal_glyph=0;assign cal_col=0;assign cal_row=0;assign cal_color=0;
+end endgenerate
 reg track_valid_s;reg [10:0] track_x0_s,track_x1_s;
 reg [3:0] track_reason_s;reg [2:0] track_rows_s;
 reg [127:0] track_message;
@@ -837,9 +849,12 @@ always @* begin
   glyph_cjk=0;ink_color=24'hffcc55;glyph_row=y-24;glyph_col=(x-1056)%8;
   glyph=calibration_text[199-((x-1056)/8)*8-:8];
  end
+ if(cal_panel)begin
+  glyph_cjk=0;glyph=cal_glyph;glyph_col=cal_col;glyph_row=cal_row;ink_color=cal_color;
+ end
 
 end
-// V11 remains a model experiment until 220 mm samples establish its recipe.
+// V11 remains a model experiment until 180 mm samples establish its recipe.
 wire calibration_marker=RESOLUTION_V11 && x>=1056 && x<1256 && y>=24 && y<40;
 
 wire roi_inside=x>=ROI_X0 && x<ROI_X1 && y>=ROI_Y0 && y<ROI_Y1;
@@ -856,7 +871,7 @@ wire [7:0] gray=gray_sum[9:2];
 wire align_border=TRACKING && !track_valid_s && x>=SAMPLE_X0 && x<SAMPLE_X1 && y>=SAMPLE_Y0 && y<SAMPLE_Y1 &&
  (x==SAMPLE_X0 || x==SAMPLE_X1-1 || y==SAMPLE_Y0 || y==SAMPLE_Y1-1) && (x[2:0]==0 || y[2:0]==0);
 wire search_guide=TRACKING && ((x>=256 && x<768 && x[3:0]==0 && (y==HOLE_Y-8 || y==HOLE_Y || y==HOLE_Y+8)) || (x==464 && y>=HOLE_Y-12 && y<=HOLE_Y+12));
-wire [23:0] picture=FRAME_OBJECTS ? (ENABLE && frame_border ? frame_color : ENABLE && region_border ? region_color : rgb) : MULTI_POCKETS ? (ENABLE && pocket_border ? pocket_color : rgb) :
+wire [23:0] picture=ENABLE && cal_core ? 24'hffff00 : ENABLE && cal_border ? 24'hff66cc : FRAME_OBJECTS ? (ENABLE && frame_border ? frame_color : ENABLE && region_border ? region_color : rgb) : MULTI_POCKETS ? (ENABLE && pocket_border ? pocket_color : rgb) :
  ENABLE && (sample_border || local_search_border) ? 24'h00ffff :
  ENABLE && roi_border ? 24'h00ff40 : ENABLE && (search_guide || align_border) ? 24'hffff00 : rgb;
 reg [10:0] ascii_address;
@@ -883,7 +898,7 @@ always @(posedge clk or negedge rst_n) begin
   cjk_address<={glyph[5:0],glyph_row};
   logo_address<={logo_y,logo_x};
   hs_p<={hs_p[0],hs};vs_p<={vs_p[0],vs};de_p<={de_p[0],de};
-  panel_p<={panel_p[0],(de && (frame_label || region_label || direct_label || pocket_label || ((y<80 || y>=HEIGHT-96) && !frame_border) || (TRACKING && y>=148 && y<164 && x>=256 && x<544)))};
+  panel_p<={panel_p[0],(de && (cal_panel || frame_label || region_label || direct_label || pocket_label || ((y<80 || y>=HEIGHT-96) && !frame_border) || (TRACKING && y>=148 && y<164 && x>=256 && x<544)))};
   logo_p<={logo_p[0],(x>=16 && x<112 && y>=8 && y<72)};
   cjk_p<={cjk_p[0],glyph_cjk};col0<=glyph_col;col1<=col0;
   rgb0<=picture;rgb1<=rgb0;ink0<=ink_color;ink1<=ink0;
@@ -891,6 +906,110 @@ always @(posedge clk or negedge rst_n) begin
   out_rgb<=ENABLE && panel_p[1] ?
    (logo_p[1] ? (logo_pixel==1 ? 24'h204686 : logo_pixel==2 ? 24'hcc253b : 24'hffffff) :
     ink ? ink1 : 24'h142336) : rgb1;
+ end
+end
+endmodule
+
+// Decimal formatting uses ONE shared frame-rate converter. The complete
+// measurement is frozen at the first active pixel, before panels at row96.
+module calibration_osd #(parameter WIDTH=1280,HEIGHT=720)(
+ input wire clk,rst_n,start,input wire [127:0] record,input wire eligible,
+ input wire [3:0] reason,input wire [10:0] x,input wire [9:0] y,
+ output reg panel,border,core,output reg [7:0] glyph,
+ output reg [3:0] col,row,output reg [23:0] color
+);
+reg [127:0] frozen;reg eligible_s;reg [3:0] reason_s;
+reg [15:0] decimal_digits[0:13];reg [3:0] index;
+reg [4:0] phase;reg running,digits_ready;
+wire convert_start=running && phase==0;
+reg [15:0] value;wire [19:0] digits;
+wire [63:0] converting=index<7 ? frozen[63:0] : frozen[127:64];
+wire [3:0] field=index<7 ? index : index-7;
+always @*begin
+ case(field)
+  0:value={8'd0,converting[59:52]};1:value={8'd0,converting[51:44]};
+  2:value={8'd0,converting[43:36]};3:value={7'd0,converting[35:27]};
+  4:value={9'd0,converting[13:7]};5:value={9'd0,converting[6:0]};
+  default:value={3'd0,converting[26:14]};
+ endcase
+end
+bin16_bcd converter(clk,rst_n,convert_start,value,digits);
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin frozen<=0;eligible_s<=0;reason_s<=1;index<=0;phase<=0;running<=0;digits_ready<=0;end
+ else if(start)begin frozen<=record;eligible_s<=eligible;reason_s<=reason;index<=0;phase<=0;running<=1;digits_ready<=0;end
+ else if(running)begin
+  if(phase==17)begin
+   decimal_digits[index]<=digits[15:0];phase<=0;
+   if(index==13)begin running<=0;digits_ready<=1;end else index<=index+1'b1;
+  end else phase<=phase+1'b1;
+ end
+end
+integer probe,line_no,column,base,cx,cy,yy,n;
+reg [63:0] selected;reg valid;reg [287:0] text_line;
+reg [15:0] bcd;integer digit_position;
+always @*begin
+ panel=0;border=0;core=0;glyph=" ";col=0;row=0;color=24'h74dbc7;
+ probe=0;line_no=0;column=0;base=0;cx=WIDTH/2;cy=0;yy=0;selected=0;valid=0;
+ text_line=0;bcd=0;digit_position=0;
+ for(n=0;n<2;n=n+1)begin
+  cy=n==0 ? HEIGHT*4/9 : HEIGHT*43/60;
+  if(x>=cx-32 && x<cx+32 && y>=cy-32 && y<cy+32 &&
+   (x==cx-32 || x==cx+31 || y==cy-32 || y==cy+31))border=1;
+  if(x>=cx-8 && x<cx+8 && y>=cy-8 && y<cy+8 &&
+   (x==cx-8 || x==cx+7 || y==cy-8 || y==cy+7))core=1;
+ end
+ if(x>=16 && x<304 && ((y>=96 && y<160) || (y>=432 && y<496)))begin
+  panel=1;probe=y>=432;base=probe*7;yy=probe ? y-432 : y-96;
+  line_no=yy/16;column=(x-16)/8;col=(x-16)%8;row=yy%16;
+  selected=probe ? frozen[127:64] : frozen[63:0];valid=eligible_s && selected[63] && digits_ready;
+  case(line_no)
+   0:text_line="CAL1 T100 OUT64 CORE16              ";
+   1:text_line="M000 MIN000 MAX000 SAT000           ";
+   2:text_line="W000 H000 A0000 CLIP0               ";
+   default:text_line=valid ? (selected[62] ? "CLIP: RECENTER TARGET               " : "SAMPLE OK / ONE TARGET ONLY         ") : "WAIT CURRENT FRAME                  ";
+  endcase
+  glyph=text_line[287-column*8-:8];
+  if(line_no==0)begin
+   if(column==3)glyph=probe ? "2" : "1";
+   if(column>=6 && column<=8)begin
+    case(selected[61:60])
+     0:glyph=column==6 ? "1" : "0";
+     1:glyph=column==6 ? "0" : column==7 ? "8" : "0";
+     2:glyph=column==6 ? "1" : column==7 ? "2" : "0";
+     3:glyph=column==6 ? "1" : column==7 ? "4" : "0";
+    endcase
+   end
+  end
+  if(line_no==1)begin
+   if(column>=1 && column<=3)begin bcd=decimal_digits[base];digit_position=3-column;end
+   if(column>=8 && column<=10)begin bcd=decimal_digits[base+1];digit_position=10-column;end
+   if(column>=15 && column<=17)begin bcd=decimal_digits[base+2];digit_position=17-column;end
+   if(column>=22 && column<=24)begin bcd=decimal_digits[base+3];digit_position=24-column;end
+   if((column>=1 && column<=3) || (column>=8 && column<=10) || (column>=15 && column<=17) || (column>=22 && column<=24))
+    glyph=valid ? "0"+((bcd>>(digit_position*4))&4'hf) : "-";
+  end
+  if(line_no==2)begin
+   if(column>=1 && column<=3)begin bcd=decimal_digits[base+4];digit_position=3-column;end
+   if(column>=6 && column<=8)begin bcd=decimal_digits[base+5];digit_position=8-column;end
+   if(column>=11 && column<=14)begin bcd=decimal_digits[base+6];digit_position=14-column;end
+   if((column>=1 && column<=3) || (column>=6 && column<=8) || (column>=11 && column<=14))glyph=valid ? "0"+((bcd>>(digit_position*4))&4'hf) : "-";
+   if(column==20)glyph=valid ? (selected[62] ? "1" : "0") : "-";
+  end
+  color=valid ? (selected[62] ? 24'hffcc55 : 24'h74dbc7) : 24'hb0c0d4;
+ end
+ if(x>=16 && x<304 && y>=176 && y<208)begin
+  panel=1;column=(x-16)/8;col=(x-16)%8;row=(y-176)%16;
+  text_line=y<192 ? "RAW100 GRAY080 EDGE120 BOTH140      " : "CLASSIFIER T100 / CAL NOT FROZEN    ";
+  glyph=text_line[287-column*8-:8];color=24'hb0c0d4;
+ end
+ if(x>=16 && x<304 && y>=584 && y<600)begin
+  panel=1;column=(x-16)/8;col=(x-16)%8;row=y-584;
+  case(reason_s)
+   0:text_line="PIPE OK / RECIPE NOT CALIBRATED     ";1:text_line="WAIT: NO RESULT METADATA            ";2:text_line="WAIT: FRAME STALE                   ";
+   3:text_line="WAIT: CAMERA CONFIG                 ";4:text_line="WAIT: NO INPUT FPS                  ";5:text_line="WAIT: VIDEO TRANSPORT               ";
+   6:text_line="WAIT: EXP/GAIN CHANGED              ";7:text_line="WAIT: MODE/WB CHANGED               ";default:text_line="WAIT: SAMPLE INCOMPLETE             ";
+  endcase
+  glyph=text_line[287-column*8-:8];color=reason_s==0 ? 24'h74dbc7 : 24'hffcc55;
  end
 end
 endmodule

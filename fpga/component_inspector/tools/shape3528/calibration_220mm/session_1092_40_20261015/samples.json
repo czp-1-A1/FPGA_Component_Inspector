@@ -1,0 +1,34 @@
+{
+  "user_request": "Set exposure1092 and gain40 as power-on defaults; asks what else to collect",
+  "exposure": 1092,
+  "gain_index": 40,
+  "wb_r": 100,
+  "wb_b": 100,
+  "working_distance_mm": 180,
+  "ring_light_level": 3,
+  "ring_light_evidence": "previously selected sampling setup; external lamp is not controlled by FPGA",
+  "calibration_status": "INTAKE_ONLY_NOT_CALIBRATED",
+  "images": [
+    {
+      "file": "phone_01.jpg",
+      "sha256": "c474851b05702ef1690a5fac30490ba4326b754954b27d70644a01476bac6a44",
+      "source": "user phone photo of V12 HDMI display",
+      "scene": "carrier with LED bodies",
+      "per_pocket_ground_truth": "pending explicit position labels; screen predictions are not ground truth"
+    },
+    {
+      "file": "phone_02.jpg",
+      "sha256": "528a314ffcfff75f4dd446babe6697648ef6ef94ac3b1bc22bd42eb1dc6e3497",
+      "source": "user phone photo of V12 HDMI display",
+      "scene": "carrier with reported empty pockets",
+      "per_pocket_ground_truth": "pending explicit position labels; screen predictions are not ground truth"
+    }
+  ],
+  "remaining": [
+    "native frames OR verified on-FPGA measurement readouts, and independent physical holdout validation; four additional scene photos are now archived"
+  ],
+  "user_confirmed_image_distance_mm": 180,
+  "initial_record_mm": 220,
+  "distance_record_correction": "User explicitly confirmed both original images were captured at180mm",
+  "superseded_by": "../../calibration_180mm/session_1092_40_20261015/dataset.json"
+}

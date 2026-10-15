@@ -1,0 +1,29 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 00:22:53 on Oct 16,2026
+vlog -work test_calibration_osd ../user_source/hdl_source/bin16_bcd.v ../user_source/hdl_source/osd_ascii_rom.v ../user_source/hdl_source/osd_cjk_rom.v ../user_source/hdl_source/osd_logo_rom.v ../user_source/hdl_source/inspection_region_config.v ../user_source/hdl_source/experiment_osd.v 
+-- Compiling module bin16_bcd
+-- Compiling module osd_ascii_rom
+-- Compiling module osd_cjk_rom
+-- Compiling module osd_logo_rom
+-- Compiling module inspection_region_config
+-- Compiling module experiment_osd
+-- Compiling module calibration_osd
+
+Top level modules:
+	experiment_osd
+End time: 00:22:53 on Oct 16,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 00:22:53 on Oct 16,2026
+vlog -sv -work test_calibration_osd tb_calibration_osd.v 
+-- Compiling module tb_calibration_osd
+** Error: (vlog-13069) tb_calibration_osd.v(18): near "edge": syntax error, unexpected edge, expecting IDENTIFIER or TYPE_IDENTIFIER or NETTYPE_IDENTIFIER.
+** Error: (vlog-13069) tb_calibration_osd.v(24): near "edge": syntax error, unexpected edge.
+** Error: (vlog-13069) tb_calibration_osd.v(44): near "edge": syntax error, unexpected edge.
+** Error: (vlog-13069) tb_calibration_osd.v(45): near "edge": syntax error, unexpected edge.
+** Error: (vlog-13069) tb_calibration_osd.v(47): near "edge": syntax error, unexpected edge.
+** Error: (vlog-13057) tb_calibration_osd.v(47): Expecting numeric digits.
+** Error: (vlog-13069) tb_calibration_osd.v(48): near "++": syntax error, unexpected ++.
+** Error: tb_calibration_osd.v(48): (vlog-13205) Syntax error found in the scope following 'n'. Is there a missing '::'?
+End time: 00:22:53 on Oct 16,2026, Elapsed time: 0:00:00
+Errors: 8, Warnings: 0

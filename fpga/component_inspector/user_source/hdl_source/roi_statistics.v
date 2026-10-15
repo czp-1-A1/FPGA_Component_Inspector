@@ -109,3 +109,91 @@ always @(posedge clk or negedge rst_n) begin
  end
 end
 endmodule
+
+// Two fixed calibration probes, before display processing. The outer 64x64
+// window measures the SAME 2x2 averaged threshold mask as frame_shape_search.
+// The inner16x16 measures native 720p luminance, including saturation count.
+// One record per probe: valid,clip,mode,mean,min,max,sat9,area13,width7,height7.
+// Width/height/area are 720p pixels (2*mask width/height,4*mask area), not padded.
+module calibration_probes #(parameter WIDTH=1280,HEIGHT=720)(
+ input wire clk,rst_n,frame_start,invalidate,accept,commit,
+ input wire [10:0] x,input wire [9:0] y,input wire [95:0] rgb,
+ input wire [1:0] mode,output reg [127:0] record
+);
+localparam X0=WIDTH/2-32,Y0=HEIGHT*4/9-32,Y1=HEIGHT*43/60-32;
+wire [7:0] threshold=mode==0 ? 100 : mode==1 ? 80 : mode==2 ? 120 : 140;
+wire xin=x>=X0 && x<X0+64;
+wire [1:0] yin={y>=Y1 && y<Y1+64,y>=Y0 && y<Y0+64};
+wire [9:0] gsum[0:3];wire [7:0] gray[0:3];
+genvar g;
+generate for(g=0;g<4;g=g+1)begin : luma
+ assign gsum[g]={2'b0,rgb[95-g*24-:8]}+{1'b0,rgb[87-g*24-:8],1'b0}+{2'b0,rgb[79-g*24-:8]};
+ assign gray[g]=gsum[g][9:2];
+end endgenerate
+wire [8:0] p0={1'b0,gray[0]}+gray[1],p1={1'b0,gray[2]}+gray[3];
+reg [17:0] line_pair[0:15];reg [17:0] above,pair_d;
+wire [3:0] address=(x-X0)>>2;
+always @(posedge clk)begin
+ if(accept && xin && |yin && !y[0])line_pair[address]<={p1,p0};
+ above<=line_pair[address];
+end
+reg ad;reg [1:0] yd;reg odd_d,inner_d;reg [4:0] mx_d;
+reg [4:0] my0_d,my1_d;
+reg [9:0] sum_d;reg [7:0] lo_d,hi_d;reg [2:0] sat_d;
+wire [9:0] block0={1'b0,pair_d[8:0]}+above[8:0],block1={1'b0,pair_d[17:9]}+above[17:9];
+wire f0=block0[9:2]>=threshold,f1=block1[9:2]>=threshold;
+wire [7:0] lo01=gray[0]<gray[1] ? gray[0] : gray[1],lo23=gray[2]<gray[3] ? gray[2] : gray[3];
+wire [7:0] hi01=gray[0]>gray[1] ? gray[0] : gray[1],hi23=gray[2]>gray[3] ? gray[2] : gray[3];
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin ad<=0;yd<=0;odd_d<=0;inner_d<=0;mx_d<=0;my0_d<=0;my1_d<=0;pair_d<=0;sum_d<=0;lo_d<=0;hi_d<=0;sat_d<=0;end
+ else begin
+  ad<=accept && xin;yd<=yin;odd_d<=y[0];pair_d<={p1,p0};
+  mx_d<=(x-X0)>>1;my0_d<=(y-Y0)>>1;my1_d<=(y-Y1)>>1;
+  inner_d<=x>=X0+24 && x<X0+40;
+  sum_d<=({2'b0,gray[0]}+gray[1])+({2'b0,gray[2]}+gray[3]);
+  lo_d<=lo01<lo23 ? lo01 : lo23;hi_d<=hi01>hi23 ? hi01 : hi23;
+  sat_d<={2'b0,gray[0]==255}+{2'b0,gray[1]==255}+{2'b0,gray[2]==255}+{2'b0,gray[3]==255};
+  if(frame_start || invalidate)ad<=0;
+ end
+end
+reg [12:0] pixels[0:1];reg [10:0] count[0:1];
+reg [4:0] xmin[0:1],xmax[0:1],ymin[0:1],ymax[0:1];
+reg clip[0:1];reg [8:0] inner_count[0:1],sat[0:1];
+reg [15:0] total[0:1];reg [7:0] low[0:1],high[0:1];
+wire [4:0] row[0:1];assign row[0]=my0_d;assign row[1]=my1_d;
+wire [6:0] width0=count[0]!=0 ? ({2'b0,xmax[0]}-xmin[0]+1'b1)<<1 : 0;
+wire [6:0] height0=count[0]!=0 ? ({2'b0,ymax[0]}-ymin[0]+1'b1)<<1 : 0;
+wire [6:0] width1=count[1]!=0 ? ({2'b0,xmax[1]}-xmin[1]+1'b1)<<1 : 0;
+wire [6:0] height1=count[1]!=0 ? ({2'b0,ymax[1]}-ymin[1]+1'b1)<<1 : 0;
+integer z;
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin
+  record<=0;
+  for(z=0;z<2;z=z+1)begin pixels[z]<=0;count[z]<=0;xmin[z]<=31;xmax[z]<=0;ymin[z]<=31;ymax[z]<=0;clip[z]<=0;inner_count[z]<=0;sat[z]<=0;total[z]<=0;low[z]<=255;high[z]<=0;end
+ end else if(frame_start || invalidate)begin
+  record<=0;
+  for(z=0;z<2;z=z+1)begin pixels[z]<=0;count[z]<=0;xmin[z]<=31;xmax[z]<=0;ymin[z]<=31;ymax[z]<=0;clip[z]<=0;inner_count[z]<=0;sat[z]<=0;total[z]<=0;low[z]<=255;high[z]<=0;end
+ end else begin
+  for(z=0;z<2;z=z+1)if(ad && yd[z])begin
+   pixels[z]<=pixels[z]+13'd4;
+   if(inner_d && row[z]>=12 && row[z]<20)begin
+    inner_count[z]<=inner_count[z]+9'd4;total[z]<=total[z]+sum_d;sat[z]<=sat[z]+sat_d;
+    if(lo_d<low[z])low[z]<=lo_d;if(hi_d>high[z])high[z]<=hi_d;
+   end
+   if(odd_d)begin
+    count[z]<=count[z]+{10'd0,f0}+{10'd0,f1};
+    if(f0 || f1)begin
+     if((f0 ? mx_d : mx_d+1'b1)<xmin[z])xmin[z]<=f0 ? mx_d : mx_d+1'b1;
+     if((f1 ? mx_d+1'b1 : mx_d)>xmax[z])xmax[z]<=f1 ? mx_d+1'b1 : mx_d;
+     if(row[z]<ymin[z])ymin[z]<=row[z];if(row[z]>ymax[z])ymax[z]<=row[z];
+     if(row[z]==0 || row[z]==31 || (f0 && mx_d==0) || (f1 && mx_d==30))clip[z]<=1;
+    end
+   end
+  end
+  if(commit)begin
+   record[63:0]<={pixels[0]==4096 && inner_count[0]==256,clip[0],mode,total[0][15:8],low[0],high[0],sat[0],count[0],2'b00,width0,height0};
+   record[127:64]<={pixels[1]==4096 && inner_count[1]==256,clip[1],mode,total[1][15:8],low[1],high[1],sat[1],count[1],2'b00,width1,height1};
+  end
+ end
+end
+endmodule

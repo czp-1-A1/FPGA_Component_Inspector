@@ -1,5 +1,10 @@
 # 3528 shape teaching trial
 
+Current 180 mm sample intake (EXP1092 / GAIN40):
+[`calibration_180mm/README.md`](calibration_180mm/README.md).
+The six user-provided monitor photos are indexed with scene labels and SHA-256;
+native grayscale calibration and independent validation remain pending.
+
 This is an offline grayscale segmentation and shape-feature comparison tool.
 It does not modify RTL, publish a bitstream, locate pockets automatically, or
 turn a reference match into a production PRESENT/EMPTY decision.

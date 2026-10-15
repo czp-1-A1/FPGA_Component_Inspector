@@ -1,0 +1,27 @@
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/wb_controls/transcript.log -wlf modelsim_work/wb_controls/wave.wlf -do "log /tb_wb_controls/*; run -all; quit -code 1 -force" test_wb_controls.tb_wb_controls 
+# Start time: 00:23:47 on Oct 16,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "ae_set(fast)".
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_wb_controls(fast)
+# Loading work.ae_set(fast)
+# log /tb_wb_controls/*
+#  run -all
+# PASS WB controls: staggered/short/long chords, one toggle per release, four keys, no camera writes in WB, debounce, repeat, both clamps, epoch and normal controls restored
+# ** Note: $finish    : tb_wb_controls.v(52)
+#    Time: 134150 ns  Iteration: 1  Instance: /tb_wb_controls
+# End time: 00:23:49 on Oct 16,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

@@ -4,8 +4,8 @@
   "camera": {
     "width": 1920,
     "height": 1080,
-    "exposure": 2244,
-    "gain": 48,
+    "exposure": 1092,
+    "gain": 40,
     "wb_r": 100,
     "wb_b": 100
   },
@@ -90,14 +90,14 @@
     "bridge": "explicit 128x512 dual-clock ERAM FIFO with 10-bit Gray pointers and two-stage synchronization",
     "overflow": "reject until reset"
   },
-  "validation": "PASS_31_TESTS_31_INDEPENDENT_IMAGES_AND_ROUTED_STA_ONSITE_PENDING",
+  "validation": "CALIBRATION_OBSERVER_SOFTWARE_AND_ROUTED_PASS_CLASSIFICATION180_PENDING",
   "base_commit": "2fc4c4318027832f3feda9f193d34565af59a32b",
   "optics": {
-    "working_distance_mm": 220,
+    "working_distance_mm": 180,
     "lens": "same lens as user-reported working V10",
     "focus": "must refocus and record",
     "distance_measurement_reference": "record actual start/end planes with new samples",
-    "calibration_status": "PENDING_NEW_220MM_IMAGES"
+    "calibration_status": "PENDING_MEASURED_180MM_RECIPE_AND_NATIVE_FRAMES"
   },
   "processing": {
     "width": 1280,
@@ -147,10 +147,13 @@
   },
   "center_observation_statistics": "Bottom MEAN/MIN/MAX remain the legacy center observation ROI, not per-object or per-region gray means.",
   "next_version_gate": {
-    "status": "AWAITING_EXPLICIT_USER_CONFIRMATION",
+    "status": "OBSERVATION_IMPLEMENTATION_AUTHORIZED_RECIPE_MEASUREMENT_PENDING",
     "required": true,
     "requirement": "下一版必须重新测定3528在新视野中的尺寸参数。先由用户明确确认，才开始重新测定、修改参数及下一版代码或构建。",
-    "current_action": "仅提交已完成的V12到本地Git，不启动下一版，不推送GitHub。",
+    "current_action": "用户确认已实现标定观察与诊断；待用户上板提供明确测量数字再确定180mm正式配方；无提交推送。",
     "record": "开发实施/64_A_V12本地提交与下一版标定确认.md"
-  }
+  },
+  "calibration_dataset": "calibration_180mm/session_1092_40_20261015/dataset.json",
+  "observer_evidence": "开发实施/验收记录/20261016_A_180mm标定观察版_轮次7.json",
+  "release_bit_purpose": "Historical V12 release unchanged; current local observer candidate is bound by observer_evidence"
 }

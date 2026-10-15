@@ -1,0 +1,8 @@
+# PASS calibration OSD: two complete rasters, 102624 independent glyph/border pixels, decimal core/area/clip values, both centers, WAIT, first-active atomic snapshot, three-clock sync
+# PASS regions osd: 4 rasters/2798592 independent pixels, both boxes/classes/numbers/size-fill reasons, both dashed zones and bound model headers, four independent cards, first-active atomic snapshot, zero/stale result suppression, unchanged 3-clock sync
+# PASS WB controls: staggered/short/long chords, one toggle per release, four keys, no camera writes in WB, debounce, repeat, both clamps, epoch and normal controls restored
+# PASS observation: independent pair debounce, four states, tagged atomic records, round trip, stopped CSI, tuning/config recovery, incomplete edge core and epoch rollover
+# PASS controls: initialization, bounce, four keys, repeat, limits, opposing keys, busy payload
+# PASS HD monitor: 11 status checks; FHD repeat, wrong width, missing/extra line, ragged line, legacy frame, interrupted frame, lane, CSI stop, reset recovery
+# PASS actual CSI and RAW10 decoder feeding monitor: 1920 x 1080
+PASS ModelSim: all 7 tests, including original vendor ERAM model

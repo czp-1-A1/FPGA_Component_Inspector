@@ -1,0 +1,25 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 00:22:18 on Oct 16,2026
+vlog -work test_local_wait ../user_source/hdl_source/tape_hole_tracker.v 
+-- Compiling module hole_scanline
+-- Compiling module local_search_display_status
+-- Compiling module tracking_frame_age
+-- Compiling module tape_hole_tracker
+-- Compiling module tracking_display_status
+
+Top level modules:
+	local_search_display_status
+	tracking_frame_age
+	tape_hole_tracker
+	tracking_display_status
+End time: 00:22:18 on Oct 16,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 00:22:18 on Oct 16,2026
+vlog -sv -work test_local_wait tb_local_wait.v 
+-- Compiling module tb_local_wait
+
+Top level modules:
+	tb_local_wait
+End time: 00:22:18 on Oct 16,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

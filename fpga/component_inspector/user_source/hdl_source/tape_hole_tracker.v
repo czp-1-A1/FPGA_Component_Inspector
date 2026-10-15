@@ -68,6 +68,17 @@ end
 end
 endmodule
 
+// Observe the exact local-search display gates without weakening any gate.
+module local_search_display_status(
+ input wire active_valid,metadata_present,fresh,config_ok,fps_ok,transport_ok,
+ input wire config_match,observation_match,sample_valid,
+ output wire valid,output wire [3:0] reason
+);
+assign valid=active_valid && fresh && config_ok && fps_ok && transport_ok && config_match && observation_match && sample_valid;
+assign reason=!active_valid || !metadata_present ? 1 : !fresh ? 2 : !config_ok ? 3 : !fps_ok ? 4 :
+ !transport_ok ? 5 : !config_match ? 6 : !observation_match ? 7 : !sample_valid ? 8 : 0;
+endmodule
+
 // A repeated old DDR slot is an old image, even if its classification was valid.
 // The writer never overwrites the active slot, so any new display slot has a
 // different index. ~115 ms at the current 52 MHz HDMI pixel clock.

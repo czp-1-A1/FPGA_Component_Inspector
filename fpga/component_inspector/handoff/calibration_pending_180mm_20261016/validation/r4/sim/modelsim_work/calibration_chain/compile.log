@@ -1,0 +1,84 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 00:25:02 on Oct 16,2026
+vlog -work test_calibration_chain ../user_source/hdl_source/rgb_resize_2_3.v ../user_source/hdl_source/rgb96_packetizer.v ../user_source/hdl_source/scaled_frame_guard.v ../user_source/hdl_source/frame_process_bridge.v ../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v ../user_source/hdl_source/inspection_region_config.v ../user_source/hdl_source/frame_shape_search.v ../user_source/hdl_source/roi_shape_search.v ../user_source/hdl_source/roi_shape_model.v ../user_source/hdl_source/isp/uial2axis.v ../user_source/hdl_source/isp/isp_top.v ../user_source/hdl_source/tape_hole_tracker.v ../user_source/hdl_source/multi_pocket_detector.v ../user_source/hdl_source/roi_frame_guard.v ../user_source/hdl_source/roi_statistics.v ../user_source/hdl_source/roi_classifier.v ../user_source/hdl_source/roi_mode_classifier.v ../user_source/hdl_source/roi_tape_guard.v ../user_source/hdl_source/roi_result_snapshot.v ../user_source/hdl_source/roi_sobel_view.v ../user_source/hdl_source/roi_observation_snapshot.v ../user_source/hdl_source/awb.v ../user_source/hdl_source/signal_delay.v ../user_source/hdl_source/isp/data128_96/data128_96.v ../user_source/hdl_source/isp/data96_128/data96_128.v ../user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v ../user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v ../user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v ../user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v ../user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v ../user_source/hdl_source/isp/demosaic_4x_2_0/bilinear_interpolation.v ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.v ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.v ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v ../user_source/ip_source/divider/divider_gate.v ../user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v ../user_source/hdl_source/image_correction.v ../user_source/hdl_source/status_cdc.v ../user_source/hdl_source/video_in.v ../user_source/hdl_source/video_out.v ../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v 
+-- Compiling module rgb_resize_2_3
+-- Compiling module rgb96_packetizer
+-- Compiling module scaled_frame_guard
+-- Compiling module frame_process_bridge
+-- Compiling module w128_d512_fifo
+-- Compiling module soft_fifo_al_4057d6b76aa6
+-- Compiling module fifo_cross_domain_addr_process_al_4057d6b76aa6
+-- Compiling module ram_infer_4057d6b76aa6
+-- Compiling module inspection_region_config
+-- Compiling module frame_shape_search
+-- Compiling module roi_shape_search
+-- Compiling module roi_shape_model
+-- Compiling module uial2axis
+-- Compiling module isp_top
+-- Compiling module hole_scanline
+-- Compiling module local_search_display_status
+-- Compiling module tracking_frame_age
+-- Compiling module tape_hole_tracker
+-- Compiling module tracking_display_status
+-- Compiling module multi_pocket_tracker
+-- Compiling module multi_pocket_statistics
+-- Compiling module roi_frame_guard
+-- Compiling module roi_statistics
+-- Compiling module calibration_probes
+-- Compiling module roi_classifier
+-- Compiling module roi_mode_classifier
+-- Compiling module roi_tape_guard
+-- Compiling module roi_result_snapshot
+-- Compiling module roi_sobel_view
+-- Compiling module roi_observation_snapshot
+-- Compiling module awb
+-- Compiling module signal_delay
+-- Compiling module data128_96
+-- Compiling module data_96bit_to_128bit
+-- Compiling module demosaic
+-- Compiling module raw_matrix_3x3_buffer
+-- Compiling module zhenghe
+-- Compiling module line_buffer_demosaic
+-- Compiling module mipi_to_raw_converter
+-- Compiling module bilinear_interpolation
+-- Compiling module blk_mem_gen_demosaic
+-- Compiling module ram_c36c2ca3b3a7
+-- Compiling module blk_mem_gen_zhenghe
+-- Compiling module ram_d32970204f32
+-- Compiling module divider
+-- Compiling module blk_mem_gen_awb_delay_signal
+-- Compiling module ram_f84573da5ab5
+-- Compiling module image_correction
+-- Compiling module status_cdc
+-- Compiling module video_in
+-- Compiling module video_out
+** Warning: ../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v(2): (vlog-2275) 'w128_d512_fifo' already exists and will be overwritten.
+-- Compiling module w128_d512_fifo
+** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(3): (vlog-2275) 'soft_fifo_al_4057d6b76aa6' already exists and will be overwritten.
+-- Compiling module soft_fifo_al_4057d6b76aa6
+** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(240): (vlog-2275) 'fifo_cross_domain_addr_process_al_4057d6b76aa6' already exists and will be overwritten.
+-- Compiling module fifo_cross_domain_addr_process_al_4057d6b76aa6
+** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(323): (vlog-2275) 'ram_infer_4057d6b76aa6' already exists and will be overwritten.
+-- Compiling module ram_infer_4057d6b76aa6
+
+Top level modules:
+	roi_shape_search
+	uial2axis
+	isp_top
+	local_search_display_status
+	tracking_frame_age
+	tracking_display_status
+	image_correction
+	video_in
+	video_out
+End time: 00:25:02 on Oct 16,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 4
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 00:25:02 on Oct 16,2026
+vlog -sv -work test_calibration_chain tb_calibration_chain.v 
+-- Compiling module tb_calibration_chain
+
+Top level modules:
+	tb_calibration_chain
+End time: 00:25:02 on Oct 16,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

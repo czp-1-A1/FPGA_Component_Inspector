@@ -1,0 +1,17 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc=rn+/tb_calibration_chain" -onfinish exit -l modelsim_work/calibration_chain/transcript.log -wlf modelsim_work/calibration_chain/wave.wlf -do "log /tb_calibration_chain/frame_no; run -all; quit -code 1 -force" test_calibration_chain.tb_calibration_chain anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 00:24:21 on Oct 16,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Error: (vopt-13130) Failed to find design unit tb_calibration_chain.
+#         Searched libraries:
+#             anlogic_sim
+#             work
+#             test_calibration_chain
+# Optimization failed
+# Error loading design
+Error loading design
+# End time: 00:24:22 on Oct 16,2026, Elapsed time: 0:00:01
+# Errors: 2, Warnings: 0

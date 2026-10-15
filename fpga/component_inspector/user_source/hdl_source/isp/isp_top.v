@@ -1,8 +1,8 @@
 module isp_top #(
     parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
-    parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,
-    parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH
+    parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,
+    parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION
 ) (
     input processing_clk,
     input 			axi4s_video_aclk,
@@ -304,6 +304,14 @@ end endgenerate
 // The result settles after the ROI/search rows and the 28-cycle divider.
 // Freeze it early; frame proof, word count and epoch still gate publication.
 reg [7:0] metadata_wait;reg metadata_pending;reg [31:0] frame_config;
+wire [127:0] calibration_record;
+generate if(CALIBRATION)begin : calibration_measurement
+ calibration_probes #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) probes(
+  .clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.invalidate(sample_cancel),
+  .accept(post_accept),.commit(post_commit),.x(post_x),.y(post_y),.rgb(post_rgb),.mode(post_tag[1:0]),.record(calibration_record));
+end else begin : no_calibration_measurement
+ assign calibration_record=0;
+end endgenerate
 always @(posedge post_clk or negedge I_rst_n) begin
  if(!I_rst_n) begin frame_metadata<=0;frame_metadata_ready<=0;metadata_wait<=0;metadata_pending<=0;frame_config<=0;end
  else if(post_start) begin frame_metadata_ready<=0;metadata_pending<=0;frame_config<=post_config;end
@@ -318,6 +326,9 @@ always @(posedge post_clk or negedge I_rst_n) begin
     post_wb,observation_record[82:46],post_tag,observation_record[27:0]};
    else if(USE_SEARCH) frame_metadata<={search_objects,search_y0,search_y1,4'd0,4'd0,frame_config,search_located,search_x0,search_x1,observation_record};
    else frame_metadata<={track_diagnostic,frame_config,track_locked,track_x0,track_x1,observation_record};
+   // Low metadata fields retain their V12 layout. The extension travels in
+   // the SAME slot/epoch/late-attachment/VS snapshot as all four detections.
+   if(CALIBRATION)frame_metadata[META_WIDTH-1 -:129]<={1'b1,calibration_record};
    frame_metadata_ready<=1;metadata_pending<=0;
   end
  end

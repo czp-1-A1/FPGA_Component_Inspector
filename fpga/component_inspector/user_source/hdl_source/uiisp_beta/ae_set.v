@@ -46,8 +46,9 @@ module ae_set #(
     output reg [31:0] O_wb_request
 );
 // Exposure is in half-lines. VTS=1127: maximum=2*1127-10=2244.
-// Keep the existing gain index 48 (2x analog gain). No automatic exposure.
+// Power-on imaging defaults selected at 180 mm; manual controls remain active.
 localparam [15:0] AE_MIN=3, AE_MAX=2244, AE_STEP=16;
+localparam [15:0] AE_DEFAULT=1092, AG_DEFAULT=40;
 reg [3:0] btn_meta, btn_sync, pressed, event_key;
 reg [$clog2(CLK_HZ/1000)-1:0] ms_count;
 wire ms_tick = ms_count == CLK_HZ/1000-1;
@@ -129,7 +130,7 @@ always @(posedge I_clk or posedge I_rst) begin
     end
 end
 always @(posedge I_clk or posedge I_rst) begin
-    if(I_rst) begin ae_setpoint<=AE_MAX; ag_setpoint<=48; end
+    if(I_rst) begin ae_setpoint<=AE_DEFAULT; ag_setpoint<=AG_DEFAULT; end
     else if(!O_wb_tune && keys_allowed) begin
         if(event_key[0] && !btn_sync[1])
             ae_setpoint <= ae_setpoint > AE_MIN+AE_STEP ? ae_setpoint-AE_STEP : AE_MIN;
@@ -142,7 +143,7 @@ end
 // Hold the complete pair until the writer acknowledges busy, then done.
 // Startup AE is applied by uicfgcs500 immediately after the init table.
 always @(posedge I_clk or posedge I_rst) begin
-    if(I_rst) begin O_ae<=AE_MAX; O_ag<=48; O_ae_req<=0; request_state<=0; end
+    if(I_rst) begin O_ae<=AE_DEFAULT; O_ag<=AG_DEFAULT; O_ae_req<=0; request_state<=0; end
     else begin
         O_ae_req<=0;
         case(request_state)

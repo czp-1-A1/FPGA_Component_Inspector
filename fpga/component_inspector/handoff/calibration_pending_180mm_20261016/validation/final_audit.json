@@ -1,0 +1,390 @@
+{
+  "status": "PASS_CALIBRATION_OBSERVER_SOFTWARE_AND_ROUTED_BOARD_PENDING",
+  "purpose": "180mm measurement helper, not calibrated classification release",
+  "source_base_head": "a0111c4c00823d9be50040265be24fbb580b2940",
+  "source_commit": null,
+  "build_round": "r2",
+  "final_source_round": "r7",
+  "source_manifest_sha256": "92145d7e0f06f47934446bc27ddeec2f40e08151256724b0e9ce43cffcba5f85",
+  "build_manifest_sha256": "154d44a1c1c69a7e1baedc267a9713c43f857326808c8141795262a3ee31ccba",
+  "source_count": 352,
+  "changed_production_inputs": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/input_monitor.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/roi_statistics.v",
+    "user_source/hdl_source/tape_hole_tracker.v",
+    "user_source/hdl_source/uiisp_beta/ae_set.v"
+  ],
+  "production_identical_between_build_and_tests": true,
+  "test_provenance": [
+    {
+      "name": "calibration_probe",
+      "origin": "r1",
+      "status": "PASS",
+      "console_sha256": "f5143070d08578cc5e5db1d939819f321d3365b7ee2a2d130969581bbedeb9bd",
+      "console": "r1/sim/modelsim_work/calibration_probe/console.log"
+    },
+    {
+      "name": "local_wait",
+      "origin": "r1",
+      "status": "PASS",
+      "console_sha256": "8a7a29b3c93407ed76475c013a4d987792bc9b2b91c9b2460672388b75cbc926",
+      "console": "r1/sim/modelsim_work/local_wait/console.log"
+    },
+    {
+      "name": "calibration_osd",
+      "origin": "r3",
+      "status": "PASS",
+      "console_sha256": "08b3fc5fc118ec379d32bf473d2caebd82a40eb36646acecd8ea3acac14d8ed5",
+      "console": "r3/sim/modelsim_work/calibration_osd/console.log"
+    },
+    {
+      "name": "regions_osd",
+      "origin": "r3",
+      "status": "PASS",
+      "console_sha256": "05e0058759d9699a5288a355a25be4019463e032ff9255d90832fe616b4c5efa",
+      "console": "r3/sim/modelsim_work/regions_osd/console.log"
+    },
+    {
+      "name": "observation",
+      "origin": "r3",
+      "status": "PASS",
+      "console_sha256": "8ae8d763c3c9edfeaf0ede12fa84ee0109f1fa5fa5724233ec3675c5e943f81d",
+      "console": "r3/sim/modelsim_work/observation/console.log"
+    },
+    {
+      "name": "wb_controls",
+      "origin": "r3",
+      "status": "PASS",
+      "console_sha256": "b5fb9d02f72c3331a66488919a43b3bff513ac10bf30d32a9d6c82637c3811f9",
+      "console": "r3/sim/modelsim_work/wb_controls/console.log"
+    },
+    {
+      "name": "controls",
+      "origin": "r3",
+      "status": "PASS",
+      "console_sha256": "6197773075d323e44be6fbb26a0715b0b3bc6f86e91fd560fccf8687d3d0fe6f",
+      "console": "r3/sim/modelsim_work/controls/console.log"
+    },
+    {
+      "name": "hd_monitor",
+      "origin": "r3",
+      "status": "PASS",
+      "console_sha256": "e02b27e30004d27b88215960036cc5b88365118125fa89801414dbd00219d55b",
+      "console": "r3/sim/modelsim_work/hd_monitor/console.log"
+    },
+    {
+      "name": "hd_csi_monitor",
+      "origin": "r3",
+      "status": "PASS",
+      "console_sha256": "2d75304c68ef11f998f2461971c410a4a9d29cb91bdbf7f4d7dfdf94b0acc6a7",
+      "console": "r3/sim/modelsim_work/hd_csi_monitor/console.log"
+    },
+    {
+      "name": "calibration_chain",
+      "origin": "r4",
+      "status": "PASS",
+      "console_sha256": "f13ec9f3e1076cb78012d0847edfdd32c1068eaac8d889a29c72537193e0a068",
+      "console": "r4/sim/modelsim_work/calibration_chain/console.log"
+    },
+    {
+      "name": "video_first",
+      "origin": "r4",
+      "status": "PASS",
+      "console_sha256": "f08ac085096d168823217b001aee18938d78f81a41ce49e218106341db152db6",
+      "console": "r4/sim/modelsim_work/video_first/console.log"
+    },
+    {
+      "name": "video_late_display",
+      "origin": "r4",
+      "status": "PASS",
+      "console_sha256": "1fe8ab8b7b215d1b129c047315db7aba58f38d44081efa821a0ea71c0ed9519b",
+      "console": "r4/sim/modelsim_work/video_late_display/console.log"
+    },
+    {
+      "name": "frame_wait_metadata",
+      "origin": "r4",
+      "status": "PASS",
+      "console_sha256": "fe787e7616caa2890a3892d8d0778ca79d10ac3632cd46f41c40b54736d69568",
+      "console": "r4/sim/modelsim_work/frame_wait_metadata/console.log"
+    },
+    {
+      "name": "frame_stop",
+      "origin": "r4",
+      "status": "PASS",
+      "console_sha256": "55387342bc666a20f40ec45cdc95fb63449a17a14cd55e3584e14c7a2fb1dabf",
+      "console": "r4/sim/modelsim_work/frame_stop/console.log"
+    },
+    {
+      "name": "hd_guard",
+      "origin": "r4",
+      "status": "PASS",
+      "console_sha256": "b15ea44e296383b5ace8ff3b46f8473ecbc62fcf2ea7424b8f673013ac696813",
+      "console": "r4/sim/modelsim_work/hd_guard/console.log"
+    },
+    {
+      "name": "hd_scaled_guard",
+      "origin": "r4",
+      "status": "PASS",
+      "console_sha256": "e0fadd95dced6cc5d6212e9712320bd58dae115535f4fa1d39b80c1c954f592f",
+      "console": "r4/sim/modelsim_work/hd_scaled_guard/console.log"
+    },
+    {
+      "name": "regions",
+      "origin": "r4",
+      "status": "PASS",
+      "console_sha256": "ebc7bd2cb50a26546345f8f8e5dc8ab7b552e81e6c88a9ac080a6d25726f37ee",
+      "console": "r4/sim/modelsim_work/regions/console.log"
+    },
+    {
+      "name": "calibration_late",
+      "origin": "r7",
+      "status": "PASS",
+      "console_sha256": "d73af408bc5f684026b1a67d7aab11d5e9861856af06da32510e9affb2d24659",
+      "console": "r7/sim/modelsim_work/calibration_late/console.log"
+    }
+  ],
+  "independent_reference": {
+    "status": "PASS",
+    "frames": [
+      2,
+      4,
+      5,
+      6,
+      7
+    ],
+    "reference": "RGB before display modes; scalar luma and independent NumPy 2x2 average/threshold/bbox/core statistics"
+  },
+  "timing": {
+    "setup_ns": 0.024,
+    "hold_ns": 0.02,
+    "setup_tns_ns": 0.0,
+    "hold_tns_ns": 0.0,
+    "sta_percent": 92.8
+  },
+  "resources": {
+    "slice": {
+      "used": 16839,
+      "total": 21216,
+      "percent": 79.37
+    },
+    "eram": {
+      "used": 94,
+      "total": 108,
+      "percent": 87.04
+    },
+    "dsp": {
+      "used": 26,
+      "total": 40,
+      "percent": 65.0
+    },
+    "pll": {
+      "used": 5,
+      "total": 6,
+      "percent": 83.33
+    }
+  },
+  "warnings": {
+    "syn_1": {
+      "HDL-5007 WARNING": 41,
+      "HDL-5317 WARNING": 21,
+      "HDL-5314 WARNING": 20,
+      "HDL-5323 WARNING": 4,
+      "HDL-5369 WARNING": 1,
+      "HDL-5001 WARNING": 5,
+      "HDL-5106 WARNING": 2,
+      "SYN-5065 WARNING": 1,
+      "SYN-5013 WARNING": 10,
+      "SYN-5025 WARNING": 3,
+      "SYN-5011 WARNING": 12,
+      "SYN-5041 WARNING": 3,
+      "PHY-5088 WARNING": 3,
+      "USR-6135 CRITICAL-WARNING": 2
+    },
+    "phy_1": {
+      "PHY-5060 CRITICAL-WARNING": 1,
+      "PHY-5016 WARNING": 5,
+      "PHY-5088 WARNING": 8,
+      "PHY-5079 CRITICAL-WARNING": 2
+    }
+  },
+  "warning_count_deltas": {
+    "syn_1": {},
+    "phy_1": {
+      "PHY-5079 CRITICAL-WARNING": 1,
+      "PHY-5088 WARNING": 2
+    }
+  },
+  "coverage": {
+    "no clock": 0,
+    "clock definition": 0,
+    "dummy node": 4,
+    "invalid constraint": 0,
+    "pll/clock buffer clock constraints": 7,
+    "combinational loops": 0,
+    "soft fifo timing exception constraints": 0,
+    "no path constraints": 0,
+    "shadowed/ignored timing exception constraints": 11,
+    "no input delay": 39,
+    "no output delay": 63,
+    "partial input delay": 1,
+    "partial output delay": 0,
+    "abnormal input delay": 0
+  },
+  "max_delay_constraints_matched": 40,
+  "max_delay_constraints_ignored": 0,
+  "gray_bits": [
+    {
+      "direction": "write",
+      "bit": 0,
+      "budget_ns": 8.0,
+      "slack_ns": 7.04
+    },
+    {
+      "direction": "write",
+      "bit": 1,
+      "budget_ns": 8.0,
+      "slack_ns": 7.239
+    },
+    {
+      "direction": "write",
+      "bit": 2,
+      "budget_ns": 8.0,
+      "slack_ns": 7.261
+    },
+    {
+      "direction": "write",
+      "bit": 3,
+      "budget_ns": 8.0,
+      "slack_ns": 7.012
+    },
+    {
+      "direction": "write",
+      "bit": 4,
+      "budget_ns": 8.0,
+      "slack_ns": 6.911
+    },
+    {
+      "direction": "write",
+      "bit": 5,
+      "budget_ns": 8.0,
+      "slack_ns": 6.875
+    },
+    {
+      "direction": "write",
+      "bit": 6,
+      "budget_ns": 8.0,
+      "slack_ns": 7.071
+    },
+    {
+      "direction": "write",
+      "bit": 7,
+      "budget_ns": 8.0,
+      "slack_ns": 6.958
+    },
+    {
+      "direction": "write",
+      "bit": 8,
+      "budget_ns": 8.0,
+      "slack_ns": 6.778
+    },
+    {
+      "direction": "write",
+      "bit": 9,
+      "budget_ns": 8.0,
+      "slack_ns": 7.066
+    },
+    {
+      "direction": "read",
+      "bit": 0,
+      "budget_ns": 8.0,
+      "slack_ns": 6.993
+    },
+    {
+      "direction": "read",
+      "bit": 1,
+      "budget_ns": 8.0,
+      "slack_ns": 7.165
+    },
+    {
+      "direction": "read",
+      "bit": 2,
+      "budget_ns": 8.0,
+      "slack_ns": 6.742
+    },
+    {
+      "direction": "read",
+      "bit": 3,
+      "budget_ns": 8.0,
+      "slack_ns": 6.893
+    },
+    {
+      "direction": "read",
+      "bit": 4,
+      "budget_ns": 8.0,
+      "slack_ns": 7.336
+    },
+    {
+      "direction": "read",
+      "bit": 5,
+      "budget_ns": 8.0,
+      "slack_ns": 6.967
+    },
+    {
+      "direction": "read",
+      "bit": 6,
+      "budget_ns": 8.0,
+      "slack_ns": 6.873
+    },
+    {
+      "direction": "read",
+      "bit": 7,
+      "budget_ns": 8.0,
+      "slack_ns": 6.883
+    },
+    {
+      "direction": "read",
+      "bit": 8,
+      "budget_ns": 8.0,
+      "slack_ns": 7.179
+    },
+    {
+      "direction": "read",
+      "bit": 9,
+      "budget_ns": 8.0,
+      "slack_ns": 7.139
+    }
+  ],
+  "metadata_bits": 631,
+  "legacy_low_metadata_bits": 502,
+  "geometry_and_classifier_thresholds_changed": false,
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "290c7b12a0da9399ebe95ddd88ab1ba0dc3b110ead3d7f809b9b3f062b3fc5de"
+  },
+  "board": "PENDING_USER_PROGRAM_AND_MEASURE",
+  "recipe": "NOT_CALIBRATED_180MM",
+  "formal_publication": "DEFERRED_NO_ZIP_NO_POINTER_SWITCH",
+  "known_limits": "Existing PLL feedback and camera clock routing/I/O delay boundary retained. Fixed probe geometry is a foreground union; CLIP/multiple features invalidate a body-size inference. Measurements use processed luma and the same 2x2 mask as detection, not sensor RAW10 saturation.",
+  "warning_review": "Added counts are repeated clock checks at another physical-flow stage, not additional affected clock nets. The same pll_clk_24m/O_cam_24m output has0 clock sinks/1 data sink and3 local wires in both baseline and current; PLL/I/O boundaries remain.",
+  "marked_local_clock_signatures": {
+    "baseline": [
+      [
+        "pll_clk_24m",
+        "AL_PHY_SCLK",
+        "0/1",
+        "3"
+      ]
+    ],
+    "current": [
+      [
+        "pll_clk_24m",
+        "AL_PHY_SCLK",
+        "0/1",
+        "3"
+      ]
+    ]
+  }
+}

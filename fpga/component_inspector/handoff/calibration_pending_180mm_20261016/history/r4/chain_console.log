@@ -1,0 +1,10 @@
+# PASS calibration chain: native line-clock gaps, LP0CF0 wall-clock, 26-FPS source start-to-start, all four views, live WB-canceled zero-result video, same-slot late dual tuples, full exact RGB rasters=11 pixels=10945150 OF=0 UF=0
+# PASS regions: 8 full frames, 21 independently checked targets, two zones/two pockets, P/E, outside and feed rejection, full boundary body, unknown model, cancel
+# PASS hd guard: 2073600 pixels/FHD y>=1024, exact native and processed proof, late short-row rejection and next-frame recovery
+# PASS hd scaled guard: 921600 pixels independent of native proof, short/malformed rejection, proof ordering and recovery
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS frame stop: real native LP738, CSI stopped 33ms after 200 tail clocks, RAW and GRAY+EDGE complete 115200 words and dual metadata, continuous 100MHz post-AWB, full DDR display; accepted=2 OF=0 UF=0
+# PASS video late display: 384 exact RGB pixels, video before results, same-slot late tuples visible only at display boundary, active slot protected, one attachment per epoch
+# PASS video first: prompt complete video despite slower analysis, one same-epoch tuple attachment, no replacement after ready drops, next epoch/partial/bad rejection and recovery
+# PASS frame wait metadata: late matching dual tuple, exact bounded zero-result fallback, no late relabeling, partial-frame and bad-frame rejection, source epoch cancellation/recovery
+PASS ModelSim: all 8 tests, including original vendor ERAM model
