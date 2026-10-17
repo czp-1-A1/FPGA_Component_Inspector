@@ -25,15 +25,15 @@ always @(negedge clk)if(checking && od)begin
  if(px>=16 && px<304 && ((py>=96 && py<160) || (py>=432 && py<496)))begin
   panel=1;probe=py>=432;rr=(py-(probe ? 432 : 96))/16;row=(py-(probe ? 432 : 96))%16;
   case(rr)
-   0:text_line=probe ? "CAL2 T080 OUT64 CORE16              " : "CAL1 T120 OUT64 CORE16              ";
+   0:text_line=probe ? "CAL2 T080 OUT32 CORE16              " : "CAL1 T120 OUT32 CORE16              ";
    1:text_line=expected_valid ? (probe ? "M255 MIN255 MAX255 SAT256           " : "M123 MIN045 MAX222 SAT128           ") : "M--- MIN--- MAX--- SAT---           ";
-   2:text_line=expected_valid ? (probe ? "W064 H064 A4096 CLIP1               " : "W032 H028 A0896 CLIP0               ") : "W--- H--- A---- CLIP-               ";
+   2:text_line=expected_valid ? (probe ? "W032 H032 A1024 CLIP1               " : "W024 H020 A0384 CLIP0               ") : "W--- H--- A---- CLIP-               ";
    3:text_line=!expected_valid ? "WAIT CURRENT FRAME                  " : probe ? "CLIP: RECENTER TARGET               " : "SAMPLE OK / ONE TARGET ONLY         ";
   endcase
   ink=!expected_valid ? 24'hb0c0d4 : probe ? 24'hffcc55 : 24'h74dbc7;
  end
  if(px>=16 && px<304 && py>=176 && py<208)begin
-  panel=1;row=(py-176)%16;text_line=py<192 ? "RAW100 GRAY080 EDGE120 BOTH140      " : "CLASSIFIER T100 / CAL NOT FROZEN    ";ink=24'hb0c0d4;
+  panel=1;row=(py-176)%16;text_line=py<192 ? "RAW100 GRAY080 EDGE120 BOTH140      " : "BODY100 HOLE080 / CAL NOT FROZEN    ";ink=24'hb0c0d4;
  end
  if(px>=16 && px<304 && py>=584 && py<600)begin panel=1;row=py-584;text_line="WAIT: EXP/GAIN CHANGED              ";ink=24'hffcc55;end
  if(panel)begin
@@ -41,15 +41,17 @@ always @(negedge clk)if(checking && od)begin
  end
  for(integer z=0;z<2;z++)begin
   cy=z ? 516 : 320;
-  if(px>=608 && px<672 && py>=cy-32 && py<cy+32 && (px==608 || px==671 || py==cy-32 || py==cy+31))begin outline=1;expected=24'hff66cc;end
-  if(px>=632 && px<648 && py>=cy-8 && py<cy+8 && (px==632 || px==647 || py==cy-8 || py==cy+7))begin outline=1;expected=24'hffff00;end
+  // The old64px outline must be gone.
+  if(px>=608 && px<672 && py>=cy-32 && py<cy+32 && (px==608 || px==671 || py==cy-32 || py==cy+31))begin outline=1;expected=24'h556677;end
+  if(px>=624 && px<656 && py>=cy-16 && py<cy+16 && (px==624 || px==655 || py==cy-16 || py==cy+15))begin outline=1;expected=24'h556677;end
+  if(px>=632 && px<648 && py>=cy-8 && py<cy+8 && (px==632 || px==647 || py==cy-8 || py==cy+7))begin outline=1;expected=24'h556677;end
  end
  if(panel || outline)begin if(rgb!==expected)$fatal(1,"calibration pixel%0d,%0d got%h expected%h valid%0d",px,py,rgb,expected,expected_valid);checked++;end
  n++;
 end
 function [63:0] probe_record(input integer second);
- begin probe_record=second ? {1'b1,1'b1,2'd1,8'd255,8'd255,8'd255,9'd256,13'd4096,7'd64,7'd64} :
- {1'b1,1'b0,2'd2,8'd123,8'd45,8'd222,9'd128,13'd896,7'd32,7'd28};end
+ begin probe_record=second ? {1'b1,1'b1,2'd1,8'd255,8'd255,8'd255,9'd256,13'd1024,7'd32,7'd32} :
+ {1'b1,1'b0,2'd2,8'd123,8'd45,8'd222,9'd128,13'd384,7'd24,7'd20};end
 endfunction
 task raster(input integer v);begin
  checking=0;eligible=v;reason=6;measurements={probe_record(1),probe_record(0)};expected_valid=v;
@@ -63,7 +65,7 @@ task raster(input integer v);begin
 end endtask
 initial begin
  repeat(5)@(negedge clk);rst=1;repeat(5)@(negedge clk);raster(1);raster(0);
- $display("PASS calibration OSD: two complete rasters, %0d independent glyph/border pixels, decimal core/area/clip values, both centers, WAIT, first-active atomic snapshot, three-clock sync",checked);$finish;
+ $display("PASS calibration OSD: two complete rasters, %0d independent glyph/border pixels, fixed yellow16px pink32px and old64px outlines absent, OUT32/core16 measurement values unchanged, both centers, WAIT, first-active atomic snapshot, three-clock sync",checked);$finish;
 end
 initial begin #22000000;$fatal(1,"calibration OSD timeout");end
 endmodule

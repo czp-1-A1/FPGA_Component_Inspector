@@ -1,0 +1,50 @@
+{
+  "empty_internal": {
+    "long": [
+      4,
+      5
+    ],
+    "short": [
+      4,
+      5
+    ],
+    "area": [
+      13,
+      21
+    ],
+    "fill": [
+      0.8125,
+      0.84
+    ]
+  },
+  "feed_internal": {
+    "long": [
+      8,
+      8
+    ],
+    "short": [
+      7,
+      8
+    ],
+    "area": [
+      47,
+      49
+    ],
+    "fill": [
+      0.765625,
+      0.8392857142857143
+    ]
+  },
+  "foreground_threshold": 80,
+  "body_foreground_threshold": 100,
+  "geometry_source": "Unclipped CAL80 outer32; connectedness not directly measured by panel",
+  "tolerance": "Observed pooled extents only; no invented physical tolerance",
+  "unobserved_gap_internal": 6,
+  "notes": [
+    "RAW100 yields fragments and must not teach empty/feed geometry",
+    "No sensor gain change: both gray photos show GAIN40",
+    "CAL core gray statistics are not full-component statistics",
+    "No independently held-out pockets or native raw frames supplied",
+    "Presence and placement quality remain separate; abnormalities coarsened by user request"
+  ]
+}

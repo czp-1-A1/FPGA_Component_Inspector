@@ -1,0 +1,472 @@
+{
+  "status": "PASS_POSE180_TRIAL_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+  "base_commit": "ae04f76db1e6c28441d30b375be9f9c04b6fbba4",
+  "source_manifest_sha256": "a849c95306adb592b760d3367ed522370ff991b7057ca9139da768e5e86ff3a4",
+  "input_count": 357,
+  "production_changes_from_ae": [
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/frame_shape_search.v",
+    "user_source/hdl_source/inspection_region_config.v",
+    "user_source/hdl_source/roi_statistics.v"
+  ],
+  "build_round": "pose180_r5_20261016",
+  "test_round": "pose180_r5_20261016",
+  "pose_cycles": {
+    "0": 51979,
+    "1": 45267,
+    "2": 51937,
+    "3": 52907,
+    "4": 49989,
+    "5": 41445,
+    "6": 43089,
+    "7": 41630,
+    "8": 45859,
+    "9": 52529,
+    "10": 92163
+  },
+  "field_runtime": {
+    "unit_slope_cycles": [
+      55179,
+      55007
+    ],
+    "processing_clock_mhz": 100,
+    "real_chain_fps": 27,
+    "real_chain_tail_budget_ns": 1295103.435999997,
+    "real_chain_result_latency_ns": [
+      635495.884,
+      667296.284,
+      667301.484,
+      667296.684,
+      667301.884
+    ]
+  },
+  "sdc_changed": false,
+  "metadata_bits": 631,
+  "tests": [
+    {
+      "name": "pose180",
+      "status": "PASS",
+      "console_sha256": "b1ae7cd640e6269df47d6212c2d67aca94af03c8a803716baf27af96fdd7c4ed"
+    },
+    {
+      "name": "field180",
+      "status": "PASS",
+      "console_sha256": "83de0893968b8a51ea22823d75692b021b57fc2589eecbd82fb99681749cc18b"
+    },
+    {
+      "name": "cal180_body",
+      "status": "PASS",
+      "console_sha256": "a5471aaa81999341e494449f5bf0fff16bbe69c3a92e8d2d420b4a362a3f36dd"
+    },
+    {
+      "name": "cal180_holes",
+      "status": "PASS",
+      "console_sha256": "25b8dd63bf3a75ed02eb6e0d91d39777c552f1d1e7caf11274767e27eddcc3b8"
+    },
+    {
+      "name": "regions",
+      "status": "PASS",
+      "console_sha256": "7c67a733e2ad0cc4460b4a8aa5d8c32f879cb973d3235d2b4433940ee7fe331a"
+    },
+    {
+      "name": "calibration_osd",
+      "status": "PASS",
+      "console_sha256": "25731dd68cf2f7a71766ce0e997af82971c97bdd058bdf7d92b5bb1016def5eb"
+    },
+    {
+      "name": "regions_osd",
+      "status": "PASS",
+      "console_sha256": "4b6ab4a7c38bf198e6b7e56eedbf3352bdb2852417312f61daa53494d2996c15"
+    },
+    {
+      "name": "local_wait",
+      "status": "PASS",
+      "console_sha256": "f186f8fc95dcd38bfd9215e4b8fd21565aa1f75693d8b15c5f1c4f78fb0c0481"
+    },
+    {
+      "name": "field_chain",
+      "status": "PASS",
+      "console_sha256": "c44d77dc7be0242f1e9d3399e37f883c279d0f51c22a689a5fb29c49e94e704a"
+    },
+    {
+      "name": "calibration_chain",
+      "status": "PASS",
+      "console_sha256": "9d5c43fbdf443b6d2a72ece6d10d7f0cf3df070d518bad07e3000ab0ea755b3e"
+    }
+  ],
+  "independent_hole_reference": {
+    "status": "PASS",
+    "cal80_rows": 4,
+    "cal_empty_records_compared": 4,
+    "full_patterns": 9,
+    "reference": "Independent decode of actual simulation records against manually transcribed camera CAL numbers; synthetic fixtures, not native-frame accuracy",
+    "body_t100_exact_geometry_unchanged": true,
+    "feed_and_gap_no_empty": true,
+    "small_bright_object_not_empty": true
+  },
+  "independent_calibration_reference": {
+    "status": "PASS",
+    "frames": [
+      2,
+      4,
+      5,
+      6,
+      7
+    ],
+    "reference": "RGB before display modes; scalar luma and independent NumPy 2x2 average/threshold/bbox/core statistics"
+  },
+  "td_version": "6.2.168116",
+  "routed_sta": {
+    "setup_ns": 0.1,
+    "setup_tns_ns": 0.0,
+    "hold_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_percent": 92.86
+  },
+  "resources": {
+    "slice": {
+      "used": 17214,
+      "total": 21216,
+      "percent": 81.14
+    },
+    "eram": {
+      "used": 104,
+      "total": 108,
+      "percent": 96.3
+    },
+    "dsp": {
+      "used": 26,
+      "total": 40,
+      "percent": 65.0
+    },
+    "pll": {
+      "used": 5,
+      "total": 6,
+      "percent": 83.33
+    }
+  },
+  "warnings": {
+    "syn_1": {
+      "HDL-5007": 41,
+      "HDL-5317": 21,
+      "HDL-5314": 20,
+      "HDL-5323": 4,
+      "HDL-5369": 1,
+      "HDL-5001": 6,
+      "HDL-5106": 2,
+      "SYN-5065": 1,
+      "SYN-5013": 10,
+      "SYN-5025": 3,
+      "SYN-5011": 12,
+      "SYN-5041": 3,
+      "PHY-5088": 3,
+      "USR-6135": 2
+    },
+    "phy_1": {
+      "PHY-5060": 1,
+      "PHY-5016": 5,
+      "PHY-5088": 6,
+      "PHY-5079": 1
+    }
+  },
+  "max_delays_matched": 40,
+  "max_delays_ignored": 0,
+  "gray_bits": [
+    {
+      "direction": "write",
+      "bit": 0,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[0]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[0]",
+      "budget_ns": 8,
+      "slack_ns": 7.394
+    },
+    {
+      "direction": "write",
+      "bit": 1,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[1]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[1]",
+      "budget_ns": 8,
+      "slack_ns": 7.25
+    },
+    {
+      "direction": "write",
+      "bit": 2,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[2]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[2]",
+      "budget_ns": 8,
+      "slack_ns": 6.324
+    },
+    {
+      "direction": "write",
+      "bit": 3,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[3]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[3]",
+      "budget_ns": 8,
+      "slack_ns": 6.193
+    },
+    {
+      "direction": "write",
+      "bit": 4,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[4]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[4]",
+      "budget_ns": 8,
+      "slack_ns": 7.255
+    },
+    {
+      "direction": "write",
+      "bit": 5,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[5]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[5]",
+      "budget_ns": 8,
+      "slack_ns": 6.859
+    },
+    {
+      "direction": "write",
+      "bit": 6,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[6]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[6]",
+      "budget_ns": 8,
+      "slack_ns": 7.312
+    },
+    {
+      "direction": "write",
+      "bit": 7,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[7]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[7]",
+      "budget_ns": 8,
+      "slack_ns": 6.961
+    },
+    {
+      "direction": "write",
+      "bit": 8,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[8]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[8]",
+      "budget_ns": 8,
+      "slack_ns": 7.266
+    },
+    {
+      "direction": "write",
+      "bit": 9,
+      "source": "u_isp_top/continuous_processing$bridge/write_bin[9]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[9]",
+      "budget_ns": 8,
+      "slack_ns": 7.114
+    },
+    {
+      "direction": "read",
+      "bit": 0,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[0]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[0]",
+      "budget_ns": 8,
+      "slack_ns": 7.087
+    },
+    {
+      "direction": "read",
+      "bit": 1,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[1]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[1]",
+      "budget_ns": 8,
+      "slack_ns": 7.28
+    },
+    {
+      "direction": "read",
+      "bit": 2,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[2]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[2]",
+      "budget_ns": 8,
+      "slack_ns": 7.15
+    },
+    {
+      "direction": "read",
+      "bit": 3,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[3]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[3]",
+      "budget_ns": 8,
+      "slack_ns": 6.89
+    },
+    {
+      "direction": "read",
+      "bit": 4,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[4]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[4]",
+      "budget_ns": 8,
+      "slack_ns": 7.222
+    },
+    {
+      "direction": "read",
+      "bit": 5,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[5]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[5]",
+      "budget_ns": 8,
+      "slack_ns": 7.062
+    },
+    {
+      "direction": "read",
+      "bit": 6,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[6]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[6]",
+      "budget_ns": 8,
+      "slack_ns": 6.889
+    },
+    {
+      "direction": "read",
+      "bit": 7,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[7]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[7]",
+      "budget_ns": 8,
+      "slack_ns": 7.118
+    },
+    {
+      "direction": "read",
+      "bit": 8,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[8]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[8]",
+      "budget_ns": 8,
+      "slack_ns": 7.019
+    },
+    {
+      "direction": "read",
+      "bit": 9,
+      "source": "u_isp_top/continuous_processing$bridge/read_bin[9]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[9]",
+      "budget_ns": 8,
+      "slack_ns": 7.228
+    }
+  ],
+  "gray_constraint_counts": [
+    20,
+    20,
+    0,
+    0
+  ],
+  "gray_physical_paths": [
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[6]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[0]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.087
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[1]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.28
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[3]_syn_2.imb",
+      "budget_ns": 8.0,
+      "slack_ns": 7.15
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[3]_syn_2.ia",
+      "budget_ns": 8.0,
+      "slack_ns": 6.89
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[4]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.222
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[5]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.062
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[7]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 6.889
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[6]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.118
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.019
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[4]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.228
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[1]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.id",
+      "budget_ns": 8.0,
+      "slack_ns": 7.394
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ic",
+      "budget_ns": 8.0,
+      "slack_ns": 7.25
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[3]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[2]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 6.324
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[3]_syn_2.ima",
+      "budget_ns": 8.0,
+      "slack_ns": 6.193
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[4]_syn_2.id",
+      "budget_ns": 8.0,
+      "slack_ns": 7.255
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[5]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[5]_syn_2.ia",
+      "budget_ns": 8.0,
+      "slack_ns": 6.859
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[7]_syn_2.clk",
+      "destination": "u_video_in/metadata$crossing/payload_reg[84]_syn_2.imb",
+      "budget_ns": 8.0,
+      "slack_ns": 6.961
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[6]_syn_2.id",
+      "budget_ns": 8.0,
+      "slack_ns": 7.312
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.266
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[9]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.114
+    }
+  ],
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "c8a5a49ec50263b2bf4d53ad009dc6e4d5c756837fe8951a1b5ee5e1f583e0df"
+  },
+  "hardware": "NOT_PROGRAMMED_BY_ASSISTANT_PHYSICAL_CLASSIFICATION_PENDING",
+  "quality_scope": "Trial presence/review thresholds from human-labeled screen scenes; no claimed measured angle/displacement or defect-subtype classifier; whole-tape rotation is not itself a placement defect.",
+  "resource_assessment": "Reuse existing masks, ignored map and Sobel; no new image RAM. Internal80% budget limits further features. Preserve CAL until physical verification.",
+  "warning_boundary": "Historical local camera routing, PLL/DDR feedback and I/O delay coverage limits remain. No all-interface timing-proof or zero-warning claim."
+}

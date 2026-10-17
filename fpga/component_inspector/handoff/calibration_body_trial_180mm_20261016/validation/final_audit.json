@@ -1,0 +1,648 @@
+{
+  "status": "PASS_BODY_MINIMUM_TRIAL_SOFTWARE_ROUTED_PHYSICAL_CLASSIFICATION_PENDING",
+  "base_commit": "ae04f76db1e6c28441d30b375be9f9c04b6fbba4",
+  "source_commit_at_build": null,
+  "source_manifest_sha256": "cc7425ff9cf324562a28a118913cebb8e6181be410821bb6592e9b84e663b11c",
+  "input_count": 353,
+  "build_source_manifest_sha256": "f4d3ae46fb12f787e9044fd5dbfabbce66e9eee664acd63a2ba4da0c4f6bc2d0",
+  "build_round": "r1",
+  "test_round": "r2",
+  "production_identical_between_rounds": true,
+  "production_changes": [
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/inspection_region_config.v",
+    "user_source/hdl_source/roi_statistics.v"
+  ],
+  "measurement_window": 32,
+  "core_window": 16,
+  "thresholds": [
+    100,
+    80,
+    120,
+    140
+  ],
+  "metadata_bits": 631,
+  "classifier_changed": true,
+  "recipe_delta": {
+    "body_long_min": [
+      26,
+      22
+    ],
+    "body_short_min": [
+      20,
+      18
+    ],
+    "other_fields_changed": false,
+    "basis": "CAL64 observed internal long22/23 short18; observed minima only, no new tolerance inferred"
+  },
+  "sdc_changed": false,
+  "tests": [
+    {
+      "name": "cal180_body",
+      "status": "PASS",
+      "console_sha256": "53fdfb1e3f2e977708a3cad0b5f7dcf5873eb0bae30c0ab81705622b14aa2bb4"
+    },
+    {
+      "name": "local_wait",
+      "status": "PASS",
+      "console_sha256": "7db70d7f17dd72ea78fcdb92765e3c22ce9366ef191e4fbb0f98e39fb51e0eda"
+    },
+    {
+      "name": "calibration_chain",
+      "status": "PASS",
+      "console_sha256": "2a761e1795b6a56c4d9058291179a3f881926fc95bca9d11064a227b0d2e0d62"
+    },
+    {
+      "name": "regions_osd",
+      "status": "PASS",
+      "console_sha256": "fc7943ef156823c5bede83abdaaa3aaf10ed29d364e140eea57a58cc1ab9c461"
+    },
+    {
+      "name": "regions",
+      "status": "PASS",
+      "console_sha256": "f5fa24f734a21f3f7d85cd9e700443b52da3c080d4bc1a2eeb92128ad962f28c"
+    }
+  ],
+  "independent_calibration_reference": {
+    "status": "PASS",
+    "frames": [
+      2,
+      4,
+      5,
+      6,
+      7
+    ],
+    "reference": "RGB before display modes; scalar luma and independent NumPy 2x2 average/threshold/bbox/core statistics"
+  },
+  "td_version": "6.2.168116",
+  "routed_sta": {
+    "setup_ns": 0.105,
+    "hold_ns": 0.02,
+    "setup_tns_ns": 0.0,
+    "hold_tns_ns": 0.0,
+    "sta_percent": 92.85
+  },
+  "resources": {
+    "slice": {
+      "used": 16849,
+      "total": 21216,
+      "percent": 79.42
+    },
+    "eram": {
+      "used": 94,
+      "total": 108,
+      "percent": 87.04
+    },
+    "dsp": {
+      "used": 26,
+      "total": 40,
+      "percent": 65.0
+    },
+    "pll": {
+      "used": 5,
+      "total": 6,
+      "percent": 83.33
+    }
+  },
+  "warnings": {
+    "syn_1": {
+      "HDL-5007": 41,
+      "HDL-5317": 21,
+      "HDL-5314": 20,
+      "HDL-5323": 4,
+      "HDL-5369": 1,
+      "HDL-5001": 5,
+      "HDL-5106": 2,
+      "SYN-5065": 1,
+      "SYN-5013": 10,
+      "SYN-5025": 3,
+      "SYN-5011": 12,
+      "SYN-5041": 3,
+      "PHY-5088": 3,
+      "USR-6135": 2
+    },
+    "phy_1": {
+      "PHY-5060": 1,
+      "PHY-5016": 5,
+      "PHY-5088": 6,
+      "PHY-5079": 1
+    }
+  },
+  "warning_count_delta_from_ae_observer": {
+    "syn_1": {
+      "added": {},
+      "removed": {}
+    },
+    "phy_1": {
+      "added": {},
+      "removed": {
+        "PHY-5088": 2,
+        "PHY-5079": 1
+      }
+    }
+  },
+  "max_delays_matched": 40,
+  "max_delays_ignored": 0,
+  "gray_bits": [
+    {
+      "direction": "write",
+      "bit": 0,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[0]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[0]",
+      "budget_ns": 8,
+      "slack_ns": 7.172
+    },
+    {
+      "direction": "write",
+      "bit": 1,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[1]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[1]",
+      "budget_ns": 8,
+      "slack_ns": 6.958
+    },
+    {
+      "direction": "write",
+      "bit": 2,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[2]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[2]",
+      "budget_ns": 8,
+      "slack_ns": 6.968
+    },
+    {
+      "direction": "write",
+      "bit": 3,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[3]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[3]",
+      "budget_ns": 8,
+      "slack_ns": 7.225
+    },
+    {
+      "direction": "write",
+      "bit": 4,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[4]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[4]",
+      "budget_ns": 8,
+      "slack_ns": 7.24
+    },
+    {
+      "direction": "write",
+      "bit": 5,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[5]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[5]",
+      "budget_ns": 8,
+      "slack_ns": 6.922
+    },
+    {
+      "direction": "write",
+      "bit": 6,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[6]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[6]",
+      "budget_ns": 8,
+      "slack_ns": 6.822
+    },
+    {
+      "direction": "write",
+      "bit": 7,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[7]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[7]",
+      "budget_ns": 8,
+      "slack_ns": 7.179
+    },
+    {
+      "direction": "write",
+      "bit": 8,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[8]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[8]",
+      "budget_ns": 8,
+      "slack_ns": 7.305
+    },
+    {
+      "direction": "write",
+      "bit": 9,
+      "source": "u_isp_top/continuous_processing$bridge/write_bin[9]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[9]",
+      "budget_ns": 8,
+      "slack_ns": 7.3
+    },
+    {
+      "direction": "read",
+      "bit": 0,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[0]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[0]",
+      "budget_ns": 8,
+      "slack_ns": 7.118
+    },
+    {
+      "direction": "read",
+      "bit": 1,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[1]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[1]",
+      "budget_ns": 8,
+      "slack_ns": 7.154
+    },
+    {
+      "direction": "read",
+      "bit": 2,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[2]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[2]",
+      "budget_ns": 8,
+      "slack_ns": 7.352
+    },
+    {
+      "direction": "read",
+      "bit": 3,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[3]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[3]",
+      "budget_ns": 8,
+      "slack_ns": 7.075
+    },
+    {
+      "direction": "read",
+      "bit": 4,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[4]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[4]",
+      "budget_ns": 8,
+      "slack_ns": 7.337
+    },
+    {
+      "direction": "read",
+      "bit": 5,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[5]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[5]",
+      "budget_ns": 8,
+      "slack_ns": 6.89
+    },
+    {
+      "direction": "read",
+      "bit": 6,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[6]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[6]",
+      "budget_ns": 8,
+      "slack_ns": 7.109
+    },
+    {
+      "direction": "read",
+      "bit": 7,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[7]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[7]",
+      "budget_ns": 8,
+      "slack_ns": 6.67
+    },
+    {
+      "direction": "read",
+      "bit": 8,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[8]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[8]",
+      "budget_ns": 8,
+      "slack_ns": 7.073
+    },
+    {
+      "direction": "read",
+      "bit": 9,
+      "source": "u_isp_top/continuous_processing$bridge/read_bin[9]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[9]",
+      "budget_ns": 8,
+      "slack_ns": 7.298
+    }
+  ],
+  "gray_physical_report": {
+    "status": "PASS",
+    "logical_bits": 20,
+    "constraint_matched_paths": 22,
+    "constraint_dominated_paths": 22,
+    "constraint_ignored_paths": 0,
+    "unique_reported_physical_endpins": 21,
+    "reported_paths": 29,
+    "all_matched_and_dominant": true,
+    "minimum_slack_ns": 3.797,
+    "note": "Exception summary counts22 matching paths, not logical bus bits. Retain the separate20 logical bindings at8ns; additionally check29 reported physical data/control paths across21 endpins at8ns. Global routed STA verifies all applied constraints. No constraint or RTL change.",
+    "paths": [
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[1]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[3]_syn_2.ie",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "MIPI_RX_BYTE_CLK"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.154
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[1]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 5.785
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[9]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[9]_syn_2.imf",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "pll_clk_100m",
+          "MIPI_RX_BYTE_CLK"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.298
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[9]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 4.149
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[0]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[0]_syn_2.imf",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "pll_clk_100m",
+          "MIPI_RX_BYTE_CLK"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.118
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[0]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 5.154
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[2]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ic",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "pll_clk_100m",
+          "MIPI_RX_BYTE_CLK"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.352
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[2]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[3]_syn_2.imf",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "MIPI_RX_BYTE_CLK"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.075
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[2]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 3.797
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[4]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[0]_syn_2.ie",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "MIPI_RX_BYTE_CLK"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.337
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[4]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 4.349
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[5]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.imf",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "pll_clk_100m",
+          "MIPI_RX_BYTE_CLK"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 6.89
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[5]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 4.237
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[6]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[7]_syn_2.ie",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "MIPI_RX_BYTE_CLK"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.109
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[6]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 4.876
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[7]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[7]_syn_2.imf",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "pll_clk_100m",
+          "MIPI_RX_BYTE_CLK"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 6.67
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[7]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 4.931
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[8]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[9]_syn_2.ie",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "MIPI_RX_BYTE_CLK"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.073
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[8]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "pll_clk_100m",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 4.297
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[3]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[2]_syn_2.imf",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "MIPI_RX_BYTE_CLK",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 6.968
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[4]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync2_reg[2]_syn_2.ie",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "MIPI_RX_BYTE_CLK",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.225
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[7]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[6]_syn_2.id",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "MIPI_RX_BYTE_CLK",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 6.822
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[9]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[9]_syn_2.id",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "MIPI_RX_BYTE_CLK",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.3
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[0]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.imf",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "MIPI_RX_BYTE_CLK",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.172
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[1]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.imf",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "MIPI_RX_BYTE_CLK",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 6.958
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[4]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync2_reg[4]_syn_2.ie",
+        "same_logical_bit": false,
+        "clock_domains": [
+          "MIPI_RX_BYTE_CLK",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.24
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[5]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[5]_syn_2.imf",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "MIPI_RX_BYTE_CLK",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 6.922
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[7]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[7]_syn_2.id",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "MIPI_RX_BYTE_CLK",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.179
+      },
+      {
+        "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[8]_syn_2.clk",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.imf",
+        "same_logical_bit": true,
+        "clock_domains": [
+          "MIPI_RX_BYTE_CLK",
+          "pll_clk_100m"
+        ],
+        "budget_ns": 8.0,
+        "slack_ns": 7.305
+      }
+    ]
+  },
+  "warning_boundary": "Historical camera-output local routing, PLL feedback, and incomplete I/O-delay coverage remain; review clock-net identities in actual logs. No all-interface timing-proof claim.",
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "cb0a2636b2512c36140b96bd1b01229029ae80457efc457a4203bcc00dc95cda"
+  },
+  "hardware": "NO_JTAG_OR_FLASH_PHYSICAL_DATA_PENDING",
+  "scope": "Body-minimum-only trial because user is away from board; T100, maxima, empty/feed/ref unchanged. CAL32 retained. Not a complete180mm calibration or physical-accuracy claim."
+}

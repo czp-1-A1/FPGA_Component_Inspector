@@ -1,0 +1,85 @@
+{
+  "status": "PAIR_REVIEW_ENOUGH_FOR_SOFTWARE_DIAGNOSIS_NOT_PHYSICAL_PASS",
+  "videos": [
+    {
+      "id": 1,
+      "path": "D:/1845972392.mp4",
+      "bytes": 1106653,
+      "sha256": "23395ab426ef0817743603699b33c12b4f5dd622b3d208dfe9337710b6b5b2e9",
+      "duration_seconds": 5.96,
+      "frames": 8,
+      "truth": "Same position per user. R2 fixed CAL aligned to small empty-pocket row; R1 probe on bright background (CLIP1), excluded from hole calibration.",
+      "user_reported_mode": "GRAY",
+      "observed_osd_mode": "RAW",
+      "source_kind": "phone_recorded_monitor_video"
+    },
+    {
+      "id": 2,
+      "path": "D:/1233182389.mp4",
+      "bytes": 878556,
+      "sha256": "bb22332235204718d22215659ca6847ab30bfa830cc5f9b260eaa2178e5f01d2",
+      "duration_seconds": 4.54,
+      "frames": 8,
+      "truth": "Same position per user. R2 fixed CAL aligned to small empty-pocket row; R1 probe on bright background (CLIP1), excluded from hole calibration.",
+      "user_reported_mode": "RAW",
+      "observed_osd_mode": "GRAY",
+      "source_kind": "phone_recorded_monitor_video"
+    }
+  ],
+  "review": "16 evenly spaced frames plus enlarged CAL details; no exhaustive frame metrics",
+  "evidence": [
+    {
+      "path": "video_01_sample_02.jpg",
+      "sha256": "7d1f884025da609beb2c41339e37870eed51faceabab41c12fb5a3e16bf5c260",
+      "derivation": "Evenly spaced sample resized to1280px; original monitor video, not native FPGA camera pixels"
+    },
+    {
+      "path": "video_02_sample_02.jpg",
+      "sha256": "848f54c795c670b9c7f9f10e954295a9f910784964d0bd69ab2864087a71fef6",
+      "derivation": "Evenly spaced sample resized to1280px; original monitor video, not native FPGA camera pixels"
+    }
+  ],
+  "representative_cal2": [
+    {
+      "file": "1845972392.mp4",
+      "sample": 2,
+      "osd_mode": "RAW",
+      "threshold": 100,
+      "mean": 64,
+      "minimum": 39,
+      "maximum": 111,
+      "saturation": 0,
+      "width": 4,
+      "height": 6,
+      "area": 16,
+      "clip": 0
+    },
+    {
+      "file": "1233182389.mp4",
+      "sample": 2,
+      "osd_mode": "GRAY",
+      "threshold": 80,
+      "mean": 63,
+      "minimum": 38,
+      "maximum": 114,
+      "saturation": 0,
+      "width": 10,
+      "height": 10,
+      "area": 84,
+      "clip": 0
+    }
+  ],
+  "observations": [
+    "R2 CAL mean is close between modes at same target; sampled CAL2 has SAT0 and CLIP0. Does not establish absence of lamp ripple or stable native per-pixel intensity.",
+    "Static target labels/candidate choices still change. Current production BODY100/HOLE080 is independent of display mode; CAL mode-dependent geometry alone is not a reason to retune the entire lighting setup.",
+    "RAW sampled area16/20 corresponds to4/5 thresholded 2x2 cells, exceeding prior RAW sample maximum3 used for bright_count guard; this is a boundary risk, not proof of exact guard failure because CAL >=100, guard >100 and connected-component membership differ.",
+    "R1 fixed CAL is on background with CLIP1; bottom MEAN~151 must not be treated as empty-pocket brightness.",
+    "No additional full reshoot required; existing evidence sufficient to start software investigation. Physical regression remains necessary after a fix."
+  ],
+  "next_steps": [
+    "Reproduce/diagnose missing metadata in tilted carrier scenes separately from classification",
+    "Check per-component small-hole decision, bright_count and dark reference; derive tolerance from evidence rather than unconditionally loosening all gates",
+    "Prevent feed-hole/unknown fragments competing as pocket results; stabilize association before adding display hysteresis"
+  ],
+  "work_scope": "Analysis/documentation only; no production RTL changes/new bit/build/JTAG/commit/push; original videos and frozen package unchanged"
+}

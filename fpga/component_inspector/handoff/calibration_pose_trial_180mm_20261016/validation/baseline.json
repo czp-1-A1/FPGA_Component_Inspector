@@ -1,0 +1,21 @@
+{
+  "inputs": 357,
+  "source_manifest_sha256": "a849c95306adb592b760d3367ed522370ff991b7057ca9139da768e5e86ff3a4",
+  "tests": [
+    "pose180",
+    "field180",
+    "cal180_body",
+    "cal180_holes",
+    "regions",
+    "calibration_osd",
+    "regions_osd",
+    "local_wait",
+    "field_chain",
+    "calibration_chain"
+  ],
+  "rtl_delta_from_field_r8": [
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/frame_shape_search.v",
+    "user_source/hdl_source/inspection_region_config.v"
+  ]
+}

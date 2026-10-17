@@ -1,0 +1,33 @@
+{
+  "status": "PASS_HANDOFF_INTEGRITY_AND_4_TARGETED_REPLAYS_DATA_REVIEW_PENDING_PHYSICAL_VALIDATION",
+  "source_commit": "ae04f76db1e6c28441d30b375be9f9c04b6fbba4",
+  "source_manifest_sha256": "92145d7e0f06f47934446bc27ddeec2f40e08151256724b0e9ce43cffcba5f85",
+  "handoff_payload": 563,
+  "frozen_inputs": 352,
+  "teammate_archived_tests": 18,
+  "local_replayed_tests": [
+    "calibration_probe",
+    "local_wait",
+    "hd_monitor",
+    "hd_csi_monitor"
+  ],
+  "dataset": "fpga/component_inspector/tools/shape3528/calibration_180mm/session_observer_1092_40_20261016/dataset.json",
+  "images": 3,
+  "readings": 6,
+  "complete_geometry_readings": 4,
+  "clipped_geometry_excluded": 2,
+  "current_scope": "PRESENT_EMPTY_FIRST",
+  "feed_hole_exclusion": "UNVERIFIED",
+  "window32": "PROPOSED_THEN_PAUSED_NO_IMPLEMENTATION",
+  "rtl_changed": false,
+  "formal_recipe_changed": false,
+  "new_bit_generated": false,
+  "jtag_or_flash": false,
+  "git_push": false,
+  "notes": [
+    "User explicitly authorized continuation at180mm/1092/40; no old confirmation gate re-applied.",
+    "User confirmed64px feed-hole measurement always includes external bright background.",
+    "User asked to proceed without feed-hole data; no complete-system feed-hole rejection claim.",
+    "Need distinct physical-pocket validation before formal parameter/accuracy acceptance; current photos not SHA-bound onsite proof."
+  ]
+}

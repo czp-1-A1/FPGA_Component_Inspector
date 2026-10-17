@@ -1,0 +1,7 @@
+# PASS pose180: 11 frames, 26 independent state checks, smaller normal, standing, low-gray flipped, whole-tape rotation, mixed P/E, feed/gap/tiny rejection, ten-body population, cancel
+# PASS field180: 11 frames, 40 checked results, five bright cells, adjacent mixed pockets, feed-only rejection, +/-slope bright background under1.2ms, subpixel translation of both CAL80 sizes, cancel
+# PASS cal180 body: 7 full frames, 19 checked records, exact measured36x44/A1456 and36x46/A1516, old-minimum counterfactual, dual zones, boundary and odd-phase translation, outside center, zero-mask and one-cell not EMPTY, smaller42px body remains PRESENT, cancel
+# PASS cal180 holes: 9 full frames, 27 records, exact CAL80 W/H/A, CAL100 bodies unchanged with low fringe, feed rejection and high-fragment removal, mixed zones, bright border, unobserved gap, zone-edge and outside-center, small bright object not EMPTY, cancel
+# PASS local WAIT: 512 combinations, exact original validity and each diagnostic gate; metadata absence distinguished
+# PASS calibration OSD: two complete rasters, 103120 independent glyph/border pixels, OUT32 measurements retained, pink32px and old64px outlines absent, unchanged16px core/area/clip values, both centers, WAIT, first-active atomic snapshot, three-clock sync
+# PASS field chain: native line-clock gaps, LP0CF0 wall-clock, 27-FPS source start-to-start, all four views, live WB-canceled zero-result video, same-slot late dual tuples, full exact RGB rasters=11 pixels=10452615 OF=0 UF=0

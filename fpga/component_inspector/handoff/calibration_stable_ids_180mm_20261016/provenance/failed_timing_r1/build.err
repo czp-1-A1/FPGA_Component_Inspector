@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\stable_ids_r1_20261016\scripts\replay.py", line 157, in <module>
+    main()
+  File "D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\stable_ids_r1_20261016\scripts\replay.py", line 152, in main
+    raise RuntimeError(f'Routed {kind} not passing; do not publish bit: {report}')
+RuntimeError: Routed SWNS not passing; do not publish bit: D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\stable_ids_r1_20261016\work\td_project\camera_to_dsi_display_Runs\phy_1\camera_to_dsi_display_pr.timing

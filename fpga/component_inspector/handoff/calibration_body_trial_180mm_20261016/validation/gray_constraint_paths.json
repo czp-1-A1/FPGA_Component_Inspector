@@ -1,0 +1,333 @@
+{
+  "status": "PASS",
+  "logical_bits": 20,
+  "constraint_matched_paths": 22,
+  "constraint_dominated_paths": 22,
+  "constraint_ignored_paths": 0,
+  "unique_reported_physical_endpins": 21,
+  "reported_paths": 29,
+  "all_matched_and_dominant": true,
+  "minimum_slack_ns": 3.797,
+  "note": "Exception summary counts22 matching paths, not logical bus bits. Retain the separate20 logical bindings at8ns; additionally check29 reported physical data/control paths across21 endpins at8ns. Global routed STA verifies all applied constraints. No constraint or RTL change.",
+  "paths": [
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[1]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[3]_syn_2.ie",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "MIPI_RX_BYTE_CLK"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.154
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[1]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 5.785
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[9]_syn_2.imf",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "pll_clk_100m",
+        "MIPI_RX_BYTE_CLK"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.298
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 4.149
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[0]_syn_2.imf",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "pll_clk_100m",
+        "MIPI_RX_BYTE_CLK"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.118
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 5.154
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ic",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "pll_clk_100m",
+        "MIPI_RX_BYTE_CLK"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.352
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[3]_syn_2.imf",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "MIPI_RX_BYTE_CLK"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.075
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 3.797
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[0]_syn_2.ie",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "MIPI_RX_BYTE_CLK"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.337
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 4.349
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[5]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.imf",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "pll_clk_100m",
+        "MIPI_RX_BYTE_CLK"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 6.89
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[5]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 4.237
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[6]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[7]_syn_2.ie",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "MIPI_RX_BYTE_CLK"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.109
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[6]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 4.876
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[7]_syn_2.imf",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "pll_clk_100m",
+        "MIPI_RX_BYTE_CLK"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 6.67
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 4.931
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[9]_syn_2.ie",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "MIPI_RX_BYTE_CLK"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.073
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.ceb",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "pll_clk_100m",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 4.297
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[3]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[2]_syn_2.imf",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "MIPI_RX_BYTE_CLK",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 6.968
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync2_reg[2]_syn_2.ie",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "MIPI_RX_BYTE_CLK",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.225
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[6]_syn_2.id",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "MIPI_RX_BYTE_CLK",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 6.822
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[9]_syn_2.id",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "MIPI_RX_BYTE_CLK",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.3
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.imf",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "MIPI_RX_BYTE_CLK",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.172
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[1]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.imf",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "MIPI_RX_BYTE_CLK",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 6.958
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync2_reg[4]_syn_2.ie",
+      "same_logical_bit": false,
+      "clock_domains": [
+        "MIPI_RX_BYTE_CLK",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.24
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[5]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[5]_syn_2.imf",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "MIPI_RX_BYTE_CLK",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 6.922
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[7]_syn_2.id",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "MIPI_RX_BYTE_CLK",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.179
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.imf",
+      "same_logical_bit": true,
+      "clock_domains": [
+        "MIPI_RX_BYTE_CLK",
+        "pll_clk_100m"
+      ],
+      "budget_ns": 8.0,
+      "slack_ns": 7.305
+    }
+  ]
+}

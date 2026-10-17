@@ -1,0 +1,41 @@
+{
+  "status": "RAW100_MASK_AMBIGUITY_CONFIRMED_NOT_CALIBRATION_PASS",
+  "foreground_counts_internal": [
+    0,
+    0,
+    0,
+    1
+  ],
+  "all_clip_zero": true,
+  "fit_geometry_now": false,
+  "synthetic_counterexample": {
+    "source": "Constructed pixels matching upper empty/feed core M/MIN/MAX, not native image capture",
+    "checks": [
+      {
+        "mean": 57,
+        "min": 38,
+        "max": 95,
+        "foreground_cells": 0,
+        "dark_cells": 256
+      },
+      {
+        "mean": 71,
+        "min": 41,
+        "max": 98,
+        "foreground_cells": 0,
+        "dark_cells": 256
+      }
+    ],
+    "identical_foreground_and_dark_planes_at_100": true
+  },
+  "findings": [
+    "32px window solves external-background clipping; CLIP0 is not proof of a visible complete feature.",
+    "New empty masks are both zero; feed-hole masks are zero or one internal cell.",
+    "At T100 current detector cannot recover full empty/feed geometry; zero masks must not be taught as zero-sized holes.",
+    "Old CAL64 body dimensions36x44/46 and empty4/6x8 remain archived, but do not resolve the new zero-mask empty case.",
+    "GRAY changes observer threshold to80 only; current formal classifier remains100. Changing display mode does not itself fix classification.",
+    "Geometry sampled under a different threshold cannot silently be mixed into the T100 recipe.",
+    "Independent physical validation and formal CAL-off release remain pending."
+  ],
+  "next_action": "Same existing OUT32 observer, switch GRAY/T080 and measure one complete true empty and feed hole per CAL1/CAL2, CLIP0 and PIPE OK. No rebuild needed. Decide threshold/recipe only after nonzero complete masks; do not infer zero-sized holes."
+}

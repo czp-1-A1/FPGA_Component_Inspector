@@ -23,7 +23,9 @@ function integer image(input integer xx,yy);
   cx=centers[k];
   if(pattern!=2 && pattern!=7 && !(pattern==5 && k<2))begin
    if(pattern==1 && (k==1 || k==2))begin
-    dx=xx-cx;dy=yy-rows[k];if(dx*dx+dy*dy<=81)image=150;
+    // New measured CAL80 empty8x8/A52; all four source pixels per cell agree.
+    dx=xx-cx+4;dy=yy-rows[k]+4;
+    if(dx>=0 && dx<8 && dy>=0 && dy<8 && !((dx<2 && dy<2) || (dx>=6 && dy<2) || (dx<2 && dy>=6)))image=90;
    end else if(xx>=cx-32 && xx<cx+32 && yy>=rows[k]-38 && yy<rows[k]+38)image=180;
   end
  end
@@ -32,8 +34,12 @@ function integer image(input integer xx,yy);
     (xx>=1188 && xx<1252 && yy>=322 && yy<398))image=180;
  // Feed holes within the zones are not inspection pockets.
  if(pattern==7)begin
-  dx=xx-640;dy=yy-320;if(dx*dx+dy*dy<=256)image=150;
-  dx=xx-640;dy=yy-520;if(dx*dx+dy*dy<=256)image=150;
+  // Measured CAL80 feed16x16/A196, deliberately within each effective zone.
+  for(integer k=0;k<2;k++)begin
+   dx=xx-632;dy=yy-(k==0 ? 312 : 512);
+   if(dx>=0 && dx<16 && dy>=0 && dy<16 && !((dx<4 && dy<4) || (dx>=12 && dy<4) ||
+     (dx<4 && dy>=12) || (dx>=12 && dy>=12 && !(dx<14 && dy<14))))image=90;
+  end
  end
  end
 endfunction

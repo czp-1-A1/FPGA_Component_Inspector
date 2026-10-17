@@ -1,7 +1,146 @@
 {
-  "phase": "AWAITING_180MM_CALIBRATION",
-  "handoff": "../handoff/calibration_pending_180mm_20261016/README.md",
-  "candidate": "../handoff/calibration_pending_180mm_20261016/candidate/V12_CAL180_observer_1092_40_20261016.bit",
-  "sha256": "290c7b12a0da9399ebe95ddd88ab1ba0dc3b110ead3d7f809b9b3f062b3fc5de",
-  "stable_pointer_changed": false
+  "phase": "PASS_STABLE_IDS_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+  "handoff": "../handoff/calibration_stable_ids_180mm_20261016/README.md",
+  "candidate": "../handoff/calibration_stable_ids_180mm_20261016/candidate/V12_POSE180_STABLE_IDS_1092_40_20261016.bit",
+  "sha256": "16bd8beb593b1bf43f2eb4bfea3d3b58d1f5dbc1adca66644874a30e4f8b0e1e",
+  "stable_pointer_changed": false,
+  "received_dataset": "../tools/shape3528/calibration_180mm/session_holes80_1092_40_20261016/dataset.json",
+  "continuation_scope": "STABLE_DISPLAY_NUMBERING_AND_PRIMARY_SUMMARY_REMOVAL_PHYSICAL_CHECK_PENDING",
+  "formal_recipe_changed": false,
+  "window32_candidate_created": true,
+  "pending_cal32": null,
+  "source_manifest_sha256": "752d1479c262e4fc4c7f138a4c38a3f470cbe7c14a812828d934b61eac29be54",
+  "tests": 3,
+  "full_package": {
+    "path": "fpga/component_inspector/handoff/calibration_stable_ids_180mm_20261016/V12_POSE180_STABLE_IDS_1092_40_20261016_full.zip",
+    "sha256": "ad8d4308b29b2792d729eb642f5ee4e01fdaca2cc76dc9c2dea7e94a6f547ce3",
+    "bytes": 39276794
+  },
+  "previous_cal64": {
+    "path": "../handoff/calibration_pending_180mm_20261016/candidate/V12_CAL180_observer_1092_40_20261016.bit",
+    "sha256": "290c7b12a0da9399ebe95ddd88ab1ba0dc3b110ead3d7f809b9b3f062b3fc5de"
+  },
+  "latest_dataset": "../tools/shape3528/calibration_180mm/session_field_return_1092_40_20261016/review.json",
+  "measurement_review": "All21 human-labeled states retained including misses; P10-P12 standing,P13-P15 flipped; new envelope is trial tolerance, not exact native measurements.",
+  "next_action": "User may verify vertical/slightly tilted same-pair numbering and card positions using this new file; one target removed clears its result without renumbering the other; all absent clears old boxes. Detector thresholds unchanged.",
+  "pending_body180_trial": null,
+  "previous_cal32": {
+    "candidate": "../handoff/calibration_hole32_180mm_20261016/candidate/V12_CAL180_hole32_1092_40_20261016.bit",
+    "sha256": "89e25b78f42451e125b5e2f73f00c0bcfbc069cac4d2622fdb889582dfe68233"
+  },
+  "body_minima_only_trial": false,
+  "previous_body_trial": {
+    "candidate": "../handoff/calibration_body_trial_180mm_20261016/candidate/V12_CAL180_body_trial_1092_40_20261016.bit",
+    "sha256": "cb0a2636b2512c36140b96bd1b01229029ae80457efc457a4203bcc00dc95cda",
+    "source_manifest_sha256": "cc7425ff9cf324562a28a118913cebb8e6181be410821bb6592e9b84e663b11c"
+  },
+  "formal_release_unchanged": true,
+  "trial_recipe_changed": true,
+  "small_hole_trial": true,
+  "short_bit_path": "D:/fpga_download/3528_stable_ids_16bd8beb.bit",
+  "physical_validation": false,
+  "field_video_review": "开发实施/74_A_现场视频不稳定复核与最小补拍.md",
+  "field_evidence": "开发实施/验收记录/20261016_A_现场视频复核_轮次1/review.json",
+  "field_pair_evidence": "开发实施/验收记录/20261016_A_现场视频复核_轮次2/review.json",
+  "previous_holes80_trial": {
+    "candidate": "../handoff/calibration_holes80_trial_180mm_20261016/candidate/V12_CAL180_holes80_trial_1092_40_20261016.bit",
+    "sha256": "1f44ce56298285ffd4eed329fdc657047f72887325a956f16720bdd07435b3cf",
+    "physical_status": "FIELD_UNSTABLE_SUPERSEDED_BY_FIELD_FIX_TRIAL"
+  },
+  "field_runtime": {
+    "unit_slope_cycles": [
+      55179,
+      55007
+    ],
+    "processing_clock_mhz": 100,
+    "real_chain_fps": 27,
+    "real_chain_tail_budget_ns": 1295103.435999997,
+    "real_chain_result_latency_ns": [
+      635495.884,
+      667296.284,
+      667301.484,
+      667296.684,
+      667301.884
+    ]
+  },
+  "formal_release_changed": false,
+  "field_fix_evidence": "开发实施/验收记录/20261016_A_现场稳定性修复_轮次8.md",
+  "previous_fieldfix_trial": {
+    "phase": "PASS_FIELD180_TRIAL_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+    "candidate": "../handoff/calibration_fieldfix_180mm_20261016/candidate/V12_FIELD180_fieldfix_1092_40_20261016.bit",
+    "sha256": "1bbfb6f673314627b50602c66031936e09060c380a6958ae18ac69a2791a47f3",
+    "source_manifest_sha256": "e27859a8d36e47f04850033622a0db2d13723a3978b0b3eab7d6462dd859fc72",
+    "full_package": {
+      "path": "fpga/component_inspector/handoff/calibration_fieldfix_180mm_20261016/V12_FIELD180_fieldfix_1092_40_20261016_full.zip",
+      "sha256": "e236a395378d372353034953cc3ca15ba3db09566035762296c9f272f01e7b9b",
+      "bytes": 8315748
+    },
+    "short_bit_path": "D:/fpga_download/3528_fieldfix_1bbfb6f6.bit",
+    "field_runtime": {
+      "unit_slope_cycles": [
+        83920,
+        83748
+      ],
+      "processing_clock_mhz": 100,
+      "real_chain_fps": 27,
+      "real_chain_tail_budget_ns": 1295103.435999997,
+      "real_chain_result_latency_ns": [
+        1028245.884,
+        1064386.284,
+        1064391.484,
+        1064386.684,
+        1064391.884
+      ]
+    }
+  },
+  "pose_trial_evidence": "开发实施/验收记录/20261016_A_照片阈值调整与来源归档_轮次5.md",
+  "source_archive": {
+    "archive": "fpga/component_inspector/tools/shape3528/calibration_sources/3528_180mm_1092_40_calibration_sources_20261016.zip",
+    "bytes": 33705712,
+    "sha256": "dd0e1996e8396f1243ea895ac8cb62ffe4a3c8cdac920f4b2ddd6495743347c2",
+    "payload_files": 88,
+    "latest_photos": 21,
+    "latest_original_videos": 2,
+    "older_abnormal_photos": 9,
+    "all_original_bytes_preserved": true,
+    "zip_crc_and_all_payload_hashes": "PASS"
+  },
+  "previous_pose_trial": {
+    "phase": "PASS_POSE180_TRIAL_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+    "candidate": "../handoff/calibration_pose_trial_180mm_20261016/candidate/V12_POSE180_1092_40_20261016.bit",
+    "sha256": "c8a5a49ec50263b2bf4d53ad009dc6e4d5c756837fe8951a1b5ee5e1f583e0df",
+    "source_manifest_sha256": "a849c95306adb592b760d3367ed522370ff991b7057ca9139da768e5e86ff3a4",
+    "full_package": {
+      "path": "fpga/component_inspector/handoff/calibration_pose_trial_180mm_20261016/V12_POSE180_1092_40_20261016_full.zip",
+      "sha256": "18078c732caa1b60cacf262a1a690f5f15be61d75cd576095d2dc20295cdf64f",
+      "bytes": 38035802
+    },
+    "short_bit_path": "D:/fpga_download/3528_pose_c8a5a49e.bit",
+    "field_runtime": {
+      "unit_slope_cycles": [
+        55179,
+        55007
+      ],
+      "processing_clock_mhz": 100,
+      "real_chain_fps": 27,
+      "real_chain_tail_budget_ns": 1295103.435999997,
+      "real_chain_result_latency_ns": [
+        635495.884,
+        667296.284,
+        667301.484,
+        667296.684,
+        667301.884
+      ]
+    }
+  },
+  "current_test_scope": "3 OSD tests; previous10 and27FPS retained as prior provenance",
+  "field_runtime_provenance": "a849c95306adb592b760d3367ed522370ff991b7057ca9139da768e5e86ff3a4",
+  "stable_ids_evidence": "开发实施/验收记录/20261016_A_稳定显示编号与移除最近采样_轮次2.md",
+  "feedback_archive": {
+    "path": "fpga/component_inspector/tools/shape3528/calibration_sources/3528_pose_feedback_20261016.zip",
+    "sha256": "146c7240d7bf5b113e0ecace195b604e7a33e1b752261a6c1b51f389282aa629",
+    "bytes": 1507328,
+    "photos": 3,
+    "original_bytes_preserved": true
+  }
 }

@@ -1,0 +1,5 @@
+# PASS calibration probe: 9 independent references; four thresholds, exact RGB gray, 2x2 averaging, saturation, empty mask, clip, x>511, bubbles, missing pixels, invalidate, reset/recovery
+# PASS local WAIT: 512 combinations, exact original validity and each diagnostic gate; metadata absence distinguished
+# PASS HD monitor: 11 status checks; FHD repeat, wrong width, missing/extra line, ragged line, legacy frame, interrupted frame, lane, CSI stop, reset recovery
+# PASS actual CSI and RAW10 decoder feeding monitor: 1920 x 1080
+PASS ModelSim: all 4 tests, including original vendor ERAM model

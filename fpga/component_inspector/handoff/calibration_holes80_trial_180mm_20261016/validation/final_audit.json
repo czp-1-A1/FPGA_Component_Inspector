@@ -1,0 +1,548 @@
+{
+  "status": "PASS_HOLES80_TRIAL_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+  "base_commit": "ae04f76db1e6c28441d30b375be9f9c04b6fbba4",
+  "source_manifest_sha256": "dcf672905f357ecb8a750d07451989d677b4cc591ad6abcfa4b6f8e91b8f6d20",
+  "input_count": 354,
+  "production_changes": [
+    "user_source/hdl_source/experiment_osd.v",
+    "user_source/hdl_source/frame_shape_search.v",
+    "user_source/hdl_source/inspection_region_config.v",
+    "user_source/hdl_source/roi_statistics.v"
+  ],
+  "build_round": "holes180_r3_20261016",
+  "test_round": "holes180_r3_20261016",
+  "sdc_changed": false,
+  "metadata_bits": 631,
+  "tests": [
+    {
+      "name": "cal180_holes",
+      "status": "PASS",
+      "console_sha256": "5c9714ffc979914328e6698e4486825fcd518597bf945d970df5c3da23370f21"
+    },
+    {
+      "name": "cal180_body",
+      "status": "PASS",
+      "console_sha256": "0c1c952ef7b3ec4f066018a2b61dc6c5bbd0a3b94be75b4afdac64cf9a70a3c3"
+    },
+    {
+      "name": "regions",
+      "status": "PASS",
+      "console_sha256": "4ff56d5d33e7ebdb6fc18ebf60cb105164753c384fa36de949b19cba377bf6d0"
+    },
+    {
+      "name": "regions_osd",
+      "status": "PASS",
+      "console_sha256": "187d08a860d467c847ba0cbfded1a3157d2fca3f21ca9e64ee93437b503b53ad"
+    },
+    {
+      "name": "calibration_osd",
+      "status": "PASS",
+      "console_sha256": "592ee48f02d47eb18bd15d0844c4f2de3ad33fd256a82186a0d98c7f85f305e7"
+    },
+    {
+      "name": "local_wait",
+      "status": "PASS",
+      "console_sha256": "abae127caa6a1ccac18a3063166d2beb17906517d05c5d896fa268606c82d482"
+    },
+    {
+      "name": "calibration_chain",
+      "status": "PASS",
+      "console_sha256": "e5f4aef0dfc87488fafb2a69f8dc70597e910ba1486b9117e99f17b229e20d06"
+    }
+  ],
+  "independent_hole_reference": {
+    "status": "PASS",
+    "cal80_rows": 4,
+    "cal_empty_records_compared": 4,
+    "full_patterns": 9,
+    "reference": "Independent decode of actual simulation records against manually transcribed camera CAL numbers; synthetic fixtures, not native-frame accuracy",
+    "body_t100_exact_geometry_unchanged": true,
+    "feed_and_gap_no_empty": true,
+    "small_bright_object_not_empty": true
+  },
+  "independent_calibration_reference": {
+    "status": "PASS",
+    "frames": [
+      2,
+      4,
+      5,
+      6,
+      7
+    ],
+    "reference": "RGB before display modes; scalar luma and independent NumPy 2x2 average/threshold/bbox/core statistics"
+  },
+  "td_version": "6.2.168116",
+  "routed_sta": {
+    "setup_ns": 0.102,
+    "setup_tns_ns": 0.0,
+    "hold_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_percent": 92.95
+  },
+  "resources": {
+    "slice": {
+      "used": 17074,
+      "total": 21216,
+      "percent": 80.48
+    },
+    "eram": {
+      "used": 104,
+      "total": 108,
+      "percent": 96.3
+    },
+    "dsp": {
+      "used": 26,
+      "total": 40,
+      "percent": 65.0
+    },
+    "pll": {
+      "used": 5,
+      "total": 6,
+      "percent": 83.33
+    }
+  },
+  "warnings": {
+    "syn_1": {
+      "HDL-5007": 41,
+      "HDL-5317": 21,
+      "HDL-5314": 20,
+      "HDL-5323": 4,
+      "HDL-5369": 1,
+      "HDL-5001": 5,
+      "HDL-5106": 2,
+      "SYN-5065": 1,
+      "SYN-5013": 10,
+      "SYN-5025": 3,
+      "SYN-5011": 12,
+      "SYN-5041": 3,
+      "PHY-5088": 3,
+      "USR-6135": 2
+    },
+    "phy_1": {
+      "PHY-5060": 1,
+      "PHY-5016": 5,
+      "PHY-5088": 6,
+      "PHY-5079": 1
+    }
+  },
+  "max_delays_matched": 40,
+  "max_delays_ignored": 0,
+  "gray_bits": [
+    {
+      "direction": "write",
+      "bit": 0,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[0]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[0]",
+      "budget_ns": 8,
+      "slack_ns": 7.023
+    },
+    {
+      "direction": "write",
+      "bit": 1,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[1]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[1]",
+      "budget_ns": 8,
+      "slack_ns": 7.295
+    },
+    {
+      "direction": "write",
+      "bit": 2,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[2]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[2]",
+      "budget_ns": 8,
+      "slack_ns": 6.876
+    },
+    {
+      "direction": "write",
+      "bit": 3,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[3]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[3]",
+      "budget_ns": 8,
+      "slack_ns": 6.965
+    },
+    {
+      "direction": "write",
+      "bit": 4,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[4]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[4]",
+      "budget_ns": 8,
+      "slack_ns": 7.106
+    },
+    {
+      "direction": "write",
+      "bit": 5,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[5]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[5]",
+      "budget_ns": 8,
+      "slack_ns": 6.971
+    },
+    {
+      "direction": "write",
+      "bit": 6,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[6]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[6]",
+      "budget_ns": 8,
+      "slack_ns": 6.976
+    },
+    {
+      "direction": "write",
+      "bit": 7,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[7]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[7]",
+      "budget_ns": 8,
+      "slack_ns": 6.75
+    },
+    {
+      "direction": "write",
+      "bit": 8,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[8]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[8]",
+      "budget_ns": 8,
+      "slack_ns": 7.122
+    },
+    {
+      "direction": "write",
+      "bit": 9,
+      "source": "u_isp_top/continuous_processing$bridge/write_bin[9]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[9]",
+      "budget_ns": 8,
+      "slack_ns": 6.984
+    },
+    {
+      "direction": "read",
+      "bit": 0,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[0]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[0]",
+      "budget_ns": 8,
+      "slack_ns": 7.049
+    },
+    {
+      "direction": "read",
+      "bit": 1,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[1]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[1]",
+      "budget_ns": 8,
+      "slack_ns": 7.187
+    },
+    {
+      "direction": "read",
+      "bit": 2,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[2]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[2]",
+      "budget_ns": 8,
+      "slack_ns": 7.039
+    },
+    {
+      "direction": "read",
+      "bit": 3,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[3]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[3]",
+      "budget_ns": 8,
+      "slack_ns": 6.79
+    },
+    {
+      "direction": "read",
+      "bit": 4,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[4]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[4]",
+      "budget_ns": 8,
+      "slack_ns": 7.167
+    },
+    {
+      "direction": "read",
+      "bit": 5,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[5]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[5]",
+      "budget_ns": 8,
+      "slack_ns": 6.73
+    },
+    {
+      "direction": "read",
+      "bit": 6,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[6]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[6]",
+      "budget_ns": 8,
+      "slack_ns": 7.047
+    },
+    {
+      "direction": "read",
+      "bit": 7,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[7]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[7]",
+      "budget_ns": 8,
+      "slack_ns": 7.04
+    },
+    {
+      "direction": "read",
+      "bit": 8,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[8]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[8]",
+      "budget_ns": 8,
+      "slack_ns": 7.098
+    },
+    {
+      "direction": "read",
+      "bit": 9,
+      "source": "u_isp_top/continuous_processing$bridge/read_bin[9]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[9]",
+      "budget_ns": 8,
+      "slack_ns": 6.509
+    }
+  ],
+  "gray_constraint_counts": [
+    24,
+    24,
+    0,
+    0
+  ],
+  "gray_physical_paths": [
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[1]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 6.659
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[1]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 6.659
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[1]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[0]_syn_2.ima",
+      "budget_ns": 8.0,
+      "slack_ns": 7.049
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 6.701
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 6.701
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[1]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.187
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.201
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.201
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.039
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.158
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.158
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[3]_syn_2.ia",
+      "budget_ns": 8.0,
+      "slack_ns": 6.79
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[3]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.059
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[3]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.059
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[3]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[3]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.167
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.259
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.259
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[9]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 6.73
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.319
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.319
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[6]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.047
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.609
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.609
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.04
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.657
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.657
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[8]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.098
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.341
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.341
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[9]_syn_2.ia",
+      "budget_ns": 8.0,
+      "slack_ns": 6.509
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[1]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.023
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[1]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.295
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[3]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync2_reg[2]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 6.876
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync2_reg[3]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 6.965
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[4]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.106
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[5]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[5]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 6.971
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[6]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[6]_syn_2.id",
+      "budget_ns": 8.0,
+      "slack_ns": 6.976
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[7]_syn_2.ia",
+      "budget_ns": 8.0,
+      "slack_ns": 6.75
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[8]_syn_2.id",
+      "budget_ns": 8.0,
+      "slack_ns": 7.122
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[9]_syn_2.ia",
+      "budget_ns": 8.0,
+      "slack_ns": 6.984
+    }
+  ],
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "1f44ce56298285ffd4eed329fdc657047f72887325a956f16720bdd07435b3cf"
+  },
+  "hardware": "NOT_PROGRAMMED_BY_ASSISTANT_PHYSICAL_CLASSIFICATION_PENDING",
+  "resource_assessment": "Temporary CAL candidate: Slice above80% pauses further features. Shared engine and bounded small-hole RAM are already used. No new quality subclass/model is added. Remove CAL logic only after physical verification, then rebuild and assess final resource/timing again.",
+  "warning_boundary": "Historical local camera routing, PLL/DDR feedback and I/O delay coverage limits remain. No all-interface timing-proof or zero-warning claim.",
+  "quality_scope": "9 supplied screen photos inventoried; unified placement-abnormal label accepted, not yet implemented as a validated visual classifier"
+}

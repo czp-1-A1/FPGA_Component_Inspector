@@ -52,7 +52,8 @@ always @(negedge clk)if(checking && od)begin
       else begin cjk=1;row=py-ly;col=(px-lx-24)%24;glyph=(px-lx-24)/24==0 ? (s==2 ? 18 : 20) : (px-lx-24)/24==1 ? (s==2 ? 19 : 21) : 0;end
      end else begin
       row=(py-ly-24)%16;
-      if(s==2 && r!=0)text_value=py<ly+40 ? {r[0] ? "SIZE" : "----",8'd32,r[1] ? "ASP" : "---"} : {r[2] ? "FILL" : "----",8'd32,r[3] ? "REF" : "---"};
+      if(s==2 && r==15)text_value=py<ly+40 ? "FIT CHK " : "REVIEW  ";
+      else if(s==2 && r!=0)text_value=py<ly+40 ? {r[0] ? "SIZE" : "----",8'd32,r[1] ? "ASP" : "---"} : {r[2] ? "FILL" : "----",8'd32,r[3] ? "REF" : "---"};
       else text_value=py<ly+40 ? "MODEL OK" : "EDGE ON ";
       if(px<lx+64)glyph=text_value[63-((px-lx)/8)*8-:8];
      end
@@ -98,8 +99,9 @@ initial begin
  repeat(5)@(negedge clk);rst=1;repeat(5)@(negedge clk);
  raster({record(3,0,750,772,510,532),record(2,0,486,554,482,562),record(2,8,726,794,282,362),record(2,0,486,554,282,362)},1);
  raster({76'd0,record(2,0,486,554,482,562),76'd0,record(2,5,486,554,282,362)},1);
+ raster({76'd0,record(2,15,486,554,482,562),76'd0,record(2,15,486,554,282,362)},1);
  raster(0,1);raster({record(2,0,726,794,482,562),record(2,0,486,554,482,562),record(2,0,726,794,282,362),record(2,0,486,554,282,362)},0);
- $display("PASS regions osd: %0d rasters/%0d independent pixels, both boxes/classes/numbers/size-fill reasons, both dashed zones and bound model headers, four independent cards, first-active atomic snapshot, zero/stale result suppression, unchanged 3-clock sync",frames,checked);$finish;
+ $display("PASS regions osd: %0d rasters/%0d independent pixels, both boxes/classes/numbers/size-fill reasons and weak-gray FIT CHK, both dashed zones and bound model headers, four independent cards, first-active atomic snapshot, zero/stale result suppression, unchanged 3-clock sync",frames,checked);$finish;
 end
-initial begin #45000000;$fatal(1,"full OSD watchdog");end
+initial begin #55000000;$fatal(1,"full OSD watchdog");end
 endmodule

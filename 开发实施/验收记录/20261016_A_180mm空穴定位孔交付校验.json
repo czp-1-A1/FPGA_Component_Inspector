@@ -1,0 +1,26 @@
+{
+  "status": "PASS_HOLES80_TRIAL_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+  "package": "fpga/component_inspector/handoff/calibration_holes80_trial_180mm_20261016",
+  "payload_files": 530,
+  "candidate": "fpga/component_inspector/handoff/calibration_holes80_trial_180mm_20261016/candidate/V12_CAL180_holes80_trial_1092_40_20261016.bit",
+  "bit_sha256": "1f44ce56298285ffd4eed329fdc657047f72887325a956f16720bdd07435b3cf",
+  "bit_bytes": 1789539,
+  "short_path": "D:/fpga_download/3528_holes80_1f44ce56.bit",
+  "full_package": "fpga/component_inspector/handoff/calibration_holes80_trial_180mm_20261016/V12_CAL180_holes80_trial_1092_40_20261016_full.zip",
+  "full_package_sha256": "c91f90cba47f4d114ecafd5aae45f3a6854b2d9328fe8828212b3c5c7c05870a",
+  "full_package_bytes": 7400450,
+  "source_manifest_sha256": "dcf672905f357ecb8a750d07451989d677b4cc591ad6abcfa4b6f8e91b8f6d20",
+  "hardware_programmed": false,
+  "git_committed_or_pushed": false,
+  "zip_manifest_and_crc": "PASS",
+  "source_inputs": 354,
+  "tests": 7,
+  "routed_sta": {
+    "setup_ns": 0.102,
+    "setup_tns_ns": 0.0,
+    "hold_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_percent": 92.95
+  },
+  "resource_pause": "Slice80.48%/ERAM104, no further functionality until physical check and CAL-off resource recheck"
+}

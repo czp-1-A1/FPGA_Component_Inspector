@@ -8,8 +8,13 @@ module inspection_region_config #(
  // Low byte first: body Lmin,Lmax,Smin,Smax,review Lmax,Smax;
  // empty Lmin,Lmax,Smin,Smax; feed-hole Lmin,Lmax,Smin,Smax; dark reference.
  // Geometry is measured in the detector's half-resolution mask.
- parameter [119:0] RECIPE0={8'd240,8'd21,8'd10,8'd23,8'd14,8'd12,8'd4,8'd13,8'd5,8'd38,8'd43,8'd36,8'd20,8'd39,8'd26},
- parameter [119:0] RECIPE1={8'd240,8'd21,8'd10,8'd23,8'd14,8'd12,8'd4,8'd13,8'd5,8'd38,8'd43,8'd36,8'd20,8'd39,8'd26}
+ // 180mm measured36x44/46; allow one/two cells of scale/segmentation margin
+ // (S16,L20) for the new positive images, independent of absent OSD results.
+ // T80 measured empty4..5, lower bound3 allows2x2 sample phase; feed +/-1 tolerates
+ // sampling phase. Feed/empty stay separated. This is an algorithm trial margin.
+ // T100 body maxima and dark reference remain legacy bounds awaiting physical review.
+ parameter [119:0] RECIPE0={8'd240,8'd9,8'd6,8'd9,8'd7,8'd5,8'd3,8'd5,8'd3,8'd38,8'd43,8'd36,8'd16,8'd39,8'd20},
+ parameter [119:0] RECIPE1={8'd240,8'd9,8'd6,8'd9,8'd7,8'd5,8'd3,8'd5,8'd3,8'd38,8'd43,8'd36,8'd16,8'd39,8'd20}
 )(
  output wire [83:0] bounds,output wire [31:0] models,
  output wire [239:0] recipes,output wire [1:0] supported

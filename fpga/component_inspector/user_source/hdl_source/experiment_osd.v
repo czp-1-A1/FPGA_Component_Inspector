@@ -23,7 +23,7 @@ module experiment_osd #(
  input wire [127:0] calibration_record,input wire calibration_valid,
  input wire [3:0] local_wait_reason
 );
-localparam [199:0] calibration_text="180MM CAL PENDING        ";
+localparam [199:0] calibration_text="180MM STABLE IDS         ";
 reg [339:0] pockets_s;reg pockets_enabled_s;
 reg local_box_s;reg [10:0] local_x0_s,local_x1_s;reg [9:0] local_y0_s,local_y1_s;
 localparam OBJECTS=REGIONS ? 4 : 2;
@@ -32,15 +32,15 @@ reg vs_d,de_d;reg [10:0] x;reg [9:0] y;
 wire [9:0] y_ui=(y>=HEIGHT-96) ? y-(HEIGHT-600) : y;
 // DDR slot selection follows VS. Wait until its metadata has crossed during blanking.
 wire start=(TRACKING || LOCAL_SEARCH) ? de && !de_d && y==0 : vs && !vs_d;
-wire cal_panel,cal_border,cal_core;wire [7:0] cal_glyph;
+wire cal_panel;wire [7:0] cal_glyph;
 wire [3:0] cal_col,cal_row;wire [23:0] cal_color;
 generate if(CALIBRATION)begin : calibration_ui
  calibration_osd #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) ui(
   .clk(clk),.rst_n(rst_n),.start(start),.record(calibration_record),.eligible(calibration_valid),
-  .reason(local_wait_reason),.x(x),.y(y),.panel(cal_panel),.border(cal_border),.core(cal_core),
+  .reason(local_wait_reason),.x(x),.y(y),.panel(cal_panel),.border(),.core(),
   .glyph(cal_glyph),.col(cal_col),.row(cal_row),.color(cal_color));
 end else begin : no_calibration_ui
- assign cal_panel=0;assign cal_border=0;assign cal_core=0;assign cal_glyph=0;assign cal_col=0;assign cal_row=0;assign cal_color=0;
+ assign cal_panel=0;assign cal_glyph=0;assign cal_col=0;assign cal_row=0;assign cal_color=0;
 end endgenerate
 reg track_valid_s;reg [10:0] track_x0_s,track_x1_s;
 reg [3:0] track_reason_s;reg [2:0] track_rows_s;
@@ -78,6 +78,89 @@ wire [7:0] publish_flags=publish_s[DIAG_BITS-2 -:8];
 wire [19:0] publish_count={{(29-DIAG_BITS){1'b0}},publish_s[DIAG_BITS-10:0]};
 reg sample_s,cfg_s,error_s,edge_sample_s;reg [1:0] class_s,reason_s,mode_s,gray_state_s,edge_state_s;
 reg [15:0] edge_count_s;reg [23:0] edge_sum_s;
+// Freeze the raw current tuple at the first active pixel. Match its display
+// slots in four short steps, well before the earliest card at image row80.
+// Doubled centers keep the32 processing-pixel Manhattan gate exact.
+reg [2:0] display_phase;
+reg [11:0] current_x[0:3],previous_x[0:3],match_dx[0:7];
+reg [10:0] current_y[0:3],previous_y[0:3],match_dy[0:7];
+reg [3:0] current_valid,previous_valid;
+reg [8:0] match_cost[0:7];
+reg [1:0] display_swap,acquisition_swap;
+wire [12:0] match_distance[0:7];
+genvar match_index;
+generate for(match_index=0;match_index<8;match_index=match_index+1)begin : display_distances
+ assign match_distance[match_index]={1'b0,match_dx[match_index]}+{2'b0,match_dy[match_index]};
+end endgenerate
+wire [OBJECTS*76-1:0] display_objects;
+generate if(REGIONS)begin : stable_display_ids
+ assign display_objects[151:0]=display_swap[0] ? {frame_objects_s[75:0],frame_objects_s[151:76]} : frame_objects_s[151:0];
+ assign display_objects[303:152]=display_swap[1] ? {frame_objects_s[227:152],frame_objects_s[303:228]} : frame_objects_s[303:152];
+end else begin : spatial_display_ids
+ assign display_objects=frame_objects_s;
+end endgenerate
+integer match_i,match_current,match_previous;
+reg [9:0] straight_cost,crossed_cost;reg any_match;
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin
+  display_phase<=0;current_valid<=0;previous_valid<=0;display_swap<=0;acquisition_swap<=0;
+  for(match_i=0;match_i<4;match_i=match_i+1)begin current_x[match_i]<=0;current_y[match_i]<=0;previous_x[match_i]<=0;previous_y[match_i]<=0;end
+  for(match_i=0;match_i<8;match_i=match_i+1)begin match_dx[match_i]<=0;match_dy[match_i]<=0;match_cost[match_i]<=0;end
+ end else if(REGIONS && start)begin
+  display_phase<=1;
+  if(!sample_s)previous_valid<=0;
+  for(match_i=0;match_i<4;match_i=match_i+1)begin
+   current_x[match_i]<={1'b0,frame_objects[match_i*76+31+:11]}+frame_objects[match_i*76+20+:11];
+   current_y[match_i]<={1'b0,frame_objects[match_i*76+10+:10]}+frame_objects[match_i*76+:10];
+   current_valid[match_i]<=roi_valid && cfg_done && fps!=0 && frame_objects[match_i*76+75];
+  end
+ end else case(display_phase)
+  1:begin
+   for(match_i=0;match_i<8;match_i=match_i+1)begin
+    match_current=(match_i/4)*2+(match_i%4)/2;match_previous=(match_i/4)*2+match_i%2;
+    match_dx[match_i]<=current_x[match_current]>previous_x[match_previous] ? current_x[match_current]-previous_x[match_previous] : previous_x[match_previous]-current_x[match_current];
+    match_dy[match_i]<=current_y[match_current]>previous_y[match_previous] ? current_y[match_current]-previous_y[match_previous] : previous_y[match_previous]-current_y[match_current];
+   end
+   for(match_i=0;match_i<2;match_i=match_i+1)begin
+    if(!current_valid[match_i*2])acquisition_swap[match_i]<=current_valid[match_i*2+1];
+    else acquisition_swap[match_i]<=current_valid[match_i*2+1] &&
+     ((current_x[match_i*2]>current_x[match_i*2+1] ? current_x[match_i*2]-current_x[match_i*2+1] : current_x[match_i*2+1]-current_x[match_i*2])<=32 ?
+       current_y[match_i*2+1]<current_y[match_i*2] : current_x[match_i*2+1]<current_x[match_i*2]);
+   end
+   display_phase<=2;
+  end
+  2:begin
+   for(match_i=0;match_i<8;match_i=match_i+1)begin
+    match_current=(match_i/4)*2+(match_i%4)/2;match_previous=(match_i/4)*2+match_i%2;
+    if(!current_valid[match_current] && !previous_valid[match_previous])match_cost[match_i]<=0;
+    else if(current_valid[match_current] && previous_valid[match_previous] && match_distance[match_i]<=64)match_cost[match_i]<=match_distance[match_i][8:0];
+    else match_cost[match_i]<=9'd256;
+   end
+   display_phase<=3;
+  end
+  3:begin
+   for(match_i=0;match_i<2;match_i=match_i+1)begin
+    straight_cost={1'b0,match_cost[match_i*4]}+{1'b0,match_cost[match_i*4+3]};
+    crossed_cost={1'b0,match_cost[match_i*4+1]}+{1'b0,match_cost[match_i*4+2]};
+    any_match=(current_valid[match_i*2] && previous_valid[match_i*2] && !match_cost[match_i*4][8]) ||
+     (current_valid[match_i*2] && previous_valid[match_i*2+1] && !match_cost[match_i*4+1][8]) ||
+     (current_valid[match_i*2+1] && previous_valid[match_i*2] && !match_cost[match_i*4+2][8]) ||
+     (current_valid[match_i*2+1] && previous_valid[match_i*2+1] && !match_cost[match_i*4+3][8]);
+    display_swap[match_i]<=any_match ? crossed_cost<straight_cost : acquisition_swap[match_i];
+   end
+   display_phase<=4;
+  end
+  4:begin
+   for(match_i=0;match_i<4;match_i=match_i+1)begin
+    previous_x[match_i]<=display_swap[match_i/2] ? current_x[match_i^1] : current_x[match_i];
+    previous_y[match_i]<=display_swap[match_i/2] ? current_y[match_i^1] : current_y[match_i];
+    previous_valid[match_i]<=display_swap[match_i/2] ? current_valid[match_i^1] : current_valid[match_i];
+   end
+   display_phase<=0;
+  end
+  default:begin end
+ endcase
+end
 always @(posedge clk or negedge rst_n) begin
  if(!rst_n) begin
   frame_objects_s<=0;local_box_s<=0;local_x0_s<=0;local_x1_s<=0;local_y0_s<=0;local_y1_s<=0;
@@ -91,6 +174,7 @@ always @(posedge clk or negedge rst_n) begin
   if(vs) begin x<=0;y<=0;end
   else if(de) x<=x+1'b1;
   else if(de_d) begin x<=0;y<=y+1'b1;end
+  if(REGIONS && display_phase==4)frame_objects_s<=display_objects;
   if(start) begin
    frame_objects_s<=roi_valid ? frame_objects : {OBJECTS*76{1'b0}};
    local_box_s<=local_box_valid;local_x0_s<=local_x0;local_x1_s<=local_x1;local_y0_s<=local_y0;local_y1_s<=local_y1;
@@ -275,7 +359,8 @@ always @* begin
  end
 end
 // Freeze all records at the first active pixel of the selected DDR frame.
-// Numbering is left-to-right in this image, not a persistent tape ID.
+// Each zone keeps its display slots while targets match the previous frame.
+// Only current records are reordered; missing targets are never held on screen.
 reg frame_border,frame_label;reg [23:0] frame_color;
 reg [1:0] frame_state;reg [3:0] frame_reason;reg [1:0] frame_number;
 localparam CARD_WIDTH=REGIONS ? 104 : 88,CARD_PREFIX=REGIONS ? 24 : 16;
@@ -331,7 +416,8 @@ end
 reg [63:0] frame_text;
 always @*begin
  if(frame_state==2 && |frame_reason)begin
-  if(y<frame_ly+40)frame_text={frame_reason[0] ? "SIZE" : "----",8'd32,frame_reason[1] ? "ASP" : "---"};
+  if(frame_reason==4'hf)frame_text=y<frame_ly+40 ? "FIT CHK " : "REVIEW  ";
+  else if(y<frame_ly+40)frame_text={frame_reason[0] ? "SIZE" : "----",8'd32,frame_reason[1] ? "ASP" : "---"};
   else frame_text={frame_reason[2] ? "FILL" : "----",8'd32,frame_reason[3] ? "REF" : "---"};
  end else frame_text=y<frame_ly+40 ? (frame_state>=2 ? "MODEL OK" : "CHECK   ") : mode_s[1] ? "EDGE ON " : "EDGE OFF";
 end
@@ -462,7 +548,7 @@ always @* begin
   if(x>=976 && x<992) begin glyph=mode_glyph(mode_s,7);glyph_col=(x-976)/2;end
   if(x>=992 && x<1008) begin glyph=mode_glyph(mode_s,8);glyph_col=(x-992)/2;end
  end
- if(x>=16 && x<112 && y_ui>=510 && y_ui<534) begin
+ if(!REGIONS && x>=16 && x<112 && y_ui>=510 && y_ui<534) begin
   glyph_cjk=1;ink_color=24'hb0c0d4;
   glyph_row=(y_ui-510)/1;
   if(x>=16 && x<40) begin glyph=6'd9;glyph_col=(x-16)/1;end
@@ -470,7 +556,7 @@ always @* begin
   if(x>=64 && x<88) begin glyph=6'd11;glyph_col=(x-64)/1;end
   if(x>=88 && x<112) begin glyph=6'd12;glyph_col=(x-88)/1;end
  end
- if(x>=16 && x<208 && y_ui>=540 && y_ui<588) begin
+ if(!REGIONS && x>=16 && x<208 && y_ui>=540 && y_ui<588) begin
   glyph_cjk=1;ink_color=result_color;
   glyph_row=(y_ui-540)/2;
   if(x>=16 && x<64) begin glyph=result_glyph(class_s,0);glyph_col=(x-16)/2;end
@@ -771,7 +857,7 @@ always @* begin
    6:glyph="E";7:glyph="X";8:glyph="P";9:glyph=" ";10:glyph="V";11:glyph=FRAME_OBJECTS ? "1" : LOCAL_SEARCH ? "7" : SHAPE_MODEL ? "5" : "4";12:glyph=FRAME_OBJECTS ? (REGIONS ? "2" : RESOLUTION_V11 ? "1" : "0") : " ";default:glyph=" ";
   endcase
  end
- if(SHAPE_MODEL && sample_s && class_s<2 && y_ui>=540 && y_ui<588 && x>=16 && x<208) begin
+ if(!REGIONS && SHAPE_MODEL && sample_s && class_s<2 && y_ui>=540 && y_ui<588 && x>=16 && x<208) begin
   glyph_cjk=0;glyph=shape_status_char(class_s,(x-16)/16);glyph_col=((x-16)/2)%8;glyph_row=(y_ui-540)/2;
   if(y_ui>=572) glyph=" ";
  end
@@ -871,7 +957,7 @@ wire [7:0] gray=gray_sum[9:2];
 wire align_border=TRACKING && !track_valid_s && x>=SAMPLE_X0 && x<SAMPLE_X1 && y>=SAMPLE_Y0 && y<SAMPLE_Y1 &&
  (x==SAMPLE_X0 || x==SAMPLE_X1-1 || y==SAMPLE_Y0 || y==SAMPLE_Y1-1) && (x[2:0]==0 || y[2:0]==0);
 wire search_guide=TRACKING && ((x>=256 && x<768 && x[3:0]==0 && (y==HOLE_Y-8 || y==HOLE_Y || y==HOLE_Y+8)) || (x==464 && y>=HOLE_Y-12 && y<=HOLE_Y+12));
-wire [23:0] picture=ENABLE && cal_core ? 24'hffff00 : ENABLE && cal_border ? 24'hff66cc : FRAME_OBJECTS ? (ENABLE && frame_border ? frame_color : ENABLE && region_border ? region_color : rgb) : MULTI_POCKETS ? (ENABLE && pocket_border ? pocket_color : rgb) :
+wire [23:0] picture=FRAME_OBJECTS ? (ENABLE && frame_border ? frame_color : ENABLE && region_border ? region_color : rgb) : MULTI_POCKETS ? (ENABLE && pocket_border ? pocket_color : rgb) :
  ENABLE && (sample_border || local_search_border) ? 24'h00ffff :
  ENABLE && roi_border ? 24'h00ff40 : ENABLE && (search_guide || align_border) ? 24'hffff00 : rgb;
 reg [10:0] ascii_address;
@@ -953,8 +1039,8 @@ always @*begin
  text_line=0;bcd=0;digit_position=0;
  for(n=0;n<2;n=n+1)begin
   cy=n==0 ? HEIGHT*4/9 : HEIGHT*43/60;
-  if(x>=cx-32 && x<cx+32 && y>=cy-32 && y<cy+32 &&
-   (x==cx-32 || x==cx+31 || y==cy-32 || y==cy+31))border=1;
+  if(x>=cx-16 && x<cx+16 && y>=cy-16 && y<cy+16 &&
+   (x==cx-16 || x==cx+15 || y==cy-16 || y==cy+15))border=1;
   if(x>=cx-8 && x<cx+8 && y>=cy-8 && y<cy+8 &&
    (x==cx-8 || x==cx+7 || y==cy-8 || y==cy+7))core=1;
  end
@@ -963,7 +1049,7 @@ always @*begin
   line_no=yy/16;column=(x-16)/8;col=(x-16)%8;row=yy%16;
   selected=probe ? frozen[127:64] : frozen[63:0];valid=eligible_s && selected[63] && digits_ready;
   case(line_no)
-   0:text_line="CAL1 T100 OUT64 CORE16              ";
+   0:text_line="CAL1 T100 OUT32 CORE16              ";
    1:text_line="M000 MIN000 MAX000 SAT000           ";
    2:text_line="W000 H000 A0000 CLIP0               ";
    default:text_line=valid ? (selected[62] ? "CLIP: RECENTER TARGET               " : "SAMPLE OK / ONE TARGET ONLY         ") : "WAIT CURRENT FRAME                  ";
@@ -999,7 +1085,7 @@ always @*begin
  end
  if(x>=16 && x<304 && y>=176 && y<208)begin
   panel=1;column=(x-16)/8;col=(x-16)%8;row=(y-176)%16;
-  text_line=y<192 ? "RAW100 GRAY080 EDGE120 BOTH140      " : "CLASSIFIER T100 / CAL NOT FROZEN    ";
+  text_line=y<192 ? "RAW100 GRAY080 EDGE120 BOTH140      " : "BODY100 HOLE080 / CAL NOT FROZEN    ";
   glyph=text_line[287-column*8-:8];color=24'hb0c0d4;
  end
  if(x>=16 && x<304 && y>=584 && y<600)begin

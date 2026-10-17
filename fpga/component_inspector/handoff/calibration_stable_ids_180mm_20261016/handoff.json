@@ -1,0 +1,593 @@
+{
+  "status": "PASS_STABLE_IDS_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+  "base_commit": "ae04f76db1e6c28441d30b375be9f9c04b6fbba4",
+  "source_manifest_sha256": "752d1479c262e4fc4c7f138a4c38a3f470cbe7c14a812828d934b61eac29be54",
+  "input_count": 358,
+  "build_round": "stable_ids_r2_20261016",
+  "test_round": "stable_ids_r2_20261016",
+  "display_match_pipeline_clocks": 4,
+  "failed_timing_round": "stable_ids_r1_20261016 setup-1.037ns; not delivered",
+  "production_changes_from_previous": [
+    "user_source/hdl_source/experiment_osd.v"
+  ],
+  "test_changes_from_previous": [
+    "sim/tb_calibration_osd.v",
+    "sim/run_modelsim.ps1",
+    "sim/tb_stable_ids_osd.v"
+  ],
+  "tests": [
+    {
+      "name": "calibration_osd",
+      "status": "PASS",
+      "console_sha256": "0aa51ee87c5e899bf7917ee43afb30694ab8a6b89b51fcf94a76c3e915220381"
+    },
+    {
+      "name": "regions_osd",
+      "status": "PASS",
+      "console_sha256": "c23023fe4e4a28fff15dbe8556479095b17217f0ece11445b35b91c0a10893c0"
+    },
+    {
+      "name": "stable_ids_osd",
+      "status": "PASS",
+      "console_sha256": "9f583d4f82fb1623f203574207fd897765c48522d992bbe1048bbd73fef23b67"
+    }
+  ],
+  "previous_validation": {
+    "source_manifest_sha256": "a849c95306adb592b760d3367ed522370ff991b7057ca9139da768e5e86ff3a4",
+    "tests": [
+      {
+        "name": "pose180",
+        "status": "PASS",
+        "console_sha256": "b1ae7cd640e6269df47d6212c2d67aca94af03c8a803716baf27af96fdd7c4ed"
+      },
+      {
+        "name": "field180",
+        "status": "PASS",
+        "console_sha256": "83de0893968b8a51ea22823d75692b021b57fc2589eecbd82fb99681749cc18b"
+      },
+      {
+        "name": "cal180_body",
+        "status": "PASS",
+        "console_sha256": "a5471aaa81999341e494449f5bf0fff16bbe69c3a92e8d2d420b4a362a3f36dd"
+      },
+      {
+        "name": "cal180_holes",
+        "status": "PASS",
+        "console_sha256": "25b8dd63bf3a75ed02eb6e0d91d39777c552f1d1e7caf11274767e27eddcc3b8"
+      },
+      {
+        "name": "regions",
+        "status": "PASS",
+        "console_sha256": "7c67a733e2ad0cc4460b4a8aa5d8c32f879cb973d3235d2b4433940ee7fe331a"
+      },
+      {
+        "name": "calibration_osd",
+        "status": "PASS",
+        "console_sha256": "25731dd68cf2f7a71766ce0e997af82971c97bdd058bdf7d92b5bb1016def5eb"
+      },
+      {
+        "name": "regions_osd",
+        "status": "PASS",
+        "console_sha256": "4b6ab4a7c38bf198e6b7e56eedbf3352bdb2852417312f61daa53494d2996c15"
+      },
+      {
+        "name": "local_wait",
+        "status": "PASS",
+        "console_sha256": "f186f8fc95dcd38bfd9215e4b8fd21565aa1f75693d8b15c5f1c4f78fb0c0481"
+      },
+      {
+        "name": "field_chain",
+        "status": "PASS",
+        "console_sha256": "c44d77dc7be0242f1e9d3399e37f883c279d0f51c22a689a5fb29c49e94e704a"
+      },
+      {
+        "name": "calibration_chain",
+        "status": "PASS",
+        "console_sha256": "9d5c43fbdf443b6d2a72ece6d10d7f0cf3df070d518bad07e3000ab0ea755b3e"
+      }
+    ],
+    "field_runtime": {
+      "unit_slope_cycles": [
+        55179,
+        55007
+      ],
+      "processing_clock_mhz": 100,
+      "real_chain_fps": 27,
+      "real_chain_tail_budget_ns": 1295103.435999997,
+      "real_chain_result_latency_ns": [
+        635495.884,
+        667296.284,
+        667301.484,
+        667296.684,
+        667301.884
+      ]
+    },
+    "scope": "Prior revision ten tests and27FPS chain retained as provenance, not rerun or claimed against this UI-only snapshot. All detector,recipe,measurement,video/CDC/SDC sources byte-identical."
+  },
+  "td_version": "6.2.168116",
+  "routed_sta": {
+    "setup_ns": 0.126,
+    "setup_tns_ns": 0.0,
+    "hold_ns": 0.02,
+    "hold_tns_ns": 0.0,
+    "sta_percent": 93.01
+  },
+  "resources": {
+    "slice": {
+      "used": 17756,
+      "total": 21216,
+      "percent": 83.69
+    },
+    "eram": {
+      "used": 104,
+      "total": 108,
+      "percent": 96.3
+    },
+    "dsp": {
+      "used": 26,
+      "total": 40,
+      "percent": 65.0
+    },
+    "pll": {
+      "used": 5,
+      "total": 6,
+      "percent": 83.33
+    }
+  },
+  "warnings": {
+    "syn_1": {
+      "HDL-5007": 41,
+      "HDL-5317": 21,
+      "HDL-5314": 20,
+      "HDL-5323": 4,
+      "HDL-5369": 1,
+      "HDL-5001": 6,
+      "HDL-5106": 2,
+      "SYN-5065": 1,
+      "SYN-5013": 10,
+      "SYN-5025": 3,
+      "SYN-5011": 12,
+      "SYN-5041": 3,
+      "PHY-5088": 3,
+      "USR-6135": 2
+    },
+    "phy_1": {
+      "PHY-5060": 1,
+      "PHY-5016": 5,
+      "PHY-5088": 6,
+      "PHY-5079": 1
+    }
+  },
+  "max_delays_matched": 40,
+  "max_delays_ignored": 0,
+  "gray_bits": [
+    {
+      "direction": "write",
+      "bit": 0,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[0]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[0]",
+      "budget_ns": 8,
+      "slack_ns": 6.978
+    },
+    {
+      "direction": "write",
+      "bit": 1,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[1]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[1]",
+      "budget_ns": 8,
+      "slack_ns": 7.187
+    },
+    {
+      "direction": "write",
+      "bit": 2,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[2]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[2]",
+      "budget_ns": 8,
+      "slack_ns": 7.363
+    },
+    {
+      "direction": "write",
+      "bit": 3,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[3]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[3]",
+      "budget_ns": 8,
+      "slack_ns": 7.132
+    },
+    {
+      "direction": "write",
+      "bit": 4,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[4]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[4]",
+      "budget_ns": 8,
+      "slack_ns": 7.25
+    },
+    {
+      "direction": "write",
+      "bit": 5,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[5]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[5]",
+      "budget_ns": 8,
+      "slack_ns": 7.137
+    },
+    {
+      "direction": "write",
+      "bit": 6,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[6]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[6]",
+      "budget_ns": 8,
+      "slack_ns": 6.791
+    },
+    {
+      "direction": "write",
+      "bit": 7,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[7]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[7]",
+      "budget_ns": 8,
+      "slack_ns": 6.979
+    },
+    {
+      "direction": "write",
+      "bit": 8,
+      "source": "u_isp_top/continuous_processing$bridge/write_gray[8]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[8]",
+      "budget_ns": 8,
+      "slack_ns": 6.908
+    },
+    {
+      "direction": "write",
+      "bit": 9,
+      "source": "u_isp_top/continuous_processing$bridge/write_bin[9]",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[9]",
+      "budget_ns": 8,
+      "slack_ns": 7.278
+    },
+    {
+      "direction": "read",
+      "bit": 0,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[0]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[0]",
+      "budget_ns": 8,
+      "slack_ns": 7.063
+    },
+    {
+      "direction": "read",
+      "bit": 1,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[1]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[1]",
+      "budget_ns": 8,
+      "slack_ns": 7.26
+    },
+    {
+      "direction": "read",
+      "bit": 2,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[2]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[2]",
+      "budget_ns": 8,
+      "slack_ns": 7.172
+    },
+    {
+      "direction": "read",
+      "bit": 3,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[3]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[3]",
+      "budget_ns": 8,
+      "slack_ns": 7.151
+    },
+    {
+      "direction": "read",
+      "bit": 4,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[4]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[4]",
+      "budget_ns": 8,
+      "slack_ns": 7.232
+    },
+    {
+      "direction": "read",
+      "bit": 5,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[5]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[5]",
+      "budget_ns": 8,
+      "slack_ns": 6.762
+    },
+    {
+      "direction": "read",
+      "bit": 6,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[6]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[6]",
+      "budget_ns": 8,
+      "slack_ns": 6.68
+    },
+    {
+      "direction": "read",
+      "bit": 7,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[7]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[7]",
+      "budget_ns": 8,
+      "slack_ns": 7.099
+    },
+    {
+      "direction": "read",
+      "bit": 8,
+      "source": "u_isp_top/continuous_processing$bridge/read_gray[8]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[8]",
+      "budget_ns": 8,
+      "slack_ns": 6.776
+    },
+    {
+      "direction": "read",
+      "bit": 9,
+      "source": "u_isp_top/continuous_processing$bridge/read_bin[9]",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[9]",
+      "budget_ns": 8,
+      "slack_ns": 7.107
+    }
+  ],
+  "gray_constraint_counts": [
+    20,
+    20,
+    0,
+    0
+  ],
+  "gray_physical_paths": [
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[3]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.063
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[1]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.26
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[3]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[3]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.151
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[3]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.172
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[4]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.232
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[5]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 6.762
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[4]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 6.68
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[4]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.099
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[8]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 6.776
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[6]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.107
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.091
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.091
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[0]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[0]_syn_2.ia",
+      "budget_ns": 8.0,
+      "slack_ns": 6.978
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.094
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.094
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[1]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.187
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.688
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.688
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_sync2_reg[2]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync2_reg[0]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.363
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.69
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.69
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[3]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.132
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.594
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.594
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[4]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync2_reg[4]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.25
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[6]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.479
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[6]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 4.479
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[6]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync2_reg[5]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 7.137
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[6]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.702
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[6]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.702
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[6]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[6]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 6.791
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.434
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.434
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[7]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[7]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 6.979
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.409
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.409
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_gray_reg[8]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[7]_syn_2.ie",
+      "budget_ns": 8.0,
+      "slack_ns": 6.908
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[5]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.325
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1_reg[2]_syn_2.ceb",
+      "budget_ns": 8.0,
+      "slack_ns": 5.325
+    },
+    {
+      "source": "u_isp_top/continuous_processing$bridge/write_bin_reg[9]_syn_2.clk",
+      "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1_reg[9]_syn_2.imf",
+      "budget_ns": 8.0,
+      "slack_ns": 7.278
+    }
+  ],
+  "sdc_changed": false,
+  "bit": {
+    "bytes": 1789539,
+    "sha256": "16bd8beb593b1bf43f2eb4bfea3d3b58d1f5dbc1adca66644874a30e4f8b0e1e"
+  },
+  "hardware": "NOT_PROGRAMMED_BY_ASSISTANT",
+  "change": "Match current display records to previous positions per zone; remove ambiguous bottom-left recent sample summary and fixed16x16 core paint. Never hold missing targets or old state/reason. Preserve detector/recipe/video/CDC/SDC.",
+  "display_matching": {
+    "max_manhattan_processing_px": 32,
+    "acquisition_vertical_x_band_px": 16,
+    "persistent_tape_identity": false
+  },
+  "regression_repro": {
+    "source_manifest_sha256": "cbd7c2a918991c61fb9752e495ead40ad8ad5929a6158985dd6f44eb66d0207d",
+    "fatal": "7338 failures",
+    "same_test_truth": true
+  },
+  "quality_display": "PRESENT retains 有件. Nonzero reason is yellow with SIZE/ASP/FILL/REF;0xF is FIT CHK/REVIEW. These are review diagnostics, not a confirmed quality-defect subtype.",
+  "warning_boundary": "Historical local camera routing, PLL/DDR feedback and I/O delay coverage limits remain. No all-interface timing-proof or zero-warning claim.",
+  "resource_assessment": "Required display-jitter correction only, no new image RAM or detector architecture. Internal80% budget still limits feature expansion."
+}

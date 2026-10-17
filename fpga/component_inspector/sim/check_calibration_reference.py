@@ -6,8 +6,10 @@ import numpy as np
 def expected(rgb,mode,valid=True):
     a=rgb.astype(np.uint16)
     gray=((a[:,:,0]+2*a[:,:,1]+a[:,:,2])//4).astype(np.uint8)
-    core=gray[24:40,24:40]
-    mask=(gray.astype(np.uint16).reshape(32,2,32,2).sum((1,3))//4)>=[100,80,120,140][mode]
+    # Trace/fixtures retain64px context; measure only the centered32px.
+    gray=gray[16:48,16:48]
+    core=gray[8:24,8:24]
+    mask=(gray.astype(np.uint16).reshape(16,2,16,2).sum((1,3))//4)>=[100,80,120,140][mode]
     yy,xx=np.nonzero(mask)
     width=2*(int(xx.max())-int(xx.min())+1) if len(xx) else 0
     height=2*(int(yy.max())-int(yy.min())+1) if len(yy) else 0
@@ -32,16 +34,18 @@ def image(pattern,zone):
             elif pattern==2:r=g=b=255 if (x+y)%2 else 0
             elif pattern==3:r=g=b=0
             elif pattern==4:r=g=b=255 if x>=62 and y>=62 else 0
+            elif pattern==5:
+                r=g=b=180 if (x-32)**2+(y-32)**2<=36 or y<8 else 20
             a[y,x]=(r,g,b)
     return a
 
-CASES=[(0,0),(0,1),(0,2),(0,3),(1,1),(2,2),(2,3),(3,0),(4,0)]
+CASES=[(0,0),(0,1),(0,2),(0,3),(1,1),(2,2),(2,3),(3,0),(4,0),(5,0)]
 def main():
     p=argparse.ArgumentParser();p.add_argument('--generate',type=Path);p.add_argument('--trace',type=Path);p.add_argument('--records',type=Path);p.add_argument('--output',type=Path);args=p.parse_args()
     if args.generate:
         words=[expected(image(pattern,0),mode)|(expected(image(pattern,1),mode)<<64) for pattern,mode in CASES]
         args.generate.write_text(''.join(f'{x:032x}\n' for x in words),encoding='ascii')
-        print('PASS generated 9 independent RGB/2x2-mask reference records')
+        print('PASS generated 10 independent RGB/2x2-mask reference records')
     if args.trace:
         images={};modes={}
         for line in args.trace.read_text().splitlines():

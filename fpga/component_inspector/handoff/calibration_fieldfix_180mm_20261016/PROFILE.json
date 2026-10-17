@@ -1,0 +1,288 @@
+{
+  "status": "FIELD_FIX_TRIAL_PHYSICAL_VALIDATION_PENDING",
+  "device": "same 3528 white LED and same carrier tape",
+  "camera": {
+    "width": 1920,
+    "height": 1080,
+    "exposure": 1092,
+    "gain": 40,
+    "wb_r": 100,
+    "wb_b": 100
+  },
+  "search": {
+    "scope": "two configured effective regions; complete image retained for contour and side-reference context",
+    "internal_resolution": [
+      640,
+      360
+    ],
+    "reduction": "mean of all four source grayscale pixels in each 2x2 block",
+    "max_displayed_objects": 4,
+    "foreground_threshold": 100,
+    "grayscale": "floor((R+2G+B)/4)",
+    "output_area": "reduced foreground area times 4, estimate; 13-bit saturation",
+    "bbox": "half-resolution component bbox mapped to 720p processing/display coordinates, padded by two pixels and clipped",
+    "border_acceleration": "44-cell horizontal-run proof (current3528 review max43); certify preceding10 full words through spare capture write slots; seed/neighbor skip; dark reference preserved",
+    "max_objects_per_region": 2,
+    "membership": "complete component center inside the region; no ROI crop of contour",
+    "temporal_hold": false
+  },
+  "strict": {
+    "aspect": [
+      1.05,
+      1.55
+    ],
+    "fill_min": 0.85,
+    "long_processed": [
+      44,
+      78
+    ],
+    "short_processed": [
+      36,
+      72
+    ]
+  },
+  "review_envelope": {
+    "aspect": [
+      1.05,
+      1.8
+    ],
+    "fill_min": 0.75,
+    "long_processed": [
+      44,
+      86
+    ],
+    "short_processed": [
+      36,
+      76
+    ]
+  },
+  "diagnostics": [
+    "SIZE: strict image dimensions not met",
+    "ASP: strict image aspect not met",
+    "FILL: strict bright-body fill not met",
+    "REF: side dark reference not met"
+  ],
+  "quality_classification": {
+    "status": "USER_COARSENED_TO_PLACEMENT_ABNORMAL_SAMPLES_INVENTORIED_IMPLEMENTATION_PENDING",
+    "types": [
+      "placement_abnormal"
+    ],
+    "note": "Present and placement quality remain separate. Nine user-labeled screen photos retained; no reliable specific defect classifier or blanket abnormal-presence guarantee yet."
+  },
+  "metadata": {
+    "width": 631,
+    "normal_release_width": 502,
+    "calibration_bits": 129,
+    "objects_width": 304,
+    "object_bits": 76,
+    "source_frame_bound": true,
+    "wait_limit_ddr_cycles": 0,
+    "wait_limit_ms": 0,
+    "video_first": true,
+    "late_result": "one attachment to the same completed slot/writer epoch; canceled by next FS or bad frame; active reader tuple changes only at VS"
+  },
+  "recipe_loading": "compile-time inspection_region_config.v, independent MODEL0/MODEL1 and RECIPE0/RECIPE1; no automatic model selection",
+  "version": "DD FRAME EXP V12",
+  "processing_clock": {
+    "frontend": "native CSI",
+    "post_awb_mhz": 100,
+    "continuous": true,
+    "bridge": "explicit 128x512 dual-clock ERAM FIFO with 10-bit Gray pointers and two-stage synchronization",
+    "overflow": "reject until reset"
+  },
+  "validation": "PASS_FIELD180_TRIAL_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+  "base_commit": "ae04f76db1e6c28441d30b375be9f9c04b6fbba4",
+  "historical_profile_base_commit": "2fc4c4318027832f3feda9f193d34565af59a32b",
+  "optics": {
+    "working_distance_mm": 180,
+    "lens": "same lens as user-reported working V10",
+    "focus": "must refocus and record",
+    "distance_measurement_reference": "record actual start/end planes with new samples",
+    "calibration_status": "MEASURED_EXTENTS_TRIAL_INTEGRATED_PHYSICAL_VALIDATION_PENDING"
+  },
+  "processing": {
+    "width": 1280,
+    "height": 720,
+    "scaling": "full-field separable bilinear 2/3 before detection and view processing",
+    "native_frame_proof": true,
+    "scaled_frame_proof": true,
+    "edge_threshold": 80
+  },
+  "display": {
+    "width": 1280,
+    "height": 720,
+    "scan": "progressive",
+    "refresh_hz": 60,
+    "pixel_clock_mhz": 74.25,
+    "serial_clock_mhz": 371.25,
+    "capture_fps": "measured separately; display refresh is not capture FPS"
+  },
+  "geometry_recipe_status": "CAL100_BODY_RETAINED_CAL80_HOLES_SAMPLING_PHASE_FIELD_FIX_TRIAL",
+  "regions": [
+    {
+      "id": 1,
+      "bounds_xyxy": [
+        400,
+        240,
+        880,
+        400
+      ],
+      "template_id": 3528
+    },
+    {
+      "id": 2,
+      "bounds_xyxy": [
+        400,
+        432,
+        880,
+        600
+      ],
+      "template_id": 3528
+    }
+  ],
+  "template_kind": "Dual-threshold grayscale connected-component feature recipe; shared engine, no edge-template score",
+  "release_bit": {
+    "path": "fpga/component_inspector/release/regions_v12_20261015/V12_regions_3528_720p60_20261015.bit",
+    "bytes": 1789539,
+    "sha256": "66393158dc0ac7e42100f6388d9bb03989e6eacc3c6d99f998f0d2177d4578db"
+  },
+  "center_observation_statistics": "Bottom MEAN/MIN/MAX remain the legacy center observation ROI, not per-object or per-region gray means.",
+  "next_version_gate": {
+    "status": "USER_AUTHORIZED_FIELD_FIX_WITH_SUPPLIED_CAL_DATA",
+    "required": true,
+    "requirement": "下一版必须重新测定3528在新视野中的尺寸参数。先由用户明确确认，才开始重新测定、修改参数及下一版代码或构建。",
+    "current_action": "现场缺陷修复候选通过9项仿真、27FPS真实模块链路和实际路由/约束审核；待同一设置上板回归，不代表新实物尺寸或所有摆放异常已验收。",
+    "record": "开发实施/64_A_V12本地提交与下一版标定确认.md"
+  },
+  "calibration_dataset": "calibration_180mm/session_1092_40_20261015/dataset.json",
+  "observer_evidence": "开发实施/验收记录/20261016_A_180mm标定观察版_轮次7.json",
+  "release_bit_purpose": "Historical V12 release unchanged; current local observer candidate is bound by observer_evidence",
+  "calibration_observer_dataset": "calibration_180mm/session_observer_1092_40_20261016/dataset.json",
+  "calibration_hole32_observer": {
+    "status": "SOFTWARE_ROUTED_PASS_AWAITING_NEW_PHYSICAL_READINGS",
+    "base_commit": "ae04f76db1e6c28441d30b375be9f9c04b6fbba4",
+    "candidate": "fpga/component_inspector/handoff/calibration_hole32_180mm_20261016/candidate/V12_CAL180_hole32_1092_40_20261016.bit",
+    "sha256": "89e25b78f42451e125b5e2f73f00c0bcfbc069cac4d2622fdb889582dfe68233",
+    "geometry_window_px": 32,
+    "core_window_px": 16,
+    "evidence": "开发实施/验收记录/20261016_A_180mm定位孔32采数版_轮次1.md",
+    "formal_recipe_changed": false
+  },
+  "calibration_hole32_dataset": "calibration_180mm/session_hole32_1092_40_20261016/dataset.json",
+  "offline_body_minima_trial": {
+    "status": "PASS_BODY_MINIMUM_TRIAL_SOFTWARE_ROUTED_PHYSICAL_CLASSIFICATION_PENDING",
+    "long_min_internal": 22,
+    "short_min_internal": 18,
+    "observed_long_internal": [
+      22,
+      23
+    ],
+    "observed_short_internal": [
+      18,
+      18
+    ],
+    "upper_limits_empty_feed_dark_reference": "unchanged legacy seeds, not calibrated",
+    "foreground_threshold": 100,
+    "physical_validation": false,
+    "note": "Current user away from board; no request for immediate new samples",
+    "source_manifest_sha256": "cc7425ff9cf324562a28a118913cebb8e6181be410821bb6592e9b84e663b11c",
+    "actual_build_manifest_sha256": "f4d3ae46fb12f787e9044fd5dbfabbce66e9eee664acd63a2ba4da0c4f6bc2d0",
+    "evidence": "开发实施/验收记录/20261016_A_180mm有件下限离线候选_轮次2.md",
+    "bit_sha256": "cb0a2636b2512c36140b96bd1b01229029ae80457efc457a4203bcc00dc95cda"
+  },
+  "datasheet_reference_mm": {
+    "long": 3.5,
+    "short": 2.7,
+    "height": 1.9,
+    "tolerance": 0.2,
+    "source": "User3528W package-dimensions drawing archived in52/20261013 evidence; generic3528 naming is not a substitute"
+  },
+  "calibration_holes80_dataset": "calibration_180mm/session_holes80_1092_40_20261016/dataset.json",
+  "small_hole_detection": {
+    "foreground_threshold": 80,
+    "body_foreground_threshold": 100,
+    "empty_long_internal": [
+      3,
+      5
+    ],
+    "empty_short_internal": [
+      3,
+      5
+    ],
+    "feed_long_internal": [
+      7,
+      9
+    ],
+    "feed_short_internal": [
+      6,
+      9
+    ],
+    "tolerance": "Observed CAL extents plus2x2 sampling phase regression; algorithm trial margins, not new physical measurements",
+    "unmeasured_gap_internal": 6,
+    "mask_context_source_y": [
+      224,
+      616
+    ],
+    "cache_note": "Default two zones plus16 source-pixel vertical context; adjust cache bounds if zone Y coordinates change",
+    "empty_max_pixels_above100_internal": 5,
+    "display_mode_independent": true,
+    "body_dark_reference_unchanged": true,
+    "physical_validation": false,
+    "empty_min_component_cells": 6,
+    "empty_bright_counter_saturates": 6,
+    "empty_dark_reference": {
+      "strip_width": 8,
+      "strip_height": 8,
+      "minimum_dark_pixels_each": 48,
+      "x_offsets": [
+        [
+          -12,
+          -4
+        ],
+        [
+          4,
+          12
+        ]
+      ],
+      "y_offsets": [
+        -4,
+        4
+      ],
+      "coordinates": "internal640x360"
+    }
+  },
+  "calibration_holes80_trial": {
+    "status": "PASS_HOLES80_TRIAL_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+    "candidate": "fpga/component_inspector/handoff/calibration_holes80_trial_180mm_20261016/candidate/V12_CAL180_holes80_trial_1092_40_20261016.bit",
+    "sha256": "1f44ce56298285ffd4eed329fdc657047f72887325a956f16720bdd07435b3cf",
+    "source_manifest_sha256": "dcf672905f357ecb8a750d07451989d677b4cc591ad6abcfa4b6f8e91b8f6d20",
+    "tests": 7,
+    "evidence": "开发实施/验收记录/20261016_A_180mm空穴定位孔双门限候选_轮次3.md",
+    "formal_release_changed": false
+  },
+  "fieldfix_trial": {
+    "status": "PASS_FIELD180_TRIAL_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+    "candidate": "fpga/component_inspector/handoff/calibration_fieldfix_180mm_20261016/candidate/V12_FIELD180_fieldfix_1092_40_20261016.bit",
+    "sha256": "1bbfb6f673314627b50602c66031936e09060c380a6958ae18ac69a2791a47f3",
+    "source_manifest_sha256": "e27859a8d36e47f04850033622a0db2d13723a3978b0b3eab7d6462dd859fc72",
+    "tests": 9,
+    "field_runtime": {
+      "unit_slope_cycles": [
+        83920,
+        83748
+      ],
+      "processing_clock_mhz": 100,
+      "real_chain_fps": 27,
+      "real_chain_tail_budget_ns": 1295103.435999997,
+      "real_chain_result_latency_ns": [
+        1028245.884,
+        1064386.284,
+        1064391.484,
+        1064386.684,
+        1064391.884
+      ]
+    },
+    "evidence": "开发实施/验收记录/20261016_A_现场稳定性修复_轮次8.md",
+    "formal_release_changed": false
+  }
+}

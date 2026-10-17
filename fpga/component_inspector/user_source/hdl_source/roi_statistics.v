@@ -110,7 +110,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 endmodule
 
-// Two fixed calibration probes, before display processing. The outer 64x64
+// Two fixed calibration probes, before display processing. The outer 32x32
 // window measures the SAME 2x2 averaged threshold mask as frame_shape_search.
 // The inner16x16 measures native 720p luminance, including saturation count.
 // One record per probe: valid,clip,mode,mean,min,max,sat9,area13,width7,height7.
@@ -120,10 +120,10 @@ module calibration_probes #(parameter WIDTH=1280,HEIGHT=720)(
  input wire [10:0] x,input wire [9:0] y,input wire [95:0] rgb,
  input wire [1:0] mode,output reg [127:0] record
 );
-localparam X0=WIDTH/2-32,Y0=HEIGHT*4/9-32,Y1=HEIGHT*43/60-32;
+localparam X0=WIDTH/2-16,Y0=HEIGHT*4/9-16,Y1=HEIGHT*43/60-16;
 wire [7:0] threshold=mode==0 ? 100 : mode==1 ? 80 : mode==2 ? 120 : 140;
-wire xin=x>=X0 && x<X0+64;
-wire [1:0] yin={y>=Y1 && y<Y1+64,y>=Y0 && y<Y0+64};
+wire xin=x>=X0 && x<X0+32;
+wire [1:0] yin={y>=Y1 && y<Y1+32,y>=Y0 && y<Y0+32};
 wire [9:0] gsum[0:3];wire [7:0] gray[0:3];
 genvar g;
 generate for(g=0;g<4;g=g+1)begin : luma
@@ -131,8 +131,8 @@ generate for(g=0;g<4;g=g+1)begin : luma
  assign gray[g]=gsum[g][9:2];
 end endgenerate
 wire [8:0] p0={1'b0,gray[0]}+gray[1],p1={1'b0,gray[2]}+gray[3];
-reg [17:0] line_pair[0:15];reg [17:0] above,pair_d;
-wire [3:0] address=(x-X0)>>2;
+reg [17:0] line_pair[0:7];reg [17:0] above,pair_d;
+wire [2:0] address=(x-X0)>>2;
 always @(posedge clk)begin
  if(accept && xin && |yin && !y[0])line_pair[address]<={p1,p0};
  above<=line_pair[address];
@@ -149,7 +149,7 @@ always @(posedge clk or negedge rst_n)begin
  else begin
   ad<=accept && xin;yd<=yin;odd_d<=y[0];pair_d<={p1,p0};
   mx_d<=(x-X0)>>1;my0_d<=(y-Y0)>>1;my1_d<=(y-Y1)>>1;
-  inner_d<=x>=X0+24 && x<X0+40;
+  inner_d<=x>=X0+8 && x<X0+24;
   sum_d<=({2'b0,gray[0]}+gray[1])+({2'b0,gray[2]}+gray[3]);
   lo_d<=lo01<lo23 ? lo01 : lo23;hi_d<=hi01>hi23 ? hi01 : hi23;
   sat_d<={2'b0,gray[0]==255}+{2'b0,gray[1]==255}+{2'b0,gray[2]==255}+{2'b0,gray[3]==255};
@@ -169,14 +169,14 @@ integer z;
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
   record<=0;
-  for(z=0;z<2;z=z+1)begin pixels[z]<=0;count[z]<=0;xmin[z]<=31;xmax[z]<=0;ymin[z]<=31;ymax[z]<=0;clip[z]<=0;inner_count[z]<=0;sat[z]<=0;total[z]<=0;low[z]<=255;high[z]<=0;end
+  for(z=0;z<2;z=z+1)begin pixels[z]<=0;count[z]<=0;xmin[z]<=15;xmax[z]<=0;ymin[z]<=15;ymax[z]<=0;clip[z]<=0;inner_count[z]<=0;sat[z]<=0;total[z]<=0;low[z]<=255;high[z]<=0;end
  end else if(frame_start || invalidate)begin
   record<=0;
-  for(z=0;z<2;z=z+1)begin pixels[z]<=0;count[z]<=0;xmin[z]<=31;xmax[z]<=0;ymin[z]<=31;ymax[z]<=0;clip[z]<=0;inner_count[z]<=0;sat[z]<=0;total[z]<=0;low[z]<=255;high[z]<=0;end
+  for(z=0;z<2;z=z+1)begin pixels[z]<=0;count[z]<=0;xmin[z]<=15;xmax[z]<=0;ymin[z]<=15;ymax[z]<=0;clip[z]<=0;inner_count[z]<=0;sat[z]<=0;total[z]<=0;low[z]<=255;high[z]<=0;end
  end else begin
   for(z=0;z<2;z=z+1)if(ad && yd[z])begin
    pixels[z]<=pixels[z]+13'd4;
-   if(inner_d && row[z]>=12 && row[z]<20)begin
+   if(inner_d && row[z]>=4 && row[z]<12)begin
     inner_count[z]<=inner_count[z]+9'd4;total[z]<=total[z]+sum_d;sat[z]<=sat[z]+sat_d;
     if(lo_d<low[z])low[z]<=lo_d;if(hi_d>high[z])high[z]<=hi_d;
    end
@@ -186,13 +186,13 @@ always @(posedge clk or negedge rst_n)begin
      if((f0 ? mx_d : mx_d+1'b1)<xmin[z])xmin[z]<=f0 ? mx_d : mx_d+1'b1;
      if((f1 ? mx_d+1'b1 : mx_d)>xmax[z])xmax[z]<=f1 ? mx_d+1'b1 : mx_d;
      if(row[z]<ymin[z])ymin[z]<=row[z];if(row[z]>ymax[z])ymax[z]<=row[z];
-     if(row[z]==0 || row[z]==31 || (f0 && mx_d==0) || (f1 && mx_d==30))clip[z]<=1;
+     if(row[z]==0 || row[z]==15 || (f0 && mx_d==0) || (f1 && mx_d==14))clip[z]<=1;
     end
    end
   end
   if(commit)begin
-   record[63:0]<={pixels[0]==4096 && inner_count[0]==256,clip[0],mode,total[0][15:8],low[0],high[0],sat[0],count[0],2'b00,width0,height0};
-   record[127:64]<={pixels[1]==4096 && inner_count[1]==256,clip[1],mode,total[1][15:8],low[1],high[1],sat[1],count[1],2'b00,width1,height1};
+   record[63:0]<={pixels[0]==1024 && inner_count[0]==256,clip[0],mode,total[0][15:8],low[0],high[0],sat[0],count[0],2'b00,width0,height0};
+   record[127:64]<={pixels[1]==1024 && inner_count[1]==256,clip[1],mode,total[1][15:8],low[1],high[1],sat[1],count[1],2'b00,width1,height1};
   end
  end
 end
