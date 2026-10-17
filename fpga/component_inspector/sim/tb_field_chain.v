@@ -162,14 +162,13 @@ task frame(input integer kind,mode);
    if(row!=1079)begin run_clk=0;#21550.0;run_clk=1;end
   end
   fe=1;ticks(1);fe=0;ticks(200);run_clk=0;end_time=$realtime;
-  if(frame_no!=1)begin
+  begin // A complete cold frame must satisfy the same proof as every later frame.
    while(!writer.published && $realtime<end_time+100000)#10;
    if(!writer.published || !cap || bad || !good || writer.written!=172800)
     $fatal(1,"cadence video blocked frame=%0d P=%h words=%0d good=%b bad=%b",frame_no,writer.publish_seen,writer.written,good,bad);
   end
   if($realtime<frame_time+37035000)#(frame_time+37035000-$realtime);
-  if(frame_no==1)begin if(writer.published || !bad)$fatal(1,"warmup frame escaped proof");end
-  else begin
+  begin
    if(commits!=1 || overflows || underflows)$fatal(1,"cadence native proof/transport failure");
    if(kind==4)begin if(mready || completed_meta!=0)$fatal(1,"WB-canceled result must leave live zero-label video");end
    else begin
@@ -198,7 +197,7 @@ initial begin
  ticks(8);rst=1;ticks(20);
  frame(0,0);frame(0,0);frame(4,0);frame(3,0);frame(3,3);frame(3,1);frame(3,2);
  wait(displays>=4);repeat(4)@(negedge hclk);
- if(accepted_frames!=6 || checked_pixels<3686400 || nonzero_pixels<3600000 || overflows || underflows)$fatal(1,"cadence final counts failed");
+ if(accepted_frames!=7 || checked_pixels<3686400 || nonzero_pixels<3600000 || overflows || underflows)$fatal(1,"cadence final counts failed");
  $fclose(trace);$fclose(records);$display("PASS field chain: native line-clock gaps, LP0CF0 wall-clock, 27-FPS source start-to-start, all four views, live WB-canceled zero-result video, same-slot late dual tuples, full exact RGB rasters=%0d pixels=%0d OF=%0d UF=%0d",displays,checked_pixels,overflows,underflows);$finish;
 end
 initial begin #320000000;$fatal(1,"frame cadence watchdog");end

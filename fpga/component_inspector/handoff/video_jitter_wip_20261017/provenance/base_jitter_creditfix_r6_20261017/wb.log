@@ -1,0 +1,8 @@
+PASS frozen inputs: 360 files; manifest b01aa433af8ca2d34f4a72cbe8e5d73325a425498f15b5e685a7c7b3757eed1a
+RUN ['C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', "& 'D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r6_20261017\\work_wb\\sim\\run_modelsim.ps1' -ModelSimBin 'D:\\modelsim\\win64' -TdSimRoot 'D:\\AAA\\FPGA.....YZW\\sim_release' -OnlyTests @('manual_wb','fixed_wb')"] CWD D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\base_jitter_creditfix_r6_20261017\work_wb
+# PASS manual WB: independent Q2.6 arithmetic/clipping, four lanes, first pixel, bubbles, ready-low, EOL, pending requests held until next frame and reset
+# PASS fixed WB frame case=0 scene=0 beats=768 ROI=20 ready_low=180
+# PASS fixed WB frame case=1 scene=1 beats=768 ROI=20 ready_low=180
+# PASS fixed WB frame case=3 scene=0 beats=768 ROI=20 ready_low=180
+# PASS fixed WB: colored-background invariance, fixed non-unity gains/clipping, four lanes, bubbles, reset, line tails, ready-low; automatic reference changed 2304 beats
+PASS ModelSim: all 2 tests, including original vendor ERAM model

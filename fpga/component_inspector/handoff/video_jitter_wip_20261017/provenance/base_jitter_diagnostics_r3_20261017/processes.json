@@ -1,0 +1,25 @@
+[
+  {
+    "pid": 55540,
+    "tag": "raw",
+    "tests": [
+      "raw_timing_probe"
+    ]
+  },
+  {
+    "pid": 22804,
+    "tag": "repeat",
+    "tests": [
+      "base_picture_repeatability"
+    ]
+  },
+  {
+    "pid": 53332,
+    "tag": "hd",
+    "tests": [
+      "hd_pins",
+      "hd_resize",
+      "hd_scaled_guard"
+    ]
+  }
+]

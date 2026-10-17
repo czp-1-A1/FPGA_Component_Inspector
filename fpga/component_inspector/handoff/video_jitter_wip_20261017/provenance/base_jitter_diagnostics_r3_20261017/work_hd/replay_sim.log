@@ -1,0 +1,13 @@
+# OBS H pin words1000000
+# OBS H new completed slot0 midway; active slot3 must remain for current progressive frame
+# OBS H pin words2000000
+# OBS K native720 frame1 all921600 pixels/720 rows/no AVI, frame slot3
+# OBS H pin words3000000
+# OBS K native720 frame2 all921600 pixels/720 rows/no AVI, frame slot0
+# PASS hd pins: two720p60 progressive frames; actual vendor FIFO/DDR reader, phase and native720 OSD with every glyph stroke and mapped ROI border, every pixel/row/address, frame-only slot publication, DVI-compatible progressive sync; ideal PLL/vendor ODDR. Camera/physical pending.
+# PASS hd scaled guard: 921600 pixels independent of native proof, short/malformed rejection, proof ordering and recovery
+# PASS J resize frame0: all921600 bilinear pixels/720 EOL/172800 packed words, input gaps preserved
+# PASS J resize frame1: all921600 bilinear pixels/720 EOL/172800 packed words, input gaps preserved
+# PASS J resize frame2: all921600 bilinear pixels/720 EOL/172800 packed words, input gaps preserved
+# PASS hd resize: independent scalar reference, full FHD source, continuous/gapped input, short-line rejection and fresh-FS/reset recovery
+PASS ModelSim: all 3 tests, including original vendor ERAM model

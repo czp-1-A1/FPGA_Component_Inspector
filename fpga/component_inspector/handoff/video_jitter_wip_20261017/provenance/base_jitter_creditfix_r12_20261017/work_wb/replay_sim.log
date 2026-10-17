@@ -1,0 +1,6 @@
+# PASS manual WB: independent Q2.6 arithmetic/clipping, four lanes, first pixel, bubbles, ready-low, EOL, pending requests held until next frame and reset
+# PASS fixed WB frame case=0 scene=0 beats=768 ROI=20 ready_low=180
+# PASS fixed WB frame case=1 scene=1 beats=768 ROI=20 ready_low=180
+# PASS fixed WB frame case=3 scene=0 beats=768 ROI=20 ready_low=180
+# PASS fixed WB: colored-background invariance, fixed non-unity gains/clipping, four lanes, bubbles, reset, line tails, ready-low; automatic reference changed 2304 beats
+PASS ModelSim: all 2 tests, including original vendor ERAM model

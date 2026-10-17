@@ -1,0 +1,10 @@
+{
+  "source_manifest_sha256": "ad128391bddbaec6810608eef95281262f621a189bb6147d8c26577c85965746",
+  "production_delta": [
+    "user_source/hdl_source/awb.v",
+    "user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v",
+    "user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v",
+    "user_source/hdl_source/signal_delay.v"
+  ],
+  "purpose": "Read-credit trial: pause unwritten reads, preserve matrix across bubbles, count AWB EOL by accepted groups; unchanged memories/ports/thresholds"
+}

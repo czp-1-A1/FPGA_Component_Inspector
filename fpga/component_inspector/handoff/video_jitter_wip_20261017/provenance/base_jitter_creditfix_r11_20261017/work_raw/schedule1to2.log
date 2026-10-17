@@ -1,0 +1,12 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc=rn+/tb_raw_timing_probe" -onfinish exit -do "run -all; quit -code 1 -force" test_raw_timing_probe.tb_raw_timing_probe anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR -gSCHEDULE=2 -gPREVIOUS=1 
+# Start time: 12:25:51 on Oct 17,2026
+# ** Error (suppressible): (vsim-19) Failed to access library 'anlogic_sim' at "anlogic_sim".
+# No such file or directory. (errno = ENOENT)
+# Error loading design
+Error loading design
+# End time: 12:25:51 on Oct 17,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0

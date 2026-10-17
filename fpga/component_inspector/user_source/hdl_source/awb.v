@@ -406,7 +406,14 @@ assign  rgb888_b_d0[0] = I_tdata_d0[0+:8];
     end
 
 
-    assign  O_tlast  = (valid_d1 == 0) && (valid_d2 == 1);   
+    // A valid bubble is not an end of line. Count accepted output groups.
+    localparam OUTPUT_GROUP_BITS=$clog2(IMG_WIDTH/4);
+    reg [OUTPUT_GROUP_BITS-1:0] output_column;
+    always @(posedge I_clk or negedge I_rst_n)begin
+        if(!I_rst_n || I_tuser)output_column<=0;
+        else if(valid_d2)output_column<=output_column==IMG_WIDTH/4-1 ? 0 : output_column+1'b1;
+    end
+    assign  O_tlast = valid_d2 && output_column==IMG_WIDTH/4-1;
     assign  O_tuser  = I_tuser ;
     assign  O_pixel_sof = I_tuser_r2 && O_tvalid;
     assign  O_tvalid = valid_d2;

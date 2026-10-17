@@ -45,6 +45,19 @@ module signal_delay #(
     reg         rd_valid,I_valid_r;
 
     localparam IMG_WIDTH_4x = (IMG_WIDTH >> 2);
+    localparam CREDIT_BITS=$clog2(IMG_WIDTH_4x*IMG_HEIGHT+1);
+    reg [CREDIT_BITS-1:0] written_words,read_words;
+    wire read_step=rd_valid && written_words!=read_words;
+    reg first_read;
+    always @(posedge I_clk or negedge I_rst_n)begin
+        if(!I_rst_n || I_tuser)begin
+            written_words<=0;read_words<=0;first_read<=0;
+        end else begin
+            first_read<=read_step && read_words==0;
+            if(I_valid_r)written_words<=written_words+1'b1;
+            if(read_step)read_words<=read_words+1'b1;
+        end
+    end
     always @(posedge I_clk or negedge I_rst_n) begin
         if (!I_rst_n ) begin
             I_valid_r <= 0;
@@ -74,7 +87,7 @@ module signal_delay #(
         else if(h_cnt == DELAY_CYCLE - 3)begin
             rd_valid <= 1;
         end
-        else if(rd_cnt == IMG_WIDTH_4x - 1) 
+        else if(read_step && rd_cnt == IMG_WIDTH_4x - 1) 
             rd_valid <= 0;
     end
 
@@ -84,7 +97,7 @@ module signal_delay #(
         end
         else if(rd_cnt == IMG_WIDTH_4x )
             rd_cnt <= 0;
-        else if(rd_valid)begin
+        else if(read_step)begin
             rd_cnt <= rd_cnt + 1;
         end
     end
@@ -102,7 +115,7 @@ module signal_delay #(
       if (!I_rst_n || I_tuser) begin
         addrb <= 0;
       end else begin
-        addrb <= rd_valid ? (addrb == IMG_WIDTH_4x - 1) ? 'b0 : addrb + 1'b1 : addrb;
+        addrb <= read_step ? (addrb == IMG_WIDTH_4x - 1) ? 'b0 : addrb + 1'b1 : addrb;
       end
     end
     
@@ -111,11 +124,11 @@ module signal_delay #(
       if (!I_rst_n) begin
         rd_valid_d <= 0;
       end else begin
-        rd_valid_d <= rd_valid;
+        rd_valid_d <= read_step;
       end
     end
     assign O_valid = rd_valid_d;
-    assign O_tuser = (v_cnt == 0) && (rd_cnt == 1);
+    assign O_tuser = first_read;
 
     blk_mem_gen_awb_delay_signal blk_mem_gen_awb_delay_signal_d (
       .clka (I_clk   ),  // input wire clka

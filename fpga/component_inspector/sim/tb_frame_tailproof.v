@@ -136,7 +136,7 @@ task frame(input integer kind,mode,dx,dy);
  // The truth monitor observes the registered publication on its next DDR edge.
  if(writer.published)repeat(2)@(negedge dclk);
  $display("DIAG full publication frame=%0d pub=%b cap=%b good=%b bad=%b commits=%0d slot=%0d truth_equal=%b metadata_ready=%b wait=%0d words=%0d",frame_no,writer.published,cap,good,bad,commits,completed_slot,completed_meta===slot_truth[completed_slot],mready,writer.metadata_wait,writer.written);
- if(frame_no==1 || kind==5 || kind==6)begin
+ if(kind==5 || kind==6)begin
   if(!bad || good || writer.published || completed_meta!==before_meta)$fatal(1,"bad native frame published dual metadata");
  end else begin
   if(!writer.published || !cap || !good || bad || commits!=1 || completed_meta!==slot_truth[completed_slot])$fatal(1,"full-frame video did not publish complete slot %0d",frame_no);
@@ -163,7 +163,7 @@ initial begin
  frame(0,0,0,0);frame(6,3,0,0);frame(0,3,0,0);
  wait(display_done);@(negedge hclk);vs=1;repeat(1000)@(negedge hclk);vs=0;repeat(30000)@(negedge hclk);
  if(active_meta!==slot_truth[active_slot] || !active_meta[349] || !active_meta[273] || active_meta[24]!=1)$fatal(1,"post-fault recovery did not bind both objects to valid pixels");
- if(accepted_frames!=1 || overflows!=0 || underflows!=0)$fatal(1,"post-proof fault escaped frame transport checks");
+ if(accepted_frames!=2 || overflows!=0 || underflows!=0)$fatal(1,"post-proof fault escaped frame transport checks");
  $display("PASS frame tail proof: actual native extra RAW data after full-frame commit is rejected while input is closed; no bad-slot publication, complete dual recovery, full competing DDR raster and no OF/UF");$finish;
 end
 initial begin #450000000;$fatal(1,"full-frame video watchdog");end

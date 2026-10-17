@@ -69,13 +69,15 @@ module line_buffer_demosaic #(
     always @(posedge I_clk or negedge I_rst_n) begin
         if (!I_rst_n || I_tuser) begin
             tlast_lock_d0 <= 1'b0;  // 复位或者I_tuser有效时，将tlast_lock_d0清零
-        end else if ((tlast_lock_d0 == 1'b0) & (addra == IMG_WIDTH_4x - 1)) begin
+        end else if (valid_d0 && (addra == IMG_WIDTH_4x - 1)) begin
             tlast_lock_d0 <= 1'b1;  // 当第一次addra达到最大值时，置位tlast_lock_d0
         end
     end
 
     // 读使能信号rd_en的生成
-    assign rd_en = (I_valid && tlast_lock_d0) ? 1'b1 : 1'b0;
+    // Include the final committed write so consecutive rows need no idle beat.
+    assign rd_en = I_valid && (tlast_lock_d0 ||
+                              (valid_d0 && addra==IMG_WIDTH_4x-1));
     // 只有当I_valid有效且tlast_lock_d0置位后，才产生读使能信号
 
     // 读地址计数器addrb的更新
@@ -91,7 +93,13 @@ module line_buffer_demosaic #(
     end
 
     // 输出有效信号O_valid的生成
-    assign O_valid = (valid_d0 && tlast_lock_d0) ? 1'b1 : 1'b0;
+    // RAM read validity follows the accepted request, not the write address.
+    reg read_valid;
+    always @(posedge I_clk or negedge I_rst_n)begin
+        if(!I_rst_n || I_tuser)read_valid<=0;
+        else read_valid<=rd_en;
+    end
+    assign O_valid=read_valid;
     // 只有当valid_d0有效且tlast_lock_d0置位后，才输出有效数据
 
     // 实例化块存储器，用于数据的存储和读取

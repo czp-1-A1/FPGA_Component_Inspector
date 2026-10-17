@@ -32,14 +32,18 @@
 
 交接需包含代码、必要未跟踪文件与证据，不能只传本文。按授权提交/推送，不混入无关暂存文件；成功推送才可称已同步。接棒端核对工具依赖、实际文件与日志；Git不传未提交文件、进程或聊天。意外断额度时由人保存改动，接棒端恢复实际断点，WIP不当作稳定版。
 
-## 当前断点（2026-10-17，稳定编号版已上传GitHub，实板待复核）
+## 当前断点（2026-10-17，用户因额度不足要求立即GitHub交接，WIP未发布）
 
-- 用户2026-10-17明确要求把这版上传GitHub，覆盖前期不上传限制。现有分支lj4747-contest-work，远端与本地起点均ae04f76；仅提交相关代码/来源/冻结交付/验收记录。代码版本9eea5bca5a2e35aad542a63fbca4f820556f45c6已推送origin/lj4747-contest-work，远端提交已重新读回一致。上传回执见开发实施/验收记录/20261017_A_稳定编号版GitHub上传回执.md。此前要求修复两个编号快速交换的抖动、删左下最近采样；同时完成前一固定黄16移除。已核对旧版黄色有件+SIZE/ASP/FILL/REF表示待复核，0xF为FIT CHK/REVIEW；不是确认质量缺陷，空穴MODEL OK不表示旁边器件合格。
-- 只改experiment_osd.v生产文件：首有效像素冻结原始元组，四拍完成匹配（早于最早第80行标签），视频仍三拍；每区用前帧位置匹配当前2记录（中心曼哈顿≤32处理像素），无匹配重新空间编号、X差≤16按上到下；不依赖类别/理由，不保留失踪目标，当前状态/理由/框坐标照常更新。仅REGIONS去左下最近采样/单目标结果；固定黄16绘制取消，检测框/CAL几何数值/两区保留。检测器排序/选择、所有分类阈值、视频/CDC/SDC与r5逐字节不变，无新图像RAM。
-- 旧代码按X每帧排号、卡片上下交错，竖放X接近会对调卡片，此机制已复现。冻结stable_ids_repro_r2_20261016，同一tb_stable_ids_osd Fatal7338；可见目标/像素真值不变。r1显示通过但setup-1.037ns不交付；r2分拍并把内部核验移到首行12拍、首拍后输入归零，重新用旧源同测试复现7338失败。最终tmp/stable_ids_r2_20261016，358输入manifest 752d1479c262e4fc4c7f138a4c38a3f470cbe7c14a812828d934b61eac29be54，3项当前显示回归PASS，共9栅格，新增16状态/39936独立编号摘要像素。r5十项/27FPS保留为上版证据，不冒称本轮重跑。
-- 新TD6.2.168116双角路由setup+0.126/hold+0.020ns、TNS0、STA93.01%；Slice83.69%、ERAM104/108、DSP26/40、PLL5/6。40max_delay匹配ignored0、20Gray逻辑位及实际扇出8ns通过。资源超80%不扩功能，历史局部相机/PLL/DDR/I/O覆盖边界保持。
-- 新镜像D:/fpga_download/3528_stable_ids_16bd8beb.bit，SHA16bd8beb593b1bf43f2eb4bfea3d3b58d1f5dbc1adca66644874a30e4f8b0e1e；完整包fpga/component_inspector/handoff/calibration_stable_ids_180mm_20261016/V12_POSE180_STABLE_IDS_1092_40_20261016_full.zip，39276794字节，SHAad8d4308b29b2792d729eb642f5ee4e01fdaca2cc76dc9c2dea7e94a6f547ce3。包含358源/3当前日志/新路由报告/旧十项与原源重建/失败复现/两个来源ZIP，CRC和逐文件SHA通过。见80号指南和开发实施/验收记录/20261016_A_稳定显示编号与移除最近采样_轮次2.md。
-- 临时current_calibration_handoff已切新版，正式current_codex_build/旧r5 D:/fpga_download/3528_pose_c8a5a49e.bit保持。前一cleanui只显示PASS、构建被本次用户请求取代，日志和已核对进程树停止记录保留，未交付。新3反馈原图/SHA追加ZIP及旧88payload原来源包保持。
-- 分支lj4747-contest-work / 代码提交9eea5bca5a2e35aad542a63fbca4f820556f45c6已上传并确认；本上传回执单独提交，不改写代码提交；未烧板/Flash，无后台构建任务。用户GUI/根build_console.log/transcript/stash/原件不碰。固定3528/载带、180mm/1092/40/WB100及原照明。下一步用户同一对目标竖放/稍斜观察编号与卡片是否仍交换，移走一个/全部应即时清除；本次只证明显示交换复现通过，实际候选本身波动/其他画面抖动/准确率仍待新版实板复核，编号不是永久载带ID。
+- 分支lj4747-contest-work，基线4556e9a；最新用户明确授权上传交接。本轮仅保存、提交和正常推送，不烧板/Flash，不切正式或临时交付指针。提交/推送结果以GitHub分支及交接回执为准；交接代码随本提交完整保存。
+- 接力入口fpga/component_inspector/handoff/video_jitter_wip_20261017/README.md，HANDOFF.json为逐项状态；完整360输入、所有必要测试、失败轮次manifest+delta可重建、实际路由报告、21节奏测试/原视频分析和未发布bit均已纳入。scripts/verify_handoff.py核验逐文件SHA与负轮次重建；scripts/replay.py在新ASCII路径可直接prepare/sim/build。
+- 冻结最终r15 manifest ed7cc98129abbd4bac0f92ccdae1fa18a5c34c579efccc321b0de1c26cbf34cf；实际构建r13 manifest7de1a3676fe09bc426ea288d52f5cee980782d38beda7fc09b8b818a9ed95ef1，生产代码逐字节相同，仅2个测试的独立行周期参考/测试变量清理不同。不要把测试only变更误认为换了未构建RTL。
+- 仅5生产文件：zhenghe删除前帧行时长，以当前写入信用读；matrix空拍保持邻居；line_buffer首行完成按实际末写/读请求valid；signal_delay信用及首读；awb按有效组计EOL。识别阈值、3528/180mm/1092/40/WB100/原照明、四目标ID/UI/CDC/SDC/RAM/DSP不变。
+- 旧生产r3 14813组/57957像素错（处理x1199..1279所有行，数量proof仍好）；r4 RAW独立真值1736错；r7/8变快截断643行；r11快慢probe复现；r12 RAW正确而行valid错26400组。负轮次全部保留；原首帧必坏断言改为首帧必须完整正确，坏尾/短帧仍拒绝。r13独立行周期参考误将气泡当行首、r14测试残留变量编译错误均保留，r15修测试计数参考，未降低像素/类别真值。
+- 当前r13完整静止FHD前5帧均720行/172800字/差0，最后第6帧待最终PASS；21节奏切换/额外间隔全PASS；27FPS/四视图/13栅格12538001精确DDR像素、OF/UF0通过；HDMI/缩放/WB5项通过。最终状态以HANDOFF.json保存时刻为准。
+- 新TD6.2.168116双角路由与独立实际约束审计通过：setup+.105/hold+.020ns、TNS0、STA92.94%，Slice17753/21216=83.68%，ERAM104/108、DSP26/40、PLL5/6；40max_delay匹配ignored0、20Gray位和全部20物理扇出8ns正余量。无新图像RAM，资源超80%不扩功能。历史相机/DDR/PLL/I/O覆盖边界仍在，不称全接口或现场抖动已验收。
+- 未发布bit SHA c093c98bc5b59003c663a10f7c66e8c3a7d5600e30c583a5d16262630b969acd在candidate_unreleased；屏幕标题仍180MM STABLE IDS，必须按文件/SHA识别，不能当旧16bd8beb版。旧交付指针/正式current_codex_build未改。
+- 下一步先读本机tmp/base_jitter_creditfix_r13_20261017/work_repeat/sim/modelsim_work/base_picture_repeatability/console.log和r15 safety.log/err。最后已知原生vsimk PID12360（完整6帧）/51284（安全余项），有限测试可继续，进程/本机tmp不随Git传输；新机按README重跑缺项，必须明确PASS且无Fatal/Error，ModelSim原生exit0不能替代通过。全测试后执行original_workspace_scripts/audit_video_credit.py（需按归档恢复轮次路径）完成组合审计，再打完整已验证发布包并更新候选；最后用户实板RAW/GRAY+EDGE复核。不要先标完工。
+- 手机视频已原字节归档SHA a2070931...，拍摄/OIS/摩尔纹混入；用户确认RAW也抖是真值。仿真只证明行尾/节奏相关错像素，不能证明所有现场全图抖动同因。不要继续重拍分类标定或改阈值来掩盖视频问题。
+- 根build_console.log/transcript、fpga/异常标定、fpga/测试及测试.zip为既有本机未跟踪原件，本次不混入；前次已归档标定来源保持。本轮用户请求优先立即交接，未开始新的独立工作或自动任务。
 
-- 上传期间发现后续底图抖动只读复核更新工作区AGENTS及新资料，已保留且不混入本版；远端本断点仅描述16bd8beb编号稳定交付。后续资料仍在本机，交接时需单独核对。
+- 保存时测试状态：raw_timing_probe=PASS；base_picture_repeatability=PENDING_OR_INCOMPLETE；field_chain=PASS；hd_pins=PASS；hd_scaled_guard=PASS；hd_resize=PASS；manual_wb=PASS；fixed_wb=PASS；frame_tailproof=PASS；isp_metadata_stop=PASS；isp_writer_stop=PASS。

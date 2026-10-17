@@ -1,0 +1,32 @@
+{
+  "user_observation": "Number/card jumping is much better; remaining jitter is visible in the base picture without detections.",
+  "visible_build_title": "180MM STABLE IDS",
+  "candidate_reference_sha256": "16bd8beb593b1bf43f2eb4bfea3d3b58d1f5dbc1adca66644874a30e4f8b0e1e",
+  "programmed_bit_identity": "TITLE_VISIBLE_ONLY_NOT_HASH_CONFIRMED",
+  "source": {
+    "path": "D:\\wx\\xwechart_files\\xwechat_files\\wxid_l6i9yqdlyvyd22_4061\\temp\\RWTemp\\2026-10\\a28b42ad2ee8e9f4f8ca2a2efa3464ff\\4f378e3e70e9ff94d2452d1c422064fc.mp4",
+    "bytes": 475307,
+    "sha256": "a20709315707dc8af99a781c34570302082f151796bbd726bfab77cf89b9ae54",
+    "width": 1280,
+    "height": 720,
+    "fps": 29.00007998446016,
+    "frames": 141,
+    "duration": 4.862055555555556
+  },
+  "scope": "Phone recording of monitor, not native sensor or HDMI frame capture; not numeric calibration truth.",
+  "observations": [
+    "Carrier mainly outside the dashed regions; R1/R2 show NO TGT and intermittent WAIT; no detection cards during this interval.",
+    "Fixed yellow center markers and bottom-left recent state are absent; new title visible.",
+    "No gross full-frame blackouts or obvious horizontal split seen in sampled frames; this does not exclude small phase errors."
+  ],
+  "registration_limit": "141 frames decoded. Registering fixed OSD yields residual local deformation: largest apparent tape step ~8 recorded pixels also occurs in nearby fixed footer (~8) and monitor-border control (~10). Horizontal trajectory correlation with those controls ~0.98/0.99. Do not attribute this apparent displacement to FPGA pixels or claim native jitter measured. Phone motion, rolling readout and moire remain mixed in the evidence.",
+  "conclusion": "Treat remaining reported physical base-image jitter independently of ID matching. Do not retune classification thresholds or add result holding as a substitute. Root cause not established from this recording.",
+  "read_only_code_review": [
+    "video_out latches completed slot/metadata only during drain/reset around frame start, not per detected object.",
+    "DDR video phase is fixed two clocks plus OSD three clocks; stable ID matching changes records only.",
+    "Input 1920x1080 -> processing/output1280x720; next reproduction should compare a stationary asymmetric input pattern across input/scaler/DDR output, and observe RAW versus GRAY+EDGE. Existing passing tests do not prove physical input/HDMI stability."
+  ],
+  "production_rtl_changed": false,
+  "new_bit_generated": false,
+  "classification_photos_needed_for_this_issue": false
+}

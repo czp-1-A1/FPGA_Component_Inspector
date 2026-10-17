@@ -1,0 +1,72 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc=rn+/tb_raw_timing_probe" -onfinish exit -do "run -all; quit -code 1 -force" test_raw_timing_probe.tb_raw_timing_probe anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR -gEXTRA_GAPS=128 
+# Start time: 11:51:47 on Oct 17,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v(136): (vopt-2241) Connection width does not match width of port 'O_raw_tready'. The port definition is at: ../user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v(37).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v(167): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_zhenghe_d1'.  Expected 10, found 9.
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v(98): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_demosaic_r0'.  Expected 10, found 9.
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v(98): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: D:\AAA\FPGA.....YZW\sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_raw_timing_probe(fast)
+# Loading work.uial2axis(fast)
+# Loading work.demosaic(fast)
+# Loading work.data128_96(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# run -all
+# PROBE frame1 outputs26880 diffs0 first-1 last-1 repack_groups26880 repack_changed0 repack_wrong0 baseline_wrong0
+# PROBE frame2 outputs26880 diffs0 first-1 last-1 repack_groups26880 repack_changed0 repack_wrong0 baseline_wrong0
+# REPACK_DIFF x1712 y0 got33323130 baseline2e2d2c2c input_truth2e2d2c2c wp428 rp429 previous_width1195
+# REPACK_DIFF x1716 y0 got36353433 baseline31302f2f input_truth31302f2f wp428 rp430 previous_width1195
+# REPACK_DIFF x1720 y0 got39383736 baseline34333232 input_truth34333232 wp429 rp431 previous_width1195
+# REPACK_DIFF x1724 y0 got3c3b3a39 baseline37363535 input_truth37363535 wp429 rp432 previous_width1195
+# REPACK_DIFF x1728 y0 got3f3e3d3c baseline3a393838 input_truth3a393838 wp430 rp433 previous_width1195
+# REPACK_DIFF x1732 y0 got4241403f baseline3d3c3b3b input_truth3d3c3b3b wp430 rp434 previous_width1195
+# PROBE_DIFF x1712 y0 got00292b2e00292929002a2a2a00382b2b ref00292a2b00292929002a2a2a00382b2b
+# PROBE_DIFF x1716 y0 got003031330031313100323232002d3333 ref002c2d2e002c2c2c002d2d2d002b2e2e
+# PROBE_DIFF x1720 y0 got00333436003434340035353500323636 ref002f3031002f2f2f00303030002e3131
+# PROBE_DIFF x1724 y0 got00363739003737370038383800353939 ref00323334003232320033333300313434
+# PROBE_DIFF x1728 y0 got00393a3c003a3a3a003b3b3b00383c3c ref00353637003535350036363600343737
+# PROBE_DIFF x1732 y0 got003c3d3f003d3d3d003e3e3e003b3f3f ref0038393a003838380039393900373a3a
+# PROBE_DIFF x1736 y0 got003f40420040404000414141003e4242 ref003b3c3d003b3b3b003c3c3c003a3d3d
+# PROBE_DIFF x1740 y0 got00423b35004343430044444400414545 ref003e3f40003e3e3e003f3f3f003d4040
+# PROBE_DIFF x1744 y0 got00453e380046464600473f3700442828 ref00414243004141410042424200404343
+# PROBE_DIFF x1748 y0 got0028292b00292929002a2a2a00372b2b ref00443d36004444440045454500434646
+# PROBE_DIFF x1752 y0 got002b2c2e002c2c2c002d2d2d002a2e2e ref00474039003747470028303800362929
+# PROBE_DIFF x1756 y0 got002e2f31002f2f2f00303030002d3131 ref002a2b2c002a2a2a002b2b2b00392c2c
+# PROBE frame3 outputs26880 diffs2887 first428 last26879 repack_groups26880 repack_changed2912 repack_wrong2912 baseline_wrong0
+# ** Fatal: RAW timing probe reproduced demosaic pixel dependence: 2887 groups
+#    Time: 10005812652 ps  Scope: tb_raw_timing_probe File: tb_raw_timing_probe.v Line: 69
+# ** Note: $finish    : tb_raw_timing_probe.v(69)
+#    Time: 10005812652 ps  Iteration: 1  Instance: /tb_raw_timing_probe
+# End time: 11:51:49 on Oct 17,2026, Elapsed time: 0:00:02
+# Errors: 1, Warnings: 17

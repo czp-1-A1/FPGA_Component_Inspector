@@ -56,6 +56,8 @@ try {
         "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
         "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v")
     $tests = @(
+        @{Name="raw_timing_probe"; Pass="PASS raw timing probe:"; Sources=($ispSources + @("tb_raw_timing_probe.v"))},
+        @{Name="base_picture_repeatability"; Pass="PASS base picture repeatability:"; Sources=($ispSources + @("$hdl/image_correction.v", "tb_base_picture_repeatability.v"))},
         @{Name="pose180"; Pass="PASS pose180:"; Sources=@("$hdl/inspection_region_config.v", "$hdl/frame_shape_search.v", "tb_pose180.v")},
         @{Name="field180"; Pass="PASS field180:"; Sources=@("$hdl/inspection_region_config.v", "$hdl/frame_shape_search.v", "tb_field180.v")},
         @{Name="cal180_body"; Pass="PASS cal180 body:"; Sources=@("$hdl/inspection_region_config.v", "$hdl/frame_shape_search.v", "tb_cal180_body.v")},
@@ -156,6 +158,10 @@ try {
         @{Name="classifier"; Pass="PASS classifier:"; Sources=@("$hdl/roi_frame_guard.v", "$hdl/roi_statistics.v", "$hdl/roi_classifier.v", "$hdl/status_cdc.v", "tb_classifier.v")},
         @{Name="roi_chain"; Pass="PASS actual ROI chain:"; Sources=($ispSources + @("tb_roi_chain.v"))}
     )
+    # Negative investigations stay opt-in while the production issue is open.
+    if ($OnlyTests.Count -eq 0) {
+        $tests = @($tests | Where-Object { $_.Name -notin @("raw_timing_probe", "base_picture_repeatability") })
+    }
     if ($OnlyTests.Count -gt 0) {
         foreach ($requested in $OnlyTests) {
             if ($requested -notin $tests.Name) { throw "Unknown test: $requested" }
@@ -188,12 +194,13 @@ try {
         & "$ModelSimBin/vlog.exe" -sv -work $library @defines $testbench >> "$directory/compile.log" 2>&1
         if ($LASTEXITCODE -ne 0) { throw "Testbench compile failed: $($test.Name); see $directory/compile.log" }
         $tops = @("$library.tb_$($test.Name)")
-        if ($test.Name -in @("fixed_wb", "manual_wb", "pixel_interface", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "hd_pll")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
+        if ($test.Name -in @("raw_timing_probe", "base_picture_repeatability", "fixed_wb", "manual_wb", "pixel_interface", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "hd_pll")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
         $commands = "log /tb_$($test.Name)/*; run -all; quit -code 1 -force"
         if ($test.Name -in @("hd_pins", "hd_pll")) { $commands = "run -all; quit -code 1 -force" }
         if ($test.Name -in @("shape_isp", "local_isp", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "hd_pll")) { $commands = "log /tb_$($test.Name)/frame_no; run -all; quit -code 1 -force" }
+        if ($test.Name -in @("raw_timing_probe", "base_picture_repeatability")) { $commands = "run -all; quit -code 1 -force" }
         $access = "+acc"
-        if ($test.Name -in @("roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "hd_pll")) { $access = "+acc=rn+/tb_$($test.Name)" }
+        if ($test.Name -in @("raw_timing_probe", "base_picture_repeatability", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "hd_pll")) { $access = "+acc=rn+/tb_$($test.Name)" }
         & "$ModelSimBin/vsim.exe" -c -L anlogic_sim "-voptargs=$access" -onfinish exit -l "$directory/transcript.log" -wlf "$directory/wave.wlf" -do $commands @tops *> "$directory/console.log"
         if ($LASTEXITCODE -ne 0) { throw "Simulation failed: $($test.Name); see $directory/console.log" }
         $output = Get-Content -LiteralPath "$directory/console.log" -Raw

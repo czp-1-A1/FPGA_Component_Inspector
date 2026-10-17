@@ -1,0 +1,115 @@
+{
+  "reason": "r12 long runs superseded after the fast transition probe found line-buffer valid fault; fifth production file repaired in r13; not counted as passes",
+  "roots": [
+    22964,
+    51860,
+    48660
+  ],
+  "stopped_processes": [
+    {
+      "ProcessId": 22964,
+      "ParentProcessId": 21012,
+      "CommandLine": "C:\\Users\\yiziw\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe -X utf8 D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r12_20261017\\scripts\\replay.py --action sim --work D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r12_20261017\\work_repeat --td-root D:/AAA/FPGA.....YZW --modelsim-bin D:/modelsim/win64 --tests base_picture_repeatability"
+    },
+    {
+      "ProcessId": 29488,
+      "ParentProcessId": 22964,
+      "CommandLine": "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+      "ProcessId": 51860,
+      "ParentProcessId": 21012,
+      "CommandLine": "C:\\Users\\yiziw\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe -X utf8 D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r12_20261017\\scripts\\replay.py --action sim --work D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r12_20261017\\work_field --td-root D:/AAA/FPGA.....YZW --modelsim-bin D:/modelsim/win64 --tests field_chain"
+    },
+    {
+      "ProcessId": 12264,
+      "ParentProcessId": 51860,
+      "CommandLine": "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+      "ProcessId": 48660,
+      "ParentProcessId": 21012,
+      "CommandLine": "C:\\Users\\yiziw\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe -X utf8 D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r12_20261017\\scripts\\replay.py --action sim --work D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r12_20261017\\work_safety --td-root D:/AAA/FPGA.....YZW --modelsim-bin D:/modelsim/win64 --tests isp_writer_stop isp_metadata_stop frame_tailproof"
+    },
+    {
+      "ProcessId": 57496,
+      "ParentProcessId": 48660,
+      "CommandLine": "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+      "ProcessId": 41312,
+      "ParentProcessId": 22964,
+      "CommandLine": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"& 'D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r12_20261017\\work_repeat\\sim\\run_modelsim.ps1' -ModelSimBin 'D:\\modelsim\\win64' -TdSimRoot 'D:\\AAA\\FPGA.....YZW\\sim_release' -OnlyTests @('base_picture_repeatability')\""
+    },
+    {
+      "ProcessId": 45212,
+      "ParentProcessId": 51860,
+      "CommandLine": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"& 'D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r12_20261017\\work_field\\sim\\run_modelsim.ps1' -ModelSimBin 'D:\\modelsim\\win64' -TdSimRoot 'D:\\AAA\\FPGA.....YZW\\sim_release' -OnlyTests @('field_chain')\""
+    },
+    {
+      "ProcessId": 47452,
+      "ParentProcessId": 48660,
+      "CommandLine": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"& 'D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r12_20261017\\work_safety\\sim\\run_modelsim.ps1' -ModelSimBin 'D:\\modelsim\\win64' -TdSimRoot 'D:\\AAA\\FPGA.....YZW\\sim_release' -OnlyTests @('isp_writer_stop','isp_metadata_stop','frame_tailproof')\""
+    },
+    {
+      "ProcessId": 17876,
+      "ParentProcessId": 41312,
+      "CommandLine": "\"D:\\modelsim\\win64\\vsim.exe\" -c -L anlogic_sim -voptargs=+acc=rn+/tb_base_picture_repeatability -onfinish exit -l modelsim_work/base_picture_repeatability/transcript.log -wlf modelsim_work/base_picture_repeatability/wave.wlf -do \"run -all; quit -code 1 -force\" test_base_picture_repeatability.tb_base_picture_repeatability anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR"
+    },
+    {
+      "ProcessId": 46816,
+      "ParentProcessId": 17876,
+      "CommandLine": "D:\\modelsim\\win64\\vish.exe -vsim -vsimpid 276 \"-c\" \"-L\" \"anlogic_sim\" \"-voptargs=+acc=rn+/tb_base_picture_repeatability\" \"-onfinish\" \"exit\" \"-l\" \"modelsim_work/base_picture_repeatability/transcript.log\" \"-wlf\" \"modelsim_work/base_picture_repeatability/wave.wlf\" \"-do\" \"run -all; quit -code 1 -force\" \"test_base_picture_repeatability.tb_base_picture_repeatability\" \"anlogic_sim.glbl\" \"anlogic_sim.PH1P_PHY_GSR\""
+    },
+    {
+      "ProcessId": 54124,
+      "ParentProcessId": 46816,
+      "CommandLine": "D:/modelsim/win64\\vlm.exe  1478916018 466634147"
+    },
+    {
+      "ProcessId": 44384,
+      "ParentProcessId": 45212,
+      "CommandLine": "\"D:\\modelsim\\win64\\vsim.exe\" -c -L anlogic_sim -voptargs=+acc=rn+/tb_field_chain -onfinish exit -l modelsim_work/field_chain/transcript.log -wlf modelsim_work/field_chain/wave.wlf -do \"log /tb_field_chain/frame_no; run -all; quit -code 1 -force\" test_field_chain.tb_field_chain anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR"
+    },
+    {
+      "ProcessId": 26824,
+      "ParentProcessId": 44384,
+      "CommandLine": "D:\\modelsim\\win64\\vish.exe -vsim -vsimpid 296 \"-c\" \"-L\" \"anlogic_sim\" \"-voptargs=+acc=rn+/tb_field_chain\" \"-onfinish\" \"exit\" \"-l\" \"modelsim_work/field_chain/transcript.log\" \"-wlf\" \"modelsim_work/field_chain/wave.wlf\" \"-do\" \"log /tb_field_chain/frame_no; run -all; quit -code 1 -force\" \"test_field_chain.tb_field_chain\" \"anlogic_sim.glbl\" \"anlogic_sim.PH1P_PHY_GSR\""
+    },
+    {
+      "ProcessId": 46332,
+      "ParentProcessId": 26824,
+      "CommandLine": "D:/modelsim/win64\\vlm.exe  1478916018 466634147"
+    },
+    {
+      "ProcessId": 16580,
+      "ParentProcessId": 46816,
+      "CommandLine": "\"D:\\modelsim\\win64\\vsimk.exe\" \"-port\" \"::1:9795\" \"-stdoutfilename\" \"C:/Users/yiziw/AppData/Local/Temp/VSOUT591c4w\" \"-c\" \"-L\" \"anlogic_sim\" \"-voptargs=+acc=rn+/tb_base_picture_repeatability\" \"-onfinish\" \"exit\" \"-l\" \"modelsim_work/base_picture_repeatability/transcript.log\" \"-wlf\" \"modelsim_work/base_picture_repeatability/wave.wlf\" \"-do\" \"run -all; quit -code 1 -force\" \"test_base_picture_repeatability.tb_base_picture_repeatability\" \"anlogic_sim.glbl\" \"anlogic_sim.PH1P_PHY_GSR\""
+    },
+    {
+      "ProcessId": 56632,
+      "ParentProcessId": 26824,
+      "CommandLine": "\"D:\\modelsim\\win64\\vsimk.exe\" \"-port\" \"::1:9798\" \"-stdoutfilename\" \"C:/Users/yiziw/AppData/Local/Temp/VSOUT3yv8b1\" \"-c\" \"-L\" \"anlogic_sim\" \"-voptargs=+acc=rn+/tb_field_chain\" \"-onfinish\" \"exit\" \"-l\" \"modelsim_work/field_chain/transcript.log\" \"-wlf\" \"modelsim_work/field_chain/wave.wlf\" \"-do\" \"log /tb_field_chain/frame_no; run -all; quit -code 1 -force\" \"test_field_chain.tb_field_chain\" \"anlogic_sim.glbl\" \"anlogic_sim.PH1P_PHY_GSR\""
+    },
+    {
+      "ProcessId": 57608,
+      "ParentProcessId": 47452,
+      "CommandLine": "\"D:\\modelsim\\win64\\vsim.exe\" -c -L anlogic_sim -voptargs=+acc=rn+/tb_isp_metadata_stop -onfinish exit -l modelsim_work/isp_metadata_stop/transcript.log -wlf modelsim_work/isp_metadata_stop/wave.wlf -do \"log /tb_isp_metadata_stop/*; run -all; quit -code 1 -force\" test_isp_metadata_stop.tb_isp_metadata_stop anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR"
+    },
+    {
+      "ProcessId": 45032,
+      "ParentProcessId": 57608,
+      "CommandLine": "D:\\modelsim\\win64\\vish.exe -vsim -vsimpid 288 \"-c\" \"-L\" \"anlogic_sim\" \"-voptargs=+acc=rn+/tb_isp_metadata_stop\" \"-onfinish\" \"exit\" \"-l\" \"modelsim_work/isp_metadata_stop/transcript.log\" \"-wlf\" \"modelsim_work/isp_metadata_stop/wave.wlf\" \"-do\" \"log /tb_isp_metadata_stop/*; run -all; quit -code 1 -force\" \"test_isp_metadata_stop.tb_isp_metadata_stop\" \"anlogic_sim.glbl\" \"anlogic_sim.PH1P_PHY_GSR\""
+    },
+    {
+      "ProcessId": 45520,
+      "ParentProcessId": 45032,
+      "CommandLine": "D:/modelsim/win64\\vlm.exe  1601494981 478342612"
+    },
+    {
+      "ProcessId": 16464,
+      "ParentProcessId": 45032,
+      "CommandLine": "\"D:\\modelsim\\win64\\vsimk.exe\" \"-port\" \"::1:5613\" \"-stdoutfilename\" \"C:/Users/yiziw/AppData/Local/Temp/VSOUTn70sqa\" \"-c\" \"-L\" \"anlogic_sim\" \"-voptargs=+acc=rn+/tb_isp_metadata_stop\" \"-onfinish\" \"exit\" \"-l\" \"modelsim_work/isp_metadata_stop/transcript.log\" \"-wlf\" \"modelsim_work/isp_metadata_stop/wave.wlf\" \"-do\" \"log /tb_isp_metadata_stop/*; run -all; quit -code 1 -force\" \"test_isp_metadata_stop.tb_isp_metadata_stop\" \"anlogic_sim.glbl\" \"anlogic_sim.PH1P_PHY_GSR\""
+    }
+  ]
+}

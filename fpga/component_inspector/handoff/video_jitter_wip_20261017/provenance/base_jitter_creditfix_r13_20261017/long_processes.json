@@ -1,0 +1,36 @@
+[
+  {
+    "pid": 56960,
+    "tag": "repeat",
+    "tests": [
+      "base_picture_repeatability"
+    ]
+  },
+  {
+    "pid": 55044,
+    "tag": "field",
+    "tests": [
+      "field_chain"
+    ]
+  },
+  {
+    "pid": 38996,
+    "tag": "safety",
+    "tests": [
+      "isp_writer_stop",
+      "isp_metadata_stop",
+      "frame_tailproof"
+    ]
+  },
+  {
+    "pid": 51056,
+    "tag": "hd",
+    "tests": [
+      "hd_pins",
+      "hd_scaled_guard",
+      "hd_resize",
+      "manual_wb",
+      "fixed_wb"
+    ]
+  }
+]

@@ -1,0 +1,4 @@
+PASS frozen inputs: 360 files; manifest 584969e6b11e9b96439bad0eafa3b0290646c8a265d2482659b921b2130e1189
+RUN ['C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', "& 'D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r10_20261017\\work_raw\\sim\\run_modelsim.ps1' -ModelSimBin 'D:\\modelsim\\win64' -TdSimRoot 'D:\\AAA\\FPGA.....YZW\\sim_release' -OnlyTests @('raw_timing_probe')"] CWD D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\base_jitter_creditfix_r10_20261017\work_raw
+# PASS raw timing probe: fixed source rows invariant
+PASS ModelSim: all 1 tests, including original vendor ERAM model

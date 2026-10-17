@@ -1,0 +1,9 @@
+{
+  "base_commit": "4556e9a99f3ce720f2d58e3f86619c0a625fdc5b",
+  "source_manifest_sha256": "42aada7ef04cc12eb6b52938a0fecaf3242879126a40b93ccca5a6bfea8cb68f",
+  "production_delta": [],
+  "tests": [
+    "base_picture_repeatability"
+  ],
+  "success": "Same stationary raw image, four timing schedules; all ordered post-resize pixels identical across four full frames after warmup; proves schedule repeatability only, not physical capture stability."
+}

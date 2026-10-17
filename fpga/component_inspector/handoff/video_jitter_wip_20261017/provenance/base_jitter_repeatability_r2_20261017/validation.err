@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\base_jitter_repeatability_r2_20261017\scripts\replay.py", line 157, in <module>
+    main()
+  File "D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\base_jitter_repeatability_r2_20261017\scripts\replay.py", line 140, in main
+    run([args.powershell, '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command',
+  File "D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\base_jitter_repeatability_r2_20261017\scripts\replay.py", line 43, in run
+    raise RuntimeError(f'Command exit {code}; see {log}')
+RuntimeError: Command exit 1; see D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\base_jitter_repeatability_r2_20261017\work\replay_sim.log

@@ -1,0 +1,20 @@
+PASS frozen inputs: 360 files; manifest 7de1a3676fe09bc426ea288d52f5cee980782d38beda7fc09b8b818a9ed95ef1
+RUN ['C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', "& 'D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r13_20261017\\work_hd\\sim\\run_modelsim.ps1' -ModelSimBin 'D:\\modelsim\\win64' -TdSimRoot 'D:\\AAA\\FPGA.....YZW\\sim_release' -OnlyTests @('hd_pins','hd_scaled_guard','hd_resize','manual_wb','fixed_wb')"] CWD D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\base_jitter_creditfix_r13_20261017\work_hd
+# OBS H pin words1000000
+# OBS H new completed slot0 midway; active slot3 must remain for current progressive frame
+# OBS H pin words2000000
+# OBS K native720 frame1 all921600 pixels/720 rows/no AVI, frame slot3
+# OBS H pin words3000000
+# OBS K native720 frame2 all921600 pixels/720 rows/no AVI, frame slot0
+# PASS hd pins: two720p60 progressive frames; actual vendor FIFO/DDR reader, phase and native720 OSD with every glyph stroke and mapped ROI border, every pixel/row/address, frame-only slot publication, DVI-compatible progressive sync; ideal PLL/vendor ODDR. Camera/physical pending.
+# PASS hd scaled guard: 921600 pixels independent of native proof, short/malformed rejection, proof ordering and recovery
+# PASS J resize frame0: all921600 bilinear pixels/720 EOL/172800 packed words, input gaps preserved
+# PASS J resize frame1: all921600 bilinear pixels/720 EOL/172800 packed words, input gaps preserved
+# PASS J resize frame2: all921600 bilinear pixels/720 EOL/172800 packed words, input gaps preserved
+# PASS hd resize: independent scalar reference, full FHD source, continuous/gapped input, short-line rejection and fresh-FS/reset recovery
+# PASS manual WB: independent Q2.6 arithmetic/clipping, four lanes, first pixel, bubbles, ready-low, EOL, pending requests held until next frame and reset
+# PASS fixed WB frame case=0 scene=0 beats=768 ROI=20 ready_low=180
+# PASS fixed WB frame case=1 scene=1 beats=768 ROI=20 ready_low=180
+# PASS fixed WB frame case=3 scene=0 beats=768 ROI=20 ready_low=180
+# PASS fixed WB: colored-background invariance, fixed non-unity gains/clipping, four lanes, bubbles, reset, line tails, ready-low; automatic reference changed 2304 beats
+PASS ModelSim: all 5 tests, including original vendor ERAM model

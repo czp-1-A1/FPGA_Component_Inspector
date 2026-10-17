@@ -1,0 +1,5 @@
+PASS frozen inputs: 360 files; manifest 7de1a3676fe09bc426ea288d52f5cee980782d38beda7fc09b8b818a9ed95ef1
+RUN ['C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', "& 'D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\base_jitter_creditfix_r13_20261017\\work_safety\\sim\\run_modelsim.ps1' -ModelSimBin 'D:\\modelsim\\win64' -TdSimRoot 'D:\\AAA\\FPGA.....YZW\\sim_release' -OnlyTests @('isp_writer_stop','isp_metadata_stop','frame_tailproof')"] CWD D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\base_jitter_creditfix_r13_20261017\work_safety
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS frame tail proof: actual native extra RAW data after full-frame commit is rejected while input is closed; no bad-slot publication, complete dual recovery, full competing DDR raster and no OF/UF
+    + FullyQualifiedErrorId : Missing successful completion or fatal diagnostic: isp_metadata_stop; see modelsim_work/

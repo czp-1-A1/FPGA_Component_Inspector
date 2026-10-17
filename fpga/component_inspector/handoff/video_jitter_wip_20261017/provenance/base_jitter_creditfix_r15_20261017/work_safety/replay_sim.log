@@ -1,0 +1,13 @@
+# PASS multi video raster: 600 rows/614400 requests, nonzero=613200, competing DDR read/write, no underflow
+# PASS frame tail proof: actual native extra RAW data after full-frame commit is rejected while input is closed; no bad-slot publication, complete dual recovery, full competing DDR raster and no OF/UF
+# PASS actual diagnostic latch prefix=1 old_reason=0 old_LP=0 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=1 rows=4 request=0 receive=0 tag=0 frame_mode=0 early_cycle=1117 pixel_cycle=1171 AWB=1024 view=1024 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=0
+# PASS actual diagnostic latch prefix=2 old_reason=8 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=2 rows=600 request=7 receive=7 tag=7 frame_mode=3 early_cycle=5055 pixel_cycle=5109 AWB=153600 view=153600 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=1
+# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738
+# PASS actual diagnostic latch prefix=3 old_reason=0 old_LP=738 old_WS=0 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=3 rows=599 request=7 receive=7 tag=7 frame_mode=3 early_cycle=448802 pixel_cycle=448856 AWB=153344 view=153344 guard_bad=1 video_bad=1 invalid_after_early=1 bad_after_early=19 good=0
+# PASS actual diagnostic latch prefix=4 old_reason=8 old_LP=738 old_WS=1078 new_reason=0 new_LPWS=00000000
+# OBS ISP prefix=4 rows=600 request=7 receive=7 tag=7 frame_mode=3 early_cycle=891811 pixel_cycle=891865 AWB=153600 view=153600 guard_bad=0 video_bad=0 invalid_after_early=0 bad_after_early=0 good=1
+# PASS independent native/full AWB line period native=640+GAP measured_AWB=738 measured_LP=738
+# PASS actual ISP metadata stop: real RAW10/ISP/178bit mailbox/writer, short20-cycle tail, full word/epoch proof, precomputed features never publish truncated frame

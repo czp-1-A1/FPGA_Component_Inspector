@@ -74,7 +74,19 @@ experiment_osd #(.WIDTH(1280),.HEIGHT(720),.DIAG_BITS(27),.RESOLUTION_V11(1),.LO
  wire bp,gp,redp,cp;
  native_i60_tx #(.INTERLACED(0)) transmitter(pixel,serial,!prst,ev,eh,ed,ergb,tx,ty,bp,gp,redp,cp);
  `include "hdmi_decode.vh"
- reg [23:0] overlay[0:921599];initial $readmemh("hd_osd_reference.hex",overlay);
+ reg [23:0] overlay[0:921599];
+ // Only the declared version banner changed since the original image oracle.
+ // Keep every other expected pixel; use the independent fixed font fixture.
+ reg [7:0] banner_rows[0:2047];reg [199:0] banner="180MM STABLE IDS         ";
+ integer bx,by,bc;
+ initial begin
+  $readmemh("hd_osd_reference.hex",overlay);
+  $readmemh("osd_assets/osd_ascii_rom.hex",banner_rows);
+  for(by=24;by<40;by++)for(bx=1056;bx<1256;bx++)begin
+   bc=banner[199-((bx-1056)/8)*8-:8];
+   overlay[by*1280+bx]=banner_rows[bc*16+by-24][7-(bx-1056)%8] ? 24'hffcc55 : 24'h142336;
+  end
+ end
  function automatic [7:0] decode_rgb(input [9:0] w);
   integer i;reg [7:0] q;begin q=w[7:0]^{8{w[9]}};decode_rgb[0]=q[0];
    for(i=1;i<8;i=i+1)decode_rgb[i]=q[i]^q[i-1]^!w[8];end

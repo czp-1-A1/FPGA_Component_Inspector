@@ -1,0 +1,10 @@
+{
+  "base_commit": "4556e9a99f3ce720f2d58e3f86619c0a625fdc5b",
+  "source_manifest_sha256": "cf5fae18646e1e748c60c4aa28a6175259a82aeae5a766ce7f8996d1dc77da12",
+  "production_delta": [],
+  "tests": [
+    "base_picture_repeatability"
+  ],
+  "success": "Same stationary raw image, four timing schedules; all ordered post-resize pixels identical across four full frames after warmup; proves schedule repeatability only, not physical capture stability.",
+  "prior_failure": "r1 elaboration missing vendor glbl top; no RTL/test truth changed; correct runner registration"
+}

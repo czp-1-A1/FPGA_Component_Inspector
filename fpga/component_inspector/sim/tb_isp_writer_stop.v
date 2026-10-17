@@ -47,7 +47,7 @@ integer cycle=0,frame_no=0,early_cycle=-1,pixel_cycle=-1,invalid_after_early=0,b
 integer awb_beats=0,view_beats=0,pixels_sofs=0,request_updates=0,csv;
 reg resume_immediate=0;reg [17:0] receive_d=0;reg bad_d=0,guard_bad_d=0;reg [17:0] captured_tag=0;
 reg sampled_early;reg [35:0] old_diagnostic;integer diagnostic_latches=0;
-reg previous_av=0;integer reference_start=-1,reference_period_min=65535;
+integer reference_start=-1,reference_period_min=65535;
 integer fe_cycle=-1,awb_cycle=-1,view_cycle=-1,pack_cycle=-1,good_cycle=-1;reg good_d=0;
 always @(posedge clk)begin
  if(fe)fe_cycle=cycle;
@@ -66,11 +66,10 @@ always @(posedge clk) begin
  end
  receive_d=receive;
  if(active) begin
-  if(dut.awb_O_tvalid && !previous_av) begin
+  if(dut.awb_O_tvalid && awb_beats%256==0) begin
    if(reference_start>=0 && cycle-reference_start<reference_period_min)reference_period_min=cycle-reference_start;
    reference_start=cycle;
   end
-  previous_av=dut.awb_O_tvalid;
   if(dut.awb_O_tuser)early_cycle=cycle;
   if(dut.awb_pixel_sof)begin pixel_cycle=cycle;pixels_sofs=pixels_sofs+1;end
   if(dut.awb_O_tvalid)awb_beats=awb_beats+1;
@@ -97,7 +96,7 @@ task prefix;input integer nrows,expect_mode,expect_bad;
   if(resume_immediate)resume_immediate=0;else begin ticks(between_clocks);if(between_stop)begin run_clk=0;#20000000;run_clk=1;end end
   frame_no=frame_no+1;early_cycle=-1;pixel_cycle=-1;invalid_after_early=0;bad_after_early=0;
   awb_beats=0;view_beats=0;pixels_sofs=0;packed_count=0;written_count=0;active=1;
-  previous_av=0;reference_start=-1;reference_period_min=65535;
+  reference_start=-1;reference_period_min=65535;
   fs=1;ticks(1);captured_tag=dut.observation_tag;fs=0;ticks(25);
   for(integer y=0;y<nrows;y=y+1) begin
    hs=1;

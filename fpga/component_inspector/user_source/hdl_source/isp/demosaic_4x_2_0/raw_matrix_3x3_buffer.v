@@ -266,11 +266,7 @@ always @(posedge I_clk or negedge I_rst_n) begin
             end  
         end
     end
-    else begin
-        matrix_last_line_buffer <= 'b0 ;
-        matrix_cur_line_buffer  <= 'b0 ;
-        matrix_next_line_buffer <= 'b0 ;
-    end 
+    // Input bubbles do not erase the horizontal neighbors of the next beat.
 end
 
 // 计算水平和垂直计数器

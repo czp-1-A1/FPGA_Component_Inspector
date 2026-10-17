@@ -1,0 +1,47 @@
+[
+  {
+    "extra_input_clocks_per_line": 0,
+    "demosaic_changed_groups": 0,
+    "repack_wrong_groups": 0,
+    "nominal_wrong_groups": 0,
+    "status": "PASS_INVARIANT",
+    "native_exit_code_is_not_authoritative": true,
+    "log": "extra_0.log"
+  },
+  {
+    "extra_input_clocks_per_line": 8,
+    "demosaic_changed_groups": 0,
+    "repack_wrong_groups": 0,
+    "nominal_wrong_groups": 0,
+    "status": "PASS_INVARIANT",
+    "native_exit_code_is_not_authoritative": true,
+    "log": "extra_8.log"
+  },
+  {
+    "extra_input_clocks_per_line": 32,
+    "demosaic_changed_groups": 0,
+    "repack_wrong_groups": 0,
+    "nominal_wrong_groups": 0,
+    "status": "PASS_INVARIANT",
+    "native_exit_code_is_not_authoritative": true,
+    "log": "extra_32.log"
+  },
+  {
+    "extra_input_clocks_per_line": 64,
+    "demosaic_changed_groups": 481,
+    "repack_wrong_groups": 504,
+    "nominal_wrong_groups": 0,
+    "status": "FAIL_REPRODUCED_WRONG_PIXELS",
+    "native_exit_code_is_not_authoritative": true,
+    "log": "extra_64.log"
+  },
+  {
+    "extra_input_clocks_per_line": 128,
+    "demosaic_changed_groups": 2887,
+    "repack_wrong_groups": 2912,
+    "nominal_wrong_groups": 0,
+    "status": "FAIL_REPRODUCED_WRONG_PIXELS",
+    "native_exit_code_is_not_authoritative": true,
+    "log": "extra_128.log"
+  }
+]
