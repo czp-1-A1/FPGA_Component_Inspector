@@ -69,9 +69,6 @@ set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [
 # and publishing diagnostics below are unchanged.
 
 # Read-only writer publishing diagnostics use the same held-payload mailbox.
-set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/payload*}] -to [get_regs {u_publish_display/D_data*}]
-set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/req}] -to [get_regs {u_publish_display/req_sync[0]}]
-set_max_delay -datapath_only 14.0 -from [get_regs {u_publish_display/ack}] -to [get_regs {u_publish_display/ack_sync[0]}]
 
 # Local-search boxes are bound to DDR frames: restore metadata mailbox budgets.
 set_max_delay -datapath_only 14.0 -from [get_regs {*crossing/payload*}] -to [get_regs {*crossing/D_data*}]
@@ -83,12 +80,13 @@ set_max_delay -datapath_only 14.0 -from [get_regs {u_active_frame_display/ack}] 
 
 # Native WB status to continuous 100MHz post-processing. Payload is held until
 # acknowledgement; 9ns is below the two-stage 20ns destination settling time.
-set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/payload*}] -to [get_regs {u_wb_process/D_data*}]
-set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/req}] -to [get_regs {u_wb_process/req_sync[0]}]
-set_max_delay -datapath_only 8.0 -from [get_regs {u_wb_process/ack}] -to [get_regs {u_wb_process/ack_sync[0]}]
 
 # The bridge's two 10-bit Gray pointer buses cross 112.5MHz CSI / 100MHz ISP.
 # Keep all pointer-bit route delays below either source period (8.889/10ns).
 # The bridge uses explicit pointers, outside the vendor FIFO's automatic
 # timing patterns. Both directions must match and dominate all 20 paths.
 set_max_delay -datapath_only 8.0 -from [get_regs {*continuous_processing*bridge/write_gray\[*\] *continuous_processing*bridge/read_gray\[*\]}] -to [get_regs {*continuous_processing*bridge/write_gray_sync1\[*\] *continuous_processing*bridge/read_gray_sync1\[*\]}]
+
+# SMALL DUAL R1 removes display-only publish-diagnostic and WB-status consumers.
+# Their six obsolete mailbox constraints are omitted; all remaining budgets,
+# clocks, I/O delays, exceptions and both10-bit bridge Gray constraints persist.

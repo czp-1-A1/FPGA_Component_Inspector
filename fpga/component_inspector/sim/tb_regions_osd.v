@@ -3,7 +3,7 @@ module tb_regions_osd;
 reg clk=0,rst=0,vs=0,hs=0,de=0,valid=1;reg [303:0] objects=0,expected_objects=0;
 reg [1:0] mode=3;wire ov,oh,od;wire [23:0] rgb;
 always #5 clk=~clk;
-experiment_osd #(.WIDTH(1280),.HEIGHT(720),.DIAG_BITS(27),.RESOLUTION_V11(1),.REGIONS(1),.LOCAL_SEARCH(1),.SHAPE_MODEL(1),.DIRECT_DETECTION(1),.FRAME_OBJECTS(1)) dut(
+experiment_osd #(.COMPACT_UI(0),.WIDTH(1280),.HEIGHT(720),.DIAG_BITS(27),.RESOLUTION_V11(1),.REGIONS(1),.LOCAL_SEARCH(1),.SHAPE_MODEL(1),.DIRECT_DETECTION(1),.FRAME_OBJECTS(1)) dut(
  .clk(clk),.rst_n(rst),.vs(vs),.hs(hs),.de(de),.rgb(24'h556677),.exposure(16'd2244),.gain(16'd48),
  .wb_r(8'd100),.wb_b(8'd100),.wb_tune(1'b0),.wb_pending(1'b0),.view_mode(mode),.edge_count(13'd0),.edge_sum(24'd0),
  .local_box_valid(1'b1),.local_x0(11'd479),.local_x1(11'd546),.local_y0(10'd261),.local_y1(10'd340),
@@ -72,6 +72,12 @@ always @(negedge clk)if(checking && od)begin
    end
   end
   if(rgb!==expected)$fatal(1,"full OSD pixel (%0d,%0d) got%h expected%h frame%0d",px,py,rgb,expected,frames);checked++;
+ end
+ // No ambiguous global sample validity/WAIT text in a four-object view.
+ if((px>=768 && px<864 && py>=634 && py<658) ||
+    (px>=624 && px<744 && py>=692 && py<716))begin
+  if(rgb!==24'h142336)$fatal(1,"legacy global sampling prompt remains x%0d y%0d frame%0d",px,py,frames);
+  checked++;
  end
  if(py>=8 && py<24 && ((px>=128 && px<232) || (px>=240 && px<344)))begin
   version_value=px<232 ? "DD PFB W2A300" : "FRAME EXP V12";

@@ -1,5 +1,40 @@
 // Sampling UI. Three pixel clocks for RGB, DE, HS, VS and ENABLE bypass.
 module experiment_osd #(
+ parameter COMPACT_UI=1,WIDTH=1024,HEIGHT=600,DIAG_BITS=26,RESOLUTION_V11=0,REGIONS=0,CALIBRATION=0,
+ parameter LOCAL_SEARCH=0,SHAPE_MODEL=0,TRACKING=0,MULTI_POCKETS=0,DIRECT_DETECTION=0,CLASS_THRESHOLD=58,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
+ parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340,HOLE_Y=220,FRAME_OBJECTS=0
+)(
+ input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,
+ input wire [15:0] exposure,gain,
+ input wire [7:0] wb_r,wb_b,input wire wb_tune,wb_pending,
+ input wire [1:0] view_mode,input wire [12:0] edge_count,input wire [23:0] edge_sum,
+ input wire local_box_valid,input wire [10:0] local_x0,local_x1,input wire [9:0] local_y0,local_y1,
+ input wire roi_valid,input wire [7:0] roi_mean,roi_min,roi_max,input wire [1:0] roi_state,
+ input wire [15:0] width,height,fps,lane_errors,format_errors,i2c_errors,gaps,
+ input wire [31:0] frames,uptime,input wire cfg_done,
+ input wire [15:0] overflow_frames,lost_frames,underflow_frames,
+ input wire [35:0] diagnostics,
+ input wire [DIAG_BITS-1:0] publish_diagnostic,
+ input wire [339:0] pocket_records,input wire pocket_enable,
+ input wire track_valid,input wire [10:0] track_x0,track_x1,
+ input wire [3:0] track_reason,input wire [2:0] track_rows,
+ output wire out_vs,out_hs,out_de,output wire [23:0] out_rgb,
+ input wire [(REGIONS ? 304 : 152)-1:0] frame_objects,
+ input wire [127:0] calibration_record,input wire calibration_valid,
+ input wire [3:0] local_wait_reason
+);
+generate if(REGIONS && FRAME_OBJECTS && COMPACT_UI)begin : compact_ui
+ compact_lane_osd #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.ENABLE(ENABLE)) ui(
+.clk(clk),.rst_n(rst_n),.vs(vs),.hs(hs),.de(de),.rgb(rgb),.exposure(exposure),.gain(gain),.fps(fps),.view_mode(view_mode),.roi_valid(roi_valid),.cfg_done(cfg_done),.frame_objects(frame_objects),.out_vs(out_vs),.out_hs(out_hs),.out_de(out_de),.out_rgb(out_rgb),
+ .error(|lane_errors || |format_errors || |i2c_errors || |gaps || |overflow_frames || |lost_frames || |underflow_frames));
+end else begin : legacy_ui
+ experiment_osd_legacy #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.DIAG_BITS(DIAG_BITS),.RESOLUTION_V11(RESOLUTION_V11),.REGIONS(REGIONS),.CALIBRATION(CALIBRATION),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(SHAPE_MODEL),.TRACKING(TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.DIRECT_DETECTION(DIRECT_DETECTION),.CLASS_THRESHOLD(CLASS_THRESHOLD),.ENABLE(ENABLE),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),.SAMPLE_X0(SAMPLE_X0),.SAMPLE_X1(SAMPLE_X1),.SAMPLE_Y0(SAMPLE_Y0),.SAMPLE_Y1(SAMPLE_Y1),.HOLE_Y(HOLE_Y),.FRAME_OBJECTS(FRAME_OBJECTS)) ui(
+.clk(clk),.rst_n(rst_n),.vs(vs),.hs(hs),.de(de),.rgb(rgb),.exposure(exposure),.gain(gain),.wb_r(wb_r),.wb_b(wb_b),.wb_tune(wb_tune),.wb_pending(wb_pending),.view_mode(view_mode),.edge_count(edge_count),.edge_sum(edge_sum),.local_box_valid(local_box_valid),.local_x0(local_x0),.local_x1(local_x1),.local_y0(local_y0),.local_y1(local_y1),.roi_valid(roi_valid),.roi_mean(roi_mean),.roi_min(roi_min),.roi_max(roi_max),.roi_state(roi_state),.width(width),.height(height),.fps(fps),.lane_errors(lane_errors),.format_errors(format_errors),.i2c_errors(i2c_errors),.gaps(gaps),.frames(frames),.uptime(uptime),.cfg_done(cfg_done),.overflow_frames(overflow_frames),.lost_frames(lost_frames),.underflow_frames(underflow_frames),.diagnostics(diagnostics),.publish_diagnostic(publish_diagnostic),.pocket_records(pocket_records),.pocket_enable(pocket_enable),.track_valid(track_valid),.track_x0(track_x0),.track_x1(track_x1),.track_reason(track_reason),.track_rows(track_rows),.out_vs(out_vs),.out_hs(out_hs),.out_de(out_de),.out_rgb(out_rgb),.frame_objects(frame_objects),.calibration_record(calibration_record),.calibration_valid(calibration_valid),.local_wait_reason(local_wait_reason));
+end endgenerate
+endmodule
+
+// Sampling UI. Three pixel clocks for RGB, DE, HS, VS and ENABLE bypass.
+module experiment_osd_legacy #(
  parameter WIDTH=1024,HEIGHT=600,DIAG_BITS=26,RESOLUTION_V11=0,REGIONS=0,CALIBRATION=0,
  parameter LOCAL_SEARCH=0,SHAPE_MODEL=0,TRACKING=0,MULTI_POCKETS=0,DIRECT_DETECTION=0,CLASS_THRESHOLD=58,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
  parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340,HOLE_Y=220,FRAME_OBJECTS=0
@@ -23,7 +58,7 @@ module experiment_osd #(
  input wire [127:0] calibration_record,input wire calibration_valid,
  input wire [3:0] local_wait_reason
 );
-localparam [199:0] calibration_text="180MM STABLE IDS         ";
+localparam [199:0] calibration_text="180MM THRESH R1          ";
 reg [339:0] pockets_s;reg pockets_enabled_s;
 reg local_box_s;reg [10:0] local_x0_s,local_x1_s;reg [9:0] local_y0_s,local_y1_s;
 localparam OBJECTS=REGIONS ? 4 : 2;
@@ -34,7 +69,7 @@ wire [9:0] y_ui=(y>=HEIGHT-96) ? y-(HEIGHT-600) : y;
 wire start=(TRACKING || LOCAL_SEARCH) ? de && !de_d && y==0 : vs && !vs_d;
 wire cal_panel;wire [7:0] cal_glyph;
 wire [3:0] cal_col,cal_row;wire [23:0] cal_color;
-generate if(CALIBRATION)begin : calibration_ui
+generate if(CALIBRATION && !FRAME_OBJECTS)begin : calibration_ui
  calibration_osd #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) ui(
   .clk(clk),.rst_n(rst_n),.start(start),.record(calibration_record),.eligible(calibration_valid),
   .reason(local_wait_reason),.x(x),.y(y),.panel(cal_panel),.border(),.core(),
@@ -564,7 +599,7 @@ always @* begin
   if(x>=112 && x<160) begin glyph=result_glyph(class_s,2);glyph_col=(x-112)/2;end
   if(x>=160 && x<208) begin glyph=result_glyph(class_s,3);glyph_col=(x-160)/2;end
  end
- if(x>=304 && x<368 && y_ui>=510 && y_ui<542) begin
+ if(!FRAME_OBJECTS && x>=304 && x<368 && y_ui>=510 && y_ui<542) begin
   glyph_cjk=0;ink_color=24'hb0c0d4;
   glyph_row=(y_ui-510)/2;
   if(x>=304 && x<320) begin glyph=7'd77;glyph_col=(x-304)/2;end
@@ -572,42 +607,42 @@ always @* begin
   if(x>=336 && x<352) begin glyph=7'd65;glyph_col=(x-336)/2;end
   if(x>=352 && x<368) begin glyph=7'd78;glyph_col=(x-352)/2;end
  end
- if(x>=384 && x<432 && y_ui>=510 && y_ui<542) begin
+ if(!FRAME_OBJECTS && x>=384 && x<432 && y_ui>=510 && y_ui<542) begin
   glyph_cjk=0;ink_color=24'hffffff;
   glyph_row=(y_ui-510)/2;
   if(x>=384 && x<400) begin glyph=sample_s ? decimal(mean_bcd,2) : 7'd45;glyph_col=(x-384)/2;end
   if(x>=400 && x<416) begin glyph=sample_s ? decimal(mean_bcd,3) : 7'd45;glyph_col=(x-400)/2;end
   if(x>=416 && x<432) begin glyph=sample_s ? decimal(mean_bcd,4) : 7'd45;glyph_col=(x-416)/2;end
  end
- if(x>=464 && x<512 && y_ui>=510 && y_ui<542) begin
+ if(!FRAME_OBJECTS && x>=464 && x<512 && y_ui>=510 && y_ui<542) begin
   glyph_cjk=0;ink_color=24'hb0c0d4;
   glyph_row=(y_ui-510)/2;
   if(x>=464 && x<480) begin glyph=7'd77;glyph_col=(x-464)/2;end
   if(x>=480 && x<496) begin glyph=7'd73;glyph_col=(x-480)/2;end
   if(x>=496 && x<512) begin glyph=7'd78;glyph_col=(x-496)/2;end
  end
- if(x>=528 && x<576 && y_ui>=510 && y_ui<542) begin
+ if(!FRAME_OBJECTS && x>=528 && x<576 && y_ui>=510 && y_ui<542) begin
   glyph_cjk=0;ink_color=24'hffffff;
   glyph_row=(y_ui-510)/2;
   if(x>=528 && x<544) begin glyph=sample_s ? decimal(min_bcd,2) : 7'd45;glyph_col=(x-528)/2;end
   if(x>=544 && x<560) begin glyph=sample_s ? decimal(min_bcd,3) : 7'd45;glyph_col=(x-544)/2;end
   if(x>=560 && x<576) begin glyph=sample_s ? decimal(min_bcd,4) : 7'd45;glyph_col=(x-560)/2;end
  end
- if(x>=624 && x<672 && y_ui>=510 && y_ui<542) begin
+ if(!FRAME_OBJECTS && x>=624 && x<672 && y_ui>=510 && y_ui<542) begin
   glyph_cjk=0;ink_color=24'hb0c0d4;
   glyph_row=(y_ui-510)/2;
   if(x>=624 && x<640) begin glyph=7'd77;glyph_col=(x-624)/2;end
   if(x>=640 && x<656) begin glyph=7'd65;glyph_col=(x-640)/2;end
   if(x>=656 && x<672) begin glyph=7'd88;glyph_col=(x-656)/2;end
  end
- if(x>=688 && x<736 && y_ui>=510 && y_ui<542) begin
+ if(!FRAME_OBJECTS && x>=688 && x<736 && y_ui>=510 && y_ui<542) begin
   glyph_cjk=0;ink_color=24'hffffff;
   glyph_row=(y_ui-510)/2;
   if(x>=688 && x<704) begin glyph=sample_s ? decimal(max_bcd,2) : 7'd45;glyph_col=(x-688)/2;end
   if(x>=704 && x<720) begin glyph=sample_s ? decimal(max_bcd,3) : 7'd45;glyph_col=(x-704)/2;end
   if(x>=720 && x<736) begin glyph=sample_s ? decimal(max_bcd,4) : 7'd45;glyph_col=(x-720)/2;end
  end
- if(x>=768 && x<864 && y_ui>=514 && y_ui<538) begin
+ if(!FRAME_OBJECTS && x>=768 && x<864 && y_ui>=514 && y_ui<538) begin
   glyph_cjk=1;ink_color=24'h74dbc7;
   glyph_row=(y_ui-514)/1;
   if(x>=768 && x<792) begin glyph=sample_s ? 6'd11 : 6'd0;glyph_col=(x-768)/1;end
@@ -739,7 +774,7 @@ always @* begin
   if(x>=512 && x<520) begin glyph=7'd69;glyph_col=(x-512)/1;end
   if(x>=520 && x<528) begin glyph=7'd88;glyph_col=(x-520)/1;end
  end
- if(x>=624 && x<744 && y_ui>=572 && y_ui<596) begin
+ if(!FRAME_OBJECTS && x>=624 && x<744 && y_ui>=572 && y_ui<596) begin
   glyph_cjk=1;ink_color=reason_s==1 ? 24'hef7186 : 24'hb0c0d4;
   glyph_row=(y_ui-572)/1;
   if(x>=624 && x<648) begin glyph=reason_glyph(reason_s,0);glyph_col=(x-624)/1;end
@@ -1096,6 +1131,626 @@ always @*begin
    6:text_line="WAIT: EXP/GAIN CHANGED              ";7:text_line="WAIT: MODE/WB CHANGED               ";default:text_line="WAIT: SAMPLE INCOMPLETE             ";
   endcase
   glyph=text_line[287-column*8-:8];color=reason_s==0 ? 24'h74dbc7 : 24'hffcc55;
+ end
+end
+endmodule
+
+// Two current-frame lane results. Pixel interface and bypass stay3 clocks.
+module compact_lane_osd #(parameter WIDTH=1280,HEIGHT=720,ENABLE=1)(
+ input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,
+ input wire [15:0] exposure,gain,fps,input wire [1:0] view_mode,
+ input wire roi_valid,cfg_done,error,input wire [303:0] frame_objects,
+ output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb
+);
+reg [10:0] x;reg [9:0] y;reg de_d;
+wire start=de && !de_d && y==0;
+reg [151:0] records;reg eligible,error_s;reg [1:0] mode_s;
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin x<=0;y<=0;de_d<=0;records<=0;eligible<=0;error_s<=0;mode_s<=0;end
+ else begin
+  de_d<=de;
+  if(vs)begin x<=0;y<=0;end
+  else if(de)x<=x+1'b1;
+  else begin x<=0;if(de_d)y<=y+1'b1;end
+  if(start)begin
+   records<={frame_objects[227:152],frame_objects[75:0]};
+   eligible<=roi_valid && cfg_done && fps!=0;error_s<=error || !cfg_done || fps==0;mode_s<=view_mode;
+  end
+ end
+end
+wire [19:0] exp_bcd,gain_bcd,fps_bcd;
+bin16_bcd e(clk,rst_n,start,exposure,exp_bcd);
+bin16_bcd g(clk,rst_n,start,gain,gain_bcd);
+bin16_bcd f(clk,rst_n,start,fps,fps_bcd);
+function [39:0] digits;
+ input [19:0] value;integer k;reg blank;begin
+  blank=1;digits=0;
+  for(k=0;k<5;k=k+1)begin
+   if(value[19-k*4-:4]!=0 || k==4)blank=0;
+   digits[39-k*8-:8]=blank ? " " : 8'd48+value[19-k*4-:4];
+  end
+ end
+endfunction
+reg [71:0] mode_text;
+always @*case(mode_s)
+ 0:mode_text="RAW      ";1:mode_text="GRAY     ";2:mode_text="EDGE     ";default:mode_text="GRAY+EDGE";
+endcase
+// Fixed size header:12+2+5+2+5+4+5+1+9=45 characters.
+wire [359:0] header={"ANLOGIC 3528 E",digits(exp_bcd)," G",digits(gain_bcd)," FPS",digits(fps_bcd)," ",mode_text};
+wire [103:0] version_text="SMALL DUAL R1";
+wire [39:0] run_text=error_s ? "CHECK" : "RUN  ";
+wire [83:0] bounds;wire [31:0] unused_models;wire [239:0] unused_recipes;wire [1:0] unused_supported;
+inspection_region_config #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.COMPACT(1)) cfg(bounds,unused_models,unused_recipes,unused_supported);
+reg panel,cjk,logo;reg [6:0] glyph;reg [4:0] row,col;reg [23:0] ink_color,picture;
+reg [41:0] rb;reg [75:0] rec;reg [23:0] color;reg [1:0] state;reg [3:0] reason;
+integer lane,cx,cy,ci;reg [6:0] char_id;
+always @*begin
+ panel=y<48;cjk=0;logo=x>=16 && x<64 && y>=8 && y<40;
+ glyph=" ";row=0;col=0;ink_color=24'hd8e5ed;picture=rgb;
+ rb=0;rec=0;color=0;state=0;reason=0;cx=0;cy=0;ci=0;char_id=0;
+ if(x>=80 && x<440 && y>=16 && y<32)begin glyph=header[359-((x-80)/8)*8-:8];row=y-16;col=(x-80)%8;end
+ if(x>=688 && x<728 && y>=16 && y<32)begin glyph=run_text[39-((x-688)/8)*8-:8];row=y-16;col=(x-688)%8;ink_color=error_s ? 24'hef7186 : 24'h74dbc7;end
+ if(x>=WIDTH-120 && x<WIDTH-16 && y>=16 && y<32)begin glyph=version_text[103-((x-(WIDTH-120))/8)*8-:8];row=y-16;col=(x-(WIDTH-120))%8;end
+ for(lane=0;lane<2;lane=lane+1)begin
+  rb=bounds[lane*42+:42];rec=records[lane*76+:76];state=rec[74:73];reason=rec[72:69];
+  color=!(eligible && rec[75]) || state<2 ? 24'h91a4b4 : state==3 ? 24'hffae64 : reason!=0 ? 24'hffcc55 : 24'h74dbc7;
+  if(ENABLE && eligible && rec[75] && x>=rec[41:31] && x<rec[30:20] && y>=rec[19:10] && y<rec[9:0] &&
+   (x==rec[41:31] || x==rec[30:20]-1 || y==rec[19:10] || y==rec[9:0]-1))picture=color;
+  if(ENABLE && x>=rb[41:31] && x<rb[30:20] && y>=rb[19:10] && y<rb[9:0] &&
+   (((x==rb[41:31] || x==rb[30:20]-1) && !y[2]) || ((y==rb[19:10] || y==rb[9:0]-1) && !x[2])))picture=24'h6592a7;
+  // Valid result labels follow their current-frame rectangle. Only WAIT uses
+  // the fixed lane origin; no old label or old box is retained across frames.
+  cx=eligible && rec[75] ? (rec[41:31]>WIDTH-160 ? WIDTH-160 : rec[41:31]) : rb[41:31];
+  cy=eligible && rec[75] ? (rec[19:10]>=80 ? rec[19:10]-28 : rec[9:0]+4) : rb[19:10]-28;
+  if(x>=cx && x<cx+160 && y>=cy && y<cy+24)begin
+   panel=1;ink_color=color;glyph=" ";row=y-cy;col=(x-cx)%8;cjk=0;
+   if(x<cx+16)begin
+    if(x<cx+8 && y>=cy+4 && y<cy+20)begin glyph=lane==0 ? "1" : "2";row=y-cy-4;end
+   end else begin
+    cjk=1;ci=(x-cx-24)/24;col=(x-cx-24)%24;glyph=0;
+    if(x>=cx+24 && ci<5)begin
+     if(!(eligible && rec[75]) || state<2)case(ci)0:glyph=5;1:glyph=6;2:glyph=7;default:glyph=0;endcase
+     else if(state==3)case(ci)0:glyph=3;1:glyph=4;default:glyph=0;endcase
+     else case(ci)0:glyph=1;1:glyph=2;2:glyph=reason!=0 ? 8 : 0;3:glyph=reason!=0 ? 9 : 0;default:glyph=0;endcase
+    end
+   end
+  end
+ end
+end
+reg [10:0] ascii_address;reg [8:0] cjk_address;reg [12:0] logo_address;
+wire [7:0] ascii_row;reg [23:0] cjk_row;wire [1:0] logo_pixel;
+reg [23:0] cjk_memory[0:511];
+initial begin
+ cjk_memory[0]=24'h000000;
+ cjk_memory[1]=24'h000000;
+ cjk_memory[2]=24'h000000;
+ cjk_memory[3]=24'h000000;
+ cjk_memory[4]=24'h000000;
+ cjk_memory[5]=24'h000000;
+ cjk_memory[6]=24'h000000;
+ cjk_memory[7]=24'h000000;
+ cjk_memory[8]=24'h000000;
+ cjk_memory[9]=24'h000000;
+ cjk_memory[10]=24'h000000;
+ cjk_memory[11]=24'h000000;
+ cjk_memory[12]=24'h000000;
+ cjk_memory[13]=24'h000000;
+ cjk_memory[14]=24'h000000;
+ cjk_memory[15]=24'h000000;
+ cjk_memory[16]=24'h000000;
+ cjk_memory[17]=24'h000000;
+ cjk_memory[18]=24'h000000;
+ cjk_memory[19]=24'h000000;
+ cjk_memory[20]=24'h000000;
+ cjk_memory[21]=24'h000000;
+ cjk_memory[22]=24'h000000;
+ cjk_memory[23]=24'h000000;
+ cjk_memory[24]=24'h000000;
+ cjk_memory[25]=24'h000000;
+ cjk_memory[26]=24'h000000;
+ cjk_memory[27]=24'h000000;
+ cjk_memory[28]=24'h000000;
+ cjk_memory[29]=24'h000000;
+ cjk_memory[30]=24'h000000;
+ cjk_memory[31]=24'h000000;
+ cjk_memory[32]=24'h000000;
+ cjk_memory[33]=24'h006000;
+ cjk_memory[34]=24'h00c000;
+ cjk_memory[35]=24'h00c000;
+ cjk_memory[36]=24'h7ffffe;
+ cjk_memory[37]=24'h7ffffc;
+ cjk_memory[38]=24'h038000;
+ cjk_memory[39]=24'h030000;
+ cjk_memory[40]=24'h07fff0;
+ cjk_memory[41]=24'h0ffff0;
+ cjk_memory[42]=24'h1e0030;
+ cjk_memory[43]=24'h3e0030;
+ cjk_memory[44]=24'h77fff0;
+ cjk_memory[45]=24'he7fff0;
+ cjk_memory[46]=24'h460030;
+ cjk_memory[47]=24'h060030;
+ cjk_memory[48]=24'h060030;
+ cjk_memory[49]=24'h07fff0;
+ cjk_memory[50]=24'h07fff0;
+ cjk_memory[51]=24'h060030;
+ cjk_memory[52]=24'h060030;
+ cjk_memory[53]=24'h0607e0;
+ cjk_memory[54]=24'h0607c0;
+ cjk_memory[55]=24'h000000;
+ cjk_memory[56]=24'h000000;
+ cjk_memory[57]=24'h000000;
+ cjk_memory[58]=24'h000000;
+ cjk_memory[59]=24'h000000;
+ cjk_memory[60]=24'h000000;
+ cjk_memory[61]=24'h000000;
+ cjk_memory[62]=24'h000000;
+ cjk_memory[63]=24'h000000;
+ cjk_memory[64]=24'h000000;
+ cjk_memory[65]=24'h060180;
+ cjk_memory[66]=24'h063180;
+ cjk_memory[67]=24'h0e3180;
+ cjk_memory[68]=24'h0c7180;
+ cjk_memory[69]=24'h0c6180;
+ cjk_memory[70]=24'h187ffc;
+ cjk_memory[71]=24'h18fffc;
+ cjk_memory[72]=24'h38c180;
+ cjk_memory[73]=24'h38c180;
+ cjk_memory[74]=24'h798180;
+ cjk_memory[75]=24'hf88180;
+ cjk_memory[76]=24'hd80180;
+ cjk_memory[77]=24'h59fffe;
+ cjk_memory[78]=24'h19fffe;
+ cjk_memory[79]=24'h180180;
+ cjk_memory[80]=24'h180180;
+ cjk_memory[81]=24'h180180;
+ cjk_memory[82]=24'h180180;
+ cjk_memory[83]=24'h180180;
+ cjk_memory[84]=24'h180180;
+ cjk_memory[85]=24'h180180;
+ cjk_memory[86]=24'h180180;
+ cjk_memory[87]=24'h000000;
+ cjk_memory[88]=24'h000000;
+ cjk_memory[89]=24'h000000;
+ cjk_memory[90]=24'h000000;
+ cjk_memory[91]=24'h000000;
+ cjk_memory[92]=24'h000000;
+ cjk_memory[93]=24'h000000;
+ cjk_memory[94]=24'h000000;
+ cjk_memory[95]=24'h000000;
+ cjk_memory[96]=24'h000000;
+ cjk_memory[97]=24'h003000;
+ cjk_memory[98]=24'h003000;
+ cjk_memory[99]=24'h001800;
+ cjk_memory[100]=24'h7ffffc;
+ cjk_memory[101]=24'h7ffffc;
+ cjk_memory[102]=24'h60000c;
+ cjk_memory[103]=24'h60820c;
+ cjk_memory[104]=24'h03c380;
+ cjk_memory[105]=24'h0781c0;
+ cjk_memory[106]=24'h0e00f0;
+ cjk_memory[107]=24'h3c0038;
+ cjk_memory[108]=24'h70001c;
+ cjk_memory[109]=24'h60000c;
+ cjk_memory[110]=24'h1ffff0;
+ cjk_memory[111]=24'h0fffe0;
+ cjk_memory[112]=24'h003800;
+ cjk_memory[113]=24'h003800;
+ cjk_memory[114]=24'h003800;
+ cjk_memory[115]=24'h003800;
+ cjk_memory[116]=24'h003800;
+ cjk_memory[117]=24'h7ffffc;
+ cjk_memory[118]=24'h7ffffc;
+ cjk_memory[119]=24'h000000;
+ cjk_memory[120]=24'h000000;
+ cjk_memory[121]=24'h000000;
+ cjk_memory[122]=24'h000000;
+ cjk_memory[123]=24'h000000;
+ cjk_memory[124]=24'h000000;
+ cjk_memory[125]=24'h000000;
+ cjk_memory[126]=24'h000000;
+ cjk_memory[127]=24'h000000;
+ cjk_memory[128]=24'h000000;
+ cjk_memory[129]=24'h003000;
+ cjk_memory[130]=24'h003000;
+ cjk_memory[131]=24'h001800;
+ cjk_memory[132]=24'h001800;
+ cjk_memory[133]=24'h7ffffc;
+ cjk_memory[134]=24'h7ffffc;
+ cjk_memory[135]=24'h60000c;
+ cjk_memory[136]=24'h60000c;
+ cjk_memory[137]=24'h60060c;
+ cjk_memory[138]=24'h018600;
+ cjk_memory[139]=24'h018700;
+ cjk_memory[140]=24'h018300;
+ cjk_memory[141]=24'h038300;
+ cjk_memory[142]=24'h030380;
+ cjk_memory[143]=24'h030180;
+ cjk_memory[144]=24'h0601c0;
+ cjk_memory[145]=24'h0e00c0;
+ cjk_memory[146]=24'h0c00e0;
+ cjk_memory[147]=24'h1c0070;
+ cjk_memory[148]=24'h380038;
+ cjk_memory[149]=24'h70001e;
+ cjk_memory[150]=24'h60000c;
+ cjk_memory[151]=24'h000000;
+ cjk_memory[152]=24'h000000;
+ cjk_memory[153]=24'h000000;
+ cjk_memory[154]=24'h000000;
+ cjk_memory[155]=24'h000000;
+ cjk_memory[156]=24'h000000;
+ cjk_memory[157]=24'h000000;
+ cjk_memory[158]=24'h000000;
+ cjk_memory[159]=24'h000000;
+ cjk_memory[160]=24'h000000;
+ cjk_memory[161]=24'h060300;
+ cjk_memory[162]=24'h060300;
+ cjk_memory[163]=24'h0c0300;
+ cjk_memory[164]=24'h1cfffc;
+ cjk_memory[165]=24'h38fff8;
+ cjk_memory[166]=24'h700300;
+ cjk_memory[167]=24'he60300;
+ cjk_memory[168]=24'h460300;
+ cjk_memory[169]=24'h0dfffe;
+ cjk_memory[170]=24'h1dfffc;
+ cjk_memory[171]=24'h180000;
+ cjk_memory[172]=24'h380060;
+ cjk_memory[173]=24'h79fffe;
+ cjk_memory[174]=24'hf9fffc;
+ cjk_memory[175]=24'h586060;
+ cjk_memory[176]=24'h186060;
+ cjk_memory[177]=24'h183060;
+ cjk_memory[178]=24'h183860;
+ cjk_memory[179]=24'h181060;
+ cjk_memory[180]=24'h180060;
+ cjk_memory[181]=24'h180fe0;
+ cjk_memory[182]=24'h1807c0;
+ cjk_memory[183]=24'h000000;
+ cjk_memory[184]=24'h000000;
+ cjk_memory[185]=24'h000000;
+ cjk_memory[186]=24'h000000;
+ cjk_memory[187]=24'h000000;
+ cjk_memory[188]=24'h000000;
+ cjk_memory[189]=24'h000000;
+ cjk_memory[190]=24'h000000;
+ cjk_memory[191]=24'h000000;
+ cjk_memory[192]=24'h000000;
+ cjk_memory[193]=24'h080300;
+ cjk_memory[194]=24'h080780;
+ cjk_memory[195]=24'h080780;
+ cjk_memory[196]=24'h080cc0;
+ cjk_memory[197]=24'h081860;
+ cjk_memory[198]=24'hff3830;
+ cjk_memory[199]=24'h7f7038;
+ cjk_memory[200]=24'h18e00e;
+ cjk_memory[201]=24'h18c004;
+ cjk_memory[202]=24'h3e3ff0;
+ cjk_memory[203]=24'h3f1fe0;
+ cjk_memory[204]=24'h396600;
+ cjk_memory[205]=24'h686610;
+ cjk_memory[206]=24'hc86330;
+ cjk_memory[207]=24'hc83330;
+ cjk_memory[208]=24'h083330;
+ cjk_memory[209]=24'h083360;
+ cjk_memory[210]=24'h083060;
+ cjk_memory[211]=24'h0800c0;
+ cjk_memory[212]=24'h08fffc;
+ cjk_memory[213]=24'h08fffc;
+ cjk_memory[214]=24'h080000;
+ cjk_memory[215]=24'h000000;
+ cjk_memory[216]=24'h000000;
+ cjk_memory[217]=24'h000000;
+ cjk_memory[218]=24'h000000;
+ cjk_memory[219]=24'h000000;
+ cjk_memory[220]=24'h000000;
+ cjk_memory[221]=24'h000000;
+ cjk_memory[222]=24'h000000;
+ cjk_memory[223]=24'h000000;
+ cjk_memory[224]=24'h000000;
+ cjk_memory[225]=24'h20000c;
+ cjk_memory[226]=24'h73fe0c;
+ cjk_memory[227]=24'h3bfecc;
+ cjk_memory[228]=24'h1f06cc;
+ cjk_memory[229]=24'h0b06cc;
+ cjk_memory[230]=24'h0326cc;
+ cjk_memory[231]=24'h4326cc;
+ cjk_memory[232]=24'h6326cc;
+ cjk_memory[233]=24'h7326cc;
+ cjk_memory[234]=24'h3b26cc;
+ cjk_memory[235]=24'h1326cc;
+ cjk_memory[236]=24'h0366cc;
+ cjk_memory[237]=24'h1366cc;
+ cjk_memory[238]=24'h1b66cc;
+ cjk_memory[239]=24'h3b66cc;
+ cjk_memory[240]=24'h3060cc;
+ cjk_memory[241]=24'h30f00c;
+ cjk_memory[242]=24'h31d80c;
+ cjk_memory[243]=24'h638c0c;
+ cjk_memory[244]=24'h6f060c;
+ cjk_memory[245]=24'h2c02f8;
+ cjk_memory[246]=24'h000078;
+ cjk_memory[247]=24'h000000;
+ cjk_memory[248]=24'h000000;
+ cjk_memory[249]=24'h000000;
+ cjk_memory[250]=24'h000000;
+ cjk_memory[251]=24'h000000;
+ cjk_memory[252]=24'h000000;
+ cjk_memory[253]=24'h000000;
+ cjk_memory[254]=24'h000000;
+ cjk_memory[255]=24'h000000;
+ cjk_memory[256]=24'h000000;
+ cjk_memory[257]=24'h060000;
+ cjk_memory[258]=24'h060000;
+ cjk_memory[259]=24'h0ffffc;
+ cjk_memory[260]=24'h1ffffc;
+ cjk_memory[261]=24'h380000;
+ cjk_memory[262]=24'h3ffff0;
+ cjk_memory[263]=24'h6ffff0;
+ cjk_memory[264]=24'h480030;
+ cjk_memory[265]=24'h0ffff0;
+ cjk_memory[266]=24'h0c0030;
+ cjk_memory[267]=24'h080030;
+ cjk_memory[268]=24'h0ffff0;
+ cjk_memory[269]=24'h0ffff0;
+ cjk_memory[270]=24'h038000;
+ cjk_memory[271]=24'h07fff0;
+ cjk_memory[272]=24'h0f00f0;
+ cjk_memory[273]=24'h1981e0;
+ cjk_memory[274]=24'h70e780;
+ cjk_memory[275]=24'h403e00;
+ cjk_memory[276]=24'h01ffe0;
+ cjk_memory[277]=24'h3f81fe;
+ cjk_memory[278]=24'h3c001c;
+ cjk_memory[279]=24'h000000;
+ cjk_memory[280]=24'h000000;
+ cjk_memory[281]=24'h000000;
+ cjk_memory[282]=24'h000000;
+ cjk_memory[283]=24'h000000;
+ cjk_memory[284]=24'h000000;
+ cjk_memory[285]=24'h000000;
+ cjk_memory[286]=24'h000000;
+ cjk_memory[287]=24'h000000;
+ cjk_memory[288]=24'h000000;
+ cjk_memory[289]=24'h0c0300;
+ cjk_memory[290]=24'h0c0300;
+ cjk_memory[291]=24'h0c0180;
+ cjk_memory[292]=24'h0cfffe;
+ cjk_memory[293]=24'hfffffe;
+ cjk_memory[294]=24'h7f0c00;
+ cjk_memory[295]=24'h1c1c30;
+ cjk_memory[296]=24'h1c1870;
+ cjk_memory[297]=24'h1c3060;
+ cjk_memory[298]=24'h3e7fe0;
+ cjk_memory[299]=24'h3fffcc;
+ cjk_memory[300]=24'h3d038c;
+ cjk_memory[301]=24'h6c0718;
+ cjk_memory[302]=24'hcc0e30;
+ cjk_memory[303]=24'hcc1c70;
+ cjk_memory[304]=24'h0c78e0;
+ cjk_memory[305]=24'h0ce1e0;
+ cjk_memory[306]=24'h0cc3f0;
+ cjk_memory[307]=24'h0c0e38;
+ cjk_memory[308]=24'h0c3c1c;
+ cjk_memory[309]=24'h0c700e;
+ cjk_memory[310]=24'h0c6004;
+ cjk_memory[311]=24'h000000;
+ cjk_memory[312]=24'h000000;
+ cjk_memory[313]=24'h000000;
+ cjk_memory[314]=24'h000000;
+ cjk_memory[315]=24'h000000;
+ cjk_memory[316]=24'h000000;
+ cjk_memory[317]=24'h000000;
+ cjk_memory[318]=24'h000000;
+ cjk_memory[319]=24'h000000;
+ cjk_memory[320]=24'h000000;
+ cjk_memory[321]=24'h000000;
+ cjk_memory[322]=24'h000000;
+ cjk_memory[323]=24'h000000;
+ cjk_memory[324]=24'h000000;
+ cjk_memory[325]=24'h000000;
+ cjk_memory[326]=24'h000000;
+ cjk_memory[327]=24'h000000;
+ cjk_memory[328]=24'h000000;
+ cjk_memory[329]=24'h000000;
+ cjk_memory[330]=24'h000000;
+ cjk_memory[331]=24'h000000;
+ cjk_memory[332]=24'h000000;
+ cjk_memory[333]=24'h000000;
+ cjk_memory[334]=24'h000000;
+ cjk_memory[335]=24'h000000;
+ cjk_memory[336]=24'h000000;
+ cjk_memory[337]=24'h000000;
+ cjk_memory[338]=24'h000000;
+ cjk_memory[339]=24'h000000;
+ cjk_memory[340]=24'h000000;
+ cjk_memory[341]=24'h000000;
+ cjk_memory[342]=24'h000000;
+ cjk_memory[343]=24'h000000;
+ cjk_memory[344]=24'h000000;
+ cjk_memory[345]=24'h000000;
+ cjk_memory[346]=24'h000000;
+ cjk_memory[347]=24'h000000;
+ cjk_memory[348]=24'h000000;
+ cjk_memory[349]=24'h000000;
+ cjk_memory[350]=24'h000000;
+ cjk_memory[351]=24'h000000;
+ cjk_memory[352]=24'h000000;
+ cjk_memory[353]=24'h000000;
+ cjk_memory[354]=24'h000000;
+ cjk_memory[355]=24'h000000;
+ cjk_memory[356]=24'h000000;
+ cjk_memory[357]=24'h000000;
+ cjk_memory[358]=24'h000000;
+ cjk_memory[359]=24'h000000;
+ cjk_memory[360]=24'h000000;
+ cjk_memory[361]=24'h000000;
+ cjk_memory[362]=24'h000000;
+ cjk_memory[363]=24'h000000;
+ cjk_memory[364]=24'h000000;
+ cjk_memory[365]=24'h000000;
+ cjk_memory[366]=24'h000000;
+ cjk_memory[367]=24'h000000;
+ cjk_memory[368]=24'h000000;
+ cjk_memory[369]=24'h000000;
+ cjk_memory[370]=24'h000000;
+ cjk_memory[371]=24'h000000;
+ cjk_memory[372]=24'h000000;
+ cjk_memory[373]=24'h000000;
+ cjk_memory[374]=24'h000000;
+ cjk_memory[375]=24'h000000;
+ cjk_memory[376]=24'h000000;
+ cjk_memory[377]=24'h000000;
+ cjk_memory[378]=24'h000000;
+ cjk_memory[379]=24'h000000;
+ cjk_memory[380]=24'h000000;
+ cjk_memory[381]=24'h000000;
+ cjk_memory[382]=24'h000000;
+ cjk_memory[383]=24'h000000;
+ cjk_memory[384]=24'h000000;
+ cjk_memory[385]=24'h000000;
+ cjk_memory[386]=24'h000000;
+ cjk_memory[387]=24'h000000;
+ cjk_memory[388]=24'h000000;
+ cjk_memory[389]=24'h000000;
+ cjk_memory[390]=24'h000000;
+ cjk_memory[391]=24'h000000;
+ cjk_memory[392]=24'h000000;
+ cjk_memory[393]=24'h000000;
+ cjk_memory[394]=24'h000000;
+ cjk_memory[395]=24'h000000;
+ cjk_memory[396]=24'h000000;
+ cjk_memory[397]=24'h000000;
+ cjk_memory[398]=24'h000000;
+ cjk_memory[399]=24'h000000;
+ cjk_memory[400]=24'h000000;
+ cjk_memory[401]=24'h000000;
+ cjk_memory[402]=24'h000000;
+ cjk_memory[403]=24'h000000;
+ cjk_memory[404]=24'h000000;
+ cjk_memory[405]=24'h000000;
+ cjk_memory[406]=24'h000000;
+ cjk_memory[407]=24'h000000;
+ cjk_memory[408]=24'h000000;
+ cjk_memory[409]=24'h000000;
+ cjk_memory[410]=24'h000000;
+ cjk_memory[411]=24'h000000;
+ cjk_memory[412]=24'h000000;
+ cjk_memory[413]=24'h000000;
+ cjk_memory[414]=24'h000000;
+ cjk_memory[415]=24'h000000;
+ cjk_memory[416]=24'h000000;
+ cjk_memory[417]=24'h000000;
+ cjk_memory[418]=24'h000000;
+ cjk_memory[419]=24'h000000;
+ cjk_memory[420]=24'h000000;
+ cjk_memory[421]=24'h000000;
+ cjk_memory[422]=24'h000000;
+ cjk_memory[423]=24'h000000;
+ cjk_memory[424]=24'h000000;
+ cjk_memory[425]=24'h000000;
+ cjk_memory[426]=24'h000000;
+ cjk_memory[427]=24'h000000;
+ cjk_memory[428]=24'h000000;
+ cjk_memory[429]=24'h000000;
+ cjk_memory[430]=24'h000000;
+ cjk_memory[431]=24'h000000;
+ cjk_memory[432]=24'h000000;
+ cjk_memory[433]=24'h000000;
+ cjk_memory[434]=24'h000000;
+ cjk_memory[435]=24'h000000;
+ cjk_memory[436]=24'h000000;
+ cjk_memory[437]=24'h000000;
+ cjk_memory[438]=24'h000000;
+ cjk_memory[439]=24'h000000;
+ cjk_memory[440]=24'h000000;
+ cjk_memory[441]=24'h000000;
+ cjk_memory[442]=24'h000000;
+ cjk_memory[443]=24'h000000;
+ cjk_memory[444]=24'h000000;
+ cjk_memory[445]=24'h000000;
+ cjk_memory[446]=24'h000000;
+ cjk_memory[447]=24'h000000;
+ cjk_memory[448]=24'h000000;
+ cjk_memory[449]=24'h000000;
+ cjk_memory[450]=24'h000000;
+ cjk_memory[451]=24'h000000;
+ cjk_memory[452]=24'h000000;
+ cjk_memory[453]=24'h000000;
+ cjk_memory[454]=24'h000000;
+ cjk_memory[455]=24'h000000;
+ cjk_memory[456]=24'h000000;
+ cjk_memory[457]=24'h000000;
+ cjk_memory[458]=24'h000000;
+ cjk_memory[459]=24'h000000;
+ cjk_memory[460]=24'h000000;
+ cjk_memory[461]=24'h000000;
+ cjk_memory[462]=24'h000000;
+ cjk_memory[463]=24'h000000;
+ cjk_memory[464]=24'h000000;
+ cjk_memory[465]=24'h000000;
+ cjk_memory[466]=24'h000000;
+ cjk_memory[467]=24'h000000;
+ cjk_memory[468]=24'h000000;
+ cjk_memory[469]=24'h000000;
+ cjk_memory[470]=24'h000000;
+ cjk_memory[471]=24'h000000;
+ cjk_memory[472]=24'h000000;
+ cjk_memory[473]=24'h000000;
+ cjk_memory[474]=24'h000000;
+ cjk_memory[475]=24'h000000;
+ cjk_memory[476]=24'h000000;
+ cjk_memory[477]=24'h000000;
+ cjk_memory[478]=24'h000000;
+ cjk_memory[479]=24'h000000;
+ cjk_memory[480]=24'h000000;
+ cjk_memory[481]=24'h000000;
+ cjk_memory[482]=24'h000000;
+ cjk_memory[483]=24'h000000;
+ cjk_memory[484]=24'h000000;
+ cjk_memory[485]=24'h000000;
+ cjk_memory[486]=24'h000000;
+ cjk_memory[487]=24'h000000;
+ cjk_memory[488]=24'h000000;
+ cjk_memory[489]=24'h000000;
+ cjk_memory[490]=24'h000000;
+ cjk_memory[491]=24'h000000;
+ cjk_memory[492]=24'h000000;
+ cjk_memory[493]=24'h000000;
+ cjk_memory[494]=24'h000000;
+ cjk_memory[495]=24'h000000;
+ cjk_memory[496]=24'h000000;
+ cjk_memory[497]=24'h000000;
+ cjk_memory[498]=24'h000000;
+ cjk_memory[499]=24'h000000;
+ cjk_memory[500]=24'h000000;
+ cjk_memory[501]=24'h000000;
+ cjk_memory[502]=24'h000000;
+ cjk_memory[503]=24'h000000;
+ cjk_memory[504]=24'h000000;
+ cjk_memory[505]=24'h000000;
+ cjk_memory[506]=24'h000000;
+ cjk_memory[507]=24'h000000;
+ cjk_memory[508]=24'h000000;
+ cjk_memory[509]=24'h000000;
+ cjk_memory[510]=24'h000000;
+ cjk_memory[511]=24'h000000;
+end
+always @(posedge clk)cjk_row<=cjk_memory[cjk_address];
+osd_ascii_rom u_ascii(clk,ascii_address,ascii_row);
+osd_logo_rom u_logo(clk,logo_address,logo_pixel);
+reg [1:0] hs_p,vs_p,de_p,panel_p,logo_p,cjk_p;reg [4:0] col0,col1;
+reg [23:0] rgb0,rgb1,ink0,ink1;
+wire ink=cjk_p[1] ? (col1<24 && cjk_row[23-col1]) : (col1<8 && ascii_row[7-col1]);
+wire [5:0] logo_y=(y-8)*2;wire [6:0] logo_x=(x-16)*2;
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin
+  ascii_address<=0;cjk_address<=0;logo_address<=0;hs_p<=0;vs_p<=0;de_p<=0;panel_p<=0;logo_p<=0;cjk_p<=0;
+  col0<=0;col1<=0;rgb0<=0;rgb1<=0;ink0<=0;ink1<=0;out_vs<=0;out_hs<=0;out_de<=0;out_rgb<=0;
+ end else begin
+  ascii_address<={glyph,row[3:0]};cjk_address<={glyph[3:0],row};logo_address<={logo_y,logo_x};
+  hs_p<={hs_p[0],hs};vs_p<={vs_p[0],vs};de_p<={de_p[0],de};panel_p<={panel_p[0],de && panel};logo_p<={logo_p[0],logo};cjk_p<={cjk_p[0],cjk};
+  col0<=col;col1<=col0;rgb0<=picture;rgb1<=rgb0;ink0<=ink_color;ink1<=ink0;
+  out_vs<=vs_p[1];out_hs<=hs_p[1];out_de<=de_p[1];
+  out_rgb<=ENABLE && panel_p[1] ? (logo_p[1] ? (logo_pixel==1 ? 24'h204686 : logo_pixel==2 ? 24'hcc253b : 24'hffffff) : ink ? ink1 : 24'h142336) : rgb1;
  end
 end
 endmodule

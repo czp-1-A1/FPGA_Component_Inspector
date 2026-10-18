@@ -1,0 +1,185 @@
+PASS frozen inputs: 372 files; manifest d7b7e82125dacfb467d8a98976387f681e6aead4cb1c0ec4a32bd940d96bf362
+RUN ['D:\\AAA\\FPGA.....YZW\\bin\\td_commands_prompt.exe', 'build.tcl'] CWD D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\small_dual_r3_20261018\work\td_project\camera_to_dsi_display_Runs\syn_1
+HDL-5007 WARNING: /* is inside a comment in ../../../user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v(89)
+HDL-5007 WARNING: /* is inside a comment in ../../../user_source/hdl_source/isp/demosaic_4x_2_0/demosaic.v(100)
+HDL-5007 WARNING: column 1027 exceeds maximum value 1023 in ../../../user_source/hdl_source/experiment_osd.v(32)
+HDL-5007 WARNING: actual bit length 24 differs from formal bit length 32 for port 'REG_DATA' in ../../../user_source/hdl_source/uics500_cfg/uicfgcs500.v(154)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 7 for port 'I' in ../../../user_source/hdl_source/uics500_cfg/uicfgcs500.v(168)
+HDL-5007 WARNING: actual bit length 24 differs from formal bit length 32 for port 'REG_DATA' in ../../../user_source/hdl_source/uics500_cfg/uicfgcs500.v(174)
+HDL-5007 WARNING: actual bit length 4 differs from formal bit length 2 for port 'I_lane_invert' in ../../../user_source/hdl_source/design_top_wrapper.v(491)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 1 for port 'O_raw_tready' in ../../../user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v(149)
+HDL-5317 WARNING: input port 'b' is not connected on this instance in ../../../user_source/ip_source/divider/divider_gate.v(2727)
+HDL-5317 WARNING: input port 'a' is not connected on this instance in ../../../user_source/ip_source/divider/divider_gate.v(2809)
+HDL-5317 WARNING: input port 'b' is not connected on this instance in ../../../user_source/ip_source/divider/divider_gate.v(3781)
+HDL-5317 WARNING: input port 'a' is not connected on this instance in ../../../user_source/ip_source/divider/divider_gate.v(3870)
+HDL-5317 WARNING: input port 'b' is not connected on this instance in ../../../user_source/ip_source/divider/divider_gate.v(4852)
+HDL-5317 WARNING: input port 'a' is not connected on this instance in ../../../user_source/ip_source/divider/divider_gate.v(4948)
+HDL-5317 WARNING: input port 'b' is not connected on this instance in ../../../user_source/ip_source/divider/divider_gate.v(5946)
+HDL-5317 WARNING: input port 'a' is not connected on this instance in ../../../user_source/ip_source/divider/divider_gate.v(6049)
+HDL-5317 WARNING: input port 'b' is not connected on this instance in ../../../user_source/ip_source/divider/divider_gate.v(7063)
+HDL-5317 WARNING: input port 'a' is not connected on this instance in ../../../user_source/ip_source/divider/divider_gate.v(7173)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 1 for port 'present_high' in ../../../user_source/hdl_source/design_top_wrapper.v(690)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 1 for port 'ceb' in ../../../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(230)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 9 for port 'addrb' in ../../../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(233)
+HDL-5317 WARNING: input port 'dib[127]' is not connected on this instance in ../../../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 1 for port 'cea' in ../../../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(203)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 1 for port 'ocea' in ../../../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(205)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 1 for port 'ceb' in ../../../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(210)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 1 for port 'web' in ../../../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(211)
+HDL-5007 WARNING: actual bit length 32 differs from formal bit length 9 for port 'addrb' in ../../../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(213)
+HDL-5317 WARNING: input port 'dib[154]' is not connected on this instance in ../../../user_source/ip_source/w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d.v(201)
+HDL-5007 WARNING: actual bit length 16 differs from formal bit length 32 for port 'O_mc_app_wdf_mask' in ../../../user_source/hdl_source/design_top_wrapper.v(786)
+HDL-5314 WARNING: net 'rom_w52' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(36)
+HDL-5314 WARNING: net 'usr_vld[8]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init_wrapper.v(132)
+HDL-5314 WARNING: net 'init_gate[80]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init_wrapper.v(134)
+HDL-5314 WARNING: net 'init_wdqs[80]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init_wrapper.v(135)
+HDL-5314 WARNING: net 'init_wdq[80]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init_wrapper.v(136)
+HDL-5314 WARNING: net 'init_rdqsp[80]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init_wrapper.v(137)
+HDL-5314 WARNING: net 'init_rdqsn[80]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init_wrapper.v(138)
+HDL-5314 WARNING: net 'init_wsl[35]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init_wrapper.v(139)
+HDL-5314 WARNING: net 'init_rsl[35]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_fast_init_wrapper.v(140)
+HDL-5314 WARNING: net 'lcdl_mdl_r[8]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_dcu.v(94)
+HDL-5007 WARNING: actual bit length 1 differs from formal bit length 2 for port 'dhi_wdata_en' in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_top.v(605)
+HDL-5314 WARNING: net 'phy_rdata[103]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(152)
+HDL-5314 WARNING: net 'phy_rdqs[7]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(157)
+HDL-5317 WARNING: input port 'dl_in' is not connected on this instance in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(390)
+HDL-5314 WARNING: net 'phy_rdata[103]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(152)
+HDL-5314 WARNING: net 'phy_rdqs[7]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(157)
+HDL-5317 WARNING: input port 'dl_in' is not connected on this instance in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(390)
+HDL-5314 WARNING: net 'phy_rdata[103]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(152)
+HDL-5317 WARNING: input port 'dl_in' is not connected on this instance in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(390)
+HDL-5314 WARNING: net 'phy_rdata[103]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(152)
+HDL-5317 WARNING: input port 'dl_in' is not connected on this instance in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(390)
+HDL-5007 WARNING: actual bit length 2 differs from formal bit length 1 for port 'dx_rfifo_en' in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy.v(620)
+HDL-5314 WARNING: net 'phy_rdata[103]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(152)
+HDL-5317 WARNING: input port 'dl_in' is not connected on this instance in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_byte_wrapper.v(390)
+HDL-5007 WARNING: actual bit length 2 differs from formal bit length 1 for port 'dx_rfifo_en' in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy.v(620)
+HDL-5314 WARNING: net 'dx2_wdata[103]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy.v(187)
+HDL-5314 WARNING: net 'dx3_wdata[103]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy.v(188)
+HDL-5314 WARNING: net 'dx4_wdata[103]' does not have a driver in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy.v(189)
+HDL-5317 WARNING: input port 'i_scan_clk' is not connected on this instance in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy.v(438)
+HDL-5323 WARNING: input port 'dqs_pupd_en' remains unconnected for this instance in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy.v(528)
+HDL-5317 WARNING: input port 'dly_full[1]' is not connected on this instance in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_top.v(457)
+HDL-5323 WARNING: input port 'dhi_bg[11]' remains unconnected for this instance in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_top.v(658)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(49)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(51)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(58)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(60)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(67)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(74)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(75)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(76)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(78)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(79)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(49)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(51)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(58)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(60)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(67)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(74)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(75)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(76)
+HDL-5007 WARNING: delay control is not supported for synthesis in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/misc/ph1p_ddr_fifo_dram_sync.v(78)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/mc/alc_mc_top_all.enc.sv(4019)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/mc/alc_mc_top_all.enc.sv(4019)
+HDL-5007 WARNING: actual bit length ** differs from formal bit length *** for port '**' in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/mc/alc_mc_top_all.enc.sv(177)
+HDL-5369 WARNING: latch inferred for net '**' in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/mc/alc_mc_top_all.enc.sv(2464)
+HDL-5323 WARNING: input port 'apb_psel' remains unconnected for this instance in ../../../user_source/hdl_source/ph1p35_ddr/ph1p35_324_ddr_wrapper.v(78)
+HDL-5317 WARNING: input port 'I_camera_black_level[9]' is not connected on this instance in ../../../user_source/hdl_source/design_top_wrapper.v(537)
+HDL-5317 WARNING: input port 'O_raw_tready' is not connected on this instance in ../../../user_source/hdl_source/design_top_wrapper.v(586)
+HDL-5323 WARNING: input port 'I_tdest[9]' remains unconnected for this instance in ../../../user_source/hdl_source/design_top_wrapper.v(671)
+HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed
+HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed
+HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed
+HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed
+HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed
+HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed
+HDL-5106 WARNING: Initial value omitted on non-DFF net "scl_r" in ../../../user_source/hdl_source/uics500_cfg/uii2c.v(132)
+HDL-5106 WARNING: Initial value omitted on non-DFF net "sda_o" in ../../../user_source/hdl_source/uics500_cfg/uii2c.v(140)
+SYN-5065 WARNING: Register "genCA$op" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/mc/alc_mc_top_all.enc.sv(0) is described with both an asynchronous reset and an asynchronous set. It may have an uncertainty of the timing. Please conside rewriting code.
+SYN-5013 WARNING: Undriven net: model "design_top_wrapper" / net "u_isp_top/O_tready" in ../../../user_source/hdl_source/isp/isp_top.v(15)
+SYN-5013 WARNING: Undriven net: model "design_top_wrapper" / net "u_isp_top/u_awb/signal_delay_d/rd_en_syn_3" in ../../../user_source/hdl_source/signal_delay.v(34)
+SYN-5013 WARNING: Undriven net: model "design_top_wrapper" / net "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/apb_paddr[15]" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wrapper.v(84)
+SYN-5013 WARNING: Undriven net: model "design_top_wrapper" / net "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/apb_paddr[14]" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wrapper.v(84)
+SYN-5013 WARNING: Undriven net: model "design_top_wrapper" / net "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/cal_apb_prdata[31]" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wrapper.v(241)
+SYN-5013 WARNING: Undriven net: model "design_top_wrapper" / net "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/cal_apb_prdata[30]" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wrapper.v(241)
+SYN-5013 WARNING: Undriven net: model "design_top_wrapper" / net "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/cal_apb_prdata[29]" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wrapper.v(241)
+SYN-5013 WARNING: Undriven net: model "design_top_wrapper" / net "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/cal_apb_prdata[28]" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wrapper.v(241)
+SYN-5013 WARNING: Undriven net: model "design_top_wrapper" / net "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/cal_apb_prdata[27]" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wrapper.v(241)
+SYN-5013 WARNING: Undriven net: model "design_top_wrapper" / net "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/cal_apb_prdata[26]" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_wrapper.v(241)
+SYN-5025 WARNING: Using 0 for all undriven pins and nets
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_isp_top/u_demosaic/raw_matrix_3x3_buffer_d/two_line_buffer[2]$line_buffer_demosaic_r1/blk_mem_gen_demosaic_r0/ram_c36c2ca3b3a7_Inst/username_inst" in ../../../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91) / pin "bea[0]"
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_isp_top/u_demosaic/raw_matrix_3x3_buffer_d/two_line_buffer[2]$line_buffer_demosaic_r1/blk_mem_gen_demosaic_r0/ram_c36c2ca3b3a7_Inst/username_inst" in ../../../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91) / pin "beb[0]"
+SYN-5025 WARNING: Using 0 for all undriven pins and nets
+SYN-5041 WARNING: Ram Inst: u_mc_to_user_interface/U_w155_d512_fifo/soft_fifo_al_f58e8b3e1f3d_Inst/ram_inst/ramread0_syn_22 has wrong RAM_STYLE/ROM_STYLE setting, AUTO is really used in ram inference
+SYN-5041 WARNING: Ram Inst: u_video_in/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst/ramread0_syn_21 has wrong RAM_STYLE/ROM_STYLE setting, AUTO is really used in ram inference
+SYN-5041 WARNING: Ram Inst: u_video_out/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst/ramread0_syn_21 has wrong RAM_STYLE/ROM_STYLE setting, AUTO is really used in ram inference
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_24" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(73) / pin "di[7]"
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_24" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(73) / pin "di[6]"
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_24" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(73) / pin "di[5]"
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_24" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(73) / pin "di[4]"
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_24" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(73) / pin "di[3]"
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_24" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(73) / pin "di[2]"
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_24" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(73) / pin "di[1]"
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_24" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(73) / pin "di[0]"
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_25" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(73) / pin "di[7]"
+SYN-5011 WARNING: Undriven pin: model "design_top_wrapper" / inst "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_25" in ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/rtl/phy/ph1p_ddrphy_init.v(73) / pin "di[6]"
+SYN-5025 WARNING: Using 0 for all undriven pins and nets
+PHY-5088 WARNING: Clock_Analyzer: Detected 1 clock-net(s) because they drive non-clock sinks. Mark "n" in the table below.
+PHY-5088 WARNING: Clock_Analyzer: Detected 1 clock-net(s) because they drive clock sinks and clock buffer, may cause clock skew. Mark "u" in the table below.
+PHY-5088 WARNING: Clock_Analyzer: 3 clock-net(s) because they drive other clock net, may cause clock skew. Display them in the table below.
+USR-6135 CRITICAL-WARNING: The feedback path of PLL u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL is on local network, of which compensation delay is unpredictable.
+USR-6135 CRITICAL-WARNING: The feedback path of PLL u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_clk/u_pll1/u_pll_inst is on local network, of which compensation delay is unpredictable.
+RUN ['D:\\AAA\\FPGA.....YZW\\bin\\td_commands_prompt.exe', 'build.tcl'] CWD D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\small_dual_r3_20261018\work\td_project\camera_to_dsi_display_Runs\phy_1
+PHY-5060 CRITICAL-WARNING: Clock net candidate O_cam_24m_syn_3 has mixed fanouts of 418 clock pins; 1 data/ctrl pins. Please check connection of the net in design.
+PHY-5016 WARNING: PLL clkc is driving an IO without location.
+PHY-5016 WARNING: PLL clkc is not driving a clock-capable IO.
+PHY-5016 WARNING: PLL clkc is driving an IO without location.
+PHY-5016 WARNING: PLL clkc is not driving a clock-capable IO.
+PHY-5016 WARNING: PLL clkc is driving an IO without location.
+PHY-1001 : SWNS: 865, STNS: 0, FEP: 0
+PHY-0007 : Initial: WL Cost = 168379, TD Cost = 698424, SWNS = -316, STNS = -841, Nums per T = 1270, Range Limit = 2x32
+PHY-0007 : Finally: WL Cost = 164535, TD Cost = 634843, WL Ratio = 0.97717, TD Ratio = 0.908965, SWNS = -316, STNS = -632
+PHY-1001 : SWNS: -316, STNS: -632, FEP: 2
+PHY-0007 : Initial: WL Cost = 173937, TD Cost = 751196, SWNS = -564, STNS = -1128, Nums per T = 1270, Range Limit = 2x32
+PHY-0007 : Finally: WL Cost = 173461, TD Cost = 743787, WL Ratio = 0.997263, TD Ratio = 0.990137, SWNS = -564, STNS = -1128
+OPT-1001 : Start: SWNS -564 STNS -1128 NUM_FEPS 2
+PHY-1001 : SWNS: -560, STNS: -1120, FEP: 2
+OPT-0007 : Start: SWNS -645 STNS -1290 NUM_FEPS 2
+OPT-0007 : Iter 1: improved SWNS -645 STNS -1290 NUM_FEPS 2 with 29 cells processed and 2248 slack improved
+OPT-0007 : Iter 2: improved SWNS -645 STNS -1290 NUM_FEPS 2 with 2 cells processed and 148 slack improved
+OPT-0007 : End flow prepack: SWNS -645 STNS -1290 NUM_FEPS 2
+PHY-0007 : Initial: WL Cost = 165414, TD Cost = 555922, SWNS = -528, STNS = -528, Nums per T = 103000, Range Limit = 4x8
+PHY-0007 : Finally: WL Cost = 153354, TD Cost = 457614, WL Ratio = 0.927092, TD Ratio = 0.823161, SWNS = -1, STNS = -1
+OPT-1001 : Start: SWNS -1 STNS -1 NUM_FEPS 1
+OPT-0007 : Start: SWNS -1 STNS -1 NUM_FEPS 1 with mode 2
+OPT-0007 : Iter 1: improved SWNS 610 STNS 0 NUM_FEPS 0 with 59(1854) cells and 927(927) paths processed with 11136 slack improved, crit_thod: 1973 ratio: 0.86(69/80) rt: 2.3s
+OPT-0007 : Iter 2: improved SWNS 688 STNS 0 NUM_FEPS 0 with 52(2180) cells and 1090(1090) paths processed with 5845 slack improved, crit_thod: 2195 ratio: 0.88(56/64) rt: 2.1s
+OPT-0007 : Iter 3: improved SWNS 688 STNS 0 NUM_FEPS 0 with 24(2256) cells and 1128(1128) paths processed with 3434 slack improved, crit_thod: 2280 ratio: 0.73(27/37) rt: 1.5s
+OPT-0007 : Iter 4: improved SWNS 688 STNS 0 NUM_FEPS 0 with 10(2390) cells and 1195(1195) paths processed with 1844 slack improved, crit_thod: 2340 ratio: 0.69(11/16) rt: 0.8s
+OPT-1001 : Start: SWNS 688 STNS 0 NUM_FEPS 0
+OPT-1001 : Start: SWNS 1314 STNS 0 NUM_FEPS 0
+OPT-0007 : End flow postpack: SWNS 1266 STNS 0 NUM_FEPS 0
+OPT-0007 :   SWNS 1266 STNS 0 NUM_FEPS 0
+|     SWNS path clock period |       2693ps                |
+PHY-5088 WARNING: Clock_Analyzer: Detected 1 buffer(s) clkout net because they drive non-clock sinks. Run "analyze_clock -detail" for more infomation.
+PHY-5088 WARNING: Clock_Analyzer: 2 clock-net(s) because they drive other clock net, may cause clock skew. Run "analyze_clock -detail" for more infomation.
+    SWNS [   incr ]    STNS [   incr ]    FEPS [   incr ]    CRIT [   incr ]      CELL [     incr ]        WL [     incr ]    CONG [   incr ]    PDES [   incr ]   RT(s) [   incr ]   MEM(mb) [     incr ]
+PHY-1001 : Iter 0; Processed 409 pins with HWNS -0.226ns HTNS -7.234ns FEP 141 took 1.04602 seconds.
+PHY-1001 : Iter 1; Processed 571 pins with HWNS 0.012ns HTNS 0.000ns FEP 0 took 1.71455 seconds.
+PHY-1001 : Process 0 nets and 0 pins with SWNS 0.244ns STNS 0.000ns FEP 0.
+PHY-1001 : Iter 0; Processed 61 pins with HWNS -0.032ns HTNS -0.113ns FEP 6 took 1.07004 seconds.
+PHY-1001 : Iter 1; Processed 72 pins with HWNS 0.020ns HTNS 0.000ns FEP 0 took 0.248715 seconds.
+PHY-1001 : Process 4 nets and 6 pins with SWNS 0.015ns STNS 0.000ns FEP 0.
+PHY-1001 : Iter 1; Processed 2 pins with SWNS 0.103ns STNS 0.000ns FEP 0 took 0.235374 seconds.
+PHY-1001 : Timing info: SWNS 0.103ns | STNS 0.000ns | HWNS -0.149ns | HTNS -1.139ns.
+PHY-1001 : Timing info: SWNS 0.103ns | STNS 0.000ns | HWNS -0.062ns | HTNS -0.172ns.
+PHY-1001 : Timing info: SWNS 0.103ns | STNS 0.000ns | HWNS -0.033ns | HTNS -0.033ns.
+PHY-1001 : Timing info: SWNS 0.103ns | STNS 0.000ns | HWNS 0.020ns | HTNS 0.000ns.
+    SWNS [   incr ]    STNS [   incr ]  S-FEPS [   incr ]    HWNS [   incr ]      HTNS [     incr ]    H-FEPS [     incr ]    CELL [   incr ]       WL [    incr ]   RT(s) [   incr ]   MEM(mb) [     incr ]
+PHY-5079 CRITICAL-WARNING: Marked 1 clock net(s) utilize the local routing resources. Please check log message and the sinks of clock nets.
+PHY-5088 WARNING: Clock_Analyzer: Detected 1 buffer(s) clkout net because they drive non-clock sinks. Run "analyze_clock -detail" for more infomation.
+PHY-5088 WARNING: Clock_Analyzer: 2 clock-net(s) because they drive other clock net, may cause clock skew. Run "analyze_clock -detail" for more infomation.
+PHY-5088 WARNING: Clock_Analyzer: Detected 1 buffer(s) clkout net because they drive non-clock sinks. Mark "o[slack(ps)]" in the table below.
+PHY-5088 WARNING: Clock_Analyzer: 2 clock-net(s) because they drive other clock net, may cause clock skew. Display them in the table below.
+PASS routed setup/hold; constraints/source identity and physical audit still required

@@ -32,12 +32,14 @@
 
 交接需包含代码、必要未跟踪文件与证据，不能只传本文。按授权提交/推送，不混入无关暂存文件；成功推送才可称已同步。接棒端核对工具依赖、实际文件与日志；Git不传未提交文件、进程或聊天。意外断额度时由人保存改动，接棒端恢复实际断点，WIP不当作稳定版。
 
-## 当前断点（2026-10-17，GitHub代码已交接，最终11项/路由审计通过，待实板）
+## 当前断点（2026-10-18，中央小窗口双路单目标已验证集成并交付；等现场）
 
-- 用户额度不足明确要求上传交接，代码/原始证据已推送3f97a948到origin/lj4747-contest-work；本提交补最终验证回执。入口fpga/component_inspector/handoff/video_jitter_wip_20261017/README.md及HANDOFF.json，validation/final_audit.json为最终严格审计。保留所有负轮次，不能只复制本入口。
-- 仅5RTL行缓存修复，完整360冻结输入已上传，最终manifest ed7cc98129abbd4bac0f92ccdae1fa18a5c34c579efccc321b0de1c26cbf34cf；r13实际构建manifest7de1a367...，生产相同、最终r15只改2项测试参考，审计绑定。识别阈值/3528/180mm/1092/40/WB100、原照明/UI/四目标ID/CDC/SDC/RAM/DSP不变。
-- 最终11项全PASS：6帧4节奏3686400后续精确比较无差，cold=nominal且nominal与旧版230400组全同SHA39bcf8d7...；21快速节奏/空闲组合PASS；27FPS四视图/13栅格12538001精确DDR像素、OF/UF0；坏尾/599行短帧/恢复/元数据/HDMI/缩放/WB通过。无本轮后台测试进程。
-- 新TD6.2.168116实际双角路由setup+.105/hold+.020ns，TNS0，STA92.94%；Slice17753/21216=83.68%、ERAM104/108、DSP26、PLL5；40max_delay matched/ignored0、20Gray位/全部20物理扇出8ns正余量。历史相机/DDR/PLL/I/O覆盖警告未宣称解决，资源超80%不扩功能。
-- 未发布bit在candidate_unreleased，SHA c093c98bc5b59003c663a10f7c66e8c3a7d5600e30c583a5d16262630b969acd（1789539B）；未烧板/Flash，未切临时或正式发布指针，旧16bd8beb候选保留。标题仍180MM STABLE IDS，按文件/SHA识别。
-- 下一步完成已验证候选的完整发布包/更新候选，再由用户上板核对RAW/GRAY+EDGE底图。不能把软件通过当物理抖动已完全解决，拍屏含OIS/摩尔纹，仿真复现行尾/节奏问题不证明全部现场抖动同因。不需重复分类标定或改阈值。
-- 原工作区tmp r13/r15仍在可查；Git交接已保存必要源、负轮次delta、最终日志和路由报告，verify_handoff.py已做逐文件SHA/负源重建，scripts/replay.py可新目录复现。原workspace审计脚本按归档路径恢复才能重跑。根build_console.log/transcript、fpga/异常标定、fpga/测试及测试.zip既有原件不混入，本轮未新建代理或自动任务。
+- 2026-10-19用户授权“最新代码上传一下”。最新源码/位流/完整包/原图来源SHA及集成一致性复核PASS，未重跑或改动已冻结测试。本次上传当前生产与测试、small_dual_20261018完整交接、标定来源和验收记录；较早诊断完整包、用户自有测试视频/异常照片与根目录临时日志留在本机。远端origin/lj4747-contest-work已核对55090063，与本地基线一致；使用本机系统代理10090连接，准备提交推送，最终同步以远端提交核对为准。
+
+- lj4747-contest-work HEAD55090063。最新用户要求最新代码省资源/精简显示、搜索区改小，每路单目标，已明确两条水平载带；随后纠正“文字还是随框动”。最终D:/fpga_download/3528_small_dual_6139d4b1.bit，SHA6139d4b1f5edde58bae68c5459cecf506332525181caf64cb3d769886edb4813，标题SMALL DUAL R1。主生产已集成，未提交/推送/JTAG/Flash。旧21dc、c093、观察66f9、正式current_codex_build与旧包不变。
+- 372输入manifestd7b7e82125dacfb467d8a98976387f681e6aead4cb1c0ec4a32bd940d96bf362，最终tmp/small_dual_r3_20261018为构建与测试共同源；集成frame_shape_search/inspection_region_config/isp_top/experiment_osd及对应SDC/测试/字体oracle，均与冻结字节一致，integration_before保留先前版本，CSI登记及原测试保留。CFG紧凑区x560—720/y248—352与368—472，各160×104、中心640/300和640/420。两路各1框，文字严格随当前框移动，空区待检测。顶部48像素、Logo/EXP/GAIN/FPS/视图/短版本/故障提示，删调试页脚/长英文卡/常驻WB细节。原阈值主体100/孔80/Sobel80/fill85%不变，原ISP/缩放/Sobel12ERAM/DDR/时钟/I/O不改。
+- 每路实测当前候选，中央±40px内与上次选择曼哈顿≤32px时优先同件，出中央带交下一件，invalidate清除；没有保留旧框/旧结果或持久卷号。只改筛选输出和显示，保留完整T100及T80缓存184—536上下64px上下文。文字固定在搜索区旁的建议已被用户否决，不能恢复。
+- 14测试全PASS：lane_handoff7帧14记录复现/修正4px扰动抢框；lane_search24帧42结果双路正反向3件都被选；lane_osd4栅格3686400独立像素（文字随框/失效/原子快照/ENABLE/3clock）；lane_hd_pins实际vendorFIFO/DDR/串行HDMI两完整720p60图；原10项全部保留通过。仅空间最近的r2用同oracle在frame2切换612/676失败，负例完整归档。早期r0保留字测试编译与失效SDC、r1缺glbl/GSR的失败保留；r3所有目标未放宽。仿真不是现场全检或全部翻面验收。
+- 实际Slice13201(62.22%)，较21dc16442/77.50%省3241(15.28个百分点)；ERAM101/108省3；DSP26/PLL5不变。路由setup+0.103/hold+0.020ns、TNS0、STA93.12%。显示精简使u_publish_display/u_wb_process目的寄存器被优化，删除恰6条失效邮箱约束；其余32+2vendor全部匹配ignored0、20Gray实际扇出均满足原8ns预算。旧相机/DDR/IP/PLL/I/O警告保留。
+- 完整包fpga/component_inspector/handoff/small_dual_20261018/V12_SMALL_DUAL_1092_40_20261018_full.zip，30736178B，SHA7ce5cb83b69ec3d7ab868a14fd86a8f1be1d80e6f2fdddabe870f8e36f3d7512，含完整源/14日志/实际路由网表/五组旧源重建/失败与扰动反例/28原图来源包/预览/集成前备份，全SHA/ZIPCRC通过。记录开发实施/验收记录/20261018_A_中央小窗口双路单目标精简_轮次20.md；current_calibration_handoff新增small_dual_trial_20261018，正式指针未改。
+- 下一步用户烧此bit，两条载带对准上、下新中央区，以实际速度验证每件至少有足够输入帧（不能用显示60Hz代替相机FPS）、新标签跟框、相邻不抢框、正常/空穴/侧立/翻面及失效清空。未保证全部器件无漏检；未称翻面盲点或整幅RAW抖动修好。无运行中测试/构建/新代理/新自动任务。

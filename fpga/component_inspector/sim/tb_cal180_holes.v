@@ -75,14 +75,14 @@ task frame(input integer p);
  end
  ticks(5);cycles=0;while(!ready && cycles<2300000)begin ticks(1);cycles++;end
  if(!ready)$fatal(1,"CAL80 hole timeout pattern%0d",p);
- want=(p==3 || p==5) ? 0 : p==7 ? 3 : 4;count=0;
+ want=p==3 ? 0 : p==5 ? 2 : p==7 ? 3 : 4;count=0;
  for(integer k=0;k<4;k++)begin
   rec=objects[k*76+:76];
   if(rec[75])begin
-   count++;checks++;b=p==1 || ((p==2 || p==4) && (k==0 || k==3));n=k%2==0 ? 4 : 5;
+   count++;checks++;b=p==1 || ((p==2 || p==4) && (k==0 || k==3));n=p==5 ? 6 : k%2==0 ? 4 : 5;
    if(rec[74:73]!== (p==8 ? 2'd1 : b ? 2'd2 : 2'd3))$fatal(1,"CAL80 class pattern%0d slot%0d got%0d",p,k,rec[74:73]);
    if(p!=7 && (rec[55:49]!== (b ? 36 : n*2) || rec[48:42]!== (b ? 44 : n*2) ||
-     rec[68:56]!== (b ? 1456 : n==4 ? 52 : 84)))$fatal(1,"CAL80 feature pattern%0d slot%0d FG%0d W%0d H%0d",p,k,rec[68:56],rec[55:49],rec[48:42]);
+     rec[68:56]!== (b ? 1456 : p==5 ? 128 : n==4 ? 52 : 84)))$fatal(1,"CAL80 feature pattern%0d slot%0d FG%0d W%0d H%0d",p,k,rec[68:56],rec[55:49],rec[48:42]);
    if(p==6 && k==0 && rec[41:31]!=396)$fatal(1,"small hole contour cropped at zone boundary");
   end
  end
@@ -93,6 +93,6 @@ task frame(input integer p);
 endtask
 initial begin
  ticks(5);rst=1;ticks(5);for(integer p=0;p<9;p++)frame(p);
- $display("PASS cal180 holes: %0d full frames, %0d records, exact CAL80 W/H/A, CAL100 bodies unchanged with low fringe, feed rejection and high-fragment removal, mixed zones, bright border, unobserved gap, zone-edge and outside-center, small bright object not EMPTY, cancel",cases,checks);$finish;
+ $display("PASS cal180 holes: %0d full frames, %0d records, exact CAL80 W/H/A, CAL100 bodies unchanged with low fringe, feed rejection and high-fragment removal, mixed zones, bright border, extended6-cell empty, zone-edge and outside-center, small bright object not EMPTY, cancel",cases,checks);$finish;
 end
 endmodule

@@ -1,0 +1,148 @@
+{
+  "status": "ANALYSIS_ONLY_NO_RTL_OR_BIT_GENERATED",
+  "source_images": 12,
+  "truth": "large round openings=locating holes; small round openings=empty sites; P07-P12 visibly four front-facing devices",
+  "photo_scale_measurements": {
+    "empty": {
+      "objects_measured": 12,
+      "photo_width_range": [
+        12,
+        15
+      ],
+      "photo_height_range": [
+        14,
+        16
+      ],
+      "photo_area_range": [
+        148,
+        181
+      ],
+      "photo_fill_range": [
+        0.769,
+        0.857
+      ]
+    },
+    "locating": {
+      "objects_measured": 22,
+      "photo_width_range": [
+        22,
+        25
+      ],
+      "photo_height_range": [
+        22,
+        25
+      ],
+      "photo_area_range": [
+        380,
+        463
+      ],
+      "photo_fill_range": [
+        0.725,
+        0.806
+      ]
+    },
+    "present": {
+      "objects_measured": 16,
+      "photo_width_range": [
+        45,
+        49
+      ],
+      "photo_height_range": [
+        54,
+        60
+      ],
+      "photo_area_range": [
+        2311,
+        2501
+      ],
+      "photo_fill_range": [
+        0.88,
+        0.953
+      ]
+    }
+  },
+  "local_contrast_sweep": [
+    0.35,
+    0.5,
+    0.65
+  ],
+  "photo_diameter_ratio_large_to_small": [
+    1.5333,
+    1.5862
+  ],
+  "photo_area_ratio_large_to_small": [
+    2.3964,
+    2.5449
+  ],
+  "native_gray_thresholds_measured": false,
+  "native_1280x720_pixel_measurements": false,
+  "quality_truth_not_inferred_from_internal_light_spot": true,
+  "mixed_present_empty_same_strip_covered": false,
+  "rotated_carrier_new_session_covered": false,
+  "current_code": {
+    "body_gray_threshold": 100,
+    "small_hole_gray_threshold": 80,
+    "edge_gradient_threshold": 80,
+    "half_mask_body": {
+      "long": [
+        20,
+        39
+      ],
+      "short": [
+        16,
+        36
+      ],
+      "aspect": [
+        1.05,
+        1.55
+      ],
+      "fill_min": 0.8
+    },
+    "half_mask_empty": {
+      "long": [
+        3,
+        5
+      ],
+      "short": [
+        3,
+        5
+      ],
+      "aspect_max": 1.4,
+      "fill": [
+        0.6,
+        0.9
+      ],
+      "max_T100_cells": 5
+    },
+    "half_mask_locating": {
+      "long": [
+        7,
+        9
+      ],
+      "short": [
+        6,
+        9
+      ],
+      "aspect_max": 1.4,
+      "fill": [
+        0.6,
+        0.9
+      ]
+    },
+    "units": "640x360 half-resolution mask cells after 2x2 mean, not photo pixels or padded display box pixels",
+    "gray_edge_fusion_for_local_search": false,
+    "max_objects_per_region": 2,
+    "max_objects_total": 4
+  },
+  "conclusions": [
+    "Three visible classes have separated external geometry in this session.",
+    "Large-hole diameter/area ratios in same photo are more credible than uncalibrated phone brightness.",
+    "High threshold may retain only LED central bright disk and lose rectangular body; body presence must use complete external component.",
+    "Large-hole interior background texture may fragment a high-threshold mask; reject using complete large-hole contour before admitting small/uncertain fragments. Mechanism hypothesis, not a replayed FPGA failure.",
+    "Small holes and locating holes must be discriminated by size plus contour, not brightness, row-above/below rule, or all orange edge pixels.",
+    "Present and empty do not share a single bright-object threshold; preserve separate gray masks and inspect their geometry margins.",
+    "Current search detector receives pre-Sobel RGB only. The orange overlay is not evidence of edge features participating in four-target classification. Native Sobel features must be explicitly routed/aligned if used for verification.",
+    "Threshold changes require synthetic geometry/boundary regression and same-board validation. No numeric native threshold derived directly from this phone batch."
+  ],
+  "next_scope": "Basic present/empty/locating class gates, maintain disabled observer build for acquisition; no code/build without later action request. No revival of jitter investigation."
+}

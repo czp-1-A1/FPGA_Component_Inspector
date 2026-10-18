@@ -56,6 +56,11 @@ try {
         "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
         "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v")
     $tests = @(
+        @{Name="lane_handoff"; Pass="PASS lane handoff:"; Sources=@("$hdl/inspection_region_config.v", "$hdl/frame_shape_search.v", "tb_lane_handoff.v")},
+        @{Name="lane_search"; Pass="PASS lane search:"; Sources=@("$hdl/inspection_region_config.v", "$hdl/frame_shape_search.v", "tb_lane_search.v")},
+        @{Name="lane_osd"; Pass="PASS lane OSD:"; Sources=@("$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/inspection_region_config.v", "$hdl/experiment_osd.v", "tb_lane_osd.v")},
+        @{Name="lane_hd_pins"; Pass="PASS lane hd pins:"; Sources=@("hdmi_ideal_pll.v", "$hdl/native_720p60_vtc.v", "$hdl/native_i60_phase.v", "$hdl/native_i60_tx.v", "$hdl/dvi_encoder.v", "$hdl/wide_view_avi.v", "$hdl/hdmi_phy_warpper.v", "$hdl/lane_lvds_10_1.v", "$hdl/video_out.v", "$hdl/bin16_bcd.v", "$hdl/osd_ascii_rom.v", "$hdl/osd_cjk_rom.v", "$hdl/osd_logo_rom.v", "$hdl/inspection_region_config.v", "$hdl/experiment_osd.v", "$ip/w128_d512_fifo/w128_d512_fifo.v", "$ip/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v", "tb_lane_hd_pins.v")},
+        @{Name="threshold180"; Pass="PASS threshold180:"; Sources=@("$hdl/inspection_region_config.v", "$hdl/frame_shape_search.v", "tb_threshold180.v")},
         @{Name="raw_timing_probe"; Pass="PASS raw timing probe:"; Sources=($ispSources + @("tb_raw_timing_probe.v"))},
         @{Name="base_picture_repeatability"; Pass="PASS base picture repeatability:"; Sources=($ispSources + @("$hdl/image_correction.v", "tb_base_picture_repeatability.v"))},
         @{Name="pose180"; Pass="PASS pose180:"; Sources=@("$hdl/inspection_region_config.v", "$hdl/frame_shape_search.v", "tb_pose180.v")},
@@ -143,6 +148,7 @@ try {
         @{Name="cdc"; Pass="PASS CDC:"; Sources=@("$hdl/status_cdc.v", "tb_cdc.v")},
         @{Name="monitor"; Pass="PASS monitor:"; Sources=@("$hdl/status_cdc.v", "$hdl/input_monitor.v", "tb_monitor.v")},
         @{Name="hd_monitor"; Pass="PASS HD monitor:"; Sources=@("$hdl/status_cdc.v", "$hdl/input_monitor.v", "tb_hd_monitor.v")},
+        @{Name="csi_pixels"; Pass="PASS CSI pixels:"; Sources=@("$hdl/isp/csi_unpacket_2lane.v", "$hdl/isp/raw10_unpacket_2lane.v", "tb_csi_pixels.v")},
         @{Name="csi_monitor"; Pass="PASS actual CSI"; Sources=@("$hdl/status_cdc.v", "$hdl/input_monitor.v", "$hdl/isp/csi_unpacket_2lane.v", "$hdl/isp/raw10_unpacket_2lane.v", "tb_csi_monitor.v")},
         @{Name="hd_csi_monitor"; Pass="PASS actual CSI and RAW10 decoder feeding monitor: 1920 x 1080"; Sources=@("$hdl/status_cdc.v", "$hdl/input_monitor.v", "$hdl/isp/csi_unpacket_2lane.v", "$hdl/isp/raw10_unpacket_2lane.v", "tb_csi_monitor.v", "tb_hd_csi_monitor.v")},
         @{Name="i2c"; Pass="PASS I2C actual bus:"; Sources=@("$hdl/uics500_cfg/uii2c.v", "tb_i2c.v")},
@@ -194,13 +200,13 @@ try {
         & "$ModelSimBin/vlog.exe" -sv -work $library @defines $testbench >> "$directory/compile.log" 2>&1
         if ($LASTEXITCODE -ne 0) { throw "Testbench compile failed: $($test.Name); see $directory/compile.log" }
         $tops = @("$library.tb_$($test.Name)")
-        if ($test.Name -in @("raw_timing_probe", "base_picture_repeatability", "fixed_wb", "manual_wb", "pixel_interface", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "hd_pll")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
+        if ($test.Name -in @("raw_timing_probe", "base_picture_repeatability", "fixed_wb", "manual_wb", "pixel_interface", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "lane_hd_pins", "hd_pll")) { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
         $commands = "log /tb_$($test.Name)/*; run -all; quit -code 1 -force"
-        if ($test.Name -in @("hd_pins", "hd_pll")) { $commands = "run -all; quit -code 1 -force" }
-        if ($test.Name -in @("shape_isp", "local_isp", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "hd_pll")) { $commands = "log /tb_$($test.Name)/frame_no; run -all; quit -code 1 -force" }
+        if ($test.Name -in @("hd_pins", "lane_hd_pins", "hd_pll")) { $commands = "run -all; quit -code 1 -force" }
+        if ($test.Name -in @("shape_isp", "local_isp", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "lane_hd_pins", "hd_pll")) { $commands = "log /tb_$($test.Name)/frame_no; run -all; quit -code 1 -force" }
         if ($test.Name -in @("raw_timing_probe", "base_picture_repeatability")) { $commands = "run -all; quit -code 1 -force" }
         $access = "+acc"
-        if ($test.Name -in @("raw_timing_probe", "base_picture_repeatability", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "hd_pll")) { $access = "+acc=rn+/tb_$($test.Name)" }
+        if ($test.Name -in @("raw_timing_probe", "base_picture_repeatability", "roi_chain", "isp_writer_stop", "isp_metadata_stop", "isp_tracking", "isp_tracking_late", "isp_multi", "multi_writer", "multi_video", "multi_first_invalid", "direct_isp", "direct_video", "shape_isp", "shape_video", "local_isp", "local_video", "frame_video", "frame_tailproof", "frame_stop", "frame_process", "frame_cadence", "hd_chain", "regions_chain", "calibration_chain", "field_chain", "hd_pins", "lane_hd_pins", "hd_pll")) { $access = "+acc=rn+/tb_$($test.Name)" }
         & "$ModelSimBin/vsim.exe" -c -L anlogic_sim "-voptargs=$access" -onfinish exit -l "$directory/transcript.log" -wlf "$directory/wave.wlf" -do $commands @tops *> "$directory/console.log"
         if ($LASTEXITCODE -ne 0) { throw "Simulation failed: $($test.Name); see $directory/console.log" }
         $output = Get-Content -LiteralPath "$directory/console.log" -Raw

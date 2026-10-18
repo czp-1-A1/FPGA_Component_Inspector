@@ -355,7 +355,7 @@ roi_statistics #(.DYNAMIC_ROI(TRACKING),.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(
     .frame_commit(result_commit),.invalidate(sample_cancel),.sample_valid(legacy_valid),
     .mean(legacy_mean),.minimum(legacy_min),.maximum(legacy_max),.sample_pixels(),.sample_sum(),.sample_new(legacy_new),.frame_start(post_start));
 generate if(USE_SEARCH) begin : local_shape_detection
- frame_shape_search #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
+ frame_shape_search #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS),.LANE_SINGLE(REGIONS)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
   .pixel_accept(post_accept),.invalidate(sample_cancel),.pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),
   .ready(search_ready),.sample_new(search_new),.located(search_located),.state(search_state),.foreground_count(search_fg),
   .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(legacy_search_objects),.region_objects(region_search_objects));

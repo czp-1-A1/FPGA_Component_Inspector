@@ -1,5 +1,5 @@
 {
-  "status": "PASS_STABLE_IDS_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
+  "status": "PASS_SMALL_DUAL_MOVING_LABELS_SOFTWARE_ROUTED_FIELD_PENDING",
   "device": "same 3528 white LED and same carrier tape",
   "camera": {
     "width": 1920,
@@ -10,34 +10,41 @@
     "wb_b": 100
   },
   "search": {
-    "scope": "two configured effective regions; complete image retained for contour and side-reference context",
+    "scope": "Two compact160x104 zones, one current measured candidate per lane; full T100 mask/context preserved, T80 vertical cache184..536.",
     "internal_resolution": [
       640,
       360
     ],
     "reduction": "mean of all four source grayscale pixels in each 2x2 block",
-    "max_displayed_objects": 4,
+    "max_displayed_objects": 2,
     "foreground_threshold": 100,
     "grayscale": "floor((R+2G+B)/4)",
     "output_area": "reduced foreground area times 4, estimate; 13-bit saturation",
     "bbox": "half-resolution component bbox mapped to 720p processing/display coordinates, padded by two pixels and clipped",
     "border_acceleration": "44-cell horizontal-run proof (current3528 review max43); certify preceding10 full words through spare capture write slots; seed/neighbor skip; dark reference preserved; existing low-pass ignored map also accounts for recognized T100 rectangles, and sequential scan reads are prefetched; no new image RAM",
-    "max_objects_per_region": 2,
+    "max_objects_per_region": 1,
     "membership": "complete component center inside the region; no ROI crop of contour",
-    "temporal_hold": false
+    "temporal_hold": false,
+    "selection_preference": {
+      "central_halfwidth_processing_px": 40,
+      "match_manhattan_processing_px": 32,
+      "holds_old_results": false,
+      "cleared_by_invalidate": true,
+      "new_reg_bits": "2x11-bit previous x/y plus2 valid and per-candidate preference; compile eliminated outside lane mode"
+    }
   },
   "strict": {
     "aspect": [
       1.05,
       1.55
     ],
-    "fill_min": 0.8,
+    "fill_min": 0.85,
     "long_processed": [
-      40,
+      38,
       78
     ],
     "short_processed": [
-      32,
+      30,
       72
     ]
   },
@@ -83,7 +90,7 @@
     "late_result": "one attachment to the same completed slot/writer epoch; canceled by next FS or bad frame; active reader tuple changes only at VS"
   },
   "recipe_loading": "compile-time inspection_region_config.v, independent MODEL0/MODEL1 and RECIPE0/RECIPE1; no automatic model selection",
-  "version": "DD FRAME EXP V12 / 180MM POSE TRIAL",
+  "version": "DD FRAME EXP V12 / SMALL DUAL R1",
   "processing_clock": {
     "frontend": "native CSI",
     "post_awb_mhz": 100,
@@ -91,7 +98,7 @@
     "bridge": "explicit 128x512 dual-clock ERAM FIFO with 10-bit Gray pointers and two-stage synchronization",
     "overflow": "reject until reset"
   },
-  "validation": "PASS_THREE_CURRENT_OSD_TESTS_AND_NEW_ROUTED_AUDIT_PREVIOUS_DETECTOR_REGRESSIONS_RETAINED",
+  "validation": "PASS14_CURRENT_TESTS_FULL_ROUTED_AUDIT_PHYSICAL_PENDING",
   "base_commit": "ae04f76db1e6c28441d30b375be9f9c04b6fbba4",
   "historical_profile_base_commit": "2fc4c4318027832f3feda9f193d34565af59a32b",
   "optics": {
@@ -120,30 +127,33 @@
     "fixed_calibration_markers": false,
     "recent_single_target_summary": false,
     "stable_local_display_ids": {
-      "max_manhattan_processing_px": 32,
-      "acquisition_vertical_x_band_px": 16,
+      "per_lane_fixed_id": true,
+      "target_matching_in_detector": true,
       "persistent_tape_identity": false
-    }
+    },
+    "top_bar_height_px": 48,
+    "global_debug_panel": false,
+    "result_labels": "Follow current measured target box; one line of Chinese status. WAIT is at empty lane origin."
   },
-  "geometry_recipe_status": "CAL100_BODY_RETAINED_CAL80_HOLES_SAMPLING_PHASE_FIELD_FIX_TRIAL",
+  "geometry_recipe_status": "PHOTO28_ONE_CELL_GEOMETRY_MARGIN_FILL85_SOFTWARE_ROUTED_PHYSICAL_PENDING",
   "regions": [
     {
       "id": 1,
       "bounds_xyxy": [
-        400,
-        240,
-        880,
-        400
+        560,
+        248,
+        720,
+        352
       ],
       "template_id": 3528
     },
     {
       "id": 2,
       "bounds_xyxy": [
-        400,
-        432,
-        880,
-        600
+        560,
+        368,
+        720,
+        472
       ],
       "template_id": 3528
     }
@@ -154,12 +164,12 @@
     "bytes": 1789539,
     "sha256": "66393158dc0ac7e42100f6388d9bb03989e6eacc3c6d99f998f0d2177d4578db"
   },
-  "center_observation_statistics": "Bottom MEAN/MIN/MAX remain the legacy center observation ROI, not per-object or per-region gray means.",
+  "center_observation_statistics": "Legacy global MEAN/MIN/MAX and sampling/WAIT labels hidden in four-object mode; per-object records retained.",
   "next_version_gate": {
-    "status": "USER_AUTHORIZED_DIRECT_CODE_MODIFICATION_20261016",
+    "status": "USER_SMALL_WINDOW_AND_MOVING_LABELS_IMPLEMENTED_20261018",
     "required": true,
     "requirement": "下一版必须重新测定3528在新视野中的尺寸参数。先由用户明确确认，才开始重新测定、修改参数及下一版代码或构建。",
-    "current_action": "Authorized photo-threshold code and source archive delivered. User may verify this frozen trial at unchanged180mm/1092/40/WB100/100/light; no automatic defect-subtype or quality acceptance claimed.",
+    "current_action": "Small dual candidate tested/routed; human aligns both horizontal lanes with new central zones and verifies real speed/coverage. No pending implementation approval for this continuous request.",
     "record": "开发实施/64_A_V12本地提交与下一版标定确认.md"
   },
   "calibration_dataset": "calibration_180mm/session_1092_40_20261015/dataset.json",
@@ -211,22 +221,21 @@
     "body_foreground_threshold": 100,
     "empty_long_internal": [
       3,
-      5
+      6
     ],
     "empty_short_internal": [
       3,
-      5
+      6
     ],
     "feed_long_internal": [
       7,
-      9
+      10
     ],
     "feed_short_internal": [
       6,
-      9
+      10
     ],
-    "tolerance": "Observed CAL extents plus2x2 sampling phase regression; algorithm trial margins, not new physical measurements",
-    "unmeasured_gap_internal": 6,
+    "tolerance": "One-cell trial margin based on28 observer photos and synthetic2x2 phase/boundary regression; not native physical gray/size calibration",
     "mask_context_source_y": [
       224,
       616
@@ -257,7 +266,11 @@
         4
       ],
       "coordinates": "internal640x360"
-    }
+    },
+    "long_side_class_boundary_internal": [
+      6,
+      7
+    ]
   },
   "calibration_holes80_trial": {
     "status": "PASS_HOLES80_TRIAL_SOFTWARE_ROUTED_PHYSICAL_VALIDATION_PENDING",
@@ -415,5 +428,163 @@
       "sta_percent": 93.01
     },
     "physical_validation": false
+  },
+  "video_credit_trial": {
+    "candidate": "fpga/component_inspector/handoff/calibration_video_credit_180mm_20261017/candidate/V12_VIDEO_CREDIT180_1092_40_20261017.bit",
+    "sha256": "c093c98bc5b59003c663a10f7c66e8c3a7d5600e30c583a5d16262630b969acd",
+    "source_manifest_sha256": "ed7cc98129abbd4bac0f92ccdae1fa18a5c34c579efccc321b0de1c26cbf34cf",
+    "build_source_manifest_sha256": "7de1a3676fe09bc426ea288d52f5cee980782d38beda7fc09b8b818a9ed95ef1",
+    "tests": 11,
+    "timing_cases": 21,
+    "evidence": "开发实施/验收记录/20261017_A_RAW底图行缓存修复_轮次3_验证版交付.md",
+    "routed_sta": {
+      "setup_ns": 0.105,
+      "setup_tns_ns": 0.0,
+      "hold_ns": 0.02,
+      "hold_tns_ns": 0.0,
+      "sta_percent": 92.94
+    },
+    "resources": {
+      "slice": {
+        "used": 17753,
+        "total": 21216,
+        "percent": 83.68
+      },
+      "eram": {
+        "used": 104,
+        "total": 108,
+        "percent": 96.3
+      },
+      "dsp": {
+        "used": 26,
+        "total": 40,
+        "percent": 65.0
+      },
+      "pll": {
+        "used": 5,
+        "total": 6,
+        "percent": 83.33
+      }
+    },
+    "physical_validation": false,
+    "physical_status": "USER_CONFIRMED_C093_RAW_STILL_JITTERS"
+  },
+  "threshold_trial_20261018": {
+    "candidate_sha256": "21dc549f9f50bba288b4da197333364c1be128dbd7b2234139c632d99e8531f0",
+    "source_manifest_sha256": "4b7144523fcac52aa3eab2392951c3f5796b90a57c04b1d40c1935126ab529b9",
+    "threshold_changes": {
+      "gray_body": "100 unchanged",
+      "gray_holes": "80 unchanged",
+      "sobel": "80 unchanged",
+      "normal_fill": [
+        0.8,
+        0.85
+      ],
+      "normal_halfmask_long_min": [
+        20,
+        19
+      ],
+      "normal_halfmask_short_min": [
+        16,
+        15
+      ],
+      "empty_max": [
+        5,
+        6
+      ],
+      "locating_long_short_max": [
+        9,
+        10
+      ],
+      "pose_long_min": "14 unchanged",
+      "pose_short_min": "5 unchanged"
+    },
+    "gray_edge_classification_fusion_implemented": false,
+    "all_flipped_detected": false,
+    "physical_validation": false,
+    "dataset_images": 28,
+    "source_sessions": [
+      "session_photo_only_1092_40_20261018",
+      "session_photo_side_1092_40_20261018",
+      "session_photo_flip_1092_40_20261018"
+    ],
+    "source_archive": {
+      "path": "fpga/component_inspector/tools/shape3528/calibration_sources/3528_180mm_1092_40_photo28_sources_20261018.zip",
+      "bytes": 25743069,
+      "sha256": "f1a06f9a6637d8c21fa9d4bcc4a1b0611c7c73fcc284777975465d955147d301",
+      "original_images": 28,
+      "zip_crc_and_original_sha256": "PASS"
+    },
+    "note": "User authorized optimize thresholds20261018; old c093 and observer bit unchanged. No lighting/exposure changes. Complete flipped/rotated quality is not solved by geometry alone."
+  },
+  "small_dual_trial_20261018": {
+    "candidate_sha256": "6139d4b1f5edde58bae68c5459cecf506332525181caf64cb3d769886edb4813",
+    "source_manifest_sha256": "d7b7e82125dacfb467d8a98976387f681e6aead4cb1c0ec4a32bd940d96bf362",
+    "source_archive": {
+      "path": "fpga/component_inspector/tools/shape3528/calibration_sources/3528_180mm_1092_40_photo28_sources_20261018.zip",
+      "bytes": 25743069,
+      "sha256": "f1a06f9a6637d8c21fa9d4bcc4a1b0611c7c73fcc284777975465d955147d301",
+      "original_images": 28,
+      "zip_crc_and_original_sha256": "PASS"
+    },
+    "resources": {
+      "slice": {
+        "used": 13201,
+        "total": 21216,
+        "percent": 62.22
+      },
+      "eram": {
+        "used": 101,
+        "total": 108,
+        "percent": 93.52
+      },
+      "dsp": {
+        "used": 26,
+        "total": 40,
+        "percent": 65.0
+      },
+      "pll": {
+        "used": 5,
+        "total": 6,
+        "percent": 83.33
+      }
+    },
+    "resource_delta": {
+      "slice": {
+        "before": 16442,
+        "after": 13201,
+        "saved": 3241,
+        "percentage_points_saved": 15.28
+      },
+      "eram": {
+        "before": 104,
+        "after": 101,
+        "saved": 3,
+        "percentage_points_saved": 2.78
+      },
+      "dsp": {
+        "before": 26,
+        "after": 26,
+        "saved": 0,
+        "percentage_points_saved": 0.0
+      },
+      "pll": {
+        "before": 5,
+        "after": 5,
+        "saved": 0,
+        "percentage_points_saved": 0.0
+      }
+    },
+    "routed_sta": {
+      "setup_ns": 0.103,
+      "setup_tns_ns": 0.0,
+      "hold_ns": 0.02,
+      "hold_tns_ns": 0.0,
+      "sta_percent": 93.12
+    },
+    "thresholds_changed": false,
+    "physical_validation": false,
+    "all_parts_guaranteed": false,
+    "labels_follow_box": true
   }
 }
