@@ -1,0 +1,129 @@
+{
+  "description": "Optimization-only diff from frozen threshold21dc to SMALL DUAL R1; bit prefixes are not Git commit IDs.",
+  "reference_code_commit": "44e38d2c5b8127d5923890f3e7c5628127b45433",
+  "base_bit_sha256": "21dc549f9f50bba288b4da197333364c1be128dbd7b2234139c632d99e8531f0",
+  "result_bit_sha256": "6139d4b1f5edde58bae68c5459cecf506332525181caf64cb3d769886edb4813",
+  "before_source_manifest_sha256": "4b7144523fcac52aa3eab2392951c3f5796b90a57c04b1d40c1935126ab529b9",
+  "after_source_manifest_sha256": "d7b7e82125dacfb467d8a98976387f681e6aead4cb1c0ec4a32bd940d96bf362",
+  "files": [
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/experiment_osd.v",
+      "before_sha256": "f7085dca3d8131b4ac59522d96f2f9f7153920816dca15b353095350ecbf4d32",
+      "after_sha256": "409479ab4b25ca9447c1b2dcfc3deb24cdff97682db99903f753ba7633b70610"
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/frame_shape_search.v",
+      "before_sha256": "7865adee6c66d4facbea886aa89e81644cb9b8d7ddf0d124de849f679b1ed7c9",
+      "after_sha256": "78c119c9e8733a4f67793ac8fd686c8c8620bdfd7c796e77c2e18cd1bb3ba525"
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/inspection_region_config.v",
+      "before_sha256": "8aa9439369503f411a383b5547a266b92979ae9d2643f8d7488b66df4e3a821d",
+      "after_sha256": "802f1923be43e12eb9b6651b665dfb27ef4d718ea8a62bac90e3446207186d49"
+    },
+    {
+      "path": "fpga/component_inspector/user_source/hdl_source/isp/isp_top.v",
+      "before_sha256": "5cee77a48398b0442c84ecc8ab91d75ba484e655cf6d07a85498dec72e9cf31a",
+      "after_sha256": "0f8a76f3a3896f0c8971cdc7e14bc18650d5bd151814e79bf83646849a1aea97"
+    },
+    {
+      "path": "fpga/component_inspector/td_project/camera_to_dsi_display.sdc",
+      "before_sha256": "85d6ccef5e21a996bf9b086508b0843d5b526a74f192263ecd6796e972e7e6c3",
+      "after_sha256": "c7b1ba369db49ecd55ccb8f6be8fbef5f9f362f93829f15e9183e0e979ad7562"
+    }
+  ],
+  "patch_sha256": "d4e831a912cb32109b451d014708b88cc71c3b65f2df631eaa22c59f49caff74",
+  "baseline_area_sha256": "285511a5e76716c5f1d7cfdf1954e86331e436b43821e051d8349a456d7b004d",
+  "after_area_path": "fpga/component_inspector/handoff/small_dual_20261018/build_evidence/phy_1/camera_to_dsi_display_phy.area",
+  "after_area_sha256": "bd2caac718a99928dddc2fb57c1bfa3231a6e65f1a89d07cae4f0df3be8be630",
+  "hierarchy_resources": {
+    "before": {
+      "osd": {
+        "logic_lut": 2122,
+        "ripple": 561,
+        "seq": 1583,
+        "eram": 5,
+        "dsp": 0
+      },
+      "detector": {
+        "logic_lut": 1748,
+        "ripple": 340,
+        "seq": 1097,
+        "eram": 44,
+        "dsp": 18
+      }
+    },
+    "after": {
+      "osd": {
+        "logic_lut": 662,
+        "ripple": 22,
+        "seq": 506,
+        "eram": 3,
+        "dsp": 0
+      },
+      "detector": {
+        "logic_lut": 1251,
+        "ripple": 380,
+        "seq": 823,
+        "eram": 43,
+        "dsp": 18
+      }
+    }
+  },
+  "resources": {
+    "slice": {
+      "used": 13201,
+      "total": 21216,
+      "percent": 62.22
+    },
+    "eram": {
+      "used": 101,
+      "total": 108,
+      "percent": 93.52
+    },
+    "dsp": {
+      "used": 26,
+      "total": 40,
+      "percent": 65.0
+    },
+    "pll": {
+      "used": 5,
+      "total": 6,
+      "percent": 83.33
+    }
+  },
+  "resource_delta": {
+    "slice": {
+      "before": 16442,
+      "after": 13201,
+      "saved": 3241,
+      "percentage_points_saved": 15.28
+    },
+    "eram": {
+      "before": 104,
+      "after": 101,
+      "saved": 3,
+      "percentage_points_saved": 2.78
+    },
+    "dsp": {
+      "before": 26,
+      "after": 26,
+      "saved": 0,
+      "percentage_points_saved": 0.0
+    },
+    "pll": {
+      "before": 5,
+      "after": 5,
+      "saved": 0,
+      "percentage_points_saved": 0.0
+    }
+  },
+  "validation": {
+    "git_apply_check_to_reconstructed_baseline": "PASS",
+    "applied_five_files_exact_after_sha256": "PASS",
+    "production_RTL_modified_by_this_documentation_task": false,
+    "hardware_tests_rerun": false,
+    "previous_hardware_tests": 14,
+    "field_validation": false
+  }
+}
