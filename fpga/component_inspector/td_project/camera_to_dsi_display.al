@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Project Version="3" Minor="2" Path="D:/CodexWork/v11_github_upload_20261015/fpga/component_inspector/td_project">
+<Project Version="3" Minor="2" Path="D:/CodexWork/classified_count_reuse_20261018/development/fpga/component_inspector/td_project">
     <Project_Created_Time></Project_Created_Time>
     <TD_Encoding>UTF-8</TD_Encoding>
     <TD_Version>6.2.168116</TD_Version>
@@ -11,6 +11,15 @@
     </HardWare>
     <Source_Files>
         <Verilog>
+            <File Path="../user_source/hdl_source/classified_pocket_counter.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="230"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/classified_count_pipeline.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="231"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/compact_ascii_rom.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="231"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/compact_inspector_osd.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="231"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/compact_template_rom.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="231"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/compact_cjk_rom.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="231"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/classified_count_renderer.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="232"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/classified_dual_page_osd.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="233"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/pocket_run_controls.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="234"/></FileInfo></File>
             <File Path="../user_source/hdl_source/inspection_region_config.v">
                 <FileInfo>
                     <Attr Name="UsedInSyn" Val="true"/>
@@ -93,6 +102,7 @@
             </File>
 
             <File Path="../user_source/hdl_source/frame_process_bridge.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="124"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/empty_candidate_probe.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="123"/></FileInfo></File>
             <File Path="../user_source/hdl_source/frame_shape_search.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="123"/></FileInfo></File>
             <File Path="../user_source/hdl_source/roi_shape_search.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="122"/></FileInfo></File>
             <File Path="../user_source/hdl_source/roi_shape_model.v">

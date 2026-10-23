@@ -31,6 +31,7 @@
 *********************************************************************/
 
 module ae_set #(
+    parameter integer COUNT_COMMANDS = 0,
     parameter integer CLK_HZ = 24074074,
     parameter integer DEBOUNCE_MS = 20,
     parameter integer HOLD_MS = 500,
@@ -60,8 +61,9 @@ reg [1:0] request_state;
 // The epoch also distinguishes a quick change away and back while CSI is stopped.
 reg [9:0] chord_count;
 reg chord_used,chord_fired;
-reg [1:0] click_pending;
-wire chord_down = &btn_sync[1:0];
+reg [3:0] click_pending;
+wire chord_down = &btn_sync[1:0] || (COUNT_COMMANDS &&
+ ((btn_sync & 4'b1001)==4'b1001 || (btn_sync & 4'b1100)==4'b1100));
 wire keys_allowed = !chord_down && !chord_used;
 wire r_down = event_key[0] && !btn_sync[1] && O_wb_request[15:8]>32;
 wire r_up = event_key[1] && !btn_sync[0] && O_wb_request[15:8]<192;
@@ -108,7 +110,7 @@ always @(posedge I_clk or posedge I_rst) begin
                         hold_count[k]<=0;
                         // KEY1/2 clicks act on release; a chord cannot cause an
                         // initial exposure step, even with staggered debounce.
-                        if(k<2) begin
+                        if(k<2 || COUNT_COMMANDS) begin
                             if(btn_sync[k]) click_pending[k]<=1;
                             else begin
                                 event_key[k]<=click_pending[k] && keys_allowed;
@@ -121,7 +123,7 @@ always @(posedge I_clk or posedge I_rst) begin
                     if(pressed[k]) begin
                         if(hold_count[k] == HOLD_MS-1) begin
                             event_key[k]<=1; hold_count[k]<=HOLD_MS-REPEAT_MS;
-                            if(k<2) click_pending[k]<=0;
+                            if(k<2 || COUNT_COMMANDS) click_pending[k]<=0;
                         end else hold_count[k]<=hold_count[k]+1'b1;
                     end else hold_count[k]<=0;
                 end

@@ -77,15 +77,10 @@ experiment_osd #(.WIDTH(1280),.HEIGHT(720),.DIAG_BITS(27),.RESOLUTION_V11(1),.LO
  reg [23:0] overlay[0:921599];
  // Only the declared version banner changed since the original image oracle.
  // Keep every other expected pixel; use the independent fixed font fixture.
- reg [7:0] banner_rows[0:2047];reg [199:0] banner="180MM THRESH R1          ";
+ reg [7:0] banner_rows[0:2047];reg [199:0] banner="180MM STABLE IDS         ";
  integer bx,by,bc;
  initial begin
   $readmemh("hd_osd_reference.hex",overlay);
-  // Four/two-object mode hides the ambiguous global MEAN/MIN/MAX row.
-  for(by=630;by<662;by++)for(bx=304;bx<736;bx++)overlay[by*1280+bx]=24'h142336;
-  // Only the two declared leftover global sampling/WAIT text rectangles.
-  for(by=634;by<658;by++)for(bx=768;bx<864;bx++)overlay[by*1280+bx]=24'h142336;
-  for(by=692;by<716;by++)for(bx=624;bx<744;bx++)overlay[by*1280+bx]=24'h142336;
   $readmemh("osd_assets/osd_ascii_rom.hex",banner_rows);
   for(by=24;by<40;by++)for(bx=1056;bx<1256;bx++)begin
    bc=banner[199-((bx-1056)/8)*8-:8];

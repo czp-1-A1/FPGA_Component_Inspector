@@ -30,11 +30,14 @@ module signal_delay #(
     output wire [DATA_WIDTH-1:0] O_data ,  //synthesis keep 
     output wire                  O_tuser   //synthesis keep 
 );
+    // Capacity only; preserve original pixel/valid scheduling and RAM modes.
+    localparam RAM_ADDR_BITS=(IMG_WIDTH/4<=1) ? 1 : $clog2(IMG_WIDTH/4);
+
 
     wire        rd_en;  //synthesis keep 
 
-    reg  [10:0] addra;  //synthesis keep 
-    reg  [10:0] addrb;  //synthesis keep 
+    reg  [RAM_ADDR_BITS-1:0] addra;  //synthesis keep 
+    reg  [RAM_ADDR_BITS-1:0] addrb;  //synthesis keep 
 
 
     reg  [13:0] h_cnt;
@@ -130,7 +133,7 @@ module signal_delay #(
     assign O_valid = rd_valid_d;
     assign O_tuser = first_read;
 
-    blk_mem_gen_awb_delay_signal blk_mem_gen_awb_delay_signal_d (
+    blk_mem_gen_awb_delay_signal #(.RAM_ADDR_BITS(RAM_ADDR_BITS)) blk_mem_gen_awb_delay_signal_d (
       .clka (I_clk   ),  // input wire clka
       .wea  (I_valid_r),  // input wire [0 : 0] wea
       .addra(addra   ),  // input wire [10 : 0] addra

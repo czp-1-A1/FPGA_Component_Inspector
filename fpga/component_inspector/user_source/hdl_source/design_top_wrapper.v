@@ -1,7 +1,7 @@
 
 
 module design_top_wrapper #(parameter INPUT_WIDTH=1920,INPUT_HEIGHT=1080,VIDEO_WIDTH=1280,VIDEO_HEIGHT=720,ENABLE_REGIONS=1,ENABLE_CALIBRATION=1,
- parameter ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,ENABLE_SHAPE_MODEL=1,ENABLE_LOCAL_SEARCH=1) (
+ parameter ENABLE_CLASSIFIED_COUNT=1,ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,ENABLE_SHAPE_MODEL=1,ENABLE_LOCAL_SEARCH=1) (
     input wire        I_sys_clk,
     input wire        I_rst_n,
       
@@ -12,6 +12,8 @@ module design_top_wrapper #(parameter INPUT_WIDTH=1920,INPUT_HEIGHT=1080,VIDEO_W
       
     input wire [3:0]  I_button,
     input wire [1:0]  I_switch,
+    input wire I_count_page_switch,
+    input wire I_count_start_switch,
 
     output wire       O_screen_pwm,
     output wire       O_tmds_ch0_p,
@@ -446,7 +448,7 @@ module design_top_wrapper #(parameter INPUT_WIDTH=1920,INPUT_HEIGHT=1080,VIDEO_W
 
   wire wb_tune;
   wire [31:0] wb_request,wb_active;
-  ae_set u_ae_set (
+  ae_set #(.COUNT_COMMANDS(ENABLE_CLASSIFIED_COUNT)) u_ae_set (
       .I_clk(S_24m_clk),
       .I_rst(~S_rst_n),
       .I_btn(I_button),
@@ -583,7 +585,7 @@ u_uial2axis (
 
 image_correction #(
     .DATA_WIDTH(40)
-)(
+) u_image_correction (
     .I_clk   		(S_csi_rx_clk),
     .I_rst_n 		(S_rst_n),
 					
@@ -662,14 +664,24 @@ localparam REGION_MODE=LOCAL_SEARCH && ENABLE_REGIONS;
 localparam OBJECT_BITS=REGION_MODE ? 304 : 152;
 localparam CALIBRATION_MODE=ENABLE_CALIBRATION && REGION_MODE && LOCAL_SEARCH;
 localparam BASE_META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGION_MODE)*LOCAL_SEARCH;
-localparam FRAME_META_WIDTH=BASE_META_WIDTH+129*CALIBRATION_MODE;
+localparam ORIGINAL_META_WIDTH=BASE_META_WIDTH+129*CALIBRATION_MODE;
+localparam CLASSIFIED_COUNT=ENABLE_CLASSIFIED_COUNT && REGION_MODE;
+localparam FRAME_META_WIDTH=ORIGINAL_META_WIDTH+256*CLASSIFIED_COUNT;
+wire [16:0] count_request,count_process_command;
+wire [255:0] count_live;
+generate if(CLASSIFIED_COUNT)begin : count_controls
+ pocket_switch_run_controls controls(.clk(S_24m_clk),.rst_n(S_rst_n),.start_switch(I_count_start_switch),.buttons(I_button),.request(count_request));
+end else begin assign count_request=0;end endgenerate
+status_cdc #(.WIDTH(17)) u_count_command(
+ .S_clk(S_24m_clk),.D_clk(S_process_clk),.rst_n(S_rst_n),.S_data(count_request),.D_data(count_process_command));
 wire [FRAME_META_WIDTH-1:0] camera_metadata,completed_metadata,active_metadata;
 wire camera_metadata_ready;
 wire [15:0] lost_frames,overflow_frames,underflow_frames;
 localparam PUBLISH_BITS=9+$clog2(VIDEO_WIDTH*VIDEO_HEIGHT*3/16+1);
 wire [PUBLISH_BITS-1:0] publish_diagnostic,publish_display;
-isp_top #(.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.SCALE_DISPLAY(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
+isp_top #(.CLASSIFIED_COUNT(CLASSIFIED_COUNT),.RESULT_RECORDER(CLASSIFIED_COUNT),.LOCAL_RECOVERY(CLASSIFIED_COUNT),.MULTITHRESHOLD_EMPTY(CLASSIFIED_COUNT),.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.SCALE_DISPLAY(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
 .processing_clk(S_process_clk),
+.count_command(count_process_command),.count_live(count_live),
 .axi4s_video_aclk(S_csi_rx_clk),
 .I_rst_n         (S_rst_n),
 .I_tlast         (S_raw_tlast	),
@@ -942,10 +954,17 @@ isp_top #(.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WID
     end else begin : no_local_box
      assign display_objects=0;assign local_box_valid=0;assign local_x0=0;assign local_x1=0;assign local_y0=0;assign local_y1=0;
     end endgenerate
+    wire [255:0] count_display_live,count_display_frame;
+    status_cdc #(.WIDTH(256)) u_count_live_display(
+     .S_clk(S_process_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),.S_data(count_live),.D_data(count_display_live));
+    generate if(CLASSIFIED_COUNT)begin assign count_display_frame=active_frame_display[ORIGINAL_META_WIDTH+:256];
+    end else begin assign count_display_frame=0;end endgenerate
     wire any_pocket_valid=display_pockets[63] || display_pockets[148] || display_pockets[233] || display_pockets[318];
-    experiment_osd #(.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.DIAG_BITS(PUBLISH_BITS),.RESOLUTION_V11(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.FRAME_OBJECTS(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
+    classified_dual_page_osd #(.COMPACT_UI(CLASSIFIED_COUNT),.CLASSIFIED_COUNT(CLASSIFIED_COUNT),.RESULT_RECORDER(CLASSIFIED_COUNT),.LOCAL_RECOVERY(CLASSIFIED_COUNT),.MULTITHRESHOLD_EMPTY(CLASSIFIED_COUNT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.DIAG_BITS(PUBLISH_BITS),.RESOLUTION_V11(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.FRAME_OBJECTS(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
  .SAMPLE_X0(SAMPLE_X0),.SAMPLE_X1(SAMPLE_X1),.SAMPLE_Y0(SAMPLE_Y0),.SAMPLE_Y1(SAMPLE_Y1)) u_experiment_osd(
         .clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+        .count_page_switch(I_count_page_switch),.count_live_record(count_display_live),.count_frame_record(count_display_frame),
+        .count_eligible(pocket_overlay_ok && count_display_frame[223] && count_display_frame[47:32]==count_display_live[47:32]),
         .vs(S_hdmi_out_vsync),.hs(S_hdmi_out_hsync),.de(S_hdmi_out_de),.rgb(S_hdmi_out_data),
         .exposure(cam_display[48:33]),.gain(cam_display[32:17]),
         .view_mode(observation_display[1:0]),.edge_count(observation_data[58:46]),.edge_sum(observation_data[82:59]),

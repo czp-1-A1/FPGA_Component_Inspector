@@ -7,6 +7,8 @@ module frame_process_bridge(
  output reg [127:0] process_data,output reg process_valid,
  output wire process_overflow
 );
+reg [127:0] read_data;
+reg read_valid;
 reg [127:0] memory [0:511]; // Synchronous dual-clock ERAM; never reset RAM.
 reg [9:0] write_bin,write_gray,read_bin,read_gray;
 reg [9:0] read_gray_sync1,read_gray_sync2,write_gray_sync1,write_gray_sync2;
@@ -32,16 +34,20 @@ always @(posedge source_clk or negedge rst_n)begin
  end
 end
 always @(posedge process_clk or negedge rst_n)begin
- if(!rst_n)begin read_bin<=0;read_gray<=0;write_gray_sync1<=0;write_gray_sync2<=0;process_valid<=0;end
- else if(process_reset[1])begin read_bin<=0;read_gray<=0;write_gray_sync1<=0;write_gray_sync2<=0;process_valid<=0;end
+ if(!rst_n)begin read_bin<=0;read_gray<=0;write_gray_sync1<=0;write_gray_sync2<=0;process_valid<=0;read_valid<=0;end
+ else if(process_reset[1])begin read_bin<=0;read_gray<=0;write_gray_sync1<=0;write_gray_sync2<=0;process_valid<=0;read_valid<=0;end
  else begin
   write_gray_sync1<=write_gray;write_gray_sync2<=write_gray_sync1;
-  process_valid<=dequeue;
+  read_valid<=dequeue;process_valid<=read_valid;
   if(dequeue)begin read_bin<=next_read;read_gray<=next_read ^ (next_read>>1);end
  end
 end
 always @(posedge source_clk)if(enqueue)memory[write_bin[8:0]]<=source_data;
-always @(posedge process_clk)if(dequeue)process_data<=memory[read_bin[8:0]];
+always @(posedge process_clk)if(dequeue)read_data<=memory[read_bin[8:0]];
+// One complete128-bit output stage separates ERAM clk2q from downstream
+// proof/config/counter control. Flags and pixels retain exactly the same order.
+// Data need no reset: both corresponding valid stages reset to zero.
+always @(posedge process_clk)process_data<=read_data;
 always @(posedge source_clk or negedge rst_n)begin
  if(!rst_n)overflow<=0;
  else if(source_valid && full)overflow<=1;

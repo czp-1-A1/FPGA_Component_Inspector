@@ -4,7 +4,7 @@ module roi_sobel_view #(
  parameter DYNAMIC_ROI=0,WIDTH=1024,HEIGHT=600,
  parameter X0=256,X1=768,Y0=172,Y1=428,
  parameter CORE_X0=472,CORE_X1=552,CORE_Y0=260,CORE_Y1=340,
- parameter EDGE_THRESHOLD=80
+ parameter EDGE_THRESHOLD=80,CACHE_ADDRESS_XOR=0
 )(
  input wire clk,rst_n,input wire pixel_valid,pixel_sof,pixel_last,early_sof,
  input wire [95:0] rgb,input wire [1:0] mode,input wire invalidate,
@@ -70,6 +70,14 @@ always @(posedge clk or negedge rst_n) begin
   end else wait_cycles<=0;
  end
 end
+// Reversible address encoding removes the direct resize-FF to cache-ERAM
+// data path that failed fast-corner hold. The read tag advances WITH q,
+// so decoded RGB, row scheduling, gradients and pipeline latency are exact.
+// No memory reset, extra row, speculative pixel or classifier change.
+wire [95:0] cache_write_mask=CACHE_ADDRESS_XOR ? {96{write_address[0]}} : 96'd0;
+reg cache_read_tag;
+always @(posedge clk) cache_read_tag<=read_address[0];
+wire [95:0] cache_read_mask=CACHE_ADDRESS_XOR ? {96{cache_read_tag}} : 96'd0;
 wire [95:0] row_q [0:3];
 genvar bank;
 generate for(bank=0;bank<4;bank=bank+1) begin : line_bank
@@ -78,10 +86,10 @@ generate for(bank=0;bank<4;bank=bank+1) begin : line_bank
  reg [95:0] q;
  always @(posedge clk) begin
   if(rst_n && input_valid && !bypass_tail && !frame_bad && (pixel_sof ? mode[1] : frame_mode[1]) && write_row[1:0]==bank)
-   memory[write_address]<=rgb;
+   memory[write_address]<=rgb ^ cache_write_mask;
   q<=memory[read_address];
  end
- assign row_q[bank]=q;
+ assign row_q[bank]=q ^ cache_read_mask;
 end endgenerate
 reg [10:0] x1,x2,x3,x4;
 reg [9:0] y1,y2,y3,y4;

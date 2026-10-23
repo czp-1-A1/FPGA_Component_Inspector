@@ -69,14 +69,14 @@ task frame(input integer p);
   ticks(2);
  end
  ticks(5);cycles=0;while(!ready && cycles<800000)begin ticks(1);cycles++;end
- count=0;pc=0;ec=0;want=(p==8 || p==9 || p==10) ? 4 : 2;
+ count=0;pc=0;ec=0;want=p==7 ? 0 : (p==8 || p==9 || p==10) ? 4 : 2;
  for(integer k=0;k<4;k++)begin
   rec=objects[k*76+:76];
   if(rec[75])begin
    count++;checks++;if(rec[74:73]==2)pc++;if(rec[74:73]==3)ec++;
-   if(p==6)begin
+   if(p==6 || p==7)begin
     if(rec[74:73]>=2)begin failures++;$display("FAIL pose gap/tiny-bright accepted pattern%0d slot%0d",p,k);end
-   end else if(p==5 || p==7)begin
+   end else if(p==5)begin
     if(rec[74:73]!=3)begin failures++;$display("FAIL pose empty pattern%0d slot%0d",p,k);end
    end else if(p==8 || p==9)begin
     if(rec[74:73]!=(k%2==0 ? 2 : 3))begin failures++;$display("FAIL pose mixed pattern%0d slot%0d",p,k);end
@@ -96,7 +96,7 @@ endtask
 initial begin
  ticks(5);rst=1;ticks(5);for(integer p=0;p<11;p++)frame(p);
  if(failures)$fatal(1,"pose regressions failed: %0d",failures);
- $display("PASS pose180: %0d frames, %0d independent state checks, smaller normal, standing, low-gray flipped, whole-tape rotation, mixed P/E, feed/tiny rejection+6-cell empty, ten-body population, cancel",cases,checks);$finish;
+ $display("PASS pose180: %0d frames, %0d independent state checks, smaller normal, standing, low-gray flipped, whole-tape rotation, mixed P/E, feed/gap/tiny rejection, ten-body population, cancel",cases,checks);$finish;
 end
 initial begin #220000000;$fatal(1,"pose watchdog");end
 endmodule

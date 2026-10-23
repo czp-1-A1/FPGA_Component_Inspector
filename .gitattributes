@@ -1,3 +1,7 @@
 # 保持冻结工程/验收资料的原始字节，避免Windows换行转换破坏SHA-256。
 fpga/component_inspector/** -text
 开发实施/验收记录/** -text
+
+# R13 immutable release payloads: preserve SHA-256 across Windows clones.
+/releases/r13_20261023/** -text
+/scripts/r13/** -text

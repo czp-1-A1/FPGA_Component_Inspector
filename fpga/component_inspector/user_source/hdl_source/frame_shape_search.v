@@ -2,16 +2,22 @@
 // Legacy: two objects. REGIONS: two independently bound zones, two objects each.
 // A shared flood-fill engine runs during vertical blanking, without video backpressure.
 module frame_shape_search #(
- parameter WIDTH=1024,HEIGHT=600,REGIONS=0,LANE_SINGLE=0,
+ parameter WIDTH=1024,HEIGHT=600,REGIONS=0,
+ // Counting-only trial margin from upstream's measured six-cell extent.
+ // A phase-eroded locating hole can also measure six cells. Expand only in
+ // the taught pocket-row band, retaining the existing brightness/dark proof.
+ // Legacy instantiations retain their exact recipe when this is zero.
+ parameter COUNT_EMPTY_MARGIN=0,EMPTY_ROW_TOLERANCE=16,EMPTY_DIAGNOSTICS=0,
+ parameter ROW_GUARDED_BRIGHT_EMPTY=0,COUNT_CANDIDATES=0,MULTITHRESHOLD_EMPTY=0,
  parameter [7:0] FOREGROUND=100,
  // T100 bodies keep their taught geometry. A second T80 pass measures holes.
  // Cache only the two default zones plus16 source pixels of vertical context;
- // accepted small contours are <=20 pixels, never cropped at a zone outline.
+ // accepted small contours are <=16 pixels, never cropped at a zone outline.
  parameter SMALL_HOLES=REGIONS,SMALL_FOREGROUND=80,
  // Same3528 photo trial: broaden presence only; quality remains review.
  // Bounds use half-resolution cells. Feed holes max9 never enter this envelope.
  parameter PLACEMENT_REVIEW=REGIONS,POSE_LONG_MIN=14,POSE_SHORT_MIN=5,
- parameter SMALL_Y0=LANE_SINGLE ? HEIGHT/2-176 : HEIGHT/3-16,SMALL_Y1=LANE_SINGLE ? HEIGHT/2+176 : HEIGHT*5/6+16,
+ parameter SMALL_Y0=HEIGHT/3-16,SMALL_Y1=HEIGHT*5/6+16,
  parameter PRESENT_LONG_MIN=26,PRESENT_LONG_MAX=39,PRESENT_SHORT_MIN=20,PRESENT_SHORT_MAX=36,
  parameter REVIEW_LONG_MAX=43,REVIEW_SHORT_MAX=38,
  parameter EMPTY_LONG_MIN=5,EMPTY_LONG_MAX=13,EMPTY_SHORT_MIN=4,EMPTY_SHORT_MAX=12,
@@ -26,7 +32,11 @@ module frame_shape_search #(
  // Two 76-bit records, left object in [75:0]. Valid,class,reason,FG,W,H,x0,x1,y0,y1.
  // reason[3:0]: side reference, fill, aspect, size; these are model diagnostics.
  output reg [151:0] objects,
- output reg [303:0] region_objects
+ output reg [303:0] region_objects,output wire [31:0] empty_probe,
+ // Extra classified neighbours stay in this processing domain. Original UI
+ // always receives its original best2, independently of this counting sideband.
+ output reg [607:0] recorder_objects,
+ input wire recorder_hold_valid,input wire [10:0] recorder_hold_x,input wire [9:0] recorder_hold_y
 );
 // Average each 2x2 source block; every source pixel contributes. Detection
 // covers WIDTH x HEIGHT, with a half-size internal mask. 220 mm needs new calibration.
@@ -200,8 +210,17 @@ end endgenerate
 localparam IDLE=0,SCAN_REQ=1,SCAN_WAIT=2,SCAN_CHECK=3,SEED_MARK=4,
  POP_REQ=5,POP_WAIT=6,POP_VALUE=7,NEIGH_REQ=8,NEIGH_WAIT=9,NEIGH_CHECK=10,
  NEIGH_NEXT=12,AREA_CALC=13,COMPARE=14,
- REF_REQ=15,REF_WAIT=16,REF_CHECK=17,FINISHED=18,SCALE=19,PUBLISH=20,REF_ORIGIN=21,SMALL_INSERT=22,BODY_ACCOUNTED=23;
+ REF_REQ=15,REF_WAIT=16,REF_CHECK=17,FINISHED=18,SCALE=19,PUBLISH=20,REF_ORIGIN=21,SMALL_INSERT=22,BODY_ACCOUNTED=23,HIGH_REQ=24,HIGH_CHECK=25;
 reg [4:0] phase;
+// Four same-frame T100 shape proofs perROI. These do not enter the original
+// candidate bank. T80 must independently measure the EXACT bounding box.
+// One synchronous-read contour cache, no pixel RAM and no array reset.
+localparam HIGH_BOX_BITS=2*(XB+YB);
+(* ram_style="distributed" *) reg [HIGH_BOX_BITS-1:0] high_boxes[0:7];
+reg [11:0] high_distances[0:7];reg [7:0] high_valid;
+reg [2:0] high_index;reg [HIGH_BOX_BITS-1:0] high_box_q;
+reg high_confirmed;
+always @(posedge clk)if(phase==HIGH_REQ)high_box_q<=high_boxes[high_index];
 reg [XB-1:0] sx,cx,nx,xmin,xmax;reg [YB-1:0] sy,cy,ny,ymin,ymax;
 reg [1:0] direction;
 assign processed_body_we=phase==BODY_ACCOUNTED && !small_pass && PLACEMENT_REVIEW;
@@ -217,7 +236,7 @@ reg [17:0] component_area;
 wire [83:0] region_bounds;wire [31:0] region_models;
 wire [239:0] region_recipes;wire [1:0] region_supported;
 generate if(REGIONS)begin : regions
- inspection_region_config #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.COMPACT(LANE_SINGLE)) cfg(region_bounds,region_models,region_recipes,region_supported);
+ inspection_region_config #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) cfg(region_bounds,region_models,region_recipes,region_supported);
 end else begin : full_frame
  assign region_bounds=0;assign region_models=0;assign region_recipes=0;assign region_supported=0;
 end endgenerate
@@ -230,6 +249,7 @@ wire in_region0=inside_region(center_x,center_y[9:0],region_bounds[41:0]);
 wire in_region1=inside_region(center_x,center_y[9:0],region_bounds[83:42]);
 wire region_now=REGIONS && !in_region0 && in_region1;
 wire allowed_now=!REGIONS || ((in_region0 || in_region1) && region_supported[region_now]);
+reg held_valid;reg [10:0] held_x;reg [9:0] held_y;reg [1:0] held_found;
 reg candidate_region,candidate_allowed;reg [11:0] distance;
 wire [41:0] candidate_bounds=candidate_region ? region_bounds[83:42] : region_bounds[41:0];
 wire [10:0] target_x=REGIONS ? ({1'b0,candidate_bounds[41:31]}+candidate_bounds[30:20])/2 : WIDTH/2;
@@ -253,7 +273,7 @@ wire [7:0] e_smin=REGIONS ? profile[71:64] : EMPTY_SHORT_MIN,e_smax=REGIONS ? pr
 wire [7:0] h_lmin=REGIONS ? profile[87:80] : HOLE_LONG_MIN,h_lmax=REGIONS ? profile[95:88] : HOLE_LONG_MAX;
 wire [7:0] h_smin=REGIONS ? profile[103:96] : HOLE_SHORT_MIN,h_smax=REGIONS ? profile[111:104] : HOLE_SHORT_MAX;
 wire present_match=long_side>=p_lmin && long_side<=p_lmax && short_side>=p_smin && short_side<=p_smax &&
- long20>=short21 && long20<=short31 && fg20>=area17;
+ long20>=short21 && long20<=short31 && (PLACEMENT_REVIEW ? fg5>={component_area,2'b00} : fg20>=area17);
 // P10..P15: narrow standing projections and flipped/rotated lower-fill bodies
 // must retain PRESENT, with review. No new mask RAM or separate detector.
 wire pose_match=PLACEMENT_REVIEW && long_side>=POSE_LONG_MIN && long_side<=r_lmax &&
@@ -261,40 +281,78 @@ wire pose_match=PLACEMENT_REVIEW && long_side>=POSE_LONG_MIN && long_side<=r_lma
 wire present_review_match=(long_side>=p_lmin && long_side<=r_lmax && short_side>=p_smin && short_side<=r_smax &&
  long20>=short21 && long5<=short9 && fg4>=area3) || pose_match;
 wire circular=long5<=short7 && fg5>=area3 && fg10<=area9;
-wire empty_match=circular && long_side>=e_lmin && long_side<=e_lmax && short_side>=e_smin && short_side<=e_smax &&
- (!SMALL_HOLES || bright_count<=5);
+// The field probe proved bright real empty holes were rejected by the old
+// absolute bright-count cap. Admit them only on the observed pocket row,
+// retaining circle/size/feed/body and subsequent local dark-reference proof.
+// The anchor comes only from a recognized body in THIS source frame. No
+// previous/bad-frame row is reused and no unobserved pocket is generated.
+reg [1:0] row_anchor_valid;
+reg [10:0] row_anchor_y [0:1];reg [11:0] row_anchor_distance [0:1];
+wire row_anchor_available=ROW_GUARDED_BRIGHT_EMPTY && REGIONS && row_anchor_valid[candidate_region];
+wire [10:0] empty_row_target=row_anchor_available ? row_anchor_y[candidate_region] : target_y;
+wire [10:0] empty_row_delta=center_y>empty_row_target ? center_y-empty_row_target : empty_row_target-center_y;
+wire guarded_bright_empty=ROW_GUARDED_BRIGHT_EMPTY && REGIONS && empty_row_delta<=EMPTY_ROW_TOLERANCE;
+wire expanded_empty=COUNT_EMPTY_MARGIN && REGIONS && long_side<=6 && short_side<=6 &&
+ empty_row_delta<=EMPTY_ROW_TOLERANCE;
+wire empty_geometry=long_side>=e_lmin && short_side>=e_smin &&
+ ((long_side<=e_lmax && short_side<=e_smax) || expanded_empty);
+wire empty_match=circular && empty_geometry &&
+ (!SMALL_HOLES || bright_count<=5 || guarded_bright_empty);
 wire sprocket_match=circular && long_side>=h_lmin && long_side<=h_lmax && short_side>=h_smin && short_side<=h_smax;
+wire high_shape=MULTITHRESHOLD_EMPTY && REGIONS && SMALL_HOLES && !small_pass &&
+ circular && empty_geometry && guarded_bright_empty && !sprocket_match &&
+ !(present_match || present_review_match);
+// Rescue only a compact, overfilled T80 shape. Undersized/elongated/weak
+// components remain rejected. The brighter subset must have been measured
+// as a circle with the same box earlier in THIS source frame.
+wire covers_body;
+wire high_lookup=MULTITHRESHOLD_EMPTY && small_pass && width_now==4 && height_now==4 && empty_geometry &&
+ guarded_bright_empty && long5<=short7 && fg5>=area3 && fg10>area9 &&
+ !sprocket_match && !covers_body;
+reg [2:0] high_write_index;reg [11:0] high_worst;reg high_free;integer hi;
+always @*begin
+ high_write_index={candidate_region,2'b00};high_worst=0;high_free=0;
+ for(hi=0;hi<4;hi=hi+1)begin
+  if(!high_valid[{candidate_region,2'b00}+hi])begin
+   if(!high_free)high_write_index={candidate_region,2'b00}+hi;
+   high_free=1;
+  end else if(!high_free && high_distances[{candidate_region,2'b00}+hi]>=high_worst)begin
+   high_write_index={candidate_region,2'b00}+hi;
+   high_worst=high_distances[{candidate_region,2'b00}+hi];
+  end
+ end
+end
 wire [1:0] candidate_state=SMALL_HOLES ?
- (small_pass ? (sprocket_match ? 0 : empty_match ? 3 : pose_match ? 2 : 1) : (present_match || present_review_match) ? 2 : 1) :
+ (small_pass ? (sprocket_match ? 0 : (empty_match || (MULTITHRESHOLD_EMPTY && high_confirmed)) ? 3 : pose_match ? 2 : 1) : (present_match || present_review_match) ? 2 : 1) :
  sprocket_match ? 0 : (present_match || present_review_match) ? 2 : empty_match ? 3 : 1;
-wire [3:0] candidate_reason={1'b0,fg20<area17,long20<short21 || long20>short31,
+wire [3:0] candidate_reason={1'b0,(PLACEMENT_REVIEW ? fg5<{component_area,2'b00} : fg20<area17),long20<short21 || long20>short31,
  long_side<p_lmin || long_side>p_lmax || short_side<p_smin || short_side>p_smax};
-localparam SLOTS=REGIONS && !LANE_SINGLE ? 4 : 2;
-// Preference only: every output still comes from this frame's measured contour.
-// Within the central80-pixel band, a current candidate within32 pixels of the
-// preceding selection wins over a similarly valid neighbor. Release outside
-// this band permits the next horizontal pocket to take over without starvation.
-reg [10:0] previous_x[0:1],previous_y[0:1];reg [1:0] previous_valid;
-reg candidate_follow;reg follow_bank[0:SLOTS-1];
-wire [10:0] follow_dx=center_x>previous_x[candidate_region] ? center_x-previous_x[candidate_region] : previous_x[candidate_region]-center_x;
-wire [10:0] follow_dy=center_y>previous_y[candidate_region] ? center_y-previous_y[candidate_region] : previous_y[candidate_region]-center_y;
-
+localparam REGION_SLOTS=REGIONS && COUNT_CANDIDATES ? 4 : 2;
+localparam SLOTS=REGIONS ? 2*REGION_SLOTS : 2;
 reg found_bank [0:SLOTS-1];reg [11:0] distance_bank [0:SLOTS-1];reg [17:0] count_bank [0:SLOTS-1];
 reg [XB-1:0] xmin_bank [0:SLOTS-1],xmax_bank [0:SLOTS-1];
 reg [YB-1:0] ymin_bank [0:SLOTS-1],ymax_bank [0:SLOTS-1];
 reg [1:0] state_bank [0:SLOTS-1];reg [3:0] reason_bank [0:SLOTS-1];
-wire [1:0] bank0=REGIONS && LANE_SINGLE ? {1'b0,candidate_region} : candidate_region ? 2'd2 : 2'd0;
-wire [1:0] bank1=REGIONS && LANE_SINGLE ? bank0 : bank0+1'b1;
+wire [$clog2(SLOTS)-1:0] bank0=candidate_region ? REGION_SLOTS : 0,bank1=bank0+1'b1;
+wire [$clog2(SLOTS)-1:0] bank2=COUNT_CANDIDATES && REGIONS ? bank0+2 : bank0,bank3=COUNT_CANDIDATES && REGIONS ? bank0+3 : bank0;
 wire candidate_preferred=candidate_state>=2;
+wire [10:0] held_dx=center_x>held_x ? center_x-held_x : held_x-center_x;
+wire [10:0] held_dy=center_y>held_y ? center_y-held_y : held_y-center_y;
+wire preferred_main=COUNT_CANDIDATES && REGIONS && held_valid && candidate_preferred && held_dx<=12 && held_dy<=16;
 wire before_best=!found_bank[bank0] || (candidate_preferred && state_bank[bank0]<2) ||
- ((candidate_preferred==(state_bank[bank0]>=2)) &&
- ((candidate_follow && !follow_bank[bank0]) || ((candidate_follow==follow_bank[bank0]) &&
- (distance<distance_bank[bank0] || (distance==distance_bank[bank0] && component_count>count_bank[bank0])))));
+ ((candidate_preferred==(state_bank[bank0]>=2)) && (distance<distance_bank[bank0] ||
+ (distance==distance_bank[bank0] && component_count>count_bank[bank0])));
 wire before_second=!found_bank[bank1] || (candidate_preferred && state_bank[bank1]<2) ||
  ((candidate_preferred==(state_bank[bank1]>=2)) && (distance<distance_bank[bank1] ||
  (distance==distance_bank[bank1] && component_count>count_bank[bank1])));
-wire found=found_bank[0] || found_bank[1] || (REGIONS && (found_bank[SLOTS-2] || found_bank[SLOTS-1]));
-reg [1:0] ref_index;reg legacy_pair_selected;
+wire before_third=!found_bank[bank2] || (candidate_preferred && state_bank[bank2]<2) ||
+ ((candidate_preferred==(state_bank[bank2]>=2)) && (distance<distance_bank[bank2] ||
+ (distance==distance_bank[bank2] && component_count>count_bank[bank2])));
+wire before_fourth=!found_bank[bank3] || (candidate_preferred && state_bank[bank3]<2) ||
+ ((candidate_preferred==(state_bank[bank3]>=2)) && (distance<distance_bank[bank3] ||
+ (distance==distance_bank[bank3] && component_count>count_bank[bank3])));
+wire found=found_bank[0] || found_bank[1] || (REGIONS && (found_bank[SLOTS-REGION_SLOTS] || found_bank[SLOTS-REGION_SLOTS+1]));
+reg [$clog2(SLOTS)-1:0] ref_index;reg legacy_pair_selected;
 reg [8:0] left_dark,right_dark;
 reg ref_side;reg [2:0] ref_word;reg [6:0] ref_row;
 reg [9:0] origin_x,origin_y;reg [3:0] ref_mask;integer ref_lane_index;
@@ -303,7 +361,7 @@ wire [9:0] ref_cy=({1'b0,ymin_bank[ref_index]}+ymax_bank[ref_index])>>1;
 // Small holes use a local8x8 side strip; legacy8x40 strips can land on
 // the next body or outside a tilted carrier. Same75% dark fraction, no stale data.
 wire local_empty_ref=SMALL_HOLES && state_bank[ref_index]==3;
-wire [7:0] ref_min=local_empty_ref ? 8'd48 : REGIONS ? ((LANE_SINGLE ? ref_index[0] : ref_index[1]) ? region_recipes[239:232] : region_recipes[119:112]) : 8'd240;
+wire [7:0] ref_min=local_empty_ref ? 8'd48 : REGIONS ? (ref_index>=REGION_SLOTS ? region_recipes[239:232] : region_recipes[119:112]) : 8'd240;
 wire signed [10:0] strip_start=$signed({1'b0,origin_x})+(local_empty_ref ? (ref_side ? 11'sd4 : -11'sd12) : (ref_side ? 11'sd20 : -11'sd28));
 wire signed [10:0] word_x=(strip_start & -11'sd4)+$signed({6'b0,ref_word,2'b0});
 wire [9:0] word_y=origin_y-(local_empty_ref ? 10'd4 : 10'd20)+ref_row;
@@ -329,11 +387,26 @@ end endgenerate
 wire [151:0] sorted0=found_bank[1] && xmin_bank[1]<xmin_bank[0] ?
  {records[75:0],records[151:76]} : records[151:0];
 wire [151:0] sorted1;
-generate if(REGIONS && !LANE_SINGLE)begin
- assign sorted1=found_bank[3] && xmin_bank[3]<xmin_bank[2] ?
- {records[227:152],records[303:228]} : records[303:152];
+generate if(REGIONS)begin
+ assign sorted1=found_bank[REGION_SLOTS+1] && xmin_bank[REGION_SLOTS+1]<xmin_bank[REGION_SLOTS] ?
+ {records[REGION_SLOTS*76+:76],records[(REGION_SLOTS+1)*76+:76]} : records[REGION_SLOTS*76+:152];
 end else assign sorted1=0;endgenerate
-wire [75:0] primary_record=REGIONS && LANE_SINGLE ? (records[75] ? records[75:0] : records[151:76]) : !REGIONS ? records[75:0] : sorted0[75] ? sorted0[75:0] :
+wire [607:0] recorder_packet;
+generate if(COUNT_CANDIDATES && REGIONS)begin : extended_candidates
+ // Within eachROI slots0/1 are EXACTLY the original UI pair, X sorted.
+ // Slots2/3 are additional real measurements, not pitch-generated positions.
+ wire duplicate0=(found_bank[0] && xmin_bank[3]==xmin_bank[0] && xmax_bank[3]==xmax_bank[0] && ymin_bank[3]==ymin_bank[0] && ymax_bank[3]==ymax_bank[0]) ||
+  (found_bank[1] && xmin_bank[3]==xmin_bank[1] && xmax_bank[3]==xmax_bank[1] && ymin_bank[3]==ymin_bank[1] && ymax_bank[3]==ymax_bank[1]) ||
+  (found_bank[2] && xmin_bank[3]==xmin_bank[2] && xmax_bank[3]==xmax_bank[2] && ymin_bank[3]==ymin_bank[2] && ymax_bank[3]==ymax_bank[2]);
+ wire duplicate1=(found_bank[4] && xmin_bank[7]==xmin_bank[4] && xmax_bank[7]==xmax_bank[4] && ymin_bank[7]==ymin_bank[4] && ymax_bank[7]==ymax_bank[4]) ||
+  (found_bank[5] && xmin_bank[7]==xmin_bank[5] && xmax_bank[7]==xmax_bank[5] && ymin_bank[7]==ymin_bank[5] && ymax_bank[7]==ymax_bank[5]) ||
+  (found_bank[6] && xmin_bank[7]==xmin_bank[6] && xmax_bank[7]==xmax_bank[6] && ymin_bank[7]==ymin_bank[6] && ymax_bank[7]==ymax_bank[6]);
+ assign recorder_packet={duplicate1 ? 76'd0 : records[7*76+:76],records[6*76+:76],sorted1,
+  duplicate0 ? 76'd0 : records[3*76+:76],records[2*76+:76],sorted0};
+end else begin : original_candidates
+ assign recorder_packet={304'd0,sorted1,sorted0};
+end endgenerate
+wire [75:0] primary_record=!REGIONS ? records[75:0] : sorted0[75] ? sorted0[75:0] :
  sorted0[151] ? sorted0[151:76] : sorted1[75] ? sorted1[75:0] : sorted1[151:76];
 // Seed only inside an enabled zone. Flood-fill still follows the complete
 // component outside the dashed outline, so a slight overlap cannot crop it.
@@ -348,8 +421,32 @@ end endgenerate
 wire [3:0] seed_word=mem_q[3:0] & seed_mask & {4{!active_ignored}};
 // Do not duplicate a body with a small low-threshold fragment. Conversely,
 // remove T100 fragments contained in a measured T80 empty/feed contour.
-wire covers_body=(found_bank[bank0] && state_bank[bank0]==2 && xmin<=xmax_bank[bank0] && xmax>=xmin_bank[bank0] && ymin<=ymax_bank[bank0] && ymax>=ymin_bank[bank0]) ||
+assign covers_body=(found_bank[bank0] && state_bank[bank0]==2 && xmin<=xmax_bank[bank0] && xmax>=xmin_bank[bank0] && ymin<=ymax_bank[bank0] && ymax>=ymin_bank[bank0]) ||
  (found_bank[bank1] && state_bank[bank1]==2 && xmin<=xmax_bank[bank1] && xmax>=xmin_bank[bank1] && ymin<=ymax_bank[bank1] && ymax>=ymin_bank[bank1]);
+// Passive probe uses existing measurements, never feeds a class or candidate.
+generate if(REGIONS && EMPTY_DIAGNOSTICS)begin : empty_diagnostics
+ wire [10:0] probe_ref_x={1'b0,xmin_bank[ref_index]}+xmax_bank[ref_index];
+ wire [10:0] probe_ref_y={1'b0,ymin_bank[ref_index]}+ymax_bank[ref_index];
+ wire [9:0] probe_ref_width={1'b0,xmax_bank[ref_index]}-xmin_bank[ref_index]+10'd1;
+ wire [9:0] probe_ref_height={1'b0,ymax_bank[ref_index]}-ymin_bank[ref_index]+10'd1;
+ empty_candidate_probe #(.CENTER_X(WIDTH/2)) probe(
+  .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
+  .measure(phase==COMPARE && small_pass),
+  .allowed(candidate_allowed && width_now>=3 && height_now>=3 && width_now<=12 && height_now<=12 && dx<=96 && empty_row_delta<=48),
+  .region(candidate_region),.distance(distance),.center_x(center_x),.center_y(center_y),
+  .width(width_now),.height(height_now),.bright_count(bright_count),
+  .geometry_ok(empty_geometry),.shape_ok(circular),.row_ok(empty_row_delta<=EMPTY_ROW_TOLERANCE),
+  .feed(sprocket_match),.covered(covers_body),.raw_empty(empty_match && !sprocket_match && !covers_body),.area_ok(component_count>=6),
+  .ref_complete(phase==REF_CHECK && ref_side && ref_word==2 && ref_last_row),
+  .ref_empty(state_bank[ref_index]==3),.ref_ok(left_dark>=ref_min && right_dark+dark_word>=ref_min),
+  .ref_x(probe_ref_x),
+  .ref_y(probe_ref_y),
+  .ref_width(probe_ref_width),
+  .ref_height(probe_ref_height),
+  .records(records),.word(empty_probe));
+end else begin : no_empty_diagnostics
+ assign empty_probe=0;
+end endgenerate
 integer bi;
 reg [9:0] trial_x,trial_y;reg neighbor_ok;
 always @*begin
@@ -389,19 +486,47 @@ task advance_scan;
   end else begin sx<=(sx & ~3)+4;mem_addr<=mem_addr+1'b1;phase<=PLACEMENT_REVIEW ? SCAN_WAIT : SCAN_REQ;end
  end
 endtask
+task copy_candidate;
+ input [$clog2(SLOTS)-1:0] dst,src;
+ begin
+  found_bank[dst]<=found_bank[src];distance_bank[dst]<=distance_bank[src];count_bank[dst]<=count_bank[src];
+  xmin_bank[dst]<=xmin_bank[src];xmax_bank[dst]<=xmax_bank[src];ymin_bank[dst]<=ymin_bank[src];ymax_bank[dst]<=ymax_bank[src];
+  state_bank[dst]<=state_bank[src];reason_bank[dst]<=reason_bank[src];
+ end
+endtask
+task store_candidate;
+ input [$clog2(SLOTS)-1:0] dst;
+ begin
+  found_bank[dst]<=1;distance_bank[dst]<=distance;count_bank[dst]<=component_count;
+  xmin_bank[dst]<=xmin;xmax_bank[dst]<=xmax;ymin_bank[dst]<=ymin;ymax_bank[dst]<=ymax;
+  state_bank[dst]<=candidate_state;reason_bank[dst]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;
+ end
+endtask
 task retain_candidate;
  begin
+     // The original first2 insertions below remain unchanged. Extend only
+     // displaced valid entries; filling a vacant slot must not duplicate a
+     // neighbour already retained in a later slot.
+     if(COUNT_CANDIDATES && REGIONS)begin
+      if((before_best && found_bank[bank0]) || (!before_best && before_second && found_bank[bank1]))begin
+       if(!held_found[candidate_region])copy_candidate(bank3,bank2);copy_candidate(bank2,bank1);
+      end else if(!before_best && !before_second && before_third)begin
+       if(found_bank[bank2] && !held_found[candidate_region])copy_candidate(bank3,bank2);
+       store_candidate(bank2);
+      end else if(!before_best && !before_second && !before_third && before_fourth && !held_found[candidate_region])store_candidate(bank3);
+      if(preferred_main)begin store_candidate(bank3);held_found[candidate_region]<=1;end
+     end
      if(before_best)begin
-      if(!(REGIONS && LANE_SINGLE) && found_bank[bank0])begin
-       follow_bank[bank1]<=follow_bank[bank0];found_bank[bank1]<=1;distance_bank[bank1]<=distance_bank[bank0];count_bank[bank1]<=count_bank[bank0];
+      if(found_bank[bank0])begin
+       found_bank[bank1]<=1;distance_bank[bank1]<=distance_bank[bank0];count_bank[bank1]<=count_bank[bank0];
        xmin_bank[bank1]<=xmin_bank[bank0];xmax_bank[bank1]<=xmax_bank[bank0];ymin_bank[bank1]<=ymin_bank[bank0];ymax_bank[bank1]<=ymax_bank[bank0];
        state_bank[bank1]<=state_bank[bank0];reason_bank[bank1]<=reason_bank[bank0];
       end
-      follow_bank[bank0]<=candidate_follow;found_bank[bank0]<=1;distance_bank[bank0]<=distance;count_bank[bank0]<=component_count;
+      found_bank[bank0]<=1;distance_bank[bank0]<=distance;count_bank[bank0]<=component_count;
       xmin_bank[bank0]<=xmin;xmax_bank[bank0]<=xmax;ymin_bank[bank0]<=ymin;ymax_bank[bank0]<=ymax;
       state_bank[bank0]<=candidate_state;reason_bank[bank0]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;
-     end else if(!(REGIONS && LANE_SINGLE) && before_second)begin
-      follow_bank[bank1]<=candidate_follow;found_bank[bank1]<=1;distance_bank[bank1]<=distance;count_bank[bank1]<=component_count;
+     end else if(before_second)begin
+      found_bank[bank1]<=1;distance_bank[bank1]<=distance;count_bank[bank1]<=component_count;
       xmin_bank[bank1]<=xmin;xmax_bank[bank1]<=xmax;ymin_bank[bank1]<=ymin;ymax_bank[bank1]<=ymax;
       state_bank[bank1]<=candidate_state;reason_bank[bank1]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;
      end
@@ -409,8 +534,10 @@ task retain_candidate;
 endtask
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
-  previous_valid<=0;candidate_follow<=0;for(bi=0;bi<2;bi=bi+1)begin previous_x[bi]<=0;previous_y[bi]<=0;end
-  small_pass<=0;ready<=0;sample_new<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;foreground_count<=0;box_width<=0;box_height<=0;
+  high_valid<=0;high_index<=0;high_confirmed<=0;
+  held_valid<=0;held_x<=0;held_y<=0;held_found<=0;
+  row_anchor_valid<=0;row_anchor_y[0]<=0;row_anchor_y[1]<=0;row_anchor_distance[0]<=4095;row_anchor_distance[1]<=4095;
+  small_pass<=0;ready<=0;sample_new<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;recorder_objects<=0;foreground_count<=0;box_width<=0;box_height<=0;
   box_x0<=0;box_x1<=0;box_y0<=0;box_y1<=0;seen<=0;cap_count<=0;capture_foreground<=0;phase<=IDLE;
   mem_addr<=0;mem_write_addr<=0;mem_data<=0;mem_write<=0;q_read<=0;q_write_addr<=0;q_data<=0;q_write<=0;
   candidate_region<=0;candidate_allowed<=0;distance<=0;scan_region<=0;sx<=0;sy<=0;cx<=0;cy<=0;nx<=0;ny<=0;xmin<=0;xmax<=0;ymin<=0;ymax<=0;direction<=0;
@@ -424,9 +551,11 @@ always @(posedge clk or negedge rst_n)begin
   left_dark<=0;right_dark<=0;
  end else begin
   sample_new<=0;mem_write<=0;q_write<=0;
-  if(frame_start || invalidate)begin if(invalidate)previous_valid<=0;small_pass<=0;ready<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;phase<=IDLE;seen<=0;cap_count<=0;capture_foreground<=0;end
+  if(frame_start || invalidate)begin high_valid<=0;high_confirmed<=0;held_valid<=0;held_found<=0;row_anchor_valid<=0;small_pass<=0;ready<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;recorder_objects<=0;phase<=IDLE;seen<=0;cap_count<=0;capture_foreground<=0;end
   else if(pixel_sof)begin
-   small_pass<=0;scan_region<=0;seen<=1;cap_count<=0;capture_foreground<=0;ready<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;phase<=IDLE;
+   high_valid<=0;high_confirmed<=0;
+   held_valid<=COUNT_CANDIDATES && recorder_hold_valid;held_x<=recorder_hold_x;held_y<=recorder_hold_y;held_found<=0;
+   row_anchor_valid<=0;small_pass<=0;scan_region<=0;seen<=1;cap_count<=0;capture_foreground<=0;ready<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;recorder_objects<=0;phase<=IDLE;
    foreground_count<=0;box_width<=0;box_height<=0;
    for(bi=0;bi<SLOTS;bi=bi+1)begin
     found_bank[bi]<=0;distance_bank[bi]<=4095;count_bank[bi]<=0;reason_bank[bi]<=0;
@@ -497,12 +626,11 @@ always @(posedge clk or negedge rst_n)begin
     if(direction==3)begin if(q_count==0)phase<=AREA_CALC;else phase<=POP_REQ;end
     else begin direction<=direction+1'b1;phase<=NEIGH_REQ;end
    end
-   AREA_CALC:begin candidate_region<=region_now;candidate_allowed<=allowed_now;component_area<=width_now*height_now;
+   AREA_CALC:begin high_confirmed<=0;candidate_region<=region_now;candidate_allowed<=allowed_now;component_area<=width_now*height_now;
     long_side<=width_now>height_now ? width_now : height_now;short_side<=width_now<height_now ? width_now : height_now;phase<=SCALE;end
    SCALE:begin
     distance<=distance_now;
-     candidate_follow<=REGIONS && LANE_SINGLE && previous_valid[candidate_region] && dx<=40 && ({1'b0,follow_dx}+follow_dy)<=32;
-    fg20<={4'b0,component_count}*23'd20;area17<={component_area,4'b0000}+{4'b0,component_area};
+    fg20<={4'b0,component_count}*23'd20;area17<={4'b0,component_area}*23'd17;
     fg5<={4'b0,component_count}*23'd5;area3<={4'b0,component_area}*23'd3;
     fg10<={4'b0,component_count}*23'd10;area9<={4'b0,component_area}*23'd9;
     fg4<={2'b0,component_count,2'b0};
@@ -511,17 +639,40 @@ always @(posedge clk or negedge rst_n)begin
    end
    COMPARE:begin
     phase<=SCAN_REQ;
+    if(high_shape && candidate_allowed && !border && component_count>=6 &&
+       width_now>=3 && height_now>=3 && (high_free || distance<high_worst))begin
+     high_boxes[high_write_index]<={ymax,ymin,xmax,xmin};
+     high_distances[high_write_index]<=distance;high_valid[high_write_index]<=1;
+    end
     if(candidate_allowed && (!REGIONS || candidate_state!=0 || small_pass) && !border && (component_count>=8 || (small_pass && empty_match && component_count>=6)) && width_now>=3 && height_now>=3)begin
      if(!small_pass)begin
+      if(ROW_GUARDED_BRIGHT_EMPTY && REGIONS && candidate_state==2 &&
+         (!row_anchor_valid[candidate_region] || distance<row_anchor_distance[candidate_region]))begin
+       row_anchor_valid[candidate_region]<=1;row_anchor_y[candidate_region]<=center_y;
+       row_anchor_distance[candidate_region]<=distance;
+      end
       retain_candidate;
       if(PLACEMENT_REVIEW && candidate_state==2)begin nx<=xmin & ~3;ny<=ymin;phase<=BODY_ACCOUNTED;end
      end
+     else if(high_lookup)begin high_index<={candidate_region,2'b00};phase<=HIGH_REQ;end
      else if((empty_match || sprocket_match || pose_match) && !covers_body)begin
-      for(bi=0;bi<SLOTS;bi=bi+1)if(found_bank[bi] && state_bank[bi]!=2 && (LANE_SINGLE ? bi : bi/2)==candidate_region &&
+      for(bi=0;bi<SLOTS;bi=bi+1)if(found_bank[bi] && state_bank[bi]!=2 && bi/REGION_SLOTS==candidate_region &&
        xmin_bank[bi]>=xmin && xmax_bank[bi]<=xmax && ymin_bank[bi]>=ymin && ymax_bank[bi]<=ymax)found_bank[bi]<=0;
       if((empty_match || pose_match) && !sprocket_match)phase<=SMALL_INSERT;
      end
     end
+   end
+   HIGH_REQ:phase<=HIGH_CHECK;
+   HIGH_CHECK:begin
+    if(high_valid[high_index] && high_box_q=={ymax,ymin,xmax,xmin})begin
+     high_confirmed<=1;
+     // Remove T100 fragments contained in this independently measured T80
+     // contour, exactly as the original EMPTY insertion does.
+     for(bi=0;bi<SLOTS;bi=bi+1)if(found_bank[bi] && state_bank[bi]!=2 && bi/REGION_SLOTS==candidate_region &&
+       xmin_bank[bi]>=xmin && xmax_bank[bi]<=xmax && ymin_bank[bi]>=ymin && ymax_bank[bi]<=ymax)found_bank[bi]<=0;
+     phase<=SMALL_INSERT;
+    end else if(high_index[1:0]==3)phase<=SCAN_REQ;
+    else begin high_index<=high_index+1'b1;phase<=HIGH_REQ;end
    end
    SMALL_INSERT:begin retain_candidate;phase<=SCAN_REQ;end
    BODY_ACCOUNTED:begin
@@ -566,14 +717,10 @@ always @(posedge clk or negedge rst_n)begin
     end
    end
    PUBLISH:begin
-     if(REGIONS && LANE_SINGLE)for(bi=0;bi<2;bi=bi+1)begin
-      previous_valid[bi]<=found_bank[bi] && state_bank[bi]>=2;
-      previous_x[bi]<={1'b0,xmin_bank[bi]}+xmax_bank[bi];previous_y[bi]<={1'b0,ymin_bank[bi]}+ymax_bank[bi];
-     end
      ready<=1;sample_new<=1;located<=primary_record[75];state<=primary_record[74:73];
      review_required<=primary_record[74:73]==2 && |primary_record[72:69];
-     objects<=REGIONS && LANE_SINGLE ? records : (!REGIONS && !legacy_pair_selected) ? {76'd0,records[75:0]} : sorted0;
-     region_objects<=REGIONS && LANE_SINGLE ? {76'd0,records[151:76],76'd0,records[75:0]} : {sorted1,sorted0};
+     objects<=(!REGIONS && !legacy_pair_selected) ? {76'd0,records[75:0]} : sorted0;
+     region_objects<={sorted1,sorted0};recorder_objects<=recorder_packet;
      foreground_count<=primary_record[68:56];box_width<=primary_record[55:49];box_height<=primary_record[48:42];
      box_x0<=primary_record[41:31];box_x1<=primary_record[30:20];box_y0<=primary_record[19:10];box_y1<=primary_record[9:0];phase<=FINISHED;
    end

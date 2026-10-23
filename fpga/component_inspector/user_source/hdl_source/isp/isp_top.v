@@ -1,10 +1,11 @@
 module isp_top #(
     parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
-    parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,
-    parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION
+    parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,
+    parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+256*CLASSIFIED_COUNT
 ) (
     input processing_clk,
+    input [16:0] count_command,output [255:0] count_live,
     input 			axi4s_video_aclk,
     input 			I_rst_n			,
     input 			I_tlast			,
@@ -248,7 +249,7 @@ end else begin : unscaled_processing
  assign post_rgb=native_rgb;assign post_x=native_x;assign post_y=native_y;
  assign scale_bad=0;
 end endgenerate
-roi_sobel_view #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.X0(USE_SEARCH ? 0 : MULTI_POCKETS ? 96 : 256),.X1(USE_SEARCH ? WIDTH : MULTI_POCKETS ? 928 : 768),.Y0(USE_SEARCH ? 0 : 172),.Y1(USE_SEARCH ? HEIGHT : MULTI_POCKETS ? 464 : 428),.DYNAMIC_ROI(TRACKING),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
+roi_sobel_view #(.CACHE_ADDRESS_XOR(RESULT_RECORDER),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.X0(USE_SEARCH ? 0 : MULTI_POCKETS ? 96 : 256),.X1(USE_SEARCH ? WIDTH : MULTI_POCKETS ? 928 : 768),.Y0(USE_SEARCH ? 0 : 172),.Y1(USE_SEARCH ? HEIGHT : MULTI_POCKETS ? 464 : 428),.DYNAMIC_ROI(TRACKING),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
  .dynamic_x0(track_x0),.dynamic_x1(track_x1),.dynamic_y0(track_y0),.dynamic_y1(track_y1),
  .clk(post_clk),.rst_n(I_rst_n),.pixel_valid(post_valid),
  .pixel_sof(post_sof),.pixel_last(post_last),.early_sof(post_early),
@@ -303,6 +304,27 @@ end
 end endgenerate
 // The result settles after the ROI/search rows and the 28-cycle divider.
 // Freeze it early; frame proof, word count and epoch still gate publication.
+wire [255:0] classified_record;wire classified_ready;wire [31:0] search_empty_probe;wire [607:0] recorder_candidates;wire recorder_hold_valid;wire [10:0] recorder_hold_x;wire [9:0] recorder_hold_y;
+generate if(CLASSIFIED_COUNT)begin : classified_counting
+ reg pixels_started;
+ always @(posedge post_clk or negedge I_rst_n)begin
+  if(!I_rst_n)pixels_started<=0;
+  else if(post_start)pixels_started<=0;
+  else if(post_early)pixels_started<=1;
+ end
+ wire [152*(RESULT_RECORDER ? 4 : 2)-1:0] count_candidates;
+ if(RESULT_RECORDER)assign count_candidates=recorder_candidates;else assign count_candidates=region_search_objects;
+ classified_count_pipeline #(.LINE_X(WIDTH/2),.DIAGNOSTICS(!RESULT_RECORDER),.RECORD_ONLY(RESULT_RECORDER),.MOTION_RECOVERY(RESULT_RECORDER),.TAIL_RECOVERY(RESULT_RECORDER),.OBS_PER_REGION(RESULT_RECORDER ? 4 : 2),.ORDERED_HANDOFF(RESULT_RECORDER),.RECOVERABLE(RESULT_RECORDER),.VELOCITY_ASSOC(RESULT_RECORDER),.LOCAL_RECOVERY(LOCAL_RECOVERY)) pipeline(
+  .clk(post_clk),.rst_n(I_rst_n),.source_start(post_start),.frame_commit(post_commit && !video_frame_bad),
+  .frame_bad(pixels_started && video_frame_bad && !post_start && !post_early),.sample_new(search_new),
+  .config_tag({post_config,post_wb}),.objects(count_candidates),.empty_probe(search_empty_probe),.command(count_command),
+  .frame_record(classified_record),.record_ready(classified_ready),.live_record(count_live),
+  .event_valid(),.event_run(),.event_id(),.event_frame(),.event_kind(),.event_reason(),
+  .hold_valid(recorder_hold_valid),.hold_x(recorder_hold_x),.hold_y(recorder_hold_y));
+end else begin : no_classified_counting
+ assign classified_record=0;assign classified_ready=1;assign count_live=0;assign recorder_hold_valid=0;assign recorder_hold_x=0;assign recorder_hold_y=0;
+end endgenerate
+localparam ORIGINAL_META_WIDTH=META_WIDTH-256*CLASSIFIED_COUNT;
 reg [7:0] metadata_wait;reg metadata_pending;reg [31:0] frame_config;
 wire [127:0] calibration_record;
 generate if(CALIBRATION)begin : calibration_measurement
@@ -318,8 +340,8 @@ always @(posedge post_clk or negedge I_rst_n) begin
  else if(sample_cancel) begin frame_metadata_ready<=0;metadata_pending<=0;end
  else if(result_commit) begin metadata_pending<=1;metadata_wait<=MULTI_POCKETS ? 192 : 48;end
  else if(metadata_pending) begin
-  metadata_wait<=metadata_wait-1'b1;
-  if(metadata_wait==1) begin
+  if(metadata_wait>1)metadata_wait<=metadata_wait-1'b1;
+  if(metadata_wait==1 && (!CLASSIFIED_COUNT || classified_ready)) begin
    // Frame configuration tags exist even if the first pocket has no valid sample.
    // Other pockets must not be hidden by the first pocket's missing history tag.
    if(MULTI_POCKETS) frame_metadata<={pocket_records,track_diagnostic,frame_config,track_locked,track_x0,track_x1,
@@ -328,7 +350,8 @@ always @(posedge post_clk or negedge I_rst_n) begin
    else frame_metadata<={track_diagnostic,frame_config,track_locked,track_x0,track_x1,observation_record};
    // Low metadata fields retain their V12 layout. The extension travels in
    // the SAME slot/epoch/late-attachment/VS snapshot as all four detections.
-   if(CALIBRATION)frame_metadata[META_WIDTH-1 -:129]<={1'b1,calibration_record};
+   if(CALIBRATION)frame_metadata[ORIGINAL_META_WIDTH-1 -:129]<={1'b1,calibration_record};
+   if(CLASSIFIED_COUNT)frame_metadata[META_WIDTH-1 -:256]<=classified_record;
    frame_metadata_ready<=1;metadata_pending<=0;
   end
  end
@@ -355,12 +378,12 @@ roi_statistics #(.DYNAMIC_ROI(TRACKING),.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(
     .frame_commit(result_commit),.invalidate(sample_cancel),.sample_valid(legacy_valid),
     .mean(legacy_mean),.minimum(legacy_min),.maximum(legacy_max),.sample_pixels(),.sample_sum(),.sample_new(legacy_new),.frame_start(post_start));
 generate if(USE_SEARCH) begin : local_shape_detection
- frame_shape_search #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS),.LANE_SINGLE(REGIONS)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
+ frame_shape_search #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS),.COUNT_EMPTY_MARGIN(CLASSIFIED_COUNT),.EMPTY_DIAGNOSTICS(CLASSIFIED_COUNT && !RESULT_RECORDER),.ROW_GUARDED_BRIGHT_EMPTY(CLASSIFIED_COUNT),.COUNT_CANDIDATES(RESULT_RECORDER),.MULTITHRESHOLD_EMPTY(MULTITHRESHOLD_EMPTY)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
   .pixel_accept(post_accept),.invalidate(sample_cancel),.pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),
   .ready(search_ready),.sample_new(search_new),.located(search_located),.state(search_state),.foreground_count(search_fg),
-  .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(legacy_search_objects),.region_objects(region_search_objects));
+  .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(legacy_search_objects),.region_objects(region_search_objects),.empty_probe(search_empty_probe),.recorder_objects(recorder_candidates),.recorder_hold_valid(recorder_hold_valid),.recorder_hold_x(recorder_hold_x),.recorder_hold_y(recorder_hold_y));
 end else begin : no_local_search
- assign legacy_search_objects=0;assign region_search_objects=0;assign search_ready=0;assign search_new=0;assign search_located=0;assign search_state=1;assign search_review=0;
+ assign legacy_search_objects=0;assign region_search_objects=0;assign recorder_candidates=0;assign search_empty_probe=0;assign search_ready=0;assign search_new=0;assign search_located=0;assign search_state=1;assign search_review=0;
  assign search_fg=0;assign search_w=0;assign search_h=0;assign search_x0=0;assign search_x1=0;assign search_y0=0;assign search_y1=0;
 end
 if(USE_SEARCH) begin : search_features

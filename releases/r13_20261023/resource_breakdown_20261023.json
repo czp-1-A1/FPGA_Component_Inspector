@@ -1,0 +1,154 @@
+{
+  "source_report": "D:\\CodexWork\\classified_resource_opt_20261022\\physical_r0\\fpga\\component_inspector\\td_project\\camera_to_dsi_display_Runs\\phy_1\\camera_to_dsi_display_phy.area",
+  "source_sha256": "da38d6a2a40d32fcf48ab31d23ff89128b022cea86eef36e25e3d4f9d1edbb36",
+  "final_slice": 19708,
+  "capacity_slice": 21216,
+  "slice_allocation": {
+    "with_luts": 15184,
+    "with_adder": 2710,
+    "reg_only": 1150,
+    "distributed_ram": 664
+  },
+  "hierarchy_total": {
+    "name": "top",
+    "depth": 0,
+    "module": "design_top_wrapper",
+    "lut": 15184,
+    "carry": 2710,
+    "ff": 20719,
+    "eram": 87,
+    "dsp": 28,
+    "dram_lut": 664
+  },
+  "disjoint_groups": [
+    {
+      "name": "\u539f\u5206\u7c7b\u68c0\u6d4b\u5668",
+      "lut": 2382,
+      "carry": 395,
+      "ff": 1737,
+      "eram": 44,
+      "dsp": 18,
+      "dram_lut": 56,
+      "members": [
+        "local_shape_detection$detector"
+      ],
+      "logic_lut_share_percent": 15.69
+    },
+    {
+      "name": "DDR\u63a7\u5236\u4e0e\u7269\u7406\u63a5\u53e3",
+      "lut": 2196,
+      "carry": 111,
+      "ff": 3439,
+      "eram": 0,
+      "dsp": 0,
+      "dram_lut": 296,
+      "members": [
+        "u_ph1p35_324_ddr_wrapper"
+      ],
+      "logic_lut_share_percent": 14.46
+    },
+    {
+      "name": "\u8ba1\u6570\u8bb0\u5f55\u4e0e\u76ee\u6807\u5173\u8054",
+      "lut": 1766,
+      "carry": 399,
+      "ff": 1614,
+      "eram": 0,
+      "dsp": 1,
+      "dram_lut": 184,
+      "members": [
+        "classified_counting$pipeline"
+      ],
+      "logic_lut_share_percent": 11.63
+    },
+    {
+      "name": "\u89c6\u9891\u8f93\u5165\u8f93\u51fa\u7f13\u51b2\u63a7\u5236",
+      "lut": 1657,
+      "carry": 227,
+      "ff": 3006,
+      "eram": 8,
+      "dsp": 0,
+      "dram_lut": 0,
+      "members": [
+        "u_video_in",
+        "u_video_out"
+      ],
+      "logic_lut_share_percent": 10.91
+    },
+    {
+      "name": "RAW\u8f6c\u5f69\u8272/\u767d\u5e73\u8861/\u7f29\u653e",
+      "lut": 1392,
+      "carry": 743,
+      "ff": 2236,
+      "eram": 11,
+      "dsp": 8,
+      "dram_lut": 0,
+      "members": [
+        "u_demosaic",
+        "u_awb",
+        "scaled_processing$resize"
+      ],
+      "logic_lut_share_percent": 9.17
+    },
+    {
+      "name": "\u4e24\u9875\u5171\u4eab\u754c\u9762",
+      "lut": 1377,
+      "carry": 50,
+      "ff": 1908,
+      "eram": 4,
+      "dsp": 1,
+      "dram_lut": 112,
+      "members": [
+        "u_experiment_osd"
+      ],
+      "logic_lut_share_percent": 9.07
+    },
+    {
+      "name": "\u9876\u5c42\u72b6\u6001\u4e0e\u7ed3\u679c\u8de8\u57df",
+      "lut": 1185,
+      "carry": 0,
+      "ff": 2394,
+      "eram": 0,
+      "dsp": 0,
+      "dram_lut": 0,
+      "members": [
+        "u_active_frame_display",
+        "u_publish_display",
+        "u_transport_display",
+        "u_count_live_display",
+        "u_count_command",
+        "u_overflow_display",
+        "u_wb_process",
+        "u_camera_display",
+        "u_observation_display",
+        "u_monitor_display",
+        "u_camera_receive",
+        "u_observation_receive"
+      ],
+      "logic_lut_share_percent": 7.8
+    },
+    {
+      "name": "Sobel\u8fb9\u7f18\u5904\u7406\u663e\u793a",
+      "lut": 1174,
+      "carry": 210,
+      "ff": 1065,
+      "eram": 12,
+      "dsp": 0,
+      "dram_lut": 0,
+      "members": [
+        "u_roi_sobel_view"
+      ],
+      "logic_lut_share_percent": 7.73
+    },
+    {
+      "name": "\u5176\u4ed6\u76d1\u6d4b/\u91c7\u6837/\u6253\u5305/\u63a7\u5236",
+      "lut": 2055,
+      "carry": 575,
+      "ff": 3320,
+      "eram": 8,
+      "dsp": 0,
+      "dram_lut": 16,
+      "logic_lut_share_percent": 13.53
+    }
+  ],
+  "note": "Hierarchy values are logic LUT/carry/FF counts, not per-module occupied Slice; shared packing prevents exact per-module Slice attribution. Group shares use15184 logic LUT as denominator."
+}

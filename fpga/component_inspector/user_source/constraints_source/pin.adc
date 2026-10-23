@@ -23,3 +23,9 @@ set_pin_assignment	{ O_tmds_clk_p }		{ LOCATION = C17; IOSTANDARD = TMDS33; PULL
 # Physical SW1/SW2; schematic nets SW0/SW1. Up=1, down=0.
 set_pin_assignment { I_switch[0] } { LOCATION = A4; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
 set_pin_assignment { I_switch[1] } { LOCATION = B4; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+
+# SW4 upper original / lower count.
+set_pin_assignment { I_count_page_switch } { LOCATION = D11; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+
+# Physical SW3, schematic SW2: down edge starts; up rearms.
+set_pin_assignment { I_count_start_switch } { LOCATION = E11; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }

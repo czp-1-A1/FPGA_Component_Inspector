@@ -57,6 +57,7 @@ module ph1p35_324_ddr_wrapper (
     wire         paxi_rvalid;
     wire         paxi_rready;                                    
 
+    wire dhi_clk; // Explicit generated-IP net for strict Verilog simulation.
     assign O_init_calib_complete = ddrphy_rdy;
     assign O_ddr_clk = dhi_clk;
 

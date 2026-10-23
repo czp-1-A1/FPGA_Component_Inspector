@@ -7,15 +7,15 @@
 **	TD version	:	6.1.126561
 ************************************************************/
 `timescale 1ns/1ps
-module blk_mem_gen_awb_delay_signal
-(
+// Parameterized capacity; original RAM modes/default2048 retained.
+module blk_mem_gen_awb_delay_signal #(parameter RAM_ADDR_BITS=11) (
   output  [95:0]                doa,
   input   [95:0]                dia,
-  input   [10:0]                addra,
+  input   [RAM_ADDR_BITS-1:0]                addra,
   input                         wea,
   input                         clka,
   output  [95:0]                dob,
-  input   [10:0]                addrb,
+  input   [RAM_ADDR_BITS-1:0]                addrb,
   input                         clkb,
   input   [95:0]                dib,
   input                         web
@@ -24,11 +24,11 @@ module blk_mem_gen_awb_delay_signal
   ram_f84573da5ab5
   #(
       .DATA_WIDTH_A(96),
-      .ADDR_WIDTH_A(11),
-      .DATA_DEPTH_A(2048),
+      .ADDR_WIDTH_A(RAM_ADDR_BITS),
+      .DATA_DEPTH_A(1<<RAM_ADDR_BITS),
       .DATA_WIDTH_B(96),
-      .ADDR_WIDTH_B(11),
-      .DATA_DEPTH_B(2048),
+      .ADDR_WIDTH_B(RAM_ADDR_BITS),
+      .DATA_DEPTH_B(1<<RAM_ADDR_BITS),
       .REGMODE_A("NOREG"),
       .WRITEMODE_A("NORMAL"),
       .RESETMODE_A("ASYNC"),

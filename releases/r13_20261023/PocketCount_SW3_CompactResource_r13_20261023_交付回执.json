@@ -1,0 +1,66 @@
+{
+  "name": "PocketCount_SW3_CompactResource_r13_20261023",
+  "status": "COMPLETE_INDEPENDENT_ARCHIVE_RESTORE_VERIFIED_HUMAN_BOARD_PENDING",
+  "source_manifest_sha256": "243651b68a39160cfb81efe91b11836bcb32109750ecd29793530fca1bc98c65",
+  "frozen_inputs": 471,
+  "software_tests": 72,
+  "capacity_contracts": 3,
+  "compact_ui_pixels": 3686400,
+  "native_references": 10,
+  "rgb_source_frames": 86,
+  "timing_ns": {
+    "SWNS": 0.002,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "resources": {
+    "slice": 19708,
+    "eram": 87,
+    "dsp": 28,
+    "pll": 5
+  },
+  "targets": {
+    "eram_le_96": true,
+    "slice_lt_90_percent": false
+  },
+  "bit_sha256": "2350b5985afa679df3d8bfd1a5fa2aba9f355468f284704d10dd46beeda402a7",
+  "bit_bytes": 1789539,
+  "hardware_programmed": false,
+  "field_count_proven": false,
+  "commit_push": false,
+  "created": "2026-10-23T00:57:24.612562",
+  "archive_payload_entries": 1225,
+  "expanded_release": "D:\\CodexWork\\classified_resource_opt_20261022\\release\\PocketCount_SW3_CompactResource_r13_20261023",
+  "desktop": {
+    "C:\\Users\\Li47\\Desktop\\PocketCount_SW3_CompactResource_r13_20261023.bit": {
+      "bytes": 1789539,
+      "sha256": "2350b5985afa679df3d8bfd1a5fa2aba9f355468f284704d10dd46beeda402a7"
+    },
+    "C:\\Users\\Li47\\Desktop\\PocketCount_SW3_CompactResource_r13_20261023_full.zip": {
+      "bytes": 6453085,
+      "sha256": "96db469ed1c9359c21d1053822621cf0789ba86bd48017144442cf776a425cd9"
+    },
+    "C:\\Users\\Li47\\Desktop\\PocketCount_SW3_CompactResource_r13_20261023_烧录与验收.md": {
+      "bytes": 4788,
+      "sha256": "d18a2bd4284c4f1b058c70218e546ee27686299ff5d35067f7a356b9f169842e"
+    },
+    "C:\\Users\\Li47\\Desktop\\PocketCount_SW3_CompactResource_r13_20261023_SHA256.txt": {
+      "bytes": 368,
+      "sha256": "cdd0921801fb8eaadf18736116a4b1d58332386e4ba54548d72529d56dd2738a"
+    }
+  },
+  "independent_archive_verification": {
+    "status": "PASS_DESKTOP_ALL_PAYLOAD_FROZEN471_TEST72_CAPACITY_COMPACT3686400_TEN_NATIVE_RGB86_FRESH98_PROJECT",
+    "bit_sha256": "2350b5985afa679df3d8bfd1a5fa2aba9f355468f284704d10dd46beeda402a7",
+    "payload_entries": 1225,
+    "frozen_inputs": 471,
+    "software_tests": 72,
+    "compact_ui_pixels": 3686400,
+    "native_references": 10,
+    "rgb_frames": 86,
+    "project_ip_dependencies": 98,
+    "hardware_programmed": false,
+    "created": "2026-10-23T00:57:44.735452"
+  }
+}

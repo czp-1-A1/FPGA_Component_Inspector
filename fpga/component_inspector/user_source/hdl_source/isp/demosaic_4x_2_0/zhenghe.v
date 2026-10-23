@@ -38,9 +38,12 @@ module zhenghe#(
     output [DATA_WIDTH-1:0] O_tdata  ,
     output reg              O_tvalid 
 );
+    // Capacity only; preserve original pixel/valid scheduling and RAM modes.
+    localparam RAM_ADDR_BITS=(IMG_WIDTH/4<=1) ? 1 : $clog2(IMG_WIDTH/4);
+
     localparam IMG_WIDTH_4x = IMG_WIDTH >> 2;
     localparam CREDIT_BITS = $clog2(IMG_WIDTH_4x*IMG_HEIGHT+1);
-    reg [10:0] addra,addrb;
+    reg [RAM_ADDR_BITS-1:0] addra,addrb;
     reg valid_r0,row_reading;
     reg [DATA_WIDTH-1:0] data_d0;
     wire [DATA_WIDTH-1:0] data_d;
@@ -69,7 +72,7 @@ module zhenghe#(
             end
         end
     end
-    blk_mem_gen_zhenghe blk_mem_gen_zhenghe_d1 (
+    blk_mem_gen_zhenghe #(.RAM_ADDR_BITS(RAM_ADDR_BITS)) blk_mem_gen_zhenghe_d1 (
       .clka (I_clk   ),  // input wire clka
       .wea  (valid_r0),  // input wire [0 : 0] wea
       .addra(addra   ),  // input wire [10 : 0] addra

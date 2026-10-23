@@ -29,13 +29,16 @@ module line_buffer_demosaic #(
     output wire        O_valid,    // 输出数据有效信号          
     output wire [32:0] O_data      // 输出数据总线，宽度为33位  
 );
+    // Capacity only; preserve original pixel/valid scheduling and RAM modes.
+    localparam RAM_ADDR_BITS=(IMG_WIDTH/4<=1) ? 1 : $clog2(IMG_WIDTH/4);
+
 
     // 定义读使能信号
     wire        rd_en;  // synthesis keep 
 
     // 定义地址计数器寄存器和数据寄存器
-    reg  [10:0] addra;     // 写地址计数器               
-    reg  [10:0] addrb;     // 读地址计数器               
+    reg  [RAM_ADDR_BITS-1:0] addra;     // 写地址计数器               
+    reg  [RAM_ADDR_BITS-1:0] addrb;     // 读地址计数器               
     reg  [32:0] data_d0;   // 延时一个时钟的数据         
     reg         valid_d0;  // 延时一个时钟的数据有效信号  
 
@@ -103,7 +106,7 @@ module line_buffer_demosaic #(
     // 只有当valid_d0有效且tlast_lock_d0置位后，才输出有效数据
 
     // 实例化块存储器，用于数据的存储和读取
-    blk_mem_gen_demosaic blk_mem_gen_demosaic_r0 (
+    blk_mem_gen_demosaic #(.RAM_ADDR_BITS(RAM_ADDR_BITS)) blk_mem_gen_demosaic_r0 (
         .clka (I_clk  ),   // 写端口时钟信号
         .wea  (valid_d0),  // 写使能信号
         .addra(addra  ),   // 写地址

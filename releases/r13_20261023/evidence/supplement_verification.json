@@ -1,0 +1,114 @@
+{
+  "status": "PASS_CAPACITY_AND_COMPACT_UI_EXACT_COMPILED_SHA_AND_3686400_INDEPENDENT_PIXELS",
+  "manifest_sha256": "243651b68a39160cfb81efe91b11836bcb32109750ecd29793530fca1bc98c65",
+  "unit_tests": {
+    "compact_ui": {
+      "inputs": {
+        "user_source/hdl_source/bin16_bcd.v": "e8ac13eaa52618336a3475f74cc5f19b725d8440061774f0d3ffbd1027fee4e5",
+        "user_source/hdl_source/osd_ascii_rom.v": "c084869524e0ebfc4c9d002bb6f3b14d212d6bca88ed097216347f10dceff754",
+        "user_source/hdl_source/osd_cjk_rom.v": "5e86cb3f5a752cf3bf812c17f38844dc4e54afd2a09fb7c615c29db9de3d979d",
+        "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1",
+        "user_source/hdl_source/inspection_region_config.v": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+        "user_source/hdl_source/experiment_osd.v": "1d333acdcd12c948baa2f6c5f1887325ba365ad5596daa8e4df29a430cd6edcf",
+        "user_source/hdl_source/classified_count_renderer.v": "4dbc3f7e8b7d74ffea7e8009dbe826d8d03a882a92d93ff4248a2f47eeec025c",
+        "user_source/hdl_source/compact_ascii_rom.v": "101c4b7fd9ba7781057d5919eec743403566bfa2f37ef95049fc0efdbe6fbb99",
+        "user_source/hdl_source/compact_inspector_osd.v": "58aff335e406c1b6b1fd70a43d370fd541c2d424dc31d338e95c2d8591e4307c",
+        "user_source/hdl_source/compact_cjk_rom.v": "1f9130ad604aec03e716eca7d2581c767eb22c31c241d089f23cad3424cfe4fd",
+        "user_source/hdl_source/compact_template_rom.v": "ac719755dafc0fdfb5fb4effb7d12d829c4828c498937cb1db8cd7dcfcc52582",
+        "user_source/hdl_source/classified_dual_page_osd.v": "d3a64f767970a6cf7a1429a477a2be691aa39b9fe8813c9f2223fd6a9be81c52",
+        "sim/tb_compact_ui.sv": "587819c985f68c3abffc104aa12cd47b43590ade521d1df20aeaf81aa8798e23"
+      },
+      "compile_sha256": "7925c4d32b547ffc673408a798bc88c3fd8c76af4e0e50e1d7c430436efcbebf",
+      "console_sha256": "8657a67a55c0ffd88d3f2c5b40d3d96aef1c9f44d555623dd96040529ecab245"
+    },
+    "dual_page": {
+      "inputs": {
+        "user_source/hdl_source/bin16_bcd.v": "e8ac13eaa52618336a3475f74cc5f19b725d8440061774f0d3ffbd1027fee4e5",
+        "user_source/hdl_source/osd_ascii_rom.v": "c084869524e0ebfc4c9d002bb6f3b14d212d6bca88ed097216347f10dceff754",
+        "user_source/hdl_source/osd_cjk_rom.v": "5e86cb3f5a752cf3bf812c17f38844dc4e54afd2a09fb7c615c29db9de3d979d",
+        "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1",
+        "user_source/hdl_source/inspection_region_config.v": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+        "user_source/hdl_source/experiment_osd.v": "1d333acdcd12c948baa2f6c5f1887325ba365ad5596daa8e4df29a430cd6edcf",
+        "user_source/hdl_source/classified_count_renderer.v": "4dbc3f7e8b7d74ffea7e8009dbe826d8d03a882a92d93ff4248a2f47eeec025c",
+        "user_source/hdl_source/classified_dual_page_osd.v": "d3a64f767970a6cf7a1429a477a2be691aa39b9fe8813c9f2223fd6a9be81c52",
+        "sim/tb_dual_page.v": "f991bce21b76a8e27c8719f9c316fe10c74b0e900d686e1d5e804403b30237d4"
+      },
+      "compile_sha256": "1b37e2b16c753d7fc6b7c5fdd05ec29142dc07c502db3e29cecaaf00f0943d2b",
+      "console_sha256": "0f7d38d291e670f0e2c27bbfa70f3f0ff73f66c4b45b24eb84e6ede16320041e"
+    }
+  },
+  "capacity_reused_actual_compiled_SHA": {
+    "line_ram_equivalence": {
+      "inputs": {
+        "user_source/hdl_source/signal_delay.v": "4f72f73c3872e6d6729e5113f7960dafb66fbd6105b77554aa288ef338917c0c",
+        "user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v": "6875ab1c2a673fbc96b851ea5e7f76fec7db2b7eb64f06f79b3bdbe765dc56f5",
+        "user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v": "f0339d881ca8f9a1a678e556317ab8720d5d3fa40f3dd58f459e4eaa3e009a59",
+        "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/blk_mem_gen_demosaic.v": "15a0637af9d77e82cbc2d58555c4d413ff4366b50526fa01c101c246e7fda808",
+        "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v": "4c007b82769a2af9474683ec27711133c735ac776fd1f3d037d4eb00cc20a832",
+        "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/blk_mem_gen_zhenghe.v": "82e17e6ab3180582343120abf35a650e329ae0b75ea237680bb0367e9b6b0c05",
+        "user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v": "facbb17d5cf7aa37e7cb63764780c2c7acc655ff421a766701c656adbb9f8c26",
+        "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v": "cdc4a4c25395ef03f0246891a991909a264261cfefd9a6503a04a419753eb42f",
+        "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785",
+        "sim/reference/resource_R12_signal_delay.v": "fa5ba3859c682b0ce27296a050e7b9c993d276132b2ed70f4a480e8ad8f4beff",
+        "sim/reference/resource_R12_line_buffer_demosaic.v": "eb25d3ac68c44ff91d94475e2d8a0481aa30ffcf7ecd41294917ee1c40e7dca8",
+        "sim/reference/resource_R12_zhenghe.v": "50c14512149fe99f03f1d01d0df82191566bfb825c17a2a44d9a64147787cb56",
+        "sim/tb_line_ram_equivalence.sv": "ebffa309bcb38fb5f7c4415dac6caa9c2a6fac3972159ef15b360f1551a19765"
+      },
+      "console_sha256": "ac6426b563b3ae64a2693ee653b2a437f5f9f20c5f29cffd6e1cd74582e8c767",
+      "compile_sha256": "aa2e54378fe43f62f2c84fd31d019de485af63f93cffbe173e52dead1d8b71a8",
+      "pass_lines": [
+        "# PASS line RAM case width=1024 cycles=12059 checks=12022 AWB=8736 RAW=9125 MERGE=10259 capacity=256",
+        "# PASS line RAM case width=1280 cycles=15014 checks=14978 AWB=10943 RAW=11397 MERGE=12850 capacity=512",
+        "# PASS line RAM case width=1920 cycles=22385 checks=22350 AWB=16462 RAW=17077 MERGE=19329 capacity=512",
+        "# PASS line RAM equivalence:3 widths vendor DP models, 4-state controls/pixels, address wrap, gaps, early SOF and reset"
+      ]
+    },
+    "manual_wb": {
+      "inputs": {
+        "user_source/hdl_source/awb.v": "b88cb16d8ef9b7d176827a7070225e1620a014a1355aa1512c1c34f51dbd1e7f",
+        "user_source/hdl_source/signal_delay.v": "4f72f73c3872e6d6729e5113f7960dafb66fbd6105b77554aa288ef338917c0c",
+        "user_source/ip_source/divider/divider_gate.v": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d",
+        "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v": "cdc4a4c25395ef03f0246891a991909a264261cfefd9a6503a04a419753eb42f",
+        "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785",
+        "sim/tb_manual_wb.v": "d5d3d5ac1fe4b5b3241392990a733b16f468811b31b0ee673a5230e3423f316c"
+      },
+      "console_sha256": "09568eea332da3f1476ad280441ad3a9aa8e444347d9f68d639b8c330ef0c57b",
+      "compile_sha256": "bdd41dfe860da87aa8cbd98b8a03be74e9b97f92ed32358ac2e8bc7362cb0fa8",
+      "pass_lines": [
+        "# PASS manual WB: independent Q2.6 arithmetic/clipping, four lanes, first pixel, bubbles, ready-low, EOL, pending requests held until next frame and reset"
+      ]
+    },
+    "fixed_wb": {
+      "inputs": {
+        "user_source/hdl_source/awb.v": "b88cb16d8ef9b7d176827a7070225e1620a014a1355aa1512c1c34f51dbd1e7f",
+        "user_source/hdl_source/signal_delay.v": "4f72f73c3872e6d6729e5113f7960dafb66fbd6105b77554aa288ef338917c0c",
+        "user_source/ip_source/divider/divider_gate.v": "9f7ddab1d4aa3419c81061c3f14448b1475d22aab02492b9bb67ca6a5842ee7d",
+        "user_source/ip_source/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v": "cdc4a4c25395ef03f0246891a991909a264261cfefd9a6503a04a419753eb42f",
+        "user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v": "c657a9e4911b370716a21038bd5bceeb5058111f321f20c6e01f97d5cfa31785",
+        "sim/tb_fixed_wb.v": "7784d39300eaec56dfbab7a71c52cebf3783e3e248912ee20ea19e6260ea0a9f"
+      },
+      "console_sha256": "507e66b16e20b8ece1f521ea23ee3e667916342f80d234e2b9e35aa576d232bd",
+      "compile_sha256": "581a309ec20d0b165f496db3b52133212950b53fa955ba369e3825afa790ca1d",
+      "pass_lines": [
+        "# PASS fixed WB frame case=0 scene=0 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB frame case=1 scene=1 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB frame case=3 scene=0 beats=768 ROI=20 ready_low=180",
+        "# PASS fixed WB: colored-background invariance, fixed non-unity gains/clipping, four lanes, bubbles, reset, line tails, ready-low; automatic reference changed 2304 beats"
+      ]
+    }
+  },
+  "production_classifier_counter_unchanged": [
+    "frame_shape_search.v",
+    "empty_candidate_probe.v",
+    "inspection_region_config.v",
+    "classified_pocket_counter.v",
+    "classified_count_pipeline.v"
+  ],
+  "original_testbench_bytes_unchanged": true,
+  "reference_scripts": {
+    "verify_compact_pixels.py": "ab89c21cca2faf255acf908444a826224b914edbd2b336c2e718c6c8d981f272",
+    "prepare_compact_ui.py": "f9641d69f1616af540666817dfdb2ba1692b85c235f9460601d1c15fc9e72cc2"
+  },
+  "pixel_report_sha256": "ef31a48889a474000230ae0eba7a481138d795f48294a930395a3baae8c0b1b9",
+  "board_accuracy": "NOT_ASSERTED"
+}
