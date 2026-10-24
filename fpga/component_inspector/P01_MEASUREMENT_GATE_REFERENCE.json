@@ -1,0 +1,39 @@
+{
+  "scope": "Read-only P01 measurement candidate; R13 classifier and recorder preserved, not a new classification acceptance",
+  "required_new": [
+    "present_review_probe",
+    "review_reference_slots",
+    "review_detector",
+    "review_raw_chain",
+    "review_ui_pixels",
+    "review_neighbours"
+  ],
+  "required_compat": [
+    "regions",
+    "pose180",
+    "field180",
+    "cal180_holes",
+    "classified_counter",
+    "classified_controls",
+    "classified_pages",
+    "classified_image",
+    "classified_page",
+    "classified_observed_page",
+    "classified_empty_guard",
+    "classified_empty_leading",
+    "empty_candidate_probe",
+    "hold_recovery",
+    "local_recovery",
+    "local_stream",
+    "local_capacity",
+    "local_missing",
+    "local_ambiguity",
+    "tail_recovery",
+    "ordered_handoff",
+    "compact_ui",
+    "line_ram_equivalence",
+    "hd_pins"
+  ],
+  "physical": "Original full SDC, seed2, both corners, zero negative slack/TNS and complete original CDC audit",
+  "original72": "All original sources/oracles retained. Do not claim complete72 rerun; R0 partial full run interrupted after reference-binding fix requires R1 revalidation. New focused R1 results and exact-input UI reuse must be recorded explicitly."
+}

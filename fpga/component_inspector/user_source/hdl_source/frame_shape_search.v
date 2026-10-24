@@ -8,7 +8,7 @@ module frame_shape_search #(
  // the taught pocket-row band, retaining the existing brightness/dark proof.
  // Legacy instantiations retain their exact recipe when this is zero.
  parameter COUNT_EMPTY_MARGIN=0,EMPTY_ROW_TOLERANCE=16,EMPTY_DIAGNOSTICS=0,
- parameter ROW_GUARDED_BRIGHT_EMPTY=0,COUNT_CANDIDATES=0,MULTITHRESHOLD_EMPTY=0,
+ parameter SURFACE_REVIEW=0,REVIEW_PROBE=0,ROW_GUARDED_BRIGHT_EMPTY=0,COUNT_CANDIDATES=0,MULTITHRESHOLD_EMPTY=0,
  parameter [7:0] FOREGROUND=100,
  // T100 bodies keep their taught geometry. A second T80 pass measures holes.
  // Cache only the two default zones plus16 source pixels of vertical context;
@@ -36,7 +36,8 @@ module frame_shape_search #(
  // Extra classified neighbours stay in this processing domain. Original UI
  // always receives its original best2, independently of this counting sideband.
  output reg [607:0] recorder_objects,
- input wire recorder_hold_valid,input wire [10:0] recorder_hold_x,input wire [9:0] recorder_hold_y
+ input wire recorder_hold_valid,input wire [10:0] recorder_hold_x,input wire [9:0] recorder_hold_y,
+ output wire [127:0] probe_record,output wire probe_ready
 );
 // Average each 2x2 source block; every source pixel contributes. Detection
 // covers WIDTH x HEIGHT, with a half-size internal mask. 220 mm needs new calibration.
@@ -210,7 +211,7 @@ end endgenerate
 localparam IDLE=0,SCAN_REQ=1,SCAN_WAIT=2,SCAN_CHECK=3,SEED_MARK=4,
  POP_REQ=5,POP_WAIT=6,POP_VALUE=7,NEIGH_REQ=8,NEIGH_WAIT=9,NEIGH_CHECK=10,
  NEIGH_NEXT=12,AREA_CALC=13,COMPARE=14,
- REF_REQ=15,REF_WAIT=16,REF_CHECK=17,FINISHED=18,SCALE=19,PUBLISH=20,REF_ORIGIN=21,SMALL_INSERT=22,BODY_ACCOUNTED=23,HIGH_REQ=24,HIGH_CHECK=25;
+ REF_REQ=15,REF_WAIT=16,REF_CHECK=17,FINISHED=18,SCALE=19,PUBLISH=20,REF_ORIGIN=21,SMALL_INSERT=22,BODY_ACCOUNTED=23,HIGH_REQ=24,HIGH_CHECK=25,SURFACE_WAIT=26;
 reg [4:0] phase;
 // Four same-frame T100 shape proofs perROI. These do not enter the original
 // candidate bank. T80 must independently measure the EXACT bounding box.
@@ -333,6 +334,9 @@ reg found_bank [0:SLOTS-1];reg [11:0] distance_bank [0:SLOTS-1];reg [17:0] count
 reg [XB-1:0] xmin_bank [0:SLOTS-1],xmax_bank [0:SLOTS-1];
 reg [YB-1:0] ymin_bank [0:SLOTS-1],ymax_bank [0:SLOTS-1];
 reg [1:0] state_bank [0:SLOTS-1];reg [3:0] reason_bank [0:SLOTS-1];
+reg weak_bank[0:SLOTS-1];reg [15:0] dark_bank[0:SLOTS-1];
+localparam SURFACE_ACTIVE=SURFACE_REVIEW && REVIEW_PROBE && REGIONS;
+wire surface_ready,surface_normal;
 wire [$clog2(SLOTS)-1:0] bank0=candidate_region ? REGION_SLOTS : 0,bank1=bank0+1'b1;
 wire [$clog2(SLOTS)-1:0] bank2=COUNT_CANDIDATES && REGIONS ? bank0+2 : bank0,bank3=COUNT_CANDIDATES && REGIONS ? bank0+3 : bank0;
 wire candidate_preferred=candidate_state>=2;
@@ -491,7 +495,7 @@ task copy_candidate;
  begin
   found_bank[dst]<=found_bank[src];distance_bank[dst]<=distance_bank[src];count_bank[dst]<=count_bank[src];
   xmin_bank[dst]<=xmin_bank[src];xmax_bank[dst]<=xmax_bank[src];ymin_bank[dst]<=ymin_bank[src];ymax_bank[dst]<=ymax_bank[src];
-  state_bank[dst]<=state_bank[src];reason_bank[dst]<=reason_bank[src];
+  state_bank[dst]<=state_bank[src];reason_bank[dst]<=reason_bank[src];weak_bank[dst]<=weak_bank[src];
  end
 endtask
 task store_candidate;
@@ -499,7 +503,7 @@ task store_candidate;
  begin
   found_bank[dst]<=1;distance_bank[dst]<=distance;count_bank[dst]<=component_count;
   xmin_bank[dst]<=xmin;xmax_bank[dst]<=xmax;ymin_bank[dst]<=ymin;ymax_bank[dst]<=ymax;
-  state_bank[dst]<=candidate_state;reason_bank[dst]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;
+  state_bank[dst]<=candidate_state;reason_bank[dst]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;weak_bank[dst]<=small_pass;
  end
 endtask
 task retain_candidate;
@@ -520,15 +524,15 @@ task retain_candidate;
       if(found_bank[bank0])begin
        found_bank[bank1]<=1;distance_bank[bank1]<=distance_bank[bank0];count_bank[bank1]<=count_bank[bank0];
        xmin_bank[bank1]<=xmin_bank[bank0];xmax_bank[bank1]<=xmax_bank[bank0];ymin_bank[bank1]<=ymin_bank[bank0];ymax_bank[bank1]<=ymax_bank[bank0];
-       state_bank[bank1]<=state_bank[bank0];reason_bank[bank1]<=reason_bank[bank0];
+       state_bank[bank1]<=state_bank[bank0];reason_bank[bank1]<=reason_bank[bank0];weak_bank[bank1]<=weak_bank[bank0];
       end
       found_bank[bank0]<=1;distance_bank[bank0]<=distance;count_bank[bank0]<=component_count;
       xmin_bank[bank0]<=xmin;xmax_bank[bank0]<=xmax;ymin_bank[bank0]<=ymin;ymax_bank[bank0]<=ymax;
-      state_bank[bank0]<=candidate_state;reason_bank[bank0]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;
+      state_bank[bank0]<=candidate_state;reason_bank[bank0]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;weak_bank[bank0]<=small_pass;
      end else if(before_second)begin
       found_bank[bank1]<=1;distance_bank[bank1]<=distance;count_bank[bank1]<=component_count;
       xmin_bank[bank1]<=xmin;xmax_bank[bank1]<=xmax;ymin_bank[bank1]<=ymin;ymax_bank[bank1]<=ymax;
-      state_bank[bank1]<=candidate_state;reason_bank[bank1]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;
+      state_bank[bank1]<=candidate_state;reason_bank[bank1]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;weak_bank[bank1]<=small_pass;
      end
  end
 endtask
@@ -544,7 +548,7 @@ always @(posedge clk or negedge rst_n)begin
   q_head<=0;q_tail<=0;q_count<=0;component_count<=0;bright_count<=0;border<=0;component_area<=0;long_side<=0;short_side<=0;fg20<=0;area17<=0;fg5<=0;area3<=0;fg10<=0;area9<=0;fg4<=0;long20<=0;short21<=0;short31<=0;long5<=0;short7<=0;short9<=0;
   for(bi=0;bi<SLOTS;bi=bi+1)begin
    found_bank[bi]<=0;distance_bank[bi]<=4095;count_bank[bi]<=0;xmin_bank[bi]<=0;xmax_bank[bi]<=0;
-   ymin_bank[bi]<=0;ymax_bank[bi]<=0;state_bank[bi]<=1;reason_bank[bi]<=0;
+   ymin_bank[bi]<=0;ymax_bank[bi]<=0;state_bank[bi]<=1;reason_bank[bi]<=0;weak_bank[bi]<=0;dark_bank[bi]<=0;
   end
   ref_index<=0;legacy_pair_selected<=0;ref_side<=0;ref_word<=0;ref_row<=0;
   origin_x<=0;origin_y<=0;ref_mask<=0;
@@ -558,7 +562,7 @@ always @(posedge clk or negedge rst_n)begin
    row_anchor_valid<=0;small_pass<=0;scan_region<=0;seen<=1;cap_count<=0;capture_foreground<=0;ready<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;recorder_objects<=0;phase<=IDLE;
    foreground_count<=0;box_width<=0;box_height<=0;
    for(bi=0;bi<SLOTS;bi=bi+1)begin
-    found_bank[bi]<=0;distance_bank[bi]<=4095;count_bank[bi]<=0;reason_bank[bi]<=0;
+    found_bank[bi]<=0;distance_bank[bi]<=4095;count_bank[bi]<=0;reason_bank[bi]<=0;weak_bank[bi]<=0;dark_bank[bi]<=0;
    end
   end else if(cap_write && seen)begin
    cap_count<=cap_count+1'b1;capture_foreground<=capture_foreground+cap_fg;
@@ -686,8 +690,9 @@ always @(posedge clk or negedge rst_n)begin
     if(!REGIONS && ref_index==1 && !legacy_pair_selected)phase<=PUBLISH;
     else if(!found_bank[ref_index])begin
      if(ref_index==SLOTS-1)phase<=PUBLISH;else ref_index<=ref_index+1'b1;
-    end else begin origin_x<=ref_cx;origin_y<=ref_cy;phase<=REF_REQ;end
+    end else begin origin_x<=ref_cx;origin_y<=ref_cy;phase<=SURFACE_ACTIVE && state_bank[ref_index]==2 && !weak_bank[ref_index] ? SURFACE_WAIT : REF_REQ;end
    end
+   SURFACE_WAIT:if(surface_ready)phase<=REF_REQ;
    REF_REQ:begin
     mem_addr<=address(word_x[XB-1:0],word_y[YB-1:0]);
     for(ref_lane_index=0;ref_lane_index<4;ref_lane_index=ref_lane_index+1)ref_mask[ref_lane_index]<=word_x>=0 && word_x<W && word_y<H &&
@@ -698,11 +703,13 @@ always @(posedge clk or negedge rst_n)begin
    REF_CHECK:begin
     if(ref_side)right_dark<=right_dark+dark_word;else left_dark<=left_dark+dark_word;
     if(ref_side && ref_word==2 && ref_last_row)begin
+     if(REVIEW_PROBE)dark_bank[ref_index]<={left_dark[8] ? 8'hff : left_dark[7:0],(right_dark+dark_word)>=256 ? 8'hff : (right_dark[7:0]+{5'd0,dark_word})};
      // Neighboring parts or a tape end may contaminate the side strips.
      // Preserve a recognized 3528 body, but do not assert quality is normal.
      if(state_bank[ref_index]==2)begin
       // F is the generic weak-gray review code, not four failed measurements.
-      if(reason_bank[ref_index]!=4'hf)reason_bank[ref_index][3]<=left_dark<ref_min || right_dark+dark_word<ref_min;
+      if(SURFACE_ACTIVE && !weak_bank[ref_index])reason_bank[ref_index][3]<=!surface_normal;
+      else if(reason_bank[ref_index]!=4'hf)reason_bank[ref_index][3]<=left_dark<ref_min || right_dark+dark_word<ref_min;
      end
      else begin
       reason_bank[ref_index]<=0;
@@ -728,4 +735,38 @@ always @(posedge clk or negedge rst_n)begin
   endcase
  end
 end
+
+generate if(REVIEW_PROBE && REGIONS)begin : review_measurement
+ wire [$clog2(SLOTS)-1:0] index0=found_bank[1] && (!found_bank[0] || xmin_bank[1]<xmin_bank[0]) ? 1 : 0;
+ wire [$clog2(SLOTS)-1:0] index1=found_bank[REGION_SLOTS+1] && (!found_bank[REGION_SLOTS] || xmin_bank[REGION_SLOTS+1]<xmin_bank[REGION_SLOTS]) ? REGION_SLOTS+1 : REGION_SLOTS;
+ wire [35:0] references={weak_bank[index1],found_bank[index1] && state_bank[index1]==2,dark_bank[index1],
+                       weak_bank[index0],found_bank[index0] && state_bank[index0]==2,dark_bank[index0]};
+ reg [15:0] first_gray;reg [31:0] gray_word;reg [10:0] gray_x;reg [9:0] gray_y;
+ always @(posedge clk or negedge rst_n)begin
+  if(!rst_n)begin first_gray<=0;gray_word<=0;gray_x<=0;gray_y<=0;end
+  else begin
+   if(accept_d && y_d[0] && !x_d[2])first_gray<={block1[9:2],block0[9:2]};
+   gray_word<={block1[9:2],block0[9:2],first_gray};gray_x<=x_d;gray_y<=y_d;
+   if(frame_start || invalidate || pixel_sof)first_gray<=0;
+  end
+ end
+ present_review_probe #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) probe(
+  .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
+  .write_enable(cap_write),.write_x(gray_x),.write_y(gray_y),.write_data(gray_word),
+  .measure(sample_new),.objects(region_objects),.references(references),.ready(probe_ready),.record(probe_record));
+if(SURFACE_REVIEW)begin : surface_measurement
+ present_surface_check #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.FOREGROUND(FOREGROUND)) surface(
+  .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
+  .write_enable(cap_write),.write_x(gray_x),.write_y(gray_y),.write_data(gray_word),
+  .measure(phase==REF_ORIGIN && found_bank[ref_index] && state_bank[ref_index]==2 && !weak_bank[ref_index]),
+  .xmin({{(10-XB){1'b0}},xmin_bank[ref_index]}),.xmax({{(10-XB){1'b0}},xmax_bank[ref_index]}),
+  .ymin({{(10-YB){1'b0}},ymin_bank[ref_index]}),.ymax({{(10-YB){1'b0}},ymax_bank[ref_index]}),
+  .ready(surface_ready),.normal(surface_normal));
+end else begin : surface_disabled
+ assign surface_ready=1;assign surface_normal=0;
+end
+end else begin : no_review_measurement
+ assign surface_ready=1;assign surface_normal=0;
+ assign probe_record=0;assign probe_ready=1;
+end endgenerate
 endmodule

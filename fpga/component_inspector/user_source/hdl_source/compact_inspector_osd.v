@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1)(
+module compact_inspector_osd #(parameter REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1)(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -30,7 +30,7 @@ reg formatting,feeding,write_valid,ready;
 reg [9:0] cursor,write_cursor;
 reg [7:0] plane[0:895];
 wire [9:0] token;
-compact_template_rom template_font(clk,{page_s,cursor},token);
+compact_template_rom #(.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
 wire [8:0] gap_id=live[57] ? live[102:94] : live[120:112];
 wire [8:0] frame_gap=record[57] ? record[102:94] : record[120:112];
 function [2:0] observations;
@@ -75,13 +75,13 @@ function [31:0] hexvalue;
    3:hexvalue=ofl;4:hexvalue=ufl;5:hexvalue=lost;6:hexvalue=le;7:hexvalue=fe;
    8:hexvalue=ie;9:hexvalue=gp;10:hexvalue=diag[31:0];11:hexvalue=pub;12:hexvalue={28'd0,diag[35:32]};
    13:hexvalue=wait_s;14:hexvalue=live[216:213];
-   16,23:hexvalue=cal_s && c[63] ? {24'd0,c[59:52]} : 0;
-   17,24:hexvalue=cal_s && c[63] ? {24'd0,c[51:44]} : 0;
-   18,25:hexvalue=cal_s && c[63] ? {24'd0,c[43:36]} : 0;
-   19,26:hexvalue=cal_s && c[63] ? {25'd0,c[13:7]} : 0;
-   20,27:hexvalue=cal_s && c[63] ? {25'd0,c[6:0]} : 0;
-   21,28:hexvalue=cal_s && c[63] ? {19'd0,c[26:14]} : 0;
-   22,29:hexvalue=cal_s && c[63] ? {31'd0,c[62]} : 0;
+   16,23:hexvalue=cal_s && c[63] ? (REVIEW_PROBE ? {24'd0,c[63:61],1'b0,c[60:57]} : {24'd0,c[59:52]}) : 0;
+   17,24:hexvalue=cal_s && c[63] ? (REVIEW_PROBE ? {24'd0,c[39:32]} : {24'd0,c[51:44]}) : 0;
+   18,25:hexvalue=cal_s && c[63] ? (REVIEW_PROBE ? {24'd0,c[31:24]} : {24'd0,c[43:36]}) : 0;
+   19,26:hexvalue=cal_s && c[63] ? (REVIEW_PROBE ? {24'd0,c[23:16]} : {25'd0,c[13:7]}) : 0;
+   20,27:hexvalue=cal_s && c[63] ? (REVIEW_PROBE ? {24'd0,c[15:8]} : {25'd0,c[6:0]}) : 0;
+   21,28:hexvalue=cal_s && c[63] ? (REVIEW_PROBE ? {24'd0,c[7:0]} : {19'd0,c[26:14]}) : 0;
+   22,29:hexvalue=cal_s && c[63] ? (REVIEW_PROBE ? {16'd0,c[56:41]} : {31'd0,c[62]}) : 0;
   endcase
  end
 endfunction
