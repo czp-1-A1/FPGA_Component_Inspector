@@ -57,14 +57,13 @@
 
 
 
-## 当前断点（P02 GitHub发布整理中；用户已授权提交/推送/交接）
+## 当前断点（P02已发布GitHub；用户反馈测试正常，供其他工程沿用）
 
-- 当前任务：用户要求把已反馈“测试正常”的P02上传GitHub，说明在哪里改了什么、新增什么、实现什么，让其他最新工程沿用。按原分支lj4747-contest-work普通提交推送；不强推或合并其他队员分支，不使用Codex记忆功能。bit本机仍统一D:/fpga_download。
-- Git基线/功能提交：R13父06f2b2e44a02e571edc33e7fb24018f5f1b50cb9；已创建本地功能提交b549237f15aafd3e3979b53f9df88b6877651e27，52个改动/新增文件。Git索引504项与测试镜像对应的冻结504源逐SHA一致，包含100硬件依赖。当前根工程已推进P02，原R13源从r13-compact-resource-20261023标签/原发布包恢复；R13发布载荷不变。
-- 算法范围：新增present_review_probe和present_surface_check；6处RTL必要接线/诊断/标题，工程表新增两个模块。仅替换T100有件reason[3]为同帧内部表面/完整性证明C5>=13、5*min(L5,R5,T5,B5)>=4*C5，双ROI全部8候选；原低3几何/填充、弱T80F、空穴/定位孔、计数/控制/视频/887元数据及完整SDC保留。REVIEW_PROBE/REGIONS使能和同槽/epoch等待是移植依赖。详见docs/P02_PORTING.md，功能提交供其他分支cherry-pick。
-- 验证/实测：原24相关回归及新26请求/105精确均值、8RGB帧64记录、70帧计数、7合成RAW帧/24质量判据/60诊断均值/12538000像素、两套各3686400像素UI均通过；未称原72全跑。用户P02交付后总体反馈“测试正常”，不扩展到未提供的速度/光照矩阵或板上回读SHA。实际Routed Slice18266/21216、ERAM103/108、DSP28、PLL5；双角+0.005/+0.020ns/TNS0、46约束/20Gray/6邮箱/SW3通过，SDC和seed2不变。
-- 版本身份：bit dfd2e5c8f7081f32f526be0b9e02e754649f1509d872e7cd12aac4ffba9199b8；源manifest f51a6f86874a8544f7ee95def859f0a875f31a8b170c79316b153e1e00d9f21c。原本机full.zip2957e9a6保留；GitHub工程包85106059字节/1245项，SHA cf36dc1e157821609fb12d917005326b66ee3bbee87ec1ea698472e5ae3ee78e，去掉原始实物拍摄/个人来源路径，bit/504源及合成验证/真实路由证据保持。公开包准备于D:/fpga_download/P02_PresentSurface_R0_20261024，计划作为Release资产上传。
-- 文档/校验：docs/P02_HANDOFF.md、P02_PORTING.md、releases/p02_20261024/README.md/INTEGRATION.json/证据。根README/HANDOFF已指向P02；历史R13文档加明确入口提示，原文归档。scripts/p02/verify_p02.py已验证Git工作树源504/bit/30组证据/完整Routed审计和公开包；prepare_p02.py新目录D:/FpgaWork/P02_github_prepare_20261024复原100依赖/seed2通过，未重构/仿真/烧板。
-- 保护：原本机current_calibration_handoff.json修改SHA d3fbfe449f0b26269e0f74cc89f47e73ff34ebd43064ffdc84ddcf6e8a8b06ce保留且不纳入提交。旧试验/未跟踪文件不混入；原AGENTS/入口及被替换源在.git/codex-p02-publish/before_integration备份，发布状态在同目录state.json。不能git add整个工作区。
-- 下一条：提交文档/发布证据，做纯Git快照复原验证，再普通push；创建标签/Release p02-present-surface-20261024（不改main），上传bit/公开ZIP/说明/SHA，核对远端分支/标签和下载SHA后写GITHUB_UPLOAD_RECEIPT并推送回执。只有实际远端核对成功才记已同步。
-- 运行/设备：无仿真/编译/板卡操作进程。原所有测试/构建已结束；本轮仅文件集成、校验、Git/API发布，尚未推送或创建Release。独立已测工程D:/FpgaWork/R13_present_surface_p02_r0_20261024和所有本机冻结归档保留。
+- 用户目标已落实：P02在lj4747-contest-work发布，逐文件改动/新增模块/实现效果/移植依赖见docs/P02_PORTING.md，完整接手/构建/验证见docs/P02_HANDOFF.md；根README/HANDOFF已切到P02。用户禁用的是Codex记忆功能，本轮未用；bit本机仍放D:/fpga_download。
+- Git身份：R13父06f2b2e44a02e571edc33e7fb24018f5f1b50cb9；建议其他工程cherry-pick功能提交b549237f15aafd3e3979b53f9df88b6877651e27。发布说明/证据提交4e697a0788e7bb603c6c797dc19812d427ab4905已普通push并ls-remote核对；标签p02-present-surface-20261024固定该发布提交。上传回执为后续独立文档提交，不自引用自身SHA；当前分支HEAD以git log/远端为准。
+- GitHub发布：https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/tag/p02-present-surface-20261024。9附件已下载逐一核对size/SHA及GitHub digest；bit dfd2e5c8f7081f32f526be0b9e02e754649f1509d872e7cd12aac4ffba9199b8。公开工程ZIP85106059字节/1245项，SHA cf36dc1e157821609fb12d917005326b66ee3bbee87ec1ea698472e5ae3ee78e，原始实物拍摄/个人来源路径留本机，冻结源/bit/合成验证/真实路由证据保留。完整上传校验在releases/p02_20261024/GITHUB_UPLOAD_RECEIPT.json。
+- 当前根工程：fpga/component_inspector已是测试对应P02，504源逐SHA一致，100硬件依赖；源manifest f51a6f86874a8544f7ee95def859f0a875f31a8b170c79316b153e1e00d9f21c。新增present_surface_check和present_review_probe，6处必要RTL/诊断/参数/标题；T100有件仅替换reason[3]为本帧内部证明C5>=13、5*min(L5,R5,T5,B5)>=4*C5，32x32内窗完整，双ROI8候选。原低3几何/填充、弱T80F、空穴/定位孔、计数/控制/视频、887元数据和SDC保留。使能依赖REVIEW_PROBE/REGIONS及同槽epoch等待，迁移按具名参数核对。
+- 实测与验证：用户P02交付后总体回复“测试正常”，不扩大为未提供的速度/光照矩阵或板上回读SHA。原24相关回归及新26请求105精确均值、8RGB帧64记录、70帧计数、7合成RAW帧24质量判据/60诊断均值/12538000像素，两套各3686400像素UI通过；未称原72全跑。实际Routed Slice18266/21216、ERAM103/108(余5)、DSP28、PLL5；双角+0.005/+0.020ns/TNS0，46约束/20Gray/6邮箱/SW3通过，原SDC/seed2不变。
+- 接手校验：python scripts/p02/verify_p02.py；prepare_p02.py --work <新英文目录> --td <包含scripts/DefaultFlow.tcl的TD目录>。只校验/复原，不自动编译或烧录。本机新准备D:/FpgaWork/P02_github_prepare_20261024通过；从纯Git提交4e697a07导出641文件至D:/FpgaWork/P02_github_git_verify_20261024，504源/30组证据/100依赖/完整物理审计通过，再复原D:/FpgaWork/P02_github_git_replay_20261024通过。下载的远端完整包再次全CRC/SHA/源504/时序证据校验通过，记录随发布。未重新仿真/布线。
+- 历史和保护：原R13位于r13-compact-resource-20261023标签/原release；R13校验要在其标签新checkout运行，当前P02树不应通过R13源SHA。旧current_*.json/README/P01收据是历史快照，不作当前答案。原本机current_calibration_handoff.json修改SHA d3fbfe449f0b26269e0f74cc89f47e73ff34ebd43064ffdc84ddcf6e8a8b06ce保留且未提交；其他旧未跟踪试验未混入。备份/本机上传过程state在.git/codex-p02-publish；R13/P01/P02本机冻结工程、原包与回退均保留。
+- 下一条：其他最新工程以b549237f为移植单元，按迁移表处理差异并冻结新版本重新验证；不要覆盖接收工程自己的计数/DDR/控制改动或继承本bit的时序结论。当前成果不再重复改动，等待用户下一目标；无Codex记忆依赖、无板卡操作/后台编译任务，未强推或合并其他分支。
