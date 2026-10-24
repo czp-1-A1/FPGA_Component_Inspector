@@ -1,0 +1,289 @@
+Created by          : Tang Dynasty v6.2.168116
+                    : Copyright (c) 2012-2025 Anlogic Inc.
+Generated           : Sat Oct 24 22:25:52 2026
+
+Top Model           : design_top_wrapper
+Device              : PH1P35MDG324
+Speed               : 3
+STA coverage        : 93.36%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     Set Max Delay (Shadowed)
+Constr         :     set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]
+
+Statistics:
+	Setup Check    :              0   end points,               0   paths
+----------------------------------------------------------------------------------------------------
+
+Max Delay Paths
+----------------------------------------------------------------------------------------------------
+Begin Point         : u_count_live_display/ack_reg_syn_3.clk(triggered by clock HDMI_PIXEL_CLK)
+End Point           : u_count_live_display/ack_sync_reg[0]_syn_2.ima(triggered by clock pll_clk_100m)
+Check Type          : setup
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+clk2q               x041y049z6                                        pin: u_count_live_display/ack_reg_syn_3.oqb
+net (fo=2)                                                            net: u_count_live_display/ack,  ../../../user_source/hdl_source/status_cdc.v(9)
+                                                                      pin: u_count_live_display/ack_sync_reg[0]_syn_2.ima
+reg                 x041y050z2                                        net: u_count_live_display/ack_sync[0],  ../../../user_source/hdl_source/status_cdc.v(10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     
+set_max_delay -datapath_only 9.0 -from [get_regs {u_count_live_display/ack}] -to [get_regs {u_count_live_display/ack_sync[0]}]
+
+Type           :     SMD
+
+Statistics:
+Max            : SWNS      8.113ns, STNS      0.000ns,         0 Viol Endpoints,         1 Total Endpoints,         1 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 8.113ns
+Begin Point         : u_count_live_display/ack_reg_syn_3.clk (rising edge triggered by clock HDMI_PIXEL_CLK  { rise@0.000000ns  fall@6.734000ns  period=13.468000 })
+End Point           : u_count_live_display/ack_sync_reg[0]_syn_2.ima (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 9.000ns { pll_clk_100m rising@0.000ns - HDMI_PIXEL_CLK rising@0.000ns }
+Data Path Delay     : 0.823ns (cell 0.224ns (27%), net 0.599ns (73%))
+Clock Skew          : 0.000ns
+Logic Level         : 0
+Max Fanout          : 2
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.103ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y079            0.000          0.000          net: I_sys_clk_dup_6,  ../../../user_source/hdl_source/design_top_wrapper.v(5)
+                                                                      pin: u_hdmi_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y079            0.000          0.000          pin: u_hdmi_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.000          0.000          net: u_hdmi_pll/u_ref/clk0_buf,  ../../../user_source/hdl_source/native_hdmi_pll.v(32)
+                                                                      pin: u_hdmi_pll/u_ref/bufg_feedback.clkin[0]
+GCLK                x023y039z20         0.000          0.000          pin: u_hdmi_pll/u_ref/bufg_feedback.clkout
+net (fo=1)                              0.000          0.000          net: u_hdmi_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/refclk,  ../../../user_source/ip_source/PLL/RTL/ph1p_phy_pll_wrapper_25a56e5ce2f9.v(119)
+                                                                      pin: u_hdmi_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1.clkin
+SCLK                x023y019z0          0.000          0.000          pin: u_hdmi_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1.clkout
+net (fo=1)          x000y000            0.000          0.000          net: u_hdmi_pll/u_ref/bufg_feedback_auto_created_sclk_s_0_l_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_hdmi_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x000y000            0.000          0.000          pin: u_hdmi_pll/u_output/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.000          0.000          net: u_hdmi_pll/u_output/clk0_buf,  ../../../user_source/hdl_source/native_hdmi_pll.v(32)
+                                                                      pin: u_hdmi_pll/u_output/bufg_feedback.clkin[0]
+GCLK                x023y039z0          0.000          0.000          pin: u_hdmi_pll/u_output/bufg_feedback.clkout
+net (fo=4)                              0.000          0.000          net: u_experiment_osd/compact_page$render/clk,  ../../../user_source/hdl_source/compact_inspector_osd.v(6)
+                                                                      pin: u_hdmi_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk3.clkin
+SCLK                x023y059z14         0.000          0.000          pin: u_hdmi_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk3.clkout
+net (fo=147)                            0.000          0.000          net: u_hdmi_pll/u_output/bufg_feedback_auto_created_sclk_s_1_r_bk3_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_count_live_display/ack_reg_syn_3.clk
+--------------------------------------------------------------------  ---------------
+clk2q               x041y049z6          0.137    r     0.137          pin: u_count_live_display/ack_reg_syn_3.oqb
+net (fo=2)                              0.599          0.736          net: u_count_live_display/ack,  ../../../user_source/hdl_source/status_cdc.v(9)
+                                                                      pin: u_count_live_display/ack_sync_reg[0]_syn_2.ima
+reg                 x041y050z2          0.087    r     0.823          net: u_count_live_display/ack_sync[0],  ../../../user_source/hdl_source/status_cdc.v(10)
+--------------------------------------------------------------------  ---------------
+Arrival                                                0.823               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../../user_source/hdl_source/design_top_wrapper.v(5)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.000          0.000          net: u_PLL/clk0_buf,  ../../../user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.000          0.000          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.000          0.000          net: u_isp_top/classified_counting$pipeline/counter/clk,  ../../../user_source/hdl_source/classified_pocket_counter.v(6)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x023y059z12         0.000          0.000          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=1483)                           0.000          0.000          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_count_live_display/ack_sync_reg[0]_syn_2.clk
+constraint delay                        9.000          9.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064          8.936               
+clock uncertainty                       0.000          8.936               
+clock pessimism                         0.000          8.936               
+--------------------------------------------------------------------  ---------------
+Required                                               8.936               
+--------------------------------------------------------------------  ---------------
+Slack                                                  8.113               
+
+
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+Exclusive Clock Groups
+--------------------
+
+Set False Path
+--------------------
+
+From flow sdc
+--------------------
+----------------------------------------------------------------------------------------------------
+Path Group     :     Set False Path
+Constr         :     set_false_path -hold 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]
+
+Statistics:
+	Setup Check    :              0   end points,               0   paths
+----------------------------------------------------------------------------------------------------
+
+
+Min Delay Paths
+----------------------------------------------------------------------------------------------------
+Begin Point         : u_count_live_display/ack_reg_syn_3.clk(triggered by clock HDMI_PIXEL_CLK)
+End Point           : u_count_live_display/ack_sync_reg[0]_syn_2.ima(triggered by clock pll_clk_100m)
+Check Type          : hold
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+clk2q               x041y049z6                                        pin: u_count_live_display/ack_reg_syn_3.oqb
+net (fo=2)                                                            net: u_count_live_display/ack,  ../../../user_source/hdl_source/status_cdc.v(9)
+                                                                      pin: u_count_live_display/ack_sync_reg[0]_syn_2.ima
+reg                 x041y050z2                                        net: u_count_live_display/ack_sync[0],  ../../../user_source/hdl_source/status_cdc.v(10)
+
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     Set False Path
+Constr         :     set_false_path -hold 9.0 -from [get_regs {u_count_live_display/ack}] -to [get_regs {u_count_live_display/ack_sync[0]}]
+
+Statistics:
+	Setup Check    :              0   end points,               0   paths
+----------------------------------------------------------------------------------------------------
+
+
+Min Delay Paths
+----------------------------------------------------------------------------------------------------
+Begin Point         : u_count_live_display/ack_reg_syn_3.clk(triggered by clock HDMI_PIXEL_CLK)
+End Point           : u_count_live_display/ack_sync_reg[0]_syn_2.ima(triggered by clock pll_clk_100m)
+Check Type          : hold
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+clk2q               x041y049z6                                        pin: u_count_live_display/ack_reg_syn_3.oqb
+net (fo=2)                                                            net: u_count_live_display/ack,  ../../../user_source/hdl_source/status_cdc.v(9)
+                                                                      pin: u_count_live_display/ack_sync_reg[0]_syn_2.ima
+reg                 x041y050z2                                        net: u_count_live_display/ack_sync[0],  ../../../user_source/hdl_source/status_cdc.v(10)
+
+
+
+From ip sdc
+--------------------
+
+u_video_in/U_w128_d512_fifo
+--------------------
+
+u_video_out/U_w128_d512_fifo
+--------------------

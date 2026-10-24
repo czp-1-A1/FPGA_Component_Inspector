@@ -26,6 +26,8 @@
 
 `classified_pocket_counter.v`、`classified_count_pipeline.v`、视频/DDR/帧保护、原测试和gold、引脚及完整SDC均保留原字节。源清单共504项；增量中另有测试、参考和准备/校验工具。生成的TD路径描述符也会随工程位置变化，不能当作算法改动。完整累计差分见 [R13_TO_P02.patch](../releases/p02_20261024/R13_TO_P02.patch)。
 
+关键实现位置：[完整性及采样范围](../fpga/component_inspector/user_source/hdl_source/present_surface_check.v#L23)、[内部比值比较](../fpga/component_inspector/user_source/hdl_source/present_surface_check.v#L64)、[候选等待](../fpga/component_inspector/user_source/hdl_source/frame_shape_search.v#L693)、[仅替换reason[3]](../fpga/component_inspector/user_source/hdl_source/frame_shape_search.v#L711)、[元数据就绪等待](../fpga/component_inspector/user_source/hdl_source/isp/isp_top.v#L347)。
+
 ## 3. 判据、资源与接口
 
 ```text

@@ -1,9 +1,9 @@
-# R13接棒
+# P02接棒
 
-当前入口：[完整工程交接](docs/R13_HANDOFF.md)。读根[README](README.md)、[AGENTS](AGENTS.md)后再动代码。
+当前入口：[P02完整交接](docs/P02_HANDOFF.md)。跨工程沿用先读[逐文件改动与迁移](docs/P02_PORTING.md)，然后读[AGENTS.md](AGENTS.md)。
 
-工作分支`lj4747-contest-work`，冻结标签`r13-compact-resource-20261023`。先`git status --short --branch --untracked-files=all`、`git log -1`、`git remote -v`，确认前一实现端停止。
+分支lj4747-contest-work，用户反馈P02“测试正常”。建议移植功能提交b549237f15aafd3e3979b53f9df88b6877651e27；源码、bit、资源/时序和证据身份见releases/p02_20261024/。正式标签p02-present-surface-20261024，完整验证包作为GitHub Release资产提供。
 
-运行`python scripts/r13/verify_r13.py`核对471输入与正式载荷，再运行`python scripts/r13/prepare_r13.py --work D:/FpgaWork/R13_replay --td D:/td6.2.1`恢复新工程。构建/测试/状态/位域/现场真值要求见完整说明。保持冻结答案独立，不把历史默认参数、旧README按键或HDMI刷新率当生产状态。
+先核对git status/分支/HEAD，再运行python scripts/p02/verify_p02.py。使用prepare_p02.py在新英文短路径复原，不覆盖其他工作。原R13标签/发布和P01回退保留；旧current指针、旧CAL语义和旧运行PID不是当前答案。
 
-源码、bit、ZIP及说明均在本仓库；TD/ModelSim安装、厂商库和许可证由接手电脑提供。无板卡操作或自动恢复任务。旧交接说明保存在[历史文件](docs/history/HANDOFF_before_R13_479a30b.md)。
+按当前文档保存源码/bit SHA及人工真值；工具/许可证/板卡不随Git传输。只有源/归档/历史证据校验通过，不能称重新编译或实物量化验证通过。用户总体反馈记录在FIELD_FEEDBACK，不扩大为所有速度/光照保证。

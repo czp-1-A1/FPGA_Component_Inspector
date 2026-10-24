@@ -1,0 +1,261 @@
+Created by          : Tang Dynasty v6.2.168116
+                    : Copyright (c) 2012-2025 Anlogic Inc.
+Generated           : Sat Oct 24 22:25:52 2026
+
+Top Model           : design_top_wrapper
+Device              : PH1P35MDG324
+Speed               : 3
+STA coverage        : 93.36%
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     pll_clk_24m -> pll_clk_24m
+Type           :     Self
+From Clock     :     pll_clk_24m
+To Clock       :     pll_clk_24m
+Min Period     :     1.000ns
+Fmax           :     1000.000MHz
+
+Statistics:
+Max            : SWNS     41.056ns, STNS      0.000ns,         0 Viol Endpoints,         1 Total Endpoints,         1 Paths Analyzed
+Min            : HWNS      0.137ns, HTNS      0.000ns,         0 Viol Endpoints,         1 Total Endpoints,         1 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 41.056ns
+Begin Point         : count_controls$controls/sw_sync_reg[1]_syn_2.clk (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+End Point           : count_controls$controls/sw_sync_reg[1]_syn_2.ima (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 41.538ns { pll_clk_24m rising@41.538ns - pll_clk_24m rising@0.000ns }
+Data Path Delay     : 0.418ns (cell 0.224ns (53%), net 0.194ns (47%))
+Clock Skew          : 0.000ns
+Logic Level         : 0
+Max Fanout          : 1
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.810          0.810          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.684          1.494          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.115          1.609          net: I_sys_clk_dup_6,  ../../../user_source/hdl_source/design_top_wrapper.v(5)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -1.607          0.002          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.833          0.835          net: O_cam_24m_dup_1,  ../../../user_source/hdl_source/design_top_wrapper.v(10)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.016          0.851          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=3)                              0.371          1.222          net: O_cam_24m_syn_3,  ../../../user_source/hdl_source/design_top_wrapper.v(10)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4.clkin
+SCLK                x023y019z15         0.079          1.301          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4.clkout
+net (fo=311)                            0.640          1.941          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4_sclk_outnet,  NOFILE(0)
+                                                                      pin: count_controls$controls/sw_sync_reg[1]_syn_2.clk
+launch edge                             0.000    r     1.941               
+--------------------------------------------------------------------  ---------------
+clk2q               x034y009z5          0.137    r     2.078          pin: count_controls$controls/sw_sync_reg[1]_syn_2.oqb
+net (fo=1)                              0.194          2.272          net: count_controls$controls/sw_sync[0],  ../../../user_source/hdl_source/pocket_run_controls.v(32)
+                                                                      pin: count_controls$controls/sw_sync_reg[1]_syn_2.ima
+reg                 x034y009z5          0.087    r     2.359          net: count_controls$controls/sw_sync[1],  ../../../user_source/hdl_source/pocket_run_controls.v(32)
+--------------------------------------------------------------------  ---------------
+Arrival                                                2.359               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.745          0.745          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.629          1.374          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.099          1.473          net: I_sys_clk_dup_6,  ../../../user_source/hdl_source/design_top_wrapper.v(5)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -1.378          0.095          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.714          0.809          net: O_cam_24m_dup_1,  ../../../user_source/hdl_source/design_top_wrapper.v(10)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.014          0.823          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=3)                              0.318          1.141          net: O_cam_24m_syn_3,  ../../../user_source/hdl_source/design_top_wrapper.v(10)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4.clkin
+SCLK                x023y019z15         0.068          1.209          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4.clkout
+net (fo=311)                            0.557          1.766          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4_sclk_outnet,  NOFILE(0)
+                                                                      pin: count_controls$controls/sw_sync_reg[1]_syn_2.clk
+capture edge                           41.538    r    43.304               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064         43.240               
+clock uncertainty                       0.000         43.240               
+clock pessimism                         0.175         43.415               
+--------------------------------------------------------------------  ---------------
+Required                                              43.415               
+--------------------------------------------------------------------  ---------------
+Slack                                                 41.056               
+
+
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 0.137ns
+Begin Point         : count_controls$controls/sw_sync_reg[1]_syn_2.clk (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+End Point           : count_controls$controls/sw_sync_reg[1]_syn_2.ima (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+Check Type          : hold
+Process             : fast_m40c
+Budget              : 0.000ns { pll_clk_24m rising@0.000ns - pll_clk_24m rising@0.000ns }
+Data Path Delay     : 0.149ns (cell 0.094ns (63%), net 0.055ns (37%))
+Clock Skew          : 0.000ns
+Logic Level         : 0
+Max Fanout          : 1
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.810          0.810          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.257          1.067          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.040          1.107          net: I_sys_clk_dup_6,  ../../../user_source/hdl_source/design_top_wrapper.v(5)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -0.601          0.506          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.315          0.821          net: O_cam_24m_dup_1,  ../../../user_source/hdl_source/design_top_wrapper.v(10)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.006          0.827          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=3)                              0.133          0.960          net: O_cam_24m_syn_3,  ../../../user_source/hdl_source/design_top_wrapper.v(10)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4.clkin
+SCLK                x023y019z15         0.025          0.985          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4.clkout
+net (fo=311)                            0.222          1.207          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4_sclk_outnet,  NOFILE(0)
+                                                                      pin: count_controls$controls/sw_sync_reg[1]_syn_2.clk
+launch edge                             0.000    r     1.207               
+--------------------------------------------------------------------  ---------------
+clk2q               x034y009z5          0.065    r     1.272          pin: count_controls$controls/sw_sync_reg[1]_syn_2.oqb
+net (fo=1)                              0.055          1.327          net: count_controls$controls/sw_sync[0],  ../../../user_source/hdl_source/pocket_run_controls.v(32)
+                                                                      pin: count_controls$controls/sw_sync_reg[1]_syn_2.ima
+reg                 x034y009z5          0.029    f     1.356          net: count_controls$controls/sw_sync[1],  ../../../user_source/hdl_source/pocket_run_controls.v(32)
+--------------------------------------------------------------------  ---------------
+Arrival                                                1.356               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.915          0.915          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.290          1.205          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.043          1.248          net: I_sys_clk_dup_6,  ../../../user_source/hdl_source/design_top_wrapper.v(5)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -0.654          0.594          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.342          0.936          net: O_cam_24m_dup_1,  ../../../user_source/hdl_source/design_top_wrapper.v(10)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.007          0.943          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=3)                              0.145          1.088          net: O_cam_24m_syn_3,  ../../../user_source/hdl_source/design_top_wrapper.v(10)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4.clkin
+SCLK                x023y019z15         0.030          1.118          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4.clkout
+net (fo=311)                            0.245          1.363          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk4_sclk_outnet,  NOFILE(0)
+                                                                      pin: count_controls$controls/sw_sync_reg[1]_syn_2.clk
+capture edge                            0.000    r     1.363               
+--------------------------------------------------------------------  ---------------
+hold                                    0.012          1.375               
+clock uncertainty                       0.000          1.375               
+clock pessimism                        -0.156          1.219               
+--------------------------------------------------------------------  ---------------
+Required                                               1.219               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.137               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

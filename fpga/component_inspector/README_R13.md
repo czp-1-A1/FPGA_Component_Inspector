@@ -1,3 +1,5 @@
+> 历史R13说明：当前分支工程已推进P02。当前入口为仓库docs/P02_HANDOFF.md；R13源校验请在r13-compact-resource-20261023标签的新checkout执行，原发布包保持不变。
+
 # R13当前入口
 
 本目录的471项R13冻结输入以[R13_FROZEN_INPUTS.json](R13_FROZEN_INPUTS.json)为准。

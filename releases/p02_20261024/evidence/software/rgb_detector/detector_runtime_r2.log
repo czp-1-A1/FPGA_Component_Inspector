@@ -1,0 +1,68 @@
+# vsim -c work.tb_surface_detector -onfinish exit -l detector_runtime_r2.log -do "run -all; quit -code 1 -force" 
+# Start time: 22:02:36 on Oct 24,2026
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: tb_surface_detector.sv(9): (vopt-2685) [TFMPC] - Too few port connections for 'baseline'.  Expected 30, found 19.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: tb_surface_detector.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2685) [TFMPC] - Too few port connections for 'candidate'.  Expected 30, found 19.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: tb_surface_detector.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2685) [TFMPC] - Too few port connections for 'default_off'.  Expected 30, found 19.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: tb_surface_detector.sv(19): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_surface_detector(fast)
+# run -all
+# SURFACE RGB scene0 checks8 means40 changed0 cycles92333 records=c06c048c0c01a88f270c06c048c1ac3808f270c06c048c15e2e48f270c06c048c10e2448f270c06c048c0c01a83610cc06c048c1ac3803610cc06c048c15e2e43610cc06c048c10e2443610c
+# SURFACE RGB scene1 checks16 means80 changed8 cycles92237 records=c06c048c10c2408f270c06c048c1602e88f270c06c048c1442b08f270c06c048c1282788f270c06c048c10c2403610cc06c048c1602e83610cc06c048c1442b03610cc06c048c1282783610c
+# SURFACE RGB scene2 checks24 means120 changed16 cycles92333 records=d06c048c0c01a88f270d06c048c1ac3808f270d06c048c15e2e48f270d06c048c10e2448f270d06c048c0c01a83610cd06c048c1ac3803610cd06c048c15e2e43610cd06c048c10e2443610c
+# SURFACE RGB scene3 checks32 means160 changed20 cycles92333 records=c06c048c0c01a88f270d06c048c1ac3808f270c06c048c15e2e48f270d06c048c10e2448f270c06c048c0c01a83610cd06c048c1ac3803610cc06c048c15e2e43610cd06c048c10e2443610c
+# SURFACE RGB scene4 checks40 means200 changed20 cycles86669 records=de6c048c0c01a87aa1ede6c048c1ac3807aa1ede6c048c15e2e47aa1ede6c048c10e2447aa1ede6c048c0c01a84995ade6c048c1ac3804995ade6c048c15e2e44995ade6c048c10e2444995a
+# SURFACE RGB scene5 checks48 means240 changed28 cycles73241 records=d24743c99ae37e90a6cd24743c98c21a690a6cd24743c99602e290a6cd24743c991024290a6cd24743c99ae37e37908d24743c98c21a637908d24743c99602e237908d24743c991024237908
+# SURFACE RGB scene6 checks56 means280 changed36 cycles83677 records=d855858a0be1ac9026cd855858a1aa3849026cd855858a15c2e89026cd855858a10c2489026cd855858a0be1ac37108d855858a1aa38437108d855858a15c2e837108d855858a10c24837108
+# SURFACE RGB scene7 checks64 means280 changed36 cycles39364 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+# PASS surface detector:8 full720p RGB frames, 64 recorder records, 280 independent means, 36 quality bits changed, 2506968 clocks default-off EXACT P01; all8 slots, ROI edges, neighbours/front/back/geometry/fill/weak/cancel
+# ** Note: $finish    : tb_surface_detector.sv(121)
+#    Time: 25069730 ns  Iteration: 1  Instance: /tb_surface_detector
+# End time: 22:02:47 on Oct 24,2026, Elapsed time: 0:00:11
+# Errors: 0, Warnings: 36

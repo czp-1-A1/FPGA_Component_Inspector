@@ -19,6 +19,8 @@
 
 ## 工程目录
 
+用户指定（2026-10-24）：以后交付的bit文件统一复制到 `D:/fpga_download/`，使用明确版本文件名并校验SHA；原工程/完整归档保留原位，不覆盖不同SHA的同名文件。
+
 
 开发工程统一放 `fpga/`，本机完整路径 `<repo>/fpga`。工程目录及其依赖文件使用英文/ASCII命名、无空格、相对引用；其他电脑的仓库父路径也需全英文。当前候选底座为 `fpga/component_inspector/`，TD入口 `td_project/camera_to_dsi_display.al`；保留例程内部布局，不要求套用之前的空目录骨架。原始Example保留不动。
 
@@ -55,14 +57,14 @@
 
 
 
-## 当前断点（2026-10-23，R13冻结交接）
+## 当前断点（P02 GitHub发布整理中；用户已授权提交/推送/交接）
 
-- 目标：用户授权把已交付R13上传GitHub，详细交接其他AI。先读README.md、docs/R13_HANDOFF.md；旧README/历史handoff不代表当前按键和生产配置。
-- 分支：lj4747-contest-work；上传父479a30b426d3a7edcde280d7bb202155fde4f310。当前源码为R13 stage_B_r3冻结471输入，manifest243651b68a39160cfb81efe91b11836bcb32109750ecd29793530fca1bc98c65，不混入未采用R14试验。
-- 改动：本次Git集成fpga/component_inspector的471源与桌面包逐字节相同，增加完整交接、校验/新目录准备工具、releases/r13_20261023的bit/完整ZIP/说明/SHA/关键证据。原Example、其他队员分支及旧handoff/镜像保留；原目录额外旧文件不在R13编译清单，必须按manifest新目录复原。
-- R13功能：固定ROI共享分类器的真实结果计数，局部失联恢复、防重/源帧绑定/空号与GAP；SW3上再下开段、SW4上检测下计数、K3+K4长按1秒全部清零。两页紧凑中文类别与Logo，最多300穴。
-- 验证：72既定回归（25重跑/47同SHA真实旧结果）、10native/86RGB/44源帧绑定、行RAM等价、3686400 UI像素和动态RGB通过；原SDC/seed2最终setup+0.002/hold+0.020ns、双角TNS0，46max-delay/Ignored0、20Gray位8ns、6邮箱/SW3扇出通过。
-- 资源：Slice19708/21216=92.89%，ERAM87/108，DSP28/40，PLL5/6。ERAM释放18；Slice<90%未达标。2026-10-23用户总体反馈R13上板没问题，未给新的逐案例量化数据；不宣称高速空穴全部解决。
-- 正式镜像SHA2350b5985afa679df3d8bfd1a5fa2aba9f355468f284704d10dd46beeda402a7；完整包SHA96db469ed1c9359c21d1053822621cf0789ba86bd48017144442cf776a425cd9。完整包1225项/471源/98依赖独立复原通过，详细旧失败保留。
-- 下一条：新AI先运行scripts/r13/verify_r13.py，隔离复原，再按用户目标继续；禁止将历史未采用trial、旧PID或旧small-dual补丁混入答案。当前无仿真/构建/实现写入进程，无板卡/JTAG/Flash操作；r12保持PAUSED，generic跟进已删除。
-- 提交/推送：此文件不自引用提交SHA；查git log、R13标签及releases/r13_20261023/GITHUB_UPLOAD_RECEIPT.json。上传过程状态在本机github_upload_state.json，只有远端核对成功才记录已同步。历史断点完整留在docs/history。
+- 当前任务：用户要求把已反馈“测试正常”的P02上传GitHub，说明在哪里改了什么、新增什么、实现什么，让其他最新工程沿用。按原分支lj4747-contest-work普通提交推送；不强推或合并其他队员分支，不使用Codex记忆功能。bit本机仍统一D:/fpga_download。
+- Git基线/功能提交：R13父06f2b2e44a02e571edc33e7fb24018f5f1b50cb9；已创建本地功能提交b549237f15aafd3e3979b53f9df88b6877651e27，52个改动/新增文件。Git索引504项与测试镜像对应的冻结504源逐SHA一致，包含100硬件依赖。当前根工程已推进P02，原R13源从r13-compact-resource-20261023标签/原发布包恢复；R13发布载荷不变。
+- 算法范围：新增present_review_probe和present_surface_check；6处RTL必要接线/诊断/标题，工程表新增两个模块。仅替换T100有件reason[3]为同帧内部表面/完整性证明C5>=13、5*min(L5,R5,T5,B5)>=4*C5，双ROI全部8候选；原低3几何/填充、弱T80F、空穴/定位孔、计数/控制/视频/887元数据及完整SDC保留。REVIEW_PROBE/REGIONS使能和同槽/epoch等待是移植依赖。详见docs/P02_PORTING.md，功能提交供其他分支cherry-pick。
+- 验证/实测：原24相关回归及新26请求/105精确均值、8RGB帧64记录、70帧计数、7合成RAW帧/24质量判据/60诊断均值/12538000像素、两套各3686400像素UI均通过；未称原72全跑。用户P02交付后总体反馈“测试正常”，不扩展到未提供的速度/光照矩阵或板上回读SHA。实际Routed Slice18266/21216、ERAM103/108、DSP28、PLL5；双角+0.005/+0.020ns/TNS0、46约束/20Gray/6邮箱/SW3通过，SDC和seed2不变。
+- 版本身份：bit dfd2e5c8f7081f32f526be0b9e02e754649f1509d872e7cd12aac4ffba9199b8；源manifest f51a6f86874a8544f7ee95def859f0a875f31a8b170c79316b153e1e00d9f21c。原本机full.zip2957e9a6保留；GitHub工程包85106059字节/1245项，SHA cf36dc1e157821609fb12d917005326b66ee3bbee87ec1ea698472e5ae3ee78e，去掉原始实物拍摄/个人来源路径，bit/504源及合成验证/真实路由证据保持。公开包准备于D:/fpga_download/P02_PresentSurface_R0_20261024，计划作为Release资产上传。
+- 文档/校验：docs/P02_HANDOFF.md、P02_PORTING.md、releases/p02_20261024/README.md/INTEGRATION.json/证据。根README/HANDOFF已指向P02；历史R13文档加明确入口提示，原文归档。scripts/p02/verify_p02.py已验证Git工作树源504/bit/30组证据/完整Routed审计和公开包；prepare_p02.py新目录D:/FpgaWork/P02_github_prepare_20261024复原100依赖/seed2通过，未重构/仿真/烧板。
+- 保护：原本机current_calibration_handoff.json修改SHA d3fbfe449f0b26269e0f74cc89f47e73ff34ebd43064ffdc84ddcf6e8a8b06ce保留且不纳入提交。旧试验/未跟踪文件不混入；原AGENTS/入口及被替换源在.git/codex-p02-publish/before_integration备份，发布状态在同目录state.json。不能git add整个工作区。
+- 下一条：提交文档/发布证据，做纯Git快照复原验证，再普通push；创建标签/Release p02-present-surface-20261024（不改main），上传bit/公开ZIP/说明/SHA，核对远端分支/标签和下载SHA后写GITHUB_UPLOAD_RECEIPT并推送回执。只有实际远端核对成功才记已同步。
+- 运行/设备：无仿真/编译/板卡操作进程。原所有测试/构建已结束；本轮仅文件集成、校验、Git/API发布，尚未推送或创建Release。独立已测工程D:/FpgaWork/R13_present_surface_p02_r0_20261024和所有本机冻结归档保留。

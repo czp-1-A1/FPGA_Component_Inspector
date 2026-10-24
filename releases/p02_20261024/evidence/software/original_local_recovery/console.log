@@ -1,0 +1,47 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/local_recovery/transcript.log -wlf modelsim_work/local_recovery/wave.wlf -do "log /tb_local_recovery/*; run -all; quit -code 1 -force" test_local_recovery.tb_local_recovery 
+# Start time: 21:55:39 on Oct 24,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 3 FSMs in module "classified_pocket_counter(fast)".
+# ** Warning: tb_local_recovery.v(20): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 37, found 22.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'uncertainty_from'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'empty_id'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'ledger_data'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'event_run'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'object_ids'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'region'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'direction_right'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'direction_valid'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'review_total'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'run_id'.
+# ** Warning: tb_local_recovery.v(20): (vopt-2718) [TFMPC] - Missing connection for port 'snapshot_new'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_local_recovery(fast)
+# Loading work.classified_pocket_counter(fast)
+# log /tb_local_recovery/*
+#  run -all
+# PASS local recovery case=0: actual events, local gap, return de-duplication, source binding, pause, full clear
+# ** Note: $finish    : tb_local_recovery.v(81)
+#    Time: 209070 ns  Iteration: 1  Instance: /tb_local_recovery
+# End time: 21:55:41 on Oct 24,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 16

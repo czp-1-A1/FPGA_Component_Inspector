@@ -1,0 +1,61 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/cal180_holes/transcript.log -wlf modelsim_work/cal180_holes/wave.wlf -do "log /tb_cal180_holes/*; run -all; quit -code 1 -force" test_cal180_holes.tb_cal180_holes 
+# Start time: 22:00:19 on Oct 24,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "frame_shape_search(fast)".
+# ** Warning: tb_cal180_holes.v(8): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 30, found 11.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'probe_ready'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'probe_record'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_y'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_x'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_valid'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_objects'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'objects'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# ** Warning: tb_cal180_holes.v(8): (vopt-2718) [TFMPC] - Missing connection for port 'sample_new'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_cal180_holes(fast)
+# Loading work.frame_shape_search(fast)
+# Loading work.inspection_region_config(fast)
+# log /tb_cal180_holes/*
+#  run -all
+# REF CAL80 pattern=0 records=e005414297930080a10e003410210120e80a0ee00541429793004e948e003410210120e4e946 cycles=41951
+# REF CAL80 pattern=1 records=c05b048b17230c7c220c05b048b0fa21c7c220c05b048b17230c4a158c05b048b0fa21c4a158 cycles=63411
+# REF CAL80 pattern=2 records=c05b048b17230c7c220e003410210120e80a0ee00541429793004e948c05b048b0fa21c4a158 cycles=52681
+# REF CAL80 pattern=3 records=0000000000000000000000000000000000000000000000000000000000000000000000000000 cycles=40752
+# REF CAL80 pattern=4 records=c05b048b17230c7c220e003410210120e80a0ee00541429793004e948c05b048b0fa21c4a158 cycles=52681
+# REF CAL80 pattern=5 records=0000000000000000000000000000000000000000000000000000000000000000000000000000 cycles=40138
+# REF CAL80 pattern=6 records=e005414297930080a10e003410210120e80a0ee00541429793004e948e00341020c61984e946 cycles=40785
+# REF CAL80 pattern=7 records=e005414297930080a10e003410210120e80a0e0000000000000000000e00541429793004e948 cycles=40640
+# REF CAL80 pattern=8 records=a005414297930080a10a003410210120e80a0ea00541429793004e948a003410210120e4e946 cycles=43929
+# PASS cal180 holes: 9 full frames, 27 records, exact CAL80 W/H/A, CAL100 bodies unchanged with low fringe, feed rejection and high-fragment removal, mixed zones, bright border, unobserved gap, zone-edge and outside-center, small bright object not EMPTY, cancel
+# ** Note: $finish    : tb_cal180_holes.v(96)
+#    Time: 25036460 ns  Iteration: 1  Instance: /tb_cal180_holes
+# End time: 22:00:28 on Oct 24,2026, Elapsed time: 0:00:09
+# Errors: 0, Warnings: 20

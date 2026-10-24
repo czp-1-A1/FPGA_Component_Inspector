@@ -1,0 +1,128 @@
+{
+  "base_commit": "06f2b2e44a02e571edc33e7fb24018f5f1b50cb9",
+  "branch": "lj4747-contest-work",
+  "functional_commit": "b549237f15aafd3e3979b53f9df88b6877651e27",
+  "release_tag": "p02-present-surface-20261024",
+  "frozen_source_inputs": 504,
+  "frozen_manifest_sha256": "f51a6f86874a8544f7ee95def859f0a875f31a8b170c79316b153e1e00d9f21c",
+  "hardware_dependencies": 100,
+  "hardware_manifest_sha256": "52909475069d102783cbd37ace6a5af49d7531be654bf4b0eee652347dd27a51",
+  "changed_original_static_inputs": {
+    "td_project/camera_to_dsi_display.al": {
+      "r13": "3c98246183d86bfa42d564196946de7f07d0c18736fb7b91a76ee3d93b191135",
+      "p02": "4933870b2079536c186de5234bbe844490b685aff9627bfb3e3cccc6384e31a9"
+    },
+    "td_project/camera_to_dsi_display_Runs/phy_1/build.tcl": {
+      "r13": "50e4df68975e79dec6cce3839a64bcb78b369f56a697ad9949510e3e4e0dc385",
+      "p02": "903fa39012c41fedf2dbb9d07ee3d20b3c2c75c1e5df49bcacbcbac394ac0d40"
+    },
+    "td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.prj": {
+      "r13": "251b91d3c58dc4ff26ab66d2a65de23c08816ce48b7afc1a8e64c26ce98ac782",
+      "p02": "e8ccc8fdfba394b975b91d1aebf69d5fd08e5a7ca75c64fb9db3cfe6fb4e7896"
+    },
+    "td_project/camera_to_dsi_display_Runs/phy_1/settings.cfg": {
+      "r13": "6a10aba541f5fc8064afc5022787a4ee1c57dcf9193e66da2de5ad0e565876c2",
+      "p02": "c29e911f126df515250d39d7448068240e8fe5560d472e40a14dd50b583c62cd"
+    },
+    "td_project/camera_to_dsi_display_Runs/syn_1/build.tcl": {
+      "r13": "50e4df68975e79dec6cce3839a64bcb78b369f56a697ad9949510e3e4e0dc385",
+      "p02": "903fa39012c41fedf2dbb9d07ee3d20b3c2c75c1e5df49bcacbcbac394ac0d40"
+    },
+    "td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display.prj": {
+      "r13": "efe347d6d9c439a54c7051aa0e028070cf4b51b38a7257c534551b358ed93505",
+      "p02": "5c5639349e31d949aa2a7b4f06c366966e0d931da083cf4a996252628e4c3686"
+    },
+    "user_source/hdl_source/classified_dual_page_osd.v": {
+      "r13": "d3a64f767970a6cf7a1429a477a2be691aa39b9fe8813c9f2223fd6a9be81c52",
+      "p02": "fa863759cb9a13935b9c3486e3f9bdffaa22c20f37998f9395acc843bc615944"
+    },
+    "user_source/hdl_source/compact_inspector_osd.v": {
+      "r13": "58aff335e406c1b6b1fd70a43d370fd541c2d424dc31d338e95c2d8591e4307c",
+      "p02": "85595bef4430e9774a327a4d2adeb2679c8b273a5c486dcdc9d2b05149a4c445"
+    },
+    "user_source/hdl_source/compact_template_rom.v": {
+      "r13": "ac719755dafc0fdfb5fb4effb7d12d829c4828c498937cb1db8cd7dcfcc52582",
+      "p02": "9379d75c1f18554a8b3175675175cd4cb3a36e586727dd59b171f2c739112543"
+    },
+    "user_source/hdl_source/design_top_wrapper.v": {
+      "r13": "ea014038b239da5ce8d6a29f3ab1c219750353e1f08cca473493f8d2612f6ae6",
+      "p02": "3a437cba23c81dde8d761ed90026d01ba18a49338d2c5445432d9c2659f60372"
+    },
+    "user_source/hdl_source/frame_shape_search.v": {
+      "r13": "b39692720cff62b0a29e634eb1375cc8b40c42e2537c2f67654d7ca7c93e395e",
+      "p02": "ddca32f8de4e6a65f64ed3192c6d7a1ad0c8b20c3f46a466997bfc3056b8288f"
+    },
+    "user_source/hdl_source/isp/isp_top.v": {
+      "r13": "50f7a5a3c08c64fa60d0c2d88187efb42a95607493de15fdd4cb6efc0d341221",
+      "p02": "941cb66d87b6c8c7269189095089c34cefabc882cc4b6e058afb926708d7bef6"
+    }
+  },
+  "added_static_inputs": {
+    "P01_FIELD_GUIDE.md": "3de204427c3ef80f750aeb0874bb5a9b17d1040869543f883d0d8661dacce6e0",
+    "P02_FIELD_GUIDE.md": "ca82cb3b3505fb5a8cf7d772151b164d361ace7ea1a5b20ab81eb90f209fd6c0",
+    "sim/compact_assets/review_probe_template.hex": "b30e88787ce4f13398a272b4ff6d563aa53dbb060f55d671eb82f8d311ecccfb",
+    "sim/review_probe/UI_REFERENCE_PROVENANCE.json": "807c7f7468856a8c0e8cee4f0d92fa37cbaa8124fdc2908475632d747e152cbe",
+    "sim/review_probe/frame_shape_search_r13.v": "fc5e83feb55d99d1611eabe6745726ee3f6af91b4fb922b6fe7edfff52e38ce7",
+    "sim/review_probe/sealed_verify_compact_pixels.py": "ab89c21cca2faf255acf908444a826224b914edbd2b336c2e718c6c8d981f272",
+    "sim/review_probe/tb_present_review_probe.sv": "75483bc6cdf8d35b3892090ba70feb2d25bdc6bd3ea4be69da663924763661e5",
+    "sim/review_probe/tb_review_detector.sv": "3ae115a9756ad589cb6612fbc35e6bc73f8f01f1c16a1b2ac5432fc1d1bd171e",
+    "sim/review_probe/tb_review_neighbours.sv": "da6eca1c069f004de7319912cd7676dbecaadc79927bf8a7cfff22462870f261",
+    "sim/review_probe/tb_review_raw_chain.v": "a13d053d035efdd85e0d3cd0188e678deca482d83ea769987c5ea397cc34fcd6",
+    "sim/review_probe/tb_review_reference_slots.sv": "2f43e3c603120c501a9ce3bf3b67a9545649bb0d9a6f88d186198207da36ac79",
+    "sim/review_probe/tb_review_ui.sv": "824fc3b005cecd8cc7444d946661cf89dd8f51524f5c2da874482d601975d1b2",
+    "sim/review_probe/verify_review_ui_pixels.py": "54cf818749df6b34298b494fb8f3e4c2765cc53f9cb7467b7b8f0bedcd64ace9",
+    "sim/run_review_tests.ps1": "72f15ccd57b895e9338216d92ae9e04996ea0dfca2a5d158d9461f08ca24ee1d",
+    "sim/run_surface_tests.ps1": "146e5b89cca1cabcbea7c40ed6aeb6b38c61dd30dcdd9db40771b6ee4a1cf497",
+    "sim/surface/UI_REFERENCE_PROVENANCE.json": "0d0857a6bb3755e0cce24f0d5990f444f45a28f0067745213b674b41f51dbede",
+    "sim/surface/frame_shape_search_p01.v": "215c99d14331a98b889d4771f9c515cf8792d4f505bfaa41927ede30ee51885b",
+    "sim/surface/tb_present_surface_check.sv": "66240e6e37c3afa392674169eec4d44419def889634279ebf50a6c8f982db211",
+    "sim/surface/tb_surface_counting.v": "e1bbb75ff2c138ffdec2e7f61c08cd700067d2572958b041f5ed20869c31de91",
+    "sim/surface/tb_surface_detector.sv": "72694caabfdd16bd785c061b6054c1f42e2f26e48a821175df72e83eb7dd01ef",
+    "sim/surface/tb_surface_raw_chain.v": "5c788dfcc7bae51a5b4ef69edb36cf568da8dc45513a34af9877036e5e087cd8",
+    "sim/surface/tb_surface_ui.sv": "c9a07b2f760662ebaa19defa4c05da618fde1adeea45a396800b9bb6f495e56b",
+    "sim/surface/verify_surface_ui_pixels.py": "e070bad5e01291eeaaf8683b36cd126b17b10c333d5e987eed862f338905a1cc",
+    "tools/prepare_p01_project.py": "4cd2d039ccfa1fcde00856c752f31b1f784b7db264084780c2aeda73fad300e1",
+    "tools/prepare_p02_project.py": "48b8e0e01b9ae4104835180d9e162d2a5508b60baac09661786d2c77aedbda79",
+    "tools/setup_present_surface.py": "1ac9757041b9ee64c8fd01a064d542723ba0e4868bcca5168c4756d5301d1b97",
+    "tools/setup_review_probe.py": "42cf384368684094b8a76edc4f22aa2811bd646bba9a9f0abdfe88ce395086a3",
+    "tools/verify_present_surface_scope.py": "517782e21e8651ba4636ab4edb84e29a4b2fec6999ff98c879c1619e81e4c61d",
+    "tools/verify_present_surface_software.py": "7c5fe77d434e3c85518b449bc93fbc18cf0792919cc506abca4bf4446827e472",
+    "tools/verify_review_probe_scope.py": "2d4caca6f9fdb4ee9bef527c4da3cdd1db3f4babb7960a9cab08515606c72617",
+    "tools/verify_surface_native_rasters.py": "72c0a04d48a17f87ab41401a73691a268bbefb2c71fcba6f02482a8e426f50be",
+    "user_source/hdl_source/present_review_probe.v": "8e2c7bcc41f9738f469f544841abeae1a28c2cd4feec2e3551e7c8f151449077",
+    "user_source/hdl_source/present_surface_check.v": "2e9e0d40b58a5dd118623c911b44df677400b3f243018f361fcee7c22d3dcb6f"
+  },
+  "hardware_added": {
+    "user_source/hdl_source/present_surface_check.v": "2e9e0d40b58a5dd118623c911b44df677400b3f243018f361fcee7c22d3dcb6f",
+    "user_source/hdl_source/present_review_probe.v": "8e2c7bcc41f9738f469f544841abeae1a28c2cd4feec2e3551e7c8f151449077"
+  },
+  "hardware_changed": {
+    "user_source/hdl_source/compact_inspector_osd.v": {
+      "r13": "58aff335e406c1b6b1fd70a43d370fd541c2d424dc31d338e95c2d8591e4307c",
+      "p02": "85595bef4430e9774a327a4d2adeb2679c8b273a5c486dcdc9d2b05149a4c445"
+    },
+    "user_source/hdl_source/compact_template_rom.v": {
+      "r13": "ac719755dafc0fdfb5fb4effb7d12d829c4828c498937cb1db8cd7dcfcc52582",
+      "p02": "9379d75c1f18554a8b3175675175cd4cb3a36e586727dd59b171f2c739112543"
+    },
+    "user_source/hdl_source/classified_dual_page_osd.v": {
+      "r13": "d3a64f767970a6cf7a1429a477a2be691aa39b9fe8813c9f2223fd6a9be81c52",
+      "p02": "fa863759cb9a13935b9c3486e3f9bdffaa22c20f37998f9395acc843bc615944"
+    },
+    "user_source/hdl_source/frame_shape_search.v": {
+      "r13": "b39692720cff62b0a29e634eb1375cc8b40c42e2537c2f67654d7ca7c93e395e",
+      "p02": "ddca32f8de4e6a65f64ed3192c6d7a1ad0c8b20c3f46a466997bfc3056b8288f"
+    },
+    "user_source/hdl_source/design_top_wrapper.v": {
+      "r13": "ea014038b239da5ce8d6a29f3ab1c219750353e1f08cca473493f8d2612f6ae6",
+      "p02": "3a437cba23c81dde8d761ed90026d01ba18a49338d2c5445432d9c2659f60372"
+    },
+    "user_source/hdl_source/isp/isp_top.v": {
+      "r13": "50f7a5a3c08c64fa60d0c2d88187efb42a95607493de15fdd4cb6efc0d341221",
+      "p02": "941cb66d87b6c8c7269189095089c34cefabc882cc4b6e058afb926708d7bef6"
+    }
+  },
+  "hardware_unchanged": 92,
+  "local_calibration_user_edit_excluded": true,
+  "public_phone_captures_included": false
+}

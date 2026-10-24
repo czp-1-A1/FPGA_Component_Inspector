@@ -1,49 +1,40 @@
-# FPGA载带智检与逐穴计数 — R13交接入口
+# FPGA载带智检与逐穴计数 — P02当前入口
 
-当前Li47分支：`lj4747-contest-work`；冻结标签：`r13-compact-resource-20261023`。
+当前成果分支：`lj4747-contest-work`。P02在R13基础上优化“有件/待复核”，用户本轮反馈 **“测试正常”**。
 
-**其他AI接手先读：[R13完整交接说明](docs/R13_HANDOFF.md)，再读根目录[AGENTS.md](AGENTS.md)。**
-`main`与其他队员分支不代表此R13。历史README、旧手册中的K1+K4启动、K3+K4仅结束、遇单穴丢失全局停止等描述不是R13操作规范。
+**接手先读：[P02完整交接](docs/P02_HANDOFF.md)；让其他最新工程沿用，读[逐文件改动与迁移说明](docs/P02_PORTING.md)。**
 
-R13是单条同型号载带在固定ROI内，直接复用有件/空穴分类结果，按源帧关联、过线去重并保存总数、类别与空穴编号的FPGA工程。相机1920×1080 RAW10/PPC4，经白平衡、去马赛克、2/3缩放到1280×720，HDMI 720p60；相机源FPS与HDMI刷新率不同。
+本轮确认正常和背面都触发原周边暗参考复核，不能简单清除该位。P02改用器件本帧内部表面证明，覆盖双ROI全部8个真实计数候选；原尺寸/比例/填充、弱T80复核、空穴/定位孔、计数、按键、视频与源帧/DDR绑定保留。
 
-## 直接下载
+## 下载与复用
 
-- [R13 bit](releases/r13_20261023/PocketCount_SW3_CompactResource_r13_20261023.bit)
-- [完整冻结源码、验证日志、路由与约束证据ZIP](releases/r13_20261023/PocketCount_SW3_CompactResource_r13_20261023_full.zip)
-- [烧录与验收说明](releases/r13_20261023/PocketCount_SW3_CompactResource_r13_20261023_烧录与验收.md)
-- [SHA-256](releases/r13_20261023/PocketCount_SW3_CompactResource_r13_20261023_SHA256.txt)
-- [交付回执](releases/r13_20261023/PocketCount_SW3_CompactResource_r13_20261023_交付回执.json)
+- [P02 bit](releases/p02_20261024/P02_PresentSurface_1092_40_r0_20261024_dfd2e5c8.bit)
+- [GitHub发布/完整工程与验证包](https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/tag/p02-present-surface-20261024)
+- [功能提交 b549237f](https://github.com/czp-1-A1/FPGA_Component_Inspector/commit/b549237f15aafd3e3979b53f9df88b6877651e27)：建议作为其他分支的移植单元
+- [改动/依赖清单](releases/p02_20261024/INTEGRATION.json)、[烧录及字段说明](releases/p02_20261024/FIELD_GUIDE.md)、[验证证据](releases/p02_20261024/README.md)
 
-bit SHA-256：`2350b5985afa679df3d8bfd1a5fa2aba9f355468f284704d10dd46beeda402a7`。
+bit SHA256：`dfd2e5c8f7081f32f526be0b9e02e754649f1509d872e7cd12aac4ffba9199b8`。本机bit统一放`D:/fpga_download/`。
 
-## 当前结果与边界
-
-| 项目 | R13最终结果 |
-|---|---|
-| 冻结输入 | 471项，manifest `243651b68a39160cfb81efe91b11836bcb32109750ecd29793530fca1bc98c65` |
-| 软件 | 72项既定回归；25重跑、47逐SHA复用真实旧结果；另有行RAM等价、四幅720p UI逐像素和动态RGB专项 |
-| 独立参考 | 10套native RAW、86源帧RGB、44源帧字段/真实像素编号绑定 |
-| 最终Routed | setup +0.002ns；hold +0.020ns；双角TNS均0 |
-| 约束 | 46 max-delay匹配/Ignored0、20 Gray位8ns、6邮箱/SW3扇出通过 |
-| 资源 | Slice19708/21216=92.89%；ERAM87/108；DSP28/40；PLL5/6 |
-| 现场 | 2026-10-23用户反馈R13上板测试“没问题”；未新增逐速度、逐排列量化验收记录 |
-
-本轮资源优化释放18块ERAM，Slice低于90%的目标未达到。高速空穴漏识别仍是待量化问题；软件通过、用户总体反馈均不代表任意速度/物料保证。后续R14五项微优化均未采用，不属于R13。
-
-## 操作
-
-SW4上拨检测页、下拨计数页；只切显示，计数基于同一分类链路。SW3先上拨再下拨开始新段；上电时保持下拨不会自动开始。K3+K4长按1秒清RUN、全部数量、空号、历史首错及GAP。最多300穴。
-
-TOTAL=PRESENT+EMPTY；REVIEW是有件中的待复核子集，不再相加。`GAP FROM`以后R号表示记录顺序，不能当作已确认的物理穴号。
-
-## 接手快速校验
-
-在ASCII、无空格目录使用Python3.12运行：
+## 校验与新目录复原
 
 ```powershell
-python scripts/r13/verify_r13.py
-python scripts/r13/prepare_r13.py --work D:/FpgaWork/R13_replay --td D:/td6.2.1
+python scripts/p02/verify_p02.py
+python scripts/p02/prepare_p02.py --work D:/FpgaWork/P02_replay --td D:/AAA/FPGA.....YZW/doc
 ```
 
-第二条只创建新工程、核对98项目/IP依赖并固定已验收seed2，不自动综合或操作板卡。TD6.2.178840、ModelSim SE64 10.5、厂商仿真库与有效许可证需本机安装。工程入口是新目录中的`td_project/camera_to_dsi_display.al`。完整构建/测试/接口契约见[交接说明](docs/R13_HANDOFF.md)。
+TD参数应指向包含scripts/DefaultFlow.tcl的目录。准备只创建新目录、重定位描述符、核对100依赖并保持seed2，不自动构建或烧录。TD/ModelSim与许可证需本机安装。
+
+|项目|P02实际结果|
+|---|---|
+|源/依赖|504冻结输入，100硬件/IP/约束依赖|
+|原相关回归|24项通过，未称全部原72项重跑|
+|新专项|26请求/105均值；8 RGB帧/全部8槽；70帧计数；7合成RAW帧；两套各3686400像素UI参考|
+|实际Routed|Slice18266/21216(86.10%)；ERAM103/108；DSP28；PLL5|
+|时序/约束|双角setup+0.005ns、hold+0.020ns、TNS0；46max-delay/Ignored0、20Gray/6邮箱/SW3通过|
+|现场|用户收到P02后总体反馈“测试正常”，未新增速度/光照量化矩阵|
+
+## 操作与历史
+
+SW4上检测/下计数；SW3先上再下开新段；K3+K4长按1秒全部清零。TOTAL=PRESENT+EMPTY，REVIEW是有件子集，最多300穴。相机1920×1080 RAW10/PPC4缩放至1280×720，HDMI720p60，源FPS与显示刷新率不同。计数/失联恢复详细契约沿用R13。
+
+[原R13发布](releases/r13_20261023/README.md)及`r13-compact-resource-20261023`标签保留回退。当前工程目录已是P02；旧R13校验应在原标签checkout运行。历史默认参数、旧README/CAL字段和current_*.json不能代替当前P02交接。
