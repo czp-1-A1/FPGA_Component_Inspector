@@ -1,0 +1,199 @@
+{
+  "status": "PASS_P03_BRANCH_TAG_PRERELEASE_AND_ALL12_REMOTE_ASSETS_VERIFIED",
+  "checked_utc": "2026-10-25T05:46:12.376118+00:00",
+  "branch": "lj4747-contest-work",
+  "base_commit": "ef24ebcb67f4fe691bb458303f00120b01dd869e",
+  "functional_commit": "9d4596885b29559f0bb5ed873464c6964cc53b1a",
+  "release_commit": "384f7f249afafb7de84cf1bc47be4e46c31a1718",
+  "release_tag": "p03-standing-review-20261025",
+  "release_url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/tag/p03-standing-review-20261025",
+  "release_id": 423173050,
+  "prerelease": true,
+  "board_acceptance": "PENDING",
+  "bit": "P03_Standing_1092_40_r0_20261025_21d1004f.bit",
+  "bit_sha256": "21d1004fc74505ae7b5ee0c05aadc9c07cb780a2dd0fd763115b3796def060db",
+  "source_inputs": 526,
+  "source_manifest_sha256": "4f1b15dd327c2e51a6b538502d6cf4ec660d63cc9f74e8d3320aeff9cb347fc2",
+  "public_package": {
+    "status": "PASS_PUBLIC_PACKAGE_EXACT_SOURCE526_AND_BIT",
+    "archive": "P03_Standing_1092_40_r0_20261025_21d1004f_github_full.zip",
+    "archive_bytes": 84271629,
+    "archive_sha256": "b78110efcf68255502fef98db0749d11bda1b5674f5d086726cf20673bd01875",
+    "archive_members": 1298,
+    "original_local_archive": "P03_Standing_1092_40_r0_20261025_21d1004f_full.zip",
+    "original_local_sha256": "c6d61332dbe52b16ea22b5c30e4a61eac588e93a824e8a0a8a2bab380dea032e",
+    "omitted_phone_evidence_members": [
+      "evidence/new_standing_video/5bef12bed5725f11fc1a1408b84e1289.mp4",
+      "evidence/new_standing_video/ANALYSIS.json",
+      "evidence/new_standing_video/DECODE_TIMESTAMPS_MS.json",
+      "evidence/new_standing_video/SOURCE_MANIFEST.json",
+      "evidence/new_standing_video/analyze_readouts.py",
+      "evidence/new_standing_video/contact.jpg",
+      "evidence/new_standing_video/f0000.png",
+      "evidence/new_standing_video/f0011.png",
+      "evidence/new_standing_video/f0023.png",
+      "evidence/new_standing_video/f0035.png",
+      "evidence/new_standing_video/f0047.png",
+      "evidence/new_standing_video/f0059.png",
+      "evidence/new_standing_video/f0060.png",
+      "evidence/new_standing_video/f0070.png",
+      "evidence/new_standing_video/f0082.png",
+      "evidence/new_standing_video/f0094.png",
+      "evidence/new_standing_video/f0106.png",
+      "evidence/new_standing_video/f0118.png",
+      "evidence/new_standing_video/f0120.png",
+      "evidence/new_standing_video/header_readouts.png",
+      "evidence/new_standing_video/mid.png",
+      "evidence/new_standing_video/probe_readouts.png",
+      "evidence/new_standing_video/readouts.csv"
+    ],
+    "source_and_bit_unchanged": true
+  },
+  "assets": [
+    {
+      "name": "P03_Standing_1092_40_r0_20261025_21d1004f.bit",
+      "bytes": 1789539,
+      "sha256": "21d1004fc74505ae7b5ee0c05aadc9c07cb780a2dd0fd763115b3796def060db",
+      "server_digest": "sha256:21d1004fc74505ae7b5ee0c05aadc9c07cb780a2dd0fd763115b3796def060db",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/P03_Standing_1092_40_r0_20261025_21d1004f.bit"
+    },
+    {
+      "name": "P03_Standing_1092_40_r0_20261025_21d1004f_github_full.zip",
+      "bytes": 84271629,
+      "sha256": "b78110efcf68255502fef98db0749d11bda1b5674f5d086726cf20673bd01875",
+      "server_digest": "sha256:b78110efcf68255502fef98db0749d11bda1b5674f5d086726cf20673bd01875",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/P03_Standing_1092_40_r0_20261025_21d1004f_github_full.zip"
+    },
+    {
+      "name": "P03_HANDOFF.md",
+      "bytes": 5904,
+      "sha256": "78ccb33681a68968a81b6ed377d154534bbcad638ce1802f612e329e4e797658",
+      "server_digest": "sha256:78ccb33681a68968a81b6ed377d154534bbcad638ce1802f612e329e4e797658",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/P03_HANDOFF.md"
+    },
+    {
+      "name": "P03_PORTING.md",
+      "bytes": 6954,
+      "sha256": "e1179c26ad6d63340bc7a15106684b913005852783d1ca30a09200fe49a6dcdc",
+      "server_digest": "sha256:e1179c26ad6d63340bc7a15106684b913005852783d1ca30a09200fe49a6dcdc",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/P03_PORTING.md"
+    },
+    {
+      "name": "P02_TO_P03.patch",
+      "bytes": 3180,
+      "sha256": "a105aad32f99767a48ec189544eaaa53a859e9be24c90adf6192e68cf4ebf54a",
+      "server_digest": "sha256:a105aad32f99767a48ec189544eaaa53a859e9be24c90adf6192e68cf4ebf54a",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/P02_TO_P03.patch"
+    },
+    {
+      "name": "PATCH_APPLY.md",
+      "bytes": 1093,
+      "sha256": "6ffe744c1c22145e0bdaf5edd2f5cfb81daf5c6cefa1ea1971eb4ebaa08a63b2",
+      "server_digest": "sha256:6ffe744c1c22145e0bdaf5edd2f5cfb81daf5c6cefa1ea1971eb4ebaa08a63b2",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/PATCH_APPLY.md"
+    },
+    {
+      "name": "P03_FROZEN_INPUTS.json",
+      "bytes": 60635,
+      "sha256": "4f1b15dd327c2e51a6b538502d6cf4ec660d63cc9f74e8d3320aeff9cb347fc2",
+      "server_digest": "sha256:4f1b15dd327c2e51a6b538502d6cf4ec660d63cc9f74e8d3320aeff9cb347fc2",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/P03_FROZEN_INPUTS.json"
+    },
+    {
+      "name": "P03_HARDWARE_INPUTS.json",
+      "bytes": 12147,
+      "sha256": "76c0b9bbb9edf44188c118e7b70e17ea3751011d42951ac19e851cfd50f63f33",
+      "server_digest": "sha256:76c0b9bbb9edf44188c118e7b70e17ea3751011d42951ac19e851cfd50f63f33",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/P03_HARDWARE_INPUTS.json"
+    },
+    {
+      "name": "P03_INTEGRATION.json",
+      "bytes": 1423,
+      "sha256": "990071f6847f8eb067aceed5b6f818f5476adf303e68b2ea4b6bc6c61f22a6db",
+      "server_digest": "sha256:990071f6847f8eb067aceed5b6f818f5476adf303e68b2ea4b6bc6c61f22a6db",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/P03_INTEGRATION.json"
+    },
+    {
+      "name": "P03_FIELD_FEEDBACK.json",
+      "bytes": 531,
+      "sha256": "9c01a933f165f0463cb6b59d9c24434b6f32f9eff37b1fcb90fa1a4c086e9216",
+      "server_digest": "sha256:9c01a933f165f0463cb6b59d9c24434b6f32f9eff37b1fcb90fa1a4c086e9216",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/P03_FIELD_FEEDBACK.json"
+    },
+    {
+      "name": "P03_PUBLIC_PACKAGE.json",
+      "bytes": 1693,
+      "sha256": "9a6e3bd75084da8aa26014a79df99678f7d6195ab77f0d15e05b3ccd17679a0a",
+      "server_digest": "sha256:9a6e3bd75084da8aa26014a79df99678f7d6195ab77f0d15e05b3ccd17679a0a",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/P03_PUBLIC_PACKAGE.json"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 1020,
+      "sha256": "5e8f082963bdddb01c1500a40fe042b7d6344fe8ff24400ecb938a358dbeb54b",
+      "server_digest": "sha256:5e8f082963bdddb01c1500a40fe042b7d6344fe8ff24400ecb938a358dbeb54b",
+      "downloaded_verified": true,
+      "url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/download/p03-standing-review-20261025/SHA256SUMS.txt"
+    }
+  ],
+  "source_manifest_read_from_remote_tag_verified": true,
+  "pure_git_export_verification": {
+    "status": "PASS_PURE_GIT_P03_SOURCE526_EVIDENCE31_HARDWARE100_AND_FRESH_RELOCATION",
+    "commit": "384f7f249afafb7de84cf1bc47be4e46c31a1718",
+    "export_dir": "D:\\FpgaWork\\P03_github_git_verify_20261025",
+    "fresh_work": "D:\\FpgaWork\\P03_github_git_replay_20261025",
+    "exported_files": 8458,
+    "source_verification": {
+      "status": "PASS_P03_GIT_SOURCE526_BIT_EVIDENCE31_ROUTED_DEPENDENCIES100",
+      "source_count": 526,
+      "hardware_dependencies": 100,
+      "software_evidence_groups": 31,
+      "protected_p02_inputs": 499,
+      "bit_sha256": "21d1004fc74505ae7b5ee0c05aadc9c07cb780a2dd0fd763115b3796def060db",
+      "source_manifest_sha256": "4f1b15dd327c2e51a6b538502d6cf4ec660d63cc9f74e8d3320aeff9cb347fc2",
+      "timing_ns": {
+        "SWNS": 0.01,
+        "HWNS": 0.02,
+        "STNS": 0.0,
+        "HTNS": 0.0
+      },
+      "archive_members": 1298,
+      "board_acceptance": "PENDING",
+      "new_full_build_or_board_operation": false
+    },
+    "new_full_build_or_board_operation": false
+  },
+  "downloaded_archive_verification": {
+    "status": "PASS_P03_GIT_SOURCE526_BIT_EVIDENCE31_ROUTED_DEPENDENCIES100",
+    "source_count": 526,
+    "hardware_dependencies": 100,
+    "software_evidence_groups": 31,
+    "protected_p02_inputs": 499,
+    "bit_sha256": "21d1004fc74505ae7b5ee0c05aadc9c07cb780a2dd0fd763115b3796def060db",
+    "source_manifest_sha256": "4f1b15dd327c2e51a6b538502d6cf4ec660d63cc9f74e8d3320aeff9cb347fc2",
+    "timing_ns": {
+      "SWNS": 0.01,
+      "HWNS": 0.02,
+      "STNS": 0.0,
+      "HTNS": 0.0
+    },
+    "archive_members": 1298,
+    "board_acceptance": "PENDING",
+    "new_full_build_or_board_operation": false
+  },
+  "original_local_calibration_edit_excluded_and_preserved": true,
+  "receipt_commit": "This receipt is a subsequent documentation commit; no self-referential commit SHA",
+  "board_operation_performed": false,
+  "new_full_synthesis_or_routing_during_publication": false
+}

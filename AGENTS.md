@@ -57,14 +57,16 @@
 
 
 
-## 当前断点（P03按用户要求发布准备中；软件/物理通过，实物待反馈）
+## 当前断点（P03已按用户要求发布GitHub供移植；实物验收待反馈）
 
-- 当前授权：用户要求把P03上传GitHub并写清位置/新增/实现及迁移。允许提交、普通推送和候选预发布；P03实物未反馈，不能继承P02的“测试正常”。本轮未用Codex记忆功能。
-- 分支lj4747-contest-work，P02父ef24ebcb67f4fe691bb458303f00120b01dd869e；本地独立P03功能提交9d4596885b29559f0bb5ed873464c6964cc53b1a。当前主fpga/component_inspector已换为与交付相同526冻结源及100依赖，只改2处生产RTL/3路径、其余499父源逐SHA保持。README/HANDOFF已切到P03，详细修改/迁移见docs/P03_PORTING.md和P03_HANDOFF.md。P02/R13标签与历史发布保留。
-- 原本机current_calibration_handoff.json未提交修改SHA d3fbfe449f0b26269e0f74cc89f47e73ff34ebd43064ffdc84ddcf6e8a8b06ce原样保留且不得提交；其他旧未跟踪试验不混入。发布前原P02验证通过，原源/入口备份在.git/codex-p03-publish/before_integration。
-- 实现：P02全部内部证明AND 2*max(edge32未取整5bit和)<=center64和+16；有件kind和低3原因位、弱T80F、孔/空穴、计数、控制、图像/887元数据、完整SDC/seed2保持。仅present_surface_check.v及标题compact_template_rom.v生产变化，无新增图像RAM。累计P02前置功能b549237f必须先具备，再合P03；不覆盖接收工程自身改动。
-- 验证：39请求170精确均值/和；9RGB帧72记录320参考、旧8场景等P02、新8目标仅质量位变化；默认关闭2829736拍等P01；70计数帧140观测4事件；原24回归（非72全跑）；8合成RAW源帧7有效质量帧/28判定140和70探针/14623282像素OF0UF0；两套各3686400像素UI零差异。首轮RAW760输入不足、cwd错误、补丁换行dry-run错误与复测保留，未改gold/RTL标准迎合。
-- 物理：TD6.2.168116、原SDC SHA4a248232348e0f5338472dab5a8c275f1edb100354049be7df62ef1d88972a51、seed2实际Routed双角setup+0.010ns/hold+0.020ns/TNS0；46/Ignored0、20Gray/6邮箱/SW3完整审计。Slice18385/21216、ERAM103/108、DSP28、PLL5。
-- bit：D:/fpga_download/P03_Standing_1092_40_r0_20261025_21d1004f.bit，1789539字节SHA 21d1004fc74505ae7b5ee0c05aadc9c07cb780a2dd0fd763115b3796def060db。原本机完整包SHA c6d61332dbe52b16ea22b5c30e4a61eac588e93a824e8a0a8a2bab380dea032e；公开派生包P03_Standing_1092_40_r0_20261025_21d1004f_github_full.zip，84271629字节/1298项，SHA b78110efcf68255502fef98db0749d11bda1b5674f5d086726cf20673bd01875。原手机视频/照片及个人路径清单留本机，526源/bit不变；旧本机“未发布”收据为历史，以当前Git交接及新上传回执为准。
-- 本地隔离原构建D:/FpgaWork/R13_present_surface_p03_r0_20261025和冷恢复D:/FpgaWork/P03_delivery_verify_20261025保持；冷CRC/SHA/526源/100依赖/SDC/seed2/范围/严格物理证据/PGM/双UI及新目录39请求170均值重放通过。公开包与当前Git工具的再次复原检查本轮执行，不能称重新全综合或上板。
-- 下一条：完成scripts/p03/verify_p03.py --archive与prepare_p03.py，再做纯Git导出复核；将docs/release证据单独提交，普通push当前分支并固定p03-standing-review-20261025标签，建立prerelease并上传bit/公开完整包/指南/源清单/移植说明。逐一下载远端附件核对SHA，再追加GITHUB_UPLOAD_RECEIPT及最终断点。实际push前不得称已同步；当前无板卡/JTAG/Flash操作或硬件构建后台进程。
+- 当前目标已落实：P03新增有件侧立复核在lj4747-contest-work发布；docs/P03_PORTING.md逐项说明在哪里改了什么、加了什么、实现了什么及两条移植路径，P03_HANDOFF.md提供版本身份/复原/完整验证。README/HANDOFF指向P03。用户禁用Codex记忆功能，本轮未用。
+- Git身份：P02父ef24ebcb67f4fe691bb458303f00120b01dd869e；P03独立功能提交9d4596885b29559f0bb5ed873464c6964cc53b1a；发布说明/证据提交384f7f249afafb7de84cf1bc47be4e46c31a1718；固定标签p03-standing-review-20261025指向发布提交。分支与标签已普通atomic push并ls-remote核对。上传回执为后续独立文档提交，不自引用自身SHA；最新HEAD以git log/远端为准。
+- GitHub发布：https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/tag/p03-standing-review-20261025，prerelease=true，P03实物验收PENDING。12附件已全部下载逐一核对size/SHA及GitHub digest；远端标签的frozen_inputs也直接读取核对。可机读回执releases/p03_20261025/GITHUB_UPLOAD_RECEIPT.json，纯Git/远端包复核另存同目录。
+- 当前主源：fpga/component_inspector是交付P03，526冻结静态源/100真实依赖，源manifest SHA 4f1b15dd327c2e51a6b538502d6cf4ec660d63cc9f74e8d3320aeff9cb347fc2。相对P02仅present_surface_check.v增加未取整中心/最亮边和的条件：旧P02全部证明AND 2*max(edge32 sums)<=center64 sum+16；compact_template_rom.v两处标题改P03。三处TD描述符仅重定位，其余499父文件逐SHA保持。无新增图像RAM、端口或元数据位宽；低3原因位、弱T80F、孔/空穴、计数控制、视频/887元数据、完整SDC/seed2保持。
+- 移植：已有完整P02合入9d459688；从R13等旧基础先合P02功能b549237f15aafd3e3979b53f9df88b6877651e27再合P03。P02所需2新增模块/6原模块接线、同帧灰度采集、SURFACE_REVIEW/REVIEW_PROBE/REGIONS依赖和槽/epoch等待不能丢。保留接收工程自身改动，重新冻结并做功能/真实路由/实物验证。两文件补丁需--ignore-space-change，说明/独立应用复测留存。
+- 软件证据：31组PASS，39请求170精确均值/和；9RGB帧72记录320参考（旧8场景等P02、新8目标仅质量位），默认关闭2829736拍等P01；70计数帧140观测4事件；原24相关回归（非72全跑）；8合成RAW源帧7有效质量帧、28判定140和70探针、15完整显示帧及部分帧共14623282像素/OF0UF0；7PGM另用NumPy重算；两套各3686400像素UI零差异。首轮新合成RAW760输入不足、单元生成cwd和补丁普通dry-run换行错误与复测均保留；未改gold或放宽标准。unit0/RGB52/count24/RAW17/UI0为重点运行警告数。
+- 真实Routed：TD6.2.168116、原完整SDC SHA4a248232348e0f5338472dab5a8c275f1edb100354049be7df62ef1d88972a51、seed2；Slow/Fast setup+0.010ns、hold+0.020ns/TNS0；46最大延迟Ignored0、20Gray/6邮箱/SW3及覆盖严格通过。Slice18385/21216、LUT616565、reg21244、ERAM103/108(余5)、DSP28、PLL5。
+- bit：D:/fpga_download/P03_Standing_1092_40_r0_20261025_21d1004f.bit，1789539字节SHA 21d1004fc74505ae7b5ee0c05aadc9c07cb780a2dd0fd763115b3796def060db。公开完整包P03_Standing_1092_40_r0_20261025_21d1004f_github_full.zip，84271629字节/1298项，SHA b78110efcf68255502fef98db0749d11bda1b5674f5d086726cf20673bd01875。本机原full.zip SHA c6d61332dbe52b16ea22b5c30e4a61eac588e93a824e8a0a8a2bab380dea032e。公开派生包保留相同526源/bit/合成输入与实际路由，原手机视频/照片及个人路径清单留本机，不能混用两个ZIP的SHA。
+- 独立复原：scripts/p03/verify_p03.py --archive及prepare_p03.py在新英文目录通过；从纯Git提交384f7f24导出8458个当前追踪工程/文档文件至D:/FpgaWork/P03_github_git_verify_20261025，526源/31证据/100依赖/严格物理证据复核通过，并在D:/FpgaWork/P03_github_git_replay_20261025新复原seed2工程通过；远端下载的公开ZIP再全CRC/SHA/源/bit/时序证据核对通过。未重新全综合/路由。先前D:/FpgaWork/P03_delivery_verify_20261025本机冷恢复及39请求170均值单元重放通过保留。
+- 状态与保护：P03实物未反馈，不继承P02“测试正常”。原P02/R13标签/发布/bit及本机冻结工程保留；P02校验需在其固定标签新checkout运行。原current_calibration_handoff.json本机未提交修改SHA d3fbfe449f0b26269e0f74cc89f47e73ff34ebd43064ffdc84ddcf6e8a8b06ce保留且未提交；其他旧未跟踪试验未混入。冻结源里“主源P02/未发布”的本机历史措辞不当当前状态，以本交接和FIELD_FEEDBACK/INTEGRATION/上传回执为准。
+- 下一条：接收最新工程按迁移表处理差异并重新验收，或接收P03新增侧立/正常正面/原各姿态的人工反馈。无板卡/JTAG/Flash操作，无本任务硬件构建或仿真进程；完成回执文档提交推送后无本任务后台工作。上传过程与原源备份在.git/codex-p03-publish。
