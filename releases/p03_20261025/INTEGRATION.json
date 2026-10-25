@@ -1,0 +1,28 @@
+{
+  "base_commit": "ef24ebcb67f4fe691bb458303f00120b01dd869e",
+  "branch": "lj4747-contest-work",
+  "functional_commit": "9d4596885b29559f0bb5ed873464c6964cc53b1a",
+  "release_tag": "p03-standing-review-20261025",
+  "release_channel": "prerelease",
+  "board_acceptance": "PENDING",
+  "cumulative_p02_functional_commit": "b549237f15aafd3e3979b53f9df88b6877651e27",
+  "frozen_source_inputs": 526,
+  "frozen_manifest_sha256": "4f1b15dd327c2e51a6b538502d6cf4ec660d63cc9f74e8d3320aeff9cb347fc2",
+  "hardware_dependencies": 100,
+  "hardware_manifest_sha256": "76c0b9bbb9edf44188c118e7b70e17ea3751011d42951ac19e851cfd50f63f33",
+  "hardware_added": [],
+  "hardware_changed": [
+    "user_source/hdl_source/present_surface_check.v",
+    "user_source/hdl_source/compact_template_rom.v"
+  ],
+  "hardware_unchanged": 98,
+  "protected": "P02 complete proof, low3 flags, weakT80F, empty/feed, all8 candidates, counters, controls, video,887metadata, fullSDC,seed2",
+  "predicate": "P02 AND 2*max(side32-cell unrounded five-bit sums) <= center64-cell sum+16",
+  "rationale": "Bright standing edge can pass P02 minimum-edge check; add an upper-edge proof without increasing image cache",
+  "modules_added_p03": 0,
+  "cumulative_new_modules": [
+    "present_review_probe.v",
+    "present_surface_check.v"
+  ],
+  "local_calibration_edit_excluded": "d3fbfe449f0b26269e0f74cc89f47e73ff34ebd43064ffdc84ddcf6e8a8b06ce"
+}

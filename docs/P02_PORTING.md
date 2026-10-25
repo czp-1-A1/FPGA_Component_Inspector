@@ -1,5 +1,7 @@
 # 把 P02 的“有件/复核”优化移植到其他最新工程
 
+> 本页说明R13到P02的前置成果；当前P03在其基础上新增亮边侧立条件，累计接入顺序及增量见[P03_PORTING.md](P03_PORTING.md)。本页源清单及验证数值固定对应P02标签。
+
 本页回答：在哪里改了什么、增加了什么、解决了什么，以及怎样保留接收工程已有的功能。完整交接见 [P02_HANDOFF.md](P02_HANDOFF.md)。当前成果分支是 `lj4747-contest-work`，基于 R13 提交 `06f2b2e44a02e571edc33e7fb24018f5f1b50cb9`；发布标签为 `p02-present-surface-20261024`。功能提交的确切 SHA 记录在 [INTEGRATION.json](../releases/p02_20261024/INTEGRATION.json)。
 
 ## 1. 解决的问题与实际成果

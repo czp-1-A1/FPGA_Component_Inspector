@@ -1,0 +1,68 @@
+--- a/user_source/hdl_source/compact_template_rom.v
++++ b/user_source/hdl_source/compact_template_rom.v
+@@ -11,7 +11,7 @@
+ memory[6]=10'h020;
+ memory[7]=REVIEW_PROBE ? 10'h050 : 10'h052;
+ memory[8]=REVIEW_PROBE ? 10'h030 : 10'h031;
+-memory[9]=REVIEW_PROBE ? 10'h032 : 10'h033;
++memory[9]=REVIEW_PROBE ? 10'h033 : 10'h033;
+ memory[10]=10'h020;
+ memory[11]=10'h020;
+ memory[12]=10'h045;
+@@ -1034,7 +1034,7 @@
+ memory[1029]=10'h020;
+ memory[1030]=REVIEW_PROBE ? 10'h050 : 10'h052;
+ memory[1031]=REVIEW_PROBE ? 10'h030 : 10'h031;
+-memory[1032]=REVIEW_PROBE ? 10'h032 : 10'h033;
++memory[1032]=REVIEW_PROBE ? 10'h033 : 10'h033;
+ memory[1033]=10'h020;
+ memory[1034]=10'h020;
+ memory[1035]=10'h020;
+--- a/user_source/hdl_source/present_surface_check.v
++++ b/user_source/hdl_source/present_surface_check.v
+@@ -25,6 +25,7 @@
+ reg [10:0] center_x,center_y,cell_x,cell_y;
+ reg [2:0] phase,feature;reg [5:0] sample;reg [1:0] byte_index;
+ reg [10:0] sum;reg [4:0] center_mean,min_edge;
++reg [10:0] center_total;reg [9:0] max_edge_total;
+ always @*begin
+  cell_x=center_x-4+sample[2:0];cell_y=center_y-4+sample[5:3];
+  case(feature)
+@@ -39,17 +40,21 @@
+ wire [4:0] next_min=mean<min_edge ? mean : min_edge;
+ wire [7:0] edge5={3'd0,next_min}+{1'b0,next_min,2'b0};
+ wire [6:0] center4={center_mean,2'b0};
++wire [9:0] next_max=next_sum[9:0]>max_edge_total ? next_sum[9:0] : max_edge_total;
++// Compare unrounded regional sums: center64 versus twice each edge32.
++//16 center-sum units allow2 equivalent gray levels, without losing a full5-bit bin.
++wire [10:0] center_limit=center_total+11'd16;
+ always @(posedge clk or negedge rst_n)begin
+  if(!rst_n)begin
+   ready<=0;normal<=0;captured<=0;read_address<=0;center_x<=0;center_y<=0;
+-  phase<=0;feature<=0;sample<=0;byte_index<=0;sum<=0;center_mean<=0;min_edge<=31;
++  phase<=0;feature<=0;sample<=0;byte_index<=0;sum<=0;center_mean<=0;min_edge<=31;center_total<=0;max_edge_total<=0;
+  end else if(cancel)begin
+   ready<=0;normal<=0;captured<=0;phase<=0;
+  end else begin
+   if(capture)captured<=captured+1'b1;
+   if(measure)begin
+    ready<=!measurable;normal<=0;center_x<=requested_x;center_y<=requested_y;
+-   phase<=measurable ? 2 : 0;feature<=0;sample<=0;sum<=0;center_mean<=0;min_edge<=31;
++   phase<=measurable ? 2 : 0;feature<=0;sample<=0;sum<=0;center_mean<=0;min_edge<=31;center_total<=0;max_edge_total<=0;
+   end else case(phase)
+    2:begin
+     read_address<=(cell_y-Y0/2)*COLS+((cell_x-X0/2)>>2);
+@@ -58,10 +63,11 @@
+    3:phase<=4;
+    4:begin
+     if(sample==(feature==0 ? 63 : 31))begin
+-     if(feature==0)center_mean<=mean;else min_edge<=next_min;
++     if(feature==0)begin center_mean<=mean;center_total<=next_sum;end
++     else begin min_edge<=next_min;max_edge_total<=next_max;end
+      sample<=0;sum<=0;
+      if(feature==4)begin
+-      normal<=center_mean>=((FOREGROUND+7)/8) && edge5>={1'b0,center4};
++      normal<=center_mean>=((FOREGROUND+7)/8) && edge5>={1'b0,center4} && {next_max,1'b0}<=center_limit;
+       ready<=1;phase<=0;
+      end else begin feature<=feature+1'b1;phase<=2;end
+     end else begin sum<=next_sum;sample<=sample+1'b1;phase<=2;end

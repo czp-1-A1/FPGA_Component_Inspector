@@ -1,0 +1,234 @@
+Created by          : Tang Dynasty v6.2.168116
+                    : Copyright (c) 2012-2025 Anlogic Inc.
+Generated           : Sun Oct 25 12:54:26 2026
+
+Top Model           : design_top_wrapper
+Device              : PH1P35MDG324
+Speed               : 3
+STA coverage        : 93.38%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     
+set_max_delay -datapath_only 9.0 -from [get_regs {u_count_command/req}] -to [get_regs {u_count_command/req_sync[0]}]
+
+Type           :     SMD
+
+Statistics:
+Max            : SWNS      7.737ns, STNS      0.000ns,         0 Viol Endpoints,         1 Total Endpoints,         1 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 7.737ns
+Begin Point         : u_count_command/req_reg_syn_3.clk (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+End Point           : u_count_command/ack_reg_syn_3.imb (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 9.000ns { pll_clk_100m rising@0.000ns - pll_clk_24m rising@0.000ns }
+Data Path Delay     : 1.199ns (cell 0.204ns (17%), net 0.995ns (83%))
+Clock Skew          : 0.000ns
+Logic Level         : 0
+Max Fanout          : 2
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.138ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../../user_source/hdl_source/design_top_wrapper.v(5)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.000          0.000          net: O_cam_24m_dup_1,  ../../../user_source/hdl_source/design_top_wrapper.v(10)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=3)                              0.000          0.000          net: O_cam_24m_syn_3,  ../../../user_source/hdl_source/design_top_wrapper.v(10)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_l_bk7.clkin
+SCLK                x023y019z6          0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_l_bk7.clkout
+net (fo=29)                             0.000          0.000          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_l_bk7_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_count_command/req_reg_syn_3.clk
+--------------------------------------------------------------------  ---------------
+clk2q               x021y034z7          0.126    f     0.126          pin: u_count_command/req_reg_syn_3.oqa
+net (fo=2)                              0.995          1.121          net: u_count_command/req,  ../../../user_source/hdl_source/status_cdc.v(9)
+                                                                      pin: u_count_command/ack_reg_syn_3.imb
+reg                 x022y038z1          0.078    r     1.199          net: u_count_command/req_sync[0],  ../../../user_source/hdl_source/status_cdc.v(10)
+--------------------------------------------------------------------  ---------------
+Arrival                                                1.199               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../../user_source/hdl_source/design_top_wrapper.v(5)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.000          0.000          net: u_PLL/clk0_buf,  ../../../user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.000          0.000          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.000          0.000          net: u_isp_top/classified_counting$pipeline/counter/clk,  ../../../user_source/hdl_source/classified_pocket_counter.v(6)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_0_l_bk2.clkin
+SCLK                x023y019z1          0.000          0.000          pin: u_PLL/bufg_feedback_auto_created_sclk_s_0_l_bk2.clkout
+net (fo=1591)                           0.000          0.000          net: u_PLL/bufg_feedback_auto_created_sclk_s_0_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_count_command/ack_reg_syn_3.clk
+constraint delay                        9.000          9.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064          8.936               
+clock uncertainty                       0.000          8.936               
+clock pessimism                         0.000          8.936               
+--------------------------------------------------------------------  ---------------
+Required                                               8.936               
+--------------------------------------------------------------------  ---------------
+Slack                                                  7.737               
+
+
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+Exclusive Clock Groups
+--------------------
+
+Set False Path
+--------------------
+
+From flow sdc
+--------------------
+----------------------------------------------------------------------------------------------------
+Path Group     :     Set False Path
+Constr         :     set_false_path -hold 9.0 -from [get_regs {u_count_command/req}] -to [get_regs {u_count_command/req_sync[0]}]
+
+Statistics:
+	Setup Check    :              0   end points,               0   paths
+----------------------------------------------------------------------------------------------------
+
+
+Min Delay Paths
+----------------------------------------------------------------------------------------------------
+Begin Point         : u_count_command/req_reg_syn_3.clk(triggered by clock pll_clk_24m)
+End Point           : u_count_command/ack_reg_syn_3.imb(triggered by clock pll_clk_100m)
+Check Type          : hold
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+clk2q               x021y034z7                                        pin: u_count_command/req_reg_syn_3.oqa
+net (fo=2)                                                            net: u_count_command/req,  ../../../user_source/hdl_source/status_cdc.v(9)
+                                                                      pin: u_count_command/ack_reg_syn_3.imb
+reg                 x022y038z1                                        net: u_count_command/req_sync[0],  ../../../user_source/hdl_source/status_cdc.v(10)
+
+
+
+From ip sdc
+--------------------
+
+u_video_in/U_w128_d512_fifo
+--------------------
+
+u_video_out/U_w128_d512_fifo
+--------------------

@@ -1,0 +1,63 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/field180/transcript.log -wlf modelsim_work/field180/wave.wlf -do "log /tb_field180/*; run -all; quit -code 1 -force" test_field180.tb_field180 
+# Start time: 12:31:21 on Oct 25,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "frame_shape_search(fast)".
+# ** Warning: tb_field180.v(9): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 30, found 11.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'probe_ready'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'probe_record'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_y'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_x'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_valid'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_objects'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'objects'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# ** Warning: tb_field180.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'sample_new'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_field180(fast)
+# Loading work.frame_shape_search(fast)
+# Loading work.inspection_region_config(fast)
+# log /tb_field180/*
+#  run -all
+# REF field pattern=0 offset=1 records=e00541429492a080a10e005414293127080a10e00541429492a04e948e00541429312704e948 cycles=43509
+# REF field pattern=1 offset=1 records=e00541429492a080a10c06344cb92a27e7c222e00541429492a04e948c06344cb92a27e4a15a cycles=53691
+# REF field pattern=2 offset=1 records=0000000000000000000000000000000000000000000000000000000000000000000000000000 cycles=41620
+# REF field pattern=3 offset=1 records=e00481429492a08020ec06144cc12a27e7ca26e00481429492a04e146c06144cc12a27e4a95e cycles=55179
+# REF field pattern=5 offset=1 records=e00481429492a081212c06144cc12a27e7b220e00481429492a04f14ac06144cc12a27e49158 cycles=55007
+# REF field pattern=4 offset=0 records=e003810214929e80a0ee003810213126e80a0ee003810214929e4e946e003810213126e4e946 cycles=42741
+# REF field pattern=4 offset=1 records=e00541429492a080a10e005414293127080a10e00541429492a04e948e00541429312704e948 cycles=43509
+# REF field pattern=4 offset=2 records=e003810214a2a081210e003810213227081210e003810214a2a04f148e00381021322704f148 cycles=42741
+# REF field pattern=6 offset=0 records=e003410214929e80a0ee003410213126e80a0ee003410214929e4e946e003410213126e4e946 cycles=42377
+# REF field pattern=6 offset=1 records=e00180c194a29e8120ee00180c193226e8120ee00180c194a29e4f146e00180c193226e4f146 cycles=42521
+# REF field pattern=6 offset=2 records=e003410214a2a081210e003410213227081210e003410214a2a04f148e00341021322704f148 cycles=42377
+# PASS field180: 11 frames, 40 checked results, five bright cells, adjacent mixed pockets, feed-only rejection, +/-slope bright background under1.2ms, subpixel translation of both CAL80 sizes, cancel
+# ** Note: $finish    : tb_field180.v(93)
+#    Time: 30556540 ns  Iteration: 1  Instance: /tb_field180
+# End time: 12:31:33 on Oct 25,2026, Elapsed time: 0:00:12
+# Errors: 0, Warnings: 20

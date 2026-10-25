@@ -1,0 +1,18 @@
+{
+  "status": "PASS_MINIMAL_PATCH_ON_INDEPENDENT_P02_COPY",
+  "command": [
+    "git",
+    "apply",
+    "--ignore-space-change",
+    "D:\\fpga_download\\P03_Standing_R0_20261025\\P02_to_P03.patch"
+  ],
+  "patch_sha256": "a105aad32f99767a48ec189544eaaa53a859e9be24c90adf6192e68cf4ebf54a",
+  "files_equal_normalized_text": [
+    "user_source/hdl_source/compact_template_rom.v",
+    "user_source/hdl_source/present_surface_check.v"
+  ],
+  "default_dry_run_failed_due_mixed_line_endings": true,
+  "default_failure_log": "cold_patch_check.log",
+  "note_sha256": "6ffe744c1c22145e0bdaf5edd2f5cfb81daf5c6cefa1ea1971eb4ebaa08a63b2",
+  "frozen_source_bit_archive_unchanged": true
+}

@@ -1,0 +1,68 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/ordered_handoff/transcript.log -wlf modelsim_work/ordered_handoff/wave.wlf -do "log /tb_ordered_handoff/*; run -all; quit -code 1 -force" test_ordered_handoff.tb_ordered_handoff 
+# Start time: 12:26:51 on Oct 25,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 2 FSMs in module "classified_pocket_counter(fast)".
+# ** Warning: tb_ordered_handoff.v(16): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 37, found 35.
+# ** Warning: tb_ordered_handoff.v(16): (vopt-2718) [TFMPC] - Missing connection for port 'uncertainty_from'.
+# ** Warning: tb_ordered_handoff.v(16): (vopt-2718) [TFMPC] - Missing connection for port 'diagnostic'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 37, found 21.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'uncertainty_from'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'diagnostic'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'empty_id'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'ledger_data'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'event_run'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'object_ids'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'region'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'direction_right'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'direction_valid'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'review_total'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'run_id'.
+# ** Warning: tb_ordered_handoff.v(167): (vopt-2718) [TFMPC] - Missing connection for port 'snapshot_new'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_ordered_handoff(fast)
+# Loading work.classified_pocket_counter(fast)
+# Loading work.ordered_upstream_gap_regression(fast)
+# log /tb_ordered_handoff/*
+#  run -all
+# UPSTREAM_GAP source=1 total=0 P=0 E=0 state=1 C=1
+# UPSTREAM_GAP source=2 total=0 P=0 E=0 state=1 C=1
+# UPSTREAM_GAP source=3 total=0 P=0 E=0 state=1 C=1
+# UPSTREAM_GAP source=4 total=0 P=0 E=0 state=2 C=0
+# UPSTREAM_GAP source=5 total=0 P=0 E=0 state=2 C=0
+# UPSTREAM_GAP source=6 total=1 P=1 E=0 state=2 C=0
+# UPSTREAM_GAP source=7 total=1 P=1 E=0 state=2 C=0
+# UPSTREAM_GAP source=8 total=2 P=1 E=1 state=2 C=0
+# UPSTREAM_GAP source=9 total=2 P=1 E=1 state=2 C=0
+# UPSTREAM_GAP source=10 total=3 P=1 E=2 state=2 C=0
+# UPSTREAM_GAP source=11 total=3 P=1 E=2 state=2 C=0
+# UPSTREAM_GAP source=12 total=4 P=2 E=2 state=2 C=0
+# UPSTREAM_GAP source=13 total=4 P=2 E=2 state=2 C=0
+# UPSTREAM_GAP source=14 total=4 P=2 E=2 state=2 C=0
+# PASS upstream gap: same frozen native physical4/P2/E2/source6,8,10,12; old E572 held across3 real missing opportunities
+# UPSTREAM_GAP_FINISHED
+# PASS ordered handoff: checks=1195; finite15/3 both directions, late empty phase, ordered pending crossing source/class, bounded missing and clear
+# ** Note: $finish    : tb_ordered_handoff.v(157)
+#    Time: 1893630 ns  Iteration: 1  Instance: /tb_ordered_handoff
+# End time: 12:26:53 on Oct 25,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 20

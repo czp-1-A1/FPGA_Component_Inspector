@@ -1,0 +1,85 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/empty_candidate_probe/transcript.log -wlf modelsim_work/empty_candidate_probe/wave.wlf -do "log /tb_empty_candidate_probe/*; run -all; quit -code 1 -force" test_empty_candidate_probe.tb_empty_candidate_probe 
+# Start time: 12:27:00 on Oct 25,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "frame_shape_search(fast__1)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "frame_shape_search(fast)".
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 30, found 13.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'probe_ready'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'probe_record'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_y'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_x'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_valid'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_objects'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'objects'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: tb_empty_candidate_probe.v(9): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2685) [TFMPC] - Too few port connections for 'baseline'.  Expected 30, found 12.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'probe_ready'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'probe_record'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_y'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_x'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_hold_valid'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'recorder_objects'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'objects'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: tb_empty_candidate_probe.v(12): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_empty_candidate_probe(fast)
+# Loading work.frame_shape_search(fast)
+# Loading work.inspection_region_config(fast)
+# Loading work.empty_candidate_probe(fast)
+# Loading work.frame_shape_search(fast__1)
+# log /tb_empty_candidate_probe/*
+#  run -all
+# REF p0 empty1 xy640,320 wh5,5 best640,320 5,5 valid1 ok1
+# OBS EMPTY PROBE pattern0 word8a51cfc0 empty1 cycles39765
+# REF p1 empty0 xy640,320 wh5,5 best640,320 5,5 valid1 ok1
+# OBS EMPTY PROBE pattern1 word8a5dc440 empty0 cycles40599
+# OBS EMPTY PROBE pattern2 word8c60807f empty0 cycles39699
+# OBS EMPTY PROBE pattern3 word8c61407f empty0 cycles39795
+# REF p4 empty1 xy640,320 wh5,5 best640,320 5,5 valid1 ok0
+# REF p4 empty0 xy623,319 wh8,8 best640,320 5,5 valid1 ok1
+# OBS EMPTY PROBE pattern4 word8a51ce40 empty0 cycles42035
+# REF p5 empty1 xy639,319 wh6,6 best639,319 6,6 valid1 ok1
+# OBS EMPTY PROBE pattern5 word8c61cfff empty1 cycles39849
+# OBS EMPTY PROBE pattern6 word8e70e040 empty0 cycles39807
+# OBS EMPTY PROBE pattern7 word00000000 empty0 cycles39356
+# PASS EMPTY CANDIDATE PROBE: 8 pixel fixtures good5/good6/bright/row/shape/dark/feed/background,classes and timing identical,source/cancel clearing
+# ** Note: $finish    : tb_empty_candidate_probe.v(73)
+#    Time: 21757310 ns  Iteration: 1  Instance: /tb_empty_candidate_probe
+# End time: 12:27:11 on Oct 25,2026, Elapsed time: 0:00:11
+# Errors: 0, Warnings: 37

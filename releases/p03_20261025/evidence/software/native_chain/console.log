@@ -1,0 +1,131 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc=rn+/tb_standing_raw_chain" -onfinish exit -l modelsim_work/standing_raw_chain/transcript.log -wlf modelsim_work/standing_raw_chain/wave.wlf -do "log /tb_standing_raw_chain/frame_no; run -all; quit -code 1 -force" test_standing_raw_chain.tb_standing_raw_chain anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 12:35:22 on Oct 25,2026
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v(136): (vopt-2241) Connection width does not match width of port 'O_raw_tready'. The port definition is at: ../user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v(37).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v(60): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v(60): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: D:/AAA/FPGA.....YZW/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: standing/tb_standing_raw_chain.v(26): (vopt-2685) [TFMPC] - Too few port connections for 'writer'.  Expected 29, found 26.
+# ** Warning: standing/tb_standing_raw_chain.v(26): (vopt-2718) [TFMPC] - Missing connection for port 'O_publish_diagnostic'.
+# ** Warning: standing/tb_standing_raw_chain.v(26): (vopt-2718) [TFMPC] - Missing connection for port 'O_lost_frames'.
+# ** Warning: standing/tb_standing_raw_chain.v(26): (vopt-2718) [TFMPC] - Missing connection for port 'O_video_out_rp'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_standing_raw_chain(fast)
+# Loading work.image_correction(fast)
+# Loading work.uial2axis(fast)
+# Loading work.video_in(fast)
+# Loading work.isp_top(fast)
+# Loading work.divider(fast)
+# Loading anlogic_sim.AL_MAP_LUT5(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT2(fast)
+# Loading anlogic_sim.AL_MAP_LUT3(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT4(fast)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__13)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__14)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__15)
+# Loading work.video_out(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# log /tb_standing_raw_chain/frame_no
+#  run -all
+# PROBE native frame1 checks10 packet=c1fffed9cbd9d9d9c1fffed9cbd9d9d9
+# SURFACE native frame1 objects4 checks4 means20
+# REF region cadence frame=1 objects=d06904cb9733107c222c06884cb1372987c220d06904cb9733104a15ac06884cb1372984a158 state=2 FG=1672 W=38 H=44 X0=622 X1=664 Y0=296 Y1=344
+# CADENCE frame=1 mode=0 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1308.184000 result_after_FE_ns=664760.684000
+# PROBE native frame2 checks20 packet=c1fffed9cbd9d9d9c1fffed9cbd9d9d9
+# SURFACE native frame2 objects4 checks8 means40
+# REF region cadence frame=2 objects=d06884cb1733107c220c06884cb1372987c220d06884cb1733104a158c06884cb1372984a158 state=2 FG=1672 W=38 H=44 X0=622 X1=664 Y0=296 Y1=344
+# CADENCE frame=2 mode=0 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1313.384000 result_after_FE_ns=668305.884000
+# PROBE native frame3 checks30 packet=c1fffed9cbd9d9d9c1fffed9cbd9d9d9
+# SURFACE native frame3 objects4 checks12 means60
+# REF region cadence frame=3 objects=d06884cb1733107c220c06884cb1372987c220d06884cb1733104a158c06884cb1372984a158 state=2 FG=1672 W=38 H=44 X0=622 X1=664 Y0=296 Y1=344
+# CADENCE frame=3 mode=0 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1303.584000 result_after_FE_ns=668301.084000
+# CADENCE frame=4 mode=0 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1308.784000 result_after_FE_ns=-1.000000
+# PROBE native frame5 checks40 packet=c1fffed9cbd9d9d9c1fffed9cbd9d9d9
+# SURFACE native frame5 objects4 checks16 means80
+# REF region cadence frame=5 objects=d06904cc17331078214c068c4cc1372987ba22d06904cc1733104614cc068c4cc1372984995a state=2 FG=1676 W=38 H=48 X0=622 X1=664 Y0=294 Y1=346
+# CADENCE frame=5 mode=0 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1298.984000 result_after_FE_ns=699381.484000
+# PROBE native frame6 checks50 packet=c1fffed9cbd9d9d9c1fffed9cbd9d9d9
+# SURFACE native frame6 objects4 checks20 means100
+# REF region cadence frame=6 objects=d06904cc17331078214c068c4cc1372987ba22d06904cc1733104614cc068c4cc1372984995a state=2 FG=1676 W=38 H=48 X0=622 X1=664 Y0=294 Y1=346
+# CADENCE frame=6 mode=3 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8189.184000 result_after_FE_ns=699386.684000
+# PROBE native frame7 checks60 packet=c1fffed9cbd9d9d9c1fffed9cbd9d9d9
+# SURFACE native frame7 objects4 checks24 means120
+# REF region cadence frame=7 objects=d06904cc17331078214c068c4cc1372987ba22d06904cc1733104614cc068c4cc1372984995a state=2 FG=1676 W=38 H=48 X0=622 X1=664 Y0=294 Y1=346
+# CADENCE frame=7 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1309.384000 result_after_FE_ns=699381.884000
+# PROBE native frame8 checks70 packet=c1fffed9cbd9d9d9c1fffed9cbd9d9d9
+# SURFACE native frame8 objects4 checks28 means140
+# REF region cadence frame=8 objects=d06904cc17331078214c068c4cc1372987ba22d06904cc1733104614cc068c4cc1372984995a state=2 FG=1676 W=38 H=48 X0=622 X1=664 Y0=294 Y1=346
+# CADENCE frame=8 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8184.584000 result_after_FE_ns=699387.084000
+# PASS P03 standing raw chain: native line-clock gaps, LP0CF0 wall-clock, 27-FPS source start-to-start, all four views, live WB-canceled zero-result video, same-slot late dual tuples, full exact RGB rasters=15 pixels=14623282 OF=0 UF=0
+# ** Note: $finish    : standing/tb_standing_raw_chain.v(292)
+#    Time: 296297777776 ps  Iteration: 1  Instance: /tb_standing_raw_chain
+# End time: 12:51:31 on Oct 25,2026, Elapsed time: 0:16:09
+# Errors: 0, Warnings: 17
