@@ -8,7 +8,7 @@ module tb_standing_counting;
  wire sn,ready;wire [303:0] objects;wire [255:0] packet,live;
  wire cr,ev;wire [15:0] er;wire [8:0] ei;wire [31:0] ef;wire [1:0] ek;wire [3:0] em;
  reg [16:0] command=0;
- frame_shape_search #(.SURFACE_REVIEW(1),.REVIEW_PROBE(1),.WIDTH(1280),.HEIGHT(720),.REGIONS(1)) detector(
+ frame_shape_search #(.STANDING_REVIEW(1),.SURFACE_REVIEW(1),.REVIEW_PROBE(1),.WIDTH(1280),.HEIGHT(720),.REGIONS(1)) detector(
   .clk(clk),.rst_n(rst_n),.frame_start(fs),.pixel_sof(sof),.pixel_accept(accept),.invalidate(bad),
   .pixel_x(x),.pixel_y(y),.rgb(rgb),.ready(ready),.sample_new(sn),.region_objects(objects));
  classified_count_pipeline #(.STOP_CYCLES(1500000),.PAGE_CYCLES(2000000)) pipeline(

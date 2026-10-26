@@ -44,7 +44,7 @@ for frame in range(4):
  im[guide]=0x00d8d0
  for y in range(64):
   for x in range(96):im[y+8,x+16]={0:0xffffff,1:0x204686,2:0xcc253b,3:0xffffff}[logo[y*128+x]]
- field(im,0,0,'DETECT P02' if frame==0 else 'COUNT P02')
+ field(im,0,0,'DETECT R17' if frame==0 else 'COUNT R17')
  for col,text in [(12,'EXP'),(16,'01092'),(23,'GAIN'),(28,'00040'),(35,'FPS'),(39,'027'),(44,'MODE'),(49,'3'),(52,'WB'),(55,'100/100'),(63,'L'),(67,'CFG'),(71,'1'),(74,'V'),(76,'0' if frame==2 else '1')]:field(im,0,col,text)
  if frame==0:
   for col,text in [(0,'GRAY'),(5,'149'),(10,'MIN'),(14,'124'),(19,'MAX'),(23,'176'),(30,'OBJ W'),(36,'032'),(41,'H'),(43,'032'),(48,'A'),(50,'00956')]:field(im,1,col,text)
@@ -78,6 +78,6 @@ for frame in range(4):
  mismatch=raw!=im;coords=np.argwhere(mismatch);details=[]
  for y,x in coords[:20]:details.append(dict(x=int(x),y=int(y),expected=f'{im[y,x]:06x}',actual=f'{raw[y,x]:06x}'))
  records.append(dict(frame=frame,pixels=921600,mismatch=int(mismatch.sum()),first_differences=details,captured_sha256=sha(file)))
-report=dict(status='PASS' if all(d['mismatch']==0 for d in records) else 'FAIL_RETAINED',source_manifest_sha256=sha(p/'P02_DESIGN_INPUTS.json'),frames=records,expected_contract='Literal fixed values and UI geometry; no DUT template/formatter evaluated')
+report=dict(status='PASS' if all(d['mismatch']==0 for d in records) else 'FAIL_RETAINED',source_manifest_sha256=sha(p/'R17_FROZEN_INPUTS.json'),frames=records,expected_contract='Literal fixed values and UI geometry; no DUT template/formatter evaluated')
 (out/'verification.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print(json.dumps(report,indent=2))
 if report['status']!='PASS':raise SystemExit(1)

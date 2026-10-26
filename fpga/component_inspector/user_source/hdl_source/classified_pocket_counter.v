@@ -77,9 +77,16 @@ module classified_pocket_counter #(
  reg [5:0] ledger[0:MAX_TOTAL-1];reg [8:0] empty_ids[0:MAX_TOTAL-1];
  wire [75:0] ob=packet[oi[OI_BITS-1:0]*76+:76];
  wire [11:0] cx_sum={1'b0,ob[41:31]}+ob[30:20];
- wire [10:0] cx=cx_sum[11:1];
+ // OBS already precedes every SCAN/ASSIGN, and READ_APPLY already
+ // precedes APPLY. Capture the exact current centre in those existing
+ // cycles, cutting the observation mux/add from the association path.
+ // No added FSM cycle, changed identity/class, or predicted measurement.
+ reg [10:0] cx;
  wire [10:0] cy_sum={1'b0,ob[19:10]}+ob[9:0];
- wire [9:0] cy=cy_sum[10:1];
+ reg [9:0] cy;
+ always @(posedge clk)if(phase==OBS || phase==READ_APPLY)begin
+  cx<=cx_sum[11:1];cy<=cy_sum[10:1];
+ end
  wire target=ob[75] && ob[74:73]>=2;
  wire selected=ORDERED_HANDOFF || oi[OI_BITS-1]==region;
  wire [1:0] display_index=ORDERED_HANDOFF ? {region,oi[0]} : {oi[OI_BITS-1],oi[0]};

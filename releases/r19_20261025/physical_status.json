@@ -1,0 +1,32 @@
+{
+  "status": "PASS_ROUTED_BELOW90_COMPLETE_AUDIT",
+  "pid": 29352,
+  "manifest_sha256": "684e4fa0c723d0f38c14b0acb7f54e39c3e12e5f3fd00e89f1733a0b89f6bd0e",
+  "seed": 2,
+  "runs": {
+    "PHY": {
+      "exit_code": 0,
+      "seconds": 465.8392457962036
+    },
+    "AUDIT": {
+      "exit_code": 0,
+      "seconds": 17.93521237373352
+    },
+    "EXACT_Q_AUDIT": {
+      "exit_code": 0,
+      "seconds": 17.9360933303833
+    },
+    "VERIFY": {
+      "exit_code": 0,
+      "seconds": 0.3343472480773926
+    }
+  },
+  "phase": "COMPLETE",
+  "resources": {
+    "slice": 18971,
+    "eram": 101,
+    "dsp": 27,
+    "pll": 5
+  },
+  "slice_percent": 89.41836349924586
+}

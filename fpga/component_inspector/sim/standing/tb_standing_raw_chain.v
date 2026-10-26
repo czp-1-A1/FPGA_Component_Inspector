@@ -30,7 +30,7 @@ video_in #(.WIDTH(1280),.HEIGHT(720),.METADATA(1),.META_WIDTH(887),.METADATA_REQ
   .O_completed_valid(completed_valid),.O_completed_rp(completed_slot),.O_video_in_wr_busy(write_busy),
  .O_ddr_user_wr_en(wen),.O_ddr_user_addr(waddr),.O_ddr_user_wr_data(wdata),.O_overflow_frames(overflows),
  .O_completed_metadata(completed_meta),.O_capture_ok(cap));
-isp_top #(.SURFACE_REVIEW(1),.REVIEW_PROBE(1),.RESULT_RECORDER(1),.LOCAL_RECOVERY(1),.MULTITHRESHOLD_EMPTY(1),.CLASSIFIED_COUNT(1),.INPUT_WIDTH(1920),.INPUT_HEIGHT(1080),.WIDTH(1280),.HEIGHT(720),.SCALE_DISPLAY(1),.ROI_X0(600),.ROI_X1(680),.ROI_Y0(320),.ROI_Y1(400),.ASYNC_PROCESSING(1),.DIRECT_DETECTION(1),.SHAPE_MODEL(1),.LOCAL_SEARCH(1),.REGIONS(1),.CALIBRATION(1),.TRACKING(0),.MULTI_POCKETS(0)) dut(
+isp_top #(.STANDING_REVIEW(1),.SURFACE_REVIEW(1),.REVIEW_PROBE(1),.RESULT_RECORDER(1),.LOCAL_RECOVERY(1),.MULTITHRESHOLD_EMPTY(1),.CLASSIFIED_COUNT(1),.INPUT_WIDTH(1920),.INPUT_HEIGHT(1080),.WIDTH(1280),.HEIGHT(720),.SCALE_DISPLAY(1),.ROI_X0(600),.ROI_X1(680),.ROI_Y0(320),.ROI_Y1(400),.ASYNC_PROCESSING(1),.DIRECT_DETECTION(1),.SHAPE_MODEL(1),.LOCAL_SEARCH(1),.REGIONS(1),.CALIBRATION(1),.TRACKING(0),.MULTI_POCKETS(0)) dut(
  .count_command(17'd2),.count_live(),.processing_clk(procclk),.axi4s_video_aclk(clk),.I_rst_n(rst),.I_tlast(calast),.I_tuser(casof),.I_tdata(cadata),.I_tvalid(cav),.I_tdest(10'd0),.O_tready(1'b1),
  .O_tdata(video),.O_tlast(),.O_tuser(vsof),.O_tvalid(vv),.I_tready(),.view_ready(view_ready),.video_frame_good(good),.video_frame_bad(bad),.video_diagnostics(),
  .raw_start(fs),.raw_end(fe),.hs_valid(hs),.raw_valid(rv),.config_ok(1'b1),.lane_error(2'd0),

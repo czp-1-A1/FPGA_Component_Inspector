@@ -1,5 +1,5 @@
 // Generated compact UI immutable assets.
-module compact_template_rom #(parameter REVIEW_PROBE=0)(input wire clk,input wire [10:0] address,output reg [9:0] data);
+module compact_template_rom #(parameter BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0)(input wire clk,input wire [10:0] address,output reg [9:0] data);
 reg [9:0] memory[0:2047];
 initial begin
 memory[0]=10'h044;
@@ -9,9 +9,9 @@ memory[3]=10'h045;
 memory[4]=10'h043;
 memory[5]=10'h054;
 memory[6]=10'h020;
-memory[7]=REVIEW_PROBE ? 10'h050 : 10'h052;
-memory[8]=REVIEW_PROBE ? 10'h030 : 10'h031;
-memory[9]=REVIEW_PROBE ? 10'h033 : 10'h033;
+memory[7]=10'h052;
+memory[8]=10'h031;
+memory[9]=BUILD_R19 ? 10'h039 : BUILD_R18 ? 10'h038 : (BUILD_R17 || REVIEW_PROBE) ? 10'h037 : 10'h033;
 memory[10]=10'h020;
 memory[11]=10'h020;
 memory[12]=10'h045;
@@ -1032,9 +1032,9 @@ memory[1026]=10'h055;
 memory[1027]=10'h04e;
 memory[1028]=10'h054;
 memory[1029]=10'h020;
-memory[1030]=REVIEW_PROBE ? 10'h050 : 10'h052;
-memory[1031]=REVIEW_PROBE ? 10'h030 : 10'h031;
-memory[1032]=REVIEW_PROBE ? 10'h033 : 10'h033;
+memory[1030]=10'h052;
+memory[1031]=10'h031;
+memory[1032]=BUILD_R19 ? 10'h039 : BUILD_R18 ? 10'h038 : (BUILD_R17 || REVIEW_PROBE) ? 10'h037 : 10'h033;
 memory[1033]=10'h020;
 memory[1034]=10'h020;
 memory[1035]=10'h020;

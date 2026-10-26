@@ -1,0 +1,21 @@
+{
+  "status": "PARTIAL_FIELD_FEEDBACK_UNRESOLVED_NORMAL_SPEED_EMPTY_MISSES",
+  "board_acceptance": "NOT_COMPLETE",
+  "human_reported_truth": {
+    "pockets": 15,
+    "empty": 3,
+    "empty_ids_forward": [
+      2,
+      8,
+      15
+    ]
+  },
+  "human_report": "Same carrier: forward normal speed undercounts; reverse normal speed undercounts with possible classification error; slow run reported correct. Parallel field analysis is ongoing and does not change the frozen R19 source.",
+  "limits": [
+    "Do not mark R19 board-accepted or high-speed stable.",
+    "One run remains unidirectional; restart SW3 for each pass.",
+    "Synthetic RGB/native RAW tests are not camera field ground truth."
+  ],
+  "raw_phone_videos_uploaded": false,
+  "privacy": "Original phone paths, contact details and video media remain local."
+}

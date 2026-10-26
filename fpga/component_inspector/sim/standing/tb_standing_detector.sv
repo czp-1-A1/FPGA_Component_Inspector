@@ -10,12 +10,12 @@ frame_shape_search_p01 #(.REVIEW_PROBE(1),.WIDTH(1280),.HEIGHT(720),.REGIONS(1),
  .clk(clk),.rst_n(rst_n),.frame_start(fs),.pixel_sof(sof),.pixel_accept(accept),.invalidate(cancel),
  .pixel_x(x),.pixel_y(y),.rgb(rgb),.ready(ar),.sample_new(an),.objects(ao),.region_objects(az),.recorder_objects(ac),
  .recorder_hold_valid(1'b0),.recorder_hold_x(11'd0),.recorder_hold_y(10'd0),.probe_record(ap),.probe_ready(apr));
-frame_shape_search #(.SURFACE_REVIEW(1),.REVIEW_PROBE(1),.WIDTH(1280),.HEIGHT(720),.REGIONS(1),.COUNT_EMPTY_MARGIN(1),
+frame_shape_search #(.STANDING_REVIEW(1),.SURFACE_REVIEW(1),.REVIEW_PROBE(1),.WIDTH(1280),.HEIGHT(720),.REGIONS(1),.COUNT_EMPTY_MARGIN(1),
  .ROW_GUARDED_BRIGHT_EMPTY(1),.COUNT_CANDIDATES(1),.MULTITHRESHOLD_EMPTY(1)) candidate(
  .clk(clk),.rst_n(rst_n),.frame_start(fs),.pixel_sof(sof),.pixel_accept(accept),.invalidate(cancel),
  .pixel_x(x),.pixel_y(y),.rgb(rgb),.ready(br),.sample_new(bn),.objects(bo),.region_objects(bz),.recorder_objects(bc),
  .recorder_hold_valid(1'b0),.recorder_hold_x(11'd0),.recorder_hold_y(10'd0),.probe_record(bp),.probe_ready(bpr));
-frame_shape_search #(.SURFACE_REVIEW(0),.REVIEW_PROBE(1),.WIDTH(1280),.HEIGHT(720),.REGIONS(1),.COUNT_EMPTY_MARGIN(1),
+frame_shape_search #(.INDEXED_CANDIDATES(0),.SURFACE_REVIEW(0),.REVIEW_PROBE(1),.WIDTH(1280),.HEIGHT(720),.REGIONS(1),.COUNT_EMPTY_MARGIN(1),
  .ROW_GUARDED_BRIGHT_EMPTY(1),.COUNT_CANDIDATES(1),.MULTITHRESHOLD_EMPTY(1)) default_off(
  .clk(clk),.rst_n(rst_n),.frame_start(fs),.pixel_sof(sof),.pixel_accept(accept),.invalidate(cancel),
  .pixel_x(x),.pixel_y(y),.rgb(rgb),.ready(cr),.sample_new(cn),.objects(co),.region_objects(cz),.recorder_objects(cc),

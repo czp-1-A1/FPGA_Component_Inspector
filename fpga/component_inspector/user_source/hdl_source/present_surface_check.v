@@ -1,6 +1,6 @@
 // Same-frame internal body proof. Four five-bit 2x2 means share each20-bit RAM word.
 // Cache the complete default ROI bands plus16 processing pixels of inner-window context.
-module present_surface_check #(parameter WIDTH=1280,HEIGHT=720,FOREGROUND=100)(
+module present_surface_check #(parameter WIDTH=1280,HEIGHT=720,FOREGROUND=100,STANDING_REVIEW=0)(
  input wire clk,rst_n,cancel,write_enable,measure,
  input wire [10:0] write_x,input wire [9:0] write_y,input wire [31:0] write_data,
  input wire [9:0] xmin,xmax,ymin,ymax,
@@ -67,7 +67,7 @@ always @(posedge clk or negedge rst_n)begin
      else begin min_edge<=next_min;max_edge_total<=next_max;end
      sample<=0;sum<=0;
      if(feature==4)begin
-      normal<=center_mean>=((FOREGROUND+7)/8) && edge5>={1'b0,center4} && {next_max,1'b0}<=center_limit;
+      normal<=center_mean>=((FOREGROUND+7)/8) && edge5>={1'b0,center4} && (!STANDING_REVIEW || {next_max,1'b0}<=center_limit);
       ready<=1;phase<=0;
      end else begin feature<=feature+1'b1;phase<=2;end
     end else begin sum<=next_sum;sample<=sample+1'b1;phase<=2;end

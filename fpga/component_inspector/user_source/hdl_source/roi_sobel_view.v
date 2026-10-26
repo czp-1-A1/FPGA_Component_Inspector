@@ -78,18 +78,35 @@ wire [95:0] cache_write_mask=CACHE_ADDRESS_XOR ? {96{write_address[0]}} : 96'd0;
 reg cache_read_tag;
 always @(posedge clk) cache_read_tag<=read_address[0];
 wire [95:0] cache_read_mask=CACHE_ADDRESS_XOR ? {96{cache_read_tag}} : 96'd0;
-wire [95:0] row_q [0:3];
+// Store the exact luminance next to RGB once per input beat. All row
+// selection, cache addressing, read-before-write and output timing stay fixed.
+wire [31:0] input_gray;
+genvar gray_lane;
+generate for(gray_lane=0;gray_lane<4;gray_lane=gray_lane+1) begin : cached_luminance
+ assign input_gray[31-gray_lane*8-:8]=gray(rgb[95-gray_lane*24-:24]);
+end endgenerate
+// Four gray rows require parallel neighborhood reads. RGB only needs the
+// current middle row, so store all RGB rows in one synchronous dual-port RAM.
+// The dense address retains every pixel; no reduced precision or extra cycle.
+localparam RGB_WORDS=4*BEATS,RGB_BITS=$clog2(RGB_WORDS);
+wire [RGB_BITS-1:0] rgb_write_address=write_row[1:0]*BEATS+write_address;
+wire [RGB_BITS-1:0] rgb_read_address=read_y[1:0]*BEATS+read_address;
+reg [95:0] rgb_memory[0:RGB_WORDS-1];reg [95:0] rgb_read_q;
+always @(posedge clk)begin
+ if(rst_n && input_valid && !bypass_tail && !frame_bad && (pixel_sof ? mode[1] : frame_mode[1]))
+  rgb_memory[rgb_write_address]<=rgb ^ cache_write_mask;
+ rgb_read_q<=rgb_memory[rgb_read_address];
+end
+wire [31:0] gray_q [0:3];
 genvar bank;
-generate for(bank=0;bank<4;bank=bank+1) begin : line_bank
- // Synchronous simple dual-port inference. Never reset/clear the memory.
- reg [95:0] memory [0:BEATS-1];
- reg [95:0] q;
- always @(posedge clk) begin
+generate for(bank=0;bank<4;bank=bank+1)begin : line_bank
+ reg [31:0] memory[0:BEATS-1];reg [31:0] q;
+ always @(posedge clk)begin
   if(rst_n && input_valid && !bypass_tail && !frame_bad && (pixel_sof ? mode[1] : frame_mode[1]) && write_row[1:0]==bank)
-   memory[write_address]<=rgb ^ cache_write_mask;
+   memory[write_address]<=input_gray ^ cache_write_mask[31:0];
   q<=memory[read_address];
  end
- assign row_q[bank]=q ^ cache_read_mask;
+ assign gray_q[bank]=q ^ cache_read_mask[31:0];
 end endgenerate
 reg [10:0] x1,x2,x3,x4;
 reg [9:0] y1,y2,y3,y4;
@@ -98,9 +115,7 @@ reg [31:0] top2,mid2,bot2;
 reg [95:0] rgb2,rgb3,rgb4;
 wire [1:0] top_bank=y1[1:0]-2'd1;
 wire [1:0] bottom_bank=y1[1:0]+2'd1;
-wire [95:0] top_rgb=row_q[top_bank];
-wire [95:0] middle_rgb=row_q[y1[1:0]];
-wire [95:0] bottom_rgb=row_q[bottom_bank];
+wire [95:0] middle_rgb=rgb_read_q ^ cache_read_mask;
 function [7:0] gray;
  input [23:0] color;reg [9:0] s;
  begin s={2'd0,color[23:16]}+{1'd0,color[15:8],1'b0}+{2'd0,color[7:0]};gray=s[9:2];end
@@ -116,9 +131,9 @@ always @(posedge clk or negedge rst_n) begin
   x1<={1'b0,read_address,2'b00};y1<=read_y;mode1<=frame_mode;
   x2<=x1;y2<=y1;mode2<=mode1;rgb2<=middle_rgb;
   for(lane=0;lane<4;lane=lane+1) begin
-   top2[31-lane*8-:8]<=gray(top_rgb[95-lane*24-:24]);
-   mid2[31-lane*8-:8]<=gray(middle_rgb[95-lane*24-:24]);
-   bot2[31-lane*8-:8]<=gray(bottom_rgb[95-lane*24-:24]);
+   top2[31-lane*8-:8]<=gray_q[top_bank][31-lane*8-:8];
+   mid2[31-lane*8-:8]<=gray_q[y1[1:0]][31-lane*8-:8];
+   bot2[31-lane*8-:8]<=gray_q[bottom_bank][31-lane*8-:8];
   end
   if(input_valid) begin
    if(pixel_sof) begin

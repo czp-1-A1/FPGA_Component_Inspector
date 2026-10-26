@@ -1,0 +1,49 @@
+{
+  "name": "PocketCount_SW3_RobustEmpty_r19_20261025",
+  "status": "SOFTWARE_AND_ROUTED_PASS_HUMAN_PENDING",
+  "frozen_sources": 559,
+  "manifest_sha256": "684e4fa0c723d0f38c14b0acb7f54e39c3e12e5f3fd00e89f1733a0b89f6bd0e",
+  "tests": 112,
+  "independent_references": 26,
+  "resources": {
+    "slice": 18971,
+    "eram": 101,
+    "dsp": 27,
+    "pll": 5
+  },
+  "slice_percent": 89.41836349924586,
+  "timing_ns": {
+    "SWNS": 0.06,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "hardware_dependencies": 101,
+  "bit_sha256": "feaa11d1df1e009b10b239da85916f4c7709cf80a9d77c44850250a68800b444",
+  "production_profile": {
+    "STANDING_REVIEW": 1,
+    "SURFACE_REVIEW": 1,
+    "REVIEW_PROBE": 0,
+    "BUILD_R19": 1,
+    "ROBUST_SMALL_EMPTY": 1,
+    "REPORT_NUMBER_GAPS": 0
+  },
+  "preserved_R18": {
+    "status": "PASS_ALL_PREVIOUS104_BENCH_ANSWERS_AND_DECLARED_R18_FILES_PRESERVED",
+    "changed": [
+      "sim/run_modelsim.ps1",
+      "user_source/hdl_source/classified_dual_page_osd.v",
+      "user_source/hdl_source/compact_inspector_osd.v",
+      "user_source/hdl_source/compact_template_rom.v",
+      "user_source/hdl_source/design_top_wrapper.v",
+      "user_source/hdl_source/frame_shape_search.v",
+      "user_source/hdl_source/isp/isp_top.v"
+    ],
+    "R18_counter_metadata_controls_SDC_unchanged": true,
+    "golden_detector_exact_except_module_rename": true,
+    "old_bits_unchanged": true
+  },
+  "P03_head": "372c0f0c0a3f9340a5c686aa6515b97b172594c9",
+  "human_board_pass_asserted": false,
+  "script_sha256": "206ecc3f2a0cf47911c54c8ed619df3306b25421a71e133133f2760865bff7eb"
+}

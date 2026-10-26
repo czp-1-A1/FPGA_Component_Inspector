@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1)(
+module compact_inspector_osd #(parameter BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -24,15 +24,48 @@ reg [15:0] ex,ga,fp,iw,ih,wr,wb,gm,gn,gx,ec;
 reg [15:0] le,fe,ie,gp,ofl,ufl,lost;
 reg [31:0] fr,pub;reg [35:0] diag;
 reg [75:0] primary;reg [2:0] np,ne,nu;
-reg [19:0] cache[0:31];reg [4:0] fmt,step;
+wire [19:0] cache[0:31];reg [19:0] label_bcd0,label_bcd1;reg [4:0] fmt,step;
 reg [15:0] number,next_number;reg [19:0] bcd,adjusted;
 reg formatting,feeding,write_valid,ready;
 reg [9:0] cursor,write_cursor;
-reg [7:0] plane[0:895];
-wire [9:0] token;
-compact_template_rom #(.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
-wire [8:0] gap_id=live[57] ? live[102:94] : live[120:112];
-wire [8:0] frame_gap=record[57] ? record[102:94] : record[120:112];
+wire [9:0] token;reg [7:0] decoded;
+reg [19:0] plane[0:1023];
+genvar cache_word;
+generate for(cache_word=0;cache_word<32;cache_word=cache_word+1)begin : numeric_cache_view
+ assign cache[cache_word]=plane[896+cache_word];
+end endgenerate
+reg [9:0] token_d,write_cursor_d;reg write_valid_d;
+wire cache_write=rst_n && !start && formatting && step==16;
+wire text_write=rst_n && !start && write_valid_d;
+always @(posedge clk)begin
+ if(cache_write)plane[{5'd28,fmt}]<={adjusted[18:0],number[15]};
+ else if(text_write)plane[write_cursor_d]<={12'd0,decoded};
+end
+// Predict exactly the next x/y register state, so a synchronous text-plane
+// read is available for the SAME pixel as the former asynchronous lookup.
+// Text is finalized before ready exposes it; fonts and the RGB/control
+// output pipeline retain their original clocks. No display content removed.
+wire [10:0] plane_next_x=vs ? 11'd0 : de ? x+11'd1 : de_d ? 11'd0 : x;
+wire [9:0] plane_next_y=vs ? 10'd0 : !de && de_d ? y+10'd1 : y;
+wire [10:0] plane_next_dx=plane_next_x-11'd136;
+wire [2:0] plane_next_line=
+ (plane_next_y>=32 && plane_next_y<56) ? 3'd1 :
+ (plane_next_y>=56 && plane_next_y<72) ? 3'd2 :
+ (plane_next_y>=8 && plane_next_y<32) ? 3'd0 :
+ (plane_next_y>=HEIGHT-88 && plane_next_y<HEIGHT-64) ? 3'd3 :
+ (plane_next_y>=HEIGHT-64 && plane_next_y<HEIGHT-40) ? 3'd4 :
+ (plane_next_y>=HEIGHT-40 && plane_next_y<HEIGHT-16) ? 3'd5 :
+ (plane_next_y>=HEIGHT-16) ? 3'd6 : 3'd0;
+wire [9:0] plane_next_address={plane_next_line,plane_next_dx[9:3]};
+reg [19:0] plane_q;
+wire [9:0] shared_read_address=(feeding || write_valid) ? {5'd28,token[7:3]} : plane_next_address;
+always @(posedge clk)plane_q<=plane[shared_read_address];
+
+compact_template_rom #(.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
+// R15 production suppresses numbering-confidence UI only; classification
+// colours and LOST/HOLD/CHECK state protection remain active.
+wire [8:0] gap_id=!REPORT_NUMBER_GAPS ? 9'd0 : live[57] ? live[102:94] : live[120:112];
+wire [8:0] frame_gap=!REPORT_NUMBER_GAPS ? 9'd0 : record[57] ? record[102:94] : record[120:112];
 function [2:0] observations;
  input [303:0] data;input [1:0] kind;integer t;
  begin observations=0;for(t=0;t<4;t=t+1)
@@ -110,21 +143,28 @@ function [7:0] special_char;
   endcase
  end
 endfunction
-wire [31:0] hexadecimal=hexvalue(token[7:3]);
-reg [7:0] decoded;
+wire [31:0] hexadecimal=hexvalue(token_d[7:3]);
 always @*begin
- case(token[9:8])
-  0:decoded=token[7:0];
-  1:decoded=token[7:3]==20 && gap_id==0 ? 8'd32 : "0"+((cache[token[7:3]]>>(token[2:0]*4))&4'hf);
-  2:decoded=hexchar(hexadecimal>>(token[2:0]*4));
-  default:decoded=special_char(token[7:3],token[2:0]);
+ case(token_d[9:8])
+  0:decoded=token_d[7:0];
+  1:decoded=token_d[7:3]==20 && gap_id==0 ? 8'd32 : "0"+((plane_q>>(token_d[2:0]*4))&4'hf);
+  2:decoded=hexchar(hexadecimal>>(token_d[2:0]*4));
+  default:decoded=special_char(token_d[7:3],token_d[2:0]);
  endcase
  next_number=0;
  case(fmt)
   0:next_number={7'd0,live[66:58]};1:next_number={7'd0,live[75:67]};
   2:next_number={7'd0,live[84:76]};3:next_number={7'd0,live[93:85]};
   4:next_number=live[239:224];5:next_number={7'd0,live[210:202]};
-  6,7,8,9,10,11,12,13:next_number={7'd0,live[130+(fmt-6)*9+:9]};
+  // Constant slices avoid an arithmetic address and variable-wide record read.
+  6:next_number={7'd0,live[130+:9]};
+  7:next_number={7'd0,live[139+:9]};
+  8:next_number={7'd0,live[148+:9]};
+  9:next_number={7'd0,live[157+:9]};
+  10:next_number={7'd0,live[166+:9]};
+  11:next_number={7'd0,live[175+:9]};
+  12:next_number={7'd0,live[184+:9]};
+  13:next_number={7'd0,live[193+:9]};
   14:next_number=ex;15:next_number=ga;16:next_number=fp;
   17:next_number={10'd0,live[222:217]}+1'b1;
   18:next_number={7'd0,record[57] ? record[112+:9] : record[94+:9]};
@@ -147,7 +187,7 @@ always @(posedge clk or negedge rst_n)begin
   mode_s<=0;wait_s<=0;live<=0;record<=0;obs<=0;cal<=0;primary<=0;np<=0;ne<=0;nu<=0;
   ex<=0;ga<=0;fp<=0;iw<=0;ih<=0;wr<=0;wb<=0;gm<=0;gn<=0;gx<=0;ec<=0;
   le<=0;fe<=0;ie<=0;gp<=0;ofl<=0;ufl<=0;lost<=0;fr<=0;pub<=0;diag<=0;
-  fmt<=0;step<=0;number<=0;bcd<=0;formatting<=0;feeding<=0;write_valid<=0;ready<=0;cursor<=0;write_cursor<=0;
+  token_d<=0;write_cursor_d<=0;write_valid_d<=0;fmt<=0;step<=0;number<=0;bcd<=0;formatting<=0;feeding<=0;write_valid<=0;ready<=0;cursor<=0;write_cursor<=0;
  end else begin
   de_d<=de;
   if(vs)begin x<=0;y<=0;end
@@ -164,21 +204,22 @@ always @(posedge clk or negedge rst_n)begin
    np<=observations(objects,2);ne<=observations(objects,3);nu<=observations(objects,1);
    le<=lane_errors;fe<=format_errors;ie<=i2c_errors;gp<=gaps;ofl<=overflow_frames;ufl<=underflow_frames;lost<=lost_frames;
    fr<=frames;pub<=publish_diagnostic;diag<=diagnostics;mode_s<=view_mode;wait_s<=local_wait_reason;
-   fmt<=0;step<=0;formatting<=1;feeding<=0;write_valid<=0;ready<=0;cursor<=0;
+   token_d<=0;write_cursor_d<=0;write_valid_d<=0;fmt<=0;step<=0;formatting<=1;feeding<=0;write_valid<=0;ready<=0;cursor<=0;
   end else begin
    if(formatting)begin
     if(step==0)begin number<=next_number;bcd<=0;step<=1;end
     else begin
      number<={number[14:0],1'b0};bcd<={adjusted[18:0],number[15]};
      if(step==16)begin
-      cache[fmt]<={adjusted[18:0],number[15]};step<=0;
+      if(fmt==18)label_bcd0<={adjusted[18:0],number[15]};
+      if(fmt==19)label_bcd1<={adjusted[18:0],number[15]};step<=0;
       if(fmt==31)begin formatting<=0;feeding<=1;cursor<=0;end else fmt<=fmt+1'b1;
      end else step<=step+1'b1;
     end
    end
-   write_valid<=feeding;
+   write_valid<=feeding;write_valid_d<=write_valid;write_cursor_d<=write_cursor;token_d<=token;
    if(feeding)begin write_cursor<=cursor;if(cursor==895)feeding<=0;else cursor<=cursor+1'b1;end
-   if(write_valid)begin plane[write_cursor]<=decoded;if(write_cursor==895)ready<=1;end
+   if(write_valid_d && write_cursor_d==895)ready<=1;
   end
  end
 end
@@ -203,7 +244,7 @@ always @*begin
    else if(y>=HEIGHT-40 && y<HEIGHT-16)begin line=5;row=y-(HEIGHT-40);end
    else if(y>=HEIGHT-16)begin line=6;row=y-(HEIGHT-16);end
    else row=31;
-   plane_address={line,text_dx[9:3]};code=plane[plane_address];col={2'd0,text_dx[2:0]};
+   plane_address={line,text_dx[9:3]};code=plane_q;col={2'd0,text_dx[2:0]};
    if(code[7])col={code[5:4],3'd0}+text_dx[2:0];
    if(row==31)code=32;
    if(page_s && gap_id!=0 && (line==1 || line==2 || line==3))ink=24'hffe080;
@@ -216,7 +257,7 @@ always @*begin
   for(t=0;t<4;t=t+1)begin
    ob=obs[t*76+:76];id=0;id_bcd=0;
    if(page_s && t/2==record[57])begin
-    id=record[94+t*9+:9];id_bcd=t%2==0 ? cache[18] : cache[19];
+    id=record[94+t*9+:9];id_bcd=t%2==0 ? label_bcd0 : label_bcd1;
    end
    if(ready && ob[75] && (!page_s || eligible_s && t/2==record[57]))begin
     if(((x==ob[41:31] || x==ob[30:20]) && y>=ob[19:10] && y<=ob[9:0]) ||

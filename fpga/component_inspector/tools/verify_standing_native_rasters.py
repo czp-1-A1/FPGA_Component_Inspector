@@ -6,7 +6,8 @@ import re
 import numpy as np
 
 P=Path(__file__).resolve().parents[1]
-text=(P/'sim/modelsim_work/standing_raw_chain/console.log').read_text(encoding='utf-8-sig')
+rawlog=(P/'sim/modelsim_work/standing_raw_chain/console.log').read_bytes()
+text=rawlog.decode('utf-16' if rawlog.startswith((b'\xff\xfe',b'\xfe\xff')) else 'utf-8-sig')
 assert 'PASS P03 standing raw chain:' in text and '** Fatal:' not in text
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 packets={int(f):int(s,16) for f,s in re.findall(r'PROBE native frame(\d+) checks\d+ packet=([0-9a-f]+)',text)}

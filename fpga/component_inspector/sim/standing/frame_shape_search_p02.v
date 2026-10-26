@@ -3,6 +3,7 @@
 // A shared flood-fill engine runs during vertical blanking, without video backpressure.
 module frame_shape_search_p02 #(
  parameter WIDTH=1024,HEIGHT=600,REGIONS=0,
+ parameter INDEXED_CANDIDATES=1,
  // Counting-only trial margin from upstream's measured six-cell extent.
  // A phase-eroded locating hole can also measure six cells. Expand only in
  // the taught pocket-row band, retaining the existing brightness/dark proof.
@@ -31,17 +32,22 @@ module frame_shape_search_p02 #(
  output reg review_required,
  // Two 76-bit records, left object in [75:0]. Valid,class,reason,FG,W,H,x0,x1,y0,y1.
  // reason[3:0]: side reference, fill, aspect, size; these are model diagnostics.
- output reg [151:0] objects,
- output reg [303:0] region_objects,output wire [31:0] empty_probe,
+ output wire [151:0] objects,
+ output wire [303:0] region_objects,output wire [31:0] empty_probe,
  // Extra classified neighbours stay in this processing domain. Original UI
  // always receives its original best2, independently of this counting sideband.
- output reg [607:0] recorder_objects,
+ output wire [607:0] recorder_objects,
  input wire recorder_hold_valid,input wire [10:0] recorder_hold_x,input wire [9:0] recorder_hold_y,
  output wire [127:0] probe_record,output wire probe_ready
 );
 // Average each 2x2 source block; every source pixel contributes. Detection
 // covers WIDTH x HEIGHT, with a half-size internal mask. 220 mm needs new calibration.
 localparam W=WIDTH/2,H=HEIGHT/2,WORDS=W*H/4;
+localparam INDEXED=INDEXED_CANDIDATES && REGIONS && COUNT_CANDIDATES && !EMPTY_DIAGNOSTICS;
+reg [151:0] legacy_objects;reg [303:0] legacy_region_objects;reg [607:0] recorder_storage;
+assign objects=INDEXED ? (ready ? recorder_storage[151:0] : 152'd0) : legacy_objects;
+assign region_objects=INDEXED ? (ready ? {recorder_storage[455:304],recorder_storage[151:0]} : 304'd0) : legacy_region_objects;
+assign recorder_objects=INDEXED ? (ready ? recorder_storage : 608'd0) : recorder_storage;
  localparam XB=$clog2(W),YB=$clog2(H),QB=XB+YB;
 reg [7:0] mask [0:WORDS-1];reg [QB-1:0] queue [0:1023];
 reg [17:0] pair_line [0:WIDTH/4-1];reg [17:0] pair_q,pair_d;
@@ -211,8 +217,11 @@ end endgenerate
 localparam IDLE=0,SCAN_REQ=1,SCAN_WAIT=2,SCAN_CHECK=3,SEED_MARK=4,
  POP_REQ=5,POP_WAIT=6,POP_VALUE=7,NEIGH_REQ=8,NEIGH_WAIT=9,NEIGH_CHECK=10,
  NEIGH_NEXT=12,AREA_CALC=13,COMPARE=14,
- REF_REQ=15,REF_WAIT=16,REF_CHECK=17,FINISHED=18,SCALE=19,PUBLISH=20,REF_ORIGIN=21,SMALL_INSERT=22,BODY_ACCOUNTED=23,HIGH_REQ=24,HIGH_CHECK=25,SURFACE_WAIT=26;
-reg [4:0] phase;
+ REF_REQ=15,REF_WAIT=16,REF_CHECK=17,FINISHED=18,SCALE=19,PUBLISH=20,REF_ORIGIN=21,SMALL_INSERT=22,BODY_ACCOUNTED=23,HIGH_REQ=24,HIGH_CHECK=25;
+localparam COVER_REQ=26,COVER_SCAN=27,CAND_SELECT=28,CAND_COMMIT=29,
+ REF_BOX=30,PACK_REQ=31,PACK_SCAN=32,PACK_FINISH=33,SURFACE_WAIT=34;
+reg [5:0] phase;
+reg [5:0] candidate_after_phase;
 // Four same-frame T100 shape proofs perROI. These do not enter the original
 // candidate bank. T80 must independently measure the EXACT bounding box.
 // One synchronous-read contour cache, no pixel RAM and no array reset.
@@ -335,8 +344,47 @@ reg [XB-1:0] xmin_bank [0:SLOTS-1],xmax_bank [0:SLOTS-1];
 reg [YB-1:0] ymin_bank [0:SLOTS-1],ymax_bank [0:SLOTS-1];
 reg [1:0] state_bank [0:SLOTS-1];reg [3:0] reason_bank [0:SLOTS-1];
 reg weak_bank[0:SLOTS-1];reg [15:0] dark_bank[0:SLOTS-1];
-localparam SURFACE_ACTIVE=SURFACE_REVIEW && REVIEW_PROBE && REGIONS;
+localparam SURFACE_ACTIVE=SURFACE_REVIEW && REGIONS;
 wire surface_ready,surface_normal;
+reg [$clog2(SLOTS)-1:0] ref_index;reg legacy_pair_selected;
+wire surface_needed=SURFACE_ACTIVE && state_bank[ref_index]==2 && !weak_bank[ref_index];
+localparam GEOMETRY_BITS=2*(XB+YB);
+reg [1:0] pointer_bank[0:7];
+wire [GEOMETRY_BITS-1:0] geometry_q;
+reg [1:0] cover_index;reg covered_body;reg [3:0] contained_mask;
+reg [3:0] retained_pending;reg pending_new;
+reg [2:0] pack_index;reg [GEOMETRY_BITS-1:0] pack_anchor;reg [1:0] pack_duplicate;
+wire [1:0] pack_order=pack_index[1:0]==0 ? 2'd3 : pack_index[1:0]==1 ? 2'd0 : pack_index[1:0]==2 ? 2'd1 : 2'd2;
+wire [2:0] pack_slot={pack_index[2],pack_order};
+wire swap0=found_bank[1] && xmin_bank[1]<xmin_bank[0];
+wire swap1=found_bank[5] && xmin_bank[5]<xmin_bank[4];
+wire [2:0] pack_destination=pack_slot[1:0]<2 && (pack_slot[2] ? swap1 : swap0) ? pack_slot^3'd1 : pack_slot;
+wire geometry_read=INDEXED && ((phase==COVER_REQ) || (phase==COVER_SCAN && cover_index!=3) ||
+ (phase==REF_ORIGIN && found_bank[ref_index]) || phase==PACK_REQ || (phase==PACK_SCAN && pack_index!=7));
+wire [2:0] next_pack_index=pack_index+1'b1;
+wire [1:0] next_pack_order=next_pack_index[1:0]==0 ? 2'd3 : next_pack_index[1:0]==1 ? 2'd0 : next_pack_index[1:0]==2 ? 2'd1 : 2'd2;
+wire [2:0] geometry_read_slot=phase==COVER_REQ ? {candidate_region,2'd0} :
+ phase==COVER_SCAN ? {candidate_region,cover_index+2'd1} : phase==REF_ORIGIN ? ref_index :
+ phase==PACK_REQ ? 3'd3 : {next_pack_index[2],next_pack_order};
+wire [XB-1:0] read_xmin=geometry_q[XB-1:0],read_xmax=geometry_q[2*XB-1:XB];
+wire [YB-1:0] read_ymin=geometry_q[2*XB+YB-1:2*XB],read_ymax=geometry_q[GEOMETRY_BITS-1:2*XB+YB];
+reg [1:0] allocated_record;reg free_found;integer free_i;
+always @*begin
+ allocated_record=0;free_found=0;
+ for(free_i=0;free_i<4;free_i=free_i+1)if(!retained_pending[free_i] && !free_found)begin allocated_record=free_i;free_found=1;end
+end
+generate if(INDEXED)begin : indexed_geometry
+ reg [GEOMETRY_BITS-1:0] memory[0:7];reg [GEOMETRY_BITS-1:0] q;
+ always @(posedge clk)begin
+  if(rst_n && !frame_start && !invalidate && !pixel_sof)begin
+   if(phase==CAND_COMMIT && pending_new)memory[{candidate_region,allocated_record}]<={ymax,ymin,xmax,xmin};
+   if(geometry_read)q<=memory[{geometry_read_slot[2],pointer_bank[geometry_read_slot]}];
+  end
+ end
+ assign geometry_q=q;
+end else begin : no_indexed_geometry
+ assign geometry_q=0;
+end endgenerate
 wire [$clog2(SLOTS)-1:0] bank0=candidate_region ? REGION_SLOTS : 0,bank1=bank0+1'b1;
 wire [$clog2(SLOTS)-1:0] bank2=COUNT_CANDIDATES && REGIONS ? bank0+2 : bank0,bank3=COUNT_CANDIDATES && REGIONS ? bank0+3 : bank0;
 wire candidate_preferred=candidate_state>=2;
@@ -355,13 +403,33 @@ wire before_third=!found_bank[bank2] || (candidate_preferred && state_bank[bank2
 wire before_fourth=!found_bank[bank3] || (candidate_preferred && state_bank[bank3]<2) ||
  ((candidate_preferred==(state_bank[bank3]>=2)) && (distance<distance_bank[bank3] ||
  (distance==distance_bank[bank3] && component_count>count_bank[bank3])));
+// Compile the original nonblocking destination priorities to old-source/new
+// tags. Allocation is registered BEFORE the write edge to bound its path.
+reg [11:0] sort_actions;reg [3:0] retained_now;reg has_new_now;integer action_i;reg [2:0] old_source;
+always @*begin
+ sort_actions={3'd3,3'd2,3'd1,3'd0};
+ if((before_best && found_bank[bank0]) || (!before_best && before_second && found_bank[bank1]))begin
+  if(!held_found[candidate_region])sort_actions[11:9]=2;sort_actions[8:6]=1;
+ end else if(!before_best && !before_second && before_third)begin
+  if(found_bank[bank2] && !held_found[candidate_region])sort_actions[11:9]=2;sort_actions[8:6]=4;
+ end else if(!before_best && !before_second && !before_third && before_fourth && !held_found[candidate_region])sort_actions[11:9]=4;
+ if(preferred_main)sort_actions[11:9]=4;
+ if(before_best)begin if(found_bank[bank0])sort_actions[5:3]=0;sort_actions[2:0]=4;end
+ else if(before_second)sort_actions[5:3]=4;
+ retained_now=0;has_new_now=0;old_source=0;
+ for(action_i=0;action_i<4;action_i=action_i+1)begin
+  old_source=sort_actions[action_i*3+:3];
+  if(old_source==4)has_new_now=1;
+  else if(found_bank[{candidate_region,old_source[1:0]}])retained_now[pointer_bank[{candidate_region,old_source[1:0]}]]=1;
+ end
+end
 wire found=found_bank[0] || found_bank[1] || (REGIONS && (found_bank[SLOTS-REGION_SLOTS] || found_bank[SLOTS-REGION_SLOTS+1]));
-reg [$clog2(SLOTS)-1:0] ref_index;reg legacy_pair_selected;
+
 reg [8:0] left_dark,right_dark;
 reg ref_side;reg [2:0] ref_word;reg [6:0] ref_row;
 reg [9:0] origin_x,origin_y;reg [3:0] ref_mask;integer ref_lane_index;
-wire [9:0] ref_cx=({1'b0,xmin_bank[ref_index]}+xmax_bank[ref_index])>>1;
-wire [9:0] ref_cy=({1'b0,ymin_bank[ref_index]}+ymax_bank[ref_index])>>1;
+wire [9:0] ref_cx=INDEXED ? ({1'b0,read_xmin}+read_xmax)>>1 : ({1'b0,xmin_bank[ref_index]}+xmax_bank[ref_index])>>1;
+wire [9:0] ref_cy=INDEXED ? ({1'b0,read_ymin}+read_ymax)>>1 : ({1'b0,ymin_bank[ref_index]}+ymax_bank[ref_index])>>1;
 // Small holes use a local8x8 side strip; legacy8x40 strips can land on
 // the next body or outside a tilted carrier. Same75% dark fraction, no stale data.
 wire local_empty_ref=SMALL_HOLES && state_bank[ref_index]==3;
@@ -378,7 +446,8 @@ always @*begin
 end
 wire [SLOTS*76-1:0] records;
 genvar slot;
-generate for(slot=0;slot<SLOTS;slot=slot+1)begin : packed_records
+generate if(!INDEXED)begin : legacy_formatters
+ for(slot=0;slot<SLOTS;slot=slot+1)begin : packed_records
  wire [10:0] bw=(xmax_bank[slot]-xmin_bank[slot]+1)*2,bh=(ymax_bank[slot]-ymin_bank[slot]+1)*2;
  wire [10:0] bx0=xmin_bank[slot]*2>1 ? xmin_bank[slot]*2-2 : 0;
  wire [10:0] bx1=xmax_bank[slot]*2+4<WIDTH ? xmax_bank[slot]*2+4 : WIDTH;
@@ -387,16 +456,30 @@ generate for(slot=0;slot<SLOTS;slot=slot+1)begin : packed_records
  assign records[slot*76+:76]=found_bank[slot] ?
   {1'b1,state_bank[slot],reason_bank[slot],(count_bank[slot]>2047 ? 13'd8191 : {count_bank[slot][10:0],2'b0}),
    (bw>127 ? 7'd127 : bw[6:0]),(bh>127 ? 7'd127 : bh[6:0]),bx0,bx1,by0,by1} : 76'd0;
+end
+end else begin : indexed_formatter
+ assign records=0;
 end endgenerate
-wire [151:0] sorted0=found_bank[1] && xmin_bank[1]<xmin_bank[0] ?
+// Exactly one bbox/size/clamp formatter feeds the existing recorder storage.
+wire [10:0] packed_w=(read_xmax-read_xmin+1)*2,packed_h=(read_ymax-read_ymin+1)*2;
+wire [10:0] packed_x0=read_xmin*2>1 ? read_xmin*2-2 : 0;
+wire [10:0] packed_x1=read_xmax*2+4<WIDTH ? read_xmax*2+4 : WIDTH;
+wire [9:0] packed_y0=read_ymin*2>1 ? read_ymin*2-2 : 0;
+wire [9:0] packed_y1=read_ymax*2+4<HEIGHT ? read_ymax*2+4 : HEIGHT;
+wire [75:0] packed_one=found_bank[pack_slot] ?
+ {1'b1,state_bank[pack_slot],reason_bank[pack_slot],(count_bank[pack_slot]>2047 ? 13'd8191 : {count_bank[pack_slot][10:0],2'b0}),
+ (packed_w>127 ? 7'd127 : packed_w[6:0]),(packed_h>127 ? 7'd127 : packed_h[6:0]),packed_x0,packed_x1,packed_y0,packed_y1} : 76'd0;
+wire [151:0] sorted0=INDEXED ? recorder_storage[151:0] : found_bank[1] && xmin_bank[1]<xmin_bank[0] ?
  {records[75:0],records[151:76]} : records[151:0];
 wire [151:0] sorted1;
 generate if(REGIONS)begin
- assign sorted1=found_bank[REGION_SLOTS+1] && xmin_bank[REGION_SLOTS+1]<xmin_bank[REGION_SLOTS] ?
+ assign sorted1=INDEXED ? recorder_storage[455:304] : found_bank[REGION_SLOTS+1] && xmin_bank[REGION_SLOTS+1]<xmin_bank[REGION_SLOTS] ?
  {records[REGION_SLOTS*76+:76],records[(REGION_SLOTS+1)*76+:76]} : records[REGION_SLOTS*76+:152];
 end else assign sorted1=0;endgenerate
 wire [607:0] recorder_packet;
-generate if(COUNT_CANDIDATES && REGIONS)begin : extended_candidates
+generate if(INDEXED)begin : indexed_packet
+ assign recorder_packet=recorder_storage;
+end else if(COUNT_CANDIDATES && REGIONS)begin : extended_candidates
  // Within eachROI slots0/1 are EXACTLY the original UI pair, X sorted.
  // Slots2/3 are additional real measurements, not pitch-generated positions.
  wire duplicate0=(found_bank[0] && xmin_bank[3]==xmin_bank[0] && xmax_bank[3]==xmax_bank[0] && ymin_bank[3]==ymin_bank[0] && ymax_bank[3]==ymax_bank[0]) ||
@@ -425,7 +508,7 @@ end endgenerate
 wire [3:0] seed_word=mem_q[3:0] & seed_mask & {4{!active_ignored}};
 // Do not duplicate a body with a small low-threshold fragment. Conversely,
 // remove T100 fragments contained in a measured T80 empty/feed contour.
-assign covers_body=(found_bank[bank0] && state_bank[bank0]==2 && xmin<=xmax_bank[bank0] && xmax>=xmin_bank[bank0] && ymin<=ymax_bank[bank0] && ymax>=ymin_bank[bank0]) ||
+assign covers_body=INDEXED ? covered_body : (found_bank[bank0] && state_bank[bank0]==2 && xmin<=xmax_bank[bank0] && xmax>=xmin_bank[bank0] && ymin<=ymax_bank[bank0] && ymax>=ymin_bank[bank0]) ||
  (found_bank[bank1] && state_bank[bank1]==2 && xmin<=xmax_bank[bank1] && xmax>=xmin_bank[bank1] && ymin<=ymax_bank[bank1] && ymax>=ymin_bank[bank1]);
 // Passive probe uses existing measurements, never feeds a class or candidate.
 generate if(REGIONS && EMPTY_DIAGNOSTICS)begin : empty_diagnostics
@@ -494,7 +577,8 @@ task copy_candidate;
  input [$clog2(SLOTS)-1:0] dst,src;
  begin
   found_bank[dst]<=found_bank[src];distance_bank[dst]<=distance_bank[src];count_bank[dst]<=count_bank[src];
-  xmin_bank[dst]<=xmin_bank[src];xmax_bank[dst]<=xmax_bank[src];ymin_bank[dst]<=ymin_bank[src];ymax_bank[dst]<=ymax_bank[src];
+  if(!INDEXED)begin xmin_bank[dst]<=xmin_bank[src];xmax_bank[dst]<=xmax_bank[src];ymin_bank[dst]<=ymin_bank[src];ymax_bank[dst]<=ymax_bank[src];end
+  else begin pointer_bank[dst]<=pointer_bank[src];if(dst%4<2)xmin_bank[dst]<=xmin_bank[src];end
   state_bank[dst]<=state_bank[src];reason_bank[dst]<=reason_bank[src];weak_bank[dst]<=weak_bank[src];
  end
 endtask
@@ -502,7 +586,8 @@ task store_candidate;
  input [$clog2(SLOTS)-1:0] dst;
  begin
   found_bank[dst]<=1;distance_bank[dst]<=distance;count_bank[dst]<=component_count;
-  xmin_bank[dst]<=xmin;xmax_bank[dst]<=xmax;ymin_bank[dst]<=ymin;ymax_bank[dst]<=ymax;
+  if(!INDEXED)begin xmin_bank[dst]<=xmin;xmax_bank[dst]<=xmax;ymin_bank[dst]<=ymin;ymax_bank[dst]<=ymax;end
+  else begin pointer_bank[dst]<=allocated_record;if(dst%4<2)xmin_bank[dst]<=xmin;end
   state_bank[dst]<=candidate_state;reason_bank[dst]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;weak_bank[dst]<=small_pass;
  end
 endtask
@@ -523,25 +608,34 @@ task retain_candidate;
      if(before_best)begin
       if(found_bank[bank0])begin
        found_bank[bank1]<=1;distance_bank[bank1]<=distance_bank[bank0];count_bank[bank1]<=count_bank[bank0];
-       xmin_bank[bank1]<=xmin_bank[bank0];xmax_bank[bank1]<=xmax_bank[bank0];ymin_bank[bank1]<=ymin_bank[bank0];ymax_bank[bank1]<=ymax_bank[bank0];
+       xmin_bank[bank1]<=xmin_bank[bank0];
+       if(!INDEXED)begin xmax_bank[bank1]<=xmax_bank[bank0];ymin_bank[bank1]<=ymin_bank[bank0];ymax_bank[bank1]<=ymax_bank[bank0];end
+       else pointer_bank[bank1]<=pointer_bank[bank0];
        state_bank[bank1]<=state_bank[bank0];reason_bank[bank1]<=reason_bank[bank0];weak_bank[bank1]<=weak_bank[bank0];
       end
       found_bank[bank0]<=1;distance_bank[bank0]<=distance;count_bank[bank0]<=component_count;
-      xmin_bank[bank0]<=xmin;xmax_bank[bank0]<=xmax;ymin_bank[bank0]<=ymin;ymax_bank[bank0]<=ymax;
+      xmin_bank[bank0]<=xmin;
+      if(!INDEXED)begin xmax_bank[bank0]<=xmax;ymin_bank[bank0]<=ymin;ymax_bank[bank0]<=ymax;end
+      else pointer_bank[bank0]<=allocated_record;
       state_bank[bank0]<=candidate_state;reason_bank[bank0]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;weak_bank[bank0]<=small_pass;
      end else if(before_second)begin
       found_bank[bank1]<=1;distance_bank[bank1]<=distance;count_bank[bank1]<=component_count;
-      xmin_bank[bank1]<=xmin;xmax_bank[bank1]<=xmax;ymin_bank[bank1]<=ymin;ymax_bank[bank1]<=ymax;
+      xmin_bank[bank1]<=xmin;
+      if(!INDEXED)begin xmax_bank[bank1]<=xmax;ymin_bank[bank1]<=ymin;ymax_bank[bank1]<=ymax;end
+      else pointer_bank[bank1]<=allocated_record;
       state_bank[bank1]<=candidate_state;reason_bank[bank1]<=small_pass ? (candidate_state==2 ? 4'hf : 4'd0) : candidate_reason;weak_bank[bank1]<=small_pass;
      end
  end
 endtask
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
+  cover_index<=0;covered_body<=0;contained_mask<=0;retained_pending<=0;pending_new<=0;candidate_after_phase<=SCAN_REQ;
+  pack_index<=0;pack_anchor<=0;pack_duplicate<=0;
+  for(bi=0;bi<8;bi=bi+1)pointer_bank[bi]<=bi%4;
   high_valid<=0;high_index<=0;high_confirmed<=0;
   held_valid<=0;held_x<=0;held_y<=0;held_found<=0;
   row_anchor_valid<=0;row_anchor_y[0]<=0;row_anchor_y[1]<=0;row_anchor_distance[0]<=4095;row_anchor_distance[1]<=4095;
-  small_pass<=0;ready<=0;sample_new<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;recorder_objects<=0;foreground_count<=0;box_width<=0;box_height<=0;
+  small_pass<=0;ready<=0;sample_new<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;foreground_count<=0;box_width<=0;box_height<=0;
   box_x0<=0;box_x1<=0;box_y0<=0;box_y1<=0;seen<=0;cap_count<=0;capture_foreground<=0;phase<=IDLE;
   mem_addr<=0;mem_write_addr<=0;mem_data<=0;mem_write<=0;q_read<=0;q_write_addr<=0;q_data<=0;q_write<=0;
   candidate_region<=0;candidate_allowed<=0;distance<=0;scan_region<=0;sx<=0;sy<=0;cx<=0;cy<=0;nx<=0;ny<=0;xmin<=0;xmax<=0;ymin<=0;ymax<=0;direction<=0;
@@ -555,11 +649,11 @@ always @(posedge clk or negedge rst_n)begin
   left_dark<=0;right_dark<=0;
  end else begin
   sample_new<=0;mem_write<=0;q_write<=0;
-  if(frame_start || invalidate)begin high_valid<=0;high_confirmed<=0;held_valid<=0;held_found<=0;row_anchor_valid<=0;small_pass<=0;ready<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;recorder_objects<=0;phase<=IDLE;seen<=0;cap_count<=0;capture_foreground<=0;end
+  if(frame_start || invalidate)begin high_valid<=0;high_confirmed<=0;held_valid<=0;held_found<=0;row_anchor_valid<=0;small_pass<=0;ready<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;phase<=IDLE;seen<=0;cap_count<=0;capture_foreground<=0;end
   else if(pixel_sof)begin
    high_valid<=0;high_confirmed<=0;
    held_valid<=COUNT_CANDIDATES && recorder_hold_valid;held_x<=recorder_hold_x;held_y<=recorder_hold_y;held_found<=0;
-   row_anchor_valid<=0;small_pass<=0;scan_region<=0;seen<=1;cap_count<=0;capture_foreground<=0;ready<=0;located<=0;state<=1;review_required<=0;objects<=0;region_objects<=0;recorder_objects<=0;phase<=IDLE;
+   row_anchor_valid<=0;small_pass<=0;scan_region<=0;seen<=1;cap_count<=0;capture_foreground<=0;ready<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;phase<=IDLE;
    foreground_count<=0;box_width<=0;box_height<=0;
    for(bi=0;bi<SLOTS;bi=bi+1)begin
     found_bank[bi]<=0;distance_bank[bi]<=4095;count_bank[bi]<=0;reason_bank[bi]<=0;weak_bank[bi]<=0;dark_bank[bi]<=0;
@@ -639,7 +733,9 @@ always @(posedge clk or negedge rst_n)begin
     fg10<={4'b0,component_count}*23'd10;area9<={4'b0,component_area}*23'd9;
     fg4<={2'b0,component_count,2'b0};
     long20<={4'b0,long_side}*14'd20;short21<={4'b0,short_side}*14'd21;short31<={4'b0,short_side}*14'd31;
-    long5<={4'b0,long_side}*14'd5;short7<={4'b0,short_side}*14'd7;short9<={4'b0,short_side}*14'd9;phase<=COMPARE;
+    long5<={4'b0,long_side}*14'd5;short7<={4'b0,short_side}*14'd7;short9<={4'b0,short_side}*14'd9;
+    covered_body<=0;contained_mask<=0;cover_index<=0;
+    phase<=INDEXED && small_pass && allowed_now && !border && component_count>=6 && width_now>=3 && height_now>=3 ? COVER_REQ : COMPARE;
    end
    COMPARE:begin
     phase<=SCAN_REQ;
@@ -655,13 +751,21 @@ always @(posedge clk or negedge rst_n)begin
        row_anchor_valid[candidate_region]<=1;row_anchor_y[candidate_region]<=center_y;
        row_anchor_distance[candidate_region]<=distance;
       end
-      retain_candidate;
-      if(PLACEMENT_REVIEW && candidate_state==2)begin nx<=xmin & ~3;ny<=ymin;phase<=BODY_ACCOUNTED;end
+      if(INDEXED)begin
+       candidate_after_phase<=PLACEMENT_REVIEW && candidate_state==2 ? BODY_ACCOUNTED : SCAN_REQ;
+       phase<=CAND_SELECT;
+       if(PLACEMENT_REVIEW && candidate_state==2)begin nx<=xmin & ~3;ny<=ymin;end
+      end else begin retain_candidate;
+       if(PLACEMENT_REVIEW && candidate_state==2)begin nx<=xmin & ~3;ny<=ymin;phase<=BODY_ACCOUNTED;end
+      end
      end
      else if(high_lookup)begin high_index<={candidate_region,2'b00};phase<=HIGH_REQ;end
      else if((empty_match || sprocket_match || pose_match) && !covers_body)begin
+      if(INDEXED)begin
+      for(bi=0;bi<4;bi=bi+1)if(contained_mask[bi])found_bank[{candidate_region,bi[1:0]}]<=0;
+     end else begin
       for(bi=0;bi<SLOTS;bi=bi+1)if(found_bank[bi] && state_bank[bi]!=2 && bi/REGION_SLOTS==candidate_region &&
-       xmin_bank[bi]>=xmin && xmax_bank[bi]<=xmax && ymin_bank[bi]>=ymin && ymax_bank[bi]<=ymax)found_bank[bi]<=0;
+       xmin_bank[bi]>=xmin && xmax_bank[bi]<=xmax && ymin_bank[bi]>=ymin && ymax_bank[bi]<=ymax)found_bank[bi]<=0;end
       if((empty_match || pose_match) && !sprocket_match)phase<=SMALL_INSERT;
      end
     end
@@ -672,13 +776,30 @@ always @(posedge clk or negedge rst_n)begin
      high_confirmed<=1;
      // Remove T100 fragments contained in this independently measured T80
      // contour, exactly as the original EMPTY insertion does.
-     for(bi=0;bi<SLOTS;bi=bi+1)if(found_bank[bi] && state_bank[bi]!=2 && bi/REGION_SLOTS==candidate_region &&
-       xmin_bank[bi]>=xmin && xmax_bank[bi]<=xmax && ymin_bank[bi]>=ymin && ymax_bank[bi]<=ymax)found_bank[bi]<=0;
+     if(INDEXED)begin
+      for(bi=0;bi<4;bi=bi+1)if(contained_mask[bi])found_bank[{candidate_region,bi[1:0]}]<=0;
+     end else begin
+      for(bi=0;bi<SLOTS;bi=bi+1)if(found_bank[bi] && state_bank[bi]!=2 && bi/REGION_SLOTS==candidate_region &&
+       xmin_bank[bi]>=xmin && xmax_bank[bi]<=xmax && ymin_bank[bi]>=ymin && ymax_bank[bi]<=ymax)found_bank[bi]<=0;end
      phase<=SMALL_INSERT;
     end else if(high_index[1:0]==3)phase<=SCAN_REQ;
     else begin high_index<=high_index+1'b1;phase<=HIGH_REQ;end
    end
-   SMALL_INSERT:begin retain_candidate;phase<=SCAN_REQ;end
+   SMALL_INSERT:begin
+    if(INDEXED)begin candidate_after_phase<=SCAN_REQ;phase<=CAND_SELECT;end
+    else begin retain_candidate;phase<=SCAN_REQ;end
+   end
+   COVER_REQ:begin cover_index<=0;phase<=COVER_SCAN;end
+   COVER_SCAN:begin
+    if(found_bank[{candidate_region,cover_index}])begin
+     if(cover_index<2 && state_bank[{candidate_region,cover_index}]==2 &&
+        xmin<=read_xmax && xmax>=read_xmin && ymin<=read_ymax && ymax>=read_ymin)covered_body<=1;
+     if(state_bank[{candidate_region,cover_index}]!=2 && read_xmin>=xmin && read_xmax<=xmax && read_ymin>=ymin && read_ymax<=ymax)contained_mask[cover_index]<=1;
+    end
+    if(cover_index==3)phase<=COMPARE;else cover_index<=cover_index+1'b1;
+   end
+   CAND_SELECT:begin retained_pending<=retained_now;pending_new<=has_new_now;phase<=CAND_COMMIT;end
+   CAND_COMMIT:begin retain_candidate;phase<=candidate_after_phase;end
    BODY_ACCOUNTED:begin
     if(nx+4>xmax)begin
      nx<=xmin & ~3;
@@ -687,11 +808,13 @@ always @(posedge clk or negedge rst_n)begin
    end
    // Separate bbox-center arithmetic from dark-pixel counting and thresholds.
    REF_ORIGIN:begin
-    if(!REGIONS && ref_index==1 && !legacy_pair_selected)phase<=PUBLISH;
+    if(!REGIONS && ref_index==1 && !legacy_pair_selected)phase<=INDEXED ? PACK_REQ : PUBLISH;
     else if(!found_bank[ref_index])begin
-     if(ref_index==SLOTS-1)phase<=PUBLISH;else ref_index<=ref_index+1'b1;
-    end else begin origin_x<=ref_cx;origin_y<=ref_cy;phase<=SURFACE_ACTIVE && state_bank[ref_index]==2 && !weak_bank[ref_index] ? SURFACE_WAIT : REF_REQ;end
+     if(ref_index==SLOTS-1)phase<=INDEXED ? PACK_REQ : PUBLISH;else ref_index<=ref_index+1'b1;
+    end else if(INDEXED)phase<=REF_BOX;
+    else begin origin_x<=ref_cx;origin_y<=ref_cy;phase<=surface_needed ? SURFACE_WAIT : REF_REQ;end
    end
+   REF_BOX:begin origin_x<=ref_cx;origin_y<=ref_cy;phase<=surface_needed ? SURFACE_WAIT : REF_REQ;end
    SURFACE_WAIT:if(surface_ready)phase<=REF_REQ;
    REF_REQ:begin
     mem_addr<=address(word_x[XB-1:0],word_y[YB-1:0]);
@@ -708,14 +831,14 @@ always @(posedge clk or negedge rst_n)begin
      // Preserve a recognized 3528 body, but do not assert quality is normal.
      if(state_bank[ref_index]==2)begin
       // F is the generic weak-gray review code, not four failed measurements.
-      if(SURFACE_ACTIVE && !weak_bank[ref_index])reason_bank[ref_index][3]<=!surface_normal;
+      if(surface_needed)reason_bank[ref_index][3]<=!surface_normal;
       else if(reason_bank[ref_index]!=4'hf)reason_bank[ref_index][3]<=left_dark<ref_min || right_dark+dark_word<ref_min;
      end
      else begin
       reason_bank[ref_index]<=0;
       if(left_dark<ref_min || right_dark+dark_word<ref_min)state_bank[ref_index]<=REGIONS ? 1 : 0;
      end
-     if(ref_index==SLOTS-1)phase<=PUBLISH;
+     if(ref_index==SLOTS-1)phase<=INDEXED ? PACK_REQ : PUBLISH;
      else begin ref_index<=ref_index+1'b1;ref_side<=0;ref_word<=0;ref_row<=0;left_dark<=0;right_dark<=0;phase<=REF_ORIGIN;end
     end else begin
      if(ref_word==2)begin ref_word<=0;if(ref_last_row)begin ref_row<=0;ref_side<=1;end else ref_row<=ref_row+1'b1;end
@@ -723,11 +846,25 @@ always @(posedge clk or negedge rst_n)begin
      phase<=REF_REQ;
     end
    end
+   PACK_REQ:begin pack_index<=0;pack_duplicate<=0;phase<=PACK_SCAN;end
+   PACK_SCAN:begin
+    for(bi=0;bi<8;bi=bi+1)if(pack_destination==bi)recorder_storage[bi*76+:76]<=packed_one;
+    if(pack_order==3)pack_anchor<=geometry_q;
+    else if(found_bank[pack_slot] && pack_anchor==geometry_q)pack_duplicate[pack_index[2]]<=1;
+    if(pack_index==7)phase<=PACK_FINISH;else pack_index<=pack_index+1'b1;
+   end
+   PACK_FINISH:begin
+    if(pack_duplicate[0])recorder_storage[3*76+:76]<=0;
+    if(pack_duplicate[1])recorder_storage[7*76+:76]<=0;
+    phase<=PUBLISH;
+   end
    PUBLISH:begin
      ready<=1;sample_new<=1;located<=primary_record[75];state<=primary_record[74:73];
      review_required<=primary_record[74:73]==2 && |primary_record[72:69];
-     objects<=(!REGIONS && !legacy_pair_selected) ? {76'd0,records[75:0]} : sorted0;
-     region_objects<={sorted1,sorted0};recorder_objects<=recorder_packet;
+     if(!INDEXED)begin
+      legacy_objects<=(!REGIONS && !legacy_pair_selected) ? {76'd0,records[75:0]} : sorted0;
+      legacy_region_objects<={sorted1,sorted0};recorder_storage<=recorder_packet;
+     end
      foreground_count<=primary_record[68:56];box_width<=primary_record[55:49];box_height<=primary_record[48:42];
      box_x0<=primary_record[41:31];box_x1<=primary_record[30:20];box_y0<=primary_record[19:10];box_y1<=primary_record[9:0];phase<=FINISHED;
    end
@@ -735,8 +872,8 @@ always @(posedge clk or negedge rst_n)begin
   endcase
  end
 end
-
-generate if(REVIEW_PROBE && REGIONS)begin : review_measurement
+// P02 same-frame surface proof over R16 indexed candidates.
+generate if((REVIEW_PROBE || SURFACE_REVIEW) && REGIONS)begin : review_measurement
  wire [$clog2(SLOTS)-1:0] index0=found_bank[1] && (!found_bank[0] || xmin_bank[1]<xmin_bank[0]) ? 1 : 0;
  wire [$clog2(SLOTS)-1:0] index1=found_bank[REGION_SLOTS+1] && (!found_bank[REGION_SLOTS] || xmin_bank[REGION_SLOTS+1]<xmin_bank[REGION_SLOTS]) ? REGION_SLOTS+1 : REGION_SLOTS;
  wire [35:0] references={weak_bank[index1],found_bank[index1] && state_bank[index1]==2,dark_bank[index1],
@@ -750,17 +887,21 @@ generate if(REVIEW_PROBE && REGIONS)begin : review_measurement
    if(frame_start || invalidate || pixel_sof)first_gray<=0;
   end
  end
+ if(REVIEW_PROBE)begin : diagnostic_probe
  present_review_probe #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) probe(
   .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
   .write_enable(cap_write),.write_x(gray_x),.write_y(gray_y),.write_data(gray_word),
   .measure(sample_new),.objects(region_objects),.references(references),.ready(probe_ready),.record(probe_record));
+end else begin : no_diagnostic_probe
+ assign probe_record=0;assign probe_ready=1;
+end
 if(SURFACE_REVIEW)begin : surface_measurement
  present_surface_check_p02 #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),.FOREGROUND(FOREGROUND)) surface(
   .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
   .write_enable(cap_write),.write_x(gray_x),.write_y(gray_y),.write_data(gray_word),
-  .measure(phase==REF_ORIGIN && found_bank[ref_index] && state_bank[ref_index]==2 && !weak_bank[ref_index]),
-  .xmin({{(10-XB){1'b0}},xmin_bank[ref_index]}),.xmax({{(10-XB){1'b0}},xmax_bank[ref_index]}),
-  .ymin({{(10-YB){1'b0}},ymin_bank[ref_index]}),.ymax({{(10-YB){1'b0}},ymax_bank[ref_index]}),
+  .measure((INDEXED ? phase==REF_BOX : phase==REF_ORIGIN) && found_bank[ref_index] && surface_needed),
+  .xmin({{(10-XB){1'b0}},(INDEXED ? read_xmin : xmin_bank[ref_index])}),.xmax({{(10-XB){1'b0}},(INDEXED ? read_xmax : xmax_bank[ref_index])}),
+  .ymin({{(10-YB){1'b0}},(INDEXED ? read_ymin : ymin_bank[ref_index])}),.ymax({{(10-YB){1'b0}},(INDEXED ? read_ymax : ymax_bank[ref_index])}),
   .ready(surface_ready),.normal(surface_normal));
 end else begin : surface_disabled
  assign surface_ready=1;assign surface_normal=0;

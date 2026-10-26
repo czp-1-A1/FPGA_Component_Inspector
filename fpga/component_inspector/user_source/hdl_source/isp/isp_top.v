@@ -1,7 +1,7 @@
 module isp_top #(
     parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
-    parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,SURFACE_REVIEW=0,REVIEW_PROBE=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,
+    parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,ROBUST_SMALL_EMPTY=0,STANDING_REVIEW=0,SURFACE_REVIEW=0,REVIEW_PROBE=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,
     parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+256*CLASSIFIED_COUNT
 ) (
     input processing_clk,
@@ -381,7 +381,7 @@ roi_statistics #(.DYNAMIC_ROI(TRACKING),.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(
     .frame_commit(result_commit),.invalidate(sample_cancel),.sample_valid(legacy_valid),
     .mean(legacy_mean),.minimum(legacy_min),.maximum(legacy_max),.sample_pixels(),.sample_sum(),.sample_new(legacy_new),.frame_start(post_start));
 generate if(USE_SEARCH) begin : local_shape_detection
- frame_shape_search #(.SURFACE_REVIEW(SURFACE_REVIEW),.REVIEW_PROBE(REVIEW_PROBE),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS),.COUNT_EMPTY_MARGIN(CLASSIFIED_COUNT),.EMPTY_DIAGNOSTICS(CLASSIFIED_COUNT && !RESULT_RECORDER),.ROW_GUARDED_BRIGHT_EMPTY(CLASSIFIED_COUNT),.COUNT_CANDIDATES(RESULT_RECORDER),.MULTITHRESHOLD_EMPTY(MULTITHRESHOLD_EMPTY)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
+ frame_shape_search #(.ROBUST_SMALL_EMPTY(ROBUST_SMALL_EMPTY),.STANDING_REVIEW(STANDING_REVIEW),.SURFACE_REVIEW(SURFACE_REVIEW),.REVIEW_PROBE(REVIEW_PROBE),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS),.COUNT_EMPTY_MARGIN(CLASSIFIED_COUNT),.EMPTY_DIAGNOSTICS(CLASSIFIED_COUNT && !RESULT_RECORDER),.ROW_GUARDED_BRIGHT_EMPTY(CLASSIFIED_COUNT),.COUNT_CANDIDATES(RESULT_RECORDER),.MULTITHRESHOLD_EMPTY(MULTITHRESHOLD_EMPTY)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
   .pixel_accept(post_accept),.invalidate(sample_cancel),.pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),
   .ready(search_ready),.sample_new(search_new),.located(search_located),.state(search_state),.foreground_count(search_fg),
   .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(legacy_search_objects),.region_objects(region_search_objects),.empty_probe(search_empty_probe),.recorder_objects(recorder_candidates),.recorder_hold_valid(recorder_hold_valid),.recorder_hold_x(recorder_hold_x),.recorder_hold_y(recorder_hold_y),.probe_record(search_probe_record),.probe_ready(search_probe_ready));

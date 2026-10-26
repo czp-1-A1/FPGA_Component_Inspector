@@ -57,16 +57,12 @@
 
 
 
-## 当前断点（P03已按用户要求发布GitHub供移植；实物验收待反馈）
+## 当前断点（2026-10-26，R19冻结候选发布）
 
-- 当前目标已落实：P03新增有件侧立复核在lj4747-contest-work发布；docs/P03_PORTING.md逐项说明在哪里改了什么、加了什么、实现了什么及两条移植路径，P03_HANDOFF.md提供版本身份/复原/完整验证。README/HANDOFF指向P03。用户禁用Codex记忆功能，本轮未用。
-- Git身份：P02父ef24ebcb67f4fe691bb458303f00120b01dd869e；P03独立功能提交9d4596885b29559f0bb5ed873464c6964cc53b1a；发布说明/证据提交384f7f249afafb7de84cf1bc47be4e46c31a1718；固定标签p03-standing-review-20261025指向发布提交。分支与标签已普通atomic push并ls-remote核对。上传回执为后续独立文档提交，不自引用自身SHA；最新HEAD以git log/远端为准。
-- GitHub发布：https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/tag/p03-standing-review-20261025，prerelease=true，P03实物验收PENDING。12附件已全部下载逐一核对size/SHA及GitHub digest；远端标签的frozen_inputs也直接读取核对。可机读回执releases/p03_20261025/GITHUB_UPLOAD_RECEIPT.json，纯Git/远端包复核另存同目录。
-- 当前主源：fpga/component_inspector是交付P03，526冻结静态源/100真实依赖，源manifest SHA 4f1b15dd327c2e51a6b538502d6cf4ec660d63cc9f74e8d3320aeff9cb347fc2。相对P02仅present_surface_check.v增加未取整中心/最亮边和的条件：旧P02全部证明AND 2*max(edge32 sums)<=center64 sum+16；compact_template_rom.v两处标题改P03。三处TD描述符仅重定位，其余499父文件逐SHA保持。无新增图像RAM、端口或元数据位宽；低3原因位、弱T80F、孔/空穴、计数控制、视频/887元数据、完整SDC/seed2保持。
-- 移植：已有完整P02合入9d459688；从R13等旧基础先合P02功能b549237f15aafd3e3979b53f9df88b6877651e27再合P03。P02所需2新增模块/6原模块接线、同帧灰度采集、SURFACE_REVIEW/REVIEW_PROBE/REGIONS依赖和槽/epoch等待不能丢。保留接收工程自身改动，重新冻结并做功能/真实路由/实物验证。两文件补丁需--ignore-space-change，说明/独立应用复测留存。
-- 软件证据：31组PASS，39请求170精确均值/和；9RGB帧72记录320参考（旧8场景等P02、新8目标仅质量位），默认关闭2829736拍等P01；70计数帧140观测4事件；原24相关回归（非72全跑）；8合成RAW源帧7有效质量帧、28判定140和70探针、15完整显示帧及部分帧共14623282像素/OF0UF0；7PGM另用NumPy重算；两套各3686400像素UI零差异。首轮新合成RAW760输入不足、单元生成cwd和补丁普通dry-run换行错误与复测均保留；未改gold或放宽标准。unit0/RGB52/count24/RAW17/UI0为重点运行警告数。
-- 真实Routed：TD6.2.168116、原完整SDC SHA4a248232348e0f5338472dab5a8c275f1edb100354049be7df62ef1d88972a51、seed2；Slow/Fast setup+0.010ns、hold+0.020ns/TNS0；46最大延迟Ignored0、20Gray/6邮箱/SW3及覆盖严格通过。Slice18385/21216、LUT616565、reg21244、ERAM103/108(余5)、DSP28、PLL5。
-- bit：D:/fpga_download/P03_Standing_1092_40_r0_20261025_21d1004f.bit，1789539字节SHA 21d1004fc74505ae7b5ee0c05aadc9c07cb780a2dd0fd763115b3796def060db。公开完整包P03_Standing_1092_40_r0_20261025_21d1004f_github_full.zip，84271629字节/1298项，SHA b78110efcf68255502fef98db0749d11bda1b5674f5d086726cf20673bd01875。本机原full.zip SHA c6d61332dbe52b16ea22b5c30e4a61eac588e93a824e8a0a8a2bab380dea032e。公开派生包保留相同526源/bit/合成输入与实际路由，原手机视频/照片及个人路径清单留本机，不能混用两个ZIP的SHA。
-- 独立复原：scripts/p03/verify_p03.py --archive及prepare_p03.py在新英文目录通过；从纯Git提交384f7f24导出8458个当前追踪工程/文档文件至D:/FpgaWork/P03_github_git_verify_20261025，526源/31证据/100依赖/严格物理证据复核通过，并在D:/FpgaWork/P03_github_git_replay_20261025新复原seed2工程通过；远端下载的公开ZIP再全CRC/SHA/源/bit/时序证据核对通过。未重新全综合/路由。先前D:/FpgaWork/P03_delivery_verify_20261025本机冷恢复及39请求170均值单元重放通过保留。
-- 状态与保护：P03实物未反馈，不继承P02“测试正常”。原P02/R13标签/发布/bit及本机冻结工程保留；P02校验需在其固定标签新checkout运行。原current_calibration_handoff.json本机未提交修改SHA d3fbfe449f0b26269e0f74cc89f47e73ff34ebd43064ffdc84ddcf6e8a8b06ce保留且未提交；其他旧未跟踪试验未混入。冻结源里“主源P02/未发布”的本机历史措辞不当当前状态，以本交接和FIELD_FEEDBACK/INTEGRATION/上传回执为准。
-- 下一条：接收最新工程按迁移表处理差异并重新验收，或接收P03新增侧立/正常正面/原各姿态的人工反馈。无板卡/JTAG/Flash操作，无本任务硬件构建或仿真进程；完成回执文档提交推送后无本任务后台工作。上传过程与原源备份在.git/codex-p03-publish。
+- 目标/断点：按用户授权上传刚交付R19，559冻结源/112软件/26参考/真实路由与独立归档通过；新实板常速空穴仍少计，候选而非板测稳定版，另一聊天继续只读视频分析。完整说明docs/R19_HANDOFF.md，现场releases/r19_20261025/FIELD_FEEDBACK.json。
+- 分支/基线：lj4747-contest-work，父372c0f0c0a3f9340a5c686aa6515b97b172594c9；独立上传C:/CodexWork/r19_github_upload_20261026，不改其他工作区。生产实现端已结束；另一个聊天只在独立目录分析现场，R19冻结559逐SHA未变。GitHub推送/远端复核完成后另提交GITHUB_UPLOAD_RECEIPT，成功才算同步。
+- 改动：当前fpga/component_inspector为精确R19，来源manifest684e4fa0c723d0f38c14b0acb7f54e39c3e12e5f3fd00e89f1733a0b89f6bd0e；相对Git P03为26变化/58新增，25独有文件保留。具体frame形状容错、top/ISP启用、R19标题；R18计数/局部恢复/元数据/控制/ROI/SDC/灰度缓存/P03判据保留。新增scripts/r19校验与新目录复原、releases/r19_20261025完整源/bit/公开证据包和SHA。原Example及P03/P02/R13标签/发布保持。
+- 验证/证据：112=63实际重跑+49实际编译runtime日志精确同SHA复用，26参考过；TD6.2.178840原SDC/seed2，Routed Slice18971/21216=89.42%、ERAM101/108、DSP27、PLL5，setup+.060/hold+.020/双TNS0；46maxdelay Ignored0、20实际GrayQ8ns及6邮箱/SW3全过。完整包原1539载荷、559源/112日志/101依赖独立复原；上传校验不冒称重跑硬件或软件。
+- bit/包：PocketCount_SW3_RobustEmpty_r19_20261025.bit，SHAfeaa11d1df1e009b10b239da85916f4c7709cf80a9d77c44850250a68800b444；公开ZIPPocketCount_SW3_RobustEmpty_r19_20261025_github_full.zip，SHAe5dfa85b7adb17481320f045a78b0bd8f6aae2e499a82a940abf41fa34a79e41。只省略本机手机输入路径清单，559源/bit/刺激/答案/日志/捕获/时序证据不变，桌面原包保留原SHA，不混用。R19本聊天用户指定桌面交付优先于其他开发机旧D盘路径约定。
+- 未决/下一条：先完成普通快进推送及独立远端源/bit/包复核；之后等待或继续R19实板常速漏空分析。用户新真值15穴/3空正向002/008/015，慢速正常、常速正反向少计，未宣称现场解决。同RUN反向C5保留，每趟SW3新开；不可边测边改冻结镜像。旧P03固定源码校验回到其标签，不在R19主源误运行。
+- 进程/设备/提交：原R19构建/仿真/封包均结束；本轮仅独立上传目录写Git，另一聊天不改生产freeze；无子代理、板卡/JTAG/Flash/用户TD窗口操作，无新自动跟进，r12未恢复。源与必要证据随上传，不只传AGENTS；最终提交/推送身份以远端及后续回执为准。

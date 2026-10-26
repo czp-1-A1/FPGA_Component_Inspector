@@ -5,7 +5,7 @@ always #5 clk=~clk;
 reg [255:0] live=0,packet=0;reg [303:0] objects=0;reg [127:0] cal=0;
 wire nv,nh,nd;wire [23:0] nrgb;
 integer f=0,fd,px=0,n=0,xx,yy;reg [2:0] vp=0,hp=0,dp=0;
-classified_dual_page_osd #(.REVIEW_PROBE(1),.COMPACT_UI(1),.CLASSIFIED_COUNT(1),.RESULT_RECORDER(1),.LOCAL_RECOVERY(1),.MULTITHRESHOLD_EMPTY(1),.WIDTH(1280),.HEIGHT(720),.DIAG_BITS(27),.RESOLUTION_V11(1),.REGIONS(1),.CALIBRATION(1),.LOCAL_SEARCH(1),.SHAPE_MODEL(1),.DIRECT_DETECTION(1),.FRAME_OBJECTS(1)) dut(
+classified_dual_page_osd #(.BUILD_R18(1),.BUILD_R17(1),.REVIEW_PROBE(0),.REPORT_NUMBER_GAPS(0),.COMPACT_UI(1),.CLASSIFIED_COUNT(1),.RESULT_RECORDER(1),.LOCAL_RECOVERY(1),.MULTITHRESHOLD_EMPTY(1),.WIDTH(1280),.HEIGHT(720),.DIAG_BITS(27),.RESOLUTION_V11(1),.REGIONS(1),.CALIBRATION(1),.LOCAL_SEARCH(1),.SHAPE_MODEL(1),.DIRECT_DETECTION(1),.FRAME_OBJECTS(1)) dut(
 .clk(clk),
 .rst_n(rst_n),
 .vs(vs),
@@ -87,8 +87,8 @@ task picture;
  begin
   f=index;px=0;
   case(index)
-   0:fd=$fopen("standing/ui_out/standing_ui_0.hex","w");1:fd=$fopen("standing/ui_out/standing_ui_1.hex","w");
-   2:fd=$fopen("standing/ui_out/standing_ui_2.hex","w");default:fd=$fopen("standing/ui_out/standing_ui_3.hex","w");
+   0:fd=$fopen("surface/ui_out/surface_ui_0.hex","w");1:fd=$fopen("surface/ui_out/surface_ui_1.hex","w");
+   2:fd=$fopen("surface/ui_out/surface_ui_2.hex","w");default:fd=$fopen("surface/ui_out/surface_ui_3.hex","w");
   endcase
   vs=1;tick(4);vs=0;tick(10);
   saved=live;saved_objects=objects;
@@ -115,15 +115,16 @@ initial begin
  objects[151:76]=object(3,0,650,659,310,319);
  objects[227:152]=object(2,1,550,581,470,501);
  objects[303:228]=object(1,2,690,711,480,497);
- cal[63:0]={1'b1,1'b1,1'b0,4'h8,8'd140,8'd149,1'b0,8'd220,8'd160,8'd180,8'd200,8'd140};
- cal[127:64]={1'b1,1'b1,1'b1,4'hf,8'hff,8'd7,1'b0,8'd100,8'd120,8'd140,8'd160,8'd180};
+ // Independent legacy-CAL snapshots: valid, clip, M/MIN/MAX, A/W/H.
+ cal[63:0]=(64'd1<<63)|(64'd1<<62)|(64'd148<<52)|(64'd124<<44)|(64'd176<<36)|(64'd956<<14)|(64'd32<<7)|64'd32;
+ cal[127:64]=(64'd1<<63)|(64'd200<<52)|(64'd80<<44)|(64'd240<<36)|(64'd1280<<14)|(64'd40<<7)|64'd32;
  picture(0);
  page_switch=0;tick(742520);
  live[112+:9]=9;packet[112+:9]=9;packet[31:0]=32'h12345678;
  picture(1);
  live=0;eligible=0;picture(2);
  live[47:32]=8;live[50:48]=2;eligible=1;picture(3);
- $display("PASS P03 standing UI: four full HD rasters, metadata frozen midframe, page switch, clear and generation guard; independent pixel reference pending");
+ $display("PASS R18 standing UI: four full HD rasters, metadata frozen midframe, page switch, clear and generation guard; independent pixel reference pending");
  $finish;
 end
 initial begin #200000000;$fatal(1,"timeout");end

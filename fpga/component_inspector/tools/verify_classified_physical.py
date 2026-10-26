@@ -64,7 +64,10 @@ def verify(project):
     for command, (total, dominating, shadowed, ignored) in observed.items():
         assert total > 0 and ignored == 0 and dominating + shadowed == total, (command, total, dominating, shadowed, ignored)
     gray_line = next(x for x in expected if 'bridge/write_gray' in x)
-    assert observed[gray_line] == [20, 20, 0, 0], 'All20 explicit Gray budgets must dominate'
+    # TD may pack companion FFs into the selected physical cells. Require
+    # every physical match dominated, plus20 distinct exact-Q direct wires.
+    from verify_gray_packing import verify as verify_gray_packing
+    gray_proof=verify_gray_packing(project,observed[gray_line])
     bindings = text(audit / 'bindings.txt')
     files = []
     for direction in ['write', 'read']:
@@ -125,7 +128,7 @@ def verify(project):
               'timing_ns': values, 'explicit_max_delays_matched': len(expected),
               'vendor_max_delays_matched': 2, 'max_delays_matched': len(observed),
               'physical_alias_continuations': len(aliases), 'max_delays_ignored': 0,
-              'gray_bits_dominating': 20, 'new_mailbox_groups': 6,
+              'gray_bits_dominating': 20, 'gray_selected_physical_paths': gray_proof['selected_physical_paths'], 'gray_exact_q_proof': gray_proof, 'new_mailbox_groups': 6,
               'evidence': {str(p.relative_to(project)): hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
               'physical_count': 'HUMAN_BOARD_ACCEPTANCE_NOT_ASSERTED'}
     (audit / 'verification.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
