@@ -1,0 +1,55 @@
+{
+  "status": "SOURCE_AND_TAG_PUSHED_INDEPENDENT_GITHUB_DOWNLOAD_VERIFIED",
+  "repository": "https://github.com/czp-1-A1/FPGA_Component_Inspector",
+  "branch": "lj4747-contest-work",
+  "source_commit": "88855cebb296dd61dc5ea5356a5b5c77b5e7c39f",
+  "parent": "372c0f0c0a3f9340a5c686aa6515b97b172594c9",
+  "tag": "r19-robust-empty-20261025",
+  "tagged_source_commit": "88855cebb296dd61dc5ea5356a5b5c77b5e7c39f",
+  "verified_utc": "2026-10-26T04:37:47.367503+00:00",
+  "push": "ordinary atomic fast-forward branch plus annotated tag; no force",
+  "remote_verification": {
+    "status": "PASS_FRESH_GITHUB_DOWNLOAD_SOURCE_ARCHIVE_PHYSICAL_AND_PORTABLE_RESTORE",
+    "source_commit": "88855cebb296dd61dc5ea5356a5b5c77b5e7c39f",
+    "remote_refs": [
+      "88855cebb296dd61dc5ea5356a5b5c77b5e7c39f\trefs/heads/lj4747-contest-work",
+      "88855cebb296dd61dc5ea5356a5b5c77b5e7c39f\trefs/tags/r19-robust-empty-20261025^{}"
+    ],
+    "no_local_alternates": true,
+    "software_oracles_or_route_rerun": false
+  },
+  "frozen_validation": {
+    "status": "PASS_R19_FROZEN_SOURCE_BIT_PHYSICAL_AUDIT_AND_ARCHIVE_LOG_IDENTITIES",
+    "sources": 559,
+    "hardware_dependencies": 101,
+    "recorded_tests": 112,
+    "archive_logs_rechecked": 112,
+    "recorded_reference_groups": 26,
+    "reference_oracles_rerun": false,
+    "rtl_or_place_route_rerun": false,
+    "payloads": 1539,
+    "bit_sha256": "feaa11d1df1e009b10b239da85916f4c7709cf80a9d77c44850250a68800b444",
+    "manifest_sha256": "684e4fa0c723d0f38c14b0acb7f54e39c3e12e5f3fd00e89f1733a0b89f6bd0e",
+    "resources": {
+      "slice": 18971,
+      "eram": 101,
+      "dsp": 27,
+      "pll": 5
+    },
+    "timing_ns": {
+      "SWNS": 0.06,
+      "HWNS": 0.02,
+      "STNS": 0.0,
+      "HTNS": 0.0
+    },
+    "board_acceptance": "NOT_COMPLETE_NORMAL_SPEED_EMPTY_MISSES_REPORTED"
+  },
+  "git_object_restore": "PASS:559 staged blobs SHA; committed source export; fresh portable project101 dependencies",
+  "existing_releases_and_example_preserved": true,
+  "desktop_archives_unchanged": true,
+  "public_archive_omission": [
+    "field_analysis/video_inputs.json: local phone input paths only; see PUBLIC_EXPORT.json"
+  ],
+  "board_acceptance": "NOT_COMPLETE; normal-speed empty misses remain reported",
+  "receipt_commit_note": "This receipt is a subsequent documentation commit; source tag remains on the preceding frozen source commit. Final branch HEAD can be read from GitHub."
+}
