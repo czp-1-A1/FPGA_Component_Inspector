@@ -11,11 +11,11 @@ for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
     break
    except OSError:pass
 env['TEMP']=env['TMP']=str(out);sim=Path('E:/Modelsim/win64')
-rtl=['pocket_relay_stop','pocket_relay_stop_v2','classified_pocket_counter','classified_count_pipeline']
+rtl=['pocket_relay_stop','pocket_relay_stop_v2','classified_pocket_counter','classified_count_pipeline','pocket_run_controls','status_cdc']
 benches=args.only or ['tb_relay_left_faults','tb_relay_left_transport','tb_pocket_relay_stop','tb_relay_numbered_pipeline','tb_relay_real_second']
 files=['user_source/hdl_source/'+n+'.v' for n in rtl]+['sim/'+n+'.sv' for n in benches]
 
-if any(n in benches for n in ['tb_relay_left_pixels','tb_relay_left_osd','tb_relay_left_rgb']):
+if any(n in benches for n in ['tb_relay_left_pixels','tb_relay_left_osd','tb_relay_left_rgb','tb_relay_v3_osd','tb_relay_v3_rgb']):
  rtl+=['inspection_region_config','empty_candidate_probe','present_surface_check','local_edge_surface_check','present_review_probe','frame_shape_search','compact_ascii_rom','compact_cjk_rom','compact_template_rom','osd_logo_rom','compact_inspector_osd']
  files=['user_source/hdl_source/'+n+'.v' for n in rtl]+['sim/'+n+'.sv' for n in benches]
 sealed=out/'inputs';sealed.mkdir();manifest={}

@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -25,6 +25,7 @@ function [7:0] relay_char;
   if(RELAY_LEFT_LAYOUT)begin
    text="RL2 S0 F0 Q00 N000 X--- L000 V0 T000 A000 W0000 ";
    case(char_index)
+    2:relay_char=RELAY_KEYS_V3 ? "3" : "2";
     5:relay_char=hexchar({1'b0,relay_snapshot[31:29]});
     8:relay_char=hexchar(relay_snapshot[28:25]);
     11:relay_char=hexchar({2'b0,relay_snapshot[63:62]});12:relay_char=hexchar(relay_snapshot[61:58]);

@@ -13,7 +13,7 @@ module tb_relay_left_real_second;
  reg transport_occupied=0;reg [15:0] station_run=0;reg [2:0] station_state=2;
  reg station_dv=1,station_dr=0;reg [8:0] counter_total=0,station_total=0,counter_uncertainty=0,station_uncertainty=0;
  reg station_event_valid=0;reg [15:0] station_event_run=1;reg [8:0] station_event_id=1;reg [1:0] station_event_kind=3;
- pocket_relay_stop_v2 dut(.*);
+ pocket_relay_stop_v2 dut(.pause(1'b0),.*);
  integer i;time hold_start;
  task ticks(input integer n);repeat(n)@(negedge clk);endtask
  task sample(input integer x);

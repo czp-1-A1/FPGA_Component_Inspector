@@ -1,6 +1,7 @@
 from pathlib import Path
 import argparse,hashlib,json,os,re,shutil,subprocess,winreg
-r=Path(__file__).resolve().parents[1];a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);args=a.parse_args()
+r=Path(__file__).resolve().parents[1];a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--v3',action='store_true');args=a.parse_args()
+bench='tb_relay_v3_native' if args.v3 else 'tb_relay_left_native'
 p=(args.source or r/'fpga/component_inspector').resolve();out=args.out.resolve();out.mkdir(parents=True,exist_ok=False);env=dict(os.environ)
 for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
  if not env.get(key):
@@ -14,7 +15,7 @@ text=(p/'sim/run_modelsim.ps1').read_text(encoding='utf8');block=text.split('$is
 hdl=p/'user_source/hdl_source';ip=p/'user_source/ip_source';demosaic=hdl/'isp/demosaic_4x_2_0'
 files=[Path(t.replace('$demosaic',str(demosaic)).replace('$hdl',str(hdl)).replace('$ip',str(ip))).resolve() for t in re.findall(r'"([^"]+\.v)"',block)]
 files += [hdl/(n+'.v') for n in ['pocket_relay_stop','pocket_relay_stop_v2','count_record_view','image_correction','status_cdc','video_in','video_out']]
-files += [p/'sim/reference/classified_pocket_counter_R9.v',p/'sim/tb_relay_left_native.sv']
+files += [p/'sim/reference/classified_pocket_counter_R9.v',p/('sim/'+bench+'.sv')]
 vendor=['common/al_map_basic.v','common/al_map_lut.v','common/al_map_adder.v','common/al_phy_glbl.v','ph1p/ph1p_logic_eram.v','ph1p/ph1p_phy_gsr.v','ph1p/ph1p_logic_bufg.v','ph1p/ph1p_phy_pll_v2.v','ph1p/ph1p_logic_hrio.v','ph1p/ph1p_phy_hr_pad.v']
 manifest={};frozen=[]
 for file in files:
@@ -31,8 +32,8 @@ run('vlib',['work'],'setup.log');run('vlib',['anlogic_sim'],'vendor_setup.log')
 run('vlog',['-work','anlogic_sim',*vfiles],'vendor_compile.log')
 run('vlog',['-work','work',*frozen[:-1]],'compile_rtl.log')
 run('vlog',['-sv','-work','work',frozen[-1]],'compile_bench.log')
-run('vsim',['-c','-L','anlogic_sim','-voptargs=+acc=rn+/tb_relay_left_native','-onfinish','stop','work.tb_relay_left_native','anlogic_sim.glbl','anlogic_sim.PH1P_PHY_GSR','-do','onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0'],'console.log',2400)
-log=(out/'console.log').read_text();assert 'PASS LEFT_NATIVE_MODE1:' in log and not re.search(r'\*\* (Fatal|Error):',log),log[-2500:]
+run('vsim',['-c','-L','anlogic_sim','-voptargs=+acc=rn+/'+bench,'-onfinish','stop','work.'+bench,'anlogic_sim.glbl','anlogic_sim.PH1P_PHY_GSR','-do','onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0'],'console.log',2400)
+log=(out/'console.log').read_text();assert ('PASS V3_NATIVE_MODE1:' if args.v3 else 'PASS LEFT_NATIVE_MODE1:') in log and not re.search(r'\*\* (Fatal|Error):',log),log[-2500:]
 for rel,d in manifest.items():assert hashlib.sha256((p/rel).read_bytes()).hexdigest()==d,rel
-(out/'verification.json').write_text(json.dumps({'status':'PASS','name':'tb_relay_left_native','inputs':manifest,'vendor':vmanifest,'console_sha256':hashlib.sha256((out/'console.log').read_bytes()).hexdigest(),'board_acceptance':False},indent=2)+'\n')
+(out/'verification.json').write_text(json.dumps({'status':'PASS','name':bench,'inputs':manifest,'vendor':vmanifest,'console_sha256':hashlib.sha256((out/'console.log').read_bytes()).hexdigest(),'board_acceptance':False},indent=2)+'\n')
 print(log[-2200:],flush=True)

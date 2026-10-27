@@ -2,11 +2,11 @@ module isp_top #(
     parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
     parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,LOCAL_EDGE_ASSIST=0,EMPTY_TRACE=0,ROBUST_EMPTY_CONTEXT=0,ROBUST_SMALL_EMPTY=0,STANDING_REVIEW=0,SURFACE_REVIEW=0,REVIEW_PROBE=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,
-    parameter RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,
+    parameter RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,
     parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+256*CLASSIFIED_COUNT
 ) (
     input processing_clk,
-    input relay_permit,output relay_feed,output [63:0] relay_status,
+    input relay_permit,relay_pause,output relay_feed,output [63:0] relay_status,
     input [16:0] count_command,output [255:0] count_live,
     input 			axi4s_video_aclk,
     input 			I_rst_n			,
@@ -332,8 +332,8 @@ generate if(CLASSIFIED_COUNT)begin : classified_counting
    .stop_search_valid(search_valid),.stop_search_x(search_x),.stop_search_y(search_y),
    .hold_valid(lead_valid),.hold_x(lead_x),.hold_y(lead_y));
   assign repair_hold_valid=search_valid || lead_valid;assign repair_hold_x=search_valid ? search_x : lead_x;assign repair_hold_y=search_valid ? search_y : lead_y;
-  pocket_relay_stop_v2 #(.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
-   .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.start_run(stop_begin),.clear_run(stop_clear),
+  pocket_relay_stop_v2 #(.RESTART_NEW_RUN(RELAY_KEYS_V3),.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
+   .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.pause(RELAY_KEYS_V3 && relay_pause),.start_run(stop_begin),.clear_run(stop_clear),
    .good_frame(stop_good),.bad_frame(stop_bad),.transport_occupied(transport_occupied),.current_frame(stop_frame),
    .counter_run(stop_run),.counter_state(stop_state),.direction_valid(stop_dv),.direction_right(stop_dr),
    .station_run(local_run),.station_state(local_state),.station_dv(local_dv),.station_dr(local_dr),

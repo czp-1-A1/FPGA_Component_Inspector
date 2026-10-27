@@ -1,0 +1,60 @@
+{
+  "video": "1c37c718114109722d73fa266087ba88.mp4",
+  "video_sha256": "5d3609e76a87bc90b7889f9bf637b556d9d58ed222d26c531202d90e924b1bfd",
+  "fps": 30,
+  "frames": 270,
+  "observations": [
+    {
+      "t": 3.0,
+      "S": 1,
+      "F": 0,
+      "Q": 1,
+      "N": 1,
+      "X": 230,
+      "L": 1
+    },
+    {
+      "t": 3.2,
+      "S": 2,
+      "F": 0,
+      "Q": 1,
+      "N": 1,
+      "X": 171,
+      "L": 2
+    },
+    {
+      "t": 3.333,
+      "S": 2,
+      "F": 0,
+      "Q": 1,
+      "N": 1,
+      "X": 142,
+      "L": 3
+    },
+    {
+      "t": 3.4,
+      "S": 2,
+      "F": 0,
+      "Q": 1,
+      "N": 1,
+      "X": 143,
+      "L": 3
+    },
+    {
+      "t": 4.4,
+      "S": 4,
+      "F": 8,
+      "Q": 1,
+      "N": 1,
+      "X": 143,
+      "L": 3
+    }
+  ],
+  "finding": "Tracked EMPTY ID001 reached the left station. SETTLE stabilizes17px left of target160, outside152..168. STOP_TIMEOUT_MS1200 raisesF8; HOLD never began. This is measured-position failure, not evidence of relay electrical failure. No physical-mm calibration available. Display snapshots include pipeline/display delay;171->143 is observed measurement travel, not isolated mechanical braking distance.",
+  "correction": "Keep target160/tolerance8; trialadvance32 instead16 at unchanged speed. Must repeat field calibration; single trace cannot prove repeatability.",
+  "restart_root_cause": "V2 rejects explicit start_run with queued EMPTYs (FA). V3 explicit K1/SW3 newRUN resets queue/history together with the counters. Fault itself never automatically clears queue.",
+  "hardware_unchanged": true,
+  "user_selected_motor_key": "pause/resume current automatic RUN, retain IDs and EMPTY queue",
+  "user_speed_may_change": true,
+  "speed_policy": "fixed advance32 is a calibration candidate; collect five trials per selected fixed speed, group speeds separately; no speed-adaptive positioning claim"
+}

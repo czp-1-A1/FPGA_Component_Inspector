@@ -1,0 +1,367 @@
+{
+  "status": "PASS_READY_FOR_VERSIONED_DELIVERY",
+  "build_directory": "E:\\2026FPGA\\.codex_tmp\\r22_relay_v3_build_r2_20261027",
+  "source_count": 636,
+  "source_manifest_sha256": "1ec8f4bc34fb3feba11fcde16267237f000b019e4ec85c2025f8c528445003c0",
+  "selected_tests": 17,
+  "unit_cases": [
+    "27 key checks",
+    "65 V3 controller checks",
+    "585 two-counter/key transport frames",
+    "202 full RGB frames /3 holds",
+    "V3 and legacy default100MHz complete100000000-cycle hold",
+    "12 nativeRAW10 frames /24 exact display rasters",
+    "7 baseline regressions"
+  ],
+  "physical": {
+    "status": "PASS_R22_RELAY_V3_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_4_KEYS_V2_NO_LED",
+    "timing_ns": {
+      "SWNS": 0.0,
+      "HWNS": 0.018,
+      "STNS": 0.0,
+      "HTNS": 0.0
+    },
+    "explicit_max_delays_matched": 47,
+    "vendor_max_delays_matched": 2,
+    "max_delays_matched": 49,
+    "physical_alias_continuations": 0,
+    "max_delays_ignored": 0,
+    "gray_bits_dominating": 20,
+    "gray_selected_physical_paths": 20,
+    "gray_exact_q_proof": {
+      "status": "PASS_TWENTY_DISTINCT_ACTUAL_GRAY_Q_WIRES_8NS_AND_ALL_SELECTED_PATHS_DOMINATE",
+      "logical_sources": 20,
+      "logical_destinations": 20,
+      "required_gray_wires": 20,
+      "selected_physical_paths": 20,
+      "additional_conservative_physical_paths": 0,
+      "physical_paths_dominated": 20,
+      "physical_paths_shadowed": 0,
+      "physical_paths_ignored": 0,
+      "wires": [
+        {
+          "direction": "write",
+          "bit": 0,
+          "source": "u_isp_top/continuous_processing$bridge/write_gray[0]",
+          "through": "u_isp_top/continuous_processing$bridge/write_gray[0]",
+          "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[0]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.198
+        },
+        {
+          "direction": "write",
+          "bit": 1,
+          "source": "u_isp_top/continuous_processing$bridge/write_gray[1]",
+          "through": "u_isp_top/continuous_processing$bridge/write_gray[1]",
+          "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[1]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.009
+        },
+        {
+          "direction": "write",
+          "bit": 2,
+          "source": "u_isp_top/continuous_processing$bridge/write_gray[2]",
+          "through": "u_isp_top/continuous_processing$bridge/write_gray[2]",
+          "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[2]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.308
+        },
+        {
+          "direction": "write",
+          "bit": 3,
+          "source": "u_isp_top/continuous_processing$bridge/write_gray[3]",
+          "through": "u_isp_top/continuous_processing$bridge/write_gray[3]",
+          "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[3]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.193
+        },
+        {
+          "direction": "write",
+          "bit": 4,
+          "source": "u_isp_top/continuous_processing$bridge/write_gray[4]",
+          "through": "u_isp_top/continuous_processing$bridge/write_gray[4]",
+          "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[4]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 6.973
+        },
+        {
+          "direction": "write",
+          "bit": 5,
+          "source": "u_isp_top/continuous_processing$bridge/write_gray[5]",
+          "through": "u_isp_top/continuous_processing$bridge/write_gray[5]",
+          "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[5]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 6.919
+        },
+        {
+          "direction": "write",
+          "bit": 6,
+          "source": "u_isp_top/continuous_processing$bridge/write_gray[6]",
+          "through": "u_isp_top/continuous_processing$bridge/write_gray[6]",
+          "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[6]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.351
+        },
+        {
+          "direction": "write",
+          "bit": 7,
+          "source": "u_isp_top/continuous_processing$bridge/write_gray[7]",
+          "through": "u_isp_top/continuous_processing$bridge/write_gray[7]",
+          "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[7]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.16
+        },
+        {
+          "direction": "write",
+          "bit": 8,
+          "source": "u_isp_top/continuous_processing$bridge/write_gray[8]",
+          "through": "u_isp_top/continuous_processing$bridge/write_gray[8]",
+          "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[8]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.23
+        },
+        {
+          "direction": "write",
+          "bit": 9,
+          "source": "u_isp_top/continuous_processing$bridge/write_bin[9]",
+          "through": "u_isp_top/continuous_processing$bridge/write_bin[9]",
+          "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[9]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.102
+        },
+        {
+          "direction": "read",
+          "bit": 0,
+          "source": "u_isp_top/continuous_processing$bridge/read_gray[0]",
+          "through": "u_isp_top/continuous_processing$bridge/read_gray[0]",
+          "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[0]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.047
+        },
+        {
+          "direction": "read",
+          "bit": 1,
+          "source": "u_isp_top/continuous_processing$bridge/read_gray[1]",
+          "through": "u_isp_top/continuous_processing$bridge/read_gray[1]",
+          "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[1]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.026
+        },
+        {
+          "direction": "read",
+          "bit": 2,
+          "source": "u_isp_top/continuous_processing$bridge/read_gray[2]",
+          "through": "u_isp_top/continuous_processing$bridge/read_gray[2]",
+          "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[2]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.087
+        },
+        {
+          "direction": "read",
+          "bit": 3,
+          "source": "u_isp_top/continuous_processing$bridge/read_gray[3]",
+          "through": "u_isp_top/continuous_processing$bridge/read_gray[3]",
+          "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[3]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 6.911
+        },
+        {
+          "direction": "read",
+          "bit": 4,
+          "source": "u_isp_top/continuous_processing$bridge/read_gray[4]",
+          "through": "u_isp_top/continuous_processing$bridge/read_gray[4]",
+          "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[4]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 6.803
+        },
+        {
+          "direction": "read",
+          "bit": 5,
+          "source": "u_isp_top/continuous_processing$bridge/read_gray[5]",
+          "through": "u_isp_top/continuous_processing$bridge/read_gray[5]",
+          "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[5]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.009
+        },
+        {
+          "direction": "read",
+          "bit": 6,
+          "source": "u_isp_top/continuous_processing$bridge/read_gray[6]",
+          "through": "u_isp_top/continuous_processing$bridge/read_gray[6]",
+          "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[6]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 7.244
+        },
+        {
+          "direction": "read",
+          "bit": 7,
+          "source": "u_isp_top/continuous_processing$bridge/read_gray[7]",
+          "through": "u_isp_top/continuous_processing$bridge/read_gray[7]",
+          "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[7]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 6.974
+        },
+        {
+          "direction": "read",
+          "bit": 8,
+          "source": "u_isp_top/continuous_processing$bridge/read_gray[8]",
+          "through": "u_isp_top/continuous_processing$bridge/read_gray[8]",
+          "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[8]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 6.924
+        },
+        {
+          "direction": "read",
+          "bit": 9,
+          "source": "u_isp_top/continuous_processing$bridge/read_bin[9]",
+          "through": "u_isp_top/continuous_processing$bridge/read_bin[9]",
+          "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[9]",
+          "budget_ns": 8.0,
+          "minimum_slack_ns": 6.748
+        }
+      ],
+      "evidence": {
+        "gray_packing_audit\\gray_q_write_0.timing": "45ed8db1105f3f85ec239cd17f0e835cf444c06e268e035ea1aa6b275c1d9ce2",
+        "gray_packing_audit\\gray_q_write_1.timing": "fb7e3c3abe2a2516747abeed841602a1bbfb7173b2c05eadf0e30516de299650",
+        "gray_packing_audit\\gray_q_write_2.timing": "71fada2c58fcca20a6f39ecb54b99da89f54ef0a40618b8b74b38f13d62464e6",
+        "gray_packing_audit\\gray_q_write_3.timing": "807a3ead93587b9af486744caa3b0ebf4fd8ee795a0866e5f22acebe1c435b38",
+        "gray_packing_audit\\gray_q_write_4.timing": "0cf5b137a1ccfa03887ca9b663d177fb05ed1a9667d1d45fc2ca8e21000126cc",
+        "gray_packing_audit\\gray_q_write_5.timing": "c08734434436f3414b9f8a36b1f7eb4e038700644c5d2f8172959173bb3bf5b6",
+        "gray_packing_audit\\gray_q_write_6.timing": "e939ae753ebaa7e1008972cf498422019bea909340069c0dbdf46d947e48826c",
+        "gray_packing_audit\\gray_q_write_7.timing": "52255a216bfe6e34b31cba3b13b2eef2f69c3d14516fc8f80af433093622f76c",
+        "gray_packing_audit\\gray_q_write_8.timing": "740504b80595f989b140aa54a1ba218249542af9bb3d17c077953b300ea478c0",
+        "gray_packing_audit\\gray_q_write_9.timing": "447e99e834dca6f6dd456d5cef9c7873c81216e88d0d45b9e50916a78ee45259",
+        "gray_packing_audit\\gray_q_read_0.timing": "2be2224bb1d65bf807fd0ddb579f1157e34207c7e9fca32e77994247c2ffaa9e",
+        "gray_packing_audit\\gray_q_read_1.timing": "6cd9367109198869af86e678459a589a84f2155dcd1606ce71f8c73ef20b2622",
+        "gray_packing_audit\\gray_q_read_2.timing": "f08a18dbae9665469a1343f27baa57cbb30cfed695812c922773b602feebaade",
+        "gray_packing_audit\\gray_q_read_3.timing": "71be5f15ae5ed046b9461e9ffa1d9ac91864c6ffbf053a1d3d1c50f89109e853",
+        "gray_packing_audit\\gray_q_read_4.timing": "1e5244e2b6b968c39f4b544f6377db8db25400a2d240d44c65961bc890c38485",
+        "gray_packing_audit\\gray_q_read_5.timing": "3f86fe1983b4a132c4c691b0e9429452178e284c81c523257a916406a54f0190",
+        "gray_packing_audit\\gray_q_read_6.timing": "086a0728ee8ae630073bc5f253a0d404022766b3f72f8ae97a68fb200d9581f9",
+        "gray_packing_audit\\gray_q_read_7.timing": "f408121aaf1dec2371898a2edcc80ac4c86952dfd66e48702a4f5162b5d9df60",
+        "gray_packing_audit\\gray_q_read_8.timing": "14755fca3cf2dd20064eacedd9c8cfbccece87b60455404a5771b17a3077f7f3",
+        "gray_packing_audit\\gray_q_read_9.timing": "bb20e8a042c74135ac698f44ac5869970ffb87bc4469ca161e64aa573e6b2994",
+        "gray_packing_audit\\bindings.txt": "ed407b5493b81e5b8250d62a515a1fdcb88b5010192c0f2eee2eb7121a1ea2e0",
+        "gray_packing_audit\\all_selected.timing": "4dc8987da266888c06890fd5d81ad2681aac58956e1c8a02c3f8e590aa4accac"
+      },
+      "note": "No constraints, thresholds, clock periods, seeds or routed hardware changed. Physical path cardinality may exceed logical wire count due dual-FF packing."
+    },
+    "new_mailbox_groups": 9,
+    "evidence": {
+      "classified_audit\\gray_write_0.timing": "24b902d06d511bee9bce2a3a9da7359441a7fb81efbd2d71ede1f36610893106",
+      "classified_audit\\gray_fanout_write_0.timing": "ab18c9195d4bdbb6a15da1b58785ba2ea04f42f34be349a6da2ee8741b44578f",
+      "classified_audit\\gray_write_1.timing": "a5467f7573430f6a11a136d8725436f3f0f18ec8f91a859efa684e5a099af4ae",
+      "classified_audit\\gray_fanout_write_1.timing": "a00c8936cd10f6ab7aa0722134a9ad34c5903153faa63c4a55715f9105df6d95",
+      "classified_audit\\gray_write_2.timing": "2d9dc31f169e4f0b762fea2d5e76e0cfafa480bb474d0011dd5b7d5f18596a66",
+      "classified_audit\\gray_fanout_write_2.timing": "33eb66b3095fc5603b9530782f8eabd626920a136608cdf56d913014e4277a47",
+      "classified_audit\\gray_write_3.timing": "aec11d1bf0b406c9540075c1d4beee0643796af2203df6a57e1a9c2d2ecad67f",
+      "classified_audit\\gray_fanout_write_3.timing": "a00c8936cd10f6ab7aa0722134a9ad34c5903153faa63c4a55715f9105df6d95",
+      "classified_audit\\gray_write_4.timing": "9b8dae35b54c36ff3e3b2e3503a88c92f514178f3a44ed05dc6fbb087bb402e7",
+      "classified_audit\\gray_fanout_write_4.timing": "d2c79b01ac4836467c5d2311f475b35e7d98dfacd2c71495de08d1726047d671",
+      "classified_audit\\gray_write_5.timing": "db578b9a317fb4449de121fda642004a281e45599cba99abfc852be1228206bd",
+      "classified_audit\\gray_fanout_write_5.timing": "33eb66b3095fc5603b9530782f8eabd626920a136608cdf56d913014e4277a47",
+      "classified_audit\\gray_write_6.timing": "ebce9d45bdfbb2186cbcbf0e699a1c9f357009e50c1c77bdf6ea52fc22cd4249",
+      "classified_audit\\gray_fanout_write_6.timing": "00f3fb60c6ad6f2e604a8dd9b03c1f8474231263e0ee82f0b5df0d5c81b0cf4f",
+      "classified_audit\\gray_write_7.timing": "ba0390a7bdcc20cab63ef3689ff07affc8b9475709f0cdedd340bc2e651e2dfe",
+      "classified_audit\\gray_fanout_write_7.timing": "406bad0efc881668a63b15e235922291fbacf8e1144986296a3100b0d12e0358",
+      "classified_audit\\gray_write_8.timing": "8b9dd39c2c2935b8927fd37c9b0bfaa442085498e029fb5c70f838cf215f427e",
+      "classified_audit\\gray_fanout_write_8.timing": "5568d5971eea9af147aa1797e9f72856040c00f48ae40b93c598491c77ae8d36",
+      "classified_audit\\gray_write_9.timing": "7836187b06002d1d83ab5f81e83f49bb7fe571840a8c6ccf002b9d921482a421",
+      "classified_audit\\gray_fanout_write_9.timing": "f1a6ca942106fd25c07dbd121d08ae954b720fc9fd944891b47eaf0cb8adf7f3",
+      "classified_audit\\gray_read_0.timing": "00f4a2aeae74bc2dda29a68e3a51da0dea877ccd770644be971821f1782158c6",
+      "classified_audit\\gray_fanout_read_0.timing": "025ce62e401be4d015914d565c14f783efc5e264ebce88ed5c819bc9c3daa2f0",
+      "classified_audit\\gray_read_1.timing": "56670ae50d42f134eada542da09293cf31fcf2acec921413de9b9197d40dd154",
+      "classified_audit\\gray_fanout_read_1.timing": "efba2b34bd6f83449df1aab8c94b143cf651d80161a6c290a0edffcb985dffdd",
+      "classified_audit\\gray_read_2.timing": "e921140a47377455bf53daf708e6e9aa3f7c6f69b61f4baff182076f379131af",
+      "classified_audit\\gray_fanout_read_2.timing": "36ff8a1aa51e928537a6ea649d308608e5486bd2c46c46d41f8aaaa532cf74b9",
+      "classified_audit\\gray_read_3.timing": "d4775ccb9298713010b0a60b18416d1b6ede315d2a48c8721150991e1ea716cc",
+      "classified_audit\\gray_fanout_read_3.timing": "e87f7d3edeb013aacc89f326b7097919ad0ccde8c9c393f8ab8fa0ff00aa20d8",
+      "classified_audit\\gray_read_4.timing": "6f05fa5c3ad2323e611cd110ce7e5b3d7734605544acca9f5d6afe770e790af4",
+      "classified_audit\\gray_fanout_read_4.timing": "089e66b6a8c43e415f610b79dc2ebdfa5d447281f0553d93f9449eba09a5b783",
+      "classified_audit\\gray_read_5.timing": "4926077729b34951b7f052ac2cfaf077622a4c142c7b9111cc79ee162782f820",
+      "classified_audit\\gray_fanout_read_5.timing": "139d3331f67b4dcff528496ed105771a45c71daea884b7abbd44b0178bd8f482",
+      "classified_audit\\gray_read_6.timing": "9b969d290b334be9e80d1efebe80edcebaea960c2d268bea48084cf9450786a0",
+      "classified_audit\\gray_fanout_read_6.timing": "25175c5f6904c2a1daa07b0f9631d07e745270ca9bfba02e570e2f9eb4505020",
+      "classified_audit\\gray_read_7.timing": "710a2f3b06e8bbf10d83b445d77fb061ec23726c7044096aace42dfdbb256c79",
+      "classified_audit\\gray_fanout_read_7.timing": "d335c966a297d59cd49b5d95c870035435cf7fa4b252d7d7139444e0c15d69b9",
+      "classified_audit\\gray_read_8.timing": "067f7f589bc2a1e09b3386dce439b89609fbb74f73400e64dd7d4b5c0267d879",
+      "classified_audit\\gray_fanout_read_8.timing": "f835f2f5bd6513f11e34be961e84821b4362ea8b9dc1b3d1921f204636adf24c",
+      "classified_audit\\gray_read_9.timing": "37fa578fddd9e3a1906a1bbdcdb11dd0303c6b45fd9133253bcc82d34340686d",
+      "classified_audit\\gray_fanout_read_9.timing": "2dedb219120fdee8a895d5fb292a5c55f1387ec58a9491878c115e9517a38a42",
+      "classified_audit\\u_count_command_payload.timing": "259baf83e8fb869ca1110f3a801b0f581da1bc4c4fd92fa9fc7a531573f91585",
+      "classified_audit\\u_count_command_request.timing": "b44ab3bb7eff52505149286426d82bc3ef9fd3a3a07df9fa0139e744d783a834",
+      "classified_audit\\u_count_command_acknowledge.timing": "85764e44c4ac59fbbd0ea21ee0cca9ae9d6de5be19acba1cc8b51764223a2f1e",
+      "classified_audit\\u_count_live_display_payload.timing": "ac6ab99bdfe98b46fcd48779d33d7a255109bd1318c61603049e4de2947d5b10",
+      "classified_audit\\u_count_live_display_request.timing": "e0275b337b4d8928e5af66083df8bdc589945c0baf4c2ac18dec6fa0a9ed5b50",
+      "classified_audit\\u_count_live_display_acknowledge.timing": "8cc9a53dc1cb5721a80da0b8fd76502289afebd25e1fff27bbefe45ed7b8a8bd",
+      "classified_audit\\u_relay_display_payload.timing": "0e878f4c73dfa99e1644d5cd714c581b5948b5056759a6a09ad9fb820fc5c7f6",
+      "classified_audit\\u_relay_display_request.timing": "e0275b337b4d8928e5af66083df8bdc589945c0baf4c2ac18dec6fa0a9ed5b50",
+      "classified_audit\\u_relay_display_acknowledge.timing": "8cc9a53dc1cb5721a80da0b8fd76502289afebd25e1fff27bbefe45ed7b8a8bd",
+      "classified_audit\\sw3_sync.timing": "a48a416115a3b219b06a8d72e519774bf1e76339865471159eb4c81b14d9c481",
+      "classified_audit\\sw3_sync_fanout.timing": "a48a416115a3b219b06a8d72e519774bf1e76339865471159eb4c81b14d9c481",
+      "classified_audit\\routed_summary.timing": "fac358483d6e11c9e42bd3f3f938be5448dd57271247296e524d11d458534936",
+      "classified_audit\\exceptions.timing": "c029cea7bd27b28bcc36d26025f28c998381463cd49fabe0f6843871cade266d",
+      "classified_audit\\constraint_coverage.txt": "b2544d60a6ebc2bd66fe33a9827b215c6b15ef29d7db2c2e9ab01b0213644eb3",
+      "classified_audit\\clocks.txt": "39617ece8e303e4df3e005bba4eab82f32d0ddfecc320d2c2e92454860512d23",
+      "classified_audit\\bindings.txt": "9dd639879a36c17122891212f464ec1503861a65b67bae5269a150127d6fec40"
+    },
+    "physical_count": "HUMAN_BOARD_ACCEPTANCE_NOT_ASSERTED",
+    "resources": {
+      "slice": 18538,
+      "eram": 98,
+      "dsp": 30,
+      "pll": 5
+    },
+    "slice_percent": 87.37745,
+    "slice_delta_vs_r22": -478,
+    "extra_relay_checks": {
+      "relay_output.timing": {
+        "sha256": "90c3144ff9354466d1682b02262d8115e90623d0da7d717dee3bb3e4c5f4d7f4",
+        "minimum_slack_ns": 2.426
+      },
+      "key_0_sync.timing": {
+        "sha256": "fad015b0cbbcfea87909ad067e3e501a9e5339959e6a5a956195ec3856491046",
+        "minimum_slack_ns": 0.108
+      },
+      "key_0_fanout.timing": {
+        "sha256": "fad015b0cbbcfea87909ad067e3e501a9e5339959e6a5a956195ec3856491046",
+        "minimum_slack_ns": 0.108
+      },
+      "key_1_sync.timing": {
+        "sha256": "baa58039fe86fc0ec34b66d922d62f88765faf5a33ea1ec7847b935ee4178b6d",
+        "minimum_slack_ns": 0.235
+      },
+      "key_1_fanout.timing": {
+        "sha256": "baa58039fe86fc0ec34b66d922d62f88765faf5a33ea1ec7847b935ee4178b6d",
+        "minimum_slack_ns": 0.235
+      },
+      "key_2_sync.timing": {
+        "sha256": "49eb690e7df407f5954fd41bc1c9ba4fb71d0fbff7a06a70eaf41ec2dc8bd231",
+        "minimum_slack_ns": 0.222
+      },
+      "key_2_fanout.timing": {
+        "sha256": "49eb690e7df407f5954fd41bc1c9ba4fb71d0fbff7a06a70eaf41ec2dc8bd231",
+        "minimum_slack_ns": 0.222
+      },
+      "key_3_sync.timing": {
+        "sha256": "a851a903ac048ad9123eb7e93933a7d686a9e6a4005f07f1d0889b49c7ecb7ff",
+        "minimum_slack_ns": 0.108
+      },
+      "key_3_fanout.timing": {
+        "sha256": "a851a903ac048ad9123eb7e93933a7d686a9e6a4005f07f1d0889b49c7ecb7ff",
+        "minimum_slack_ns": 0.108
+      }
+    },
+    "bit_sha256": "9ca7905cf147cfc6d8d770738b03416e2a43601b3b8a1315f46bbf43edfd267e",
+    "baseline_physical_verifier_sha256": "b9d1011c436b76b9414256b679bf6ddf82376f188952d8b1a3781f5907290c5a",
+    "adapted_physical_verifier_sha256": "e5e171fbfd63077bc4eba181ba738a64e4fb2766fba97bac2a315846e1ce5874",
+    "board_acceptance": false,
+    "layout": "left refill / right count; ERAM98/DSP30; fixed camera gain40 removes SC500GainTbl ROM (V2 gain_tbl1ERAM, V3 gain_tbl0); classifier and kind history retained",
+    "control_mailbox_bits": 20,
+    "relay_output_registered": true
+  },
+  "bit_sha256": "9ca7905cf147cfc6d8d770738b03416e2a43601b3b8a1315f46bbf43edfd267e",
+  "known_baseline_weak_aperture_retained": true,
+  "physical_park_accuracy": false,
+  "board_operated": false
+}
