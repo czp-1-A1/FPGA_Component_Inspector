@@ -21,3 +21,10 @@ fpga/component_inspector/** -text
 # R22 immutable source, evidence and portable handoff.
 /releases/r22_20261027/** -text
 /scripts/r22/** -text
+
+# R22 automatic relay release preserves build/source/evidence byte identity.
+/releases/r22_relay_auto_20261027/** -text
+/scripts/build_r22_relay.py -text
+/scripts/relay_r22_checks.py -text
+/scripts/audit_r22_relay.py -text
+/scripts/publish_r22_relay.py -text

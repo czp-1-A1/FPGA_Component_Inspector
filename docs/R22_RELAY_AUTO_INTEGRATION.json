@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-27",
+  "status": "DELIVERED_AUTO_STOP_CANDIDATE_NEEDS_FIELD_CALIBRATION",
+  "branch": "codex/r22-relay-v1",
+  "base_ref": "origin/r22-local-edge-20261027",
+  "base_commit": "a1cceaa",
+  "worktree": "D:\\CodexWork\\FPGA_R22_Relay_20261027",
+  "guide": "docs/R22_RELAY_AUTO_FIELD_GUIDE.md",
+  "power": {
+    "relay_5v": "development board 5V; user confirmed",
+    "motor": "four AA cells via original speed controller",
+    "gpio": "right J2 pin1 / V2",
+    "trigger": "HIGH",
+    "npn": false,
+    "integrated_leds": false
+  },
+  "position_parameters": {
+    "processing_width": 1280,
+    "processing_height": 720,
+    "target_x": 760,
+    "advance_px": 24,
+    "tolerance_px": 8,
+    "still_px": 2,
+    "hold_ms": 1000,
+    "queue_depth": 8
+  },
+  "simulation": "E:/2026FPGA/.codex_tmp/r22_relay_unit_r5_20261027/verification.json",
+  "build": "E:/2026FPGA/.codex_tmp/r22_relay_build_r2_20261027",
+  "regression_log": "E:/2026FPGA/.codex_tmp/r22_relay_regression_r1_20261027.log",
+  "physical_accuracy_verified": false,
+  "board_5v_load_verified": false,
+  "board_operated": false,
+  "new_bit_delivered": true,
+  "committed": true,
+  "pushed": false,
+  "software_tests_passed": 20,
+  "legacy_tests_rerun": 15,
+  "new_tests_rerun": 5,
+  "processes_running": false,
+  "delivery": {
+    "status": "DELIVERED_FOR_HUMAN_CALIBRATION",
+    "release": "D:\\CodexWork\\FPGA_R22_Relay_20261027\\releases\\r22_relay_auto_20261027",
+    "archive": "D:\\CodexWork\\FPGA_R22_Relay_20261027\\releases\\r22_relay_auto_20261027.zip",
+    "archive_sha256": "d81095b8efca312a7ad9bd5d296bada6ddcdbeed33133fb5970873014665f24d",
+    "flash_copy": "E:\\2026FPGA\\BIT_FLASH\\R22_RelayAuto_V1_20261027.bit",
+    "bit_sha256": "94a8a431c9ca4f6da5b2c55bff78a392c1cb8af0ccad0e754fc9180bbe436ba6",
+    "payload_count": 813
+  },
+  "resources": {
+    "slice": 19429,
+    "eram": 101,
+    "dsp": 27,
+    "pll": 5
+  },
+  "timing_ns": {
+    "SWNS": 0.005,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": "R22_RelayAuto_V1_20261027",
+  "base_branch": "r22-local-edge-20261027",
+  "base_commit": "a1cceaa9b5a37ff31b7f84a77c00042b027208d0",
+  "feature_branch": "codex/r22-relay-v1",
+  "bit_sha256": "94a8a431c9ca4f6da5b2c55bff78a392c1cb8af0ccad0e754fc9180bbe436ba6",
+  "bit_bytes": 1789539,
+  "td_version": "V6.2.168116",
+  "place_seed": 2,
+  "resources": {
+    "slice": 19429,
+    "eram": 101,
+    "dsp": 27,
+    "pll": 5
+  },
+  "slice_percent": 91.57711,
+  "slice_delta_vs_r22": 413,
+  "timing_ns": {
+    "SWNS": 0.005,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "gpio": "right J2 pin1 / V2 / LVCMOS33 / drive4 / pulldown",
+  "diagnostic_led_ports": 0,
+  "initial_parameters": {
+    "target_x": 760,
+    "advance_px": 24,
+    "position_tolerance_px": 8,
+    "hold_ms": 1000,
+    "queue_depth": 8
+  },
+  "source_manifest_sha256": "204a748edd9eee92938406678f7367d798bd2f47ca06dbdcb8223ea66fa0b7e4",
+  "verification_sha256": "b08d22c01a6c508499b50cf8a8d08798908f81988950c10eae4b2e34d8befc05",
+  "board_programmed_by_assistant": false,
+  "physical_calibration": "PENDING",
+  "board_5v_load_regression": "PENDING"
+}

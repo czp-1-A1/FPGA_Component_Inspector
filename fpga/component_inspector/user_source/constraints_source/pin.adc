@@ -29,3 +29,6 @@ set_pin_assignment { I_count_page_switch } { LOCATION = D11; IOSTANDARD = LVCMOS
 
 # Physical SW3, schematic SW2: down edge starts; up rearms.
 set_pin_assignment { I_count_start_switch } { LOCATION = E11; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+
+# Active HIGH feed permission, right J2 pin1; no diagnostic LEDs.
+set_pin_assignment { O_relay_control } { LOCATION = V2; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 4; PULLTYPE = PULLDOWN; }

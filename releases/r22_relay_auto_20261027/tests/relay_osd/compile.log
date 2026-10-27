@@ -1,0 +1,22 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 15:16:44 on Oct 27,2026
+vlog -work work compact_inspector_osd.v compact_ascii_rom.v compact_cjk_rom.v compact_template_rom.v osd_logo_rom.v 
+-- Compiling module compact_inspector_osd
+-- Compiling module compact_ascii_rom
+-- Compiling module compact_cjk_rom
+-- Compiling module compact_template_rom
+-- Compiling module osd_logo_rom
+
+Top level modules:
+	compact_inspector_osd
+End time: 15:16:44 on Oct 27,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 15:16:44 on Oct 27,2026
+vlog -sv -work work tb_relay_osd.sv 
+-- Compiling module tb_relay_osd
+
+Top level modules:
+	tb_relay_osd
+End time: 15:16:44 on Oct 27,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

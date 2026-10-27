@@ -2,9 +2,11 @@ module isp_top #(
     parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
     parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,LOCAL_EDGE_ASSIST=0,EMPTY_TRACE=0,ROBUST_EMPTY_CONTEXT=0,ROBUST_SMALL_EMPTY=0,STANDING_REVIEW=0,SURFACE_REVIEW=0,REVIEW_PROBE=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,
+    parameter AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,
     parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+256*CLASSIFIED_COUNT
 ) (
     input processing_clk,
+    input relay_permit,output relay_feed,output [31:0] relay_status,
     input [16:0] count_command,output [255:0] count_live,
     input 			axi4s_video_aclk,
     input 			I_rst_n			,
@@ -307,6 +309,17 @@ end endgenerate
 // Freeze it early; frame proof, word count and epoch still gate publication.
 wire [255:0] classified_record;wire classified_ready;wire [31:0] search_empty_probe;wire [607:0] recorder_candidates;wire recorder_hold_valid;wire [10:0] recorder_hold_x;wire [9:0] recorder_hold_y;
 generate if(CLASSIFIED_COUNT)begin : classified_counting
+ wire [8:0] stop_query,stop_id,ev_id;wire pos_new,ev_new,stop_begin,stop_clear,stop_good,stop_bad;
+ wire [10:0] stop_x;wire [9:0] stop_y;wire [15:0] stop_run,pos_run,ev_run;
+ wire [31:0] stop_frame,pos_frame;wire [2:0] stop_state;wire stop_dv,stop_dr;wire [1:0] ev_kind;
+ if(AUTO_RELAY)begin : automatic_relay
+  pocket_relay_stop #(.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
+   .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.start_run(stop_begin),.clear_run(stop_clear),
+   .good_frame(stop_good),.bad_frame(stop_bad),.current_frame(stop_frame),.counter_run(stop_run),.counter_state(stop_state),
+   .direction_valid(stop_dv),.direction_right(stop_dr),.event_valid(ev_new),.event_run(ev_run),.event_id(ev_id),.event_kind(ev_kind),
+   .query_id(stop_query),.position_new(pos_new),.position_id(stop_id),.position_run(pos_run),.position_frame(pos_frame),
+   .position_x(stop_x),.position_y(stop_y),.feed_enable(relay_feed),.state(),.fault(),.status(relay_status),.cycle_done());
+ end else begin assign stop_query=0;assign relay_feed=0;assign relay_status=0;end
  reg pixels_started;
  always @(posedge post_clk or negedge I_rst_n)begin
   if(!I_rst_n)pixels_started<=0;
@@ -315,14 +328,19 @@ generate if(CLASSIFIED_COUNT)begin : classified_counting
  end
  wire [152*(RESULT_RECORDER ? 4 : 2)-1:0] count_candidates;
  if(RESULT_RECORDER)assign count_candidates=recorder_candidates;else assign count_candidates=region_search_objects;
- classified_count_pipeline #(.LINE_X(WIDTH/2),.DIAGNOSTICS(!RESULT_RECORDER),.RECORD_ONLY(RESULT_RECORDER),.MOTION_RECOVERY(RESULT_RECORDER),.TAIL_RECOVERY(RESULT_RECORDER),.OBS_PER_REGION(RESULT_RECORDER ? 4 : 2),.ORDERED_HANDOFF(RESULT_RECORDER),.RECOVERABLE(RESULT_RECORDER),.VELOCITY_ASSOC(RESULT_RECORDER),.LOCAL_RECOVERY(LOCAL_RECOVERY)) pipeline(
+ classified_count_pipeline #(.STOP_POSITION(AUTO_RELAY),.LINE_X(WIDTH/2),.DIAGNOSTICS(!RESULT_RECORDER),.RECORD_ONLY(RESULT_RECORDER),.MOTION_RECOVERY(RESULT_RECORDER),.TAIL_RECOVERY(RESULT_RECORDER),.OBS_PER_REGION(RESULT_RECORDER ? 4 : 2),.ORDERED_HANDOFF(RESULT_RECORDER),.RECOVERABLE(RESULT_RECORDER),.VELOCITY_ASSOC(RESULT_RECORDER),.LOCAL_RECOVERY(LOCAL_RECOVERY)) pipeline(
   .clk(post_clk),.rst_n(I_rst_n),.source_start(post_start),.frame_commit(post_commit && !video_frame_bad),
   .frame_bad(pixels_started && video_frame_bad && !post_start && !post_early),.sample_new(search_new),
   .config_tag({post_config,post_wb}),.objects(count_candidates),.empty_probe(search_empty_probe),.command(count_command),
   .frame_record(classified_record),.record_ready(classified_ready),.live_record(count_live),
-  .event_valid(),.event_run(),.event_id(),.event_frame(),.event_kind(),.event_reason(),
+  .event_valid(ev_new),.event_run(ev_run),.event_id(ev_id),.event_frame(),.event_kind(ev_kind),.event_reason(),
+  .stop_query_id(stop_query),.stop_position_new(pos_new),.stop_position_id(stop_id),.stop_position_x(stop_x),.stop_position_y(stop_y),
+  .stop_position_run(pos_run),.stop_position_frame(pos_frame),.stop_begin(stop_begin),.stop_clear(stop_clear),
+  .stop_good_frame(stop_good),.stop_bad_frame(stop_bad),.stop_current_frame(stop_frame),.stop_run(stop_run),.stop_state(stop_state),
+  .stop_direction_valid(stop_dv),.stop_direction_right(stop_dr),
   .hold_valid(recorder_hold_valid),.hold_x(recorder_hold_x),.hold_y(recorder_hold_y));
 end else begin : no_classified_counting
+ assign relay_feed=0;assign relay_status=0;
  assign classified_record=0;assign classified_ready=1;assign count_live=0;assign recorder_hold_valid=0;assign recorder_hold_x=0;assign recorder_hold_y=0;
 end endgenerate
 localparam ORIGINAL_META_WIDTH=META_WIDTH-256*CLASSIFIED_COUNT;

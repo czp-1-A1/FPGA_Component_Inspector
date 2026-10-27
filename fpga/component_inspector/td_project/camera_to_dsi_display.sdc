@@ -104,3 +104,11 @@ set_max_delay -datapath_only 9.0 -from [get_regs {u_count_live_display/ack}] -to
 
 # Mechanical SW3 goes only to the first stage of controls/sw_sync.
 set_false_path -from [get_ports {I_count_start_switch}]
+
+# Held relay-status mailbox, 100MHz to HDMI; original budgets unchanged.
+set_max_delay -datapath_only 19.0 -from [get_regs {u_relay_display/payload*}] -to [get_regs {u_relay_display/D_data*}]
+set_max_delay -datapath_only 19.0 -from [get_regs {u_relay_display/req}] -to [get_regs {u_relay_display/req_sync[0]}]
+set_max_delay -datapath_only 9.0 -from [get_regs {u_relay_display/ack}] -to [get_regs {u_relay_display/ack_sync[0]}]
+# Registered slow electromechanical output: reserve 2ns for the external path.
+set_output_delay -clock [get_clocks {pll_clk_100m}] -max 2.0 [get_ports {O_relay_control}]
+set_output_delay -clock [get_clocks {pll_clk_100m}] -min 0.0 [get_ports {O_relay_control}]

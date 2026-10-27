@@ -1,0 +1,425 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc=rn+/tb_edge_raw_mode2" -onfinish exit -l modelsim_work/edge_raw_mode2/transcript.log -wlf modelsim_work/edge_raw_mode2/wave.wlf -do "run -all; quit -code 1 -force" test_edge_raw_mode2.tb_edge_raw_mode2 anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR 
+# Start time: 15:00:21 on Oct 27,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/raw_matrix_3x3_buffer.v(136): (vopt-2241) Connection width does not match width of port 'O_raw_tready'. The port definition is at: ../user_source/hdl_source/isp/demosaic_4x_2_0/mipi_to_raw_converter.v(37).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_zhenghe/RTL/ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/blk_mem_gen_demosaic/RTL/ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v(60): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/ip_source/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v(60): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(48).
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v(75): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_zhenghe_d1'.  Expected 10, found 9.
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/zhenghe.v(75): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v(109): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_demosaic_r0'.  Expected 10, found 9.
+# ** Warning: ../user_source/hdl_source/isp/demosaic_4x_2_0/line_buffer_demosaic.v(109): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: ../user_source/hdl_source/signal_delay.v(136): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_awb_delay_signal_d'.  Expected 10, found 9.
+# ** Warning: ../user_source/hdl_source/signal_delay.v(136): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: ../user_source/hdl_source/awb.v(172): (vopt-2685) [TFMPC] - Too few port connections for 'div_gen_G_R_r1'.  Expected 8, found 7.
+# ** Warning: ../user_source/hdl_source/awb.v(172): (vopt-2718) [TFMPC] - Missing connection for port 'remainder'.
+# ** Warning: ../user_source/hdl_source/awb.v(182): (vopt-2685) [TFMPC] - Too few port connections for 'divide_G_B_r1'.  Expected 8, found 7.
+# ** Warning: ../user_source/hdl_source/awb.v(182): (vopt-2718) [TFMPC] - Missing connection for port 'remainder'.
+# ** Warning: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:/TD/sim_release/ph1p/ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: ../user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(26): (vopt-2685) [TFMPC] - Too few port connections for 'writer'.  Expected 29, found 26.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(26): (vopt-2718) [TFMPC] - Missing connection for port 'O_publish_diagnostic'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(26): (vopt-2718) [TFMPC] - Missing connection for port 'O_lost_frames'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(26): (vopt-2718) [TFMPC] - Missing connection for port 'O_video_out_rp'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(33): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 45, found 42.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(33): (vopt-2718) [TFMPC] - Missing connection for port 'relay_status'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(33): (vopt-2718) [TFMPC] - Missing connection for port 'relay_feed'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(33): (vopt-2718) [TFMPC] - Missing connection for port 'relay_permit'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2685) [TFMPC] - Too few port connections for 'baseline'.  Expected 36, found 16.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'diagnostic'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'empty_id'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'ledger_data'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'event_kind'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'event_id'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'event_run'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'event_valid'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'object_ids'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'region'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'direction_right'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'direction_valid'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'review_total'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'present_total'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'run_id'.
+# ** Warning: local_edge/tb_edge_raw_mode2.v(82): (vopt-2718) [TFMPC] - Missing connection for port 'snapshot_new'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2727): (vopt-2685) [TFMPC] - Too few port connections for 'al_2c3c91d5'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2727): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2727): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2809): (vopt-2685) [TFMPC] - Too few port connections for 'al_17a6d7fa'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2809): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(2809): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3781): (vopt-2685) [TFMPC] - Too few port connections for 'al_f683b5d3'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3781): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3781): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3870): (vopt-2685) [TFMPC] - Too few port connections for 'al_f65f531c'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3870): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(3870): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4852): (vopt-2685) [TFMPC] - Too few port connections for 'al_8cc7c1e'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4852): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4852): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4948): (vopt-2685) [TFMPC] - Too few port connections for 'al_12836a8f'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4948): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(4948): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(5946): (vopt-2685) [TFMPC] - Too few port connections for 'al_5892fcb5'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(5946): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(5946): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(6049): (vopt-2685) [TFMPC] - Too few port connections for 'al_b3f6820d'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(6049): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(6049): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7063): (vopt-2685) [TFMPC] - Too few port connections for 'al_7c3d1a1a'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7063): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7063): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7173): (vopt-2685) [TFMPC] - Too few port connections for 'al_f5789861'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7173): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(7173): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8203): (vopt-2685) [TFMPC] - Too few port connections for 'al_3aab319'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8203): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8203): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8320): (vopt-2685) [TFMPC] - Too few port connections for 'al_61a0d7ee'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8320): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(8320): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9366): (vopt-2685) [TFMPC] - Too few port connections for 'al_623841ba'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9366): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9366): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9490): (vopt-2685) [TFMPC] - Too few port connections for 'al_2de59830'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9490): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(9490): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10546): (vopt-2685) [TFMPC] - Too few port connections for 'al_aa681be'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10546): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10546): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10677): (vopt-2685) [TFMPC] - Too few port connections for 'al_6d616ad8'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10677): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(10677): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11749): (vopt-2685) [TFMPC] - Too few port connections for 'al_f70fd955'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11749): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11749): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11887): (vopt-2685) [TFMPC] - Too few port connections for 'al_26555348'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11887): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(11887): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(12975): (vopt-2685) [TFMPC] - Too few port connections for 'al_b1b33ac1'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(12975): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(12975): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(13120): (vopt-2685) [TFMPC] - Too few port connections for 'al_9642b13d'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(13120): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(13120): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15068): (vopt-2685) [TFMPC] - Too few port connections for 'al_35ee5592'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15068): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15068): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15220): (vopt-2685) [TFMPC] - Too few port connections for 'al_50e9f109'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15220): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(15220): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16340): (vopt-2685) [TFMPC] - Too few port connections for 'al_7f00f7cf'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16340): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16340): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16499): (vopt-2685) [TFMPC] - Too few port connections for 'al_e29bec0b'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16499): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(16499): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17629): (vopt-2685) [TFMPC] - Too few port connections for 'al_d51334f9'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17629): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17629): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17795): (vopt-2685) [TFMPC] - Too few port connections for 'al_893284b6'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17795): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(17795): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(18941): (vopt-2685) [TFMPC] - Too few port connections for 'al_3d1326ec'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(18941): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(18941): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(19114): (vopt-2685) [TFMPC] - Too few port connections for 'al_fe1a61c8'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(19114): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(19114): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20276): (vopt-2685) [TFMPC] - Too few port connections for 'al_c7f8d01f'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20276): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20276): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20456): (vopt-2685) [TFMPC] - Too few port connections for 'al_cc6624f3'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20456): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(20456): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21634): (vopt-2685) [TFMPC] - Too few port connections for 'al_5fe5f689'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21634): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21634): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21821): (vopt-2685) [TFMPC] - Too few port connections for 'al_d9f3f288'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21821): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(21821): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23015): (vopt-2685) [TFMPC] - Too few port connections for 'al_614d9b5f'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23015): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23015): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23209): (vopt-2685) [TFMPC] - Too few port connections for 'al_40de5145'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23209): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(23209): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24413): (vopt-2685) [TFMPC] - Too few port connections for 'al_2b863aeb'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24413): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24413): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24614): (vopt-2685) [TFMPC] - Too few port connections for 'al_a0f4601c'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24614): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(24614): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(25834): (vopt-2685) [TFMPC] - Too few port connections for 'al_b8005145'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(25834): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(25834): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(26042): (vopt-2685) [TFMPC] - Too few port connections for 'al_3728e305'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(26042): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(26042): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27278): (vopt-2685) [TFMPC] - Too few port connections for 'al_33912f9'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27278): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27278): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27493): (vopt-2685) [TFMPC] - Too few port connections for 'al_5379bc02'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27493): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(27493): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29636): (vopt-2685) [TFMPC] - Too few port connections for 'al_5984d26f'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29636): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29636): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29858): (vopt-2685) [TFMPC] - Too few port connections for 'al_f4fca905'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29858): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(29858): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(31126): (vopt-2685) [TFMPC] - Too few port connections for 'al_5e220ed'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(31126): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(31126): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(32635): (vopt-2685) [TFMPC] - Too few port connections for 'al_4d428833'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(32635): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(32635): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(34151): (vopt-2685) [TFMPC] - Too few port connections for 'al_6defe612'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(34151): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(34151): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(35667): (vopt-2685) [TFMPC] - Too few port connections for 'al_be405246'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(35667): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(35667): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(37183): (vopt-2685) [TFMPC] - Too few port connections for 'al_83514792'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(37183): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(37183): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(38699): (vopt-2685) [TFMPC] - Too few port connections for 'al_fd3e8af2'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(38699): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(38699): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(40215): (vopt-2685) [TFMPC] - Too few port connections for 'al_9425b3df'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(40215): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(40215): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(41731): (vopt-2685) [TFMPC] - Too few port connections for 'al_5c7d50e3'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(41731): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(41731): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(43247): (vopt-2685) [TFMPC] - Too few port connections for 'al_d271eb9'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(43247): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(43247): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(45676): (vopt-2685) [TFMPC] - Too few port connections for 'al_1f358278'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(45676): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(45676): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(47192): (vopt-2685) [TFMPC] - Too few port connections for 'al_6c167d08'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(47192): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(47192): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(48708): (vopt-2685) [TFMPC] - Too few port connections for 'al_6570f066'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(48708): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(48708): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(50224): (vopt-2685) [TFMPC] - Too few port connections for 'al_f8363f33'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(50224): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(50224): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(51740): (vopt-2685) [TFMPC] - Too few port connections for 'al_ca709f8b'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(51740): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(51740): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(53256): (vopt-2685) [TFMPC] - Too few port connections for 'al_20bc1162'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(53256): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(53256): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(54772): (vopt-2685) [TFMPC] - Too few port connections for 'al_dc46bad1'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(54772): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(54772): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(57046): (vopt-2685) [TFMPC] - Too few port connections for 'al_f4af5624'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(57046): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(57046): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58500): (vopt-2685) [TFMPC] - Too few port connections for 'al_7b9955b'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58500): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58500): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58505): (vopt-2685) [TFMPC] - Too few port connections for 'al_2beb57ee'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58505): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(58505): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59403): (vopt-2685) [TFMPC] - Too few port connections for 'al_2f3c0b9c'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59403): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59403): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59457): (vopt-2685) [TFMPC] - Too few port connections for 'al_ddf981e2'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59457): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(59457): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60365): (vopt-2685) [TFMPC] - Too few port connections for 'al_98b3b8dd'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60365): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60365): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60426): (vopt-2685) [TFMPC] - Too few port connections for 'al_60de78b1'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60426): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(60426): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61350): (vopt-2685) [TFMPC] - Too few port connections for 'al_bb9963f6'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61350): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61350): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61418): (vopt-2685) [TFMPC] - Too few port connections for 'al_7241ba4'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61418): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(61418): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62358): (vopt-2685) [TFMPC] - Too few port connections for 'al_39ead89a'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62358): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62358): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62433): (vopt-2685) [TFMPC] - Too few port connections for 'al_14fec680'.  Expected 4, found 2.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62433): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: ../user_source/ip_source/divider/divider_gate.v(62433): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_edge_raw_mode2(fast)
+# Loading work.image_correction(fast)
+# Loading work.uial2axis(fast)
+# Loading work.video_in(fast)
+# Loading work.isp_top(fast)
+# Loading work.divider(fast)
+# Loading anlogic_sim.AL_MAP_LUT5(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT2(fast)
+# Loading anlogic_sim.AL_MAP_LUT3(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT4(fast)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__13)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__14)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__15)
+# Loading work.video_out(fast)
+# Loading work.classified_pocket_counter_R9(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# run -all
+# SPEED_CANDIDATES source=1 data=0000000000000000000000000000000000000000000000000000000000000000000000000000c06144ca8cc1c24a958e00301028e91de4e948c058444a90f2444a958e00441428ff20c4e948
+# TRACE_NATIVE source=1 data=0000000000000002a88460e723d45202
+# SPEED_NATIVE_RESULT source=1 record=0000000180000000000000000000000000000000000000000009000100000001 total=0 P=0 E=0
+# SPEED_NATIVE_COUNT source=1 total=0 present=0 empty=0 R8total=0 R8empty=0 R8state=1 R8C=1
+# REF region cadence frame=1 objects=00000000000000000000000000000000000000c058444a90f2444a958e00441428ff20c4e948 state=3 FG=68 W=10 H=10 X0=510 X1=524 Y0=314 Y1=328
+# CADENCE frame=1 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8175.408000 result_after_FE_ns=604692.908000
+# SPEED_CANDIDATES source=2 data=0000000000000000000000000000000000000000000000000000000000000000000000000000c058444a8d71d44a958e00441428f31f44e948c06144ca91825a4a958e003010290921e4e948
+# TRACE_NATIVE source=2 data=0000000000000002a70460e723d45202
+# SPEED_NATIVE_RESULT source=2 record=0000000180000000000000000000000000000000000000000109000100000002 total=0 P=0 E=0
+# SPEED_NATIVE_COUNT source=2 total=0 present=0 empty=0 R8total=0 R8empty=0 R8state=1 R8C=1
+# REF region cadence frame=2 objects=00000000000000000000000000000000000000c06144ca91825a4a958e003010290921e4e948 state=3 FG=48 W=8 H=10 X0=530 X1=542 Y0=314 Y1=328
+# CADENCE frame=2 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8188.532000 result_after_FE_ns=605356.032000
+# SPEED_CANDIDATES source=3 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e00301028fd2064e948c058444a92326c4a958e00441429132344e948
+# TRACE_NATIVE source=3 data=0000000000000002a84460a71bd45002
+# SPEED_NATIVE_RESULT source=3 record=0000000180000000000000000000000000000000000000000109000100000003 total=0 P=0 E=0
+# SPEED_NATIVE_COUNT source=3 total=0 present=0 empty=0 R8total=0 R8empty=0 R8state=1 R8C=1
+# REF region cadence frame=3 objects=00000000000000000000000000000000000000c058444a92326c4a958e00441429132344e948 state=3 FG=68 W=10 H=10 X0=550 X1=564 Y0=314 Y1=328
+# CADENCE frame=3 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8182.212000 result_after_FE_ns=605054.712000
+# SPEED_CANDIDATES source=4 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e003010290921e4e948c058444a92f2844a958e004414291f24c4e948
+# TRACE_NATIVE source=4 data=0000000000000002a5c5002101004402
+# SPEED_NATIVE_RESULT source=4 record=0000000180000000000000000000000000000000000000000182000100000004 total=0 P=0 E=0
+# SPEED_NATIVE_COUNT source=4 total=0 present=0 empty=0 R8total=0 R8empty=0 R8state=2 R8C=0
+# REF region cadence frame=4 objects=00000000000000000000000000000000000000c058444a92f2844a958e004414291f24c4e948 state=3 FG=68 W=10 H=10 X0=574 X1=588 Y0=314 Y1=328
+# CADENCE frame=4 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8178.048000 result_after_FE_ns=604695.548000
+# SPEED_CANDIDATES source=5 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e004414291723c4e948c06144ca93c2a24a958e003010292d2664e948
+# SPEED_EVENT id=1 source=5 kind=2
+# TRACE_NATIVE source=5 data=0000000000000002a5f500850c0074fa
+# SPEED_NATIVE_RESULT source=5 record=0000000180100400000000000000000000000080000000080582000100000005 total=1 P=1 E=0
+# SPEED_NATIVE_COUNT source=5 total=1 present=1 empty=0 R8total=0 R8empty=0 R8state=2 R8C=0
+# REF region cadence frame=5 objects=00000000000000000000000000000000000000c06144ca93c2a24a958e003010292d2664e948 state=3 FG=48 W=8 H=10 X0=602 X1=614 Y0=314 Y1=328
+# CADENCE frame=5 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8186.728000 result_after_FE_ns=605734.228000
+# SPEED_CANDIDATES source=6 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e004414292725c4e948c06144ca94c2c24a958e003010293d2864e948
+# TRACE_NATIVE source=6 data=0000000000000002a7f500850c0074fa
+# SPEED_NATIVE_RESULT source=6 record=0000000180100400000000000000000000000080000000080582000100000006 total=1 P=1 E=0
+# SPEED_NATIVE_COUNT source=6 total=1 present=1 empty=0 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=6 objects=00000000000000000000000000000000000000c06144ca94c2c24a958e003010293d2864e948 state=3 FG=48 W=8 H=10 X0=634 X1=646 Y0=314 Y1=328
+# CADENCE frame=6 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8180.408000 result_after_FE_ns=593172.908000
+# SPEED_CANDIDATES source=7 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c058444a91b25c4a958e003010294d2a64e948e004414293727c4e948
+# SPEED_EVENT id=2 source=7 kind=3
+# TRACE_NATIVE source=7 data=0000000000000002a74500a5110074fa
+# SPEED_NATIVE_RESULT source=7 record=0000000180180800000000000000000800000100000010080982000100000007 total=2 P=1 E=1
+# SPEED_NATIVE_COUNT source=7 total=2 present=1 empty=1 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=7 objects=00000000000000000000000000000000000000e003010294d2a64e948e004414293727c4e948 state=3 FG=68 W=10 H=10 X0=622 X1=636 Y0=314 Y1=328
+# CADENCE frame=7 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8177.280000 result_after_FE_ns=594214.780000
+# SPEED_CANDIDATES source=8 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e003010295d2c64e948e004414294729c4e948c058444a92b27c4a958
+# SPEED_EVENT id=3 source=8 kind=3
+# TRACE_NATIVE source=8 data=0000000000000002a94500a5110074fa
+# SPEED_NATIVE_RESULT source=8 record=0000000180180c00000000000000180800000180000020080d82000100000008 total=3 P=1 E=2
+# SPEED_NATIVE_COUNT source=8 total=3 present=1 empty=2 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=8 objects=00000000000000000000000000000000000000e004414294729c4e948c058444a92b27c4a958 state=2 FG=1412 W=34 H=42 X0=598 X1=636 Y0=298 Y1=344
+# CADENCE frame=8 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8182.480000 result_after_FE_ns=600519.980000
+# SPEED_CANDIDATES source=9 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e003010296d2e64e948e00441429572bc4e948c058444a93b29c4a958
+# SPEED_EVENT id=4 source=9 kind=2
+# TRACE_NATIVE source=9 data=0000000000000002a745002101004402
+# SPEED_NATIVE_RESULT source=9 record=0000000180101000000000000000180800000181000020101182000100000009 total=4 P=2 E=2
+# SPEED_NATIVE_COUNT source=9 total=4 present=2 empty=2 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=9 objects=00000000000000000000000000000000000000e00441429572bc4e948c058444a93b29c4a958 state=2 FG=1412 W=34 H=42 X0=630 X1=668 Y0=298 Y1=344
+# CADENCE frame=9 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8187.680000 result_after_FE_ns=605375.180000
+# SPEED_CANDIDATES source=10 data=0000000000000000000000000000000000000000000000000000000000000000000000000000c06144ca98c3424a958e003010297d3064e948e00441429672dc4e948c058444a94b2bc4a958
+# TRACE_NATIVE source=10 data=0000000000000002a945002101004402
+# SPEED_NATIVE_RESULT source=10 record=000000018010100000000000000018080000018100002010118200010000000a total=4 P=2 E=2
+# SPEED_NATIVE_COUNT source=10 total=4 present=2 empty=2 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=10 objects=00000000000000000000000000000000000000e00441429672dc4e948c058444a94b2bc4a958 state=2 FG=1412 W=34 H=42 X0=662 X1=700 Y0=298 Y1=344
+# CADENCE frame=10 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=8177.880000 result_after_FE_ns=605710.380000
+# SPEED_CANDIDATES source=11 data=0000000000000000000000000000000000000000000000000000000000000000000000000000c06144ca99c3624a958e003010298d3264e948e00441429772fc4e948c058444a95b2dc4a958
+# TRACE_NATIVE source=11 data=0000000000000002ab45002101004402
+# SPEED_NATIVE_RESULT source=11 record=000000018010100000000000000018080000018100002010118200010000000b total=4 P=2 E=2
+# SPEED_NATIVE_COUNT source=11 total=4 present=2 empty=2 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=11 objects=00000000000000000000000000000000000000e00441429772fc4e948c058444a95b2dc4a958 state=2 FG=1412 W=34 H=42 X0=694 X1=732 Y0=298 Y1=344
+# CADENCE frame=11 mode=2 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=11798.080000 result_after_FE_ns=605355.580000
+# PASS LOCAL_EDGE_RAW_MODE2: native line-clock gaps, LP0CF0 wall-clock, 27-FPS source start-to-start, finite real P,E,E,P ramp20to32px/source, unchanged R9 read-only comparison, same-slot late tuples, full exact RGB rasters=22 pixels=20855040 OF=0 UF=0
+# ** Note: $finish    : local_edge/tb_edge_raw_mode2.v(243)
+#    Time: 407416063964 ps  Iteration: 1  Instance: /tb_edge_raw_mode2
+# End time: 15:18:47 on Oct 27,2026, Elapsed time: 0:18:26
+# Errors: 0, Warnings: 270

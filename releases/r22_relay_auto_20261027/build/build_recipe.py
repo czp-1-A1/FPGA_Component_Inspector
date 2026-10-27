@@ -1,0 +1,76 @@
+"""Freeze R22+automatic relay sources, derive TD descriptors, build without flashing."""
+from pathlib import Path
+import argparse,hashlib,json,os,re,shutil,subprocess,time
+
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def main():
+ a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--prepare-only',action='store_true');args=a.parse_args()
+ repo=Path(__file__).resolve().parents[1];src=repo/'fpga/component_inspector';work=args.work.resolve()
+ assert not work.exists(),'Refuse to overwrite an existing build'
+ assert str(work).isascii() and ' ' not in str(work)
+ baseline=json.loads((repo/'releases/r22_20261027/frozen_inputs.json').read_text())
+ names=list(baseline)+['user_source/hdl_source/pocket_relay_stop.v','sim/tb_pocket_relay_stop.sv','sim/tb_relay_numbered_pipeline.sv']
+ manifest={rel:sha(src/rel) for rel in names}
+ changes={rel:{'baseline':baseline.get(rel),'candidate':manifest[rel]} for rel in names if baseline.get(rel)!=manifest[rel]}
+ project=work/'project';project.mkdir(parents=True)
+ for rel in names:
+  target=project/rel;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(src/rel,target)
+ (work/'frozen_inputs.json').write_text(json.dumps(manifest,indent=2)+'\n')
+ (work/'baseline_delta.json').write_text(json.dumps({'baseline_commit':'a1cceaa','baseline_manifest_sha256':'8e81b47dcd40d88b461aae525e946d5c41bd175691bc66f896b9dc34989541bf','changes':changes},indent=2)+'\n')
+ td=Path('E:/TD');flow=td/'doc/scripts/DefaultFlow.tcl';assert flow.is_file()
+ entry=project/'td_project/camera_to_dsi_display.al';text=entry.read_text()
+ deps={}
+ for rel in re.findall(r'<File Path="([^"]+)"',text):
+  p=(entry.parent/rel).resolve();deps[p.relative_to(project).as_posix()]=sha(p)
+ for rel in ['user_source/hdl_source/ph1p35_ddr/ddr2/src/adc/ddr2.adc','user_source/hdl_source/ph1p35_ddr/ddr2/src/sdc/ddr2.sdc','user_source/ip_source/w128_d512_fifo/w128_d512_fifo.tcl']:
+  deps[rel]=sha(project/rel)
+ (work/'hardware_inputs.json').write_text(json.dumps(deps,indent=2)+'\n')
+ for stage in ['syn_1','phy_1']:
+  run=work/'runs'/stage;run.mkdir(parents=True)
+  prj=re.sub(r'(<Project\b[^>]*\bPath=")[^"]*',lambda m:m[1]+run.as_posix(),text,count=1)
+  prj=re.sub(r'<File Path="([^"]+)"',lambda m:'<File Path="'+Path(os.path.relpath((entry.parent/m[1]).resolve(),run)).as_posix()+'"',prj)
+  (run/'camera_to_dsi_display.prj').write_text(prj,encoding='utf8')
+  cfg='''set ADCList {"../../../user_source/constraints_source/pin.adc"}
+set IpADCList { ddr2 ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/adc/ddr2.adc }
+set IpSDCList { ddr2 ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/sdc/ddr2.sdc w128_d512_fifo ../../../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.tcl }
+set SDCList {"../../camera_to_dsi_display.sdc"}
+set area_option -packarea
+set device_name ph1_35p.db
+set package_name PH1P35MDG324
+set prj_name camera_to_dsi_display
+set speed 3
+set top_model_name design_top_wrapper
+'''
+  if stage=='syn_1':cfg+='set start_step read_design\nset end_step opt_gate\nset run_type syn\n'
+  else:cfg+='''set arr_filter false
+set phyWildParams {place seed 2 place logic_level_opt on place opt_timing high place effort high place fix_hold on}
+set drHoldFix on
+set parent ../syn_1
+set start_step opt_place
+set end_step bitgen
+set run_type phy
+'''
+  cfg=cfg.replace('../../../user_source',Path(os.path.relpath(project/'user_source',run)).as_posix())
+  cfg=cfg.replace('../../camera_to_dsi_display.sdc',Path(os.path.relpath(entry.parent/'camera_to_dsi_display.sdc',run)).as_posix())
+  (run/'settings.cfg').write_text(cfg)
+  commands='if {[catch {\nsource {'+flow.as_posix()+'}\ncheck_timing -file constraint_coverage.txt -verbose\n'
+  if stage=='phy_1':commands+='report_timing_summary -file final_timing.rpt\nreport_area -io_info -file final.area\n'
+  commands+='} reason]} {puts stderr $reason; exit 1}\nexit 0\n'
+  (run/'build.tcl').write_text(commands)
+ print(json.dumps({'status':'FROZEN','project':str(project),'sources':len(manifest),'hardware_dependencies':len(deps),'delta_files':len(changes),'seed':2}),flush=True)
+ if args.prepare_only:return
+ env=dict(os.environ);(work/'temp').mkdir();env['TEMP']=env['TMP']=str(work/'temp')
+ stages=[]
+ for stage in ['syn_1','phy_1']:
+  run=work/'runs'/stage;started=time.monotonic()
+  with (run/'console.log').open('w',encoding='utf8') as log:
+   r=subprocess.run([str(td/'bin/td_commands_prompt.exe')],input='source {build.tcl}\n',text=True,cwd=run,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=2400)
+  txt=(run/'console.log').read_text(errors='replace')
+  assert r.returncode==0 and not re.search(r'(?mi)^\s*(?:ERROR|\w+-\d+\s*:\s*Error)',txt),(stage,str(run/'console.log'))
+  stages.append({'stage':stage,'seconds':round(time.monotonic()-started,1),'console_sha256':sha(run/'console.log')})
+  print(json.dumps(stages[-1]),flush=True)
+ bit=work/'runs/phy_1/camera_to_dsi_display.bit';assert bit.is_file()
+ for rel,digest in manifest.items():assert sha(project/rel)==digest and sha(src/rel)==digest,rel
+ result={'status':'BUILT_NEEDS_RESOURCE_TIMING_AND_IO_AUDIT','bit':str(bit),'bit_sha256':sha(bit),'sources':len(manifest),'stages':stages,'seed':2,'board_operated':False}
+ (work/'build_result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
+if __name__=='__main__':main()

@@ -1,0 +1,19 @@
+{
+  "status": "PASS_SOURCE_PACKAGE_FLASH_AND_PROTECTED_R2_IDENTITY",
+  "source_files": 621,
+  "modified_baseline_files": [
+    "td_project/camera_to_dsi_display.al",
+    "td_project/camera_to_dsi_display.sdc",
+    "user_source/constraints_source/pin.adc",
+    "user_source/hdl_source/classified_count_pipeline.v",
+    "user_source/hdl_source/classified_dual_page_osd.v",
+    "user_source/hdl_source/classified_pocket_counter.v",
+    "user_source/hdl_source/compact_inspector_osd.v",
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/isp/isp_top.v"
+  ],
+  "payloads": 813,
+  "original_pin_and_sdc_contracts_retained": true,
+  "new_logical_lines_trailing_whitespace": 0,
+  "format_note": "Existing RTL newline conversion exposes historical trailing spaces in raw git diff --check; normalized logical additions are clean. Frozen source bytes kept exact."
+}

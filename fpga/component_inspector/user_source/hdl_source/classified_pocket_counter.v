@@ -1,7 +1,7 @@
 // Consumes the UNMODIFIED frame_shape_search four-record result, once per
 // proved source frame. Display rank is never an identity. No pixel RAM/search.
 module classified_pocket_counter #(
- parameter LINE_X=640,HYST=3,MAX_STEP=12,Y_STEP=8,MAX_TOTAL=300,RECORD_ONLY=0,MOTION_RECOVERY=0,TAIL_RECOVERY=0,OBS_PER_REGION=2,ORDERED_HANDOFF=0,RECOVERABLE=0,VELOCITY_ASSOC=0,LOCAL_RECOVERY=0
+ parameter STOP_POSITION=0,LINE_X=640,HYST=3,MAX_STEP=12,Y_STEP=8,MAX_TOTAL=300,RECORD_ONLY=0,MOTION_RECOVERY=0,TAIL_RECOVERY=0,OBS_PER_REGION=2,ORDERED_HANDOFF=0,RECOVERABLE=0,VELOCITY_ASSOC=0,LOCAL_RECOVERY=0
 )(
  input wire clk,rst_n,start_run,finish_run,frame_bad,
  input wire sample_new,input wire [31:0] frame_id,input wire [63:0] config_tag,
@@ -17,8 +17,14 @@ module classified_pocket_counter #(
  input wire [8:0] ledger_address,output reg [5:0] ledger_data,
  input wire [8:0] empty_address,output reg [8:0] empty_id,
  output reg hold_valid,output reg [10:0] hold_x,output reg [9:0] hold_y,
- output reg [15:0] diagnostic,output reg [8:0] uncertainty_from
+ output reg [15:0] diagnostic,output reg [8:0] uncertainty_from,
+ input wire [8:0] stop_query_id,
+ output reg stop_position_new,output reg [8:0] stop_position_id,
+ output reg [10:0] stop_position_x,output reg [9:0] stop_position_y,
+ output wire [15:0] stop_position_run,output wire [31:0] stop_position_frame
 );
+ reg stop_position_pending;
+ assign stop_position_run=run_id;
  localparam IDLE=0,ACQUIRE=1,RUN=2,LOST=3,DONE=4,HOLD=5,CHECK_REQUIRED=6;
  wire tracking=state==RUN || (RECOVERABLE && state==HOLD);
  localparam WAIT=0,LOAD=1,OBS=2,SCAN=3,ASSIGN=4,CHECK=5,MOTION=6,
@@ -35,6 +41,7 @@ module classified_pocket_counter #(
  localparam TRACK_BITS=MOTION_RECOVERY ? 60+DX_BITS+GAP_BITS : (RECORD_ONLY ? 60+GAP_BITS : 60);
  reg [4:0] phase;
  reg [76*OBS_COUNT-1:0] packet;reg packet_region,packet_ambiguous;reg [31:0] source_id,last_frame;
+ assign stop_position_frame=source_id;
  function region_has_target;
   input [76*OBS_PER_REGION-1:0] data;
   integer region_slot;
@@ -250,6 +257,7 @@ module classified_pocket_counter #(
  end
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
+   stop_position_new<=0;stop_position_pending<=0;stop_position_id<=0;stop_position_x<=0;stop_position_y<=0;
    state<=IDLE;reason<=0;hold_valid<=0;hold_x<=0;hold_y<=0;phase<=WAIT;busy<=0;snapshot_new<=0;
    diagnostic<=0;uncertainty_from<=0;quarantined<=0;frame_tracks<=0;frame_trusted<=0;gap_open<=0;pitch_candidate<=0;pitch_votes<=0;
    run_id<=0;total<=0;present_total<=0;empty_total<=0;review_total<=0;
@@ -260,14 +268,16 @@ module classified_pocket_counter #(
    found<=32;free_slot<=32;matches<=0;best_error<=14'h3fff;matched_count<=0;positive<=0;negative<=0;visible<=0;motion_count<=0;
    crossings<=0;cross_index<=0;unstable_cross<=0;motion_conflict<=0;event_valid<=0;event_run<=0;event_id<=0;event_frame<=0;event_kind<=0;event_reason<=0;
   end else begin
-   snapshot_new<=0;event_valid<=0;
+   snapshot_new<=0;event_valid<=0;stop_position_new<=0;
    if(start_run)begin
+    stop_position_pending<=0;
     diagnostic<=0;uncertainty_from<=0;quarantined<=0;frame_tracks<=0;frame_trusted<=0;gap_open<=0;pitch_candidate<=0;pitch_votes<=0;
     run_id<=run_id+1'b1;hold_valid<=0;state<=ACQUIRE;reason<=1;phase<=WAIT;busy<=0;
     total<=0;present_total<=0;empty_total<=0;review_total<=0;
     valid_tracks<=0;armed<=0;cross_pending<=0;used<=0;object_ids<=0;have_frame<=0;have_region<=0;
     direction_valid<=0;stable_frames<=0;accumulated<=0;pitch_valid<=0;reverse_motion<=0;previous_speed<=0;previous_dx<=0;recovered_far<=0;direct_anchor<=0;direct_count<=0;snapshot_new<=1;
    end else if(finish_run)begin
+    stop_position_pending<=0;
     state<=RECORD_ONLY ? IDLE : DONE;hold_valid<=0;reason<=0;busy<=0;phase<=WAIT;snapshot_new<=1;
     if(RECORD_ONLY)begin
      diagnostic<=0;uncertainty_from<=0;quarantined<=0;frame_tracks<=0;frame_trusted<=0;gap_open<=0;pitch_candidate<=0;pitch_votes<=0;
@@ -289,6 +299,7 @@ module classified_pocket_counter #(
       else packet<=objects;
       packet_region<=incoming_r1;packet_ambiguous<=incoming_r0 && incoming_r1;
       source_id<=frame_id;last_frame<=frame_id;active_config<=config_tag;have_frame<=1;
+      stop_position_pending<=0;
       busy<=1;phase<=LOAD;used<=0;frame_tracks<=valid_tracks;frame_trusted<=1;gap_open<=0;oi<=0;object_ids<=0;
       matched_count<=0;positive<=0;negative<=0;visible<=0;motion_count<=0;crossings<=0;unstable_cross<=0;motion_conflict<=0;first_dx<=0;recovered_far<=0;direct_anchor<=0;direct_count<=0;
      end
@@ -491,6 +502,11 @@ module classified_pocket_counter #(
      oi<=0;phase<=READ_APPLY;
     end
     APPLY:begin
+     if(STOP_POSITION && mapping[oi[OI_BITS-1:0]]!=32 && old_id!=0 &&
+        old_id==stop_query_id && target)begin
+      stop_position_pending<=1;stop_position_id<=old_id;
+      stop_position_x<=cx;stop_position_y<=cy;
+     end
      if(mapping[oi[OI_BITS-1:0]]!=32)begin
       if(LOCAL_RECOVERY)quarantined[mi]<=0;
       // The shared classifier owns kind/reason. Record its current result;
@@ -557,7 +573,12 @@ module classified_pocket_counter #(
       else phase<=PUBLISH;
      end
     end
-    PUBLISH:begin snapshot_new<=1;busy<=0;phase<=WAIT;end
+    PUBLISH:begin
+     // Publish ONLY a same-frame actual association after the entire frame
+     // survives motion/crossing checks. Candidate hold/prediction is not used.
+     stop_position_new<=STOP_POSITION && stop_position_pending && state==RUN && frame_trusted && !gap_open;
+     snapshot_new<=1;busy<=0;phase<=WAIT;
+    end
     default:phase<=WAIT;
    endcase
   end
