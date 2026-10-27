@@ -1,3 +1,13 @@
+# V2已交付（2026-10-27，后续等待实板标定）
+
+- 正式bit：E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V2_20261027.bit，SHA99d1593ffd97d127e2690d4fc9da816e93e8bac280bf7e768222f2f8ff9d03ed，与release原件/真实r3构建bit一致。资源Slice18972/21216=89.42308%，ERAM99/DSP30/PLL5，setup+.004/hold+.020/TNS0；所有49延迟、20 Gray Q、9邮箱、SW3、V2输出审计PASS。板载5V、3.3V HIGH、J2第1脚V2；无LED。
+- 来源R22 a1cceaa，分支codex/r22-relay-left-v2，实现提交5b8d5a7/测试边界提交adddede，未推送。源码位置D:/CodexWork/FPGA_R22_Relay_20261027；旧E盘M1及以太网R2未替换。当前源码629项（628构建冻结+1后加native测试），发布1009载荷逐SHA/ZIP CRC全核；ZIP releases/r22_relay_left_v2_20261027.zip SHA09f9352bf7de703ac5ecf4aa0483fd352b9450a937abaa5ec0ed41f922d48514。
+- 实际23项选定PASS：旧13，新控制/像素/RGB/默认100MHz完整1秒及最终LEFT/AUTO原生RAW正对照10；后者12帧、P,E,E,P四ID、两空队列在到站前>150ms持续送料、24精确显示栅格/22940469像素、OF/UF0。完整停车闭环另为RGB202帧/3次保持，不冒称原生RAW已到停车线或实板验收。
+- 保留弱RAW280失败边界：source6形状5x3/亮点0原R22与本版608位结果完全一致，未改识别判据，未把失败算PASS；报告docs/R22_RELAY_LEFT_V2_WEAK_NATIVE_BOUNDARY.json和发布tests/retained_boundary。原基线RAW编译ISP为未加入类别校验的关闭分支，保留历史源码与等价证明；最终native_r2独立编译最终启用分支，不混淆版本。
+- 交付/操作：docs/R22_RELAY_LEFT_V2_DELIVERY.json、FINAL_AUDIT.json、FIELD_GUIDE.md，BIT_FLASH同名前缀_说明.md/_RELEASE.json/_BOUNDARY.json。当前23条软件/布线通过不等于实板±1mm通过；先清晰料序低速空跑，从右引入首穴X800附近、左区清空，SW3上再下；旧队列人工核对后K3+K4全清。640计数/256左站编号/176触发/160目标，初始提前16/窗口±8像素，毫米未标定。
+- 尚无吸嘴/补件完成握手；保持期间遮挡或将E改成P可能导致关联保护，先测试停靠1秒恢复。本版仅控制X；Y依靠导向并检查停住后漂移。后续据现场完整RL2 S/F/Q/N/X/L/V/W及毫米偏差调提前量，不放宽保护或把原始不确定性掩掉。
+- 当前没有板卡烧录/电机操作、无子代理或新自动化。TD/ModelSim测试已完成，未推送。最终Git提交以git log为准；只有仿真输出可能仍未跟踪，勿清理用户其他工作。
+
 # 原生LEFT RAW正对照已通过（2026-10-27 20:44）
 
 - native_r2验证JSON已生成PASS：12源帧、24精确显示栅格/22940469像素、P/E/P序列共4ID（P2/E2）、两空队列在到站前>150ms继续送料，OF/UF0。23项选定测试已完成，弱RAW280边界单独保留未修复，不能混入通过数。当前进入版本化封装，只有发布脚本实际回执才确认BIT_FLASH交付。

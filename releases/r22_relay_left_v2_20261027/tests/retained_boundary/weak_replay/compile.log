@@ -1,0 +1,20 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 20:28:38 on Oct 27,2026
+vlog -work work inspection_region_config.v empty_candidate_probe.v present_surface_check.v local_edge_surface_check.v present_review_probe.v frame_shape_search.v baseline.v baseline_surface.v 
+-- Compiling module inspection_region_config
+-- Compiling module empty_candidate_probe
+-- Compiling module present_surface_check
+-- Compiling module local_edge_surface_check
+-- Compiling module present_review_probe
+-- Compiling module frame_shape_search
+-- Compiling module empty_gate_trace
+-- Compiling module frame_shape_search_baseline
+** Warning: baseline.v(1027): (vlog-2275) 'empty_gate_trace' already exists and will be overwritten.
+-- Compiling module empty_gate_trace
+-- Compiling module local_edge_surface_check_baseline
+
+Top level modules:
+	frame_shape_search
+	frame_shape_search_baseline
+End time: 20:28:38 on Oct 27,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 1

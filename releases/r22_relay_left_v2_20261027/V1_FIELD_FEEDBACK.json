@@ -1,0 +1,19 @@
+{
+  "version": "V1 field failure, not acceptance",
+  "user_direction_confirmed": "right-to-left, refill on left",
+  "screenshot_status": "S4 F6 Q2 ID001 X2C5 T2F8 A018",
+  "observed": "position709 stale before rightward trigger736; no valid one-second cycle",
+  "sixth_attempt": "no S/F evidence; pending queue restart protection is a possible cause, not confirmed",
+  "video_sha256": "ca340b46dcf15fb8cee7171fe4e23b9275cd3593fc42597716b6591f3ecb7359",
+  "plan": [
+    "separate right count / left refill zones sharing original image RAM/classifier",
+    "independent ordered station counter with clear-transport startup alignment; uncertainty fails stopped",
+    "arrival wait distinct from fresh-position timeout; same RUN/ID/frame proof",
+    "dense-target, long-transport, startup/alignment and one-second regression before new build"
+  ],
+  "target_px": 160,
+  "main_count_line_px": 640,
+  "station_number_line_px": 256,
+  "advance_px": 16,
+  "mm_calibrated": false
+}

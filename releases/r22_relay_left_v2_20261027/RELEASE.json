@@ -1,0 +1,47 @@
+{
+  "version": "R22_RelayAuto_Left_V2_20261027",
+  "feature_branch": "codex/r22-relay-left-v2",
+  "base_commit": "a1cceaa9b5a37ff31b7f84a77c00042b027208d0",
+  "base_repository": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
+  "base_branch": "r22-local-edge-20261027",
+  "source_worktree": "D:\\CodexWork\\FPGA_R22_Relay_20261027",
+  "source_commit": "adddedeb7066994117c3ff508cc9dab559ca8280",
+  "pushed": false,
+  "bit_sha256": "99d1593ffd97d127e2690d4fc9da816e93e8bac280bf7e768222f2f8ff9d03ed",
+  "bit_bytes": 1789539,
+  "td_version": "V6.2.168116",
+  "place_seed": 2,
+  "resources": {
+    "slice": 18972,
+    "eram": 99,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 89.42308,
+  "timing_ns": {
+    "SWNS": 0.004,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "gpio": "right J2 pin1 / V2 / LVCMOS33 / drive4 / pulldown; board5V /3.3V HIGH; no LEDs",
+  "parameters": {
+    "direction": "LEFT",
+    "count_line": 640,
+    "station_line": 256,
+    "target_x": 160,
+    "advance_px": 16,
+    "tolerance_px": 8,
+    "hold_ms": 1000,
+    "queue": 32,
+    "arrival_ms": 15000,
+    "position_stale_ms": 150,
+    "require_clear_startup": true,
+    "ordered_kind_signature": true
+  },
+  "source_manifest_sha256": "38fb05c4b02679669311844264ae35f375f5bb51aedd0a5d558169b9c5bcbf71",
+  "verification_sha256": "7a34976bbe36e62633319d9f74df8c7ee1f87178be4999953aafe1001b8a3714",
+  "physical_calibration": "PENDING",
+  "board_5v_load_regression": "PENDING",
+  "board_programmed_by_assistant": false
+}

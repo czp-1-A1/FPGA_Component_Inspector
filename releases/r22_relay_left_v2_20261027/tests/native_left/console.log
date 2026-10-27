@@ -1,0 +1,449 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc=rn+/tb_relay_left_native" -onfinish stop work.tb_relay_left_native anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 20:25:08 on Oct 27,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\raw_matrix_3x3_buffer.v(136): (vopt-2241) Connection width does not match width of port 'O_raw_tready'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\mipi_to_raw_converter.v(37).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\blk_mem_gen_zhenghe\RTL\ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(48).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\blk_mem_gen_zhenghe\RTL\ram_d32970204f32.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(48).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\blk_mem_gen_demosaic\RTL\ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(48).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\blk_mem_gen_demosaic\RTL\ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(48).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\blk_mem_gen_demosaic\RTL\ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(48).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\blk_mem_gen_demosaic\RTL\ram_c36c2ca3b3a7.v(91): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(48).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\blk_mem_gen_awb_delay_signal\ram_f84573da5ab5.v(60): (vopt-2241) Connection width does not match width of port 'ecc_sbiterrinj'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(48).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\blk_mem_gen_awb_delay_signal\ram_f84573da5ab5.v(60): (vopt-2241) Connection width does not match width of port 'ecc_dbiterrinj'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(48).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'ceb'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(333).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(221): (vopt-2241) Connection width does not match width of port 'addrb'. The port definition is at: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(337).
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\zhenghe.v(75): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_zhenghe_d1'.  Expected 10, found 9.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\zhenghe.v(75): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\line_buffer_demosaic.v(109): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_demosaic_r0'.  Expected 10, found 9.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\demosaic_4x_2_0\line_buffer_demosaic.v(109): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\signal_delay.v(136): (vopt-2685) [TFMPC] - Too few port connections for 'blk_mem_gen_awb_delay_signal_d'.  Expected 10, found 9.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\signal_delay.v(136): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\awb.v(172): (vopt-2685) [TFMPC] - Too few port connections for 'div_gen_G_R_r1'.  Expected 8, found 7.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\awb.v(172): (vopt-2718) [TFMPC] - Missing connection for port 'remainder'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\awb.v(182): (vopt-2685) [TFMPC] - Too few port connections for 'divide_G_B_r1'.  Expected 8, found 7.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\awb.v(182): (vopt-2718) [TFMPC] - Missing connection for port 'remainder'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(361): (vopt-2685) [TFMPC] - Too few port connections for 'pipeline'.  Expected 43, found 40.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(361): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(361): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(361): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_valid'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2685) [TFMPC] - Too few port connections for 'station'.  Expected 43, found 33.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2718) [TFMPC] - Missing connection for port 'stop_current_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2718) [TFMPC] - Missing connection for port 'stop_bad_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2718) [TFMPC] - Missing connection for port 'stop_good_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2718) [TFMPC] - Missing connection for port 'stop_clear'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2718) [TFMPC] - Missing connection for port 'stop_begin'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\hdl_source\isp\isp_top.v(324): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(165): (vopt-2697) MSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\vendor\ph1p\ph1p_logic_eram.v(165): (vopt-2697) LSB of part-select into 'INIT_FILE' is out of bounds.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(221): (vopt-2685) [TFMPC] - Too few port connections for 'ram_inst'.  Expected 16, found 14.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'dib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\w128_d512_fifo\soft_fifo_al_4057d6b76aa6.v(221): (vopt-2718) [TFMPC] - Missing connection for port 'doa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(29): (vopt-2685) [TFMPC] - Too few port connections for 'writer'.  Expected 29, found 26.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(29): (vopt-2718) [TFMPC] - Missing connection for port 'O_publish_diagnostic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(29): (vopt-2718) [TFMPC] - Missing connection for port 'O_lost_frames'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(29): (vopt-2718) [TFMPC] - Missing connection for port 'O_video_out_rp'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2685) [TFMPC] - Too few port connections for 'baseline'.  Expected 36, found 16.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'diagnostic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'empty_id'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'ledger_data'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'event_kind'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'event_id'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'event_run'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'event_valid'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'object_ids'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'region'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'direction_right'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'direction_valid'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'review_total'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'present_total'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'run_id'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\sim\tb_relay_left_native.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'snapshot_new'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(2727): (vopt-2685) [TFMPC] - Too few port connections for 'al_2c3c91d5'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(2727): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(2727): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(2809): (vopt-2685) [TFMPC] - Too few port connections for 'al_17a6d7fa'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(2809): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(2809): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(3781): (vopt-2685) [TFMPC] - Too few port connections for 'al_f683b5d3'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(3781): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(3781): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(3870): (vopt-2685) [TFMPC] - Too few port connections for 'al_f65f531c'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(3870): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(3870): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(4852): (vopt-2685) [TFMPC] - Too few port connections for 'al_8cc7c1e'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(4852): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(4852): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(4948): (vopt-2685) [TFMPC] - Too few port connections for 'al_12836a8f'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(4948): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(4948): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(5946): (vopt-2685) [TFMPC] - Too few port connections for 'al_5892fcb5'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(5946): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(5946): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(6049): (vopt-2685) [TFMPC] - Too few port connections for 'al_b3f6820d'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(6049): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(6049): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(7063): (vopt-2685) [TFMPC] - Too few port connections for 'al_7c3d1a1a'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(7063): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(7063): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(7173): (vopt-2685) [TFMPC] - Too few port connections for 'al_f5789861'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(7173): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(7173): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(8203): (vopt-2685) [TFMPC] - Too few port connections for 'al_3aab319'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(8203): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(8203): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(8320): (vopt-2685) [TFMPC] - Too few port connections for 'al_61a0d7ee'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(8320): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(8320): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(9366): (vopt-2685) [TFMPC] - Too few port connections for 'al_623841ba'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(9366): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(9366): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(9490): (vopt-2685) [TFMPC] - Too few port connections for 'al_2de59830'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(9490): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(9490): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(10546): (vopt-2685) [TFMPC] - Too few port connections for 'al_aa681be'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(10546): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(10546): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(10677): (vopt-2685) [TFMPC] - Too few port connections for 'al_6d616ad8'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(10677): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(10677): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(11749): (vopt-2685) [TFMPC] - Too few port connections for 'al_f70fd955'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(11749): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(11749): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(11887): (vopt-2685) [TFMPC] - Too few port connections for 'al_26555348'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(11887): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(11887): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(12975): (vopt-2685) [TFMPC] - Too few port connections for 'al_b1b33ac1'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(12975): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(12975): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(13120): (vopt-2685) [TFMPC] - Too few port connections for 'al_9642b13d'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(13120): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(13120): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(15068): (vopt-2685) [TFMPC] - Too few port connections for 'al_35ee5592'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(15068): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(15068): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(15220): (vopt-2685) [TFMPC] - Too few port connections for 'al_50e9f109'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(15220): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(15220): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(16340): (vopt-2685) [TFMPC] - Too few port connections for 'al_7f00f7cf'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(16340): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(16340): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(16499): (vopt-2685) [TFMPC] - Too few port connections for 'al_e29bec0b'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(16499): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(16499): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(17629): (vopt-2685) [TFMPC] - Too few port connections for 'al_d51334f9'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(17629): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(17629): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(17795): (vopt-2685) [TFMPC] - Too few port connections for 'al_893284b6'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(17795): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(17795): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(18941): (vopt-2685) [TFMPC] - Too few port connections for 'al_3d1326ec'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(18941): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(18941): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(19114): (vopt-2685) [TFMPC] - Too few port connections for 'al_fe1a61c8'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(19114): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(19114): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(20276): (vopt-2685) [TFMPC] - Too few port connections for 'al_c7f8d01f'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(20276): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(20276): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(20456): (vopt-2685) [TFMPC] - Too few port connections for 'al_cc6624f3'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(20456): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(20456): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(21634): (vopt-2685) [TFMPC] - Too few port connections for 'al_5fe5f689'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(21634): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(21634): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(21821): (vopt-2685) [TFMPC] - Too few port connections for 'al_d9f3f288'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(21821): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(21821): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(23015): (vopt-2685) [TFMPC] - Too few port connections for 'al_614d9b5f'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(23015): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(23015): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(23209): (vopt-2685) [TFMPC] - Too few port connections for 'al_40de5145'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(23209): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(23209): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(24413): (vopt-2685) [TFMPC] - Too few port connections for 'al_2b863aeb'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(24413): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(24413): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(24614): (vopt-2685) [TFMPC] - Too few port connections for 'al_a0f4601c'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(24614): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(24614): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(25834): (vopt-2685) [TFMPC] - Too few port connections for 'al_b8005145'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(25834): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(25834): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(26042): (vopt-2685) [TFMPC] - Too few port connections for 'al_3728e305'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(26042): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(26042): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(27278): (vopt-2685) [TFMPC] - Too few port connections for 'al_33912f9'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(27278): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(27278): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(27493): (vopt-2685) [TFMPC] - Too few port connections for 'al_5379bc02'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(27493): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(27493): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(29636): (vopt-2685) [TFMPC] - Too few port connections for 'al_5984d26f'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(29636): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(29636): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(29858): (vopt-2685) [TFMPC] - Too few port connections for 'al_f4fca905'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(29858): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(29858): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(31126): (vopt-2685) [TFMPC] - Too few port connections for 'al_5e220ed'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(31126): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(31126): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(32635): (vopt-2685) [TFMPC] - Too few port connections for 'al_4d428833'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(32635): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(32635): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(34151): (vopt-2685) [TFMPC] - Too few port connections for 'al_6defe612'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(34151): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(34151): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(35667): (vopt-2685) [TFMPC] - Too few port connections for 'al_be405246'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(35667): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(35667): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(37183): (vopt-2685) [TFMPC] - Too few port connections for 'al_83514792'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(37183): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(37183): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(38699): (vopt-2685) [TFMPC] - Too few port connections for 'al_fd3e8af2'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(38699): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(38699): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(40215): (vopt-2685) [TFMPC] - Too few port connections for 'al_9425b3df'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(40215): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(40215): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(41731): (vopt-2685) [TFMPC] - Too few port connections for 'al_5c7d50e3'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(41731): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(41731): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(43247): (vopt-2685) [TFMPC] - Too few port connections for 'al_d271eb9'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(43247): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(43247): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(45676): (vopt-2685) [TFMPC] - Too few port connections for 'al_1f358278'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(45676): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(45676): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(47192): (vopt-2685) [TFMPC] - Too few port connections for 'al_6c167d08'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(47192): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(47192): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(48708): (vopt-2685) [TFMPC] - Too few port connections for 'al_6570f066'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(48708): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(48708): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(50224): (vopt-2685) [TFMPC] - Too few port connections for 'al_f8363f33'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(50224): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(50224): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(51740): (vopt-2685) [TFMPC] - Too few port connections for 'al_ca709f8b'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(51740): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(51740): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(53256): (vopt-2685) [TFMPC] - Too few port connections for 'al_20bc1162'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(53256): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(53256): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(54772): (vopt-2685) [TFMPC] - Too few port connections for 'al_dc46bad1'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(54772): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(54772): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(57046): (vopt-2685) [TFMPC] - Too few port connections for 'al_f4af5624'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(57046): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(57046): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(58500): (vopt-2685) [TFMPC] - Too few port connections for 'al_7b9955b'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(58500): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(58500): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(58505): (vopt-2685) [TFMPC] - Too few port connections for 'al_2beb57ee'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(58505): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(58505): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(59403): (vopt-2685) [TFMPC] - Too few port connections for 'al_2f3c0b9c'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(59403): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(59403): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(59457): (vopt-2685) [TFMPC] - Too few port connections for 'al_ddf981e2'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(59457): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(59457): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(60365): (vopt-2685) [TFMPC] - Too few port connections for 'al_98b3b8dd'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(60365): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(60365): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(60426): (vopt-2685) [TFMPC] - Too few port connections for 'al_60de78b1'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(60426): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(60426): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(61350): (vopt-2685) [TFMPC] - Too few port connections for 'al_bb9963f6'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(61350): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(61350): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(61418): (vopt-2685) [TFMPC] - Too few port connections for 'al_7241ba4'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(61418): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(61418): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(62358): (vopt-2685) [TFMPC] - Too few port connections for 'al_39ead89a'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(62358): (vopt-2718) [TFMPC] - Missing connection for port 'c'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(62358): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(62433): (vopt-2685) [TFMPC] - Too few port connections for 'al_14fec680'.  Expected 4, found 2.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(62433): (vopt-2718) [TFMPC] - Missing connection for port 'b'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_relay_left_native_r2_20261027\inputs\project\user_source\ip_source\divider\divider_gate.v(62433): (vopt-2718) [TFMPC] - Missing connection for port 'a'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_relay_left_native(fast)
+# Loading work.image_correction(fast)
+# Loading work.uial2axis(fast)
+# Loading work.video_in(fast)
+# Loading work.isp_top(fast)
+# Loading work.divider(fast)
+# Loading anlogic_sim.AL_MAP_LUT5(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT2(fast)
+# Loading anlogic_sim.AL_MAP_LUT3(fast)
+# Loading anlogic_sim.AL_MAP_ADDER(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT4(fast)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__1)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__4)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__2)
+# Loading anlogic_sim.AL_MAP_LUT2(fast__3)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT4(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__5)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__6)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__8)
+# Loading anlogic_sim.AL_MAP_LUT3(fast__7)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__9)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__10)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__13)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__14)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__11)
+# Loading anlogic_sim.AL_MAP_LUT6(fast__12)
+# Loading anlogic_sim.AL_MAP_LUT5(fast__15)
+# Loading work.video_out(fast)
+# Loading work.classified_pocket_counter_R9(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# SPEED_CANDIDATES source=1 data=0000000000000000000000000000000000000000000000000000000000000000000000000000a00601829662dc44920e00601829923344e948e005818297c3084e948c05c048a9602e84a958
+# TRACE_NATIVE source=1 data=0000000000000002ad3460c51ad45002
+# SPEED_NATIVE_RESULT source=1 record=0000000180000000000000000000000000000000000000000009000100000001 total=0 P=0 E=0
+# SPEED_NATIVE_COUNT source=1 total=0 present=0 empty=0 R8total=0 R8empty=0 R8state=1 R8C=1
+# REF region cadence frame=1 objects=00000000000000000000000000000000000000e005818297c3084e948c05c048a9602e84a958 state=2 FG=1472 W=36 H=42 X0=704 X1=744 Y0=298 Y1=344
+# CADENCE frame=1 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1305.408000 result_after_FE_ns=411732.908000
+# SPEED_CANDIDATES source=2 data=0000000000000000000000000000000000000000000000000000000000000000000000000000a00601829722f444920e00581829883204e948e00601829722f44e948c05c848a9562d44a958
+# TRACE_NATIVE source=2 data=0000000000000002abf4a9810c0b4006
+# SPEED_NATIVE_RESULT source=2 record=0000000180000000000000000000000000000000000000000009000100000002 total=0 P=0 E=0
+# SPEED_NATIVE_COUNT source=2 total=0 present=0 empty=0 R8total=0 R8empty=0 R8state=1 R8C=1
+# REF region cadence frame=2 objects=00000000000000000000000000000000000000e00601829722f44e948c05c848a9562d44a958 state=2 FG=1480 W=36 H=42 X0=684 X1=724 Y0=298 Y1=344
+# CADENCE frame=2 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1301.244000 result_after_FE_ns=512743.744000
+# SPEED_CANDIDATES source=3 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e006018297e30c4e948e00581829682e04e948c05c048a94c2c04a958
+# TRACE_NATIVE source=3 data=0000000000000002aab460c51ad45002
+# SPEED_NATIVE_RESULT source=3 record=0000000180000000000000000000000000000000000000000009000100000003 total=0 P=0 E=0
+# SPEED_NATIVE_COUNT source=3 total=0 present=0 empty=0 R8total=0 R8empty=0 R8state=1 R8C=1
+# REF region cadence frame=3 objects=00000000000000000000000000000000000000e00581829682e04e948c05c048a94c2c04a958 state=2 FG=1472 W=36 H=42 X0=664 X1=704 Y0=298 Y1=344
+# CADENCE frame=3 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1312.080000 result_after_FE_ns=475204.580000
+# SPEED_CANDIDATES source=4 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e00601829722f44e948e005818295c2c84e948c05c048a9402a84a958
+# TRACE_NATIVE source=4 data=0000000000000002a93460c51ad45002
+# SPEED_NATIVE_RESULT source=4 record=0000000180000000000000000000000000000000000000000082000100000004 total=0 P=0 E=0
+# SPEED_NATIVE_COUNT source=4 total=0 present=0 empty=0 R8total=0 R8empty=0 R8state=2 R8C=0
+# REF region cadence frame=4 objects=00000000000000000000000000000000000000e005818295c2c84e948c05c048a9402a84a958 state=2 FG=1472 W=36 H=42 X0=640 X1=680 Y0=298 Y1=344
+# CADENCE frame=4 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1307.916000 result_after_FE_ns=475205.416000
+# SPEED_CANDIDATES source=5 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e00581829642d84e948e006018294e2ac4e948c05c848a93228c4a958
+# SPEED_EVENT id=1 source=5 kind=2
+# TRACE_NATIVE source=5 data=0000000000000002a864a821010b4006
+# SPEED_NATIVE_RESULT source=5 record=0000000180100400000000000000000000000000400000080482000100000005 total=1 P=1 E=0
+# SPEED_NATIVE_COUNT source=5 total=1 present=1 empty=0 R8total=0 R8empty=0 R8state=2 R8C=0
+# REF region cadence frame=5 objects=00000000000000000000000000000000000000e006018294e2ac4e948c05c848a93228c4a958 state=2 FG=1480 W=36 H=42 X0=612 X1=652 Y0=298 Y1=344
+# CADENCE frame=5 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1301.596000 result_after_FE_ns=475884.096000
+# SPEED_CANDIDATES source=6 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e00581829542b84e948e006018293e28c4e948c05c848a92226c4a958
+# TRACE_NATIVE source=6 data=0000000000000002a83500c518c07cfa
+# SPEED_NATIVE_RESULT source=6 record=0000000180100400000000000000000000000000400000080482000100000006 total=1 P=1 E=0
+# SPEED_NATIVE_COUNT source=6 total=1 present=1 empty=0 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=6 objects=00000000000000000000000000000000000000e006018293e28c4e948c05c848a92226c4a958 state=2 FG=1480 W=36 H=42 X0=580 X1=620 Y0=298 Y1=344
+# CADENCE frame=6 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1310.276000 result_after_FE_ns=463682.776000
+# SPEED_CANDIDATES source=7 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05c048a9542d04a958e00581829442984e948e006018292e26c4e948
+# SPEED_EVENT id=2 source=7 kind=3
+# TRACE_NATIVE source=7 data=0000000000000002a8f500c516c07cfa
+# SPEED_NATIVE_RESULT source=7 record=0000000180180800000000000000000800000000800010080882000100000007 total=2 P=1 E=1
+# SPEED_NATIVE_COUNT source=7 total=2 present=1 empty=1 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=7 objects=00000000000000000000000000000000000000e00581829442984e948e006018292e26c4e948 state=3 FG=96 W=12 H=10 X0=604 X1=620 Y0=314 Y1=328
+# CADENCE frame=7 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1307.148000 result_after_FE_ns=464364.648000
+# SPEED_CANDIDATES source=8 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e006018291e24c4e948c05c048a9442b04a958e00581829342784e948
+# SPEED_EVENT id=3 source=8 kind=3
+# TRACE_NATIVE source=8 data=0000000000000002a6f500c516c07cfa
+# SPEED_NATIVE_RESULT source=8 record=0000000180180c00000000000000180800000000c00020080c82000100000008 total=3 P=1 E=2
+# SPEED_NATIVE_COUNT source=8 total=3 present=1 empty=2 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=8 objects=00000000000000000000000000000000000000c05c048a9442b04a958e00581829342784e948 state=3 FG=88 W=12 H=10 X0=616 X1=632 Y0=314 Y1=328
+# CADENCE frame=8 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1297.348000 result_after_FE_ns=464359.848000
+# SPEED_CANDIDATES source=9 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e006018290e22c4e948c05c048a9342904a958e00581829242584e948
+# TRACE_NATIVE source=9 data=0000000000000002a7b460c51ad45002
+# SPEED_NATIVE_RESULT source=9 record=0000000180180c00000000000000180800000000c00020080c82000100000009 total=3 P=1 E=2
+# SPEED_NATIVE_COUNT source=9 total=3 present=1 empty=2 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=9 objects=00000000000000000000000000000000000000c05c048a9342904a958e00581829242584e948 state=3 FG=88 W=12 H=10 X0=584 X1=600 Y0=314 Y1=328
+# CADENCE frame=9 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=1302.548000 result_after_FE_ns=475205.048000
+# SPEED_CANDIDATES source=10 data=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e00601828fe20c4e948c05c048a9242704a958e00581829142384e948
+# SPEED_EVENT id=4 source=10 kind=2
+# TRACE_NATIVE source=10 data=0000000000000002a5b460c51ad45002
+# SPEED_NATIVE_RESULT source=10 record=0000000180101000000000000000180800000200c0002010108200010000000a total=4 P=2 E=2
+# SPEED_NATIVE_COUNT source=10 total=4 present=2 empty=2 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=10 objects=00000000000000000000000000000000000000c05c048a9242704a958e00581829142384e948 state=3 FG=88 W=12 H=10 X0=552 X1=568 Y0=314 Y1=328
+# CADENCE frame=10 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=4922.748000 result_after_FE_ns=475880.248000
+# SPEED_CANDIDATES source=11 data=000000000000000000000000000000000000000000000000000000000c05c848a8d21cc4a958a006018291a24444920e00601828ee1ec4e948c05c048a9142504a958e00581829042184e948
+# TRACE_NATIVE source=11 data=9b74a9810c0b4006a3b460c51ad45002
+# SPEED_NATIVE_RESULT source=11 record=0000000180101000000000000000180800000200c0002010108200010000000b total=4 P=2 E=2
+# SPEED_NATIVE_COUNT source=11 total=4 present=2 empty=2 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=11 objects=0000000000000000000c05c848a8d21cc4a958c05c048a9142504a958e00581829042184e948 state=3 FG=88 W=12 H=10 X0=520 X1=536 Y0=314 Y1=328
+# CADENCE frame=11 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=4492.948000 result_after_FE_ns=482415.448000
+# SPEED_CANDIDATES source=12 data=000000000000000000000000000000000000000000000000000000000c05c848a8c21ac4a958a006018290a22444920e00601828de1cc4e948c05c048a9042304a958e00581828f41f84e948
+# TRACE_NATIVE source=12 data=9974a9810c0b4006a1b460c51ad45002
+# SPEED_NATIVE_RESULT source=12 record=0000000180101000000000000000180800000200c0002010108200010000000c total=4 P=2 E=2
+# SPEED_NATIVE_COUNT source=12 total=4 present=2 empty=2 R8total=0 R8empty=0 R8state=3 R8C=5
+# REF region cadence frame=12 objects=0000000000000000000c05c848a8c21ac4a958c05c048a9042304a958e00581828f41f84e948 state=3 FG=88 W=12 H=10 X0=488 X1=504 Y0=314 Y1=328
+# CADENCE frame=12 mode=1 LP=0cef active_ns=35741896.564000 publish_after_FE_ns=2308.148000 result_after_FE_ns=482410.648000
+# PASS LEFT_NATIVE_MODE1: positive RAW360 aperture fixture, native line-clock gaps, LP0CF0 wall-clock, 27-FPS source start-to-start, finite mirrored LEFT real P,E,E,P ramp20to32px/source, final production controller enabled, 2 EMPTY queued, pre-arrival wait>150ms, unchanged R9 read-only comparison, same-slot late tuples, full exact RGB rasters=24 pixels=22940469 OF=0 UF=0
+# ** Note: $finish    : E:/2026FPGA/.codex_tmp/r22_relay_left_native_r2_20261027/inputs/project/sim/tb_relay_left_native.sv(258)
+#    Time: 444451932652 ps  Iteration: 1  Instance: /tb_relay_left_native
+# Break at E:/2026FPGA/.codex_tmp/r22_relay_left_native_r2_20261027/inputs/project/sim/tb_relay_left_native.sv line 258
+# Stopped at E:/2026FPGA/.codex_tmp/r22_relay_left_native_r2_20261027/inputs/project/sim/tb_relay_left_native.sv line 258
+#  quit -code 0
+# End time: 20:43:47 on Oct 27,2026, Elapsed time: 0:18:39
+# Errors: 0, Warnings: 281

@@ -1,0 +1,83 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/simple_recovery_1/transcript.log -wlf modelsim_work/simple_recovery_1/wave.wlf -do "log /tb_simple_recovery_1/*; run -all; quit -code 1 -force" test_simple_recovery_1.tb_simple_recovery_1 
+# Start time: 19:53:53 on Oct 27,2026
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Note: (vopt-143) Recognized 3 FSMs in module "classified_pocket_counter(fast__1)".
+# ** Note: (vopt-143) Recognized 3 FSMs in module "classified_pocket_counter(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "classified_count_pipeline(fast)".
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 43, found 17.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_y'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_x'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_valid'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_uncertainty'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_total'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_direction_right'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_direction_valid'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_state'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_run'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_current_frame'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_bad_frame'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_good_frame'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_clear'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_begin'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_frame'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_run'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_y'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_x'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_id'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_new'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_query_id'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: tb_simple_recovery_1.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'event_run'.
+# ** Warning: tb_simple_recovery_1.sv(23): (vopt-2685) [TFMPC] - Too few port connections for 'old'.  Expected 22, found 17.
+# ** Warning: tb_simple_recovery_1.sv(23): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: tb_simple_recovery_1.sv(23): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: tb_simple_recovery_1.sv(23): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: tb_simple_recovery_1.sv(23): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: tb_simple_recovery_1.sv(23): (vopt-2718) [TFMPC] - Missing connection for port 'event_run'.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2685) [TFMPC] - Too few port connections for 'counter'.  Expected 47, found 37.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_y'.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_x'.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_valid'.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_frame'.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_run'.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_y'.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_x'.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_id'.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_new'.
+# ** Warning: reference/R14_classified_count_pipeline.v(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_query_id'.
+# ** Note: (vopt-143) Recognized 1 FSM in module "R14_classified_count_pipeline(fast)".
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_simple_recovery_1(fast)
+# Loading work.count_record_view(fast)
+# Loading work.classified_count_pipeline(fast)
+# Loading work.classified_pocket_counter(fast)
+# Loading work.R14_classified_count_pipeline(fast)
+# Loading work.classified_pocket_counter(fast__1)
+# log /tb_simple_recovery_1/*
+#  run -all
+# PASS simple_recovery_1: local pipeline case=1: actual events, local gap, return de-duplication, source binding, pause, full clear
+# ** Note: $finish    : tb_simple_recovery_1.sv(108)
+#    Time: 234730 ns  Iteration: 1  Instance: /tb_simple_recovery_1
+# PASS independent R14 pipeline comparison cycles=23468 ready_clocks=306
+# End time: 19:53:54 on Oct 27,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 44

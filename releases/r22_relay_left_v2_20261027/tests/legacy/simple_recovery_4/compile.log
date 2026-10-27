@@ -1,0 +1,23 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:54:01 on Oct 27,2026
+vlog -work test_simple_recovery_4 ../user_source/hdl_source/count_record_view.v ../user_source/hdl_source/classified_pocket_counter.v ../user_source/hdl_source/classified_count_pipeline.v reference/R14_classified_count_pipeline.v 
+-- Compiling module count_record_view
+-- Compiling module classified_pocket_counter
+-- Compiling module classified_count_pipeline
+-- Compiling module R14_classified_count_pipeline
+
+Top level modules:
+	count_record_view
+	classified_count_pipeline
+	R14_classified_count_pipeline
+End time: 19:54:01 on Oct 27,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:54:01 on Oct 27,2026
+vlog -sv -work test_simple_recovery_4 tb_simple_recovery_4.sv 
+-- Compiling module tb_simple_recovery_4
+
+Top level modules:
+	tb_simple_recovery_4
+End time: 19:54:01 on Oct 27,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
