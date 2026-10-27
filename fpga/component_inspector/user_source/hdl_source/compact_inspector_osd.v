@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter PRESENT_TRACE=0,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -61,7 +61,7 @@ reg [19:0] plane_q;
 wire [9:0] shared_read_address=(feeding || write_valid) ? {5'd28,token[7:3]} : plane_next_address;
 always @(posedge clk)plane_q<=plane[shared_read_address];
 
-compact_template_rom #(.BUILD_R22(BUILD_R22),.EMPTY_TRACE(EMPTY_TRACE),.BUILD_R20(BUILD_R20),.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
+compact_template_rom #(.PRESENT_TRACE(PRESENT_TRACE),.BUILD_R22(BUILD_R22),.EMPTY_TRACE(EMPTY_TRACE),.BUILD_R20(BUILD_R20),.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
 // R15 production suppresses numbering-confidence UI only; classification
 // colours and LOST/HOLD/CHECK state protection remain active.
 wire [8:0] gap_id=!REPORT_NUMBER_GAPS ? 9'd0 : live[57] ? live[102:94] : live[120:112];
@@ -143,6 +143,18 @@ function [31:0] hexvalue;
     21:hexvalue={17'd0,c[14:0]};22:hexvalue={28'd0,trace_reason(c)};
    endcase
   end
+
+  if(PRESENT_TRACE && slot>=16 && slot<=27)begin
+   hexvalue=0;
+   if(cal_s && cal[123] && cal[127:124]==1)case(slot)
+    16:hexvalue={24'd0,cal[117:110]};17:hexvalue={21'd0,cal[109:99]};
+    18:hexvalue={22'd0,cal[98:89]};19:hexvalue={22'd0,cal[88:79]};
+    20:hexvalue={22'd0,cal[78:69]};21:hexvalue={22'd0,cal[68:59]};
+    22:hexvalue={23'd0,cal[58:50]};23:hexvalue={23'd0,cal[49:41]};
+    24:hexvalue={23'd0,cal[40:32]};25:hexvalue={23'd0,cal[31:23]};
+    26:hexvalue={29'd0,cal[22:20]};27:hexvalue={28'd0,cal[17:14]};
+   endcase
+  end
  end
 endfunction
 function [7:0] special_char;
@@ -167,6 +179,11 @@ function [7:0] special_char;
    17:special_char=gap_id!=0 ? message[127-(14-pos)*8-:8] : 8'd32;
    18:special_char=live[210:202]!=0 ? class_char(live[212:211],live[212:211]==2 && live[216:213]!=0,8) : 8'd32;
    19:special_char=gap_id!=0 ? "R" : " ";
+   20:if(PRESENT_TRACE)special_char=cal_s && cal[123] ? "1"+cal[122] : "0";
+   21:if(PRESENT_TRACE)special_char=cal_s && cal[123] ? "0"+cal[121:120] : "0";
+   22:if(PRESENT_TRACE)special_char=!(cal_s && cal[123]) ? "-" : cal[119] ? "W" : "S";
+   23:if(PRESENT_TRACE)special_char=!(cal_s && cal[123]) ? "-" : "0"+cal[118];
+   24:if(PRESENT_TRACE)special_char=cal_s && cal[123] ? "1" : "0";
   endcase
  end
 endfunction
@@ -255,10 +272,10 @@ reg [2:0] line;reg [9:0] plane_address;reg [7:0] code;
 reg [4:0] row,col;reg panel,guide,logo;reg [23:0] ink;
 reg [75:0] ob;reg [8:0] id;reg [19:0] id_bcd;
 reg [10:0] lx,rx;reg [9:0] ly;reg [3:0] glyph_cell;
-wire trace_cross0=EMPTY_TRACE && cal_s && cal[63] &&
+wire trace_cross0=!PRESENT_TRACE && EMPTY_TRACE && cal_s && cal[63] &&
  ((x==cal[62:52] && y+4>=cal[51:42] && y<=cal[51:42]+4) ||
   (y==cal[51:42] && x+4>=cal[62:52] && x<=cal[62:52]+4));
-wire trace_cross1=EMPTY_TRACE && cal_s && cal[127] &&
+wire trace_cross1=!PRESENT_TRACE && EMPTY_TRACE && cal_s && cal[127] &&
  ((x==cal[126:116] && y+4>=cal[115:106] && y<=cal[115:106]+4) ||
   (y==cal[115:106] && x+4>=cal[126:116] && x<=cal[126:116]+4));
 reg prefix;integer t;

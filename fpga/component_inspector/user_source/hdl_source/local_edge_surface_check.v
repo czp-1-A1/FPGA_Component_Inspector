@@ -4,12 +4,13 @@
 // must face a bright measured object and its darker surroundings.
 module local_edge_surface_check #(
  parameter WIDTH=1280,HEIGHT=720,FOREGROUND=100,STANDING_REVIEW=0,
- parameter MIN_GRADIENT=8,MIN_SIDES=3
+ parameter MIN_GRADIENT=8,MIN_SIDES=3,TRACE=0
 )(
  input wire clk,rst_n,cancel,write_enable,measure,measure_empty,
  input wire [10:0] write_x,input wire [9:0] write_y,input wire [31:0] write_data,
  input wire [9:0] xmin,xmax,ymin,ymax,
- output reg ready,normal,empty_ok,output reg [31:0] edge_strengths
+ output reg ready,normal,empty_ok,output reg [31:0] edge_strengths,
+ input wire trace_enable,output wire [100:0] trace_metrics
 );
 localparam X0=((WIDTH*5/16-16)/8)*8,X1=((WIDTH*11/16+23)/8)*8;
 localparam Y0=((HEIGHT/3-16)/2)*2,Y1=((HEIGHT*5/6+17)/2)*2;
@@ -136,4 +137,57 @@ always @(posedge clk or negedge rst_n)begin
   endcase
  end
 end
+
+// Passive observer of this SAME RAM/read/FSM. No read, decision or ready path
+// depends on this block. Only the selected published P request is retained;
+// measurements of subsequent objects cannot overwrite its diagnostic fields.
+generate if(TRACE)begin : passive_trace
+ reg active,eligible,gray_ok,final_ok;
+ reg [10:0] center;
+ reg [39:0] sides;
+ reg [35:0] gradients;
+ reg [2:0] good;
+ reg [7:0] failures;
+ assign trace_metrics={center,sides,gradients,good,gray_ok,final_ok,eligible,failures};
+ always @(posedge clk or negedge rst_n)begin
+  if(!rst_n)begin active<=0;eligible<=0;gray_ok<=0;final_ok<=0;center<=0;sides<=0;gradients<=0;good<=0;failures<=0;end
+  else if(cancel)begin active<=0;eligible<=0;gray_ok<=0;final_ok<=0;center<=0;sides<=0;gradients<=0;good<=0;failures<=0;end
+  else if(measure)begin
+   active<=trace_enable && !measure_empty;
+   if(trace_enable && !measure_empty)begin
+    eligible<=measurable;gray_ok<=0;final_ok<=0;center<=0;sides<=0;gradients<=0;good<=0;
+    failures<={1'b0,!body_measurable,captured!=WORDS,!in_cache,4'd0};
+   end
+  end else if(active)begin
+   if(phase==4 && sample==(feature==0 ? 63 : 31))begin
+    case(feature)
+     0:center<=next_sum;
+     1:sides[39:30]<=next_sum[9:0];
+     2:sides[29:20]<=next_sum[9:0];
+     3:sides[19:10]<=next_sum[9:0];
+     4:sides[9:0]<=next_sum[9:0];
+    endcase
+    if(feature==4)begin
+     failures[0]<=center_mean<((FOREGROUND+7)/8);
+     failures[1]<=edge5<{1'b0,center4};
+     failures[2]<=STANDING_REVIEW && {next_max,1'b0}>center_limit;
+     gray_ok<=center_mean>=((FOREGROUND+7)/8) && edge5>={1'b0,center4} && (!STANDING_REVIEW || {next_max,1'b0}<=center_limit);
+    end
+   end
+   if(phase==7 && tap==8)begin
+    case(edge_no)
+     0:gradients[35:27]<=outward;
+     1:gradients[26:18]<=outward;
+     2:gradients[17:9]<=outward;
+     3:gradients[8:0]<=outward;
+    endcase
+    if(edge_no==3)begin good<=next_good;failures[3]<=next_good<MIN_SIDES;
+     final_ok<=legacy_ok && next_good>=MIN_SIDES;active<=0;
+    end
+   end
+  end
+ end
+end else begin : no_passive_trace
+ assign trace_metrics=0;
+end endgenerate
 endmodule

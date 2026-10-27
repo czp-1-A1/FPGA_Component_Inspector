@@ -2,6 +2,7 @@
 // Legacy: two objects. REGIONS: two independently bound zones, two objects each.
 // A shared flood-fill engine runs during vertical blanking, without video backpressure.
 module frame_shape_search #(
+ parameter PRESENT_TRACE=0,
  parameter WIDTH=1024,HEIGHT=600,REGIONS=0,
  parameter INDEXED_CANDIDATES=1,
  // Counting-only trial margin from upstream's measured six-cell extent.
@@ -365,6 +366,7 @@ reg [1:0] state_bank [0:SLOTS-1];reg [3:0] reason_bank [0:SLOTS-1];
 reg weak_bank[0:SLOTS-1];reg [15:0] dark_bank[0:SLOTS-1];
 localparam SURFACE_ACTIVE=SURFACE_REVIEW && REGIONS;
 wire surface_ready,surface_normal,surface_empty_ok;wire [31:0] local_edge_strengths;
+wire present_trace_select;wire [100:0] present_trace_metrics;
 reg [$clog2(SLOTS)-1:0] ref_index;reg legacy_pair_selected;
 wire surface_needed=(SURFACE_ACTIVE && state_bank[ref_index]==2 && !weak_bank[ref_index]) ||
  (LOCAL_EDGE_ASSIST && REGIONS && state_bank[ref_index]==3);
@@ -950,7 +952,38 @@ always @(posedge clk or negedge rst_n)begin
 end
 // Passive diagnostics never feed classification, retention, FSM or readiness.
 wire [127:0] review_probe_record;wire review_probe_ready;
-generate if(EMPTY_TRACE && REGIONS)begin : empty_trace_measurement
+generate if(PRESENT_TRACE && REGIONS && LOCAL_EDGE_ASSIST)begin : present_motion_trace
+ reg chosen,region_tag,weak_tag;
+ reg [1:0] public_slot,grid_phase;
+ reg [3:0] final_reason;
+ reg [$clog2(SLOTS)-1:0] chosen_bank;
+ wire region_now=ref_index>=REGION_SLOTS;
+ wire visible_slot=ref_index==0 || ref_index==1 || ref_index==REGION_SLOTS || ref_index==REGION_SLOTS+1;
+ wire swapped=region_now ? (found_bank[REGION_SLOTS+1] && xmin_bank[REGION_SLOTS+1]<xmin_bank[REGION_SLOTS]) : swap0;
+ wire select_phase=INDEXED ? phase==REF_BOX : phase==REF_ORIGIN;
+ wire allow_trace=!chosen || (region_now==region_tag && final_reason==0);
+ assign present_trace_select=select_phase && allow_trace && found_bank[ref_index] && state_bank[ref_index]==2 && visible_slot && !weak_bank[ref_index];
+ wire [100:0] observed=weak_tag ? 101'd0 : present_trace_metrics;
+ assign probe_record=chosen ? {4'h1,1'b1,region_tag,public_slot,weak_tag,observed[8],
+  (weak_tag ? 8'h80 : observed[7:0]),observed[100:90],observed[89:50],observed[49:14],
+  observed[13:11],observed[10],observed[9],final_reason,grid_phase,12'd0} : 128'd0;
+ assign probe_ready=1;
+ always @(posedge clk or negedge rst_n)begin
+  if(!rst_n)begin chosen<=0;region_tag<=0;weak_tag<=0;public_slot<=0;grid_phase<=0;final_reason<=0;chosen_bank<=0;end
+  else if(frame_start || invalidate || pixel_sof)begin chosen<=0;region_tag<=0;weak_tag<=0;public_slot<=0;grid_phase<=0;final_reason<=0;chosen_bank<=0;end
+  else begin
+   if(select_phase && allow_trace && found_bank[ref_index] && state_bank[ref_index]==2 && visible_slot)begin
+    chosen<=1;chosen_bank<=ref_index;region_tag<=region_now;weak_tag<=weak_bank[ref_index];
+    public_slot<={1'b0,ref_index[0]^swapped};
+    grid_phase<=INDEXED ? {read_ymin[0],read_xmin[0]} : {ymin_bank[ref_index][0],xmin_bank[ref_index][0]};
+    final_reason<=reason_bank[ref_index];
+   end
+   if(chosen && ref_index==chosen_bank && phase==REF_CHECK && ref_side && ref_word==2 && ref_last_row)begin
+    final_reason<=surface_needed ? {!surface_normal,reason_bank[ref_index][2:0]} : reason_bank[ref_index];
+   end
+  end
+ end
+end else if(EMPTY_TRACE && REGIONS)begin : empty_trace_measurement
  wire [10:0] trace_ref_x=INDEXED ? ({1'b0,read_xmin}+read_xmax) : ({1'b0,xmin_bank[ref_index]}+xmax_bank[ref_index]);
  wire [9:0] trace_ref_y=INDEXED ? ({1'b0,read_ymin}+read_ymax) : ({1'b0,ymin_bank[ref_index]}+ymax_bank[ref_index]);
  wire [9:0] trace_ref_w=INDEXED ? ({1'b0,read_xmax}-read_xmin+1'b1) : ({1'b0,xmax_bank[ref_index]}-xmin_bank[ref_index]+1'b1);
@@ -986,7 +1019,10 @@ generate if((REVIEW_PROBE || SURFACE_REVIEW || LOCAL_EDGE_ASSIST) && REGIONS)beg
    if(frame_start || invalidate || pixel_sof)first_gray<=0;
   end
  end
- if(REVIEW_PROBE)begin : diagnostic_probe
+ if(!(PRESENT_TRACE && REGIONS && LOCAL_EDGE_ASSIST))begin : no_present_trace_selection
+ assign present_trace_select=0;
+end
+if(REVIEW_PROBE)begin : diagnostic_probe
  present_review_probe #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) probe(
   .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
   .write_enable(cap_write),.write_x(gray_x),.write_y(gray_y),.write_data(gray_word),
@@ -995,15 +1031,17 @@ end else begin : no_diagnostic_probe
  assign review_probe_record=0;assign review_probe_ready=1;
 end
 if(LOCAL_EDGE_ASSIST)begin : edge_surface_measurement
- local_edge_surface_check #(.STANDING_REVIEW(STANDING_REVIEW),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.FOREGROUND(FOREGROUND)) surface(
+ local_edge_surface_check #(.TRACE(PRESENT_TRACE && REGIONS),.STANDING_REVIEW(STANDING_REVIEW),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.FOREGROUND(FOREGROUND)) surface(
   .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
   .write_enable(cap_write),.write_x(gray_x),.write_y(gray_y),.write_data(gray_word),
   .measure((INDEXED ? phase==REF_BOX : phase==REF_ORIGIN) && found_bank[ref_index] && surface_needed),
   .measure_empty(state_bank[ref_index]==3),
   .xmin({{(10-XB){1'b0}},(INDEXED ? read_xmin : xmin_bank[ref_index])}),.xmax({{(10-XB){1'b0}},(INDEXED ? read_xmax : xmax_bank[ref_index])}),
   .ymin({{(10-YB){1'b0}},(INDEXED ? read_ymin : ymin_bank[ref_index])}),.ymax({{(10-YB){1'b0}},(INDEXED ? read_ymax : ymax_bank[ref_index])}),
-  .ready(surface_ready),.normal(surface_normal),.empty_ok(surface_empty_ok),.edge_strengths(local_edge_strengths));
+  .ready(surface_ready),.normal(surface_normal),.empty_ok(surface_empty_ok),.edge_strengths(local_edge_strengths),
+  .trace_enable(present_trace_select),.trace_metrics(present_trace_metrics));
 end else if(SURFACE_REVIEW)begin : surface_measurement
+ assign present_trace_metrics=0;
  assign surface_empty_ok=1;assign local_edge_strengths=0;
  present_surface_check #(.STANDING_REVIEW(STANDING_REVIEW),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.FOREGROUND(FOREGROUND)) surface(
   .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
@@ -1013,10 +1051,10 @@ end else if(SURFACE_REVIEW)begin : surface_measurement
   .ymin({{(10-YB){1'b0}},(INDEXED ? read_ymin : ymin_bank[ref_index])}),.ymax({{(10-YB){1'b0}},(INDEXED ? read_ymax : ymax_bank[ref_index])}),
   .ready(surface_ready),.normal(surface_normal));
 end else begin : surface_disabled
- assign surface_ready=1;assign surface_normal=0;assign surface_empty_ok=1;assign local_edge_strengths=0;
+ assign present_trace_metrics=0;assign surface_ready=1;assign surface_normal=0;assign surface_empty_ok=1;assign local_edge_strengths=0;
 end
 end else begin : no_review_measurement
- assign surface_ready=1;assign surface_normal=0;assign surface_empty_ok=1;assign local_edge_strengths=0;
+ assign present_trace_metrics=0;assign surface_ready=1;assign surface_normal=0;assign surface_empty_ok=1;assign local_edge_strengths=0;
  assign review_probe_record=0;assign review_probe_ready=1;
 end endgenerate
 endmodule

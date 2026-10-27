@@ -1,0 +1,856 @@
+{
+  "scope": "MATH_FROM_UNALTERED_PACKED_GRAY_INPUTS_PLUS_DECLARED_INVERSE_NEGATIVE",
+  "cases": [
+    {
+      "case": 0,
+      "name": "E6x6_phase0",
+      "bounds": [
+        317,
+        322,
+        157,
+        162
+      ],
+      "sums": [
+        768,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 1,
+      "name": "E6x6_phase1",
+      "bounds": [
+        318,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        768,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 2,
+      "name": "E6x6_phase2",
+      "bounds": [
+        319,
+        324,
+        157,
+        162
+      ],
+      "sums": [
+        768,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 3,
+      "name": "E6x6_phase3",
+      "bounds": [
+        320,
+        325,
+        157,
+        162
+      ],
+      "sums": [
+        768,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 4,
+      "name": "E7x6_phase0",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        864,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 2,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 5,
+      "name": "E7x6_phase1",
+      "bounds": [
+        318,
+        324,
+        157,
+        162
+      ],
+      "sums": [
+        864,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 2,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 6,
+      "name": "E7x6_phase2",
+      "bounds": [
+        319,
+        325,
+        157,
+        162
+      ],
+      "sums": [
+        864,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 2,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 7,
+      "name": "E7x6_phase3",
+      "bounds": [
+        320,
+        326,
+        157,
+        162
+      ],
+      "sums": [
+        864,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 2,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 8,
+      "name": "E7x5_phase0",
+      "bounds": [
+        317,
+        323,
+        158,
+        162
+      ],
+      "sums": [
+        752,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 9,
+      "name": "E7x5_phase1",
+      "bounds": [
+        318,
+        324,
+        158,
+        162
+      ],
+      "sums": [
+        752,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 10,
+      "name": "E7x5_phase2",
+      "bounds": [
+        319,
+        325,
+        158,
+        162
+      ],
+      "sums": [
+        752,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 11,
+      "name": "E7x5_phase3",
+      "bounds": [
+        320,
+        326,
+        158,
+        162
+      ],
+      "sums": [
+        752,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 12,
+      "name": "E8x6_phase0",
+      "bounds": [
+        316,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        960,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 2,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 13,
+      "name": "E8x6_phase1",
+      "bounds": [
+        317,
+        324,
+        157,
+        162
+      ],
+      "sums": [
+        960,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 2,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 14,
+      "name": "E8x6_phase2",
+      "bounds": [
+        318,
+        325,
+        157,
+        162
+      ],
+      "sums": [
+        960,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 2,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 15,
+      "name": "E8x6_phase3",
+      "bounds": [
+        319,
+        326,
+        157,
+        162
+      ],
+      "sums": [
+        960,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "failure_mask": 2,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 16,
+      "name": "E_brightness_88",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        522,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        28,
+        28,
+        28,
+        28
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 17,
+      "name": "E_brightness_110",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        598,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        36,
+        36,
+        36,
+        36
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 18,
+      "name": "E_brightness_220",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        1130,
+        128,
+        128,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        92,
+        92,
+        92,
+        92
+      ],
+      "failure_mask": 2,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 19,
+      "name": "E_horizontal_blur_1",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        832,
+        128,
+        148,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        44,
+        44,
+        64,
+        64
+      ],
+      "failure_mask": 2,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 20,
+      "name": "E_horizontal_blur_2",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        786,
+        140,
+        170,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        24,
+        24,
+        64,
+        64
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 21,
+      "name": "E_horizontal_blur_3",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        742,
+        156,
+        188,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        20,
+        20,
+        58,
+        58
+      ],
+      "failure_mask": 3,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 22,
+      "name": "E_no_contrast",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        1280,
+        640,
+        640,
+        640,
+        640
+      ],
+      "signed_gradients": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "failure_mask": 8,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 23,
+      "name": "E_inverse",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        776,
+        768,
+        768,
+        768,
+        768
+      ],
+      "signed_gradients": [
+        -80,
+        -80,
+        -80,
+        -80
+      ],
+      "failure_mask": 13,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 24,
+      "name": "E_weak_contrast",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        678,
+        320,
+        320,
+        320,
+        320
+      ],
+      "signed_gradients": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "failure_mask": 9,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 25,
+      "name": "E_two_missing_sides",
+      "bounds": [
+        317,
+        323,
+        157,
+        162
+      ],
+      "sums": [
+        1024,
+        512,
+        512,
+        128,
+        128
+      ],
+      "signed_gradients": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "failure_mask": 10,
+      "expected_metrics": "00000000000000000000000000"
+    },
+    {
+      "case": 26,
+      "name": "P_flat_phase0",
+      "bounds": [
+        311,
+        328,
+        148,
+        171
+      ],
+      "sums": [
+        1536,
+        768,
+        768,
+        768,
+        768
+      ],
+      "signed_gradients": [
+        80,
+        80,
+        80,
+        80
+      ],
+      "failure_mask": 0,
+      "expected_metrics": "180300c0300c00a05028142700"
+    },
+    {
+      "case": 27,
+      "name": "P_flat_phase1",
+      "bounds": [
+        312,
+        329,
+        148,
+        171
+      ],
+      "sums": [
+        1536,
+        768,
+        768,
+        768,
+        768
+      ],
+      "signed_gradients": [
+        80,
+        80,
+        80,
+        80
+      ],
+      "failure_mask": 0,
+      "expected_metrics": "180300c0300c00a05028142700"
+    },
+    {
+      "case": 28,
+      "name": "P_flat_phase2",
+      "bounds": [
+        313,
+        330,
+        148,
+        171
+      ],
+      "sums": [
+        1536,
+        768,
+        768,
+        768,
+        768
+      ],
+      "signed_gradients": [
+        80,
+        80,
+        80,
+        80
+      ],
+      "failure_mask": 0,
+      "expected_metrics": "180300c0300c00a05028142700"
+    },
+    {
+      "case": 29,
+      "name": "P_flat_phase3",
+      "bounds": [
+        314,
+        331,
+        148,
+        171
+      ],
+      "sums": [
+        1536,
+        768,
+        768,
+        768,
+        768
+      ],
+      "signed_gradients": [
+        80,
+        80,
+        80,
+        80
+      ],
+      "failure_mask": 0,
+      "expected_metrics": "180300c0300c00a05028142700"
+    },
+    {
+      "case": 30,
+      "name": "P_bright_edge_review",
+      "bounds": [
+        311,
+        328,
+        148,
+        171
+      ],
+      "sums": [
+        1536,
+        896,
+        768,
+        768,
+        768
+      ],
+      "signed_gradients": [
+        96,
+        80,
+        80,
+        80
+      ],
+      "failure_mask": 4,
+      "expected_metrics": "180380c0300c00c05028142104"
+    },
+    {
+      "case": 31,
+      "name": "P_two_missing_sides_review",
+      "bounds": [
+        311,
+        328,
+        148,
+        171
+      ],
+      "sums": [
+        1536,
+        768,
+        768,
+        768,
+        768
+      ],
+      "signed_gradients": [
+        0,
+        0,
+        80,
+        80
+      ],
+      "failure_mask": 8,
+      "expected_metrics": "180300c0300c00000028141508"
+    },
+    {
+      "case": 32,
+      "name": "P_detailed_convolution",
+      "bounds": [
+        311,
+        328,
+        148,
+        171
+      ],
+      "sums": [
+        992,
+        454,
+        538,
+        490,
+        502
+      ],
+      "signed_gradients": [
+        4,
+        -36,
+        16,
+        47
+      ],
+      "failure_mask": 12,
+      "expected_metrics": "0f81c6869ea7d809dc080bd10c"
+    },
+    {
+      "case": 33,
+      "name": "P_inverse_signed_gradient",
+      "bounds": [
+        311,
+        328,
+        148,
+        171
+      ],
+      "sums": [
+        448,
+        224,
+        224,
+        224,
+        224
+      ],
+      "signed_gradients": [
+        -80,
+        -80,
+        -80,
+        -80
+      ],
+      "failure_mask": 9,
+      "expected_metrics": "0700e0380e038361b0d86c0109"
+    }
+  ],
+  "baseline_source_sha256": "13169133e4361b55e5a34df16bf29878d44a79947a68c9d9c45df4215a39eff7"
+}

@@ -1,0 +1,97 @@
+{
+  "name": "PocketCount_SW3_PresentTrace_r23_20261027",
+  "status": "COMPLETE_DESKTOP_AND_INDEPENDENT_ARCHIVE_VERIFIED_HUMAN_PENDING",
+  "frozen_sources": 636,
+  "manifest_sha256": "075d48c42753f488ce0d2ae15761c3bad189022175190368261d2b503a1c5ae2",
+  "tests": 151,
+  "independent_references": 53,
+  "resources": {
+    "slice": 19010,
+    "eram": 101,
+    "dsp": 27,
+    "pll": 5
+  },
+  "slice_percent": 89.60218702865762,
+  "timing_ns": {
+    "SWNS": 0.002,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "hardware_dependencies": 102,
+  "bit_sha256": "103ea4c37393f6eaf71a91c7740eaa14544e7d2e1b6c0fbc2cf98d25dafd93d7",
+  "diagnostic_only": true,
+  "field_false_review_fixed": false,
+  "classification_thresholds_and_counting_preserved": true,
+  "actual_execution_manifest_sha256": "152202701bd6fb143b8f7184739aa6715c5d0fe1de8cf218fbc00888d7b9b4bb",
+  "reader_only_delta": [
+    "tools/check_present_raw.py"
+  ],
+  "production_profile": {
+    "PRESENT_TRACE": 1,
+    "LOCAL_EDGE_ASSIST": 1,
+    "SURFACE_REVIEW": 1,
+    "STANDING_REVIEW": 1,
+    "EMPTY_TRACE": 1,
+    "REVIEW_PROBE": 0
+  },
+  "preserved_R22": {
+    "status": "PASS_OLD144_BENCHES_COUNTER_RECOVERY_RAW_CACHE_CONTROLS_SDC_PRESERVED",
+    "changed": [
+      "sim/run_modelsim.ps1",
+      "user_source/hdl_source/classified_dual_page_osd.v",
+      "user_source/hdl_source/compact_inspector_osd.v",
+      "user_source/hdl_source/compact_template_rom.v",
+      "user_source/hdl_source/design_top_wrapper.v",
+      "user_source/hdl_source/frame_shape_search.v",
+      "user_source/hdl_source/isp/isp_top.v",
+      "user_source/hdl_source/local_edge_surface_check.v"
+    ],
+    "diagnostic_only": true,
+    "golden_R22_bodies_exact_after_module_name_and_EOL_normalization": true,
+    "no_new_image_RAM_or_FSM_read_cycle": true
+  },
+  "human_board_pass_asserted": false,
+  "desktop": {
+    "C:\\Users\\Li47\\Desktop\\PocketCount_SW3_PresentTrace_r23_20261027.bit": {
+      "bytes": 1789539,
+      "sha256": "103ea4c37393f6eaf71a91c7740eaa14544e7d2e1b6c0fbc2cf98d25dafd93d7"
+    },
+    "C:\\Users\\Li47\\Desktop\\PocketCount_SW3_PresentTrace_r23_20261027_full.zip": {
+      "bytes": 17565564,
+      "sha256": "77c4eedc21c8ce5f0fe9142dd3a30165571e865eec40945855aad2fdb9a7e8e0"
+    },
+    "C:\\Users\\Li47\\Desktop\\PocketCount_SW3_PresentTrace_r23_20261027_烧录与验收.md": {
+      "bytes": 2942,
+      "sha256": "a90f1ca8fe938bae05556e656f66e59199cdf14dfa8876bf5dec3cb62cd63996"
+    },
+    "C:\\Users\\Li47\\Desktop\\PocketCount_SW3_PresentTrace_r23_20261027_SHA256.txt": {
+      "bytes": 359,
+      "sha256": "12eabcfbd028ecd3cd5cf377efd53644f434a5b410c80bbf04d71c6472a5876b"
+    }
+  },
+  "D_archive": "D:\\CodexWork\\classified_present_motion_trace_r23_20261027\\release\\PocketCount_SW3_PresentTrace_r23_20261027_full.zip",
+  "archive_verification": {
+    "status": "PASS_ALL_PAYLOADS_636SOURCE_151LOGS_102DEPENDENCIES_53_RECOMPUTED_REFERENCES",
+    "archive_sha256": "77c4eedc21c8ce5f0fe9142dd3a30165571e865eec40945855aad2fdb9a7e8e0",
+    "payload_entries": 4884,
+    "sources": 636,
+    "tests": 151,
+    "hardware_dependencies": 102,
+    "independent_references_recomputed": 53,
+    "bit_sha256": "103ea4c37393f6eaf71a91c7740eaa14544e7d2e1b6c0fbc2cf98d25dafd93d7",
+    "resources": {
+      "slice": 19010,
+      "eram": 101,
+      "dsp": 27,
+      "pll": 5
+    },
+    "timing_ns": {
+      "SWNS": 0.002,
+      "HWNS": 0.02,
+      "STNS": 0.0,
+      "HTNS": 0.0
+    },
+    "board_acceptance": "HUMAN_PENDING"
+  }
+}
