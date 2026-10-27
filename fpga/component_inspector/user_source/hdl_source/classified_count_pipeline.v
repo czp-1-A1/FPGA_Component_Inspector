@@ -17,7 +17,9 @@ module classified_count_pipeline #(parameter STOP_POSITION=0,LINE_X=640,STOP_CYC
  output wire [15:0] stop_position_run,output wire [31:0] stop_position_frame,
  output wire stop_begin,stop_clear,stop_good_frame,stop_bad_frame,
  output wire [31:0] stop_current_frame,output wire [15:0] stop_run,
- output wire [2:0] stop_state,output wire stop_direction_valid,stop_direction_right
+ output wire [2:0] stop_state,output wire stop_direction_valid,stop_direction_right,
+ output wire [8:0] stop_total,stop_uncertainty,
+ output wire stop_search_valid,output wire [10:0] stop_search_x,output wire [9:0] stop_search_y
 );
  reg [15:0] command_seen,visible_run;reg [31:0] source_id;
  reg epoch_open,proved,result_seen,epoch_bad;reg [31:0] probe_snapshot;
@@ -36,6 +38,7 @@ module classified_count_pipeline #(parameter STOP_POSITION=0,LINE_X=640,STOP_CYC
   .stop_query_id(stop_query_id),.stop_position_new(stop_position_new),.stop_position_id(stop_position_id),
   .stop_position_x(stop_position_x),.stop_position_y(stop_position_y),
   .stop_position_run(stop_position_run),.stop_position_frame(stop_position_frame),
+  .stop_search_valid(stop_search_valid),.stop_search_x(stop_search_x),.stop_search_y(stop_search_y),
   .clk(clk),.rst_n(rst_n),.start_run(begin_run),.finish_run(end_run),.frame_bad(reject),
   .sample_new(accept),.frame_id(source_id),.config_tag(config_tag),.objects(objects),
   .busy(busy),.snapshot_new(snapshot_new),.state(state),.reason(reason),.run_id(run),
@@ -45,6 +48,7 @@ module classified_count_pipeline #(parameter STOP_POSITION=0,LINE_X=640,STOP_CYC
   .event_kind(event_kind),.event_reason(event_reason),
   .hold_valid(hold_valid),.hold_x(hold_x),.hold_y(hold_y),.diagnostic(diagnostic),.uncertainty_from(uncertainty_from),
   .ledger_address(9'd511),.ledger_data(unused_ledger),.empty_address(empty_address),.empty_id(empty_value));
+ assign stop_total=total;assign stop_uncertainty=uncertainty_from;
  assign stop_begin=begin_run;assign stop_clear=end_run;
  assign stop_good_frame=accept;assign stop_bad_frame=reject;
  assign stop_current_frame=source_id;assign stop_run=run;assign stop_state=state;

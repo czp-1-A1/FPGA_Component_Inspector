@@ -21,7 +21,8 @@ module classified_pocket_counter #(
  input wire [8:0] stop_query_id,
  output reg stop_position_new,output reg [8:0] stop_position_id,
  output reg [10:0] stop_position_x,output reg [9:0] stop_position_y,
- output wire [15:0] stop_position_run,output wire [31:0] stop_position_frame
+ output wire [15:0] stop_position_run,output wire [31:0] stop_position_frame,
+ output reg stop_search_valid,output reg [10:0] stop_search_x,output reg [9:0] stop_search_y
 );
  reg stop_position_pending;
  assign stop_position_run=run_id;
@@ -171,6 +172,7 @@ module classified_pocket_counter #(
  wire anchored_group=ORDERED_HANDOFF && direct_count>=2 && measured_anchor;
  wire signed [13:0] next_hold_x=lead_x+$signed({previous_dx[12],previous_dx});
  wire signed [13:0] order_position=$signed({3'b0,old_x})+$signed({{(14-DX_BITS){missed_dx[DX_BITS-1]}},missed_dx});
+ wire signed [13:0] query_search_x=order_position+$signed({previous_dx[12],previous_dx});
  wire [4:0] event_slot=ORDERED_HANDOFF ? emit_track : mapping[oi[OI_BITS-1:0]][4:0];
  wire [1:0] recorded_kind=ORDERED_HANDOFF ? pending_word[5:4] : old_kind;
  wire [3:0] recorded_mask=ORDERED_HANDOFF ? pending_word[3:0] : old_mask;
@@ -257,6 +259,7 @@ module classified_pocket_counter #(
  end
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
+   stop_search_valid<=0;stop_search_x<=0;stop_search_y<=0;
    stop_position_new<=0;stop_position_pending<=0;stop_position_id<=0;stop_position_x<=0;stop_position_y<=0;
    state<=IDLE;reason<=0;hold_valid<=0;hold_x<=0;hold_y<=0;phase<=WAIT;busy<=0;snapshot_new<=0;
    diagnostic<=0;uncertainty_from<=0;quarantined<=0;frame_tracks<=0;frame_trusted<=0;gap_open<=0;pitch_candidate<=0;pitch_votes<=0;
@@ -269,6 +272,7 @@ module classified_pocket_counter #(
    crossings<=0;cross_index<=0;unstable_cross<=0;motion_conflict<=0;event_valid<=0;event_run<=0;event_id<=0;event_frame<=0;event_kind<=0;event_reason<=0;
   end else begin
    snapshot_new<=0;event_valid<=0;stop_position_new<=0;
+   if(start_run || finish_run || sample_new || frame_bad)stop_search_valid<=0;
    if(start_run)begin
     stop_position_pending<=0;
     diagnostic<=0;uncertainty_from<=0;quarantined<=0;frame_tracks<=0;frame_trusted<=0;gap_open<=0;pitch_candidate<=0;pitch_votes<=0;
@@ -532,6 +536,9 @@ module classified_pocket_counter #(
      else phase<=PUBLISH;
     end
     ORDER_SCAN:begin
+     if(STOP_POSITION && stop_query_id!=0 && valid_tracks[si[4:0]] && old_id==stop_query_id && missing<4)begin
+      stop_search_valid<=1;stop_search_x<=query_search_x<0 ? 0 : query_search_x>1279 ? 1279 : query_search_x[10:0];stop_search_y<=old_y;
+     end
      // The leading armed identity owns the next number. A temporarily absent
      // earlier target blocks later genuine crossings; no pitch creates events.
      if(valid_tracks[si[4:0]] && (armed[si[4:0]] || (VELOCITY_ASSOC && state==ACQUIRE && old_confirm>=1)) && old_id==0 &&
@@ -553,6 +560,11 @@ module classified_pocket_counter #(
      if(total>=MAX_TOTAL)begin state<=DONE;phase<=PUBLISH;end
      else begin
       total<=total+1'b1;
+      // Only a currently observed track can seed the newly assigned query ID.
+      // Deferred crossings emitted while absent never become measurements.
+      if(STOP_POSITION && stop_query_id==total+9'd1 && used[event_slot] && missing==0)begin
+       stop_position_pending<=1;stop_position_id<=total+9'd1;stop_position_x<=old_x;stop_position_y<=old_y;
+      end
       // A deferred real crossing can be numbered while its target is absent.
       // Keep its gap displacement; clearing it makes the last measured centre
       // look current and can alias the next physical pocket on the next frame.

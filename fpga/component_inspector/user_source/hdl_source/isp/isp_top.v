@@ -2,11 +2,11 @@ module isp_top #(
     parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
     parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,LOCAL_EDGE_ASSIST=0,EMPTY_TRACE=0,ROBUST_EMPTY_CONTEXT=0,ROBUST_SMALL_EMPTY=0,STANDING_REVIEW=0,SURFACE_REVIEW=0,REVIEW_PROBE=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,
-    parameter AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,
+    parameter RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,
     parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+256*CLASSIFIED_COUNT
 ) (
     input processing_clk,
-    input relay_permit,output relay_feed,output [31:0] relay_status,
+    input relay_permit,output relay_feed,output [63:0] relay_status,
     input [16:0] count_command,output [255:0] count_live,
     input 			axi4s_video_aclk,
     input 			I_rst_n			,
@@ -308,27 +308,57 @@ end endgenerate
 // The result settles after the ROI/search rows and the 28-cycle divider.
 // Freeze it early; frame proof, word count and epoch still gate publication.
 wire [255:0] classified_record;wire classified_ready;wire [31:0] search_empty_probe;wire [607:0] recorder_candidates;wire recorder_hold_valid;wire [10:0] recorder_hold_x;wire [9:0] recorder_hold_y;
+wire repair_hold_valid,transport_occupied;wire [10:0] repair_hold_x;wire [9:0] repair_hold_y;
 generate if(CLASSIFIED_COUNT)begin : classified_counting
  wire [8:0] stop_query,stop_id,ev_id;wire pos_new,ev_new,stop_begin,stop_clear,stop_good,stop_bad;
  wire [10:0] stop_x;wire [9:0] stop_y;wire [15:0] stop_run,pos_run,ev_run;
  wire [31:0] stop_frame,pos_frame;wire [2:0] stop_state;wire stop_dv,stop_dr;wire [1:0] ev_kind;
- if(AUTO_RELAY)begin : automatic_relay
+ reg pixels_started;
+ wire [8:0] main_total,main_uncertainty;
+ if(AUTO_RELAY && RELAY_LEFT_LAYOUT)begin : left_station
+  wire [15:0] local_run;wire [2:0] local_state;wire local_dv,local_dr;wire [8:0] local_total,local_uncertainty;
+  wire local_new,search_valid,lead_valid,local_ev;wire [15:0] local_ev_run;wire [8:0] local_ev_id;wire [1:0] local_ev_kind;
+  wire [8:0] local_id;wire [10:0] local_x,search_x,lead_x;
+  wire [9:0] local_y,search_y,lead_y;wire [15:0] local_pos_run;wire [31:0] local_frame;
+  classified_count_pipeline #(.STOP_POSITION(1),.LINE_X(256),.RECORD_ONLY(1),.MOTION_RECOVERY(1),
+   .TAIL_RECOVERY(1),.OBS_PER_REGION(4),.ORDERED_HANDOFF(1),.RECOVERABLE(1),.VELOCITY_ASSOC(1),.LOCAL_RECOVERY(0)) station(
+   .clk(post_clk),.rst_n(I_rst_n),.source_start(post_start),.frame_commit(post_commit && !video_frame_bad),
+   .frame_bad(pixels_started && video_frame_bad && !post_start && !post_early),.sample_new(search_new),
+   .config_tag({post_config,post_wb}),.objects({304'd0,recorder_candidates[607:304]}),.empty_probe(32'd0),.command(count_command),
+   .stop_query_id(stop_query),.stop_position_new(local_new),.stop_position_id(local_id),.stop_position_x(local_x),.stop_position_y(local_y),
+   .event_valid(local_ev),.event_run(local_ev_run),.event_id(local_ev_id),.event_kind(local_ev_kind),
+   .stop_position_run(local_pos_run),.stop_position_frame(local_frame),.stop_run(local_run),.stop_state(local_state),
+   .stop_direction_valid(local_dv),.stop_direction_right(local_dr),.stop_total(local_total),.stop_uncertainty(local_uncertainty),
+   .stop_search_valid(search_valid),.stop_search_x(search_x),.stop_search_y(search_y),
+   .hold_valid(lead_valid),.hold_x(lead_x),.hold_y(lead_y));
+  assign repair_hold_valid=search_valid || lead_valid;assign repair_hold_x=search_valid ? search_x : lead_x;assign repair_hold_y=search_valid ? search_y : lead_y;
+  pocket_relay_stop_v2 #(.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
+   .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.start_run(stop_begin),.clear_run(stop_clear),
+   .good_frame(stop_good),.bad_frame(stop_bad),.transport_occupied(transport_occupied),.current_frame(stop_frame),
+   .counter_run(stop_run),.counter_state(stop_state),.direction_valid(stop_dv),.direction_right(stop_dr),
+   .station_run(local_run),.station_state(local_state),.station_dv(local_dv),.station_dr(local_dr),
+   .counter_total(main_total),.station_total(local_total),.counter_uncertainty(main_uncertainty),.station_uncertainty(local_uncertainty),
+   .event_valid(ev_new),.event_run(ev_run),.event_id(ev_id),.event_kind(ev_kind),.query_id(stop_query),
+   .station_event_valid(local_ev),.station_event_run(local_ev_run),.station_event_id(local_ev_id),.station_event_kind(local_ev_kind),
+   .position_new(local_new),.position_id(local_id),.position_run(local_pos_run),.position_frame(local_frame),
+   .position_x(local_x),.position_y(local_y),.feed_enable(relay_feed),.state(),.fault(),.status(relay_status),.cycle_done());
+ end else if(AUTO_RELAY)begin : automatic_relay
+  assign repair_hold_valid=0;assign repair_hold_x=0;assign repair_hold_y=0;
   pocket_relay_stop #(.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
    .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.start_run(stop_begin),.clear_run(stop_clear),
    .good_frame(stop_good),.bad_frame(stop_bad),.current_frame(stop_frame),.counter_run(stop_run),.counter_state(stop_state),
    .direction_valid(stop_dv),.direction_right(stop_dr),.event_valid(ev_new),.event_run(ev_run),.event_id(ev_id),.event_kind(ev_kind),
    .query_id(stop_query),.position_new(pos_new),.position_id(stop_id),.position_run(pos_run),.position_frame(pos_frame),
    .position_x(stop_x),.position_y(stop_y),.feed_enable(relay_feed),.state(),.fault(),.status(relay_status),.cycle_done());
- end else begin assign stop_query=0;assign relay_feed=0;assign relay_status=0;end
- reg pixels_started;
+ end else begin assign repair_hold_valid=0;assign repair_hold_x=0;assign repair_hold_y=0;assign stop_query=0;assign relay_feed=0;assign relay_status=0;end
  always @(posedge post_clk or negedge I_rst_n)begin
   if(!I_rst_n)pixels_started<=0;
   else if(post_start)pixels_started<=0;
   else if(post_early)pixels_started<=1;
  end
  wire [152*(RESULT_RECORDER ? 4 : 2)-1:0] count_candidates;
- if(RESULT_RECORDER)assign count_candidates=recorder_candidates;else assign count_candidates=region_search_objects;
- classified_count_pipeline #(.STOP_POSITION(AUTO_RELAY),.LINE_X(WIDTH/2),.DIAGNOSTICS(!RESULT_RECORDER),.RECORD_ONLY(RESULT_RECORDER),.MOTION_RECOVERY(RESULT_RECORDER),.TAIL_RECOVERY(RESULT_RECORDER),.OBS_PER_REGION(RESULT_RECORDER ? 4 : 2),.ORDERED_HANDOFF(RESULT_RECORDER),.RECOVERABLE(RESULT_RECORDER),.VELOCITY_ASSOC(RESULT_RECORDER),.LOCAL_RECOVERY(LOCAL_RECOVERY)) pipeline(
+ if(RESULT_RECORDER)assign count_candidates=RELAY_LEFT_LAYOUT ? {304'd0,recorder_candidates[303:0]} : recorder_candidates;else assign count_candidates=region_search_objects;
+ classified_count_pipeline #(.STOP_POSITION(AUTO_RELAY && !RELAY_LEFT_LAYOUT),.LINE_X(WIDTH/2),.DIAGNOSTICS(!RESULT_RECORDER),.RECORD_ONLY(RESULT_RECORDER),.MOTION_RECOVERY(RESULT_RECORDER),.TAIL_RECOVERY(RESULT_RECORDER),.OBS_PER_REGION(RESULT_RECORDER ? 4 : 2),.ORDERED_HANDOFF(RESULT_RECORDER),.RECOVERABLE(RESULT_RECORDER),.VELOCITY_ASSOC(RESULT_RECORDER),.LOCAL_RECOVERY(LOCAL_RECOVERY)) pipeline(
   .clk(post_clk),.rst_n(I_rst_n),.source_start(post_start),.frame_commit(post_commit && !video_frame_bad),
   .frame_bad(pixels_started && video_frame_bad && !post_start && !post_early),.sample_new(search_new),
   .config_tag({post_config,post_wb}),.objects(count_candidates),.empty_probe(search_empty_probe),.command(count_command),
@@ -337,9 +367,10 @@ generate if(CLASSIFIED_COUNT)begin : classified_counting
   .stop_query_id(stop_query),.stop_position_new(pos_new),.stop_position_id(stop_id),.stop_position_x(stop_x),.stop_position_y(stop_y),
   .stop_position_run(pos_run),.stop_position_frame(pos_frame),.stop_begin(stop_begin),.stop_clear(stop_clear),
   .stop_good_frame(stop_good),.stop_bad_frame(stop_bad),.stop_current_frame(stop_frame),.stop_run(stop_run),.stop_state(stop_state),
-  .stop_direction_valid(stop_dv),.stop_direction_right(stop_dr),
+  .stop_direction_valid(stop_dv),.stop_direction_right(stop_dr),.stop_total(main_total),.stop_uncertainty(main_uncertainty),
   .hold_valid(recorder_hold_valid),.hold_x(recorder_hold_x),.hold_y(recorder_hold_y));
 end else begin : no_classified_counting
+ assign repair_hold_valid=0;assign repair_hold_x=0;assign repair_hold_y=0;
  assign relay_feed=0;assign relay_status=0;
  assign classified_record=0;assign classified_ready=1;assign count_live=0;assign recorder_hold_valid=0;assign recorder_hold_x=0;assign recorder_hold_y=0;
 end endgenerate
@@ -399,11 +430,12 @@ roi_statistics #(.DYNAMIC_ROI(TRACKING),.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(
     .frame_commit(result_commit),.invalidate(sample_cancel),.sample_valid(legacy_valid),
     .mean(legacy_mean),.minimum(legacy_min),.maximum(legacy_max),.sample_pixels(),.sample_sum(),.sample_new(legacy_new),.frame_start(post_start));
 generate if(USE_SEARCH) begin : local_shape_detection
- frame_shape_search #(.LOCAL_EDGE_ASSIST(LOCAL_EDGE_ASSIST),.EMPTY_TRACE(EMPTY_TRACE),.ROBUST_EMPTY_CONTEXT(ROBUST_EMPTY_CONTEXT),.ROBUST_SMALL_EMPTY(ROBUST_SMALL_EMPTY),.STANDING_REVIEW(STANDING_REVIEW),.SURFACE_REVIEW(SURFACE_REVIEW),.REVIEW_PROBE(REVIEW_PROBE),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS),.COUNT_EMPTY_MARGIN(CLASSIFIED_COUNT),.EMPTY_DIAGNOSTICS(CLASSIFIED_COUNT && !RESULT_RECORDER),.ROW_GUARDED_BRIGHT_EMPTY(CLASSIFIED_COUNT),.COUNT_CANDIDATES(RESULT_RECORDER),.MULTITHRESHOLD_EMPTY(MULTITHRESHOLD_EMPTY)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
+ frame_shape_search #(.RELAY_LEFT_LAYOUT(RELAY_LEFT_LAYOUT),.LOCAL_EDGE_ASSIST(LOCAL_EDGE_ASSIST),.EMPTY_TRACE(EMPTY_TRACE),.ROBUST_EMPTY_CONTEXT(ROBUST_EMPTY_CONTEXT),.ROBUST_SMALL_EMPTY(ROBUST_SMALL_EMPTY),.STANDING_REVIEW(STANDING_REVIEW),.SURFACE_REVIEW(SURFACE_REVIEW),.REVIEW_PROBE(REVIEW_PROBE),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS),.COUNT_EMPTY_MARGIN(CLASSIFIED_COUNT),.EMPTY_DIAGNOSTICS(CLASSIFIED_COUNT && !RESULT_RECORDER),.ROW_GUARDED_BRIGHT_EMPTY(CLASSIFIED_COUNT),.COUNT_CANDIDATES(RESULT_RECORDER),.MULTITHRESHOLD_EMPTY(MULTITHRESHOLD_EMPTY)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
   .pixel_accept(post_accept),.invalidate(sample_cancel),.pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),
   .ready(search_ready),.sample_new(search_new),.located(search_located),.state(search_state),.foreground_count(search_fg),
-  .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(legacy_search_objects),.region_objects(region_search_objects),.empty_probe(search_empty_probe),.recorder_objects(recorder_candidates),.recorder_hold_valid(recorder_hold_valid),.recorder_hold_x(recorder_hold_x),.recorder_hold_y(recorder_hold_y),.probe_record(search_probe_record),.probe_ready(search_probe_ready));
+  .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(legacy_search_objects),.region_objects(region_search_objects),.empty_probe(search_empty_probe),.recorder_objects(recorder_candidates),.recorder_hold_valid(recorder_hold_valid),.recorder_hold_x(recorder_hold_x),.recorder_hold_y(recorder_hold_y),.repair_hold_valid(repair_hold_valid),.repair_hold_x(repair_hold_x),.repair_hold_y(repair_hold_y),.transport_occupied(transport_occupied),.probe_record(search_probe_record),.probe_ready(search_probe_ready));
 end else begin : no_local_search
+ assign transport_occupied=1;
  assign search_probe_record=0;assign search_probe_ready=1;
  assign legacy_search_objects=0;assign region_search_objects=0;assign recorder_candidates=0;assign search_empty_probe=0;assign search_ready=0;assign search_new=0;assign search_located=0;assign search_state=1;assign search_review=0;
  assign search_fg=0;assign search_w=0;assign search_h=0;assign search_x0=0;assign search_x1=0;assign search_y0=0;assign search_y1=0;

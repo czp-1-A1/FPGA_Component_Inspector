@@ -4,15 +4,16 @@
 // must face a bright measured object and its darker surroundings.
 module local_edge_surface_check #(
  parameter WIDTH=1280,HEIGHT=720,FOREGROUND=100,STANDING_REVIEW=0,
- parameter MIN_GRADIENT=8,MIN_SIDES=3
+ parameter MIN_GRADIENT=8,MIN_SIDES=3,
+ parameter CACHE_X0=((WIDTH*5/16-16)/8)*8,CACHE_X1=((WIDTH*11/16+23)/8)*8,
+ parameter CACHE_Y0=((HEIGHT/3-16)/2)*2,CACHE_Y1=((HEIGHT*5/6+17)/2)*2
 )(
  input wire clk,rst_n,cancel,write_enable,measure,measure_empty,
  input wire [10:0] write_x,input wire [9:0] write_y,input wire [31:0] write_data,
  input wire [9:0] xmin,xmax,ymin,ymax,
  output reg ready,normal,empty_ok,output reg [31:0] edge_strengths
 );
-localparam X0=((WIDTH*5/16-16)/8)*8,X1=((WIDTH*11/16+23)/8)*8;
-localparam Y0=((HEIGHT/3-16)/2)*2,Y1=((HEIGHT*5/6+17)/2)*2;
+localparam X0=CACHE_X0,X1=CACHE_X1,Y0=CACHE_Y0,Y1=CACHE_Y1;
 localparam COLS=(X1-X0)/8,WORDS=COLS*(Y1-Y0)/2,AB=$clog2(WORDS);
 wire capture=write_enable && write_x>=X0 && write_x<X1 && write_y>=Y0 && write_y<Y1;
 wire [AB-1:0] write_address=((write_y-Y0)>>1)*COLS+((write_x-X0)>>3);

@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -12,17 +12,34 @@ module compact_inspector_osd #(parameter AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_A
  input wire [31:0] frames,input wire [35:0] diagnostics,input wire [DIAG_BITS-1:0] publish_diagnostic,
  input wire [303:0] objects,input wire [127:0] calibration_record,input wire calibration_valid,
  input wire [3:0] local_wait_reason,
- input wire [31:0] relay_status,
+ input wire [63:0] relay_status,
  input wire [255:0] live_record,frame_record,input wire eligible,
  output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb
 );
-reg [31:0] relay_snapshot;
+reg [63:0] relay_snapshot;
 function [7:0] relay_char;
  input [5:0] char_index;reg [383:0] text;
  begin
   text="RLY S0 F0 Q0 ID000 X000 T000 A000               ";
   // Status numerals are hexadecimal; target/advance are processing pixels.
-  case(char_index)
+  if(RELAY_LEFT_LAYOUT)begin
+   text="RL2 S0 F0 Q00 N000 X--- L000 V0 T000 A000 W0000 ";
+   case(char_index)
+    5:relay_char=hexchar({1'b0,relay_snapshot[31:29]});
+    8:relay_char=hexchar(relay_snapshot[28:25]);
+    11:relay_char=hexchar({2'b0,relay_snapshot[63:62]});12:relay_char=hexchar(relay_snapshot[61:58]);
+    15:relay_char=hexchar({3'b0,relay_snapshot[20]});16:relay_char=hexchar(relay_snapshot[19:16]);17:relay_char=hexchar(relay_snapshot[15:12]);
+    20:relay_char=relay_snapshot[57] ? hexchar({1'b0,relay_snapshot[11:9]}) : "-";
+    21:relay_char=relay_snapshot[57] ? hexchar(relay_snapshot[8:5]) : "-";
+    22:relay_char=relay_snapshot[57] ? hexchar(relay_snapshot[4:1]) : "-";
+    25:relay_char=hexchar({3'b0,relay_snapshot[56]});26:relay_char=hexchar(relay_snapshot[55:52]);27:relay_char=hexchar(relay_snapshot[51:48]);
+    30:relay_char=relay_snapshot[57] ? "1" : "0";
+    33:relay_char=hexchar((RELAY_TARGET_X>>8)&15);34:relay_char=hexchar((RELAY_TARGET_X>>4)&15);35:relay_char=hexchar(RELAY_TARGET_X&15);
+    38:relay_char=hexchar((RELAY_ADVANCE_PX>>8)&15);39:relay_char=hexchar((RELAY_ADVANCE_PX>>4)&15);40:relay_char=hexchar(RELAY_ADVANCE_PX&15);
+    43:relay_char=hexchar(relay_snapshot[47:44]);44:relay_char=hexchar(relay_snapshot[43:40]);45:relay_char=hexchar(relay_snapshot[39:36]);46:relay_char=hexchar(relay_snapshot[35:32]);
+    default:relay_char=char_index<48 ? text[383-char_index*8-:8] : 8'd32;
+   endcase
+  end else case(char_index)
    5:relay_char=hexchar({1'b0,relay_snapshot[31:29]});
    8:relay_char=hexchar(relay_snapshot[28:25]);
    11:relay_char=hexchar(relay_snapshot[24:21]);
@@ -312,6 +329,14 @@ always @*begin
    (y>=HEIGHT*3/5 && y<HEIGHT*5/6 && (!page_s || record[57]))))guide=1;
   if(AUTO_RELAY && ((y>=HEIGHT/3 && y<HEIGHT*5/9)||(y>=HEIGHT*3/5 && y<HEIGHT*5/6)) &&
     (x==RELAY_TARGET_X || (x==RELAY_TARGET_X-RELAY_ADVANCE_PX && y[2])))guide=1;
+  if(RELAY_LEFT_LAYOUT)begin
+   // Same upper tape row: right count gate / left independent repair gate.
+   guide=y>=HEIGHT/3 && y<HEIGHT*5/9 &&
+    (((x==64 || x==447 || x==448 || x==831) && y[3]) ||
+     ((y==HEIGHT/3 || y==HEIGHT*5/9-1) && x>=64 && x<832 && x[3]) ||
+     (x==WIDTH/2 && y[2]) || (x==256 && y[3]) ||
+     x==RELAY_TARGET_X || (x==RELAY_TARGET_X+RELAY_ADVANCE_PX && y[2]));
+  end
   if(trace_cross0 || trace_cross1)guide=1;
   for(t=0;t<4;t=t+1)begin
    ob=obs[t*76+:76];id=0;id_bcd=0;

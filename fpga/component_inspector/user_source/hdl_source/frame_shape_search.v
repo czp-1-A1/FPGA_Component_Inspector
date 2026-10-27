@@ -2,7 +2,7 @@
 // Legacy: two objects. REGIONS: two independently bound zones, two objects each.
 // A shared flood-fill engine runs during vertical blanking, without video backpressure.
 module frame_shape_search #(
- parameter WIDTH=1024,HEIGHT=600,REGIONS=0,
+ parameter WIDTH=1024,HEIGHT=600,REGIONS=0,RELAY_LEFT_LAYOUT=0,
  parameter INDEXED_CANDIDATES=1,
  // Counting-only trial margin from upstream's measured six-cell extent.
  // A phase-eroded locating hole can also measure six cells. Expand only in
@@ -38,6 +38,8 @@ module frame_shape_search #(
  // always receives its original best2, independently of this counting sideband.
  output wire [607:0] recorder_objects,
  input wire recorder_hold_valid,input wire [10:0] recorder_hold_x,input wire [9:0] recorder_hold_y,
+ input wire repair_hold_valid,input wire [10:0] repair_hold_x,input wire [9:0] repair_hold_y,
+ output wire transport_occupied,
  output wire [127:0] probe_record,output wire probe_ready
 );
 // Average each 2x2 source block; every source pixel contributes. Detection
@@ -246,7 +248,10 @@ reg [17:0] component_area;
 wire [83:0] region_bounds;wire [31:0] region_models;
 wire [239:0] region_recipes;wire [1:0] region_supported;
 generate if(REGIONS)begin : regions
- inspection_region_config #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) cfg(region_bounds,region_models,region_recipes,region_supported);
+ inspection_region_config #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),
+  .X00(RELAY_LEFT_LAYOUT ? 448 : WIDTH*5/16),.X01(RELAY_LEFT_LAYOUT ? 832 : WIDTH*11/16),
+  .X10(RELAY_LEFT_LAYOUT ? 64 : WIDTH*5/16),.X11(RELAY_LEFT_LAYOUT ? 448 : WIDTH*11/16),
+  .Y10(RELAY_LEFT_LAYOUT ? HEIGHT/3 : HEIGHT*3/5),.Y11(RELAY_LEFT_LAYOUT ? HEIGHT*5/9 : HEIGHT*5/6)) cfg(region_bounds,region_models,region_recipes,region_supported);
 end else begin : full_frame
  assign region_bounds=0;assign region_models=0;assign region_recipes=0;assign region_supported=0;
 end endgenerate
@@ -260,6 +265,7 @@ wire in_region1=inside_region(center_x,center_y[9:0],region_bounds[83:42]);
 wire region_now=REGIONS && !in_region0 && in_region1;
 wire allowed_now=!REGIONS || ((in_region0 || in_region1) && region_supported[region_now]);
 reg held_valid;reg [10:0] held_x;reg [9:0] held_y;reg [1:0] held_found;
+reg repair_valid;reg [10:0] repair_x;reg [9:0] repair_y;reg occupied_pending;
 reg candidate_region,candidate_allowed;reg [11:0] distance;
 wire [41:0] candidate_bounds=candidate_region ? region_bounds[83:42] : region_bounds[41:0];
 wire [10:0] target_x=REGIONS ? ({1'b0,candidate_bounds[41:31]}+candidate_bounds[30:20])/2 : WIDTH/2;
@@ -414,9 +420,13 @@ end endgenerate
 wire [$clog2(SLOTS)-1:0] bank0=candidate_region ? REGION_SLOTS : 0,bank1=bank0+1'b1;
 wire [$clog2(SLOTS)-1:0] bank2=COUNT_CANDIDATES && REGIONS ? bank0+2 : bank0,bank3=COUNT_CANDIDATES && REGIONS ? bank0+3 : bank0;
 wire candidate_preferred=candidate_state>=2;
-wire [10:0] held_dx=center_x>held_x ? center_x-held_x : held_x-center_x;
-wire [10:0] held_dy=center_y>held_y ? center_y-held_y : held_y-center_y;
-wire preferred_main=COUNT_CANDIDATES && REGIONS && held_valid && candidate_preferred && held_dx<=12 && held_dy<=16;
+wire use_repair=RELAY_LEFT_LAYOUT && candidate_region;
+wire [10:0] selected_hold_x=use_repair ? repair_x : held_x;
+wire [9:0] selected_hold_y=use_repair ? repair_y : held_y;
+wire selected_hold_valid=use_repair ? repair_valid : held_valid;
+wire [10:0] held_dx=center_x>selected_hold_x ? center_x-selected_hold_x : selected_hold_x-center_x;
+wire [10:0] held_dy=center_y>selected_hold_y ? center_y-selected_hold_y : selected_hold_y-center_y;
+wire preferred_main=COUNT_CANDIDATES && REGIONS && selected_hold_valid && candidate_preferred && held_dx<=12 && held_dy<=16;
 wire before_best=!found_bank[bank0] || (candidate_preferred && state_bank[bank0]<2) ||
  ((candidate_preferred==(state_bank[bank0]>=2)) && (distance<distance_bank[bank0] ||
  (distance==distance_bank[bank0] && component_count>count_bank[bank0])));
@@ -593,6 +603,19 @@ generate if(REGIONS && EMPTY_DIAGNOSTICS)begin : empty_diagnostics
 end else begin : no_empty_diagnostics
  assign empty_probe=0;
 end endgenerate
+// Consumed only together with the proved sample_new; a no-candidate frame
+// finishes directly without going through PUBLISH in the original detector.
+assign transport_occupied=occupied_pending;
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin repair_valid<=0;repair_x<=0;repair_y<=0;occupied_pending<=0;end
+ else if(frame_start || invalidate || pixel_sof)begin
+  occupied_pending<=0;
+  if(pixel_sof)begin repair_valid<=RELAY_LEFT_LAYOUT && repair_hold_valid;repair_x<=repair_hold_x;repair_y<=repair_hold_y;end
+ end else begin
+  if(RELAY_LEFT_LAYOUT && phase==CAND_COMMIT && candidate_allowed && candidate_preferred &&
+     (candidate_region || center_x<=648))occupied_pending<=1;
+ end
+end
 integer bi;
 reg [9:0] trial_x,trial_y;reg neighbor_ok;
 always @*begin
@@ -995,7 +1018,10 @@ end else begin : no_diagnostic_probe
  assign review_probe_record=0;assign review_probe_ready=1;
 end
 if(LOCAL_EDGE_ASSIST)begin : edge_surface_measurement
- local_edge_surface_check #(.STANDING_REVIEW(STANDING_REVIEW),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.FOREGROUND(FOREGROUND)) surface(
+ local_edge_surface_check #(.STANDING_REVIEW(STANDING_REVIEW),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.FOREGROUND(FOREGROUND),
+  .CACHE_X0(RELAY_LEFT_LAYOUT ? 48 : ((WIDTH*5/16-16)/8)*8),
+  .CACHE_X1(RELAY_LEFT_LAYOUT ? 848 : ((WIDTH*11/16+23)/8)*8),
+  .CACHE_Y1(RELAY_LEFT_LAYOUT ? ((HEIGHT*5/9+17)/2)*2 : ((HEIGHT*5/6+17)/2)*2)) surface(
   .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
   .write_enable(cap_write),.write_x(gray_x),.write_y(gray_y),.write_data(gray_word),
   .measure((INDEXED ? phase==REF_BOX : phase==REF_ORIGIN) && found_bank[ref_index] && surface_needed),

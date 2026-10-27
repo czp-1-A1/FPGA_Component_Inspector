@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,hashlib,json,os,re,subprocess,sys
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');args=a.parse_args()
 work=args.work.resolve();project=work/'project';tools=project/'tools';env=dict(os.environ)
 env['TEMP']=env['TMP']=str(work/'temp')
 audit_names=['classified_audit_routed.tcl','classified_audit_gray_packing.tcl']
@@ -51,7 +51,11 @@ area=(work/'runs/phy_1/final.area').read_text()
 assert re.search(r'O_relay_control\s+OUTPUT\s+V2\s+LVCMOS33\s+HDIO\s+4\s+PULLDOWN',area)
 assert 'O_led' not in area
 resources={key:int(re.search(r'^#'+key+r'\s+(\d+)',area,re.M)[1]) for key in ['slice','eram','dsp','pll']}
-assert resources['slice']<=21216 and resources['eram']==101 and resources['dsp']==27 and resources['pll']==5
+expected_eram,expected_dsp=(99,30) if args.left_v2 else (101,27)
+assert resources['slice']<=21216 and resources['eram']==expected_eram and resources['dsp']==expected_dsp and resources['pll']==5
+if args.left_v2:
+ assert 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text()
+ assert '.WIDTH(64)) u_relay_display' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text()
 source=json.loads((work/'frozen_inputs.json').read_text())
 for name,digest in source.items():assert sha(project/name)==digest,('Frozen source changed',name)
 result.update({'status':'PASS_R22_RELAY_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_V2_NO_LED',
@@ -59,5 +63,6 @@ result.update({'status':'PASS_R22_RELAY_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_G
  'extra_relay_checks':extra,'bit_sha256':sha(work/'runs/phy_1/camera_to_dsi_display.bit'),
  'baseline_physical_verifier_sha256':sha(tools/'verify_classified_physical.py'),
  'adapted_physical_verifier_sha256':sha(target),'board_acceptance':False})
+if args.left_v2:result['layout']='left refill / right count; gray cache48..847 x224..415; ERAM99/DSP30 (gray cache-3 ERAM, P/E history+1 ERAM)'
 (work/'physical_verification.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({k:result[k] for k in ['status','timing_ns','resources','slice_delta_vs_r22','max_delays_matched','max_delays_ignored','gray_bits_dominating']},indent=2),flush=True)
