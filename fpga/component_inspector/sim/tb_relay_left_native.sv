@@ -1,6 +1,9 @@
 `timescale 1ns/1ps
 // Real RAW10 bridge, demosaic, vendor ERAM, manual WB, Sobel and divider.
-module tb_relay_left_native;
+// Positive control fixture: RAW360 apertures survive the unchanged T80/T100
+// shape proof. RAW280 mirrored weak shapes are a separately retained R22
+// baseline classification boundary (native_r1 / weak_replay_r1), not a pass.
+module tb_relay_left_native #(parameter APERTURE_RAW=360);
 reg clk=0,rst=0,fs=0,fe=0,hs=0,rv=0;reg [39:0] raw=0;
 wire av,asof,alast;wire [39:0] adata;
 reg run_clk=1;always #4.444 if(run_clk)clk=~clk;reg dclk=0;always #7.5 dclk=~dclk;
@@ -90,7 +93,7 @@ always @(negedge procclk)begin
  if(rst && dut.classified_counting.pipeline.event_valid)begin
   event_count++;
   if(dut.classified_counting.pipeline.event_id!=event_count ||
-     dut.classified_counting.pipeline.event_frame!=((event_count==1 ? 5 : event_count==2 ? 7 : event_count==3 ? 8 : 9)) ||
+     dut.classified_counting.pipeline.event_frame!=((event_count==1 ? 5 : event_count==2 ? 7 : event_count==3 ? 8 : 10)) ||
      dut.classified_counting.pipeline.event_kind!=((event_count==2 || event_count==3) ? 3 : 2))
    $fatal(1,"actual native event source/kind/number differs from finite physical crossing truth");
   $display("SPEED_EVENT id=%0d source=%0d kind=%0d",event_count,dut.classified_counting.pipeline.event_frame,dut.classified_counting.pipeline.event_kind);
@@ -128,7 +131,7 @@ function integer source(input integer px,py);
    if(idx==0 || idx==-3)begin
     if(ax<27 && ay<33 && !(ax>=23 && ay>=27))source=720;
    end else if(idx==-1 || idx==-2)begin
-    if(dx*dx*56+dy*dy*90<=5040)source=280;
+    if(dx*dx*56+dy*dy*90<=5040)source=APERTURE_RAW;
    end
    dy=py-420;
    if(idx>=-3 && idx<=0 && dx*dx+dy*dy<=100)begin source=360;if(dx*dx+dy*dy<=16)source=440;end
@@ -218,7 +221,11 @@ task frame(input integer kind,mode);
      if(relay_status[31:29]!=1 || relay_status[28:25]!=0 || !relay_feed)$fatal(1,"native left transport stopped S%0d F%0h",relay_status[31:29],relay_status[28:25]);
      if(frame_no>=4 && (meta[681:679]!=2 || meta[685:682]!=0))
       $fatal(1,"native speed_raw stream stopped frame%0d state%0d C%0d",frame_no,meta[681:679],meta[685:682]);
-     if(meta[697:689]!=(frame_no<5 ? 0 : frame_no<7 ? 1 : frame_no<8 ? 2 : frame_no<9 ? 3 : 4))$fatal(1,"native speed_raw real crossing total/source mismatch source%0d total%0d",frame_no,meta[697:689]);
+     // Mirroring changes the sampled body centre: final P is exactly636 at
+     // source9, still INSIDE the strict leftward LINE_X-HYST boundary. It
+     // genuinely crosses at source10. The original rightward oracle is kept
+     // unchanged in local_edge/tb_edge_raw_mode1.v.
+     if(meta[697:689]!=(frame_no<5 ? 0 : frame_no<7 ? 1 : frame_no<8 ? 2 : frame_no<10 ? 3 : 4))$fatal(1,"native speed_raw real crossing total/source mismatch source%0d total%0d",frame_no,meta[697:689]);
      $display("SPEED_NATIVE_RESULT source=%0d record=%064h total=%0d P=%0d E=%0d",frame_no,meta[886:631],meta[697:689],meta[706:698],meta[715:707]);
      if(frame_no==11 && (meta[706:698]!=2 || meta[715:707]!=2))$fatal(1,"native speed_raw class composition");
      // Read-only immutableR7 comparator consumes these same actual original2
@@ -248,7 +255,7 @@ initial begin
  if(accepted_frames!=12 || checked_pixels<3686400 || nonzero_pixels<3600000 || overflows || underflows)$fatal(1,"cadence final counts failed");
  if(!relay_feed || relay_status[31:29]!=1 || relay_status[28:25]!=0 || relay_status[63:58]!=2 || relay_status[57] || relay_status[47:32]<150)
   $fatal(1,"native processing must keep feeding while TWO genuine EMPTY IDs wait >150ms before local arrival");
- $fclose(trace);$fclose(records);$display("PASS LEFT_NATIVE_MODE1: native line-clock gaps, LP0CF0 wall-clock, 27-FPS source start-to-start, finite mirrored LEFT real P,E,E,P ramp20to32px/source, final production controller enabled, 2 EMPTY queued, pre-arrival wait>150ms, unchanged R9 read-only comparison, same-slot late tuples, full exact RGB rasters=%0d pixels=%0d OF=%0d UF=%0d",displays,checked_pixels,overflows,underflows);$finish;
+ $fclose(trace);$fclose(records);$display("PASS LEFT_NATIVE_MODE1: positive RAW360 aperture fixture, native line-clock gaps, LP0CF0 wall-clock, 27-FPS source start-to-start, finite mirrored LEFT real P,E,E,P ramp20to32px/source, final production controller enabled, 2 EMPTY queued, pre-arrival wait>150ms, unchanged R9 read-only comparison, same-slot late tuples, full exact RGB rasters=%0d pixels=%0d OF=%0d UF=%0d",displays,checked_pixels,overflows,underflows);$finish;
 end
 initial begin #1100000000;$fatal(1,"frame cadence watchdog");end
 endmodule

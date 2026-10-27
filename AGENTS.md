@@ -1,3 +1,17 @@
+# 原生LEFT RAW正对照已通过（2026-10-27 20:44）
+
+- native_r2验证JSON已生成PASS：12源帧、24精确显示栅格/22940469像素、P/E/P序列共4ID（P2/E2）、两空队列在到站前>150ms继续送料，OF/UF0。23项选定测试已完成，弱RAW280边界单独保留未修复，不能混入通过数。当前进入版本化封装，只有发布脚本实际回执才确认BIT_FLASH交付。
+
+# V2最终交付前断点（2026-10-27）
+
+- 最终硬件：E:/2026FPGA/.codex_tmp/r22_relay_left_build_r3_20261027，628冻结源/104依赖，TD6.2.168116 seed2；bit SHA99d1593ffd97d127e2690d4fc9da816e93e8bac280bf7e768222f2f8ff9d03ed，已完成布线。实际Slice18972/21216=89.42308%，ERAM99/DSP30/PLL5；setup+.004/hold+.020/TNS0；49约束/20实际Gray Q/9邮箱/新旧SW3/V2/无LED全部PASS，physical_verification.json已落盘。audit脚本补了两处UTF8读取，源码硬件未动。
+- 13旧回归+9新软件测试实际已过（signature_r2和support_r1），完整RGB202帧/6ID/3保持和V2默认100MHz100000000周期通过。新额外原生RAW测试native_r2仍运行：最终生产LEFT/AUTO分支、RAW360清晰空穴、12帧目标4个P/E/2空队列/到站前>150ms继续送料，以verification.json是否存在为准；当前日志11帧已total4/P2/E2、送料持续。独立新增测试台不在628构建源中，完整发布源629。
+- 保留失败边界native_r1：镜像RAW280弱反光孔在source6只剩5x3/T100亮点0/不圆，source7计数延后，不能算PASS。精确原R22 detector+surface（仅改模块名）与新版本回放该源帧结果608位完全相同；weak_replay_r2证据和docs/R22_RELAY_LEFT_V2_WEAK_NATIVE_BOUNDARY.json。保持原识别判据；新RAW360作为停车运输的清晰正对照。原右向RAW测试台答案未动，新镜像P4在source9中心636尚未越过左滞回线，正确source10才过，新测试明确该差异。
+- 原基线RAW在后加类别核对时尚运行；其ISP差异仅关闭的AUTO_RELAY/LEFT生成支路，发布脚本保留实际r2历史ISP并逐字证明其余一致；新native_r2则编译最终开启分支的冻结字节。不冒称所有早期日志使用最终ISP。
+- Git已提交5b8d5a7a862817e79b1ac3d92eef70c11a03ecf4；后续仅附加原生测试/文档/审计脚本编码修正未提交，没有改628硬件源。当前未推送、未烧录、无子代理。新的bit尚未复制BIT_FLASH，发布脚本受native_r2验证门控，不能提前宣称交付。
+- 下一步：等native_r2结果；若正常通过，23项选定PASS与已知弱边界分别记录，提交最终测试/指南后运行scripts/publish_r22_relay_left.py --work ...r3。预计文件R22_RelayAuto_Left_V2_20261027.bit，原件/ZIP保留且额外复制E:/2026FPGA/BIT_FLASH并验SHA，保护LATEST_READONLY.bit。发布后核验所有载荷/Git字节，更新本入口和交付JSON/资源/提交，无需硬件操作。
+- 首轮人工：清晰已能识别的料序，第一穴位X800附近从右引入，左区清空；SW3上再下，旧队列先人工核对再K3+K4全清。目标160/提前16/±8px不是毫米已达标。先空跑停靠1秒恢复；手/吸嘴遮挡或填成P会改变原关联，实际补件动作与握手尚未实现，不能称自动补件成功。当前需实板±1mm/1秒/板载5V验收。
+
 # V2进度更新（2026-10-27，最终源码已冻结，尚未交付）
 
 - 当前codex/r22-relay-left-v2，父799ca6b，无推送。新增pocket_relay_stop_v2.v和双门控编号、32项队列、15秒到站等待、到站后150ms实测过期、完整1秒保持。启动S5要求640线下游及左站无未编号目标；原R22下方ROI改为同上方料道左侧64..447，右区448..831，二次编号256/触发176/目标160。人工设置右向左。

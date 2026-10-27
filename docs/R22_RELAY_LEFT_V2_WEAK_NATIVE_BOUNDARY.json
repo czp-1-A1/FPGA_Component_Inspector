@@ -1,0 +1,14 @@
+{
+  "status": "KNOWN_R22_BASELINE_WEAK_NATIVE_BOUNDARY_NOT_FIXED",
+  "baseline_commit": "a1cceaa9b5a37ff31b7f84a77c00042b027208d0",
+  "native_failed_log_sha256": "2c8363d639b782635c0d56f4a37d5c1a2d040e3e12528f545a513235d7adf5f2",
+  "replay_log_sha256": "797c927520d0fdae007a6d6546938c2a12446967d84eb46066b972c5ad2340b7",
+  "baseline_detector_sha256": "16ec54cd52749505a213d83d04c89b1e03397592b493f994e9ac4501f8b962fc",
+  "baseline_surface_sha256": "13169133e4361b55e5a34df16bf29878d44a79947a68c9d9c45df4215a39eff7",
+  "native6_gray_hex_sha256": "acc143d74c3e8ae42130a6be197fd4430db5b1cc544a3fa6e8c0e590cef86ef6",
+  "records_bit_identical": true,
+  "record": "0000000000000000000000000000000000000000000000000000000000000000000000000000a006018293e28c44920c05c048a9642f04a958e00381029552b64e948c05c848a92226c4a958",
+  "observed": "Native mirrored RAW280 fixture: expected E atX644 in source6 has T80 contour5x3 /13 cells /T100 bright_count0 /circular0, so original and new classifier both emit no EMPTY. Native test fails source7 total1 expected2.",
+  "scope": "Exact source6 processing grayscale replay into original R22 detector+surface and new detector+surface; identifiers renamed only in original modules. Not a full mirrored native run of original R22.",
+  "disposition": "Retain weak failure as baseline boundary; no classifier threshold relaxed. Positive control transport fixture uses explicitly RAW360 apertures. User hardware calibration still pending."
+}

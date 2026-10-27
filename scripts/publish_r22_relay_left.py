@@ -54,7 +54,7 @@ def main():
    new.append(test)
  assert len(new)==9 and len({t['name'] for t in new})==9
  assert 'tb_relay_left_rgb' in {t['name'] for t in new} and 'tb_relay_left_real_second' in {t['name'] for t in new}
- native_folder=Path('E:/2026FPGA/.codex_tmp/r22_relay_left_native_r1_20261027');native=load(native_folder/'verification.json');assert native['status']=='PASS'
+ native_folder=Path('E:/2026FPGA/.codex_tmp/r22_relay_left_native_r2_20261027');native=load(native_folder/'verification.json');assert native['status']=='PASS'
  for rel,d in native['inputs'].items():assert source[rel]==d,('final native',rel)
  assert sha(native_folder/'console.log')==native['console_sha256']
  new.append({'name':native['name'],'console_sha256':native['console_sha256']})
@@ -71,6 +71,9 @@ def main():
   copy(repo/'scripts'/script,release/'scripts'/script)
  copy(repo/'docs/R22_RELAY_LEFT_V2_FIELD_GUIDE.md',release/'FIELD_GUIDE.md')
  copy(repo/'docs/R22_RELAY_LEFT_V2_FIELD_FEEDBACK.json',release/'V1_FIELD_FEEDBACK.json')
+ boundary=load(repo/'docs/R22_RELAY_LEFT_V2_WEAK_NATIVE_BOUNDARY.json')
+ assert boundary['status']=='KNOWN_R22_BASELINE_WEAK_NATIVE_BOUNDARY_NOT_FIXED' and boundary['records_bit_identical']
+ copy(repo/'docs/R22_RELAY_LEFT_V2_WEAK_NATIVE_BOUNDARY.json',release/'WEAK_NATIVE_BOUNDARY.json')
  for p in work.iterdir():
   if p.is_file() and p.suffix in ['.json','.py','.tcl','.log']:copy(p,release/'build'/p.name)
  for stage in ['syn_1','phy_1']:
@@ -91,13 +94,21 @@ def main():
   if p.is_file() and p.suffix in ['.json','.log']:copy(p,release/'tests/native_left'/p.name)
  for p in (native_folder/'inputs').rglob('*'):
   if p.is_file():copy(p,release/'tests/native_left/inputs'/p.relative_to(native_folder/'inputs'))
- verification={'status':'PASS_23_ACTUAL_TESTS_AND_ROUTED_AUDIT','legacy':legacy,'new':new,'physical':physical,
+ for kind,folder in [('weak_native',Path('E:/2026FPGA/.codex_tmp/r22_relay_left_native_r1_20261027')),
+                     ('weak_replay',Path('E:/2026FPGA/.codex_tmp/r22_relay_left_weak_replay_r2_20261027'))]:
+  for p in folder.iterdir():
+   if p.is_file() and p.suffix in ['.json','.log','.v','.sv','.hex','.png']:copy(p,release/'tests/retained_boundary'/kind/p.name)
+  if (folder/'inputs').exists():
+   for p in (folder/'inputs').rglob('*'):
+    if p.is_file():copy(p,release/'tests/retained_boundary'/kind/'inputs'/p.relative_to(folder/'inputs'))
+ verification={'status':'PASS_23_SELECTED_TESTS_AND_ROUTED_AUDIT_WITH_RETAINED_BASELINE_BOUNDARY','legacy':legacy,'new':new,'physical':physical,'known_boundaries':[boundary],
   'source_count':len(source),'frozen_build_source_count':frozen_count,'hardware_dependencies':len(load(work/'hardware_inputs.json')),
-  'scope':'new layout closed-loop processing RGB202 frames; V2 default100MHz100000000-cycle hold; original nativeRAW MODE1 compatibility; final production flags nativeRAW12 frames LEFT four known crossings / two EMPTY queued / >150ms pre-arrival wait',
+  'scope':'new layout closed-loop processing RGB202 frames; V2 default100MHz100000000-cycle hold; original nativeRAW MODE1 compatibility; final production flags nativeRAW12 frames positive RAW360 fixture LEFT four known crossings / two EMPTY queued / >150ms pre-arrival wait; weak RAW280 failure retained separately',
   'physical_accuracy_verified':False,'physical_hold_verified':False,'board_operated':False}
  write(release/'VERIFICATION.json',verification)
  bit=work/'runs/phy_1/camera_to_dsi_display.bit';copy(bit,release/(name+'.bit'))
  receipt={'version':name,'feature_branch':'codex/r22-relay-left-v2','base_commit':'a1cceaa9b5a37ff31b7f84a77c00042b027208d0',
+  'base_repository':'https://github.com/czp-1-A1/FPGA_Component_Inspector.git','base_branch':'r22-local-edge-20261027','source_worktree':str(repo),
   'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),'pushed':False,
   'bit_sha256':sha(bit),'bit_bytes':bit.stat().st_size,'td_version':'V6.2.168116','place_seed':2,
   'resources':physical['resources'],'slice_percent':physical['slice_percent'],'timing_ns':physical['timing_ns'],
@@ -111,7 +122,7 @@ def main():
 
 先读 FIELD_GUIDE.md；当前 RUN 必须从计数线左侧及补件区无未编号料段的状态开始，人工设置屏幕右向左。继电器及其他引脚沿用V1。参数为处理图像像素，尚未实板标定±1mm。本版不驱动吸嘴。
 
-23项实际软件测试及最终布线数值证据在 VERIFICATION.json。新布局停车闭环为完整1280×720处理RGB像素；最终生产分支另实跑12帧原生RAW10 MODE1，4个已知P/E编号、2个空穴队列、到站前超过150ms继续送料，含原始解码/DDR及精确显示像素核对。这组RAW没有运动至停车线，不称作原生RAW停车闭环或实板验收。原基线RAW编译时ISP尚未加入类别核对，差异仅位于关闭的AUTO_RELAY分支，保留了历史编译源，另有最终开启分支的新RAW测试。左右类别顺序不一致停止；连续同类穴位完全漏检不能单靠计数在数学上排除，需已知料序验收。
+23项选定软件测试及最终布线数值证据在 VERIFICATION.json。新布局停车闭环为完整1280×720处理RGB像素；最终生产分支另实跑12帧原生RAW10 MODE1，用明确可识别的RAW360孔形成4个已知P/E编号、2个空穴队列、到站前超过150ms继续送料，含原始解码/DDR及精确显示像素核对。另一个RAW280弱反光输入失败，见WEAK_NATIVE_BOUNDARY.json及tests/retained_boundary；第6源帧的像素回放在原R22与本版结果逐位相同，原识别边界仍然存在，没有把它算作通过。RAW控制测试没有运动至停车线，不称作原生RAW停车闭环或实板验收。原基线RAW编译时ISP尚未加入类别核对，差异仅位于关闭的AUTO_RELAY分支，保留了历史编译源，另有最终开启分支的新RAW测试。左右类别顺序不一致停止；连续同类穴位完全漏检不能单靠计数在数学上排除，需已知料序验收。
 
 从新的短英文目录重建，不在冻结包内运行或覆盖：
 
@@ -134,6 +145,7 @@ python scripts/audit_r22_relay.py --left-v2 --work E:/2026FPGA/R22_Left_rebuild
   for rel,row in payload.items():assert hashlib.sha256(z.read(rel)).hexdigest()==row['sha256'],rel
  flash=Path('E:/2026FPGA/BIT_FLASH');dst=flash/(name+'.bit');assert not dst.exists();copy(release/dst.name,dst)
  copy(release/'FIELD_GUIDE.md',flash/(name+'_说明.md'))
+ copy(release/'WEAK_NATIVE_BOUNDARY.json',flash/(name+'_BOUNDARY.json'))
  write(flash/(name+'_RELEASE.json'),{**receipt,'release_directory':str(release),'archive':str(archive),'archive_sha256':sha(archive)})
  assert sha(protected)==protected_sha
  delivery={'status':'DELIVERED_FOR_HUMAN_CALIBRATION','release':str(release),'archive':str(archive),'archive_sha256':sha(archive),'flash_copy':str(dst),'bit_sha256':sha(bit),'payload_count':len(payload)}

@@ -54,8 +54,8 @@ resources={key:int(re.search(r'^#'+key+r'\s+(\d+)',area,re.M)[1]) for key in ['s
 expected_eram,expected_dsp=(99,30) if args.left_v2 else (101,27)
 assert resources['slice']<=21216 and resources['eram']==expected_eram and resources['dsp']==expected_dsp and resources['pll']==5
 if args.left_v2:
- assert 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text()
- assert '.WIDTH(64)) u_relay_display' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text()
+ assert 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
+ assert '.WIDTH(64)) u_relay_display' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
 source=json.loads((work/'frozen_inputs.json').read_text())
 for name,digest in source.items():assert sha(project/name)==digest,('Frozen source changed',name)
 result.update({'status':'PASS_R22_RELAY_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_V2_NO_LED',
