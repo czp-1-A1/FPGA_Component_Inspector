@@ -12,6 +12,7 @@
     <Source_Files>
         <Verilog>
             <File Path="../user_source/hdl_source/present_surface_check.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="218"/></FileInfo></File>
+            <File Path="../user_source/hdl_source/local_edge_surface_check.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="217"/></FileInfo></File>
             <File Path="../user_source/hdl_source/present_review_probe.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="219"/></FileInfo></File>
             <File Path="../user_source/hdl_source/classified_pocket_counter.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="230"/></FileInfo></File>
             <File Path="../user_source/hdl_source/classified_count_pipeline.v"><FileInfo><Attr Name="UsedInSyn" Val="true"/><Attr Name="UsedInP&amp;R" Val="true"/><Attr Name="BelongTo" Val="design_1"/><Attr Name="CompileOrder" Val="231"/></FileInfo></File>

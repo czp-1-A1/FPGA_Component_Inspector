@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -61,7 +61,7 @@ reg [19:0] plane_q;
 wire [9:0] shared_read_address=(feeding || write_valid) ? {5'd28,token[7:3]} : plane_next_address;
 always @(posedge clk)plane_q<=plane[shared_read_address];
 
-compact_template_rom #(.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
+compact_template_rom #(.BUILD_R22(BUILD_R22),.EMPTY_TRACE(EMPTY_TRACE),.BUILD_R20(BUILD_R20),.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
 // R15 production suppresses numbering-confidence UI only; classification
 // colours and LOST/HOLD/CHECK state protection remain active.
 wire [8:0] gap_id=!REPORT_NUMBER_GAPS ? 9'd0 : live[57] ? live[102:94] : live[120:112];
@@ -99,6 +99,25 @@ function [7:0] class_char;
   class_char=glyph==0 ? 8'd32 : (8'h80 | {2'd0,offset,4'd0} | {5'd0,glyph});
  end
 endfunction
+// Diagnostic codes describe actual rejection, never alter a decision.
+function [3:0] trace_reason;
+ input [63:0] c;
+ begin
+  if(c[0])trace_reason=15;
+  else if(!c[1])trace_reason=13;
+  else if(!c[63])trace_reason=0;
+  else if(c[2] || c[31:24]<6 || c[41:37]<3 || c[36:32]<3)trace_reason=1;
+  else if(c[9])trace_reason=5;
+  else if(c[8])trace_reason=6;
+  else if(!c[13])trace_reason=2;
+  else if(!c[10] && c[23:21]>5)trace_reason=4;
+  else if(c[3])trace_reason=10;
+  else if(c[5] && !c[4])trace_reason=9;
+  else if(!c[12] && !c[11] && !c[7])trace_reason=3;
+  else if(c[7] && !c[6])trace_reason=8;
+  else trace_reason=7;
+ end
+endfunction
 function [31:0] hexvalue;
  input [4:0] slot;reg [63:0] c;
  begin
@@ -116,6 +135,14 @@ function [31:0] hexvalue;
    21,28:hexvalue=cal_s && c[63] ? (REVIEW_PROBE ? {24'd0,c[7:0]} : {19'd0,c[26:14]}) : 0;
    22,29:hexvalue=cal_s && c[63] ? (REVIEW_PROBE ? {16'd0,c[56:41]} : {31'd0,c[62]}) : 0;
   endcase
+  if(EMPTY_TRACE && slot>=16 && slot<=29)begin
+   case(slot>=23 ? slot-7 : slot)
+    16:hexvalue={21'd0,c[62:52]};17:hexvalue={22'd0,c[51:42]};
+    18:hexvalue={16'd0,3'd0,c[41:37],3'd0,c[36:32]};
+    19:hexvalue={24'd0,c[31:24]};20:hexvalue={20'd0,1'b0,c[23:21],2'd0,c[20:15]};
+    21:hexvalue={17'd0,c[14:0]};22:hexvalue={28'd0,trace_reason(c)};
+   endcase
+  end
  end
 endfunction
 function [7:0] special_char;
@@ -228,6 +255,12 @@ reg [2:0] line;reg [9:0] plane_address;reg [7:0] code;
 reg [4:0] row,col;reg panel,guide,logo;reg [23:0] ink;
 reg [75:0] ob;reg [8:0] id;reg [19:0] id_bcd;
 reg [10:0] lx,rx;reg [9:0] ly;reg [3:0] glyph_cell;
+wire trace_cross0=EMPTY_TRACE && cal_s && cal[63] &&
+ ((x==cal[62:52] && y+4>=cal[51:42] && y<=cal[51:42]+4) ||
+  (y==cal[51:42] && x+4>=cal[62:52] && x<=cal[62:52]+4));
+wire trace_cross1=EMPTY_TRACE && cal_s && cal[127] &&
+ ((x==cal[126:116] && y+4>=cal[115:106] && y<=cal[115:106]+4) ||
+  (y==cal[115:106] && x+4>=cal[126:116] && x<=cal[126:116]+4));
 reg prefix;integer t;
 wire [10:0] text_dx=x-11'd136;
 always @*begin
@@ -254,6 +287,7 @@ always @*begin
    ((y==HEIGHT/3 || y==HEIGHT*5/9-1 || y==HEIGHT*3/5 || y==HEIGHT*5/6-1) && x>=WIDTH*5/16 && x<WIDTH*11/16)) && (x[3] || y[3]);
   if(x==WIDTH/2 && y[2] && ((y>=HEIGHT/3 && y<HEIGHT*5/9 && (!page_s || !record[57])) ||
    (y>=HEIGHT*3/5 && y<HEIGHT*5/6 && (!page_s || record[57]))))guide=1;
+  if(trace_cross0 || trace_cross1)guide=1;
   for(t=0;t<4;t=t+1)begin
    ob=obs[t*76+:76];id=0;id_bcd=0;
    if(page_s && t/2==record[57])begin

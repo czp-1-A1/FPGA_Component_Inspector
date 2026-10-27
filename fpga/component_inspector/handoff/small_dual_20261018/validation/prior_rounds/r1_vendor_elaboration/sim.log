@@ -1,7 +1,0 @@
-PASS frozen inputs: 371 files; manifest b9d6e07047dfd48ea4177d7cf95636e779f51731f38eb0b58368c1381a4aa0d3
-RUN ['C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', "& 'D:\\BaiduNetdiskDownload\\HX1P35A_Contest_202606\\FPGA_Component_Inspector\\tmp\\small_dual_r1_20261018\\work\\sim\\run_modelsim.ps1' -ModelSimBin 'D:\\modelsim\\win64' -TdSimRoot 'D:\\AAA\\FPGA.....YZW\\sim_release' -OnlyTests @('lane_search','lane_osd','lane_hd_pins','threshold180','pose180','field180','cal180_holes','cal180_body','regions_osd','hd_pins','sobel_view','sobel_tail','dynamic_sobel')"] CWD D:\BaiduNetdiskDownload\HX1P35A_Contest_202606\FPGA_Component_Inspector\tmp\small_dual_r1_20261018\work
-# PASS lane search: 24 full frames/42 current records,all3 pockets both lanes both directions,one slot/nearest center,standing/low gray/feed exclusion,complete contour boundary,outside rejects,cancel,max_cycles38785
-# PASS lane OSD: 4 full rasters/3686400 independent pixels, moving labels follow boxes,2 lanes,unused slots ignored,invalid clears,atomic snapshots,logo/fonts/header,3-clock sync and ENABLE bypass
-vsim.exe : Error loading design
-    + CategoryInfo          : NotSpecified: (Error loading design:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
