@@ -421,7 +421,12 @@ module classified_pocket_counter #(
      end else if(RECOVERABLE && valid_tracks[si[4:0]] && !used[si[4:0]] && old_id!=0 && tracking)begin
       // Already counted: park its ID for de-duplication. Loss alone cannot
       // block other real crossings. Retire only with measured downstream proof.
-      if(counted_retire_safe)begin valid_tracks[si[4:0]]<=0;armed[si[4:0]]<=0;end
+      // A completed count is normally disposable downstream of the gate.
+      // The active repair head still owns a physical task there: preserve
+      // its identity across a bounded missing observation, using the same
+      // existing association/type guards on a real return. This does not
+      // publish a position during the gap or postpone the relay's F6 timer.
+      if(counted_retire_safe && !(STOP_POSITION && old_id==stop_query_id))begin valid_tracks[si[4:0]]<=0;armed[si[4:0]]<=0;end
       else if(missing<8)tracks[track_address]<={gap_motion[DX_BITS-1:0],missing+{{(GAP_BITS-1){1'b0}},1'b1},track_word[59:0]};
       if(si==31)phase<=APPLY_SETUP;else begin si<=si+1'b1;phase<=READ_CHECK;end
      end else if(RECOVERABLE && valid_tracks[si[4:0]] && !used[si[4:0]] && armed[si[4:0]] && old_id==0 && tracking)begin

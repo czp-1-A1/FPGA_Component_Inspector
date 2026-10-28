@@ -1,0 +1,109 @@
+{
+  "scope": "RL4 F6 field diagnostic; observed status plus bounded RTL reproduction, not a verified complete field root cause",
+  "video": {
+    "path": "D:\\微信\\xwechat_files\\wxid_oyjplywmpvja22_06dc\\temp\\RWTemp\\2026-10\\9e20f478899dc29eb19741386f9343c8\\8696dc0f6673f70a12caa36a1e2715a8.mp4",
+    "sha256": "516ea3901a6162dc3ffe89ca10b82ee77570b0963d882ee1bfc078b38879ac2b",
+    "fps": 23.905882352941177,
+    "frames": 254,
+    "width": 1280,
+    "height": 720,
+    "duration": 10.625
+  },
+  "timeline": [
+    {
+      "frame_index": 101,
+      "opencv_pts_ms": 4208.333333333334,
+      "nominal_seconds": 4.22490157480315,
+      "state": "S1",
+      "fault": "0",
+      "last_valid_x": null
+    },
+    {
+      "frame_index": 123,
+      "opencv_pts_ms": 5166.666666666667,
+      "nominal_seconds": 5.145177165354331,
+      "state": "S1",
+      "fault": "0",
+      "last_valid_x": 227
+    },
+    {
+      "frame_index": 125,
+      "opencv_pts_ms": 5250.0,
+      "nominal_seconds": 5.228838582677166,
+      "state": "S1",
+      "fault": "0",
+      "last_valid_x": 213
+    },
+    {
+      "frame_index": 127,
+      "opencv_pts_ms": 5333.333333333334,
+      "nominal_seconds": 5.3125,
+      "state": "S2",
+      "fault": "0",
+      "last_valid_x": 185
+    },
+    {
+      "frame_index": 129,
+      "opencv_pts_ms": 5416.666666666667,
+      "nominal_seconds": 5.396161417322834,
+      "state": "S2",
+      "fault": "0",
+      "last_valid_x": 185
+    },
+    {
+      "frame_index": 131,
+      "opencv_pts_ms": 5500.0,
+      "nominal_seconds": 5.479822834645669,
+      "state": "S4",
+      "fault": "6",
+      "last_valid_x": 185
+    },
+    {
+      "frame_index": 135,
+      "opencv_pts_ms": 5666.666666666667,
+      "nominal_seconds": 5.647145669291339,
+      "state": "S4",
+      "fault": "6",
+      "last_valid_x": 185
+    }
+  ],
+  "timeline_note": "OpenCV decoder PTS used; filmed OSD has display/recording delay, not exact relay/motor latency",
+  "human_confirmation": "No speed adjustment, tape contact, occlusion or refill during the video",
+  "field": {
+    "target_id": 4,
+    "queue_count": 2,
+    "terminal_state": 4,
+    "terminal_fault": 6,
+    "last_valid_x": 185,
+    "window": [
+      80,
+      240
+    ],
+    "held_one_second": false,
+    "actual_terminal_target_x": "unmeasured; do not treat last X as fresh position"
+  },
+  "reproduced_defect": "Already-counted active stop query prematurely retired on one absent classified observation downstream of local gate",
+  "change": "Retain only active STOP_POSITION query under existing counted-track retention; actual returns use unchanged identity/type/epoch guards; no position invented; F6 timeout unchanged",
+  "negative_control": {
+    "path": "E:\\2026FPGA\\.codex_tmp\\r22_brake_dropout_old_r2_20261028",
+    "source_manifest_sha256": "20d2dfdb334d75b85fcf734fc8641c2aa569a885b04c5dfbd7bab3219de3ecd1",
+    "bench_sha256": "0690da029c8adb25a40dc8e2f9ed5aa22d82701eaf269b40dec650be7871ea3e",
+    "log_sha256": "97cbcb419293e6ea57e3a0f504467b5a0be5fa30bccc1bf0e4858cfa8cddb24f",
+    "result": "EXPECTED_OLD_RL4_F6_FAILURE"
+  },
+  "positive_controls": "E:\\2026FPGA\\.codex_tmp\\r22_brake_faults_r2_20261028",
+  "known_unresolved": [
+    {
+      "name": "dense six-object ranking interaction",
+      "result": "FAIL_PRESERVED_NOT_SELECTED_PASS",
+      "path": "E:/2026FPGA/.codex_tmp/r22_brake_dropout_diag_r2_20261028",
+      "detail": "query returns but a newly observed unnumbered upstream track is pruned; gap_open blocks position publication; not fixed by current query retirement guard"
+    },
+    {
+      "name": "weak native RAW280 reflection miss",
+      "result": "INHERITED_BOUNDARY"
+    }
+  ],
+  "new_board_acceptance": false,
+  "precision_1mm_acceptance": false
+}
