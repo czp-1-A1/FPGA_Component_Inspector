@@ -37,7 +37,7 @@ def main():
  assert body in helper and 'wire relay_auto=relay_mode==1 || relay_mode==2;' in top and 'wire relay_paused=relay_mode==2;' in top
 
  git_source_audit(repo,source)
- groups=[(tmp/'r22_v7_final_units_r2_20261028','shift_alarm_v7'),(tmp/'r22_v7_alarm_control_r1_20261028','shift_alarm_v7'),(tmp/'r22_v7_final_rgb_r3_20261028','shift_alarm_v7'),(tmp/'r22_v7_rgb_alarm_r1_20261028','shift_alarm_v7'),(tmp/'r22_v7_final_compat_r1_20261028',None)]
+ groups=[(tmp/'r22_v7_final_units_r2_20261028','shift_alarm_v7'),(tmp/'r22_v7_alarm_control_r2_20261028','shift_alarm_v7'),(tmp/'r22_v7_final_rgb_r3_20261028','shift_alarm_v7'),(tmp/'r22_v7_rgb_alarm_r1_20261028','shift_alarm_v7'),(tmp/'r22_v7_final_compat_r1_20261028',None)]
  selected=[]
  for folder,fixture in groups:
   proof=load(folder/'verification.json');assert proof['status']=='PASS'

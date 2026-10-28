@@ -95,6 +95,11 @@ module tb_v7_alarm_control;
   begin_case();for(i=1;i<=4;i++)add_id(i,0);pause=1;gate_mode=2;add_id(5,0);ticks(4);
   require(alarm_stop && fault==15 && !motor_pin,"fifth EMPTY ignored while paused");
   pause=0;gate_mode=1;ticks(4);require(!motor_pin,"paused alarm automatically restarted");
+  // An explicit K1/newRUN clears an already latched alarm, keeps motor off
+  // during alignment, then starts only after a clean source-frame proof.
+  start=1;ticks(1);run_id++;issued_run=run_id;gt=0;lt=0;start=0;ticks(3);
+  require(!alarm_stop && !motor_pin && state==5,"explicit newRUN did not reset alarm into stopped alignment");
+  source(0,0,0);require(fault==0 && feed && motor_pin && query==0,"explicit newRUN failed clean-transport proof");
   $display("PASS V7 ALARM CONTROL: %0d checks; groups4+P+4, queue8 no alarm, fifth locks, production motor body cannot bypass, clear/newRUN reset, exact hold/pop collision priority, invalid ID/RUN, paused arrival",checks);$finish;
  end
  initial begin #200000000;$fatal(1,"alarm control timeout");end
