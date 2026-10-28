@@ -117,6 +117,16 @@ if args.five_empty_v7:
  top=(project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
  assert 'FIVE_EMPTY_V7=1,' in top and 'RELAY_TARGET_X=152,' in top and 'RELAY_TOL_PX=80,' in top
  assert 'ENABLE_AUTO_RELAY && !relay_alarm &&' in top
+ # TD may pack motor_output into a cell named for another FF. Bind the
+ # actual alarm Q net, registered LUT data net and the V2 output launch cell.
+ alarm_text=(folder/'alarm_motor_interlock.timing').read_text()
+ output_text=(folder/'relay_output.timing').read_text()
+ capture_cells={p.rsplit('.',1)[0] for p in re.findall(r'^End Point\s*:\s*(\S+)',alarm_text,re.M)}
+ output_cells={p.rsplit('.',1)[0] for p in re.findall(r'^Begin Point\s*:\s*(\S+)',output_text,re.M)}
+ assert capture_cells and output_cells and capture_cells<=output_cells,('Alarm capture is not V2 output FF cell',capture_cells,output_cells)
+ assert re.search(r'net:\s+\S*controller/alarm_stop,',alarm_text), 'Actual alarm Q net missing'
+ assert re.search(r'LUT\d+\s+\(reg\).*net:\s+O_relay_control(?:_dup_\d+)?,',alarm_text), 'Registered motor LUT/net missing'
+ result['alarm_interlock_packed_cell_proof']={'capture_cells':sorted(capture_cells),'V2_output_launch_cells':sorted(output_cells),'actual_alarm_Q_and_registered_motor_LUT':True}
  result['alarm_interlock_routed']=True
  result['status']='PASS_R22_RELAY_V7_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_4_KEYS_V2_ALARM_NO_LED'
 (work/'physical_verification.json').write_text(json.dumps(result,indent=2)+'\n')

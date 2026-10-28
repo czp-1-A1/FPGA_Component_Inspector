@@ -76,6 +76,7 @@ def main():
  assert load(boundary/'v6_failure.json')['failure']==load(boundary/'rl5_failure.json')['failure']
  physical=load(work/'physical_verification.json');build=load(work/'build_result.json')
  assert physical['status'].startswith('PASS_R22_RELAY_V7_ROUTED_') and physical['max_delays_matched']==49 and physical['max_delays_ignored']==0
+ assert physical['alarm_interlock_routed'] and physical['alarm_interlock_packed_cell_proof']['actual_alarm_Q_and_registered_motor_LUT']
  assert physical['control_mailbox_bits']==20 and physical['relay_display_declared_bits']==163
  assert all(physical['timing_ns'][k]>=0 for k in ['SWNS','HWNS','STNS','HTNS'])
  bit=work/'runs/phy_1/camera_to_dsi_display.bit';assert sha(bit)==build['bit_sha256']==physical['bit_sha256']
