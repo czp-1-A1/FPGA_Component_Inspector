@@ -38,3 +38,9 @@ fpga/component_inspector/** -text
 # Left refill V3 frozen delivery.
 /releases/r22_relay_left_v3_20261027/** -text
 /scripts/publish_r22_relay_v3.py -text
+
+# Camera-init regression fix and raw-byte verified release.
+/tests/camera_gain_fix/** -text
+/scripts/check_camera_gain_fix.py -text
+/scripts/publish_r22_camera_fix.py -text
+/releases/r22_relay_v3_camfix_20261028/** -text

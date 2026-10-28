@@ -10,15 +10,20 @@ module SC500GainTbl(
 	output reg	[15:0] 	O
 );
 
-	always @(posedge I_clk) begin
-		O <= 0; 
-		case (I)
-			0:O<=16'h0320; 1:O<=16'h0321; 2:O<=16'h0322; 3:O<=16'h0323; 4:O<=16'h0324; 5:O<=16'h0325; 6:O<=16'h0326; 7:O<=16'h0327; 8:O<=16'h0328; 9:O<=16'h0329; 10:O<=16'h032A; 11:O<=16'h032B; 12:O<=16'h032C; 13:O<=16'h032D; 14:O<=16'h032E; 15:O<=16'h032F; 
-			16:O<=16'h0330; 17:O<=16'h0331; 18:O<=16'h0332; 19:O<=16'h0333; 20:O<=16'h0334; 21:O<=16'h0335; 22:O<=16'h0336; 23:O<=16'h0337; 24:O<=16'h0338; 25:O<=16'h0339; 26:O<=16'h033A; 27:O<=16'h033B; 28:O<=16'h033C; 29:O<=16'h033D; 30:O<=16'h033E; 31:O<=16'h033F; 
-			32:O<=16'h0720; 33:O<=16'h0721; 34:O<=16'h0722; 35:O<=16'h0723; 36:O<=16'h0724; 37:O<=16'h0725; 38:O<=16'h0726; 39:O<=16'h0727; 40:O<=16'h0728; 41:O<=16'h0729; 42:O<=16'h072A; 43:O<=16'h072B; 44:O<=16'h072C; 45:O<=16'h072D; 46:O<=16'h072E; 47:O<=16'h072F; 
-			48:O<=16'h0730; 49:O<=16'h0731; 50:O<=16'h0732; 51:O<=16'h0733; 52:O<=16'h0734; 53:O<=16'h0735; 54:O<=16'h0736; 55:O<=16'h0737; 56:O<=16'h0738; 57:O<=16'h0739; 58:O<=16'h073A; 59:O<=16'h073B; 60:O<=16'h073C; 61:O<=16'h073D; 62:O<=16'h073E; 63:O<=16'h073F; 
-			64:O<=16'h0F20; 65:O<=16'h0F21; 66:O<=16'h0F22; 67:O<=16'h0F23; 68:O<=16'h0F24; 69:O<=16'h0F25; 70:O<=16'h0F26; 71:O<=16'h0F27; 72:O<=16'h0F28; 73:O<=16'h0F29; 
-		endcase
-	end
+    // Preserve the original one-clock lookup and all 74 codes. In the full
+    // auto-relay design TD 6.2 folded the constant-address synchronous ROM
+    // to 0000 (GAIN40 must produce 0338). Decode the three ranges directly
+    // so no ROM inference/constant-ROM folding is needed. I_rstn remains
+    // unused, as in the original lookup; camera startup waits 128 clocks.
+    always @(posedge I_clk) begin
+        if (I < 7'd32)
+            O <= {8'h03, 3'b001, I[4:0]};
+        else if (I < 7'd64)
+            O <= {8'h07, 3'b001, I[4:0]};
+        else if (I < 7'd74)
+            O <= {8'h0f, 3'b001, I[4:0]};
+        else
+            O <= 16'h0000;
+    end
 
 endmodule
