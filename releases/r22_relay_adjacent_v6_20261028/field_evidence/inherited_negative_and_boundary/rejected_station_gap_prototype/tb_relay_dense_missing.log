@@ -1,0 +1,341 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish stop work.tb_relay_dense_missing -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 17:33:06 on Oct 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2685) [TFMPC] - Too few port connections for 'main'.  Expected 43, found 26.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_valid'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_run'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_id'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_new'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2685) [TFMPC] - Too few port connections for 'station'.  Expected 43, found 33.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_current_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_bad_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_good_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_clear'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_begin'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_station_gap_lab_negative_r2_20261028\inputs\tb_relay_dense_missing.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_relay_dense_missing(fast)
+# Loading work.pocket_key_motor_controls(fast)
+# Loading work.status_cdc(fast)
+# Loading work.classified_count_pipeline(fast)
+# Loading work.classified_count_pipeline(fast__1)
+# Loading work.pocket_relay_stop_v2(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# INJECT one missing actual query: frame166 id1 x188
+# DEBUG frame210 lead130 state1 query3 posnew0 x210 search1/204
+# TRACK slot1 raw00000e010ae14ca00aa
+# TRACK slot2 raw00000f018d619ca00d2
+# TRACK slot3 raw00000f020fe1eca00fa
+# TRACK slot4 raw00000a0014e28ca014a
+# PUB fr210 pending1 trusted1 gap0 reason0 diag0000 new0 last210 age36 mc2 conflict0
+# DEBUG frame211 lead124 state1 query3 posnew0 x204 search1/198
+# TRACK slot1 raw00000e010a8140a00a4
+# TRACK slot2 raw00000f018d0190a00cc
+# TRACK slot3 raw00000f020f81e0a00f4
+# TRACK slot4 raw00000e00148280a0144
+# PUB fr211 pending1 trusted1 gap0 reason0 diag0000 new0 last204 age36 mc2 conflict0
+# DEBUG frame212 lead118 state1 query3 posnew0 x198 search1/192
+# TRACK slot1 raw00000e010a2134a009e
+# TRACK slot2 raw00000f018ca184a00c6
+# TRACK slot3 raw00000f020f21d4a00ee
+# TRACK slot4 raw00000e00142274a013e
+# PUB fr212 pending1 trusted1 gap0 reason0 diag0000 new0 last198 age36 mc2 conflict0
+# DEBUG frame213 lead112 state2 query3 posnew0 x192 search1/186
+# TRACK slot1 raw00000e0109c128a0098
+# TRACK slot2 raw00000f018c4178a00c0
+# TRACK slot3 raw00000f020ec1c8a00e8
+# TRACK slot4 raw00000e0013c268a0138
+# PUB fr213 pending1 trusted1 gap0 reason0 diag0000 new0 last192 age36 mc2 conflict0
+# DEBUG frame214 lead106 state2 query3 posnew0 x186 search1/180
+# TRACK slot1 raw00000e0109611ca0092
+# TRACK slot2 raw00000f018be16ca00ba
+# TRACK slot3 raw00000f020e61bca00e2
+# TRACK slot4 raw00000e0013625ca0132
+# PUB fr214 pending1 trusted1 gap0 reason0 diag0000 new0 last186 age36 mc2 conflict0
+# DEBUG frame215 lead100 state2 query3 posnew0 x180 search1/174
+# TRACK slot1 raw00000e01090110a008c
+# TRACK slot2 raw00000f018b8160a00b4
+# TRACK slot3 raw00000f020e01b0a00dc
+# TRACK slot4 raw00000e00130250a012c
+# PUB fr215 pending1 trusted1 gap0 reason0 diag0000 new0 last180 age36 mc2 conflict0
+# DEBUG frame216 lead94 state2 query3 posnew0 x174 search1/168
+# TRACK slot1 raw00000e0108a104a0086
+# TRACK slot2 raw00000f018b2154a00ae
+# TRACK slot3 raw00000f020da1a4a00d6
+# TRACK slot4 raw00000e0012a244a0126
+# PUB fr216 pending1 trusted1 gap0 reason0 diag0000 new0 last174 age36 mc2 conflict0
+# DEBUG frame217 lead88 state2 query3 posnew0 x168 search1/162
+# TRACK slot1 raw00000e010840f8a0080
+# TRACK slot2 raw00000f018ac148a00a8
+# TRACK slot3 raw00000f020d4198a00d0
+# TRACK slot4 raw00000e00124238a0120
+# PUB fr217 pending1 trusted1 gap0 reason0 diag0000 new0 last168 age36 mc2 conflict0
+# DEBUG frame218 lead82 state2 query3 posnew0 x162 search1/156
+# TRACK slot1 raw00000e0107e0eca007a
+# TRACK slot2 raw00000f018a613ca00a2
+# TRACK slot3 raw00000f020ce18ca00ca
+# TRACK slot4 raw00000e0011e22ca011a
+# PUB fr218 pending1 trusted1 gap0 reason0 diag0000 new0 last162 age36 mc2 conflict0
+# DEBUG frame219 lead76 state2 query3 posnew0 x156 search1/150
+# TRACK slot1 raw00000e010780e0a0074
+# TRACK slot2 raw00000f018a0130a009c
+# TRACK slot3 raw00000f020c8180a00c4
+# TRACK slot4 raw00000e00118220a0114
+# PUB fr219 pending1 trusted1 gap0 reason0 diag0000 new0 last156 age36 mc2 conflict0
+# DEBUG frame220 lead70 state2 query3 posnew0 x150 search1/144
+# TRACK slot1 raw00000e010720d4a006e
+# TRACK slot2 raw00000f0189a124a0096
+# TRACK slot3 raw00000f020c2174a00be
+# TRACK slot4 raw00000e00112214a010e
+# PUB fr220 pending1 trusted1 gap0 reason0 diag0000 new0 last150 age36 mc2 conflict0
+# DEBUG frame221 lead64 state2 query3 posnew0 x144 search1/138
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr221 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame222 lead64 state2 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr222 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame223 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr223 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame224 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr224 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame225 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr225 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame226 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr226 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame227 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr227 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame228 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr228 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame229 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr229 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame230 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr230 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame231 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr231 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame232 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr232 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame233 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr233 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame234 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr234 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame235 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr235 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame236 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr236 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame237 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr237 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame238 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr238 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame239 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr239 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame240 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr240 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame241 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr241 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame242 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr242 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame243 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr243 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame244 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr244 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame245 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr245 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame246 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr246 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame247 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr247 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame248 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr248 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame249 lead64 state3 query3 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr249 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age36 mc2 conflict0
+# DEBUG frame250 lead64 state1 query4 posnew0 x144 search1/144
+# TRACK slot1 raw00000e0106c0c8a0068
+# TRACK slot2 raw00000f01894118a0090
+# TRACK slot3 raw00000f020bc168a00b8
+# TRACK slot4 raw00000e0010c208a0108
+# PUB fr250 pending1 trusted1 gap0 reason0 diag0000 new0 last144 age35 mc2 conflict0
+# DEBUG frame251 lead61 state2 query4 posnew0 x181 search1/178
+# TRACK slot1 raw00000e010690c2a0065
+# TRACK slot2 raw00000f01891112a008d
+# TRACK slot3 raw00000f020b9162a00b5
+# TRACK slot4 raw00000e00109202a0105
+# PUB fr251 pending1 trusted1 gap0 reason0 diag0000 new0 last181 age36 mc2 conflict0
+# DEBUG frame252 lead58 state2 query4 posnew0 x178 search1/175
+# TRACK slot1 raw00000e010660bca0062
+# TRACK slot2 raw00000f0188e10ca008a
+# TRACK slot3 raw00000f020b615ca00b2
+# TRACK slot4 raw00000e001061fca0102
+# PUB fr252 pending1 trusted1 gap0 reason0 diag0000 new0 last178 age36 mc2 conflict0
+# DEBUG frame253 lead55 state2 query4 posnew0 x175 search1/172
+# TRACK slot1 raw00000e010630b6a005f
+# TRACK slot2 raw00000f0188b106a0087
+# TRACK slot3 raw00000f020b3156a00af
+# TRACK slot4 raw00000e001031f6a00ff
+# PUB fr253 pending1 trusted1 gap0 reason0 diag0000 new0 last175 age36 mc2 conflict0
+# DEBUG frame254 lead52 state2 query4 posnew0 x172 search1/169
+# TRACK slot1 raw00000e010600b0a005c
+# TRACK slot2 raw00000f01888100a0084
+# TRACK slot3 raw00000f020b0150a00ac
+# TRACK slot4 raw00000e001001f0a00fc
+# BADLE frame254 lead49 query4 leid5 source255 slot4 word00000e028fd1eaa00f9
+# ** Fatal: missing upstream target silently skipped or invented
+#    Time: 9490360 ns  Scope: tb_relay_dense_missing File: E:/2026FPGA/.codex_tmp/r22_station_gap_lab_negative_r2_20261028/inputs/tb_relay_dense_missing.sv Line: 89
+# ** Note: $finish    : E:/2026FPGA/.codex_tmp/r22_station_gap_lab_negative_r2_20261028/inputs/tb_relay_dense_missing.sv(89)
+#    Time: 9490360 ns  Iteration: 1  Instance: /tb_relay_dense_missing
+# Break at E:/2026FPGA/.codex_tmp/r22_station_gap_lab_negative_r2_20261028/inputs/tb_relay_dense_missing.sv line 89
+# Stopped at E:/2026FPGA/.codex_tmp/r22_station_gap_lab_negative_r2_20261028/inputs/tb_relay_dense_missing.sv line 89
+#  quit -code 0
+# End time: 17:33:09 on Oct 28,2026, Elapsed time: 0:00:03
+# Errors: 1, Warnings: 29

@@ -1,0 +1,50 @@
+{
+  "version": "R22_RelayAuto_Left_V6_Adjacent_20261028",
+  "branch": "codex/r22-adjacent-reacquire-v6",
+  "source_commit": "ec53ab487fa094da6eff0a101d3280352e727250",
+  "parent_rl5_commit": "1972dea",
+  "source_worktree": "D:\\CodexWork\\FPGA_R22_Relay_20261027",
+  "build_work": "E:\\2026FPGA\\.codex_tmp\\r22_adjacent_v6_build_r1_20261028",
+  "pushed": false,
+  "bit_sha256": "7a6c18f56d90f0b2743d544a55bb4167882f4dbb930095b847f4372355ff20bd",
+  "bit_bytes": 1789539,
+  "td_version": "V6.2.168116",
+  "seed": 2,
+  "resources": {
+    "slice": 18672,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 88.00905,
+  "timing_ns": {
+    "SWNS": 0.001,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "source_files": 636,
+  "hardware_dependencies": 104,
+  "parameters": {
+    "window_x": [
+      80,
+      240
+    ],
+    "target_x": 160,
+    "tolerance_px": 80,
+    "advance_px": 32,
+    "trigger_x": 192,
+    "hold_ms": 1000,
+    "still_px": 2,
+    "stale_ms": 150,
+    "stopped_reacquire_ms": 500,
+    "retry_per_head": 1,
+    "maximum_search_radius_px": 20
+  },
+  "gpio": "rightJ2 pin1/V2 HIGH; board5V; no LED; original ADC/SDC",
+  "layout": "single row; right count ROI + left amber acceptance box80..240; auxiliary guides hidden",
+  "keys": "K1 freshRUN / K2 pause-resume / K3 clear-stop / K4 stop / SW3 up stop down freshRUN",
+  "source_manifest_sha256": "d1775df469f3e67787d7b9fc0e31264429f3a4427200f8458cd126279c7daa68",
+  "verification_sha256": "df21c9a2547d778c0451a6bd4e206a27ddac7f8804202a7b227ba5b9ff3bb807",
+  "board_acceptance": "PENDING_HUMAN_SAME_TRIPLE_TAPE_RETEST"
+}

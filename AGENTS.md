@@ -1,10 +1,12 @@
 # RL6 当前实施（2026-10-28，用户已明确“可以，执行”）
 
+- 已生成独立交付E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V6_Adjacent_20261028.bit，SHA7a6c18f56d90f0b2743d544a55bb4167882f4dbb930095b847f4372355ff20bd，与实际构建/发布原件一致；源码ec53ab4（生产功能cc0d804），未推送。原件releases/r22_relay_adjacent_v6_20261028及相邻ZIP，ZIP SHAa79eeadf1bd20bdec9e09579af4e1ec0dc86a7c463efcbf591a9263102f60001，1086载荷/636源/104硬件依赖。docs/R22_ADJACENT_V6_DELIVERY.json为回执；BIT_FLASH同前缀_说明.md/_RELEASE.json含操作和资源来源。旧RL5/以太网R2保持。最终Git字节审计记录在docs/R22_ADJACENT_V6_GIT_AUDIT.json，是否通过以该回执为准。
 - 当前分支codex/r22-adjacent-reacquire-v6，基线1972dea；工作目录D:/CodexWork/FPGA_R22_Relay_20261027。实施已获授权，不停在方案。新增8份生产源修改：停机交接下一队首、待处理EMPTY身份保留/停车提示限制、一次500ms电机关断重定位、同帧来源与候选/关联冻结诊断、RL6底部诊断和163bit显示邮箱。核心主计数、分类判据、相机增益修复、ADC/SDC原件保持。仍单排右数左补、窗口80..240/触发192/完整1000ms；无LED、V2高有效/板载5V。
 - 生产冻结于E:/2026FPGA/.codex_tmp/r22_adjacent_v6_build_r1_20261028，636源/104硬件依赖；完整构建及严格审计完成，bit SHA7a6c18f56d90f0b2743d544a55bb4167882f4dbb930095b847f4372355ff20bd。Slice18672/21216=88.01%、ERAM98、DSP30、PLL5，SWNS+.001/HWNS+.020/双TNS0，49bound无忽略/20Gray/9邮箱/四键+SW3/V2无LED通过。不得改冻结源或已交付bit。目标独立名R22_RelayAuto_Left_V6_Adjacent_20261028.bit，不提前声称实板成功。
 - 29项全新选定检查完成：12项final_units_r2（1/2/3/5/8连空穴、变速3/4/6/快10px帧、跨S2/S7连续7帧丢失后返回、持续缺失/错类别负例、23控制检查、2栅格106诊断字符），final_rgb2（RGB205帧3保持+163bit邮箱76次完整交付），final_second1（实际100MHz/100000000周期1秒），final_compat5，native1（V6/tol80、12RAW/24精确显示，未到停车线，不混称RAW停车通过），camera_gate1（实际307单元相机锥/2复位x126笔串行写入、非光学读回），7核心回归。全部输入SHA与冻结源一致；原r1修正前夹具不选最终证据。
 - 额外高速压力40px穴距/突然24px帧出现主计数ID5类别顺序错误，第一次停车前，RL5与V6同输入同错误/同frame14/lead580；不是新停车逻辑引入，但不能声称任意高速。E:/2026FPGA/.codex_tmp/r22_v6_highspeed_boundary_20261028保存两版输入与失败日志，发布单独归档，绝不算通过；不放松编号/类别断言掩盖错误。
-- scripts/publish_r22_adjacent_v6.py需全部29项新选定检查/实际布线审计/636源码Git原始字节通过才发布，包含源码、报告、旧拒绝的负例。docs/R22_ADJACENT_V6_FIELD_GUIDE.md包含S6/S7动作、底部RD解码、复测方法。原上游gap保护仍在，不允许用预测位置/错编号/错类别或跳过队首假装成功。
+- scripts/publish_r22_adjacent_v6.py已核全部29项新选定检查/实际布线审计/636源码Git原始字节才发布，包含源码、报告、完整相机综合网表和旧拒绝负例/当前高速失败对照。docs/R22_ADJACENT_V6_FIELD_GUIDE.md包含S6/S7动作、底部RD解码、复测方法。原上游gap保护仍在，不允许用预测位置/错编号/错类别或跳过队首假装成功。
+- 下一步用户保持原接线，烧RL6，先固定中低速空跑三连穴，拍完整上方RL6及底部RD；Q归零并继续送料才算连续成功。相邻穴在宽框内可连续停数秒但N逐个切换/Q递减；出现S7继续拍2秒，S4后拍3秒且不要先K3清诊断。无需用户自己解码。实物三连停车、不同速度重复性、光学画面及真实补件未验收，不声称±1mm。全部TD/ModelSim任务已结束，无额外构建/自动跟进。
 - 只有本地文件/仿真/构建动作，没有烧录、接线、电机或继电器操作；无子代理。完成时须复制bit到E:/2026FPGA/BIT_FLASH并核SHA，写资源/来源，保持LATEST_READONLY.bit SHA30d067cef0667893fe548ba04e423cd6618b76f119cb2e0ecf48b96ba6a5b20f。用户实测三连复现仍待进行。
 
 # 最新三连空穴诊断（2026-10-28，以下为实施前分析记录）

@@ -1,0 +1,42 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:23:14 on Oct 28,2026
+vlog -sv -work work E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_adjacent_v6_control.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_adjacent_v6_osd.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_adjacent_v6_transport.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_one.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_two.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_five.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_eight.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_return.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_missing.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_wrong_kind.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_variable.sv E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_fast.sv 
+-- Compiling module tb_adjacent_v6_control
+-- Compiling module tb_adjacent_v6_osd
+-- Compiling module tb_adjacent_v6_transport
+-- Compiling module tb_v6_one
+-- Compiling module tb_v6_two
+-- Compiling module tb_v6_five
+-- Compiling module tb_v6_eight
+-- Compiling module tb_v6_return
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_missing.sv(1)
+** at inputs/tb_adjacent_v6_transport.sv(2): (vlog-2275) 'tb_adjacent_v6_transport' already exists and will be overwritten.
+-- Compiling module tb_adjacent_v6_transport
+-- Compiling module tb_v6_missing
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_wrong_kind.sv(1)
+** at inputs/tb_adjacent_v6_transport.sv(2): (vlog-2275) 'tb_adjacent_v6_transport' already exists and will be overwritten.
+-- Compiling module tb_adjacent_v6_transport
+-- Compiling module tb_v6_wrong_kind
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_variable.sv(1)
+** at inputs/tb_adjacent_v6_transport.sv(2): (vlog-2275) 'tb_adjacent_v6_transport' already exists and will be overwritten.
+-- Compiling module tb_adjacent_v6_transport
+-- Compiling module tb_v6_variable
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\r22_v6_final_units_r2_20261028\inputs\tb_v6_fast.sv(1)
+** at inputs/tb_adjacent_v6_transport.sv(2): (vlog-2275) 'tb_adjacent_v6_transport' already exists and will be overwritten.
+-- Compiling module tb_adjacent_v6_transport
+-- Compiling module tb_v6_fast
+
+Top level modules:
+	tb_adjacent_v6_control
+	tb_adjacent_v6_osd
+	tb_v6_one
+	tb_v6_two
+	tb_v6_five
+	tb_v6_eight
+	tb_v6_return
+	tb_v6_missing
+	tb_v6_wrong_kind
+	tb_v6_variable
+	tb_v6_fast
+End time: 19:23:14 on Oct 28,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 4

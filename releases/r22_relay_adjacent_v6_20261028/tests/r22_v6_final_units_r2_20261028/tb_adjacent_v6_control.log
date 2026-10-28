@@ -1,0 +1,36 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish stop work.tb_adjacent_v6_control -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 19:23:15 on Oct 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_adjacent_v6_control(fast)
+# Loading work.pocket_relay_stop_v2(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# PASS ADJACENT V6 control: 23 checks, no-pulse three IDs, fresh full holds, stopped bounded recovery, wrong ID/run/frame rejection, second loss and permanent absence, upstream handover, hard-fault precedence
+# ** Note: $finish    : E:/2026FPGA/.codex_tmp/r22_v6_final_units_r2_20261028/inputs/tb_adjacent_v6_control.sv(97)
+#    Time: 8807270 ns  Iteration: 1  Instance: /tb_adjacent_v6_control
+# Break at E:/2026FPGA/.codex_tmp/r22_v6_final_units_r2_20261028/inputs/tb_adjacent_v6_control.sv line 97
+# Stopped at E:/2026FPGA/.codex_tmp/r22_v6_final_units_r2_20261028/inputs/tb_adjacent_v6_control.sv line 97
+#  quit -code 0
+# End time: 19:23:17 on Oct 28,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
