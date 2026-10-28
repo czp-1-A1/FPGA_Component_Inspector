@@ -105,6 +105,7 @@ def main():
  copy(repo/'docs/R22_ADJACENT_V6_FIELD_GUIDE.md',release/'FIELD_GUIDE.md');copy(oldrelease/'WEAK_NATIVE_BOUNDARY.json',release/'WEAK_NATIVE_BOUNDARY.json')
  for script in ['build_r22_relay.py','audit_r22_relay.py','relay_left_checks.py','relay_left_native_check.py','check_camera_gain_fix.py','publish_r22_adjacent_v6.py']:
   copy(repo/'scripts'/script,release/'scripts'/script)
+ copy(work/'v6_camera_gate.v',release/'build/v6_camera_gate.v')
  for p in work.iterdir():
   if p.is_file() and p.suffix in ['.json','.py','.tcl','.log']:copy(p,release/'build'/p.name)
  for stage in ['syn_1','phy_1']:
