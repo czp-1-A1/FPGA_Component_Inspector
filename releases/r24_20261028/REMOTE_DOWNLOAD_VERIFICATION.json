@@ -1,0 +1,47 @@
+{
+  "status": "PASS_REMOTE_CLONE_654_SOURCE_ALL_7_DOWNLOADED_ASSETS_1560_PAYLOAD_AND_102_DEPENDENCY_PREPARATION",
+  "verified_at_utc": "2026-10-28T08:24:06.382780+00:00",
+  "source_commit": "ee0f63300315c3f68d436497e2be3fa041f557c3",
+  "remote_assets": {
+    "ASSETS_SHA256.json": {
+      "bytes": 858,
+      "sha256": "ade413d2e98f476700f0c8f864500d50ddb82ab2715f436ca8e90c433cc9fe50"
+    },
+    "PACKAGE_VERIFICATION.json": {
+      "bytes": 1277,
+      "sha256": "c2045656d183742b4746e527e03f353694c136aaf33514081d11b077f71daab8"
+    },
+    "R24_DualROI_20261028_0ce9f606.bit": {
+      "bytes": 1789539,
+      "sha256": "0ce9f60635aa00f2318eb04403e604f166e92a6770606ed323bddc0549f29e20"
+    },
+    "R24_DualROI_20261028_0ce9f606_source_and_evidence.zip": {
+      "bytes": 165062811,
+      "sha256": "2f5f7ce1a620071019013b22e8926b6ec2a7dabee440e4596800f857580b40c4"
+    },
+    "R24_HANDOFF.md": {
+      "bytes": 6068,
+      "sha256": "37e81b9a339d5e903a5379c2e01525e26c759255885492f908e72e98c2cdc7a7"
+    },
+    "RELEASE.json": {
+      "bytes": 941,
+      "sha256": "f0ce5327c3415c8ebaa22b10424d4c1ce21a7886aff4ee4af104f0fea7de2a13"
+    },
+    "SHA256.txt": {
+      "bytes": 222,
+      "sha256": "db84d68967d671761eb4e177b200397f8a3d96e69b346253e58718b90c58fdc4"
+    }
+  },
+  "source_inputs": 654,
+  "archive_payloads": 1560,
+  "actual_candidate_tests": 12,
+  "identity_reused_tests": 7,
+  "fresh_project_dependencies": 102,
+  "source_manifest_sha256": "af9915f0910895ef0dc427e4d01b350323bc190e8db3b26a762b2124935123c1",
+  "executed_manifest_sha256": "d726f624132ea610b5d2010648f50f765dbc3b151e26de44ffce88ee23f19e9e",
+  "public_release_page_http": 200,
+  "anonymous_SHA256_download_matches": true,
+  "scope": "Remote source/archive identities and completed evidence rechecked, plus fresh TD preparation; no fresh simulation/routing/board run",
+  "board_acceptance": "HUMAN_PENDING",
+  "field_false_review_fixed": false
+}

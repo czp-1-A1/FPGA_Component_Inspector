@@ -1,3 +1,9 @@
+## R24已完成远端上传交接
+
+源码固定提交ee0f63300315c3f68d436497e2be3fa041f557c3，标签r24-dual-roi-20261028-release，发布页https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/tag/r24-dual-roi-20261028-release。全部7附件已上传且独立下载SHA相同，新克隆654源/1560载荷/19测试日志身份及真实物理证据核验通过，fresh 102项TD依赖准备通过。公开页面和匿名SHA文件下载均通过。详见releases/r24_20261028/GITHUB_UPLOAD_RECEIPT.json及REMOTE_DOWNLOAD_VERIFICATION.json。
+
+接棒分支r24-dual-roi-20261028的后续提交只补远端交接回执；固定标签继续指向以上已验证源码提交。旧分支/标签/发布保留，主分支不动。尚未上板、现场掉帧/误复核待验，网络链路未实现。
+
 # 当前R24上传交接检查点
 
 用户本轮明确要求“把最新完整工程上传交接”，授权提交与上传，覆盖先前检查点中的“不推送”历史范围。本次只发布已验证R24，不改RTL/测试答案/阈值/SDC，不操作板卡和用户TD GUI，不覆盖旧分支/标签/发布附件。
