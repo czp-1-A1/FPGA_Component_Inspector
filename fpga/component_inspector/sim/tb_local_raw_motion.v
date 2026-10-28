@@ -86,13 +86,13 @@ classified_pocket_counter_R10 #(.RECORD_ONLY(1),.MOTION_RECOVERY(1),.TAIL_RECOVE
 integer event_count=0;
 always @(negedge procclk)begin
  if(rst && dut.search_new)$display("LOCAL_CANDIDATES source=%0d data=%0152h",frame_no,dut.recorder_candidates);
- if(rst && dut.classified_counting.pipeline.event_valid)begin
+ if(rst && dut.classified_counting.single_region.pipeline.event_valid)begin
   event_count++;
-  if(dut.classified_counting.pipeline.event_id!=event_count ||
-     dut.classified_counting.pipeline.event_frame!=(event_count==1 ? 6 : event_count==2 ? 8 : event_count==3 ? 12 : 17) ||
-     dut.classified_counting.pipeline.event_kind!=((event_count==2 || event_count==4) ? 3 : 2))
+  if(dut.classified_counting.single_region.pipeline.event_id!=event_count ||
+     dut.classified_counting.single_region.pipeline.event_frame!=(event_count==1 ? 6 : event_count==2 ? 8 : event_count==3 ? 12 : 17) ||
+     dut.classified_counting.single_region.pipeline.event_kind!=((event_count==2 || event_count==4) ? 3 : 2))
    $fatal(1,"actual native event source/kind/number differs from finite physical crossing truth");
-  $display("LOCAL_EVENT id=%0d source=%0d kind=%0d",event_count,dut.classified_counting.pipeline.event_frame,dut.classified_counting.pipeline.event_kind);
+  $display("LOCAL_EVENT id=%0d source=%0d kind=%0d",event_count,dut.classified_counting.single_region.pipeline.event_frame,dut.classified_counting.single_region.pipeline.event_kind);
  end
 end
 

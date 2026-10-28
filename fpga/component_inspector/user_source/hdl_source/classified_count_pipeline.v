@@ -100,3 +100,40 @@ module classified_count_pipeline #(parameter LINE_X=640,STOP_CYCLES=15000000,PAG
   end
  end
 endmodule
+
+// Each bank sees only its own classified observations. Source proof and user
+// commands are shared; identities, direction, recovery and empty lists are not.
+// Both records must belong to the current source epoch before publication.
+module dual_region_count_pipeline #(
+ parameter LINE_X=640,STOP_CYCLES=15000000,PAGE_CYCLES=200000000,
+ parameter DIAGNOSTICS=0,RECORD_ONLY=1,MOTION_RECOVERY=1,TAIL_RECOVERY=1,
+ parameter OBS_PER_REGION=4,ORDERED_HANDOFF=1,RECOVERABLE=1,VELOCITY_ASSOC=1,LOCAL_RECOVERY=1
+)(
+ input wire clk,rst_n,source_start,frame_commit,frame_bad,sample_new,
+ input wire [63:0] config_tag,input wire [152*OBS_PER_REGION-1:0] objects,
+ input wire [31:0] empty_probe,input wire [16:0] command,
+ output wire [511:0] frame_record,live_record,output wire record_ready,
+ output wire [1:0] event_valid,output wire [31:0] event_run,
+ output wire [17:0] event_id,output wire [63:0] event_frame,
+ output wire [3:0] event_kind,output wire [7:0] event_reason,
+ output wire [1:0] hold_valid,output wire [21:0] hold_x,output wire [19:0] hold_y
+);
+ wire [1:0] ready;
+ genvar bank;
+ generate for(bank=0;bank<2;bank=bank+1)begin : regions
+  wire [152*OBS_PER_REGION-1:0] isolated_objects;
+  if(bank==0)assign isolated_objects={{(76*OBS_PER_REGION){1'b0}},objects[0+:76*OBS_PER_REGION]};
+  else assign isolated_objects={objects[76*OBS_PER_REGION+:76*OBS_PER_REGION],{(76*OBS_PER_REGION){1'b0}}};
+  classified_count_pipeline #(.LINE_X(LINE_X),.STOP_CYCLES(STOP_CYCLES),.PAGE_CYCLES(PAGE_CYCLES),
+   .DIAGNOSTICS(DIAGNOSTICS),.RECORD_ONLY(RECORD_ONLY),.MOTION_RECOVERY(MOTION_RECOVERY),
+   .TAIL_RECOVERY(TAIL_RECOVERY),.OBS_PER_REGION(OBS_PER_REGION),.ORDERED_HANDOFF(ORDERED_HANDOFF),
+   .RECOVERABLE(RECOVERABLE),.VELOCITY_ASSOC(VELOCITY_ASSOC),.LOCAL_RECOVERY(LOCAL_RECOVERY)) pipeline(
+   .clk(clk),.rst_n(rst_n),.source_start(source_start),.frame_commit(frame_commit),.frame_bad(frame_bad),
+   .sample_new(sample_new),.config_tag(config_tag),.objects(isolated_objects),.empty_probe(empty_probe),.command(command),
+   .frame_record(frame_record[bank*256+:256]),.live_record(live_record[bank*256+:256]),.record_ready(ready[bank]),
+   .event_valid(event_valid[bank]),.event_run(event_run[bank*16+:16]),.event_id(event_id[bank*9+:9]),
+   .event_frame(event_frame[bank*32+:32]),.event_kind(event_kind[bank*2+:2]),.event_reason(event_reason[bank*4+:4]),
+   .hold_valid(hold_valid[bank]),.hold_x(hold_x[bank*11+:11]),.hold_y(hold_y[bank*10+:10]));
+ end endgenerate
+ assign record_ready=&ready;
+endmodule

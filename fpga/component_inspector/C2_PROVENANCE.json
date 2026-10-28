@@ -1,0 +1,10 @@
+{
+  "status": "ISOLATED_COUNTER_UNREACHABLE_FALLBACK_FOLD_CANDIDATE",
+  "original_counter_sha256": "e72bf92a1b589171c2a762bdbb2c376d2fffb51dc457647a213982cefabed8d8",
+  "candidate_counter_sha256": "67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c",
+  "production_changes_from_verified_r24": [
+    "user_source/hdl_source/classified_pocket_counter.v"
+  ],
+  "proof": "In CHECK, RECOVERABLE counted old_id!=0 and armed old_id==0 branches precede the guarded fallback; its final disjunction is a subset of those earlier branches. Non-RECOVERABLE behavior is unchanged.",
+  "not_promoted_to_main_source": true
+}

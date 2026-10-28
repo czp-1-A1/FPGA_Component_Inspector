@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\FpgaWork\dual_roi_r24_20261028\fpga\component_inspector\sim\present_motion\verify_present_ui.py", line 85, in <module>
+    report=dict(status='PASS' if all(d['mismatch']==0 for d in records) else 'FAIL_RETAINED',source_manifest_sha256=sha(p/'R17_FROZEN_INPUTS.json'),frames=records,expected_contract='Literal fixed values and UI geometry; no DUT template/formatter evaluated')
+                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\FpgaWork\dual_roi_r24_20261028\fpga\component_inspector\sim\present_motion\verify_present_ui.py", line 13, in <lambda>
+    sha=lambda q:hashlib.sha256(q.read_bytes()).hexdigest()
+                                ^^^^^^^^^^^^^^
+  File "C:\Users\yiziw\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1050, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yiziw\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\FpgaWork\\dual_roi_r24_20261028\\fpga\\component_inspector\\R17_FROZEN_INPUTS.json'

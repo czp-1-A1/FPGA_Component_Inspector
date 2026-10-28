@@ -3,7 +3,7 @@
 // A shared flood-fill engine runs during vertical blanking, without video backpressure.
 module frame_shape_search #(
  parameter PRESENT_TRACE=0,
- parameter WIDTH=1024,HEIGHT=600,REGIONS=0,
+ parameter WIDTH=1024,HEIGHT=600,REGIONS=0,DUAL_REGION_COUNT=0,
  parameter INDEXED_CANDIDATES=1,
  // Counting-only trial margin from upstream's measured six-cell extent.
  // A phase-eroded locating hole can also measure six cells. Expand only in
@@ -39,6 +39,7 @@ module frame_shape_search #(
  // always receives its original best2, independently of this counting sideband.
  output wire [607:0] recorder_objects,
  input wire recorder_hold_valid,input wire [10:0] recorder_hold_x,input wire [9:0] recorder_hold_y,
+ input wire recorder_hold_valid2,input wire [10:0] recorder_hold_x2,input wire [9:0] recorder_hold_y2,
  output wire [127:0] probe_record,output wire probe_ready
 );
 // Average each 2x2 source block; every source pixel contributes. Detection
@@ -260,7 +261,7 @@ wire in_region0=inside_region(center_x,center_y[9:0],region_bounds[41:0]);
 wire in_region1=inside_region(center_x,center_y[9:0],region_bounds[83:42]);
 wire region_now=REGIONS && !in_region0 && in_region1;
 wire allowed_now=!REGIONS || ((in_region0 || in_region1) && region_supported[region_now]);
-reg held_valid;reg [10:0] held_x;reg [9:0] held_y;reg [1:0] held_found;
+reg held_valid,held_valid2;reg [10:0] held_x,held_x2;reg [9:0] held_y,held_y2;reg [1:0] held_found;
 reg candidate_region,candidate_allowed;reg [11:0] distance;
 wire [41:0] candidate_bounds=candidate_region ? region_bounds[83:42] : region_bounds[41:0];
 wire [10:0] target_x=REGIONS ? ({1'b0,candidate_bounds[41:31]}+candidate_bounds[30:20])/2 : WIDTH/2;
@@ -416,9 +417,12 @@ end endgenerate
 wire [$clog2(SLOTS)-1:0] bank0=candidate_region ? REGION_SLOTS : 0,bank1=bank0+1'b1;
 wire [$clog2(SLOTS)-1:0] bank2=COUNT_CANDIDATES && REGIONS ? bank0+2 : bank0,bank3=COUNT_CANDIDATES && REGIONS ? bank0+3 : bank0;
 wire candidate_preferred=candidate_state>=2;
-wire [10:0] held_dx=center_x>held_x ? center_x-held_x : held_x-center_x;
-wire [10:0] held_dy=center_y>held_y ? center_y-held_y : held_y-center_y;
-wire preferred_main=COUNT_CANDIDATES && REGIONS && held_valid && candidate_preferred && held_dx<=12 && held_dy<=16;
+wire [10:0] selected_held_x=DUAL_REGION_COUNT && candidate_region ? held_x2 : held_x;
+wire [9:0] selected_held_y=DUAL_REGION_COUNT && candidate_region ? held_y2 : held_y;
+wire selected_held_valid=DUAL_REGION_COUNT && candidate_region ? held_valid2 : held_valid;
+wire [10:0] held_dx=center_x>selected_held_x ? center_x-selected_held_x : selected_held_x-center_x;
+wire [10:0] held_dy=center_y>selected_held_y ? center_y-selected_held_y : selected_held_y-center_y;
+wire preferred_main=COUNT_CANDIDATES && REGIONS && selected_held_valid && candidate_preferred && held_dx<=12 && held_dy<=16;
 wire before_best=!found_bank[bank0] || (candidate_preferred && state_bank[bank0]<2) ||
  ((candidate_preferred==(state_bank[bank0]>=2)) && (distance<distance_bank[bank0] ||
  (distance==distance_bank[bank0] && component_count>count_bank[bank0])));
@@ -694,7 +698,7 @@ always @(posedge clk or negedge rst_n)begin
   pack_index<=0;pack_anchor<=0;pack_duplicate<=0;
   for(bi=0;bi<8;bi=bi+1)pointer_bank[bi]<=bi%4;
   high_valid<=0;high_index<=0;high_confirmed<=0;
-  held_valid<=0;held_x<=0;held_y<=0;held_found<=0;
+  held_valid<=0;held_x<=0;held_y<=0;held_valid2<=0;held_x2<=0;held_y2<=0;held_found<=0;
   edge_feed_observed<=0;edge_feed_y[0]<=0;edge_feed_y[1]<=0;row_anchor_valid<=0;row_anchor_y[0]<=0;row_anchor_y[1]<=0;row_anchor_distance[0]<=4095;row_anchor_distance[1]<=4095;
   small_pass<=0;ready<=0;sample_new<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;foreground_count<=0;box_width<=0;box_height<=0;
   box_x0<=0;box_x1<=0;box_y0<=0;box_y1<=0;seen<=0;cap_count<=0;capture_foreground<=0;phase<=IDLE;
@@ -710,10 +714,11 @@ always @(posedge clk or negedge rst_n)begin
   left_dark<=0;right_dark<=0;context_dark<=0;context_good<=0;context_vertical_ok<=1;context_left_ok<=0;context_left_edge<=0;context_edge_dark<=0;context_upper_edge_ok<=0;
  end else begin
   sample_new<=0;mem_write<=0;q_write<=0;
-  if(frame_start || invalidate)begin high_valid<=0;high_confirmed<=0;held_valid<=0;held_found<=0;edge_feed_observed<=0;row_anchor_valid<=0;small_pass<=0;ready<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;phase<=IDLE;seen<=0;cap_count<=0;capture_foreground<=0;end
+  if(frame_start || invalidate)begin high_valid<=0;high_confirmed<=0;held_valid<=0;held_valid2<=0;held_found<=0;edge_feed_observed<=0;row_anchor_valid<=0;small_pass<=0;ready<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;phase<=IDLE;seen<=0;cap_count<=0;capture_foreground<=0;end
   else if(pixel_sof)begin
    high_valid<=0;high_confirmed<=0;
    held_valid<=COUNT_CANDIDATES && recorder_hold_valid;held_x<=recorder_hold_x;held_y<=recorder_hold_y;held_found<=0;
+   held_valid2<=COUNT_CANDIDATES && DUAL_REGION_COUNT && recorder_hold_valid2;held_x2<=recorder_hold_x2;held_y2<=recorder_hold_y2;
    edge_feed_observed<=0;row_anchor_valid<=0;small_pass<=0;scan_region<=0;seen<=1;cap_count<=0;capture_foreground<=0;ready<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;phase<=IDLE;
    foreground_count<=0;box_width<=0;box_height<=0;
    for(bi=0;bi<SLOTS;bi=bi+1)begin

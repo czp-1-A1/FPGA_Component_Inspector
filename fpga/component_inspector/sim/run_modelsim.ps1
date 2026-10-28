@@ -57,6 +57,15 @@ try {
         "$ip/divider/divider_gate.v", "$ip/blk_mem_gen_awb_delay_signal/blk_mem_gen_awb_delay_signal.v",
         "$ip/blk_mem_gen_awb_delay_signal/ram_f84573da5ab5.v")
     $tests = @(
+        @{Name="counter_timing_case1"; Pass="PASS COUNTER_TIMING_EQUIVALENCE:"; Sources=@("$hdl/classified_pocket_counter.v", "reference/classified_pocket_counter_r24_base.v", "tb_counter_timing_equivalence.sv", "tb_counter_timing_case1.sv")},
+        @{Name="counter_timing_case2"; Pass="PASS COUNTER_TIMING_EQUIVALENCE:"; Sources=@("$hdl/classified_pocket_counter.v", "reference/classified_pocket_counter_r24_base.v", "tb_counter_timing_equivalence.sv", "tb_counter_timing_case2.sv")},
+        @{Name="counter_timing_case3"; Pass="PASS COUNTER_TIMING_EQUIVALENCE:"; Sources=@("$hdl/classified_pocket_counter.v", "reference/classified_pocket_counter_r24_base.v", "tb_counter_timing_equivalence.sv", "tb_counter_timing_case3.sv")},
+        @{Name="counter_timing_case4"; Pass="PASS COUNTER_TIMING_EQUIVALENCE:"; Sources=@("$hdl/classified_pocket_counter.v", "reference/classified_pocket_counter_r24_base.v", "tb_counter_timing_equivalence.sv", "tb_counter_timing_case4.sv")},
+        @{Name="counter_timing_equivalence"; Pass="PASS COUNTER_TIMING_EQUIVALENCE:"; Sources=@("$hdl/classified_pocket_counter.v", "reference/classified_pocket_counter_r24_base.v", "tb_counter_timing_equivalence.sv")},
+        @{Name="two_region_detector"; Pass="PASS TWO_REGION_DETECTOR:"; Sources=@("$hdl/frame_shape_search.v", "$hdl/local_edge_surface_check.v", "$hdl/inspection_region_config.v", "$hdl/empty_candidate_probe.v", "$hdl/present_surface_check.v", "$hdl/present_review_probe.v", "present_motion/frame_shape_search_r22.v", "present_motion/local_edge_surface_check_r22.v", "tb_two_region_detector.sv")},
+        @{Name="two_region_count"; Pass="PASS two region count:"; Sources=@("$hdl/classified_pocket_counter.v", "$hdl/classified_count_pipeline.v", "tb_two_region_count.sv")},
+        @{Name="two_region_ui"; Pass="PASS two region UI:"; Sources=@("$hdl/compact_ascii_rom.v", "$hdl/compact_cjk_rom.v", "$hdl/compact_template_rom.v", "$hdl/osd_logo_rom.v", "$hdl/compact_inspector_osd.v", "tb_two_region_ui.sv")},
+        @{Name="two_region_raw"; Pass="PASS R24_TWO_REGION_RAW:"; Sources=($ispSources + @("$hdl/count_record_view.v", "$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "reference/classified_pocket_counter_R9.v", "tb_two_region_raw.v"))},
         @{Name="edge_adversary"; Pass="PASS LOCAL_EDGE_DETECTOR:"; Sources=@("$hdl/inspection_region_config.v", "$hdl/empty_candidate_probe.v", "$hdl/present_surface_check.v", "$hdl/local_edge_surface_check.v", "$hdl/present_review_probe.v", "$hdl/frame_shape_search.v", "local_edge/frame_shape_search_r21.v", "local_edge/tb_edge_adversary.sv")},
         @{Name="edge_legacy_negatives"; Pass="PASS CONTEXT_GUARD32:"; Sources=@("$hdl/inspection_region_config.v", "$hdl/empty_candidate_probe.v", "$hdl/present_surface_check.v", "$hdl/local_edge_surface_check.v", "$hdl/present_review_probe.v", "$hdl/frame_shape_search.v", "context/frame_shape_search_r19.v", "context/tb_context_guard32.sv", "local_edge/tb_edge_legacy_negatives.sv")},
         @{Name="edge_raw_mode1"; Pass="PASS LOCAL_EDGE_RAW_MODE1:"; Sources=($ispSources + @("$hdl/count_record_view.v", "$hdl/image_correction.v", "$hdl/status_cdc.v", "$hdl/video_in.v", "$hdl/video_out.v", "reference/classified_pocket_counter_R9.v", "local_edge/tb_edge_raw_mode1.v"))},
@@ -304,6 +313,10 @@ try {
         $tests = @($tests | Where-Object { $_.Name -in $OnlyTests })
         if ($tests.Count -eq 0) { throw "Requested tests were not selected" }
     }
+    if ("two_region_detector" -in $tests.Name) { New-Item -ItemType Directory -Path present_motion/dual_detector_out -Force | Out-Null }
+    # Native diagnostic captures require their output folders in fresh checkouts.
+    if ("present_trace_detector" -in $tests.Name) { New-Item -ItemType Directory -Path present_motion/detector_out -Force | Out-Null }
+    if ("present_trace_ui" -in $tests.Name) { New-Item -ItemType Directory -Path present_motion/ui_out -Force | Out-Null }
     foreach ($test in $tests) {
         $library = "test_" + $test.Name
         $directory = "modelsim_work/" + $test.Name
@@ -343,6 +356,9 @@ try {
         if ($test.Name -like "edge_*") { $commands = "run -all; quit -code 1 -force"; $access = "+acc=rn+/tb_$($test.Name)" }
         if ($test.Name -like "present_trace_*") { $commands = "run -all; quit -code 1 -force"; $access = "+acc=rn+/tb_$($test.Name)" }
         if ($test.Name -like "present_trace_raw*") { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
+        if ($test.Name -like "two_region_*") { $commands = "run -all; quit -code 1 -force"; $access = "+acc=rn+/tb_$($test.Name)" }
+        if ($test.Name -eq "two_region_raw") { $tops += @("anlogic_sim.glbl", "anlogic_sim.PH1P_PHY_GSR") }
+        if ($test.Name -like "counter_timing_*") { $commands = "run -all; quit -code 1 -force"; $access = "+acc" }
         & "$ModelSimBin/vsim.exe" -c -L anlogic_sim "-voptargs=$access" -onfinish exit -l "$directory/transcript.log" -wlf "$directory/wave.wlf" -do $commands @tops *> "$directory/console.log"
         if ($LASTEXITCODE -ne 0) { throw "Simulation failed: $($test.Name); see $directory/console.log" }
         $output = Get-Content -LiteralPath "$directory/console.log" -Raw

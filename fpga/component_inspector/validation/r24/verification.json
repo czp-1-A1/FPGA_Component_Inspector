@@ -1,0 +1,137 @@
+{
+  "status": "PASS_R24_C2_12_ACTUAL_TESTS_7_IDENTITY_REUSED_TESTS_AND_ROUTED_PHYSICAL_AUDIT",
+  "source_inputs": 654,
+  "executed_frozen_inputs": 652,
+  "source_manifest_sha256": "af9915f0910895ef0dc427e4d01b350323bc190e8db3b26a762b2124935123c1",
+  "executed_manifest_sha256": "d726f624132ea610b5d2010648f50f765dbc3b151e26de44ffce88ee23f19e9e",
+  "relocated_descriptors": [
+    "td_project/camera_to_dsi_display.al",
+    "td_project/camera_to_dsi_display_Runs/phy_1/camera_to_dsi_display.prj",
+    "td_project/camera_to_dsi_display_Runs/syn_1/camera_to_dsi_display.prj"
+  ],
+  "actual_candidate_tests": 12,
+  "identity_reused_tests": 7,
+  "tests": {
+    "counter_timing_equivalence": {
+      "execution": "C2_actual",
+      "compile_sha256": "16b0dd562b265565d0f84241e4bdad2c9c51cac9f714d937bfce109ab265eb2b",
+      "console_sha256": "156f9dbee5151375e372a7905fc9974005d03f6c1398de759b5a070cdf030437"
+    },
+    "counter_timing_case1": {
+      "execution": "C2_actual",
+      "compile_sha256": "a047a4651bbb7635dc24655cc93657f80fe2b58600ccadc12fed38b3144b3846",
+      "console_sha256": "f5e778821b3d27130521acc380dc250525e8b6f8eb570535e13edd70448a6c37"
+    },
+    "counter_timing_case2": {
+      "execution": "C2_actual",
+      "compile_sha256": "f61c940b53898316187119e6e0599574fd1e4ff74d952cdf0fba3fff331fe16b",
+      "console_sha256": "12bc7dba5791897428c5b50d72c517a25cbb0475d9abf47331013e3baf679b45"
+    },
+    "counter_timing_case3": {
+      "execution": "C2_actual",
+      "compile_sha256": "5fe3eba1d6e9b7e2ba9afcb1d5bba31ff08a2b2fc717b42b93fddea940c57710",
+      "console_sha256": "5a56c875e7906641da776ed8a8e3e9362a51f33e6cbe33d34e0c29e41e79526c"
+    },
+    "counter_timing_case4": {
+      "execution": "C2_actual",
+      "compile_sha256": "d2d890f8d73e06afb148aa346471906ca7ebcb2e9505f95c45b0be2e0dba73e4",
+      "console_sha256": "1d778441cb97c14f54c46ae1dbafcf4051976f87bfb30ceaa04039d3ac6c29d9"
+    },
+    "two_region_count": {
+      "execution": "C2_actual",
+      "compile_sha256": "3a337c0c105fd76d5ba09cee62a0705d8665f0efcaf619c13e6bd2eadcd69704",
+      "console_sha256": "47ca54493576c6651d6ac46378c74e4ed7639116b0ac8b080323c082bccef4ae"
+    },
+    "classified_counter": {
+      "execution": "C2_actual",
+      "compile_sha256": "bd1f7327cce776ff80acd38dfcaab5018e909614f78ad4d8043e3ee791c897d9",
+      "console_sha256": "c33562b5bcaec5342169ee3dfa2db6e69686d7135a51d8dd73c4a5cc57993875"
+    },
+    "local_pipeline": {
+      "execution": "C2_actual",
+      "compile_sha256": "d615d2d09249f92bc8021501af7c13bfc230748909b025a6ea64980474ed2e6e",
+      "console_sha256": "4605ed1c5a449d0f2279775873a4fd09d4ad504373e0684ac74e487a0b535409"
+    },
+    "velocity_pipeline": {
+      "execution": "C2_actual",
+      "compile_sha256": "01d780fd006837964a01c14babda36263f9ef1952ee3c8071bb01a7762fe4d49",
+      "console_sha256": "c56567e2e7a1054768b70eeb365204e135c9ffa2cbf02798f1c1cf791aeb6e4d"
+    },
+    "local_recovery": {
+      "execution": "C2_actual",
+      "compile_sha256": "4ac2869ba77ece8a8936573a799390c3abedadf0d66140bedcb57e0be8181ab5",
+      "console_sha256": "e8033feb332292e097282c766d5e6cfc02edc562d9e0c5ad2a4c77eb0489ca72"
+    },
+    "result_recorder_pipeline": {
+      "execution": "C2_actual",
+      "compile_sha256": "beae6e882ef9ef7c9b79c75d486e7f8a8f7d2746d0d14783f75d5cebf10b02ff",
+      "console_sha256": "f7bb73490bf920dd2108b0568ec7b21cd4381bba0618805feff958cc978a8ad3"
+    },
+    "two_region_raw": {
+      "execution": "C2_actual",
+      "compile_sha256": "293ab2d6a589be32dace84da327e4e8439464b227510de3741efe6f29ce2d6ea",
+      "console_sha256": "173b9dce4ff17cb05c5d6579f64bccd375d224082be02046fa9a590c9136e4f9"
+    },
+    "two_region_ui": {
+      "execution": "identity_reused",
+      "compile_sha256": "24d2b04eb8ce248dea7fdf48e4e761f1ef220a74aef5e13df518eb42f912bf50",
+      "console_sha256": "4503873ce2e3d7a40502e53acd088a065987b32f1882cc595c4e1d196ce86c15"
+    },
+    "two_region_detector": {
+      "execution": "identity_reused",
+      "compile_sha256": "371c6ba3e91a34d0d7fd73185ec1e8b6b4a8eead9408230a353397ce8a4ee0e4",
+      "console_sha256": "d0b80d4d1c1b2dd933b9389461bc06de9bc33c2cc4684f2bc8a366cba1d92bd8"
+    },
+    "present_trace_unit": {
+      "execution": "identity_reused",
+      "compile_sha256": "dbec7535ec1b84bb37fbdf897f64490756f73416137e68946ae01275b72bd43e",
+      "console_sha256": "cc28b76623018cf6d6db1234909d7bb0ee5e4c656ec3c9bbaefa9a24c3b1f8e0"
+    },
+    "present_trace_detector": {
+      "execution": "identity_reused",
+      "compile_sha256": "afebd9046ead73e03e4aab289c8448020c0259909154af39ee72965a6bf2cfb6",
+      "console_sha256": "e023ce2bcf1243bc58ecd31124cba423141383dfce7c1e16d3b46abdd828c5db"
+    },
+    "present_trace_ui": {
+      "execution": "identity_reused",
+      "compile_sha256": "928db739abca027207b587ff52f080eef661a316a80633933ed6461f9b6c9590",
+      "console_sha256": "fd5a58dcd1122cff14d5e6f5aad9c1b5c91b766ec602cadd3271fba0da41ce6b"
+    },
+    "regions": {
+      "execution": "identity_reused",
+      "compile_sha256": "c5601d40bb055c826fe82d370cacd372c21b24d5cacd5e6b6894726ec18082e6",
+      "console_sha256": "9b583179bbf43452dc213755194c9d7ecbbbb45d47e49ea3fd0a57a534f79a43"
+    },
+    "frame_metadata": {
+      "execution": "identity_reused",
+      "compile_sha256": "8fc8df342fc9fef043fdac9007f29961a898e73bea88c452ade2011d85700dd5",
+      "console_sha256": "391acff2febc7d117643094b3311c384058b7edf2ba955b63b814c7967fafebd"
+    }
+  },
+  "references": {
+    "dual_ui": "79f936cb590eca95f4ed87381f3e7b516a7e45db40825f29d33d9a0fac07a14a",
+    "legacy_ui": "7329a23b26e6695ef76bada03187b938582ab7eb52a5a1ef39b0a45d692a4922",
+    "trace_unit": "e6c8643aa6922d6c94044c5c87bdd9ce6f8a0b12d26095301f44deb950370e6c",
+    "trace_detector": "94927c4d7ee1d3af1ff6a59c983c55c66ec66bac8761414924818be04600e3d1",
+    "dual_detector": "9a464c2d7cdcfe9e6924bb9733cdb4da364cc71085e9af638896cbb429bd3027",
+    "native": "1e60564764fcca93b2ba7b8793124df6f7291d2180b664c59858b1959b5bc21d"
+  },
+  "resources": {
+    "slice": 18460,
+    "eram": 101,
+    "dsp": 28,
+    "pll": 5
+  },
+  "timing_ns": {
+    "SWNS": 0.002,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "gate_db_sha256": "b4cab491e44be1d192793c39048988efba84e8aeed98f5789c301d8b3a60d7e5",
+  "routed_db_sha256": "39ef5c5c5dbe7bdaf38015024fc345b671a9758f09d1f77db0581517a382f6a2",
+  "bit_sha256": "0ce9f60635aa00f2318eb04403e604f166e92a6770606ed323bddc0549f29e20",
+  "finalization_log_sha256": "af3024a87a794da85a02204eba9294bce52c4ebd5602a8a3c5824e16b7eb81b5",
+  "board_acceptance": "HUMAN_PENDING",
+  "field_false_review_fixed": false
+}

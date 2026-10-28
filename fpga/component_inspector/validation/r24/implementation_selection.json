@@ -1,0 +1,32 @@
+{
+  "status": "PASS_SELECTED_C2_SEED2_FINALIZATION_AND_ALL_ROUTED_AUDITS",
+  "physical_seed": 2,
+  "operations": [
+    "original full synth/place/route",
+    "post-route reroute ultra",
+    "post-route relocation high with automatic reroute"
+  ],
+  "timing_ns": {
+    "SWNS": 0.002,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "gate_db_sha256": "b4cab491e44be1d192793c39048988efba84e8aeed98f5789c301d8b3a60d7e5",
+  "selected_routed_db_sha256_before_finalization": "39ef5c5c5dbe7bdaf38015024fc345b671a9758f09d1f77db0581517a382f6a2",
+  "original_snapshot": "r24_before_finalization",
+  "source_execution_manifest_sha256": "d726f624132ea610b5d2010648f50f765dbc3b151e26de44ffce88ee23f19e9e",
+  "constraints_clocks_rtl_unchanged": true,
+  "pending": [
+    "archive_restore",
+    "board"
+  ],
+  "bit_sha256": "0ce9f60635aa00f2318eb04403e604f166e92a6770606ed323bddc0549f29e20",
+  "final_routed_db_sha256": "39ef5c5c5dbe7bdaf38015024fc345b671a9758f09d1f77db0581517a382f6a2",
+  "resources": {
+    "slice": 18460,
+    "eram": 101,
+    "dsp": 28,
+    "pll": 5
+  }
+}

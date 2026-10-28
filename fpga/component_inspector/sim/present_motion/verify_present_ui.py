@@ -82,6 +82,6 @@ for frame in range(4):
  mismatch=raw!=im;coords=np.argwhere(mismatch);details=[]
  for y,x in coords[:20]:details.append(dict(x=int(x),y=int(y),expected=f'{im[y,x]:06x}',actual=f'{raw[y,x]:06x}'))
  records.append(dict(frame=frame,pixels=921600,mismatch=int(mismatch.sum()),first_differences=details,captured_sha256=sha(file)))
-report=dict(status='PASS' if all(d['mismatch']==0 for d in records) else 'FAIL_RETAINED',source_manifest_sha256=sha(p/'R17_FROZEN_INPUTS.json'),frames=records,expected_contract='Literal fixed values and UI geometry; no DUT template/formatter evaluated')
+report=dict(status='PASS' if all(d['mismatch']==0 for d in records) else 'FAIL_RETAINED',source_manifest_sha256=sha(p/'R24_FROZEN_INPUTS.json'),frames=records,expected_contract='Literal fixed values and UI geometry; no DUT template/formatter evaluated')
 (out/'verification.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print(json.dumps(report,indent=2))
 if report['status']!='PASS':raise SystemExit(1)

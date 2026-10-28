@@ -425,7 +425,9 @@ module classified_pocket_counter #(
       end else begin state<=CHECK_REQUIRED;reason<=4;hold_valid<=0;note_fault(6,si,missing);end
       end
       if(si==31)phase<=APPLY_SETUP;else begin si<=si+1'b1;phase<=READ_CHECK;end
-     end else if(RECORD_ONLY && valid_tracks[si[4:0]] && !used[si[4:0]] && critical && tracking &&
+     // RECOVERABLE already handles every counted track and every armed
+     // uncounted track above. Exclude this unreachable fallback explicitly.
+     end else if(!RECOVERABLE && RECORD_ONLY && valid_tracks[si[4:0]] && !used[si[4:0]] && critical && tracking &&
         ((armed[si[4:0]] && old_id==0) || (MOTION_RECOVERY && old_id!=0 && counted_guard && !counted_retire_safe)))begin
       if(missing<(anchored_group ? 4 : 2) && (TAIL_RECOVERY || previous_speed*(missing+2)<=match_step || (MOTION_RECOVERY && anchor_consistent)))begin
        if(MOTION_RECOVERY)tracks[track_address]<={gap_motion[DX_BITS-1:0],missing+{{(GAP_BITS-1){1'b0}},1'b1},track_word[59:0]};

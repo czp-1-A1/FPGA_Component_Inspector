@@ -23,5 +23,5 @@ for ci,data,wait in rows:
  assert int(data,16)==value and int(wait)==684,(i,data,value)
  assert sums==c['sums'] and gradients==c['signed_gradients'];checked+=1
 assert checked==8 and 'PASS PRESENT_TRACE_UNIT:' in log
-out={'status':'PASS_INDEPENDENT_34_INPUTS_8_P_METRICS_PLUS_FROZEN_CONTROL_ASSERTIONS','cases':34,'P_metrics':checked,'manifest_sha256':hashlib.sha256((P/'R17_FROZEN_INPUTS.json').read_bytes()).hexdigest(),'console_sha256':hashlib.sha256(raw).hexdigest()}
+out={'status':'PASS_INDEPENDENT_34_INPUTS_8_P_METRICS_PLUS_FROZEN_CONTROL_ASSERTIONS','cases':34,'P_metrics':checked,'manifest_sha256':hashlib.sha256((P/'R24_FROZEN_INPUTS.json').read_bytes()).hexdigest(),'console_sha256':hashlib.sha256(raw).hexdigest()}
 (S/'present_motion/unit_independent_result.json').write_text(json.dumps(out,indent=2),encoding='utf-8');print(json.dumps(out))

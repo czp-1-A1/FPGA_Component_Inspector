@@ -1,0 +1,163 @@
+{
+  "status": "PASS_REUSE_ONLY_EXACT_UNCHANGED_COMPILED_AND_FROZEN_RUNTIME_INPUTS",
+  "tests": {
+    "two_region_ui": {
+      "compiled_inputs": {
+        "user_source/hdl_source/compact_ascii_rom.v": "101c4b7fd9ba7781057d5919eec743403566bfa2f37ef95049fc0efdbe6fbb99",
+        "user_source/hdl_source/compact_cjk_rom.v": "1f9130ad604aec03e716eca7d2581c767eb22c31c241d089f23cad3424cfe4fd",
+        "user_source/hdl_source/compact_template_rom.v": "c4c6e920065b036ca311f67bfc6b691621287120207f49feb94a1b3c0ef35f1c",
+        "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1",
+        "user_source/hdl_source/compact_inspector_osd.v": "1fdb8e82687ec651e89eb2f06590d81979c75df5716741d5e10ca74847e9ab4b",
+        "sim/tb_two_region_ui.sv": "eb2419339a5bb09b59b46d7659c2b2e8a012a8f24dd8f4c91629038b5cfe23be"
+      },
+      "compile_sha256": "24d2b04eb8ce248dea7fdf48e4e761f1ef220a74aef5e13df518eb42f912bf50",
+      "console_sha256": "4503873ce2e3d7a40502e53acd088a065987b32f1882cc595c4e1d196ce86c15",
+      "execution_project": "D:\\FpgaWork\\dual_roi_r24_20261028\\fpga\\component_inspector",
+      "rerun_in_candidate": false
+    },
+    "two_region_detector": {
+      "compiled_inputs": {
+        "user_source/hdl_source/frame_shape_search.v": "666a8a2fa4be38d85ed1c13a525f89c3fb3815a43a5abedd2697d965614b9574",
+        "user_source/hdl_source/local_edge_surface_check.v": "93cec6826c7f0187c89668891674e7ced898e74f001471c0fc8ab736f193abe0",
+        "user_source/hdl_source/inspection_region_config.v": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+        "user_source/hdl_source/empty_candidate_probe.v": "b49c6b60396b5940ddef6db4f0e0d297ef8fd01cc7c3deebd6cdecfc43e1462c",
+        "user_source/hdl_source/present_surface_check.v": "fdf6a014295862be953de39755e2259fcb89283a161a3530ad9d71fca23deabc",
+        "user_source/hdl_source/present_review_probe.v": "8e2c7bcc41f9738f469f544841abeae1a28c2cd4feec2e3551e7c8f151449077",
+        "sim/present_motion/frame_shape_search_r22.v": "6f92427bd0396732d506bfb998fb816290a82b5abc433f1a2f473987b8721d8c",
+        "sim/present_motion/local_edge_surface_check_r22.v": "9e763b6e4cdbb40e061025a66e995719bd23d3f593acb3acaadb39d83e668942",
+        "sim/tb_two_region_detector.sv": "ab028b572746fc1305209369edc7aad48530dea444095232be4a35e2a8038733"
+      },
+      "compile_sha256": "371c6ba3e91a34d0d7fd73185ec1e8b6b4a8eead9408230a353397ce8a4ee0e4",
+      "console_sha256": "d0b80d4d1c1b2dd933b9389461bc06de9bc33c2cc4684f2bc8a366cba1d92bd8",
+      "execution_project": "D:\\FpgaWork\\dual_roi_r24_20261028\\fpga\\component_inspector",
+      "rerun_in_candidate": false
+    },
+    "present_trace_unit": {
+      "compiled_inputs": {
+        "user_source/hdl_source/local_edge_surface_check.v": "93cec6826c7f0187c89668891674e7ced898e74f001471c0fc8ab736f193abe0",
+        "sim/present_motion/local_edge_surface_check_r22.v": "9e763b6e4cdbb40e061025a66e995719bd23d3f593acb3acaadb39d83e668942",
+        "sim/present_motion/tb_present_trace_unit.sv": "0d6f74713148e29d99cd0369c3411d522005c27545b91614e7ac533ea4fd1780"
+      },
+      "compile_sha256": "dbec7535ec1b84bb37fbdf897f64490756f73416137e68946ae01275b72bd43e",
+      "console_sha256": "cc28b76623018cf6d6db1234909d7bb0ee5e4c656ec3c9bbaefa9a24c3b1f8e0",
+      "execution_project": "D:\\FpgaWork\\dual_roi_r24_20261028\\fpga\\component_inspector",
+      "rerun_in_candidate": false
+    },
+    "present_trace_detector": {
+      "compiled_inputs": {
+        "user_source/hdl_source/frame_shape_search.v": "666a8a2fa4be38d85ed1c13a525f89c3fb3815a43a5abedd2697d965614b9574",
+        "user_source/hdl_source/local_edge_surface_check.v": "93cec6826c7f0187c89668891674e7ced898e74f001471c0fc8ab736f193abe0",
+        "user_source/hdl_source/inspection_region_config.v": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+        "user_source/hdl_source/empty_candidate_probe.v": "b49c6b60396b5940ddef6db4f0e0d297ef8fd01cc7c3deebd6cdecfc43e1462c",
+        "user_source/hdl_source/present_surface_check.v": "fdf6a014295862be953de39755e2259fcb89283a161a3530ad9d71fca23deabc",
+        "user_source/hdl_source/present_review_probe.v": "8e2c7bcc41f9738f469f544841abeae1a28c2cd4feec2e3551e7c8f151449077",
+        "sim/present_motion/frame_shape_search_r22.v": "6f92427bd0396732d506bfb998fb816290a82b5abc433f1a2f473987b8721d8c",
+        "sim/present_motion/local_edge_surface_check_r22.v": "9e763b6e4cdbb40e061025a66e995719bd23d3f593acb3acaadb39d83e668942",
+        "sim/present_motion/tb_present_trace_detector.sv": "9facda62c299b5ff96d4d9a65791c9e71ce1620d4c09fde0cbe2dbc42a303b27"
+      },
+      "compile_sha256": "afebd9046ead73e03e4aab289c8448020c0259909154af39ee72965a6bf2cfb6",
+      "console_sha256": "e023ce2bcf1243bc58ecd31124cba423141383dfce7c1e16d3b46abdd828c5db",
+      "execution_project": "D:\\FpgaWork\\dual_roi_r24_20261028\\fpga\\component_inspector",
+      "rerun_in_candidate": false
+    },
+    "present_trace_ui": {
+      "compiled_inputs": {
+        "user_source/hdl_source/bin16_bcd.v": "e8ac13eaa52618336a3475f74cc5f19b725d8440061774f0d3ffbd1027fee4e5",
+        "user_source/hdl_source/osd_ascii_rom.v": "c084869524e0ebfc4c9d002bb6f3b14d212d6bca88ed097216347f10dceff754",
+        "user_source/hdl_source/osd_cjk_rom.v": "5e86cb3f5a752cf3bf812c17f38844dc4e54afd2a09fb7c615c29db9de3d979d",
+        "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1",
+        "user_source/hdl_source/inspection_region_config.v": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+        "user_source/hdl_source/experiment_osd.v": "1d333acdcd12c948baa2f6c5f1887325ba365ad5596daa8e4df29a430cd6edcf",
+        "user_source/hdl_source/classified_count_renderer.v": "4dbc3f7e8b7d74ffea7e8009dbe826d8d03a882a92d93ff4248a2f47eeec025c",
+        "user_source/hdl_source/compact_ascii_rom.v": "101c4b7fd9ba7781057d5919eec743403566bfa2f37ef95049fc0efdbe6fbb99",
+        "user_source/hdl_source/compact_inspector_osd.v": "1fdb8e82687ec651e89eb2f06590d81979c75df5716741d5e10ca74847e9ab4b",
+        "user_source/hdl_source/compact_cjk_rom.v": "1f9130ad604aec03e716eca7d2581c767eb22c31c241d089f23cad3424cfe4fd",
+        "user_source/hdl_source/compact_template_rom.v": "c4c6e920065b036ca311f67bfc6b691621287120207f49feb94a1b3c0ef35f1c",
+        "user_source/hdl_source/classified_dual_page_osd.v": "27fc3dfbc7582cc620ad3eeed05cc0e879506fd4ee3471b4189f554156eab753",
+        "sim/present_motion/tb_present_trace_ui.sv": "dca22eab12e99228c401ce70c51eb4d3c7d34d6d122437f47a97038a383811d4"
+      },
+      "compile_sha256": "928db739abca027207b587ff52f080eef661a316a80633933ed6461f9b6c9590",
+      "console_sha256": "fd5a58dcd1122cff14d5e6f5aad9c1b5c91b766ec602cadd3271fba0da41ce6b",
+      "execution_project": "D:\\FpgaWork\\dual_roi_r24_20261028\\fpga\\component_inspector",
+      "rerun_in_candidate": false
+    },
+    "regions": {
+      "compiled_inputs": {
+        "user_source/hdl_source/inspection_region_config.v": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+        "user_source/hdl_source/empty_candidate_probe.v": "b49c6b60396b5940ddef6db4f0e0d297ef8fd01cc7c3deebd6cdecfc43e1462c",
+        "user_source/hdl_source/present_surface_check.v": "fdf6a014295862be953de39755e2259fcb89283a161a3530ad9d71fca23deabc",
+        "user_source/hdl_source/present_review_probe.v": "8e2c7bcc41f9738f469f544841abeae1a28c2cd4feec2e3551e7c8f151449077",
+        "user_source/hdl_source/frame_shape_search.v": "666a8a2fa4be38d85ed1c13a525f89c3fb3815a43a5abedd2697d965614b9574",
+        "sim/tb_regions.v": "8e2c4fa6bc204f62f300dd8414482b9119d49615de1f30c9c8139bc4f3499e4f"
+      },
+      "compile_sha256": "c5601d40bb055c826fe82d370cacd372c21b24d5cacd5e6b6894726ec18082e6",
+      "console_sha256": "9b583179bbf43452dc213755194c9d7ecbbbb45d47e49ea3fd0a57a534f79a43",
+      "execution_project": "D:\\FpgaWork\\dual_roi_r24_20261028\\fpga\\component_inspector",
+      "rerun_in_candidate": false
+    },
+    "frame_metadata": {
+      "compiled_inputs": {
+        "user_source/hdl_source/status_cdc.v": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151",
+        "user_source/hdl_source/video_in.v": "a1534cfbe958decac8e32e44b92f8e9be8b06ea08d7adefa80d112eae7fe5dc9",
+        "user_source/hdl_source/video_out.v": "5fe875acc411790726355be2baed720013b482093524915eb8962fe1252280a4",
+        "user_source/ip_source/w128_d512_fifo/w128_d512_fifo.v": "5cd5f8e2216dd8989dc1e54d42b4da348dbb09f130bbe92deaa205db53a96bb4",
+        "user_source/ip_source/w128_d512_fifo/soft_fifo_al_4057d6b76aa6.v": "8218d772fba069f8c0c6333712c990b8417a447de7f3e73aff7cd342200ba751",
+        "sim/tb_frame_metadata.v": "c4f1d7fc6a79923103ab5a9eb86425b3d8c4a8af5ca601f439252ae6b155b585"
+      },
+      "compile_sha256": "8fc8df342fc9fef043fdac9007f29961a898e73bea88c452ade2011d85700dd5",
+      "console_sha256": "391acff2febc7d117643094b3311c384058b7edf2ba955b63b814c7967fafebd",
+      "execution_project": "D:\\FpgaWork\\dual_roi_r24_20261028\\fpga\\component_inspector",
+      "rerun_in_candidate": false
+    }
+  },
+  "frozen_runtime_inputs": {
+    "sim/calibration_probe_reference.hex": "5e22de8cf61a5679a1a4332faecf4e8f68cf6a80884ba7d240d6a38b68b7fed5",
+    "sim/compact_assets/compact_ascii_rom.hex": "0b218290acbcf652ae36de24e3bcdb4629efccca784a2664b0bc156ea2e55b15",
+    "sim/compact_assets/compact_cjk_rom.hex": "dfc40295c39f1ab6f4cb8ae57295dca95f483e47ecda6248b8e0b0d0270e8c70",
+    "sim/compact_assets/compact_template_rom.hex": "bef5561a17a61bdf9ec31c3e0f14b67d3c4c2f040ecf7d79ed1dc8187b824fb7",
+    "sim/compact_assets/layout.json": "b826e2a21375de9fb80a1a04d00c7254a728016fb1310f053c6a32e2165e63ab",
+    "sim/compact_assets/review_probe_template.hex": "22e61b3808a7c10dd1d4d3961166bb70ba8be91c941f88b551eb58e204bb35fe",
+    "sim/context/motion_profiles.json": "34e49d60ab8b118986be2fedf30edb101d155b8eca195083d467880acfd50af5",
+    "sim/dual_phase_reference.json": "e051acad5def3220fe090e563903e61fbbe0e9b7444604dd37a389c897fc3d4e",
+    "sim/empty_trace/ui_input.json": "77146f1926f22173ce1365a37ffa6e572ef44a63dee290c1b5a430688afb124b",
+    "sim/hd_osd_reference.hex": "b2a5269e200550d89e9a6e10befc21094350d545f85df90f3178c35ea36c772a",
+    "sim/local_edge/bounds.hex": "c8ef96cb46335bb25a7aaafc5995db685602efd9c365eaeae0315678128c7243",
+    "sim/local_edge/expected_edges.hex": "da1816bd33bde305c75b6fc4624c640cd50770a082895b5bcf2f0a7cbcc6a4a7",
+    "sim/local_edge/expected_flags.hex": "7f5176ecbf0c395fe3a69e3fdf554c711ec7f3de5558833d64d98f074f552ce5",
+    "sim/local_edge/fixtures.hex": "a500d40c8feb6851bd92bb710a9bf6a18919e7383846e8cf92ecd1a455f085d5",
+    "sim/local_edge/kinds.hex": "69bdf710af5b98e2d98f2641747bb8c1d56b11cecd55914027de06c7b6c840c4",
+    "sim/local_edge/unit_independent_reference.json": "1faaef5d2f6134b1de5d63ccbfc68de0d5ba79b7752a833676f8f6180bcf3a37",
+    "sim/osd_assets/manifest.json": "edc93091ad1c4a9465fab2bdb33f7abcedbf42c38252324de22329e5c027d4c1",
+    "sim/osd_assets/mode_0.hex": "c95817781ec6957c559cdd543cd247423b26ad1c40825b81b97196fb8457a402",
+    "sim/osd_assets/mode_1.hex": "174d2e5fecf909203ffb5a83ab4393d30d6029d50a969b47447ed4801adc6900",
+    "sim/osd_assets/mode_2.hex": "4c73169e9c5b42364bf0fc81e6d5dd214e37dd67875ddf388faf53eb0c06e5c7",
+    "sim/osd_assets/mode_3.hex": "9eed6068967ea35ff58e17604fff682f1287ef9327dc4f025f355a04276ce600",
+    "sim/osd_assets/osd_ascii_rom.hex": "54180fa3f3a04b4da2c548d7b503775240d3e4667584e8302025b301bd1dfe87",
+    "sim/osd_assets/osd_cjk_rom.hex": "6f2dd3f559b126c7bc1a2868b6ae14d59d6109eb5c460e4f4941bb5b1fdc3a08",
+    "sim/osd_assets/osd_logo_rom.hex": "09b0d8bd23b37938d4d8cc7574089e7fd8162daa4af01d88bccda424668fdd66",
+    "sim/osd_assets/reference.hex": "c95817781ec6957c559cdd543cd247423b26ad1c40825b81b97196fb8457a402",
+    "sim/osd_assets/state_0.hex": "b3452b5f5f82a132c7b68417c9d45195e6d68f17a84d7e6d18c4d03cb311d699",
+    "sim/osd_assets/state_1.hex": "16949fb8a6205f36e65087059bb01c84c9616e6562676b0e496c7e729fca99b6",
+    "sim/osd_assets/state_2.hex": "bd02c6541d544910b2ac04161c07c99a3fec9c754afdff6613ebbaa2b37b332d",
+    "sim/osd_assets/state_3.hex": "d3b54d6d74cc86660ba3649d761ed1ca3d633fd711e99a0d5cb45d02be56ae31",
+    "sim/osd_assets/state_4.hex": "60d03ebfc65bf2456dd2c317ddb2b7da788ac4c8d618043b33a7d2fb7b10fc92",
+    "sim/osd_assets/state_5.hex": "ba874cfab6ec0d33fc9661991f102e87318958ed0be2a9c88c4387693108a68d",
+    "sim/osd_assets/state_6.hex": "9931427392f756af8a94e1a78f9be50197529239f30becad5f2b0f3def610826",
+    "sim/osd_assets/wb_0.hex": "c95817781ec6957c559cdd543cd247423b26ad1c40825b81b97196fb8457a402",
+    "sim/osd_assets/wb_1.hex": "d98613e22e58d0d9d748b659396231a88964df54873486f618a906d8b106d994",
+    "sim/osd_assets/wb_2.hex": "0e26b9972b957eb925b2f417dea0a9f8f963f381dc2a14a81baa4012076fe64e",
+    "sim/present_motion/unit/bounds.hex": "3b66f70f29a242b70381d756738c20bc7b27b9d6378798dc1bab3fc0dd16b400",
+    "sim/present_motion/unit/expected.hex": "f727ba49d6896df5c604475283baac56621c208e2b25a16afb0f9d12e05e2deb",
+    "sim/present_motion/unit/fixtures.hex": "accb1c121cfe2a211718d00914eb86370d2062007b4fcfe8e9bc570fcd8bb79f",
+    "sim/present_motion/unit/flags.hex": "ba1b387a04bdccb5be565197f308a7d8a42aedd9442e6a9bf893698ca926a02b",
+    "sim/present_motion/unit/independent_reference.json": "9cb107ea356f5b260e9476e8ae6f44814bf4cd3d6de6fdf66f2569b514475fdb",
+    "sim/present_motion/unit/kinds.hex": "76ad90c655ce634902db2368b206ede8103166eab2d4231e33ccac96acb2d4a7",
+    "sim/review_probe/UI_REFERENCE_PROVENANCE.json": "807c7f7468856a8c0e8cee4f0d92fa37cbaa8124fdc2908475632d747e152cbe",
+    "sim/surface/UI_REFERENCE_PROVENANCE.json": "0d0857a6bb3755e0cce24f0d5990f444f45a28f0067745213b674b41f51dbede",
+    "user_source/hdl_source/dsi_tx_packet/config_data.mif": "0f5842f2ca3e46634e0215cc55cf2c9b5afab16517e96d9e5dde6bf3845813ad",
+    "user_source/hdl_source/dsi_tx_packet/config_data.mif.dat": "4e05846962e371e436714ac3268109d6322e333620ad4e95e3391c6da9f432e2"
+  },
+  "source_manifest_sha256": "7f09976d95a8f0a6afb6294ead1c69a098c06cd94926fa131c2af118fd85c2cb",
+  "candidate_manifest_sha256": "d726f624132ea610b5d2010648f50f765dbc3b151e26de44ffce88ee23f19e9e",
+  "scope": "Seven counter-independent tests are reused, not rerun. All counter-dependent tests and full RAW are rerun on candidate RTL."
+}

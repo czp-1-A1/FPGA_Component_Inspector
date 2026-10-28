@@ -96,6 +96,6 @@ for case,diag,objects,candidates,wait in lines:
   sums=[0]*5;gradients=[0]*4
  reports.append({'scene':n,'pixels_xor':0,'selected_P':True,'region':region,'slot':slot,'weak':weak,'sums':sums,'signed_gradients':gradients,'capture_sha256':sha(p)})
 assert kernel_count>=28 and nonzero_signed>20
-out={'status':'PASS_INDEPENDENT_NATIVE_PIXELS_CCL_SAMPLES_SIGNED_GRADIENTS_AND_PUBLIC_MAPPING','manifest_sha256':sha(P/'R17_FROZEN_INPUTS.json'),'frames':len(lines),'pixels':len(lines)*1280*720,'signed_kernels':kernel_count,'scenes':reports,'not_field_accuracy':True}
+out={'status':'PASS_INDEPENDENT_NATIVE_PIXELS_CCL_SAMPLES_SIGNED_GRADIENTS_AND_PUBLIC_MAPPING','manifest_sha256':sha(P/'R24_FROZEN_INPUTS.json'),'frames':len(lines),'pixels':len(lines)*1280*720,'signed_kernels':kernel_count,'scenes':reports,'not_field_accuracy':True}
 (O/'present_motion/detector_independent_reference.json').write_text(json.dumps(out,indent=2)+'\n',encoding='utf-8')
 print(json.dumps({k:v for k,v in out.items() if k!='scenes'}))

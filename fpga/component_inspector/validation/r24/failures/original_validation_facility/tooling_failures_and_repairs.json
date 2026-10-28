@@ -1,0 +1,12 @@
+{
+  "scope": "Verification infrastructure failures retained; not accepted as functional passes",
+  "items": [
+    "TD initial launch used wrong cwd and could not read build.tcl; corrected launch completed synthesis and physical run is pending.",
+    "Unknown legacy test name was rejected before simulation selection; corrected 8-test batch passed.",
+    "Fresh-checkout detector capture directory absent; created and runner now prepares directories; original fatal log retained.",
+    "Legacy UI test did not reject absent output files; independent audit rejected missing captures. Directory prepared, full four-raster test and independent pixels rerun successfully.",
+    "Independent report scripts referenced absent historical R17 manifest; report path changed to current R24 manifest, calculations unchanged.",
+    "Initial comparison assumed12 detector captures; original frozen bench explicitly declares14 capture scenes; fixed count only, pixels/RTL/gold unchanged.",
+    "Initial whole-project byte comparison rejected six expected relocated TD descriptors; compare their exact resolved102 dependencies and seed2 instead, preserving all RTL/SDC hashes."
+  ]
+}
