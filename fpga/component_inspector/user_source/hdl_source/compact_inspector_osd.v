@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -25,7 +25,7 @@ function [7:0] relay_char;
   if(RELAY_LEFT_LAYOUT)begin
    text="RL2 S0 F0 Q00 N000 X--- L000 V0 T000 A000 W0000 ";
    case(char_index)
-    2:relay_char=RELAY_KEYS_V3 ? "3" : "2";
+    2:relay_char=RELAY_KEYS_V3 ? (RELAY_TOL_PX>8 ? "4" : "3") : "2";
     5:relay_char=hexchar({1'b0,relay_snapshot[31:29]});
     8:relay_char=hexchar(relay_snapshot[28:25]);
     11:relay_char=hexchar({2'b0,relay_snapshot[63:62]});12:relay_char=hexchar(relay_snapshot[61:58]);
@@ -292,7 +292,7 @@ always @(posedge clk or negedge rst_n)begin
 end
 
 reg [2:0] line;reg [9:0] plane_address;reg [7:0] code;
-reg [4:0] row,col;reg panel,guide,logo;reg [23:0] ink;
+reg [4:0] row,col;reg panel,guide,logo,repair_border;reg [23:0] ink;
 reg [75:0] ob;reg [8:0] id;reg [19:0] id_bcd;
 reg [10:0] lx,rx;reg [9:0] ly;reg [3:0] glyph_cell;
 wire trace_cross0=EMPTY_TRACE && cal_s && cal[63] &&
@@ -304,7 +304,7 @@ wire trace_cross1=EMPTY_TRACE && cal_s && cal[127] &&
 reg prefix;integer t;
 wire [10:0] text_dx=x-11'd136;
 always @*begin
- line=0;plane_address=0;code=32;row=0;col=0;panel=0;guide=0;logo=0;ink=24'h70ffdd;
+ line=0;plane_address=0;code=32;row=0;col=0;panel=0;guide=0;logo=0;repair_border=0;ink=24'h70ffdd;
  ob=0;id=0;id_bcd=0;lx=0;rx=0;ly=0;glyph_cell=0;prefix=0;
  if(y<80 || y>=HEIGHT-96)begin
   panel=1;logo=x>=16 && x<112 && y>=8 && y<72;
@@ -338,6 +338,13 @@ always @*begin
      (x==WIDTH/2 && y[2]) || (x==256 && y[3]) ||
      x==RELAY_TARGET_X || (x==RELAY_TARGET_X+RELAY_ADVANCE_PX && y[2]));
   end
+  // Amber dashed box is the acceptance window, not a new detection ROI.
+  // It changes display only; classification still consumes original pixels.
+  if(AUTO_RELAY && RELAY_LEFT_LAYOUT && RELAY_TOL_PX>8)
+   repair_border=y>=HEIGHT/3 && y<HEIGHT*5/9 &&
+    (((x==RELAY_TARGET_X-RELAY_TOL_PX || x==RELAY_TARGET_X+RELAY_TOL_PX) && y[3]) ||
+     ((y==HEIGHT/3 || y==HEIGHT*5/9-1) && x>=RELAY_TARGET_X-RELAY_TOL_PX &&
+      x<=RELAY_TARGET_X+RELAY_TOL_PX && x[3]));
   if(trace_cross0 || trace_cross1)guide=1;
   for(t=0;t<4;t=t+1)begin
    ob=obs[t*76+:76];id=0;id_bcd=0;
@@ -380,7 +387,7 @@ always @(posedge clk or negedge rst_n)begin
   ascii_address<={code[6:0],row[3:0]};cjk_address<={code[2:0],row};logo_address<={logo_y,logo_x};
   vp<={vp[0],vs};hp<={hp[0],hs};dp<={dp[0],de};pp<={pp[0],ENABLE && panel && de};
   lp<={lp[0],logo};cp<={cp[0],code[7]};c0<=!code[7] && row>=16 ? 5'd31 : col;c1<=c0;
-  rgb0<=ENABLE && guide ? 24'h00d8d0 : rgb;rgb1<=rgb0;ink0<=ink;ink1<=ink0;
+  rgb0<=ENABLE && repair_border ? 24'hffd060 : ENABLE && guide ? 24'h00d8d0 : rgb;rgb1<=rgb0;ink0<=ink;ink1<=ink0;
   out_vs<=vp[1];out_hs<=hp[1];out_de<=dp[1];
   out_rgb<=pp[1] ? (lp[1] ? (logo_pixel==1 ? 24'h204686 : logo_pixel==2 ? 24'hcc253b : 24'hffffff) :
    text_ink ? ink1 : 24'h142336) : rgb1;
