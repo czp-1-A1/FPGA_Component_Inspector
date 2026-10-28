@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "inputs": {
+    "user_source/hdl_source/pocket_relay_stop.v": "a3b3644f807914de36a1a5b2248dd97b6b88dc0d8039497c5d98be636102e8d6",
+    "user_source/hdl_source/pocket_relay_stop_v2.v": "822cbda745e7a1456486044dd7ff3c98aa24e9f10dea473a380dcbe7fdfd857c",
+    "user_source/hdl_source/classified_pocket_counter.v": "202d8836e0fe502d55678f020dde23a72040092080a05e5441d76c5cc3d0652f",
+    "user_source/hdl_source/classified_count_pipeline.v": "bd28568e893b99c92dddb68562f65869fe42ec340ff840f3bc7abacdec1a0aba",
+    "user_source/hdl_source/pocket_run_controls.v": "28f81bdf90fc77ed9f5f97305b216ef6108de2f4c4c383b8a18c4325932636bc",
+    "user_source/hdl_source/status_cdc.v": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151",
+    "user_source/hdl_source/inspection_region_config.v": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+    "user_source/hdl_source/empty_candidate_probe.v": "b49c6b60396b5940ddef6db4f0e0d297ef8fd01cc7c3deebd6cdecfc43e1462c",
+    "user_source/hdl_source/present_surface_check.v": "fdf6a014295862be953de39755e2259fcb89283a161a3530ad9d71fca23deabc",
+    "user_source/hdl_source/local_edge_surface_check.v": "d0c67c9b30d5e22ba4b3216de2c9fff45af0d3120d79e773a177bbfcc699c791",
+    "user_source/hdl_source/present_review_probe.v": "8e2c7bcc41f9738f469f544841abeae1a28c2cd4feec2e3551e7c8f151449077",
+    "user_source/hdl_source/frame_shape_search.v": "edebee471d46a0b5f8863e0b7cd5c71b588771406cbf58ddcd2d5236d0ce2c66",
+    "user_source/hdl_source/compact_ascii_rom.v": "101c4b7fd9ba7781057d5919eec743403566bfa2f37ef95049fc0efdbe6fbb99",
+    "user_source/hdl_source/compact_cjk_rom.v": "1f9130ad604aec03e716eca7d2581c767eb22c31c241d089f23cad3424cfe4fd",
+    "user_source/hdl_source/compact_template_rom.v": "f64f1138b64aa502beefe690385fdb368c4072acd7555fd27122c3892d086ee5",
+    "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1",
+    "user_source/hdl_source/compact_inspector_osd.v": "10c8fd337f6a413c6a2c2cc0a685c191f10e8cccafed34eca64fed4671354017"
+  },
+  "extra_inputs": {
+    "sim/tb_relay_wide_osd.sv": "8c264b470793336e356b0963e8c51fa7b81181c6404dc2d8bf86945ea414a8cd",
+    "sim/tb_relay_wide_real_second.sv": "5ad46503f1b8233dbb78a042e939cf797f65628e8c3b157d6e8b06b72b51a3b2"
+  },
+  "tests": [
+    {
+      "name": "tb_relay_wide_osd",
+      "sha256": "d0a5d9990c10f6bfcd6a42b593f07142164b3386a91ba24b8e36e219cf1c81a2"
+    },
+    {
+      "name": "tb_relay_wide_real_second",
+      "sha256": "fe4c4fee627aaa603a31cc71f8cf4011ba2f94127564210b7519daad94ac7cd6"
+    }
+  ],
+  "board_acceptance": false
+}

@@ -1,0 +1,46 @@
+{
+  "version": "R22_RelayAuto_Left_V4_Wide_20261028",
+  "branch": "codex/r22-wide-stop-window",
+  "source_commit": "13724c3efc1c11797ad97b8ee5b9d1c981c32b78",
+  "parent_camfix_commit": "0090662",
+  "source_worktree": "D:\\CodexWork\\FPGA_R22_Relay_20261027",
+  "build_work": "E:\\2026FPGA\\.codex_tmp\\r22_wide_stop_build_r1_20261028",
+  "pushed": false,
+  "bit_sha256": "b5cc8c89b11da9895eb5406075ebcf76cd35f64c2f422a8cfe9e687e0add1e7b",
+  "bit_bytes": 1789539,
+  "td_version": "V6.2.168116",
+  "seed": 2,
+  "resources": {
+    "slice": 18156,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 85.57692,
+  "timing_ns": {
+    "SWNS": 0.001,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "source_files": 636,
+  "hardware_dependencies": 104,
+  "parameters": {
+    "window_x": [
+      80,
+      240
+    ],
+    "target_x": 160,
+    "tolerance_px": 80,
+    "advance_px": 32,
+    "trigger_x": 192,
+    "hold_ms": 1000,
+    "still_px": 2
+  },
+  "gpio": "rightJ2 pin1/V2 HIGH; board5V; no LED; original ADC/SDC",
+  "layout": "single upper row; right count / left refill; amber acceptance box80..240",
+  "keys": "K1 freshRUN / K2 pause-resume / K3 clear-stop / K4 stop / SW3 up stop down freshRUN",
+  "source_manifest_sha256": "125b4913c9fa2a31d5bc2e6db6f55e450947b653ab754be3637021bb38838317",
+  "verification_sha256": "58e0375afb4fd0cc7796fa957f712b1b3fd4cfa2fc94342daca738ac7157b727",
+  "board_acceptance": "PENDING_HUMAN_WIDE_WINDOW_PARKING_TEST"
+}

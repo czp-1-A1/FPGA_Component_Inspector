@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "inputs": {
+    "user_source/hdl_source/pocket_relay_stop.v": "a3b3644f807914de36a1a5b2248dd97b6b88dc0d8039497c5d98be636102e8d6",
+    "user_source/hdl_source/pocket_relay_stop_v2.v": "822cbda745e7a1456486044dd7ff3c98aa24e9f10dea473a380dcbe7fdfd857c",
+    "user_source/hdl_source/classified_pocket_counter.v": "202d8836e0fe502d55678f020dde23a72040092080a05e5441d76c5cc3d0652f",
+    "user_source/hdl_source/classified_count_pipeline.v": "bd28568e893b99c92dddb68562f65869fe42ec340ff840f3bc7abacdec1a0aba",
+    "user_source/hdl_source/pocket_run_controls.v": "28f81bdf90fc77ed9f5f97305b216ef6108de2f4c4c383b8a18c4325932636bc",
+    "user_source/hdl_source/status_cdc.v": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+  },
+  "extra_inputs": {
+    "sim/tb_relay_wide_stop.sv": "579469c6eb0a0277d1414e6caf256bbe814a873707c7c7620a03700352f31c61",
+    "sim/tb_relay_wide_transport.sv": "c18a2707330c8ca56520725ed1016c964d7c533c550aedc34223f0de82293243"
+  },
+  "tests": [
+    {
+      "name": "tb_relay_wide_stop",
+      "sha256": "e272144c118eb4b7d61576cd19d6265f6b36ff506929a5de7fd725bd3cc34748"
+    },
+    {
+      "name": "tb_relay_wide_transport",
+      "sha256": "f5d7d0a8645e33b98de9d3186d76139a9238bf84e671bf41ebe2b881b17f4148"
+    }
+  ],
+  "board_acceptance": false
+}
