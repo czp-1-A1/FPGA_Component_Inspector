@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "inputs": {
+    "user_source/hdl_source/pocket_relay_stop.v": "a3b3644f807914de36a1a5b2248dd97b6b88dc0d8039497c5d98be636102e8d6",
+    "user_source/hdl_source/pocket_relay_stop_v2.v": "822cbda745e7a1456486044dd7ff3c98aa24e9f10dea473a380dcbe7fdfd857c",
+    "user_source/hdl_source/classified_pocket_counter.v": "714cb471bdbd9f2b0cb07deeba0fc1f82d9eeefa66cca7b10c5c57ee3d23ce1b",
+    "user_source/hdl_source/classified_count_pipeline.v": "bd28568e893b99c92dddb68562f65869fe42ec340ff840f3bc7abacdec1a0aba",
+    "user_source/hdl_source/pocket_run_controls.v": "28f81bdf90fc77ed9f5f97305b216ef6108de2f4c4c383b8a18c4325932636bc",
+    "user_source/hdl_source/status_cdc.v": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151"
+  },
+  "extra_inputs": {
+    "sim/tb_relay_brake_dropout.sv": "0690da029c8adb25a40dc8e2f9ed5aa22d82701eaf269b40dec650be7871ea3e",
+    "sim/tb_relay_brake_double.sv": "7b820e471c0b34a194c5f8b94f75225850910455bf3ebed871d8ab55b0a48906",
+    "sim/tb_relay_brake_missing.sv": "0cf81d0d537e81372d7d4308cbe8e49b41c23d16eaa8712f1e1900290b90eaa5",
+    "sim/tb_relay_brake_kind.sv": "839f3f1c82df81b8fc8a739b5f70014ef9323a982883491f5df9b986c6fe78ff"
+  },
+  "tests": [
+    {
+      "name": "tb_relay_brake_dropout",
+      "sha256": "1e831864336fd73f4e37e09f5c56271d93946e7f093d919b90faf68828e7dac4"
+    },
+    {
+      "name": "tb_relay_brake_double",
+      "sha256": "38060aca94fe230d3ae32b0d4293630cb349346d619fb8dbec62f1db7242bb64"
+    },
+    {
+      "name": "tb_relay_brake_missing",
+      "sha256": "5769b2acf48ea0d849c3c0afe1a9b85c0046ea5962e0c968254c6e349d0926fd"
+    },
+    {
+      "name": "tb_relay_brake_kind",
+      "sha256": "ff8bf91adfdd7fc2010b677371aa57becdffb6d0607509f3808ea8f66e7de814"
+    }
+  ],
+  "board_acceptance": false
+}

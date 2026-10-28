@@ -1,0 +1,60 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc" -onfinish exit -l modelsim_work/local_pipeline/transcript.log -wlf modelsim_work/local_pipeline/wave.wlf -do "log /tb_local_pipeline/*; run -all; quit -code 1 -force" test_local_pipeline.tb_local_pipeline 
+# Start time: 17:16:30 on Oct 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 3 FSMs in module "classified_pocket_counter(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "classified_count_pipeline(fast)".
+# ** Warning: tb_local_pipeline.v(18): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 43, found 17.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_y'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_x'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_valid'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_uncertainty'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_total'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_direction_right'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_direction_valid'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_state'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_run'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_current_frame'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_bad_frame'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_good_frame'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_clear'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_begin'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_frame'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_run'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_y'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_x'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_id'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_new'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_query_id'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: tb_local_pipeline.v(18): (vopt-2718) [TFMPC] - Missing connection for port 'event_run'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_local_pipeline(fast)
+# Loading work.classified_count_pipeline(fast)
+# Loading work.classified_pocket_counter(fast)
+# log /tb_local_pipeline/*
+#  run -all
+# PASS local pipeline case=0: actual events, local gap, return de-duplication, source binding, pause, full clear
+# ** Note: $finish    : tb_local_pipeline.v(84)
+#    Time: 233410 ns  Iteration: 1  Instance: /tb_local_pipeline
+# End time: 17:16:32 on Oct 28,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 27

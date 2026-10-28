@@ -1,0 +1,122 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish stop work.tb_relay_brake_dropout -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 17:10:30 on Oct 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2685) [TFMPC] - Too few port connections for 'main'.  Expected 43, found 26.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_valid'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_run'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_id'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_new'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(20): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2685) [TFMPC] - Too few port connections for 'station'.  Expected 43, found 33.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_current_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_bad_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_good_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_clear'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'stop_begin'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_dropout_diag_r2_20261028\inputs\tb_relay_brake_dropout.sv(28): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_relay_brake_dropout(fast)
+# Loading work.pocket_key_motor_controls(fast)
+# Loading work.status_cdc(fast)
+# Loading work.classified_count_pipeline(fast)
+# Loading work.classified_count_pipeline(fast__1)
+# Loading work.pocket_relay_stop_v2(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# DEBUG frame162 lead208 state1 query1 posnew0 x208 search1/204
+# TRACK slot0 raw00000f008d4198a00d0
+# TRACK slot1 raw00000e010fc1e8a00f8
+# TRACK slot2 raw00000f00124238a0120
+# TRACK slot3 raw00000f0014c288a0148
+# PUB fr162 pending1 trusted1 gap0 reason0 diag0000 new0 last208 age37 mc3 conflict0
+# DEBUG frame163 lead204 state1 query1 posnew0 x204 search1/200
+# TRACK slot0 raw00000f008d0190a00cc
+# TRACK slot1 raw00000e010f81e0a00f4
+# TRACK slot2 raw00000f00120230a011c
+# TRACK slot3 raw00000f00148280a0144
+# PUB fr163 pending1 trusted1 gap0 reason0 diag0000 new0 last204 age37 mc3 conflict0
+# DEBUG frame164 lead200 state1 query1 posnew0 x200 search1/196
+# TRACK slot0 raw00000f008cc188a00c8
+# TRACK slot1 raw00000e010f41d8a00f0
+# TRACK slot2 raw00000f0011c228a0118
+# TRACK slot3 raw00000f00144278a0140
+# PUB fr164 pending1 trusted1 gap0 reason0 diag0000 new0 last200 age37 mc3 conflict0
+# DEBUG frame165 lead196 state1 query1 posnew0 x196 search1/192
+# TRACK slot0 raw00000f008c8180a00c4
+# TRACK slot1 raw00000e010f01d0a00ec
+# TRACK slot2 raw00000f00118220a0114
+# TRACK slot3 raw00000f00140270a013c
+# PUB fr165 pending1 trusted1 gap0 reason0 diag0000 new0 last196 age37 mc3 conflict0
+# DEBUG frame166 lead192 state2 query1 posnew0 x192 search1/188
+# TRACK slot0 raw00000f008c4178a00c0
+# TRACK slot1 raw00000e010ec1c8a00e8
+# TRACK slot2 raw00000f00114218a0110
+# TRACK slot3 raw00000f0013c268a0138
+# INJECT one missing actual query: frame166 id1 x188
+# PUB fr166 pending0 trusted1 gap0 reason0 diag0000 new0 last192 age37 mc3 conflict0
+# DEBUG frame167 lead188 state2 query1 posnew0 x192 search1/184
+# TRACK slot0 raw3fc10f008c4178a00c0
+# TRACK slot1 raw00000e010e81c0a00e4
+# TRACK slot2 raw00000f00110210a010c
+# TRACK slot3 raw00000f00138260a0134
+# TRACK slot4 raw000006001602b0a015c
+# PUB fr167 pending1 trusted1 gap1 reason0 diag0000 new0 last192 age74 mc3 conflict0
+# DEBUG frame168 lead184 state2 query1 posnew0 x184 search1/180
+# TRACK slot0 raw00000f008bc168a00b8
+# TRACK slot1 raw00000e010e41b8a00e0
+# TRACK slot2 raw00000f0010c208a0108
+# TRACK slot3 raw00000f00134258a0130
+# TRACK slot4 raw3fc106001602b0a015c
+# PUB fr168 pending1 trusted1 gap1 reason0 diag0000 new0 last192 age111 mc3 conflict0
+# DEBUG frame169 lead180 state2 query1 posnew0 x180 search1/176
+# TRACK slot0 raw00000f008b8160a00b4
+# TRACK slot1 raw00000e010e01b0a00dc
+# TRACK slot2 raw00000f00108200a0104
+# TRACK slot3 raw00000f00130250a012c
+# TRACK slot4 raw3f8206001602b0a015c
+# PUB fr169 pending1 trusted1 gap1 reason0 diag0000 new0 last192 age148 mc3 conflict0
+# ** Fatal: unexpected fault F6 MS2 LS2 main6 local2 lead176
+#    Time: 6347050 ns  Scope: tb_relay_brake_dropout File: E:/2026FPGA/.codex_tmp/r22_brake_dropout_diag_r2_20261028/inputs/tb_relay_brake_dropout.sv Line: 103
+# ** Note: $finish    : E:/2026FPGA/.codex_tmp/r22_brake_dropout_diag_r2_20261028/inputs/tb_relay_brake_dropout.sv(103)
+#    Time: 6347050 ns  Iteration: 1  Instance: /tb_relay_brake_dropout
+# Break at E:/2026FPGA/.codex_tmp/r22_brake_dropout_diag_r2_20261028/inputs/tb_relay_brake_dropout.sv line 103
+# Stopped at E:/2026FPGA/.codex_tmp/r22_brake_dropout_diag_r2_20261028/inputs/tb_relay_brake_dropout.sv line 103
+#  quit -code 0
+# End time: 17:10:32 on Oct 28,2026, Elapsed time: 0:00:02
+# Errors: 1, Warnings: 29

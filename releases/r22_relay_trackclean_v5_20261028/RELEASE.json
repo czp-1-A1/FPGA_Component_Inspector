@@ -1,0 +1,46 @@
+{
+  "version": "R22_RelayAuto_Left_V5_TrackClean_20261028",
+  "branch": "codex/r22-brake-track-clean-ui",
+  "source_commit": "4fd5e869b6932de268977c05517398c10178361a",
+  "parent_rl4_commit": "bcf29a4",
+  "source_worktree": "D:\\CodexWork\\FPGA_R22_Relay_20261027",
+  "build_work": "E:\\2026FPGA\\.codex_tmp\\r22_brake_clean_build_r1_20261028",
+  "pushed": false,
+  "bit_sha256": "b88610ad095d5ee6b30444c542faa24bd65e21ed0c1f8ffc4a41484aa87c95ba",
+  "bit_bytes": 1789539,
+  "td_version": "V6.2.168116",
+  "seed": 2,
+  "resources": {
+    "slice": 18475,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 87.08051,
+  "timing_ns": {
+    "SWNS": 0.0,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "source_files": 636,
+  "hardware_dependencies": 104,
+  "parameters": {
+    "window_x": [
+      80,
+      240
+    ],
+    "target_x": 160,
+    "tolerance_px": 80,
+    "advance_px": 32,
+    "trigger_x": 192,
+    "hold_ms": 1000,
+    "still_px": 2
+  },
+  "gpio": "rightJ2 pin1/V2 HIGH; board5V; no LED; original ADC/SDC",
+  "layout": "single upper row; right count ROI + amber acceptance box80..240; internal left station preserved, auxiliary guides hidden",
+  "keys": "K1 freshRUN / K2 pause-resume / K3 clear-stop / K4 stop / SW3 up stop down freshRUN",
+  "source_manifest_sha256": "23596249f671aa225dfbe199b2f946a6267924e8d1aebf308a318cfabc2ad8a7",
+  "verification_sha256": "2f3a275c3966cd54770c0c7525a8e8667f8af66f6d788cc5a01e1e6954e09768",
+  "board_acceptance": "PENDING_HUMAN_F6_SAME_TAPE_RETEST"
+}

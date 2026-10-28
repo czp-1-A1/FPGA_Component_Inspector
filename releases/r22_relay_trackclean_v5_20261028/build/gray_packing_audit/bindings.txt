@@ -1,0 +1,21 @@
+GRAY_COLLECTION SOURCES 20 DESTINATIONS 20
+GRAY_Q write 0 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[0]} THROUGH {u_isp_top/continuous_processing$bridge/write_gray[0]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[0]}
+GRAY_Q write 1 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[1]} THROUGH {u_isp_top/continuous_processing$bridge/write_gray[1]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[1]}
+GRAY_Q write 2 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[2]} THROUGH {u_isp_top/continuous_processing$bridge/write_gray[2]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[2]}
+GRAY_Q write 3 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[3]} THROUGH {u_isp_top/continuous_processing$bridge/write_gray[3]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[3]}
+GRAY_Q write 4 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[4]} THROUGH {u_isp_top/continuous_processing$bridge/write_gray[4]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[4]}
+GRAY_Q write 5 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[5]} THROUGH {u_isp_top/continuous_processing$bridge/write_gray[5]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[5]}
+GRAY_Q write 6 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[6]} THROUGH {u_isp_top/continuous_processing$bridge/write_gray[6]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[6]}
+GRAY_Q write 7 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[7]} THROUGH {u_isp_top/continuous_processing$bridge/write_gray[7]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[7]}
+GRAY_Q write 8 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[8]} THROUGH {u_isp_top/continuous_processing$bridge/write_gray[8]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[8]}
+GRAY_Q write 9 SOURCE {u_isp_top/continuous_processing$bridge/write_bin[9]} THROUGH {u_isp_top/continuous_processing$bridge/write_bin[9]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[9]}
+GRAY_Q read 0 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[0]} THROUGH {u_isp_top/continuous_processing$bridge/read_gray[0]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[0]}
+GRAY_Q read 1 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[1]} THROUGH {u_isp_top/continuous_processing$bridge/read_gray[1]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[1]}
+GRAY_Q read 2 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[2]} THROUGH {u_isp_top/continuous_processing$bridge/read_gray[2]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[2]}
+GRAY_Q read 3 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[3]} THROUGH {u_isp_top/continuous_processing$bridge/read_gray[3]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[3]}
+GRAY_Q read 4 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[4]} THROUGH {u_isp_top/continuous_processing$bridge/read_gray[4]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[4]}
+GRAY_Q read 5 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[5]} THROUGH {u_isp_top/continuous_processing$bridge/read_gray[5]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[5]}
+GRAY_Q read 6 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[6]} THROUGH {u_isp_top/continuous_processing$bridge/read_gray[6]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[6]}
+GRAY_Q read 7 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[7]} THROUGH {u_isp_top/continuous_processing$bridge/read_gray[7]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[7]}
+GRAY_Q read 8 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[8]} THROUGH {u_isp_top/continuous_processing$bridge/read_gray[8]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[8]}
+GRAY_Q read 9 SOURCE {u_isp_top/continuous_processing$bridge/read_bin[9]} THROUGH {u_isp_top/continuous_processing$bridge/read_bin[9]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[9]}

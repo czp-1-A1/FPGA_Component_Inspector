@@ -1,0 +1,69 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish stop work.tb_relay_left_transport -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 17:14:51 on Oct 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2685) [TFMPC] - Too few port connections for 'main'.  Expected 43, found 26.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_valid'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_run'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_id'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_new'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(14): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2685) [TFMPC] - Too few port connections for 'station'.  Expected 43, found 33.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'stop_current_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'stop_bad_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'stop_good_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'stop_clear'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'stop_begin'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(29): (vopt-2685) [TFMPC] - Too few port connections for 'ctl'.  Expected 42, found 41.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_brake_compat_r1_20261028\inputs\tb_relay_left_transport.sv(29): (vopt-2718) [TFMPC] - Missing connection for port 'pause'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_relay_left_transport(fast)
+# Loading work.classified_count_pipeline(fast)
+# Loading work.classified_count_pipeline(fast__1)
+# Loading work.pocket_relay_stop_v2(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# PASS left transport: 284 real frames, 6 global IDs, 3 EMPTY holds, wait98 frames (>150ms), 140 current positions, each hold>=100000 clocks
+# ** Note: $finish    : E:/2026FPGA/.codex_tmp/r22_brake_compat_r1_20261028/inputs/tb_relay_left_transport.sv(101)
+#    Time: 10508150 ns  Iteration: 1  Instance: /tb_relay_left_transport
+# Break at E:/2026FPGA/.codex_tmp/r22_brake_compat_r1_20261028/inputs/tb_relay_left_transport.sv line 101
+# Stopped at E:/2026FPGA/.codex_tmp/r22_brake_compat_r1_20261028/inputs/tb_relay_left_transport.sv line 101
+#  quit -code 0
+# End time: 17:14:53 on Oct 28,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 31
