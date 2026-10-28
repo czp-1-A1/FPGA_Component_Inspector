@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "inputs": {
+    "user_source/hdl_source/uics500_cfg/SC500GainTbl.v": "c419c780af7c8c5b86837b8ca3516333627bbdcbf1752d4814503c52fabdd584",
+    "user_source/hdl_source/uics500_cfg/uicfgcs500.v": "4d1dbf17e72d7dc899208e487e3bacc0d0f8e81b2407c3bf1c1f1ef9a83f5c2a",
+    "user_source/hdl_source/uics500_cfg/uics500reg.v": "424cbef78d37a5aa3e7d71819ca3c7dad772b5b921d3e839c9814c72efb4c526",
+    "user_source/hdl_source/uics500_cfg/uics500regAE.v": "f37e71b95b8aaa8f1a4c3bc7a38492d15c5fbea076d8564c3498f54facb8996f",
+    "user_source/hdl_source/uics500_cfg/uii2c.v": "7416a15b6f10a8142c5aa3b0386b2be52fee2e569f641c11ad3c772309dc5329",
+    "user_source/hdl_source/uiisp_beta/ae_set.v": "ee26166e4b9a9e6ee37db793426a538bcabc1d4fb44add843532b5d98570f32a"
+  },
+  "tests": [
+    {
+      "name": "tb_gain_equivalence",
+      "log_sha256": "89687a2f52c5a5fb4c3254c2067e8a26dc95150d12ea4d0d82969c88d3ca7245"
+    },
+    {
+      "name": "tb_camera_startup_bus",
+      "log_sha256": "c4d73ca5812cc7db416db6287f26557929a43bdfb1045c6d1881bb9ff2c53874"
+    }
+  ],
+  "board_operated": false,
+  "scope": "lookup equivalence and real serialized I2C with modeled ACK slave; not optical readback",
+  "fixture_sha256": {
+    "camera_expected.hex": "8d9d0823e2ffef12bf3ab707fa3b989f2d990080cde00c7bed43821bb149a568",
+    "original_gain_reference.v": "ad9f93fd03eb48080171e18f6bb88e937ebb9cc33c10955c41d39deb3c985e4c",
+    "REFERENCE.json": "9344c79eb44cce3f742df22f1d8d103b68d9a208cd1b5f56fb7d6afa6d52821b",
+    "tb_camera_startup_bus.sv": "4d91ba604c647ca051ced4e394a7e8d6c43c1ccccfcecbf74ce8da54cf0209fa",
+    "tb_gain_equivalence.sv": "5adb494e9ab2d8008fa1850ab8d592adfa4a7142f307aab64cf2b573f96642d6"
+  },
+  "simulation_input_sha256": {
+    "ae_set.v": "ee26166e4b9a9e6ee37db793426a538bcabc1d4fb44add843532b5d98570f32a",
+    "camera_expected.hex": "8d9d0823e2ffef12bf3ab707fa3b989f2d990080cde00c7bed43821bb149a568",
+    "original_gain_reference.v": "ad9f93fd03eb48080171e18f6bb88e937ebb9cc33c10955c41d39deb3c985e4c",
+    "REFERENCE.json": "9344c79eb44cce3f742df22f1d8d103b68d9a208cd1b5f56fb7d6afa6d52821b",
+    "SC500GainTbl.v": "c419c780af7c8c5b86837b8ca3516333627bbdcbf1752d4814503c52fabdd584",
+    "tb_camera_startup_bus.sv": "4d91ba604c647ca051ced4e394a7e8d6c43c1ccccfcecbf74ce8da54cf0209fa",
+    "tb_gain_equivalence.sv": "5adb494e9ab2d8008fa1850ab8d592adfa4a7142f307aab64cf2b573f96642d6",
+    "uicfgcs500.v": "4d1dbf17e72d7dc899208e487e3bacc0d0f8e81b2407c3bf1c1f1ef9a83f5c2a",
+    "uics500reg.v": "424cbef78d37a5aa3e7d71819ca3c7dad772b5b921d3e839c9814c72efb4c526",
+    "uics500regAE.v": "f37e71b95b8aaa8f1a4c3bc7a38492d15c5fbea076d8564c3498f54facb8996f",
+    "uii2c.v": "7416a15b6f10a8142c5aa3b0386b2be52fee2e569f641c11ad3c772309dc5329"
+  },
+  "library_sha256": {},
+  "gate_netlist_sha256": null,
+  "cone_closure": null
+}

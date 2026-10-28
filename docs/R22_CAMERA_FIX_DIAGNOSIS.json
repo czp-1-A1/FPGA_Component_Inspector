@@ -1,0 +1,43 @@
+{
+  "status": "SYNTHESIZED_BUS_REGRESSION_FIXED_BOARD_CONFIRMATION_PENDING",
+  "source_commit": "701ea18",
+  "production_delta": [
+    "SC500GainTbl.v"
+  ],
+  "v2_gain": "0338",
+  "old_v3_gain": "0000",
+  "fixed_gain": "0338",
+  "exposure": "1092",
+  "new_tests": 3,
+  "reused_core_tests_by_exact_input_sha": 17,
+  "gate_cone_cells": 305,
+  "unmodeled_inputs": [],
+  "board_operated": false,
+  "sensor_readback": false,
+  "evidence": {
+    "v2_positive": {
+      "path": "E:\\2026FPGA\\.codex_tmp\\v3_camera_black_20261028\\v2_positive\\camera_gate.log",
+      "sha256": "4929eb30b6bead091718c19166d4c72344dfdfa3f3919f42e886e556fff0ee17"
+    },
+    "old_v3_failure": {
+      "path": "E:\\2026FPGA\\.codex_tmp\\r22_camfix_old_v3_negative_r2_20261028\\tb_camera_gate.log",
+      "sha256": "e84f3b5e07c970fab12ba56bed40f18b8bc26e53b090945f1a40ee62b76f935f"
+    },
+    "fixed_gate_proof": {
+      "path": "E:\\2026FPGA\\.codex_tmp\\r22_camfix_gate_r3_20261028\\verification.json",
+      "sha256": "0f1caf67bb602fab402637467cbe88386bafa5d6114749cd6c2e8d5ca7e11e31"
+    },
+    "rtl_proof": {
+      "path": "E:\\2026FPGA\\.codex_tmp\\r22_camfix_rtl_20261028\\verification.json",
+      "sha256": "f225c328a96963bf1a24fece3ed9f156b2d219f200313ff4ea8bbe297c2e74a1"
+    },
+    "fixed_synth_netlist": {
+      "path": "E:\\2026FPGA\\.codex_tmp\\v3_camera_black_20261028\\fix_r2_camera_gate.v",
+      "sha256": "378de27d9b87008f4065778d743fd3af157a88a86720b8d54df322d0d20d7031"
+    },
+    "fixed_synth_db": {
+      "path": "E:\\2026FPGA\\.codex_tmp\\r22_v3_camfix_build_r2_20261028\\runs\\syn_1\\camera_to_dsi_display_gate.db",
+      "sha256": "b94432bc69014374622cb3d7e7556892a9b0edbf8c09ca3f2eb153ce59fefab8"
+    }
+  }
+}

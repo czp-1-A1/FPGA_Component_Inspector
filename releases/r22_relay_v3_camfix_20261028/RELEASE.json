@@ -1,0 +1,43 @@
+{
+  "version": "R22_RelayAuto_Left_V3_CamFix_20261028",
+  "branch": "codex/r22-v3-camera-gain-fix",
+  "source_commit": "701ea18dba23e51191d7f6b015e09807ce687d2a",
+  "parent_source": "119c276",
+  "source_worktree": "D:\\CodexWork\\FPGA_R22_Relay_20261027",
+  "build_work": "E:\\2026FPGA\\.codex_tmp\\r22_v3_camfix_build_r2_20261028",
+  "bit_sha256": "2c06e667cbf89039a63e9d788f5d1d07f72b195e23532ca1ae1d03336019677f",
+  "bit_bytes": 1789539,
+  "td_version": "V6.2.168116",
+  "seed": 2,
+  "resources": {
+    "slice": 18171,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 85.64762,
+  "timing_ns": {
+    "SWNS": 0.002,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "source_files": 636,
+  "hardware_dependencies": 104,
+  "production_delta": [
+    "user_source/hdl_source/uics500_cfg/SC500GainTbl.v"
+  ],
+  "gpio": "right J2 pin1/V2 HIGH; board5V; original ADC/SDC; no LED",
+  "keys": "K1 fresh RUN / K2 pause-resume / K3 clear-stop / K4 stop / SW3 up stop down fresh RUN",
+  "layout": "single row, right count / left refill",
+  "parameters": {
+    "target_x": 160,
+    "advance_px": 32,
+    "tolerance_px": 8,
+    "hold_ms": 1000
+  },
+  "source_manifest_sha256": "b0651f6e0c7f4107b98591ac6d0b0ac03305000bc419e33d25d45f9e6b74ceb3",
+  "verification_sha256": "269ad635bf32bac6da5c6ae16ea93f51186fcb6c66f5324d893fbe823339cfc5",
+  "board_acceptance": "PENDING_HUMAN_IMAGE_AND_PARKING_TEST",
+  "pushed": false
+}

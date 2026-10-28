@@ -1,0 +1,813 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish stop work.tb_camera_gate work.glbl work.PH1P_PHY_GSR -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 12:05:51 on Oct 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23310): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/O_ae_cfg_done_reg '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23310): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23310): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23337): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/O_cfg_done_reg '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23337): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23337): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23634): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/TS_S_reg[0] '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23634): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23634): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23656): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/TS_S_reg[1] '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23656): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23656): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23713): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/TS_S_reg[2] '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23713): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23713): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23734): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/TS_S_reg[3] '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23734): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23734): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_100 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23759): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_101 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23778): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_102 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23797): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_103 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23816): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_104 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23835): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_105 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23854): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_106 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23873): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_107 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23892): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_108 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23911): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_109 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23930): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_110 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23949): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_111 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23968): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_112 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(23987): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_113 '.  Expected 38, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'fco_f'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'fco'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24006): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_98 '.  Expected 38, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'fci_f'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'fci'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'ofb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24023): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/add0_syn_99 '.  Expected 38, found 6.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_wclk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_byteaddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_waddr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_we'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_shiftmode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_rammode'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'dpram_width'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'dffshiften'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'f78i'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'relut6'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'olut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'ft_lut5a'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'shoqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'shoqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'shiqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'shiqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'imc'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'ofa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'oqb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'oqa'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'asr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'ssr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'clk'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'ceb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'cea'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'imb'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'ima'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'imf'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'ie'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'ic'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'ib'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24039): (vopt-2718) [TFMPC] - Missing connection for port 'ia'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24054): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/error_sync_reg[0] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24054): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24067): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/error_sync_reg[1] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24067): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24080): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/error_sync_reg[2] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24080): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24092): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/iic_req_reg '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24092): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24092): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24357): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/rst_cnt_reg[0] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24357): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24377): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/rst_cnt_reg[1] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24377): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24398): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/rst_cnt_reg[2] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24398): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24420): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/rst_cnt_reg[3] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24420): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24443): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/rst_cnt_reg[4] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24443): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24467): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/rst_cnt_reg[5] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24467): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24487): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/rst_cnt_reg[6] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24487): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24508): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/rst_cnt_reg[7] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24508): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24521): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/IIC_S_reg[0] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24521): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24545): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/IIC_S_reg[1] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24545): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24567): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/IIC_S_reg[2] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24567): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24589): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/O_iic_bus_error_reg '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24589): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24620): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/O_iic_busy_reg '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24620): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24651): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/O_iic_scl_reg '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24651): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24651): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24692): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/bcnt_reg[0] '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24692): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24692): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24712): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/bcnt_reg[1] '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24712): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24712): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24733): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/bcnt_reg[2] '.  Expected 5, found 3.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24733): (vopt-2718) [TFMPC] - Missing connection for port 'sr'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24733): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24853): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/clkdiv_reg[0] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24853): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24866): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/clkdiv_reg[1] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24866): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24879): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/clkdiv_reg[2] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24879): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24892): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/clkdiv_reg[3] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24892): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24905): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/clkdiv_reg[4] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24905): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24918): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/clkdiv_reg[5] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24918): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24931): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/clkdiv_reg[6] '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(24931): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(25070): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/scl_clk_reg '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(25070): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(25115): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/scl_fall_tick_reg '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(25115): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(25135): (vopt-2685) [TFMPC] - Too few port connections for '\u_uicfgcs500/uii2c_inst/scl_rise_tick_reg '.  Expected 5, found 4.
+# ** Warning: E:\2026FPGA\.codex_tmp\r22_camfix_gate_r2_20261028\inputs\camera_cone.v(25135): (vopt-2718) [TFMPC] - Missing connection for port 'ce'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_camera_gate(fast)
+# Loading work.AL_MAP_SEQ_GSR(fast)
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'AL_MAP_SEQ_GSR' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ns  Iteration: 0  Instance: /tb_camera_gate/dut/\u_uicfgcs500/O_ae_cfg_done_reg  File: E:/TD/sim_release/common/al_map_seq.v
+# Loading work.AL_MAP_LUT2(fast)
+# Loading work.AL_MAP_LUT4(fast)
+# Loading work.AL_MAP_LUT3(fast)
+# Loading work.AL_MAP_LUT1(fast)
+# Loading work.AL_MAP_LUT4(fast__1)
+# Loading work.AL_MAP_LUT5(fast)
+# Loading work.AL_MAP_LUT6(fast)
+# Loading work.AL_MAP_LUT3(fast__1)
+# Loading work.AL_MAP_SEQ_GSR(fast__1)
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'AL_MAP_SEQ_GSR' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ns  Iteration: 0  Instance: /tb_camera_gate/dut/\u_uicfgcs500/O_i2c_errors_reg[0]  File: E:/TD/sim_release/common/al_map_seq.v
+# Loading work.AL_MAP_SEQ_GSR(fast__2)
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'AL_MAP_SEQ_GSR' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ns  Iteration: 0  Instance: /tb_camera_gate/dut/\u_uicfgcs500/TS_S_reg[0]  File: E:/TD/sim_release/common/al_map_seq.v
+# Loading work.AL_MAP_LUT5(fast__1)
+# Loading work.AL_MAP_LUT6(fast__1)
+# Loading work.AL_MAP_LUT5(fast__2)
+# Loading work.AL_MAP_LUT2(fast__1)
+# Loading work.AL_MAP_LUT5(fast__3)
+# Loading work.AL_MAP_LUT4(fast__2)
+# Loading work.AL_MAP_LUT4(fast__3)
+# Loading work.PH1P_PHY_LSLICE(fast)
+# Loading work.PH1P_PHY_LSLICE(fast__1)
+# Loading work.AL_MAP_SEQ_GSR(fast__3)
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'AL_MAP_SEQ_GSR' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ns  Iteration: 0  Instance: /tb_camera_gate/dut/\u_uicfgcs500/error_sync_reg[0]  File: E:/TD/sim_release/common/al_map_seq.v
+# Loading work.AL_MAP_LUT5(fast__4)
+# Loading work.AL_MAP_LUT2(fast__2)
+# Loading work.AL_MAP_LUT2(fast__3)
+# Loading work.AL_MAP_LUT3(fast__2)
+# Loading work.AL_MAP_LUT3(fast__3)
+# Loading work.AL_MAP_LUT4(fast__4)
+# Loading work.AL_MAP_LUT5(fast__5)
+# Loading work.AL_MAP_LUT6(fast__2)
+# Loading work.AL_MAP_LUT4(fast__5)
+# Loading work.AL_MAP_SEQ_GSR(fast__4)
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'AL_MAP_SEQ_GSR' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ns  Iteration: 0  Instance: /tb_camera_gate/dut/\u_uicfgcs500/reg_index_reg[0]  File: E:/TD/sim_release/common/al_map_seq.v
+# Loading work.AL_MAP_LUT6(fast__3)
+# Loading work.AL_MAP_LUT4(fast__6)
+# Loading work.AL_MAP_LUT2(fast__4)
+# Loading work.AL_MAP_LUT3(fast__4)
+# Loading work.AL_MAP_LUT4(fast__7)
+# Loading work.AL_MAP_LUT5(fast__6)
+# Loading work.AL_MAP_LUT6(fast__4)
+# Loading work.AL_MAP_LUT2(fast__5)
+# Loading work.AL_MAP_LUT3(fast__5)
+# Loading work.AL_MAP_LUT6(fast__5)
+# Loading work.AL_MAP_LUT4(fast__8)
+# Loading work.AL_MAP_LUT5(fast__7)
+# Loading work.AL_MAP_LUT4(fast__9)
+# Loading work.AL_MAP_LUT4(fast__10)
+# Loading work.AL_MAP_LUT6(fast__6)
+# Loading work.AL_MAP_LUT4(fast__11)
+# Loading work.AL_MAP_LUT4(fast__12)
+# Loading work.AL_MAP_LUT6(fast__7)
+# Loading work.AL_MAP_LUT3(fast__6)
+# Loading work.AL_MAP_LUT4(fast__13)
+# Loading work.AL_MAP_LUT5(fast__8)
+# Loading work.AL_MAP_LUT3(fast__7)
+# Loading work.AL_MAP_LUT6(fast__8)
+# Loading work.AL_MAP_LUT5(fast__9)
+# Loading work.AL_MAP_LUT3(fast__8)
+# Loading work.AL_MAP_LUT3(fast__9)
+# Loading work.AL_MAP_LUT4(fast__14)
+# Loading work.AL_MAP_LUT5(fast__10)
+# Loading work.AL_MAP_LUT5(fast__11)
+# Loading work.AL_MAP_LUT4(fast__15)
+# Loading work.AL_MAP_LUT5(fast__12)
+# Loading work.AL_MAP_LUT6(fast__9)
+# Loading work.AL_MAP_LUT6(fast__10)
+# Loading work.AL_MAP_LUT6(fast__11)
+# Loading work.AL_MAP_LUT4(fast__16)
+# Loading work.AL_MAP_LUT3(fast__10)
+# Loading work.AL_MAP_LUT3(fast__11)
+# Loading work.AL_MAP_LUT5(fast__13)
+# Loading work.AL_MAP_LUT4(fast__17)
+# Loading work.AL_MAP_LUT6(fast__12)
+# Loading work.AL_MAP_LUT5(fast__14)
+# Loading work.AL_MAP_LUT3(fast__12)
+# Loading work.AL_MAP_LUT6(fast__13)
+# Loading work.AL_MAP_LUT3(fast__13)
+# Loading work.AL_MAP_LUT6(fast__14)
+# Loading work.AL_MAP_SEQ_GSR(fast__5)
+# ** Error (suppressible): (vsim-3009) [TSCALE] - Module 'AL_MAP_SEQ_GSR' does not have a timeunit/timeprecision specification in effect, but other modules do.
+#    Time: 0 ns  Iteration: 0  Instance: /tb_camera_gate/dut/\u_uicfgcs500/uii2c_inst/sda_r_reg[0]  File: E:/TD/sim_release/common/al_map_seq.v
+# Loading work.AL_MAP_LUT6(fast__15)
+# Loading work.AL_MAP_LUT6(fast__16)
+# Loading work.AL_MAP_LUT6(fast__17)
+# Loading work.AL_MAP_LUT5(fast__15)
+# Loading work.AL_MAP_LUT5(fast__16)
+# Loading work.AL_MAP_LUT5(fast__17)
+# Loading work.AL_MAP_LUT5(fast__18)
+# Loading work.AL_MAP_LUT4(fast__18)
+# Loading work.AL_MAP_LUT5(fast__19)
+# Loading work.AL_MAP_LUT4(fast__19)
+# Loading work.AL_MAP_LUT5(fast__20)
+# Loading work.AL_MAP_LUT6(fast__18)
+# Loading work.AL_MAP_LUT6(fast__19)
+# Loading work.AL_MAP_LUT4(fast__20)
+# Loading work.AL_MAP_LUT6(fast__20)
+# Loading work.AL_MAP_LUT6(fast__21)
+# Loading work.AL_MAP_LUT6(fast__22)
+# Loading work.AL_MAP_LUT4(fast__21)
+# Loading work.AL_MAP_LUT6(fast__23)
+# Loading work.AL_MAP_LUT6(fast__24)
+# Loading work.AL_MAP_LUT6(fast__25)
+# Loading work.AL_MAP_LUT4(fast__22)
+# Loading work.AL_MAP_LUT6(fast__26)
+# Loading work.AL_MAP_LUT6(fast__27)
+# Loading work.AL_MAP_LUT4(fast__23)
+# Loading work.AL_MAP_LUT6(fast__28)
+# Loading work.AL_MAP_LUT6(fast__29)
+# Loading work.AL_MAP_LUT6(fast__30)
+# Loading work.AL_MAP_LUT4(fast__24)
+# Loading work.AL_MAP_LUT6(fast__31)
+# Loading work.AL_MAP_LUT6(fast__32)
+# Loading work.AL_MAP_LUT6(fast__33)
+# Loading work.AL_MAP_LUT4(fast__25)
+# Loading work.AL_MAP_LUT6(fast__34)
+# Loading work.AL_MAP_LUT6(fast__35)
+# Loading work.AL_MAP_LUT6(fast__36)
+# Loading work.AL_MAP_LUT6(fast__37)
+# Loading work.AL_MAP_LUT5(fast__21)
+# Loading work.AL_MAP_LUT6(fast__38)
+# Loading work.AL_MAP_LUT6(fast__39)
+# Loading work.AL_MAP_LUT5(fast__22)
+# Loading work.AL_MAP_LUT5(fast__23)
+# Loading work.AL_MAP_LUT6(fast__40)
+# Loading work.AL_MAP_LUT6(fast__41)
+# Loading work.AL_MAP_LUT5(fast__24)
+# Loading work.AL_MAP_LUT4(fast__26)
+# Loading work.AL_MAP_LUT6(fast__42)
+# Loading work.AL_MAP_LUT6(fast__43)
+# Loading work.AL_MAP_LUT6(fast__44)
+# Loading work.AL_MAP_LUT5(fast__25)
+# Loading work.AL_MAP_LUT6(fast__45)
+# Loading work.AL_MAP_LUT5(fast__26)
+# Loading work.AL_MAP_LUT3(fast__14)
+# Loading work.AL_MAP_LUT5(fast__27)
+# Loading work.AL_MAP_LUT6(fast__46)
+# Loading work.AL_MAP_LUT4(fast__27)
+# Loading work.AL_MAP_LUT4(fast__28)
+# Loading work.AL_MAP_LUT5(fast__28)
+# Loading work.AL_MAP_LUT6(fast__47)
+# Loading work.AL_MAP_LUT5(fast__29)
+# Loading work.AL_MAP_LUT6(fast__48)
+# Loading work.AL_MAP_LUT6(fast__49)
+# Loading work.AL_MAP_LUT5(fast__30)
+# Loading work.AL_MAP_LUT4(fast__29)
+# Loading work.AL_MAP_LUT6(fast__50)
+# Loading work.AL_MAP_LUT6(fast__51)
+# Loading work.AL_MAP_LUT6(fast__52)
+# Loading work.AL_MAP_LUT6(fast__53)
+# Loading work.AL_MAP_LUT6(fast__54)
+# Loading work.AL_MAP_LUT5(fast__31)
+# Loading work.AL_MAP_LUT6(fast__55)
+# Loading work.AL_MAP_LUT5(fast__32)
+# Loading work.AL_MAP_LUT6(fast__56)
+# Loading work.AL_MAP_LUT6(fast__57)
+# Loading work.AL_MAP_LUT3(fast__15)
+# Loading work.AL_MAP_LUT4(fast__30)
+# Loading work.AL_MAP_LUT6(fast__58)
+# Loading work.AL_MAP_LUT6(fast__59)
+# Loading work.glbl(fast)
+# Loading work.PH1P_PHY_GSR(fast)
+# Error loading design
+Error loading design
+# End time: 12:05:54 on Oct 28,2026, Elapsed time: 0:00:03
+# Errors: 6, Warnings: 618

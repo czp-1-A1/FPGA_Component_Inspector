@@ -1,0 +1,316 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -voptargs="+acc=rn+/tb_camera_gate" -onfinish stop work.tb_camera_gate work.glbl work.PH1P_PHY_GSR -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 11:47:29 on Oct 28,2026
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_camera_gate(fast)
+# Loading work.camera_cone(fast)
+# Loading work.AL_MAP_SEQ_GSR(fast)
+# Loading work.AL_MAP_LUT2(fast)
+# Loading work.AL_MAP_LUT4(fast)
+# Loading work.AL_MAP_LUT3(fast)
+# Loading work.AL_MAP_LUT1(fast)
+# Loading work.AL_MAP_LUT4(fast__1)
+# Loading work.AL_MAP_LUT5(fast)
+# Loading work.AL_MAP_LUT6(fast)
+# Loading work.AL_MAP_LUT3(fast__1)
+# Loading work.AL_MAP_SEQ_GSR(fast__1)
+# Loading work.AL_MAP_SEQ_GSR(fast__2)
+# Loading work.AL_MAP_LUT5(fast__1)
+# Loading work.AL_MAP_LUT6(fast__1)
+# Loading work.AL_MAP_LUT6(fast__2)
+# Loading work.AL_MAP_LUT2(fast__1)
+# Loading work.AL_MAP_LUT5(fast__2)
+# Loading work.AL_MAP_LUT4(fast__2)
+# Loading work.AL_MAP_LUT4(fast__3)
+# Loading work.PH1P_PHY_LSLICE(fast)
+# Loading work.PH1P_PHY_LSLICE(fast__1)
+# Loading work.AL_MAP_SEQ_GSR(fast__3)
+# Loading work.AL_MAP_LUT5(fast__3)
+# Loading work.AL_MAP_LUT2(fast__2)
+# Loading work.AL_MAP_LUT2(fast__3)
+# Loading work.AL_MAP_LUT3(fast__2)
+# Loading work.AL_MAP_LUT4(fast__4)
+# Loading work.AL_MAP_LUT4(fast__5)
+# Loading work.AL_MAP_LUT5(fast__4)
+# Loading work.AL_MAP_LUT6(fast__3)
+# Loading work.AL_MAP_LUT3(fast__3)
+# Loading work.AL_MAP_LUT4(fast__6)
+# Loading work.AL_MAP_SEQ_GSR(fast__4)
+# Loading work.AL_MAP_LUT6(fast__4)
+# Loading work.AL_MAP_LUT4(fast__7)
+# Loading work.AL_MAP_LUT2(fast__4)
+# Loading work.AL_MAP_LUT3(fast__4)
+# Loading work.AL_MAP_LUT4(fast__8)
+# Loading work.AL_MAP_LUT5(fast__5)
+# Loading work.AL_MAP_LUT6(fast__5)
+# Loading work.AL_MAP_LUT2(fast__5)
+# Loading work.AL_MAP_LUT3(fast__5)
+# Loading work.AL_MAP_LUT6(fast__6)
+# Loading work.AL_MAP_LUT4(fast__9)
+# Loading work.AL_MAP_LUT5(fast__6)
+# Loading work.AL_MAP_LUT4(fast__10)
+# Loading work.AL_MAP_LUT4(fast__11)
+# Loading work.AL_MAP_LUT6(fast__7)
+# Loading work.AL_MAP_LUT4(fast__12)
+# Loading work.AL_MAP_LUT4(fast__13)
+# Loading work.AL_MAP_LUT6(fast__8)
+# Loading work.AL_MAP_LUT3(fast__6)
+# Loading work.AL_MAP_LUT4(fast__14)
+# Loading work.AL_MAP_LUT5(fast__7)
+# Loading work.AL_MAP_LUT3(fast__7)
+# Loading work.AL_MAP_LUT6(fast__9)
+# Loading work.AL_MAP_LUT5(fast__8)
+# Loading work.AL_MAP_LUT3(fast__8)
+# Loading work.AL_MAP_LUT3(fast__9)
+# Loading work.AL_MAP_LUT4(fast__15)
+# Loading work.AL_MAP_LUT5(fast__9)
+# Loading work.AL_MAP_LUT5(fast__10)
+# Loading work.AL_MAP_LUT5(fast__11)
+# Loading work.AL_MAP_LUT6(fast__10)
+# Loading work.AL_MAP_LUT6(fast__11)
+# Loading work.AL_MAP_LUT6(fast__12)
+# Loading work.AL_MAP_LUT4(fast__16)
+# Loading work.AL_MAP_LUT3(fast__10)
+# Loading work.AL_MAP_LUT3(fast__11)
+# Loading work.AL_MAP_LUT5(fast__12)
+# Loading work.AL_MAP_LUT4(fast__17)
+# Loading work.AL_MAP_LUT6(fast__13)
+# Loading work.AL_MAP_LUT5(fast__13)
+# Loading work.AL_MAP_LUT3(fast__12)
+# Loading work.AL_MAP_LUT6(fast__14)
+# Loading work.AL_MAP_LUT3(fast__13)
+# Loading work.AL_MAP_LUT6(fast__15)
+# Loading work.AL_MAP_SEQ_GSR(fast__5)
+# Loading work.AL_MAP_LUT6(fast__16)
+# Loading work.AL_MAP_LUT6(fast__17)
+# Loading work.AL_MAP_LUT6(fast__18)
+# Loading work.AL_MAP_LUT5(fast__14)
+# Loading work.AL_MAP_LUT6(fast__19)
+# Loading work.AL_MAP_LUT5(fast__15)
+# Loading work.AL_MAP_LUT4(fast__18)
+# Loading work.AL_MAP_LUT6(fast__20)
+# Loading work.AL_MAP_LUT5(fast__16)
+# Loading work.AL_MAP_LUT6(fast__21)
+# Loading work.AL_MAP_LUT5(fast__17)
+# Loading work.AL_MAP_LUT5(fast__18)
+# Loading work.AL_MAP_LUT6(fast__22)
+# Loading work.AL_MAP_LUT6(fast__23)
+# Loading work.AL_MAP_LUT4(fast__19)
+# Loading work.AL_MAP_LUT6(fast__24)
+# Loading work.AL_MAP_LUT6(fast__25)
+# Loading work.AL_MAP_LUT6(fast__26)
+# Loading work.AL_MAP_LUT4(fast__20)
+# Loading work.AL_MAP_LUT6(fast__27)
+# Loading work.AL_MAP_LUT6(fast__28)
+# Loading work.AL_MAP_LUT6(fast__29)
+# Loading work.AL_MAP_LUT4(fast__21)
+# Loading work.AL_MAP_LUT5(fast__19)
+# Loading work.AL_MAP_LUT6(fast__30)
+# Loading work.AL_MAP_LUT6(fast__31)
+# Loading work.AL_MAP_LUT5(fast__20)
+# Loading work.AL_MAP_LUT6(fast__32)
+# Loading work.AL_MAP_LUT6(fast__33)
+# Loading work.AL_MAP_LUT6(fast__34)
+# Loading work.AL_MAP_LUT6(fast__35)
+# Loading work.AL_MAP_LUT4(fast__22)
+# Loading work.AL_MAP_LUT6(fast__36)
+# Loading work.AL_MAP_LUT6(fast__37)
+# Loading work.AL_MAP_LUT4(fast__23)
+# Loading work.AL_MAP_LUT6(fast__38)
+# Loading work.AL_MAP_LUT6(fast__39)
+# Loading work.AL_MAP_LUT6(fast__40)
+# Loading work.AL_MAP_LUT6(fast__41)
+# Loading work.AL_MAP_LUT6(fast__42)
+# Loading work.AL_MAP_LUT6(fast__43)
+# Loading work.AL_MAP_LUT5(fast__21)
+# Loading work.AL_MAP_LUT6(fast__44)
+# Loading work.AL_MAP_LUT6(fast__45)
+# Loading work.AL_MAP_LUT5(fast__22)
+# Loading work.AL_MAP_LUT6(fast__46)
+# Loading work.AL_MAP_LUT6(fast__47)
+# Loading work.AL_MAP_LUT6(fast__48)
+# Loading work.AL_MAP_LUT6(fast__49)
+# Loading work.AL_MAP_LUT4(fast__24)
+# Loading work.AL_MAP_LUT6(fast__50)
+# Loading work.AL_MAP_LUT6(fast__51)
+# Loading work.AL_MAP_LUT6(fast__52)
+# Loading work.AL_MAP_LUT6(fast__53)
+# Loading work.AL_MAP_LUT6(fast__54)
+# Loading work.AL_MAP_LUT4(fast__25)
+# Loading work.AL_MAP_LUT6(fast__55)
+# Loading work.AL_MAP_LUT6(fast__56)
+# Loading work.AL_MAP_LUT6(fast__57)
+# Loading work.AL_MAP_LUT6(fast__58)
+# Loading work.AL_MAP_LUT4(fast__26)
+# Loading work.AL_MAP_LUT6(fast__59)
+# Loading work.AL_MAP_LUT5(fast__23)
+# Loading work.AL_MAP_LUT5(fast__24)
+# Loading work.AL_MAP_LUT6(fast__60)
+# Loading work.AL_MAP_LUT6(fast__61)
+# Loading work.AL_MAP_LUT6(fast__62)
+# Loading work.AL_MAP_LUT6(fast__63)
+# Loading work.AL_MAP_LUT6(fast__64)
+# Loading work.AL_MAP_LUT6(fast__65)
+# Loading work.AL_MAP_LUT4(fast__27)
+# Loading work.AL_MAP_LUT6(fast__66)
+# Loading work.AL_MAP_LUT6(fast__67)
+# Loading work.glbl(fast)
+# Loading work.PH1P_PHY_GSR(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# BUS 1 6c010301
+# BUS 2 6c010000
+# BUS 3 6c36e980
+# BUS 4 6c36f980
+# BUS 5 6c30183a
+# BUS 6 6c30310a
+# BUS 7 6c365031
+# BUS 8 6c365200
+# BUS 9 6c365400
+# BUS 10 6c36ea3c
+# BUS 11 6c36eb0c
+# BUS 12 6c36ec0b
+# BUS 13 6c36ed26
+# BUS 14 6c36fa3b
+# BUS 15 6c36fba6
+# BUS 16 6c36fc10
+# BUS 17 6c36fd24
+# BUS 18 6c36e904
+# BUS 19 6c36f904
+# BUS 20 6c301f50
+# BUS 21 6c302d20
+# BUS 22 6c310601
+# BUS 23 6c320001
+# BUS 24 6c320154
+# BUS 25 6c320201
+# BUS 26 6c3203b4
+# BUS 27 6c320408
+# BUS 28 6c3205db
+# BUS 29 6c320605
+# BUS 30 6c3207f3
+# BUS 31 6c320807
+# BUS 32 6c320980
+# BUS 33 6c320a04
+# BUS 34 6c320b38
+# BUS 35 6c320c0b
+# BUS 36 6c320d24
+# BUS 37 6c320e04
+# BUS 38 6c320f67
+# BUS 39 6c321000
+# BUS 40 6c321104
+# BUS 41 6c321200
+# BUS 42 6c321304
+# BUS 43 6c32490f
+# BUS 44 6c325306
+# BUS 45 6c327113
+# BUS 46 6c327313
+# BUS 47 6c33010a
+# BUS 48 6c330640
+# BUS 49 6c330960
+# BUS 50 6c330a00
+# BUS 51 6c330bd8
+# BUS 52 6c331e41
+# BUS 53 6c331f51
+# BUS 54 6c332004
+# BUS 55 6c333310
+# BUS 56 6c335d60
+# BUS 57 6c336456
+# BUS 58 6c336b08
+# BUS 59 6c339008
+# BUS 60 6c339118
+# BUS 61 6c339238
+# BUS 62 6c33930a
+# BUS 63 6c339424
+# BUS 64 6c339530
+# BUS 65 6c33ad29
+# BUS 66 6c341c04
+# BUS 67 6c341d04
+# BUS 68 6c341e03
+# BUS 69 6c342500
+# BUS 70 6c342600
+# BUS 71 6c3622c7
+# BUS 72 6c363244
+# BUS 73 6c36366e
+# BUS 74 6c363708
+# BUS 75 6c36380a
+# BUS 76 6c36519d
+# BUS 77 6c36704b
+# BUS 78 6c3674c0
+# BUS 79 6c367558
+# BUS 80 6c36765a
+# BUS 81 6c367c18
+# BUS 82 6c367d38
+# BUS 83 6c369043
+# BUS 84 6c369153
+# BUS 85 6c369253
+# BUS 86 6c369908
+# BUS 87 6c369a10
+# BUS 88 6c369b1f
+# BUS 89 6c369c18
+# BUS 90 6c369d38
+# BUS 91 6c36a208
+# BUS 92 6c36a318
+# BUS 93 6c36a608
+# BUS 94 6c36a718
+# BUS 95 6c36ab40
+# BUS 96 6c36ac40
+# BUS 97 6c36ad40
+# BUS 98 6c390100
+# BUS 99 6c39040c
+# BUS 100 6c39063a
+# BUS 101 6c391d14
+# BUS 102 6c3e018c
+# BUS 103 6c3e0260
+# BUS 104 6c400000
+# BUS 105 6c400104
+# BUS 106 6c4002b0
+# BUS 107 6c400300
+# BUS 108 6c400400
+# BUS 109 6c400500
+# BUS 110 6c400607
+# BUS 111 6c4007ae
+# BUS 112 6c400800
+# BUS 113 6c4009c8
+# BUS 114 6c440e02
+# BUS 115 6c450928
+# BUS 116 6c483721
+# BUS 117 6c50000e
+# BUS 118 6c302d00
+# BUS 119 6c3e0808
+# BUS 120 6c3e095f
+# BUS 121 6c010001
+# BUS 122 6c3e0000
+# BUS 123 6c3e0144
+# BUS 124 6c3e0240
+# BUS 125 6c3e0800
+# ACTUAL_GAIN_HIGH 00
+# BUS 126 6c3e0900
+# ACTUAL_GAIN_LOW 00
+# DIAGNOSTIC ACTUAL V3 SYNTH CAMERA BUS:126 serialized I2C writes, EXP1092/GAIN40 correct; no sensor optical readback
+# ** Note: $finish    : tb_camera_gate_all_values.sv(38)
+#    Time: 12399705 ns  Iteration: 0  Instance: /tb_camera_gate
+# Break at tb_camera_gate_all_values.sv line 38
+# Stopped at tb_camera_gate_all_values.sv line 38
+#  quit -code 0
+# End time: 11:47:46 on Oct 28,2026, Elapsed time: 0:00:17
+# Errors: 0, Warnings: 0
