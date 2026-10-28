@@ -11,3 +11,5 @@ Run `scripts/relay_left_checks.py --bench-dir tests/adjacent_v6 --osd --only ...
 - `tb_adjacent_v6_native`: full native RAW10/ISP/vendor ERAM compatibility with V6 enabled and tolerance80; RAW fixture does not reach the parking line. Run `scripts/relay_left_native_check.py --v3 --bench-dir tests/adjacent_v6 --bench tb_adjacent_v6_native --out NEW_ASCII_PATH`.
 
 Software proofs do not replace hardware parking, optical-image or refill validation. An eight-adjacent synthetic scene is not a claim that the actual detector resolves every eight-hole scene. Legacy weak RAW280 and upstream-gap negatives remain explicit boundaries.
+
+`tb_v6_fast24` is a **known failing boundary**, excluded from selected PASS checks: abrupt24px/source with40px pitch produces ID5 EMPTY where the physical sequence expects PRESENT, before the first parking. The same input fails identically on frozen RL5. Paired logs and sealed inputs are preserved under the release's `field_evidence/highspeed_boundary`; no arbitrary high-speed coverage is asserted.

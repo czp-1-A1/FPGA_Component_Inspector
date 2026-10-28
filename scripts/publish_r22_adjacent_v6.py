@@ -67,6 +67,9 @@ def main():
   assert compiled,name
   legacy.append({'name':name,'mode':'NEW_RUN','inputs':compiled,'compile_sha256':sha(folder/'compile.log'),'log_sha256':sha(folder/'console.log')})
  assert len(selected)+len(legacy)==29
+ boundary=tmp/'r22_v6_highspeed_boundary_20261028'
+ assert load(boundary/'VERDICT.json')['status']=='KNOWN_INHERITED_BOUNDARY_NOT_SELECTED_PASS'
+ assert load(boundary/'v6_failure.json')['failure']==load(boundary/'rl5_failure.json')['failure']
  physical=load(work/'physical_verification.json');build=load(work/'build_result.json')
  assert physical['status'].startswith('PASS_R22_RELAY_V6_ROUTED_') and physical['max_delays_matched']==49 and physical['max_delays_ignored']==0
  assert physical['control_mailbox_bits']==20 and physical['relay_display_declared_bits']==163
@@ -92,6 +95,8 @@ def main():
  # Keep inherited failed trials explicitly apart from the selected PASS set.
  for p in (oldrelease/'field_evidence/negative_and_boundary').rglob('*'):
   if p.is_file():copy(p,release/'field_evidence/inherited_negative_and_boundary'/p.relative_to(oldrelease/'field_evidence/negative_and_boundary'))
+ for p in boundary.rglob('*'):
+  if p.is_file() and (p.suffix in ['.json','.log','.v','.sv']):copy(p,release/'field_evidence/highspeed_boundary'/p.relative_to(boundary))
  for p in (repo/'docs/evidence/r22_rl5_adjacent_20261028').rglob('*'):
   if p.is_file():copy(p,release/'field_evidence/rl5_adjacent'/p.relative_to(repo/'docs/evidence/r22_rl5_adjacent_20261028'))
  for p in (repo/'docs/evidence/r22_adjacent_v6_rtl_20261028').rglob('*'):
@@ -108,7 +113,7 @@ def main():
  for directory in ['classified_audit','gray_packing_audit']:
   for p in (project/directory).iterdir():
    if p.is_file():copy(p,release/'build'/directory/p.name)
- verification={'status':'PASS_29_FRESH_SELECTED_CHECKS_AND_ROUTED_AUDIT','selected':selected,'legacy':legacy,'physical':physical,'changed_production_files':changed,'unchanged_source_files':628,'source_git_blob_audit':'ALL_636_MATCH_HEAD','board_operated':False,'new_board_parking_acceptance':False,'precision_1mm_acceptance':False,'automatic_speed_compensation':False,'actual_refill_actuator_implemented':False,'known_boundary':'Inherited weak RAW280 miss and unnumbered upstream-gap protection remain. No cross-gap publication, synthetic position, wrong-kind association or silent queue skip. Actual RL5 video root cause not uniquely determined; RL6 same-frame trace intended to distinguish it.'}
+ verification={'status':'PASS_29_FRESH_SELECTED_CHECKS_AND_ROUTED_AUDIT','selected':selected,'legacy':legacy,'physical':physical,'changed_production_files':changed,'unchanged_source_files':628,'source_git_blob_audit':'ALL_636_MATCH_HEAD','board_operated':False,'new_board_parking_acceptance':False,'precision_1mm_acceptance':False,'automatic_speed_compensation':False,'actual_refill_actuator_implemented':False,'known_boundary':'Inherited weak RAW280 miss and unnumbered upstream-gap protection remain. Abrupt24px/source with40px pitch fails global event class order identically on RL5/V6 before parking; NOT a selected pass, not arbitrary high-speed coverage. No cross-gap publication, synthetic position or silent queue skip added. Actual RL5 video root cause not uniquely determined; RL6 same-frame trace intended to distinguish it.'}
  write(release/'VERIFICATION.json',verification);copy(bit,release/(name+'.bit'))
  receipt={'version':name,'branch':'codex/r22-adjacent-reacquire-v6','source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),'parent_rl5_commit':'1972dea','source_worktree':str(repo),'build_work':str(work),'pushed':False,'bit_sha256':sha(bit),'bit_bytes':bit.stat().st_size,'td_version':'V6.2.168116','seed':2,'resources':physical['resources'],'slice_percent':physical['slice_percent'],'timing_ns':physical['timing_ns'],'source_files':636,'hardware_dependencies':104,'parameters':{'window_x':[80,240],'target_x':160,'tolerance_px':80,'advance_px':32,'trigger_x':192,'hold_ms':1000,'still_px':2,'stale_ms':150,'stopped_reacquire_ms':500,'retry_per_head':1,'maximum_search_radius_px':20},'gpio':'rightJ2 pin1/V2 HIGH; board5V; no LED; original ADC/SDC','layout':'single row; right count ROI + left amber acceptance box80..240; auxiliary guides hidden','keys':'K1 freshRUN / K2 pause-resume / K3 clear-stop / K4 stop / SW3 up stop down freshRUN','source_manifest_sha256':sha(release/'SOURCE_SHA256.json'),'verification_sha256':sha(release/'VERIFICATION.json'),'board_acceptance':'PENDING_HUMAN_SAME_TRIPLE_TAPE_RETEST'}
  write(release/'RELEASE.json',receipt)
