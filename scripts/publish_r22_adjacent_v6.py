@@ -94,6 +94,8 @@ def main():
   if p.is_file():copy(p,release/'field_evidence/inherited_negative_and_boundary'/p.relative_to(oldrelease/'field_evidence/negative_and_boundary'))
  for p in (repo/'docs/evidence/r22_rl5_adjacent_20261028').rglob('*'):
   if p.is_file():copy(p,release/'field_evidence/rl5_adjacent'/p.relative_to(repo/'docs/evidence/r22_rl5_adjacent_20261028'))
+ for p in (repo/'docs/evidence/r22_adjacent_v6_rtl_20261028').rglob('*'):
+  if p.is_file():copy(p,release/'field_evidence/rl6_simulated_raster'/p.relative_to(repo/'docs/evidence/r22_adjacent_v6_rtl_20261028'))
  for name2 in ['R22_RL5_ADJACENT_FIELD_ANALYSIS.md','R22_RL5_ADJACENT_FIELD_ANALYSIS.json']:copy(repo/'docs'/name2,release/'field_evidence'/name2)
  copy(repo/'docs/R22_ADJACENT_V6_FIELD_GUIDE.md',release/'FIELD_GUIDE.md');copy(oldrelease/'WEAK_NATIVE_BOUNDARY.json',release/'WEAK_NATIVE_BOUNDARY.json')
  for script in ['build_r22_relay.py','audit_r22_relay.py','relay_left_checks.py','relay_left_native_check.py','check_camera_gain_fix.py','publish_r22_adjacent_v6.py']:
