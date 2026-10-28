@@ -1,0 +1,19 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 23:16:00 on Oct 28,2026
+vlog -work test_local_pipeline ../user_source/hdl_source/classified_pocket_counter.v ../user_source/hdl_source/classified_count_pipeline.v 
+-- Compiling module classified_pocket_counter
+-- Compiling module classified_count_pipeline
+
+Top level modules:
+	classified_count_pipeline
+End time: 23:16:00 on Oct 28,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 23:16:00 on Oct 28,2026
+vlog -sv -work test_local_pipeline tb_local_pipeline.v 
+-- Compiling module tb_local_pipeline
+
+Top level modules:
+	tb_local_pipeline
+End time: 23:16:00 on Oct 28,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

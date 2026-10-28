@@ -1,4 +1,13 @@
-# RL7 当前实施（2026-10-28，最新用户要求）
+# RL7 已交付（2026-10-28，当前入口）
+
+- 用户要求补件区稍左移、连续5个空穴报警停机。已交付E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V7_ShiftAlarm_20261028.bit，SHA3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750，构建/发布原件/烧录副本一致。源码e037c9b（生产功能1d43470），分支codex/r22-left-shift-five-empty-v7，未推送。旧RL6/RL5/以太网R2保持。
+- 窗口72..232、目标152、触发184（提前32），整体左移8px/宽160。FIVE_EMPTY_V7顶层1；按同RUN合法主计数序号累计EMPTY，PRESENT打断。第5个当拍锁存FF报警/送料关闭并禁止同拍弹队，保留待处理队列；顶部红字ALARM 5 EMPTY - MOTOR STOP - K3 CLEAR。K2/手动不能绕过；K3清零停止或明确K1/SW3新RUN才复位。保持单排、J2 pin1/V2高有效/板载5V、无LED和蜂鸣器新引脚。正常1~4空穴保持完整1秒，RL6一次500ms停机找回保留。
+- E:/2026FPGA/.codex_tmp/r22_shift_alarm_v7_build_r1_20261028完成636源/104硬件依赖构建；5生产源修改、631源与RL6逐SHA相同。Slice18972/21216=89.42%、ERAM98/108、DSP30/40、PLL5/6；SWNS+.001ns/HWNS+.020ns/双TNS0，严格49最大延迟无忽略/20实际Gray/9邮箱/四键+SW3/V2无LED审计PASS。报警Q经实际alarm_stop网→电机注册LUT→V2输出同物理捕获单元已核；TD把该单元命名为station/counter/event_valid_reg_syn_3，不能只凭名字误认信号，证据physical_verification.json/alarm_interlock_packed_cell_proof。
+- 全31项新选定检查PASS：final_units_r2的13、alarm_control_r2的1（21断言，实际顶层motor代码体逐字核对）、final_rgb_r3的2（206帧3保持+真实100MHz100000000周期1秒）、rgb_alarm_r1的1（75完整RGB帧P+5E、第5确认停机）、compat_r1的5、核心回归7、native_r1的1（12RAW/24精确显示，V7启用，未到停车线）、camera_gate_r1的1（实际305单元相机锥/2复位x126写入，非实物读回）。最终输入SHA逐项与冻结源/夹具一致；早期r1/r2夹具错误日志保留但不选PASS。
+- 原件releases/r22_relay_shift_alarm_v7_20261028及相邻ZIP，1110载荷，ZIP SHA171f2e1004a973ba308d202fc0079b925c5840f37275fc69a41890802c22473c。docs/R22_SHIFT_ALARM_V7_DELIVERY.json回执；最终Git字节审计docs/R22_SHIFT_ALARM_V7_GIT_AUDIT.json以实际结果为准。BIT_FLASH同前缀_说明.md/_RELEASE.json包含操作/来源/资源。旧失败边界单独封存，不算新PASS。两段RL6现场视频及依据在docs/R22_V7_FIELD_ANALYSIS.md/.json，不能作为RL7实板验收。
+- 所有TD/ModelSim工作已结束，无烧录/接线/电机动作，无子代理，不启动额外构建或自动跟进。下一步用户保持原接线，烧RL7确认T098/A020，先原普通/慢速三连，再4/5/6连和4空+有件+4空；4连继续、第5确认应报警，录上下两行后再K3清。新停点/五连报警/实物重复性待验收，无吸嘴握手/±1mm达标声明。主计数既有高速/弱RAW280漏检边界未修；不允许改编号/类别/上游gap保护假装通过。
+
+# RL7 实施记录（以下为交付前过程，以本节以上结果为准）
 
 - 用户新视频105ebf…为普通速度、930403…慢速，均RL6，最终S1F0Q00。普通速度2/3/4/11/16号保持X137/185/235/139/131，第三穴距右界240仅5px。用户要求补件区略左移、连续5空穴直接报警停机，已授权实施，无需再问确认。证据docs/R22_V7_FIELD_ANALYSIS.md/.json、docs/evidence/r22_rl6_shift_20261028（旧RL6实测，不能当RL7硬件通过）。
 - 工作目录D:/CodexWork/FPGA_R22_Relay_20261027，分支codex/r22-left-shift-five-empty-v7，从1a82896起。生产只改5份：top/isp/relay_controller/dual_OSD/compact_OSD，主计数器/检测分类/ADC/SDC/相机源与RL6相同。FIVE_EMPTY_V7顶层默认1，叶模块默认0兼容。窗口72..232、目标152、提前32、触发184，整体左移8px/宽160，左ROI仍64..447留8px边。单排不恢复双ROI，原J2 pin1/V2高有效、板载5V、无LED。

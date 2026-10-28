@@ -1,0 +1,93 @@
+{
+  "scope": "RL6 field videos; not RL7 hardware acceptance",
+  "videos": [
+    {
+      "index": 1,
+      "path": "D:\\微信\\xwechat_files\\wxid_oyjplywmpvja22_06dc\\temp\\RWTemp\\2026-10\\9e20f478899dc29eb19741386f9343c8\\105ebf9abebf5989ea1311f2c151aac8.mp4",
+      "sha256": "1a02c86bbd494c57aade3f995bc7458259a5a6a059a0de61a60ff2352621b3af",
+      "fps": 30.0,
+      "frames": 398,
+      "width": 1280,
+      "height": 720,
+      "duration": 13.266666666666667
+    },
+    {
+      "index": 2,
+      "path": "D:\\微信\\xwechat_files\\wxid_oyjplywmpvja22_06dc\\temp\\RWTemp\\2026-10\\9e20f478899dc29eb19741386f9343c8\\93040340c9ea7e85f6a3a52a080ef070.mp4",
+      "sha256": "4c546c8d2ee0d3ec975322b49a8914fa2aa1b6721a0c29021658195d39e4dd25",
+      "fps": 30.0,
+      "frames": 596,
+      "width": 1280,
+      "height": 720,
+      "duration": 19.866666666666667
+    }
+  ],
+  "observations": [
+    {
+      "profile": "user-defined common speed",
+      "final": "S1 F0 Q00",
+      "empty_ids_decimal": [
+        2,
+        3,
+        4,
+        11,
+        16
+      ],
+      "hold_x_decimal": [
+        137,
+        185,
+        235,
+        139,
+        131
+      ],
+      "sample_pts_s": [
+        4.4,
+        5.3,
+        7.0666667,
+        8.8333333,
+        10.6
+      ]
+    },
+    {
+      "profile": "user-defined slow speed",
+      "final": "S1 F0 Q00",
+      "confirmed_hold_ids_decimal": [
+        2,
+        3,
+        11,
+        16
+      ],
+      "confirmed_hold_x_decimal": [
+        161,
+        209,
+        162,
+        172
+      ],
+      "sample_pts_s": [
+        7.9333333,
+        9.2666667,
+        14.5333333,
+        17.2
+      ],
+      "not_a_hold_sample": {
+        "id_decimal": 4,
+        "state": "S2",
+        "x_decimal": 156,
+        "pts_s": 11.9
+      }
+    }
+  ],
+  "new_parameters": {
+    "window_x": [
+      72,
+      232
+    ],
+    "target_x": 152,
+    "trigger_x": 184,
+    "advance_px": 32,
+    "shift_px": -8,
+    "alarm_consecutive_confirmed_empty": 5
+  },
+  "hardware_new_bit_accepted": false,
+  "speed_or_mm_calibration": false
+}

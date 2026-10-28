@@ -1,0 +1,53 @@
+{
+  "version": "R22_RelayAuto_Left_V7_ShiftAlarm_20261028",
+  "branch": "codex/r22-left-shift-five-empty-v7",
+  "source_commit": "e037c9b1c5c9e2004fdad08f66e484ba0bf6996f",
+  "parent_rl6_commit": "1a82896",
+  "source_worktree": "D:\\CodexWork\\FPGA_R22_Relay_20261027",
+  "build_work": "E:\\2026FPGA\\.codex_tmp\\r22_shift_alarm_v7_build_r1_20261028",
+  "pushed": false,
+  "bit_sha256": "3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750",
+  "bit_bytes": 1789539,
+  "td_version": "V6.2.168116",
+  "seed": 2,
+  "resources": {
+    "slice": 18972,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 89.42308,
+  "timing_ns": {
+    "SWNS": 0.001,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "source_files": 636,
+  "hardware_dependencies": 104,
+  "parameters": {
+    "window_x": [
+      72,
+      232
+    ],
+    "target_x": 152,
+    "tolerance_px": 80,
+    "advance_px": 32,
+    "trigger_x": 184,
+    "hold_ms": 1000,
+    "still_px": 2,
+    "stale_ms": 150,
+    "stopped_reacquire_ms": 500,
+    "retry_per_head": 1,
+    "maximum_search_radius_px": 20,
+    "consecutive_empty_alarm": 5,
+    "alarm_fault_hex": "F",
+    "alarm_reset": "K3 clear-stop or explicit newRUN"
+  },
+  "gpio": "rightJ2 pin1/V2 HIGH; board5V; no LED; original ADC/SDC",
+  "layout": "single row; right count ROI + left amber acceptance box72..232; auxiliary guides hidden",
+  "keys": "K1 freshRUN / K2 pause-resume / K3 clear-stop / K4 stop / SW3 up stop down freshRUN",
+  "source_manifest_sha256": "42c667bcc0e198d5f85d96c65e547f999400dad2aed55f76820de623b0d69221",
+  "verification_sha256": "2d2fffd7890d1dc9170d86a0ccfee865e0f6714066f80862cbac5f9ad6f2da41",
+  "board_acceptance": "PENDING_HUMAN_SHIFTED_WINDOW_AND_FIFTH_EMPTY_ALARM_RETEST"
+}
