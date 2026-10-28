@@ -1,0 +1,206 @@
+{
+  "scope": "Three RL5 field videos; analysis only, no RTL edits or new bit",
+  "videos": [
+    {
+      "index": 1,
+      "path": "D:\\微信\\xwechat_files\\wxid_oyjplywmpvja22_06dc\\temp\\RWTemp\\2026-10\\9e20f478899dc29eb19741386f9343c8\\2a08c1b11361d9ca37792d3d049237c7.mp4",
+      "sha256": "fdd398cc9ff0918738769662b66970244b1e48f1e9ddba1a16a52c0cb2a0e15d",
+      "fps": 30.0,
+      "frames": 499,
+      "width": 1280,
+      "height": 720,
+      "duration": 16.633333333333333
+    },
+    {
+      "index": 2,
+      "path": "D:\\微信\\xwechat_files\\wxid_oyjplywmpvja22_06dc\\temp\\RWTemp\\2026-10\\9e20f478899dc29eb19741386f9343c8\\a0457e4e692446a8eb5fb633d2458032.mp4",
+      "sha256": "8908d9a04bbfbf981f5858dcd7e6576f4b7c9364cb18aab5dcad8fe294bdd94f",
+      "fps": 30.0,
+      "frames": 441,
+      "width": 1280,
+      "height": 720,
+      "duration": 14.7
+    },
+    {
+      "index": 3,
+      "path": "D:\\微信\\xwechat_files\\wxid_oyjplywmpvja22_06dc\\temp\\RWTemp\\2026-10\\9e20f478899dc29eb19741386f9343c8\\c6d4c362fa8416c194ed5480fabec238.mp4",
+      "sha256": "5affcd3a224be59589284a77d08204e4313dea1a1707d930f96bdf926f10d6d9",
+      "fps": 30.0,
+      "frames": 500,
+      "width": 1280,
+      "height": 720,
+      "duration": 16.666666666666668
+    }
+  ],
+  "coordinates": "processing pixel coordinates, relay numerals hexadecimal; last X is not a new measurement after failure",
+  "results": [
+    {
+      "video": 1,
+      "user_scene": "two adjacent EMPTY",
+      "final_state": 1,
+      "fault": 0,
+      "queue": 0,
+      "empty_ids_decimal": [
+        2,
+        3,
+        11,
+        16
+      ],
+      "completed_hold_ids_decimal": [
+        2,
+        3,
+        11,
+        16
+      ]
+    },
+    {
+      "video": 2,
+      "user_scene": "single EMPTY",
+      "final_state": 1,
+      "fault": 0,
+      "queue": 0,
+      "empty_ids_decimal": [
+        3,
+        11,
+        16
+      ],
+      "completed_hold_ids_decimal": [
+        3,
+        11,
+        16
+      ]
+    },
+    {
+      "video": 3,
+      "user_scene": "three adjacent EMPTY",
+      "final_state": 4,
+      "fault": 6,
+      "queue": 2,
+      "head_id_decimal": 4,
+      "empty_ids_decimal": [
+        2,
+        3,
+        4,
+        11
+      ],
+      "completed_hold_ids_decimal": [
+        2,
+        3
+      ],
+      "pending_ids_decimal": [
+        4,
+        11
+      ],
+      "last_valid_x_hex": "091",
+      "last_valid_x_decimal": 145,
+      "local_prefix": 6
+    }
+  ],
+  "video3_timeline": [
+    {
+      "pts": 6.4,
+      "frame": 192,
+      "state": 3,
+      "fault": 0,
+      "queue": 4,
+      "id": 2,
+      "x_hex": "090",
+      "x": 144
+    },
+    {
+      "pts": 7.4,
+      "frame": 222,
+      "state": 1,
+      "fault": 0,
+      "queue": 3,
+      "id": 3,
+      "x_hex": "08F",
+      "x": 143,
+      "valid": false,
+      "note": "old-head X immediately after pop; V0, not new ID3 measurement"
+    },
+    {
+      "pts": 7.5,
+      "frame": 225,
+      "state": 2,
+      "fault": 0,
+      "queue": 3,
+      "id": 3,
+      "x_hex": "0BF",
+      "x": 191
+    },
+    {
+      "pts": 7.6,
+      "frame": 228,
+      "state": 3,
+      "fault": 0,
+      "queue": 3,
+      "id": 3,
+      "x_hex": "0BF",
+      "x": 191
+    },
+    {
+      "pts": 8.6,
+      "frame": 258,
+      "state": 1,
+      "fault": 0,
+      "queue": 2,
+      "id": 4,
+      "x_hex": "0F1",
+      "x": 241
+    },
+    {
+      "pts": 8.8,
+      "frame": 264,
+      "state": 2,
+      "fault": 0,
+      "queue": 2,
+      "id": 4,
+      "x_hex": "0BE",
+      "x": 190
+    },
+    {
+      "pts": 8.9,
+      "frame": 267,
+      "state": 2,
+      "fault": 0,
+      "queue": 2,
+      "id": 4,
+      "x_hex": "091",
+      "x": 145
+    },
+    {
+      "pts": 9.1,
+      "frame": 273,
+      "state": 4,
+      "fault": 6,
+      "queue": 2,
+      "id": 4,
+      "x_hex": "091",
+      "x": 145
+    }
+  ],
+  "confirmed": [
+    "F6 is controller stale-position guard at150ms, feed held off and fault latched",
+    "Three global adjacent EMPTY IDs2/3/4 were numbered before first arrival; queue under capacity32",
+    "Two first adjacent IDs complete HOLD then queue changes; failure head is ID4",
+    "Last valid145 is inside80..240; no fresh N004 position proves actual final stop",
+    "Current firmware always resumes feed on pop, before deciding next head already lies in wide window"
+  ],
+  "hypotheses_not_proven_by_osd": [
+    "actual aperture component disappears or changes classified kind after braking",
+    "four retained candidates omit target, or motion-predicted +/-12 retention misses stationary actual target",
+    "query actual observation fails unique/type/motion association",
+    "upstream unnumbered gap inhibits position publication despite matched current query"
+  ],
+  "recommended_order": [
+    "Add frozen fault evidence with raw/retained/matched/publish flags, query ID/run/frame/age, station state/gap",
+    "Protect pending identities and active-query candidate retention with bounded unique current-measurement association; preserve actual events and ordering",
+    "After current hold select next head while feed off; validate fresh same-ID position before deciding if it already fits window; independent stable+1000ms per head",
+    "Bounded motor-off reacquisition for transient lost current query; only accept same run/id/current source and current classification; fresh full hold, no silent drop",
+    "Regression adjacent1/2/3/5/8, mixed classes, speed/coast, true missing target/wrongkind/neighbor ambiguity and badframe; then same-tape hardware replay"
+  ],
+  "human_intervention_confirmation": "User explicitly confirmed entire triple sequence was automatic with no buttons, speed changes, tape contact, occlusion or refill",
+  "firmware_changed": false,
+  "new_bit_generated": false
+}
