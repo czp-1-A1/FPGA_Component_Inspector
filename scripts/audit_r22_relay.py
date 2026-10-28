@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,hashlib,json,os,re,subprocess,sys
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--adjacent-v6',action='store_true');args=a.parse_args()
 work=args.work.resolve();project=work/'project';tools=project/'tools';env=dict(os.environ)
 env['TEMP']=env['TMP']=str(work/'temp')
 audit_names=['classified_audit_routed.tcl','classified_audit_gray_packing.tcl']
@@ -82,7 +82,8 @@ expected_eram,expected_dsp=(98,30) if args.keys_v3 else (99,30) if args.left_v2 
 assert resources['slice']<=21216 and resources['eram']==expected_eram and resources['dsp']==expected_dsp and resources['pll']==5
 if args.left_v2 or args.keys_v3:
  assert 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
- assert '.WIDTH(64)) u_relay_display' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
+ width=163 if args.adjacent_v6 else 64
+ assert f'.WIDTH({width})) u_relay_display' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
 source=json.loads((work/'frozen_inputs.json').read_text())
 for name,digest in source.items():assert sha(project/name)==digest,('Frozen source changed',name)
 result.update({'status':'PASS_R22_RELAY_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_V2_NO_LED',
@@ -97,5 +98,10 @@ if args.keys_v3:
  result['control_mailbox_bits']=20
  result['relay_output_registered']=True
  assert 'reg motor_output;' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
+if args.adjacent_v6:
+ assert args.keys_v3
+ assert 'ADJACENT_V6=1,' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
+ result['relay_display_declared_bits']=163
+ result['status']='PASS_R22_RELAY_V6_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_4_KEYS_V2_NO_LED'
 (work/'physical_verification.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({k:result[k] for k in ['status','timing_ns','resources','slice_delta_vs_r22','max_delays_matched','max_delays_ignored','gray_bits_dominating']},indent=2),flush=True)

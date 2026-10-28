@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter ADJACENT_V6=0,RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -12,11 +12,11 @@ module compact_inspector_osd #(parameter RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_
  input wire [31:0] frames,input wire [35:0] diagnostics,input wire [DIAG_BITS-1:0] publish_diagnostic,
  input wire [303:0] objects,input wire [127:0] calibration_record,input wire calibration_valid,
  input wire [3:0] local_wait_reason,
- input wire [63:0] relay_status,
+ input wire [63:0] relay_status,input wire [95:0] relay_diagnostic,input wire [2:0] relay_control_mode,
  input wire [255:0] live_record,frame_record,input wire eligible,
  output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb
 );
-reg [63:0] relay_snapshot;
+reg [63:0] relay_snapshot;reg [95:0] diagnostic_snapshot;reg [2:0] relay_mode_snapshot;
 function [7:0] relay_char;
  input [5:0] char_index;reg [383:0] text;
  begin
@@ -25,7 +25,7 @@ function [7:0] relay_char;
   if(RELAY_LEFT_LAYOUT)begin
    text="RL2 S0 F0 Q00 N000 X--- L000 V0 T000 A000 W0000 ";
    case(char_index)
-    2:relay_char=RELAY_CLEAN_UI ? "5" : RELAY_KEYS_V3 ? (RELAY_TOL_PX>8 ? "4" : "3") : "2";
+    2:relay_char=ADJACENT_V6 ? "6" : RELAY_CLEAN_UI ? "5" : RELAY_KEYS_V3 ? (RELAY_TOL_PX>8 ? "4" : "3") : "2";
     5:relay_char=hexchar({1'b0,relay_snapshot[31:29]});
     8:relay_char=hexchar(relay_snapshot[28:25]);
     11:relay_char=hexchar({2'b0,relay_snapshot[63:62]});12:relay_char=hexchar(relay_snapshot[61:58]);
@@ -53,6 +53,43 @@ function [7:0] relay_char;
   endcase
  end
 endfunction
+function [7:0] relay_diag_char;
+ input [6:0] ci;reg [423:0] text;
+ begin
+  text="RD Z0 E0 F0 R0000 N000 T00000000 A00 D00 C00 S0 W0 U0";
+  case(ci)
+   4:relay_diag_char=hexchar({3'd0,diagnostic_snapshot[95]});
+   7:relay_diag_char=hexchar({1'd0,diagnostic_snapshot[94:92]});
+   10:relay_diag_char=hexchar(diagnostic_snapshot[3:0]);
+   13:relay_diag_char=hexchar(diagnostic_snapshot[91:88]);
+   14:relay_diag_char=hexchar(diagnostic_snapshot[87:84]);
+   15:relay_diag_char=hexchar(diagnostic_snapshot[83:80]);
+   16:relay_diag_char=hexchar(diagnostic_snapshot[79:76]);
+   19:relay_diag_char=hexchar({3'd0,diagnostic_snapshot[35]});
+   20:relay_diag_char=hexchar(diagnostic_snapshot[34:31]);
+   21:relay_diag_char=hexchar(diagnostic_snapshot[30:27]);
+   24:relay_diag_char=hexchar(diagnostic_snapshot[67:64]);
+   25:relay_diag_char=hexchar(diagnostic_snapshot[63:60]);
+   26:relay_diag_char=hexchar(diagnostic_snapshot[59:56]);
+   27:relay_diag_char=hexchar(diagnostic_snapshot[55:52]);
+   28:relay_diag_char=hexchar(diagnostic_snapshot[51:48]);
+   29:relay_diag_char=hexchar(diagnostic_snapshot[47:44]);
+   30:relay_diag_char=hexchar(diagnostic_snapshot[43:40]);
+   31:relay_diag_char=hexchar(diagnostic_snapshot[39:36]);
+   34:relay_diag_char=hexchar(diagnostic_snapshot[75:72]);
+   35:relay_diag_char=hexchar(diagnostic_snapshot[71:68]);
+   38:relay_diag_char=hexchar(diagnostic_snapshot[19:16]);
+   39:relay_diag_char=hexchar(diagnostic_snapshot[15:12]);
+   42:relay_diag_char=hexchar(diagnostic_snapshot[11:8]);
+   43:relay_diag_char=hexchar(diagnostic_snapshot[7:4]);
+   46:relay_diag_char=hexchar({1'd0,diagnostic_snapshot[26:24]});
+   49:relay_diag_char=hexchar(diagnostic_snapshot[23:20]);
+   52:relay_diag_char=hexchar({1'b0,relay_mode_snapshot});
+   default:relay_diag_char=ci<53 ? text[423-ci*8-:8] : 8'd32;
+  endcase
+ end
+endfunction
+
 reg de_d;reg [10:0] x;reg [9:0] y;
 wire start=de && !de_d && y==0;
 reg page_s,eligible_s,show,cal_s,gray_s,cfg_s,tune_s,pending_s;
@@ -248,7 +285,7 @@ always @*begin
 end
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
-  relay_snapshot<=0;
+  relay_snapshot<=0;diagnostic_snapshot<=0;relay_mode_snapshot<=0;
   de_d<=0;x<=0;y<=0;page_s<=0;eligible_s<=0;show<=0;cal_s<=0;gray_s<=0;cfg_s<=0;tune_s<=0;pending_s<=0;
   mode_s<=0;wait_s<=0;live<=0;record<=0;obs<=0;cal<=0;primary<=0;np<=0;ne<=0;nu<=0;
   ex<=0;ga<=0;fp<=0;iw<=0;ih<=0;wr<=0;wb<=0;gm<=0;gn<=0;gx<=0;ec<=0;
@@ -259,7 +296,7 @@ always @(posedge clk or negedge rst_n)begin
   if(vs)begin x<=0;y<=0;end
   else if(de)x<=x+1'b1;else if(de_d)begin x<=0;y<=y+1'b1;end
   if(start)begin
-   relay_snapshot<=relay_status;
+   relay_snapshot<=relay_status;diagnostic_snapshot<=relay_diagnostic;relay_mode_snapshot<=relay_control_mode;
    page_s<=page;live<=live_record;record<=frame_record;obs<=objects;cal<=calibration_record;
    eligible_s<=eligible;cal_s<=calibration_valid;gray_s<=roi_valid;cfg_s<=cfg_done;tune_s<=wb_tune;pending_s<=wb_pending;
    show<=eligible && frame_record[47:32]==live_record[47:32] &&
@@ -320,6 +357,7 @@ always @*begin
    plane_address={line,text_dx[9:3]};code=plane_q;col={2'd0,text_dx[2:0]};
    if(code[7])col={code[5:4],3'd0}+text_dx[2:0];
    if(AUTO_RELAY && line==2 && text_dx[9:3]>=72)code=relay_char(text_dx[9:3]-72);
+   if(ADJACENT_V6 && line==6)code=relay_diag_char(text_dx[9:3]);
    if(row==31)code=32;
    if(page_s && gap_id!=0 && (line==1 || line==2 || line==3))ink=24'hffe080;
   end

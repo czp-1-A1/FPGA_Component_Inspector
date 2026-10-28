@@ -1,7 +1,7 @@
 // All inputs are in the 100 MHz processing domain. The counter is driven by
 // source results, never VS/DDR readout. The 256-bit extension accompanies the
 // unchanged legacy metadata through the existing slot/epoch attachment.
-module classified_count_pipeline #(parameter STOP_POSITION=0,LINE_X=640,STOP_CYCLES=15000000,PAGE_CYCLES=200000000,DIAGNOSTICS=0,RECORD_ONLY=0,MOTION_RECOVERY=0,TAIL_RECOVERY=0,OBS_PER_REGION=2,ORDERED_HANDOFF=0,RECOVERABLE=0,VELOCITY_ASSOC=0,LOCAL_RECOVERY=0)(
+module classified_count_pipeline #(parameter ADJACENT_V6=0,STOP_POSITION=0,LINE_X=640,STOP_CYCLES=15000000,PAGE_CYCLES=200000000,DIAGNOSTICS=0,RECORD_ONLY=0,MOTION_RECOVERY=0,TAIL_RECOVERY=0,OBS_PER_REGION=2,ORDERED_HANDOFF=0,RECOVERABLE=0,VELOCITY_ASSOC=0,LOCAL_RECOVERY=0)(
  input wire clk,rst_n,source_start,frame_commit,frame_bad,sample_new,
  input wire [63:0] config_tag,input wire [152*OBS_PER_REGION-1:0] objects,input wire [31:0] empty_probe,
  input wire [16:0] command,
@@ -12,6 +12,8 @@ module classified_count_pipeline #(parameter STOP_POSITION=0,LINE_X=640,STOP_CYC
  output wire [1:0] event_kind,output wire [3:0] event_reason,
  output wire hold_valid,output wire [10:0] hold_x,output wire [9:0] hold_y,
  input wire [8:0] stop_query_id,
+ input wire stop_stationary,input wire [7:0] stop_detector_diagnostic,input wire [8:0] stop_detector_id,
+ output wire [63:0] stop_diagnostic,output wire [5:0] stop_search_radius,
  output wire stop_position_new,output wire [8:0] stop_position_id,
  output wire [10:0] stop_position_x,output wire [9:0] stop_position_y,
  output wire [15:0] stop_position_run,output wire [31:0] stop_position_frame,
@@ -34,7 +36,8 @@ module classified_count_pipeline #(parameter STOP_POSITION=0,LINE_X=640,STOP_CYC
  wire [15:0] run;wire [8:0] total,pt,et,rt;wire [35:0] ids;
  reg [8:0] empty_address;wire [8:0] empty_value;
  wire [5:0] unused_ledger;wire [15:0] diagnostic;wire [8:0] uncertainty_from;
- classified_pocket_counter #(.STOP_POSITION(STOP_POSITION),.LINE_X(LINE_X),.HYST(RECORD_ONLY ? 4 : 3),.RECORD_ONLY(RECORD_ONLY),.MOTION_RECOVERY(MOTION_RECOVERY),.TAIL_RECOVERY(TAIL_RECOVERY),.OBS_PER_REGION(OBS_PER_REGION),.ORDERED_HANDOFF(ORDERED_HANDOFF),.RECOVERABLE(RECOVERABLE),.VELOCITY_ASSOC(VELOCITY_ASSOC),.LOCAL_RECOVERY(LOCAL_RECOVERY)) counter(
+ classified_pocket_counter #(.ADJACENT_V6(ADJACENT_V6),.STOP_POSITION(STOP_POSITION),.LINE_X(LINE_X),.HYST(RECORD_ONLY ? 4 : 3),.RECORD_ONLY(RECORD_ONLY),.MOTION_RECOVERY(MOTION_RECOVERY),.TAIL_RECOVERY(TAIL_RECOVERY),.OBS_PER_REGION(OBS_PER_REGION),.ORDERED_HANDOFF(ORDERED_HANDOFF),.RECOVERABLE(RECOVERABLE),.VELOCITY_ASSOC(VELOCITY_ASSOC),.LOCAL_RECOVERY(LOCAL_RECOVERY)) counter(
+  .stop_stationary(stop_stationary),.stop_detector_diagnostic(stop_detector_diagnostic),.stop_detector_id(stop_detector_id),.stop_diagnostic(stop_diagnostic),.stop_search_radius(stop_search_radius),
   .stop_query_id(stop_query_id),.stop_position_new(stop_position_new),.stop_position_id(stop_position_id),
   .stop_position_x(stop_position_x),.stop_position_y(stop_position_y),
   .stop_position_run(stop_position_run),.stop_position_frame(stop_position_frame),

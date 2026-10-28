@@ -2,7 +2,7 @@
 // Legacy: two objects. REGIONS: two independently bound zones, two objects each.
 // A shared flood-fill engine runs during vertical blanking, without video backpressure.
 module frame_shape_search #(
- parameter WIDTH=1024,HEIGHT=600,REGIONS=0,RELAY_LEFT_LAYOUT=0,
+ parameter ADJACENT_V6=0,WIDTH=1024,HEIGHT=600,REGIONS=0,RELAY_LEFT_LAYOUT=0,
  parameter INDEXED_CANDIDATES=1,
  // Counting-only trial margin from upstream's measured six-cell extent.
  // A phase-eroded locating hole can also measure six cells. Expand only in
@@ -39,6 +39,7 @@ module frame_shape_search #(
  output wire [607:0] recorder_objects,
  input wire recorder_hold_valid,input wire [10:0] recorder_hold_x,input wire [9:0] recorder_hold_y,
  input wire repair_hold_valid,input wire [10:0] repair_hold_x,input wire [9:0] repair_hold_y,
+ input wire [5:0] repair_hold_radius,input wire repair_empty_only,input wire [8:0] repair_hold_id,output wire [8:0] repair_diagnostic_id,output wire [7:0] repair_diagnostic,
  output wire transport_occupied,
  output wire [127:0] probe_record,output wire probe_ready
 );
@@ -265,7 +266,7 @@ wire in_region1=inside_region(center_x,center_y[9:0],region_bounds[83:42]);
 wire region_now=REGIONS && !in_region0 && in_region1;
 wire allowed_now=!REGIONS || ((in_region0 || in_region1) && region_supported[region_now]);
 reg held_valid;reg [10:0] held_x;reg [9:0] held_y;reg [1:0] held_found;
-reg repair_valid;reg [10:0] repair_x;reg [9:0] repair_y;reg occupied_pending;
+reg [8:0] repair_id;reg repair_valid,repair_only_empty;reg [5:0] repair_radius;reg [3:0] repair_seen;reg [10:0] repair_x;reg [9:0] repair_y;reg occupied_pending;
 reg candidate_region,candidate_allowed;reg [11:0] distance;
 wire [41:0] candidate_bounds=candidate_region ? region_bounds[83:42] : region_bounds[41:0];
 wire [10:0] target_x=REGIONS ? ({1'b0,candidate_bounds[41:31]}+candidate_bounds[30:20])/2 : WIDTH/2;
@@ -426,7 +427,9 @@ wire [9:0] selected_hold_y=use_repair ? repair_y : held_y;
 wire selected_hold_valid=use_repair ? repair_valid : held_valid;
 wire [10:0] held_dx=center_x>selected_hold_x ? center_x-selected_hold_x : selected_hold_x-center_x;
 wire [10:0] held_dy=center_y>selected_hold_y ? center_y-selected_hold_y : selected_hold_y-center_y;
-wire preferred_main=COUNT_CANDIDATES && REGIONS && selected_hold_valid && candidate_preferred && held_dx<=12 && held_dy<=16;
+wire [5:0] selected_radius=ADJACENT_V6 && use_repair ? repair_radius : 6'd12;
+wire preferred_main=COUNT_CANDIDATES && REGIONS && selected_hold_valid && candidate_preferred &&
+ (!ADJACENT_V6 || !use_repair || !repair_only_empty || candidate_state==3) && held_dx<=selected_radius && held_dy<=16;
 wire before_best=!found_bank[bank0] || (candidate_preferred && state_bank[bank0]<2) ||
  ((candidate_preferred==(state_bank[bank0]>=2)) && (distance<distance_bank[bank0] ||
  (distance==distance_bank[bank0] && component_count>count_bank[bank0])));
@@ -606,12 +609,33 @@ end endgenerate
 // Consumed only together with the proved sample_new; a no-candidate frame
 // finishes directly without going through PUBLISH in the original detector.
 assign transport_occupied=occupied_pending;
+// D[7:0]: hint valid, raw E, raw P, retained E, retained P,
+// reserved slot, result ready, unclassified primary. Passive same-frame trace.
+assign repair_diagnostic_id=ADJACENT_V6 ? repair_id : 9'd0;
+assign repair_diagnostic=ADJACENT_V6 ? {repair_valid,repair_seen,held_found[1],ready,(ready && state==1)} : 8'd0;
+wire [11:0] repair_packed_x={1'b0,packed_one[41:31]}+packed_one[30:20];
+wire [10:0] repair_packed_y={1'b0,packed_one[19:10]}+packed_one[9:0];
+wire repair_packed_near=repair_packed_x+{6'd0,repair_radius,1'b0}>={repair_x,1'b0} &&
+ repair_packed_x<={repair_x,1'b0}+{6'd0,repair_radius,1'b0} &&
+ repair_packed_y+11'd32>={repair_y,1'b0} && repair_packed_y<={repair_y,1'b0}+11'd32;
 always @(posedge clk or negedge rst_n)begin
- if(!rst_n)begin repair_valid<=0;repair_x<=0;repair_y<=0;occupied_pending<=0;end
+ if(!rst_n)begin repair_id<=0;repair_valid<=0;repair_x<=0;repair_y<=0;repair_only_empty<=0;repair_radius<=12;repair_seen<=0;occupied_pending<=0;end
  else if(frame_start || invalidate || pixel_sof)begin
-  occupied_pending<=0;
-  if(pixel_sof)begin repair_valid<=RELAY_LEFT_LAYOUT && repair_hold_valid;repair_x<=repair_hold_x;repair_y<=repair_hold_y;end
+  occupied_pending<=0;repair_seen<=0;
+  if(pixel_sof)begin
+   repair_id<=repair_hold_id;repair_valid<=RELAY_LEFT_LAYOUT && repair_hold_valid;repair_x<=repair_hold_x;repair_y<=repair_hold_y;
+   repair_only_empty<=ADJACENT_V6 && repair_empty_only;
+   repair_radius<=ADJACENT_V6 && repair_hold_radius!=0 && repair_hold_radius<=20 ? repair_hold_radius : 6'd12;
+  end
  end else begin
+  if(ADJACENT_V6 && repair_valid && phase==CAND_COMMIT && candidate_allowed && candidate_region && held_dx<=repair_radius && held_dy<=16)begin
+   if(candidate_state==3)repair_seen[3]<=1;
+   if(candidate_state==2)repair_seen[2]<=1;
+  end
+  if(ADJACENT_V6 && repair_valid && phase==PACK_SCAN && pack_slot[2] && packed_one[75] && repair_packed_near)begin
+   if(packed_one[74:73]==3)repair_seen[1]<=1;
+   if(packed_one[74:73]==2)repair_seen[0]<=1;
+  end
   if(RELAY_LEFT_LAYOUT && phase==CAND_COMMIT && candidate_allowed && candidate_preferred &&
      (candidate_region || center_x<=648))occupied_pending<=1;
  end

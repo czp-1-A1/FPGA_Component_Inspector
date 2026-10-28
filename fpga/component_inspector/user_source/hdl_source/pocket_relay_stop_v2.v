@@ -1,7 +1,7 @@
 // Left station uses a second REAL ordered gate count. Global IDs are bound
 // only after a proved clear transport startup; predicted search is not position.
 module pocket_relay_stop_v2 #(
- parameter RESTART_NEW_RUN=0,CLK_HZ=100000000,TARGET_X=160,ADVANCE_PX=16,POSITION_TOL_PX=8,
+ parameter ADJACENT_V6=0,REACQUIRE_MS=500,RESTART_NEW_RUN=0,CLK_HZ=100000000,TARGET_X=160,ADVANCE_PX=16,POSITION_TOL_PX=8,
  parameter STILL_PX=2,HOLD_MS=1000,STALE_MS=150,STOP_TIMEOUT_MS=1200,
  parameter ARRIVAL_TIMEOUT_MS=15000,QUEUE_DEPTH=32
 )(
@@ -19,17 +19,19 @@ module pocket_relay_stop_v2 #(
  input wire [15:0] position_run,input wire [31:0] position_frame,
  input wire [10:0] position_x,input wire [9:0] position_y,
  output wire feed_enable,output reg [2:0] state,output reg [3:0] fault,
+ input wire [63:0] station_diagnostic,output wire [95:0] diagnostic,
+ output wire stationary_hint,
  output wire [63:0] status,output reg cycle_done
 );
  // Unconnected pause preserves legacy benches; production drives a real 0/1.
  wire paused=(pause===1'b1);
  reg feed_command;
  assign feed_enable=feed_command && !paused;
- localparam IDLE=0,FEED=1,SETTLE=2,HOLD=3,FAULT=4,ALIGN=5;
+ localparam IDLE=0,FEED=1,SETTLE=2,HOLD=3,FAULT=4,ALIGN=5,NEXT=6,REACQUIRE=7;
  localparam DIV=CLK_HZ/1000,DB=DIV>1 ? $clog2(DIV) : 1,QB=$clog2(QUEUE_DEPTH);
  localparam PARAM_OK=CLK_HZ>=1000 && CLK_HZ%1000==0 && QUEUE_DEPTH>=2 && QUEUE_DEPTH<=32 &&
   (QUEUE_DEPTH&(QUEUE_DEPTH-1))==0 && HOLD_MS>=1 && HOLD_MS<=2047 && STALE_MS>=2 && STALE_MS<255 &&
-  ARRIVAL_TIMEOUT_MS>STALE_MS && ARRIVAL_TIMEOUT_MS<65535 && STOP_TIMEOUT_MS>=1 && STOP_TIMEOUT_MS<=2047 &&
+  ARRIVAL_TIMEOUT_MS>STALE_MS && ARRIVAL_TIMEOUT_MS<65535 && STOP_TIMEOUT_MS>=1 && STOP_TIMEOUT_MS<=2047 && REACQUIRE_MS>=STALE_MS && REACQUIRE_MS<=2047 &&
   TARGET_X>POSITION_TOL_PX+64 && TARGET_X+ADVANCE_PX<248 && ADVANCE_PX>=0;
  (* ram_style="distributed" *) reg [8:0] queue[0:QUEUE_DEPTH-1];
  reg [QB-1:0] rd,wr;reg [QB:0] count;
@@ -38,6 +40,10 @@ module pocket_relay_stop_v2 #(
  reg [10:0] phase_ms,last_x,anchor_x;reg [9:0] last_y,anchor_y;
  reg [15:0] arrival_ms;reg [1:0] stable;reg have_position,have_source;
  reg [31:0] last_position_frame;
+ reg retry_used;reg [8:0] frozen_head;reg [95:0] frozen_diagnostic;
+ assign stationary_hint=ADJACENT_V6 && active && !feed_enable;
+ assign diagnostic=!ADJACENT_V6 ? 96'd0 : frozen_diagnostic[95] ? frozen_diagnostic :
+  {1'b0,3'd0,active_run,position_age,station_diagnostic,4'd0};
  // Ordered P/E signature is checked before a local ID may drive a stop.
  // Valid prefix bounds guard this RAM; stale data from a previous run cannot
  // be read as a valid record. Equal-kind undetected skips still require field
@@ -74,13 +80,29 @@ module pocket_relay_stop_v2 #(
  // Lower32 keeps V1's S/F/ID/X layout. Upper32 is diagnostics; actual queue
  // count is6 bits, V marks a measurement of THIS head, L is local prefix count.
  wire [5:0] count6=count;
- assign status={count6,have_source,station_total,arrival_ms,state,fault,count6[3:0],query_id,last_x,feed_enable};
- task fail;input [3:0] why;begin state<=FAULT;fault<=why;feed_command<=0;end endtask
+ assign status={count6,(have_source && (!ADJACENT_V6 || position_age<STALE_MS)),station_total,arrival_ms,state,fault,count6[3:0],query_id,last_x,feed_enable};
+ task capture_context;input [2:0] cause;input [3:0] why;begin
+  if(ADJACENT_V6 && (!frozen_diagnostic[95] || frozen_head!=query_id || why!=6))begin
+   frozen_head<=query_id;
+   frozen_diagnostic<={1'b1,cause,active_run,position_age,station_diagnostic,why};
+  end
+ end endtask
+ task fail;input [3:0] why;begin
+  state<=FAULT;fault<=why;feed_command<=0;capture_context(3,why);
+ end endtask
+ task relocate;input [2:0] cause;begin
+  if(retry_used)fail(6);
+  else begin
+   state<=REACQUIRE;fault<=6;feed_command<=0;phase_ms<=0;stable<=0;have_position<=0;
+   retry_used<=1;capture_context(cause,6);
+  end
+ end endtask
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
    state<=IDLE;fault<=0;feed_command<=0;active<=0;active_run<=0;rd<=0;wr<=0;count<=0;last_empty<=0;
    divider<=0;frame_age<=0;position_age<=0;phase_ms<=0;arrival_ms<=0;last_x<=0;last_y<=0;
    anchor_x<=0;anchor_y<=0;stable<=0;have_position<=0;have_source<=0;last_position_frame<=0;cycle_done<=0;
+   retry_used<=0;frozen_diagnostic<=0;frozen_head<=0;
    history_total<=0;verified_total<=0;verify_id<=0;verify_pending<=0;expected_kind<=0;observed_kind<=0;
   end else begin
    verify_pending<=0;
@@ -88,7 +110,7 @@ module pocket_relay_stop_v2 #(
    if(tick)begin
     if(frame_age!=255)frame_age<=frame_age+1'b1;
     if(position_age!=255)position_age<=position_age+1'b1;
-    if(!paused && (state==SETTLE || state==HOLD) && phase_ms!=2047)phase_ms<=phase_ms+1'b1;
+    if(!paused && (state==SETTLE || state==HOLD || (ADJACENT_V6 && (state==NEXT || state==REACQUIRE))) && phase_ms!=2047)phase_ms<=phase_ms+1'b1;
     if(!paused && state==FEED && count!=0 && !have_source && arrival_ms!=65535)arrival_ms<=arrival_ms+1'b1;
    end
    if(good_frame)frame_age<=0;
@@ -97,6 +119,7 @@ module pocket_relay_stop_v2 #(
     last_x<=position_x;last_y<=position_y;have_position<=1;
    end
    if(clear_run)begin
+    retry_used<=0;frozen_diagnostic<=0;frozen_head<=0;
     active<=0;state<=IDLE;fault<=0;feed_command<=0;rd<=0;wr<=0;count<=0;last_empty<=0;
     have_position<=0;have_source<=0;arrival_ms<=0;
     history_total<=0;verified_total<=0;verify_pending<=0;
@@ -104,6 +127,7 @@ module pocket_relay_stop_v2 #(
     if(count!=0 && !RESTART_NEW_RUN)begin active<=0;fail(10);end
     else if(!PARAM_OK || !permit)begin active<=0;fail(11);end
     else begin
+     retry_used<=0;frozen_diagnostic<=0;frozen_head<=0;
      active<=1;state<=ALIGN;fault<=0;feed_command<=0;active_run<=counter_run+16'd1;
      last_empty<=0;rd<=0;wr<=0;count<=0;frame_age<=0;position_age<=0;phase_ms<=0;arrival_ms<=0;
      stable<=0;have_position<=0;have_source<=0;
@@ -119,7 +143,9 @@ module pocket_relay_stop_v2 #(
     if(verify_pending && !signature_bad)verified_total<=verify_id;
     if(push && count<QUEUE_DEPTH)begin queue[wr]<=event_id;wr<=wr+1'b1;last_empty<=event_id;end
     if(pop)begin
-     rd<=rd+1'b1;cycle_done<=1;state<=FEED;feed_command<=1;
+     rd<=rd+1'b1;cycle_done<=1;retry_used<=0;
+     if(ADJACENT_V6 && (count>1 || push))begin state<=NEXT;feed_command<=0;end
+     else begin state<=FEED;feed_command<=1;end
      have_position<=0;have_source<=0;position_age<=0;arrival_ms<=0;stable<=0;phase_ms<=0;
     end
     case({push && count<QUEUE_DEPTH,pop})
@@ -135,7 +161,9 @@ module pocket_relay_stop_v2 #(
     else if(push && count==QUEUE_DEPTH)fail(5);
     else if(uncertain)fail(13);
     else if(prefix_bad || local_event_bad)fail(11);
-    else if(count!=0 && have_source && tick && position_age>=STALE_MS-1 && !measured)fail(6);
+    else if(count!=0 && have_source && tick && position_age>=STALE_MS-1 && !measured && state!=REACQUIRE)begin
+     if(ADJACENT_V6)relocate(1);else fail(6);
+    end
     else if(!paused && count!=0 && !have_source && tick && arrival_ms>=ARRIVAL_TIMEOUT_MS-1 && !measured)fail(14);
     else if(paused && state!=FEED)begin
      stable<=0;have_position<=0;phase_ms<=0;
@@ -161,6 +189,28 @@ module pocket_relay_stop_v2 #(
       if(tick && phase_ms>=STOP_TIMEOUT_MS-1)fail(8);
      end
      HOLD:if(measured && (!within_x || !at_anchor))fail(9);
+     NEXT:if(ADJACENT_V6)begin
+      // A new head gets a fresh measurement BEFORE any motor restart.
+      if(measured)begin
+       if(position_x<TARGET_X-POSITION_TOL_PX)fail(7);
+       else if(within_x)begin state<=SETTLE;phase_ms<=0;stable<=0;have_position<=0;end
+       else begin state<=FEED;feed_command<=1;end
+      end else if(good_frame && station_total<query_id)begin state<=FEED;feed_command<=1;end
+      else if(tick && phase_ms>=STALE_MS-1)relocate(2);
+     end
+     REACQUIRE:if(ADJACENT_V6)begin
+      // Motor remains OFF. Three independent, current same-ID measurements
+      // must be stable; HOLD is then restarted in full, never inherited.
+      if(measured)begin
+       if(position_x<TARGET_X-POSITION_TOL_PX)fail(7);
+       else if(nearby && stable==2)begin
+        fault<=0;phase_ms<=0;stable<=0;have_position<=0;
+        if(within_x)state<=SETTLE;
+        else begin state<=FEED;feed_command<=1;end
+       end else stable<=nearby ? stable+1'b1 : 1;
+      end
+      if(tick && phase_ms>=REACQUIRE_MS-1)fail(6);
+     end
      default:begin end
     endcase
    end
