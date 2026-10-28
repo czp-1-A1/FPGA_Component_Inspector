@@ -3,9 +3,10 @@
 - 当前分支 codex/r22-brake-track-clean-ui，从 bcf29a4(RL4封存)开始。用户新视频8696…最后S4/F6，N004/Q02，最后有效X185在80..240内；PTS约5.333s S2→5.500s S4，未进入S3。用户确认未调速/碰料/补件；X185/V1不是故障时的新测量。
 - 已复现并修复一个明确缺陷：STOP_POSITION左站不能按普通已计数轨迹规则提前回收当前query。四实际目标、同一漏检帧，旧RL4报F6；新源漏检1/2帧后同ID返回并完成三次完整1秒。持续缺失/不同类别仍F6，不增大150ms、不假造位置、不改控制器。
 - 可见UI简化为右计数框+左黄80..240验收框+实际结果小框/分类；内部左ROI64..447/线256/目标160/触发192仍计算，只隐藏多余边线和特征十字。RELAY_CLEAN_UI=1生产默认，参数0保留旧显示，版本RL5。相机修复、按键、ADC/SDC、V2管脚无修改，仍单排，不恢复双排。
-- 新用例tests/brake_track。r22_brake_faults_r2四例、clean_osd_r2、wide_r1四例、compat_r1五例和冻结工程七旧核心目前已PASS；原生RAW r22_brake_native_r1与完整TD r22_brake_clean_build_r1正在运行。门级相机启动r22_brake_camera_gate_r1已PASS 2复位x126笔。636源/104依赖已冻结，禁止构建中再改生产源。暂无新bit交付，不能提前烧或称已过实板。
+- 新用例tests/brake_track。r22_brake_faults_r2四例、clean_osd_r2、wide_r1四例、compat_r1五例和冻结工程七旧核心目前已PASS；原生RAW r22_brake_native_r1与完整TD r22_brake_clean_build_r1均已完成并PASS。门级相机启动r22_brake_camera_gate_r1已PASS 2复位x126笔。636源/104依赖已冻结，实际Slice18475/21216=87.08%、ERAM98/108、DSP30/40、PLL5/6；SWNS0.000/HWNS+.020ns、双TNS0。49最大延迟无忽略/20Gray/9邮箱/20bit命令/4键+SW3/V2无LED原审计PASS。bit SHA b88610ad095d5ee6b30444c542faa24bd65e21ed0c1f8ffc4a41484aa87c95ba，等待本轮封存。不能称已过实板。
 - 新现场证据/负对照/未解决压力失败在E:/2026FPGA/.codex_tmp/r22_rl4_f6_field_20261028，docs/R22_TRACKCLEAN_FIELD_ANALYSIS.json及FIELD_GUIDE.md记录。六目标候选压力场景还有上游未编号目标被裁剪产生gap_open从而抑制当前位置的边界；旧失败和修复后的该失败均保留，不算PASS，不宣称视频根因已完全复现或全部F6解决。旧弱RAW280边界不变。
 - 交付需等完整构建/严格audit_r22_relay.py --keys-v3/原生回放；scripts/publish_r22_trackclean.py计划核23项新选定检查+49最大延迟等原审计，输出独立RL5文件、release+ZIP、BIT_FLASH副本且SHA一致；不覆盖旧RL4/CamFix/V3/V2或只读R2。后续同速度同料带复测两穴，若仍F6采集左候选/排序，不能通过放松关联假装完成。
+- 独立实验曾尝试跨上游gap发布实际队首位置并延长远端保留；虽六目标正例通过，删除上游目标的负例出现后续目标接错编号，因此已拒绝且未合入生产/bit，失败输入位于field_evidence/negative_and_boundary/rejected_station_gap_prototype。生产仍保留原gap保护。
 - 本轮只有文件/仿真/构建操作，无烧录、继电器/电机或接线操作；无子代理。
 
 # R22 左补件继电器 V3 接续入口（2026-10-27，已交付）

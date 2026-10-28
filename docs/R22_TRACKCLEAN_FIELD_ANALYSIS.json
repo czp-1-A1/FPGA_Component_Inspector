@@ -105,5 +105,14 @@
     }
   ],
   "new_board_acceptance": false,
-  "precision_1mm_acceptance": false
+  "precision_1mm_acceptance": false,
+  "rejected_prototype": {
+    "result": "REJECTED_NOT_MERGED",
+    "changes": "Attempted allowing actual known query position through upstream gap and retaining far upstream tracks longer with measured anchor motion",
+    "positive": "dense six-object return/hold sequence passed in laboratory",
+    "negative": "actual upstream object then permanently omitted; later physical object published as local ID5, violating negative fixture identity assertion",
+    "evidence": "field_evidence/negative_and_boundary/rejected_station_gap_prototype",
+    "production_counter_sha256": "714cb471bdbd9f2b0cb07deeba0fc1f82d9eeefa66cca7b10c5c57ee3d23ce1b",
+    "note": "The prototype stays only in archived failure inputs. Production keeps original upstream gap/position publication protection."
+  }
 }
