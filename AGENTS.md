@@ -1,4 +1,14 @@
-# RL6 当前实施（2026-10-28，用户已明确“可以，执行”）
+# RL7 当前实施（2026-10-28，最新用户要求）
+
+- 用户新视频105ebf…为普通速度、930403…慢速，均RL6，最终S1F0Q00。普通速度2/3/4/11/16号保持X137/185/235/139/131，第三穴距右界240仅5px。用户要求补件区略左移、连续5空穴直接报警停机，已授权实施，无需再问确认。证据docs/R22_V7_FIELD_ANALYSIS.md/.json、docs/evidence/r22_rl6_shift_20261028（旧RL6实测，不能当RL7硬件通过）。
+- 工作目录D:/CodexWork/FPGA_R22_Relay_20261027，分支codex/r22-left-shift-five-empty-v7，从1a82896起。生产只改5份：top/isp/relay_controller/dual_OSD/compact_OSD，主计数器/检测分类/ADC/SDC/相机源与RL6相同。FIVE_EMPTY_V7顶层默认1，叶模块默认0兼容。窗口72..232、目标152、提前32、触发184，整体左移8px/宽160，左ROI仍64..447留8px边。单排不恢复双ROI，原J2 pin1/V2高有效、板载5V、无LED。
+- 五连报警按同RUN连续主计数编号的合法EMPTY事件累计；PRESENT打断，不按队列深度/图像帧数。第五个当拍锁存alarm_stop并fail15（上方S4 FF），保留队列含第五个、禁止同拍HOLD弹队。顶部红字ALARM 5 EMPTY - MOTOR STOP - K3 CLEAR。顶层实际motor_output再受!relay_alarm约束，K4后K2手动也不能绕过；K3清零停止或明确K1/SW3新RUN才重置报警和连续段。正常1~4穴仍逐个完整1秒，RL6一次500ms停机找回保留。
+- 生产已冻结E:/2026FPGA/.codex_tmp/r22_shift_alarm_v7_build_r1_20261028（636源/104硬件依赖），SYN完成、PHY进行中，禁止修改冻结RTL。原生RAW V7/tol80/target152回放进行中，未到停车线，不混称RAW停车通过。相机实际305单元综合网表2复位x126串行写入已PASS。尚无新bit交付，旧RL6/RL5/只读R2保持。
+- 最终拟选31项：final_units_r2的13项（31控制断言、移框/红字/两栅格、1~4连继续、5/8连在第5触发、回归/负例/变速）；alarm_control_r1的1项19断言（4+P+4/队列8不报，第5报，实际顶层motor寄存器代码体提取并逐字检查，K2/手动禁绕过、K3/新RUN、同拍HOLD冲突、错ID/RUN、暂停中第5）；RGB三连+实际100MHz1秒2项final_rgb_r3重跑中；RGB五连1项75完整帧已PASS；兼容5项+核心7项PASS；native1进行中；camera_gate1 PASS。r1真实秒夹具.*漏声明alarm_stop、r2夹具仍旧192触发，均为测试加载/激励错误；已改为输出声明及184/152，失败日志保留但不得当PASS。生产源未因此重构。
+- scripts/publish_r22_shift_alarm_v7.py与audit_r22_relay.py --keys-v3 --adjacent-v6 --five-empty-v7准备中，严格49最大延迟/20Gray/9邮箱/四键+SW3/V2无LED外，新增alarm_latched到motor_output实际FF布线路径审计。5变动/631不变、全部636Git blob、31项冻结输入SHA、CRC/ZIP/发布payload及BIT_FLASH副本SHA必须核。拟名R22_RelayAuto_Left_V7_ShiftAlarm_20261028.bit；尚未发布。
+- 继承弱RAW280/高速40pitch24step主计数失败/上游gap保护；高速失败是旧RL5/V6对照，不是本版新测或PASS，主计数/分类源未动。无吸嘴/实际补件/±1mm硬件验收。本轮仅文件/仿真/构建，没有烧录/接线/继电器/电机操作；无子代理，保留原未跟踪产物。
+
+# RL6 交付记录（2026-10-28，以下为前版）
 
 - 已生成独立交付E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V6_Adjacent_20261028.bit，SHA7a6c18f56d90f0b2743d544a55bb4167882f4dbb930095b847f4372355ff20bd，与实际构建/发布原件一致；源码ec53ab4（生产功能cc0d804），未推送。原件releases/r22_relay_adjacent_v6_20261028及相邻ZIP，ZIP SHAa79eeadf1bd20bdec9e09579af4e1ec0dc86a7c463efcbf591a9263102f60001，1086载荷/636源/104硬件依赖。docs/R22_ADJACENT_V6_DELIVERY.json为回执；BIT_FLASH同前缀_说明.md/_RELEASE.json含操作和资源来源。旧RL5/以太网R2保持。最终Git字节审计记录在docs/R22_ADJACENT_V6_GIT_AUDIT.json，是否通过以该回执为准。
 - 当前分支codex/r22-adjacent-reacquire-v6，基线1972dea；工作目录D:/CodexWork/FPGA_R22_Relay_20261027。实施已获授权，不停在方案。新增8份生产源修改：停机交接下一队首、待处理EMPTY身份保留/停车提示限制、一次500ms电机关断重定位、同帧来源与候选/关联冻结诊断、RL6底部诊断和163bit显示邮箱。核心主计数、分类判据、相机增益修复、ADC/SDC原件保持。仍单排右数左补、窗口80..240/触发192/完整1000ms；无LED、V2高有效/板载5V。

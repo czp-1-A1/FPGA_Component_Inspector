@@ -2,11 +2,11 @@ module isp_top #(
     parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
     parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,LOCAL_EDGE_ASSIST=0,EMPTY_TRACE=0,ROBUST_EMPTY_CONTEXT=0,ROBUST_SMALL_EMPTY=0,STANDING_REVIEW=0,SURFACE_REVIEW=0,REVIEW_PROBE=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,
-    parameter ADJACENT_V6=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,
+    parameter FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,
     parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+256*CLASSIFIED_COUNT
 ) (
     input processing_clk,
-    input relay_permit,relay_pause,output relay_feed,output [63:0] relay_status,output [95:0] relay_diagnostic,
+    input relay_permit,relay_pause,output relay_feed,output relay_alarm,output [63:0] relay_status,output [95:0] relay_diagnostic,
     input [16:0] count_command,output [255:0] count_live,
     input 			axi4s_video_aclk,
     input 			I_rst_n			,
@@ -335,7 +335,7 @@ generate if(CLASSIFIED_COUNT)begin : classified_counting
   assign repair_hold_id=search_valid ? stop_query : 9'd0;
   assign repair_hold_radius=search_valid ? search_radius : 6'd12;assign repair_empty_only=search_valid;
   assign repair_hold_valid=search_valid || lead_valid;assign repair_hold_x=search_valid ? search_x : lead_x;assign repair_hold_y=search_valid ? search_y : lead_y;
-  pocket_relay_stop_v2 #(.ADJACENT_V6(ADJACENT_V6),.RESTART_NEW_RUN(RELAY_KEYS_V3),.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
+  pocket_relay_stop_v2 #(.FIVE_EMPTY_V7(FIVE_EMPTY_V7),.ADJACENT_V6(ADJACENT_V6),.RESTART_NEW_RUN(RELAY_KEYS_V3),.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
    .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.pause(RELAY_KEYS_V3 && relay_pause),.start_run(stop_begin),.clear_run(stop_clear),
    .good_frame(stop_good),.bad_frame(stop_bad),.transport_occupied(transport_occupied),.current_frame(stop_frame),
    .counter_run(stop_run),.counter_state(stop_state),.direction_valid(stop_dv),.direction_right(stop_dr),
@@ -344,10 +344,10 @@ generate if(CLASSIFIED_COUNT)begin : classified_counting
    .event_valid(ev_new),.event_run(ev_run),.event_id(ev_id),.event_kind(ev_kind),.query_id(stop_query),
    .station_event_valid(local_ev),.station_event_run(local_ev_run),.station_event_id(local_ev_id),.station_event_kind(local_ev_kind),
    .position_new(local_new),.position_id(local_id),.position_run(local_pos_run),.position_frame(local_frame),
-   .station_diagnostic(station_diagnostic),.diagnostic(relay_diagnostic),.stationary_hint(stationary),
+   .alarm_stop(relay_alarm),.station_diagnostic(station_diagnostic),.diagnostic(relay_diagnostic),.stationary_hint(stationary),
    .position_x(local_x),.position_y(local_y),.feed_enable(relay_feed),.state(),.fault(),.status(relay_status),.cycle_done());
  end else if(AUTO_RELAY)begin : automatic_relay
-  assign relay_diagnostic=0;assign repair_hold_id=0;assign repair_hold_radius=12;assign repair_empty_only=0;
+  assign relay_alarm=0;assign relay_diagnostic=0;assign repair_hold_id=0;assign repair_hold_radius=12;assign repair_empty_only=0;
   assign repair_hold_valid=0;assign repair_hold_x=0;assign repair_hold_y=0;
   pocket_relay_stop #(.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
    .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.start_run(stop_begin),.clear_run(stop_clear),
@@ -355,7 +355,7 @@ generate if(CLASSIFIED_COUNT)begin : classified_counting
    .direction_valid(stop_dv),.direction_right(stop_dr),.event_valid(ev_new),.event_run(ev_run),.event_id(ev_id),.event_kind(ev_kind),
    .query_id(stop_query),.position_new(pos_new),.position_id(stop_id),.position_run(pos_run),.position_frame(pos_frame),
    .position_x(stop_x),.position_y(stop_y),.feed_enable(relay_feed),.state(),.fault(),.status(relay_status),.cycle_done());
- end else begin assign relay_diagnostic=0;assign repair_hold_id=0;assign repair_hold_radius=12;assign repair_empty_only=0;assign repair_hold_valid=0;assign repair_hold_x=0;assign repair_hold_y=0;assign stop_query=0;assign relay_feed=0;assign relay_status=0;end
+ end else begin assign relay_alarm=0;assign relay_diagnostic=0;assign repair_hold_id=0;assign repair_hold_radius=12;assign repair_empty_only=0;assign repair_hold_valid=0;assign repair_hold_x=0;assign repair_hold_y=0;assign stop_query=0;assign relay_feed=0;assign relay_status=0;end
  always @(posedge post_clk or negedge I_rst_n)begin
   if(!I_rst_n)pixels_started<=0;
   else if(post_start)pixels_started<=0;
@@ -375,7 +375,7 @@ generate if(CLASSIFIED_COUNT)begin : classified_counting
   .stop_direction_valid(stop_dv),.stop_direction_right(stop_dr),.stop_total(main_total),.stop_uncertainty(main_uncertainty),
   .hold_valid(recorder_hold_valid),.hold_x(recorder_hold_x),.hold_y(recorder_hold_y));
 end else begin : no_classified_counting
- assign relay_diagnostic=0;assign repair_hold_id=0;assign repair_hold_radius=12;assign repair_empty_only=0;
+ assign relay_alarm=0;assign relay_diagnostic=0;assign repair_hold_id=0;assign repair_hold_radius=12;assign repair_empty_only=0;
  assign repair_hold_valid=0;assign repair_hold_x=0;assign repair_hold_y=0;
  assign relay_feed=0;assign relay_status=0;
  assign classified_record=0;assign classified_ready=1;assign count_live=0;assign recorder_hold_valid=0;assign recorder_hold_x=0;assign recorder_hold_y=0;

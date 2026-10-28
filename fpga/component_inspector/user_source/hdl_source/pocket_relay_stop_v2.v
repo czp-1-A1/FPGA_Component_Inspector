@@ -1,7 +1,7 @@
 // Left station uses a second REAL ordered gate count. Global IDs are bound
 // only after a proved clear transport startup; predicted search is not position.
 module pocket_relay_stop_v2 #(
- parameter ADJACENT_V6=0,REACQUIRE_MS=500,RESTART_NEW_RUN=0,CLK_HZ=100000000,TARGET_X=160,ADVANCE_PX=16,POSITION_TOL_PX=8,
+ parameter FIVE_EMPTY_V7=0,ADJACENT_V6=0,REACQUIRE_MS=500,RESTART_NEW_RUN=0,CLK_HZ=100000000,TARGET_X=160,ADVANCE_PX=16,POSITION_TOL_PX=8,
  parameter STILL_PX=2,HOLD_MS=1000,STALE_MS=150,STOP_TIMEOUT_MS=1200,
  parameter ARRIVAL_TIMEOUT_MS=15000,QUEUE_DEPTH=32
 )(
@@ -20,13 +20,14 @@ module pocket_relay_stop_v2 #(
  input wire [10:0] position_x,input wire [9:0] position_y,
  output wire feed_enable,output reg [2:0] state,output reg [3:0] fault,
  input wire [63:0] station_diagnostic,output wire [95:0] diagnostic,
- output wire stationary_hint,
+ output wire stationary_hint,output wire alarm_stop,
  output wire [63:0] status,output reg cycle_done
 );
  // Unconnected pause preserves legacy benches; production drives a real 0/1.
  wire paused=(pause===1'b1);
- reg feed_command;
- assign feed_enable=feed_command && !paused;
+ reg feed_command;reg [2:0] empty_streak;reg alarm_latched;
+ assign alarm_stop=FIVE_EMPTY_V7 && alarm_latched;
+ assign feed_enable=feed_command && !paused && !alarm_stop;
  localparam IDLE=0,FEED=1,SETTLE=2,HOLD=3,FAULT=4,ALIGN=5,NEXT=6,REACQUIRE=7;
  localparam DIV=CLK_HZ/1000,DB=DIV>1 ? $clog2(DIV) : 1,QB=$clog2(QUEUE_DEPTH);
  localparam PARAM_OK=CLK_HZ>=1000 && CLK_HZ%1000==0 && QUEUE_DEPTH>=2 && QUEUE_DEPTH<=32 &&
@@ -74,7 +75,10 @@ module pocket_relay_stop_v2 #(
  wire prefix_bad=counter_run!=active_run || station_run!=active_run || station_total>counter_total;
  wire healthy=!counter_fault && !wrong_direction && !uncertain && !prefix_bad &&
   !global_event_bad && !local_event_bad && !signature_bad && !(push && count==QUEUE_DEPTH);
- wire pop=active && !paused && state==HOLD && healthy && tick && phase_ms==HOLD_MS-1 &&
+ // Only proved, ordered GLOBAL IDs count; repeated frames and queue depth do not.
+ wire fifth_empty=FIVE_EMPTY_V7 && active && state!=FAULT && event_valid && !global_event_bad &&
+  event_kind==3 && empty_streak==4 && healthy;
+ wire pop=!fifth_empty && active && !paused && state==HOLD && healthy && tick && phase_ms==HOLD_MS-1 &&
   position_age<STALE_MS-1 && frame_age<STALE_MS-1 && permit &&
   !(measured && (!within_x || !at_anchor));
  // Lower32 keeps V1's S/F/ID/X layout. Upper32 is diagnostics; actual queue
@@ -99,6 +103,7 @@ module pocket_relay_stop_v2 #(
  end endtask
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
+   empty_streak<=0;alarm_latched<=0;
    state<=IDLE;fault<=0;feed_command<=0;active<=0;active_run<=0;rd<=0;wr<=0;count<=0;last_empty<=0;
    divider<=0;frame_age<=0;position_age<=0;phase_ms<=0;arrival_ms<=0;last_x<=0;last_y<=0;
    anchor_x<=0;anchor_y<=0;stable<=0;have_position<=0;have_source<=0;last_position_frame<=0;cycle_done<=0;
@@ -119,6 +124,7 @@ module pocket_relay_stop_v2 #(
     last_x<=position_x;last_y<=position_y;have_position<=1;
    end
    if(clear_run)begin
+    empty_streak<=0;alarm_latched<=0;
     retry_used<=0;frozen_diagnostic<=0;frozen_head<=0;
     active<=0;state<=IDLE;fault<=0;feed_command<=0;rd<=0;wr<=0;count<=0;last_empty<=0;
     have_position<=0;have_source<=0;arrival_ms<=0;
@@ -127,6 +133,7 @@ module pocket_relay_stop_v2 #(
     if(count!=0 && !RESTART_NEW_RUN)begin active<=0;fail(10);end
     else if(!PARAM_OK || !permit)begin active<=0;fail(11);end
     else begin
+     empty_streak<=0;alarm_latched<=0;
      retry_used<=0;frozen_diagnostic<=0;frozen_head<=0;
      active<=1;state<=ALIGN;fault<=0;feed_command<=0;active_run<=counter_run+16'd1;
      last_empty<=0;rd<=0;wr<=0;count<=0;frame_age<=0;position_age<=0;phase_ms<=0;arrival_ms<=0;
@@ -135,7 +142,10 @@ module pocket_relay_stop_v2 #(
     end
    end else if(!permit)begin active<=0;feed_command<=0;if(state!=FAULT)state<=IDLE;end
    else if(active && state!=FAULT)begin
-    if(event_valid && !global_event_bad)begin kind_history[event_id-9'd1]<=event_kind;history_total<=event_id;end
+    if(event_valid && !global_event_bad)begin
+     kind_history[event_id-9'd1]<=event_kind;history_total<=event_id;
+     if(FIVE_EMPTY_V7)empty_streak<=event_kind==3 ? (empty_streak<5 ? empty_streak+1'b1 : 3'd5) : 3'd0;
+    end
     if(station_event_valid && !local_event_bad)begin
      expected_kind<=kind_history[station_event_id-9'd1];observed_kind<=station_event_kind;
      verify_id<=station_event_id;verify_pending<=1;
@@ -154,7 +164,8 @@ module pocket_relay_stop_v2 #(
      default:begin end
     endcase
     if(count==0 && push)begin have_position<=0;have_source<=0;position_age<=0;arrival_ms<=0;last_x<=0;end
-    if(counter_fault)fail(1);
+    if(fifth_empty)begin alarm_latched<=1;fail(15);end
+    else if(counter_fault)fail(1);
     else if(tick && frame_age>=STALE_MS-1 && !good_frame)fail(2);
     else if(wrong_direction)fail(3);
     else if(global_event_bad || signature_bad)fail(4);

@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,hashlib,json,os,re,subprocess,sys
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--adjacent-v6',action='store_true');args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--adjacent-v6',action='store_true');a.add_argument('--five-empty-v7',action='store_true');args=a.parse_args()
 work=args.work.resolve();project=work/'project';tools=project/'tools';env=dict(os.environ)
 env['TEMP']=env['TMP']=str(work/'temp')
 audit_names=['classified_audit_routed.tcl','classified_audit_gray_packing.tcl']
@@ -36,6 +36,14 @@ close $bind_fd''')
  report_timing_path -from $rf -through $rq -ep_num 4096 -path_num 2 -file classified_audit/relay_sw_fanout.timing
  report_timing_path -to [get_ports {O_relay_control}] -ep_num 16 -path_num 2 -file classified_audit/relay_output.timing
  close $bind_fd''')
+ if name=='classified_audit_routed.tcl' and args.five_empty_v7:
+  text=text.replace('close $bind_fd',r'''
+set alarm_regs [get_regs {*left_station*controller/alarm_latched*}]
+set motor_regs [get_regs {motor_output*}]
+puts $bind_fd "V7_ALARM_MOTOR SOURCE_COUNT [llength $alarm_regs] DESTINATION_COUNT [llength $motor_regs]"
+if {[llength $alarm_regs]<1 || [llength $motor_regs]<1} {error "V7 alarm/motor FF missing"}
+report_timing_path -from $alarm_regs -to $motor_regs -ep_num 4096 -path_num 2 -file classified_audit/alarm_motor_interlock.timing
+close $bind_fd''')
  target=work/name;target.write_text(text)
  with (work/(name+'.log')).open('w',encoding='utf8') as log:
   result=subprocess.run(['E:/TD/bin/td_commands_prompt.exe'],input='source {'+target.as_posix()+'}\n',text=True,cwd=project,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=600)
@@ -54,6 +62,7 @@ result=namespace['verify'](project)
 folder=project/'classified_audit'
 extra={}
 extra_names=['relay_output.timing']
+if args.five_empty_v7:extra_names+=['alarm_motor_interlock.timing']
 if args.keys_v3:
  extra_names+=[f'key_{i}_{kind}.timing' for i in range(4) for kind in ['sync','fanout']]
 else:extra_names+=['relay_sw_sync.timing','relay_sw_fanout.timing']
@@ -103,5 +112,12 @@ if args.adjacent_v6:
  assert 'ADJACENT_V6=1,' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
  result['relay_display_declared_bits']=163
  result['status']='PASS_R22_RELAY_V6_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_4_KEYS_V2_NO_LED'
+if args.five_empty_v7:
+ assert args.adjacent_v6 and args.keys_v3
+ top=(project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
+ assert 'FIVE_EMPTY_V7=1,' in top and 'RELAY_TARGET_X=152,' in top and 'RELAY_TOL_PX=80,' in top
+ assert 'ENABLE_AUTO_RELAY && !relay_alarm &&' in top
+ result['alarm_interlock_routed']=True
+ result['status']='PASS_R22_RELAY_V7_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_4_KEYS_V2_ALARM_NO_LED'
 (work/'physical_verification.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({k:result[k] for k in ['status','timing_ns','resources','slice_delta_vs_r22','max_delays_matched','max_delays_ignored','gray_bits_dominating']},indent=2),flush=True)
