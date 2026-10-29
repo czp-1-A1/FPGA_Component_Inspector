@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter RECOGNITION_ONLY=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -95,6 +95,23 @@ function [7:0] alarm_char;
  begin text="ALARM 5 EMPTY - MOTOR STOP - K3 CLEAR";alarm_char=ci<37 ? text[295-ci*8-:8] : 8'd32;end
 endfunction
 wire five_empty_alarm=FIVE_EMPTY_V7 && relay_snapshot[31:29]==4 && relay_snapshot[28:25]==15;
+function [7:0] recognition_char;
+ input [2:0] ln;input [6:0] ci;reg [511:0] text;
+ begin
+  case(ln)
+   0:text="DUAL ROI D1                                                     ";
+   1:text="UPPER + LOWER ROI - RECOGNITION ONLY                            ";
+   2:text="K1 RUN  K2 PAUSE/RUN  K3/K4 STOP  MOTOR:0                       ";
+   3:text="ROI1 UPPER - SEE RESULT BOXES                                   ";
+   4:text="ROI2 LOWER - SEE RESULT BOXES                                   ";
+   5:text="PRESENT / EMPTY / REVIEW                                        ";
+   6:text="COUNTING: WAITING   AUTO PARK: OFF                              ";
+   default:text=0;
+  endcase
+  recognition_char=ci<64 ? text[511-ci*8-:8] : 8'd32;
+  if(ln==2 && ci==40)recognition_char=relay_snapshot[0] ? "1" : "0";
+ end
+endfunction
 reg de_d;reg [10:0] x;reg [9:0] y;
 wire start=de && !de_d && y==0;
 reg page_s,eligible_s,show,cal_s,gray_s,cfg_s,tune_s,pending_s;
@@ -302,7 +319,7 @@ always @(posedge clk or negedge rst_n)begin
   else if(de)x<=x+1'b1;else if(de_d)begin x<=0;y<=y+1'b1;end
   if(start)begin
    relay_snapshot<=relay_status;diagnostic_snapshot<=relay_diagnostic;relay_mode_snapshot<=relay_control_mode;
-   page_s<=page;live<=live_record;record<=frame_record;obs<=objects;cal<=calibration_record;
+   page_s<=RECOGNITION_ONLY ? 1'b0 : page;live<=live_record;record<=frame_record;obs<=objects;cal<=calibration_record;
    eligible_s<=eligible;cal_s<=calibration_valid;gray_s<=roi_valid;cfg_s<=cfg_done;tune_s<=wb_tune;pending_s<=wb_pending;
    show<=eligible && frame_record[47:32]==live_record[47:32] &&
     (frame_record[50:48]==1 || frame_record[50:48]==2 || frame_record[50:48]==5) &&
@@ -362,9 +379,12 @@ always @*begin
    plane_address={line,text_dx[9:3]};code=plane_q;col={2'd0,text_dx[2:0]};
    if(code[7])col={code[5:4],3'd0}+text_dx[2:0];
    if(AUTO_RELAY && line==2 && text_dx[9:3]>=72)code=relay_char(text_dx[9:3]-72);
-   if(ADJACENT_V6 && line==6)code=relay_diag_char(text_dx[9:3]);
-   if(five_empty_alarm && line==2 && text_dx[9:3]<64)begin
+   if(ADJACENT_V6 && !RECOGNITION_ONLY && line==6)code=relay_diag_char(text_dx[9:3]);
+   if(!RECOGNITION_ONLY && five_empty_alarm && line==2 && text_dx[9:3]<64)begin
     code=alarm_char(text_dx[9:3]);col={2'd0,text_dx[2:0]};ink=24'hff5050;
+   end
+   if(RECOGNITION_ONLY && (line!=0 || text_dx[9:3]<12))begin
+    code=recognition_char(line,text_dx[9:3]);col={2'd0,text_dx[2:0]};
    end
    if(row==31)code=32;
    if(page_s && gap_id!=0 && (line==1 || line==2 || line==3))ink=24'hffe080;
@@ -372,7 +392,7 @@ always @*begin
  end else begin
   guide=(((x==WIDTH*5/16 || x==WIDTH*11/16-1) && ((y>=HEIGHT/3 && y<HEIGHT*5/9)||(y>=HEIGHT*3/5 && y<HEIGHT*5/6))) ||
    ((y==HEIGHT/3 || y==HEIGHT*5/9-1 || y==HEIGHT*3/5 || y==HEIGHT*5/6-1) && x>=WIDTH*5/16 && x<WIDTH*11/16)) && (x[3] || y[3]);
-  if(x==WIDTH/2 && y[2] && ((y>=HEIGHT/3 && y<HEIGHT*5/9 && (!page_s || !record[57])) ||
+  if(!RECOGNITION_ONLY && x==WIDTH/2 && y[2] && ((y>=HEIGHT/3 && y<HEIGHT*5/9 && (!page_s || !record[57])) ||
    (y>=HEIGHT*3/5 && y<HEIGHT*5/6 && (!page_s || record[57]))))guide=1;
   if(AUTO_RELAY && ((y>=HEIGHT/3 && y<HEIGHT*5/9)||(y>=HEIGHT*3/5 && y<HEIGHT*5/6)) &&
     (x==RELAY_TARGET_X || (x==RELAY_TARGET_X-RELAY_ADVANCE_PX && y[2])))guide=1;

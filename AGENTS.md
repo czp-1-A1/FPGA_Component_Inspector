@@ -1,4 +1,14 @@
-# RL7 已交付（2026-10-28，当前入口）
+# D1 双区识别（2026-10-29，当前入口，覆盖此前暂缓双ROI决定）
+
+- 用户现在要求恢复原上下双ROI识别；双列计数等待队友代码，本轮不实现。当前分支codex/r22-dual-recognition-d1，起点a716eac，工作目录D:/CodexWork/FPGA_R22_Relay_20261027。无子代理，无烧录/接线/电机/继电器动作。
+- 顶层DUAL_RECOGNITION_ONLY=1；上ROI[400,880)×[240,400)，下ROI[400,880)×[432,600)，1280×720处理像素；恢复原区域/缓存，R22现有检测开关及相机增益修复保留。每区内部4候选/显示2结果。当前不实例化计数/编号/停车/五连报警；旧RL7逻辑及bit保留，不能称本版自动补件仍启用。K1手动运行、K2暂停/运行、K3/K4停止；SW3上停、下沿运行；上电停，V2/板载5V/无LED，原ADC不改。
+- 5份既有生产RTL修改+新增独立识别SDC，631份原源与RL7逐SHA不变。637冻结源/105硬件依赖构建E:/2026FPGA/.codex_tmp/dual_recognition_d1_build_r1_20261029已完成；Slice16299/21216=76.82%、ERAM100/108、DSP26/40、PLL5/6；SWNS+.107/HWNS+.020ns、双TNS0。识别SDC仅去掉未实例化count-live邮箱3约束，原SDC不改；严格46活动bound无忽略/20实际Gray/6手动邮箱组/四键SW3/V2无LED审计通过。
+- 10项全新选定仿真通过：dual_d1_initial_r2两项（28按键断言+六RGB/32物理P/E）、osd_r3一项（两完整栅格/792字符）、native_r3一项（七RAW10源帧/14显示完整栅格/13088282逐像素/4views/WB取消）、camera_r1一项（实际302单元相机锥/2复位x126写入）、compat_r1旧键一项、osd_compat_r1旧OSD一项、冻结工程regions/text_plane_prefetch/empty_trace_abort三项。均有输入SHA回执，不当作实板/任意速度/光学召回验收。
+- native早期首帧无效假设失败；同fixture对原RL7和D1均得到完整首帧，最终用例对全部7帧包括首帧执行相同完整字数/提交/像素验证。诊断失败不算PASS、不修改生产源绕过。测试tests/dual_recognition_d1；交接docs/R22_DUAL_RECOGNITION_D1_INTERFACE.md解释608bit候选及帧证明，端口不是计数事件，队友尚未接入。
+- 目标独立发布R22_DualROI_Recognition_D1_20261029.bit，必须复制BIT_FLASH并核SHA。完整原件releases/r22_dual_recognition_d1_20261029及ZIP；实际是否交付/Git归档以docs/R22_DUAL_RECOGNITION_D1_DELIVERY.json和GIT_AUDIT.json为准。生产bit SHAe9938418f0cc69790a583b401897657f4b44dff55e57cb361fcbeada1bad24cd。本记录写入时正在封装，尚不提前称已交付/已提交。全部构建/仿真已结束，不另开构建。
+- 旧RL7 SHA3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750及只读R2 LATEST_READONLY.bit SHA30d067cef0667893fe548ba04e423cd6618b76f119cb2e0ecf48b96ba6a5b20f不覆盖。下一步用户检查D1标识/实时画面、两条料带分别有件/空穴/一条空置以及K1/K2；双列计数与后续自动定位另行集成。
+
+# RL7 已交付（2026-10-28，旧自动停车入口保留）
 
 - 用户要求补件区稍左移、连续5个空穴报警停机。已交付E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V7_ShiftAlarm_20261028.bit，SHA3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750，构建/发布原件/烧录副本一致。源码e037c9b（生产功能1d43470），分支codex/r22-left-shift-five-empty-v7，未推送。旧RL6/RL5/以太网R2保持。
 - 窗口72..232、目标152、触发184（提前32），整体左移8px/宽160。FIVE_EMPTY_V7顶层1；按同RUN合法主计数序号累计EMPTY，PRESENT打断。第5个当拍锁存FF报警/送料关闭并禁止同拍弹队，保留待处理队列；顶部红字ALARM 5 EMPTY - MOTOR STOP - K3 CLEAR。K2/手动不能绕过；K3清零停止或明确K1/SW3新RUN才复位。保持单排、J2 pin1/V2高有效/板载5V、无LED和蜂鸣器新引脚。正常1~4空穴保持完整1秒，RL6一次500ms停机找回保留。

@@ -1,6 +1,6 @@
 from pathlib import Path
 import argparse,hashlib,json,os,re,shutil,subprocess,winreg
-r=Path(__file__).resolve().parents[1];a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--v3',action='store_true');a.add_argument('--bench-dir',type=Path);a.add_argument('--bench');args=a.parse_args()
+r=Path(__file__).resolve().parents[1];a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--v3',action='store_true');a.add_argument('--bench-dir',type=Path);a.add_argument('--bench');a.add_argument('--pass-token');args=a.parse_args()
 bench=args.bench or ('tb_relay_v3_native' if args.v3 else 'tb_relay_left_native')
 p=(args.source or r/'fpga/component_inspector').resolve();out=args.out.resolve();out.mkdir(parents=True,exist_ok=False);env=dict(os.environ)
 for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
@@ -36,7 +36,7 @@ run('vlog',['-work','anlogic_sim',*vfiles],'vendor_compile.log')
 run('vlog',['-work','work',*frozen[:-1]],'compile_rtl.log')
 run('vlog',['-sv','-work','work',frozen[-1]],'compile_bench.log')
 run('vsim',['-c','-L','anlogic_sim','-voptargs=+acc=rn+/'+bench,'-onfinish','stop','work.'+bench,'anlogic_sim.glbl','anlogic_sim.PH1P_PHY_GSR','-do','onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0'],'console.log',2400)
-log=(out/'console.log').read_text();assert ('PASS V3_NATIVE_MODE1:' if args.v3 else 'PASS LEFT_NATIVE_MODE1:') in log and not re.search(r'\*\* (Fatal|Error):',log),log[-2500:]
+log=(out/'console.log').read_text();assert (args.pass_token or ('PASS V3_NATIVE_MODE1:' if args.v3 else 'PASS LEFT_NATIVE_MODE1:')) in log and not re.search(r'\*\* (Fatal|Error):',log),log[-2500:]
 for rel,d in manifest.items():assert hashlib.sha256((p/rel).read_bytes()).hexdigest()==d,rel
 for rel,d in extra_inputs.items():assert hashlib.sha256((args.bench_dir/Path(rel).name).read_bytes()).hexdigest()==d,rel
 (out/'verification.json').write_text(json.dumps({'status':'PASS','name':bench,'inputs':manifest,'extra_inputs':extra_inputs,'vendor':vmanifest,'console_sha256':hashlib.sha256((out/'console.log').read_bytes()).hexdigest(),'board_acceptance':False},indent=2)+'\n')

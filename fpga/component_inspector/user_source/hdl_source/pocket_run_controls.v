@@ -27,7 +27,7 @@ endmodule
 // held CDC payload, so a new RUN cannot arrive with the previous permission.
 // K1=new automatic RUN, K2=pause/resume (manual motor when idle), K3=clear,
 // K4=stop. SW3 up stops; its next down edge starts a fresh RUN.
-module pocket_key_motor_controls #(parameter CLK_HZ=24074074,DEBOUNCE_MS=20)(
+module pocket_key_motor_controls #(parameter MANUAL_ONLY=0,CLK_HZ=24074074,DEBOUNCE_MS=20)(
  input wire clk,rst_n,start_switch,input wire [3:0] buttons,
  output wire [19:0] request
 );
@@ -74,7 +74,8 @@ module pocket_key_motor_controls #(parameter CLK_HZ=24074074,DEBOUNCE_MS=20)(
     else begin sw_stable<=sw_candidate;if(sw_candidate)sw_armed<=1;else if(sw_change)sw_armed<=0;end
     if(press[2])begin command<={command[16:1]+16'd1,1'b1};mode<=IDLE;end
     else if(press[3] || sw_up)mode<=IDLE;
-    else if(press[0] || sw_down)begin command<={command[16:1]+16'd1,1'b0};mode<=AUTO;end
+    else if(press[0] || sw_down)begin command<={command[16:1]+16'd1,1'b0};mode<=MANUAL_ONLY ? MANUAL : AUTO;end
+    else if(press[1] && MANUAL_ONLY)mode<=mode==MANUAL ? MANUAL_PAUSED : MANUAL;
     else if(press[1])case(mode)
      AUTO:mode<=PAUSED;
      PAUSED:mode<=AUTO;

@@ -5,7 +5,7 @@ import argparse,hashlib,json,os,re,shutil,subprocess,time
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--prepare-only',action='store_true')
- a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');args=a.parse_args()
+ a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--recognition-only',action='store_true');args=a.parse_args()
  repo=Path(__file__).resolve().parents[1];src=args.source.resolve() if args.source else repo/'fpga/component_inspector';work=args.work.resolve()
  assert not work.exists(),'Refuse to overwrite an existing build'
  assert str(work).isascii() and ' ' not in str(work)
@@ -15,6 +15,9 @@ def main():
   names+=['user_source/hdl_source/pocket_relay_stop_v2.v']
   names+=['sim/'+n+'.sv' for n in ['tb_relay_left_transport','tb_relay_left_faults','tb_relay_left_pixels','tb_relay_left_osd','tb_relay_left_rgb','tb_relay_left_real_second','tb_relay_real_second','tb_relay_osd','tb_relay_queue']]
  if args.keys_v3:names+=['sim/'+n+'.sv' for n in ['tb_relay_left_native','tb_relay_v3_keys','tb_relay_v3_stop','tb_relay_v3_osd','tb_relay_v3_transport','tb_relay_v3_rgb','tb_relay_v3_real_second','tb_relay_v3_native']]
+ if args.recognition_only:
+  assert args.keys_v3
+  names+=['td_project/camera_to_dsi_recognition.sdc']
  manifest={rel:sha(src/rel) for rel in names}
  changes={rel:{'baseline':baseline.get(rel),'candidate':manifest[rel]} for rel in names if baseline.get(rel)!=manifest[rel]}
  project=work/'project';project.mkdir(parents=True)
@@ -29,6 +32,7 @@ def main():
   p=(entry.parent/rel).resolve();deps[p.relative_to(project).as_posix()]=sha(p)
  for rel in ['user_source/hdl_source/ph1p35_ddr/ddr2/src/adc/ddr2.adc','user_source/hdl_source/ph1p35_ddr/ddr2/src/sdc/ddr2.sdc','user_source/ip_source/w128_d512_fifo/w128_d512_fifo.tcl']:
   deps[rel]=sha(project/rel)
+ if args.recognition_only:deps['td_project/camera_to_dsi_recognition.sdc']=sha(project/'td_project/camera_to_dsi_recognition.sdc')
  (work/'hardware_inputs.json').write_text(json.dumps(deps,indent=2)+'\n')
  for stage in ['syn_1','phy_1']:
   run=work/'runs'/stage;run.mkdir(parents=True)
@@ -56,7 +60,8 @@ set end_step bitgen
 set run_type phy
 '''
   cfg=cfg.replace('../../../user_source',Path(os.path.relpath(project/'user_source',run)).as_posix())
-  cfg=cfg.replace('../../camera_to_dsi_display.sdc',Path(os.path.relpath(entry.parent/'camera_to_dsi_display.sdc',run)).as_posix())
+  active_sdc='camera_to_dsi_recognition.sdc' if args.recognition_only else 'camera_to_dsi_display.sdc'
+  cfg=cfg.replace('../../camera_to_dsi_display.sdc',Path(os.path.relpath(entry.parent/active_sdc,run)).as_posix())
   (run/'settings.cfg').write_text(cfg)
   commands='if {[catch {\nsource {'+flow.as_posix()+'}\ncheck_timing -file constraint_coverage.txt -verbose\n'
   if stage=='phy_1':commands+='report_timing_summary -file final_timing.rpt\nreport_area -io_info -file final.area\n'
