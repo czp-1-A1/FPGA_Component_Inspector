@@ -5,7 +5,7 @@ import argparse,hashlib,json,os,re,shutil,subprocess,time
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--prepare-only',action='store_true')
- a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--recognition-only',action='store_true');args=a.parse_args()
+ a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--recognition-only',action='store_true');a.add_argument('--seed',type=int,default=2);a.add_argument('--stage-timeout',type=int,default=2400);args=a.parse_args()
  repo=Path(__file__).resolve().parents[1];src=args.source.resolve() if args.source else repo/'fpga/component_inspector';work=args.work.resolve()
  assert not work.exists(),'Refuse to overwrite an existing build'
  assert str(work).isascii() and ' ' not in str(work)
@@ -62,25 +62,26 @@ set run_type phy
   cfg=cfg.replace('../../../user_source',Path(os.path.relpath(project/'user_source',run)).as_posix())
   active_sdc='camera_to_dsi_recognition.sdc' if args.recognition_only else 'camera_to_dsi_display.sdc'
   cfg=cfg.replace('../../camera_to_dsi_display.sdc',Path(os.path.relpath(entry.parent/active_sdc,run)).as_posix())
+  cfg=cfg.replace('place seed 2 ','place seed '+str(args.seed)+' ')
   (run/'settings.cfg').write_text(cfg)
   commands='if {[catch {\nsource {'+flow.as_posix()+'}\ncheck_timing -file constraint_coverage.txt -verbose\n'
   if stage=='phy_1':commands+='report_timing_summary -file final_timing.rpt\nreport_area -io_info -file final.area\n'
   commands+='} reason]} {puts stderr $reason; exit 1}\nexit 0\n'
   (run/'build.tcl').write_text(commands)
- print(json.dumps({'status':'FROZEN','project':str(project),'sources':len(manifest),'hardware_dependencies':len(deps),'delta_files':len(changes),'seed':2}),flush=True)
+ print(json.dumps({'status':'FROZEN','project':str(project),'sources':len(manifest),'hardware_dependencies':len(deps),'delta_files':len(changes),'seed':args.seed}),flush=True)
  if args.prepare_only:return
  env=dict(os.environ);(work/'temp').mkdir();env['TEMP']=env['TMP']=str(work/'temp')
  stages=[]
  for stage in ['syn_1','phy_1']:
   run=work/'runs'/stage;started=time.monotonic()
   with (run/'console.log').open('w',encoding='utf8') as log:
-   r=subprocess.run([str(td/'bin/td_commands_prompt.exe')],input='source {build.tcl}\n',text=True,cwd=run,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=2400)
+   r=subprocess.run([str(td/'bin/td_commands_prompt.exe')],input='source {build.tcl}\n',text=True,cwd=run,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=args.stage_timeout)
   txt=(run/'console.log').read_text(errors='replace')
   assert r.returncode==0 and not re.search(r'(?mi)^\s*(?:ERROR|\w+-\d+\s*:\s*Error)',txt),(stage,str(run/'console.log'))
   stages.append({'stage':stage,'seconds':round(time.monotonic()-started,1),'console_sha256':sha(run/'console.log')})
   print(json.dumps(stages[-1]),flush=True)
  bit=work/'runs/phy_1/camera_to_dsi_display.bit';assert bit.is_file()
  for rel,digest in manifest.items():assert sha(project/rel)==digest and sha(src/rel)==digest,rel
- result={'status':'BUILT_NEEDS_RESOURCE_TIMING_AND_IO_AUDIT','bit':str(bit),'bit_sha256':sha(bit),'sources':len(manifest),'stages':stages,'seed':2,'board_operated':False}
+ result={'status':'BUILT_NEEDS_RESOURCE_TIMING_AND_IO_AUDIT','bit':str(bit),'bit_sha256':sha(bit),'sources':len(manifest),'stages':stages,'seed':args.seed,'board_operated':False}
  (work/'build_result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
 if __name__=='__main__':main()
