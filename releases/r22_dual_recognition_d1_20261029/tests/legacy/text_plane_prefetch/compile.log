@@ -1,0 +1,25 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 18:54:35 on Oct 29,2026
+vlog -work test_text_plane_prefetch ../user_source/hdl_source/compact_ascii_rom.v ../user_source/hdl_source/compact_cjk_rom.v ../user_source/hdl_source/compact_template_rom.v ../user_source/hdl_source/osd_logo_rom.v ../user_source/hdl_source/compact_inspector_osd.v reference/R16_previous_compact_inspector_osd_r6.v 
+-- Compiling module compact_ascii_rom
+-- Compiling module compact_cjk_rom
+-- Compiling module compact_template_rom
+-- Compiling module osd_logo_rom
+-- Compiling module compact_inspector_osd
+-- Compiling module R16_previous_compact_inspector_osd_r6
+
+Top level modules:
+	compact_inspector_osd
+	R16_previous_compact_inspector_osd_r6
+End time: 18:54:35 on Oct 29,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 18:54:35 on Oct 29,2026
+vlog -sv -work test_text_plane_prefetch tb_text_plane_prefetch.sv 
+-- Compiling module text_plane_pair
+-- Compiling module tb_text_plane_prefetch
+
+Top level modules:
+	tb_text_plane_prefetch
+End time: 18:54:35 on Oct 29,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

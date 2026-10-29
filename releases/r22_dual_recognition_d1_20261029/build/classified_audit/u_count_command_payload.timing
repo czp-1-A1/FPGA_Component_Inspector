@@ -1,0 +1,486 @@
+Created by          : Tang Dynasty v6.2.168116
+                    : Copyright (c) 2012-2025 Anlogic Inc.
+Generated           : Thu Oct 29 18:58:19 2026
+
+Top Model           : design_top_wrapper
+Device              : PH1P35MDG324
+Speed               : 3
+STA coverage        : 92.82%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     
+set_max_delay -datapath_only 9.0 -from [get_regs {u_count_command/payload*}] -to [get_regs {u_count_command/D_data*}]
+
+Type           :     SMD
+
+Statistics:
+Max            : SWNS      8.189ns, STNS      0.000ns,         0 Viol Endpoints,         4 Total Endpoints,         4 Paths Analyzed
+Min            : HWNS      0.000ns, HTNS      0.000ns,         0 Viol Endpoints,         0 Total Endpoints,         0 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 8.189ns
+Begin Point         : u_count_command/payload_reg[17]_syn_5.clk (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+End Point           : u_count_command/payload_reg[17]_syn_5.imf (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 9.000ns { pll_clk_24m rising@0.000ns - pll_clk_24m rising@0.000ns }
+Data Path Delay     : 0.747ns (cell 0.343ns (45%), net 0.404ns (55%))
+Clock Skew          : 0.000ns
+Logic Level         : 1 ( LUT4=1 )
+Max Fanout          : 2
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.000ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.000          0.000          net: O_cam_24m_dup_1,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.000          0.000          net: O_cam_24m_syn_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkin
+SCLK                x023y019z17         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkout
+net (fo=39)                             0.000          0.000          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_count_command/payload_reg[17]_syn_5.clk
+--------------------------------------------------------------------  ---------------
+clk2q               x033y001z6          0.126    f     0.126          pin: u_count_command/payload_reg[17]_syn_5.oqa
+net (fo=2)                              0.404          0.530          net: u_count_command/payload[17],  ../../project/user_source/hdl_source/status_cdc.v(8)
+                                                                      pin: u_count_command/payload_reg[17]_syn_5.imf
+LUT4 (reg)          x033y001z6          0.217    f     0.747       1  net: u_count_command/payload[17],  ../../project/user_source/hdl_source/status_cdc.v(8)
+--------------------------------------------------------------------  ---------------
+Arrival                                                0.747               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.000          0.000          net: O_cam_24m_dup_1,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.000          0.000          net: O_cam_24m_syn_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkin
+SCLK                x023y019z17         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkout
+net (fo=39)                             0.000          0.000          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_count_command/payload_reg[17]_syn_5.clk
+constraint delay                        9.000          9.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064          8.936               
+clock uncertainty                       0.000          8.936               
+clock pessimism                         0.000          8.936               
+--------------------------------------------------------------------  ---------------
+Required                                               8.936               
+--------------------------------------------------------------------  ---------------
+Slack                                                  8.189               
+
+Slack               : 8.245ns
+Begin Point         : count_controls$controls/mode_reg[2]_syn_5.clk (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+End Point           : u_count_command/payload_reg[19]_syn_5.ib (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 9.000ns { pll_clk_24m rising@0.000ns - pll_clk_24m rising@0.000ns }
+Data Path Delay     : 0.691ns (cell 0.575ns (83%), net 0.116ns (17%))
+Clock Skew          : 0.000ns
+Logic Level         : 1 ( LUT4=1 )
+Max Fanout          : 3
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.138ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.000          0.000          net: O_cam_24m_dup_1,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.000          0.000          net: O_cam_24m_syn_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkin
+SCLK                x023y019z17         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkout
+net (fo=39)                             0.000          0.000          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6_sclk_outnet,  NOFILE(0)
+                                                                      pin: count_controls$controls/mode_reg[2]_syn_5.clk
+--------------------------------------------------------------------  ---------------
+clk2q               x033y001z4          0.126    f     0.126          pin: count_controls$controls/mode_reg[2]_syn_5.oqa
+net (fo=3)                              0.116          0.242          net: count_controls$controls/request[19],  ../../project/user_source/hdl_source/pocket_run_controls.v(32)
+                                                                      pin: u_count_command/payload_reg[19]_syn_5.ib
+LUT4 (reg)          x033y001z0          0.449    r     0.691       1  net: u_count_command/payload[19],  ../../project/user_source/hdl_source/status_cdc.v(8)
+--------------------------------------------------------------------  ---------------
+Arrival                                                0.691               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.000          0.000          net: O_cam_24m_dup_1,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.000          0.000          net: O_cam_24m_syn_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkin
+SCLK                x023y019z17         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkout
+net (fo=39)                             0.000          0.000          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_count_command/payload_reg[19]_syn_5.clk
+constraint delay                        9.000          9.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064          8.936               
+clock uncertainty                       0.000          8.936               
+clock pessimism                         0.000          8.936               
+--------------------------------------------------------------------  ---------------
+Required                                               8.936               
+--------------------------------------------------------------------  ---------------
+Slack                                                  8.245               
+
+Slack               : 8.250ns
+Begin Point         : u_count_command/payload_reg[19]_syn_5.clk (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+End Point           : motor_output_reg_syn_3.imb (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 9.000ns { pll_clk_100m rising@0.000ns - pll_clk_24m rising@0.000ns }
+Data Path Delay     : 0.686ns (cell 0.362ns (52%), net 0.324ns (48%))
+Clock Skew          : 0.000ns
+Logic Level         : 1 ( LUT4=1 )
+Max Fanout          : 2
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.138ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.000          0.000          net: O_cam_24m_dup_1,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.000          0.000          net: O_cam_24m_syn_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkin
+SCLK                x023y019z17         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkout
+net (fo=39)                             0.000          0.000          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_count_command/payload_reg[19]_syn_5.clk
+--------------------------------------------------------------------  ---------------
+clk2q               x033y001z0          0.126    f     0.126          pin: u_count_command/payload_reg[19]_syn_5.oqa
+net (fo=2)                              0.324          0.450          net: u_count_command/payload[19],  ../../project/user_source/hdl_source/status_cdc.v(8)
+                                                                      pin: motor_output_reg_syn_3.imb
+LUT4 (reg)          x031y001z2          0.236    r     0.686       1  net: relay_mode[2],  ../../project/user_source/hdl_source/design_top_wrapper.v(695)
+--------------------------------------------------------------------  ---------------
+Arrival                                                0.686               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.000          0.000          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z17         0.000          0.000          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.000          0.000          net: u_isp_top/local_shape_detection$detector/clk,  ../../project/user_source/hdl_source/frame_shape_search.v(27)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_0_r_bk1.clkin
+SCLK                x023y019z12         0.000          0.000          pin: u_PLL/bufg_feedback_auto_created_sclk_s_0_r_bk1.clkout
+net (fo=1077)                           0.000          0.000          net: u_PLL/bufg_feedback_auto_created_sclk_s_0_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: motor_output_reg_syn_3.clk
+constraint delay                        9.000          9.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064          8.936               
+clock uncertainty                       0.000          8.936               
+clock pessimism                         0.000          8.936               
+--------------------------------------------------------------------  ---------------
+Required                                               8.936               
+--------------------------------------------------------------------  ---------------
+Slack                                                  8.250               
+
+Slack               : 8.359ns
+Begin Point         : u_count_command/payload_reg[17]_syn_5.clk (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })
+End Point           : u_count_command/D_data_reg[17]_syn_5.id (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 9.000ns { pll_clk_100m rising@0.000ns - pll_clk_24m rising@0.000ns }
+Data Path Delay     : 0.577ns (cell 0.337ns (58%), net 0.240ns (42%))
+Clock Skew          : 0.000ns
+Logic Level         : 1 ( LUT4=1 )
+Max Fanout          : 2
+Clock Uncertainty   : 0.000ns (sdc uncertainty: 0.000ns, default uncertainty: 0.138ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[1]
+net (fo=1)                              0.000          0.000          net: O_cam_24m_dup_1,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst.clkin[0]
+GCLK                x023y039z18         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst.clkout
+net (fo=2)                              0.000          0.000          net: O_cam_24m_syn_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(12)
+                                                                      pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkin
+SCLK                x023y019z17         0.000          0.000          pin: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6.clkout
+net (fo=39)                             0.000          0.000          net: O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk6_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_count_command/payload_reg[17]_syn_5.clk
+--------------------------------------------------------------------  ---------------
+clk2q               x033y001z6          0.126    f     0.126          pin: u_count_command/payload_reg[17]_syn_5.oqa
+net (fo=2)                              0.240          0.366          net: u_count_command/payload[17],  ../../project/user_source/hdl_source/status_cdc.v(8)
+                                                                      pin: u_count_command/D_data_reg[17]_syn_5.id
+LUT4 (reg)          x031y001z1          0.211    f     0.577       1  net: relay_mode[0],  ../../project/user_source/hdl_source/design_top_wrapper.v(695)
+--------------------------------------------------------------------  ---------------
+Arrival                                                0.577               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.000          0.000          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.000          0.000          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040            0.000          0.000          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.000          0.000          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z17         0.000          0.000          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.000          0.000          net: u_isp_top/local_shape_detection$detector/clk,  ../../project/user_source/hdl_source/frame_shape_search.v(27)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_0_r_bk1.clkin
+SCLK                x023y019z12         0.000          0.000          pin: u_PLL/bufg_feedback_auto_created_sclk_s_0_r_bk1.clkout
+net (fo=1077)                           0.000          0.000          net: u_PLL/bufg_feedback_auto_created_sclk_s_0_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_count_command/D_data_reg[17]_syn_5.clk
+constraint delay                        9.000          9.000               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064          8.936               
+clock uncertainty                       0.000          8.936               
+clock pessimism                         0.000          8.936               
+--------------------------------------------------------------------  ---------------
+Required                                               8.936               
+--------------------------------------------------------------------  ---------------
+Slack                                                  8.359               
+
+
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Exclusive Clock Groups
+--------------------
+
+Set False Path
+--------------------
+
+From flow sdc
+--------------------
+----------------------------------------------------------------------------------------------------
+Path Group     :     Set False Path
+Constr         :     set_false_path -hold 9.0 -from [get_regs {u_count_command/payload*}] -to [get_regs {u_count_command/D_data*}]
+
+Statistics:
+	Setup Check    :              0   end points,               0   paths
+----------------------------------------------------------------------------------------------------
+
+
+Min Delay Paths
+----------------------------------------------------------------------------------------------------
+Begin Point         : count_controls$controls/mode_reg[0]_syn_50.clk(triggered by clock pll_clk_24m)
+End Point           : u_count_command/payload_reg[17]_syn_5.id(triggered by clock pll_clk_24m)
+Check Type          : hold
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+clk2q               x033y001z7                                        pin: count_controls$controls/mode_reg[0]_syn_50.oqa
+net (fo=3)                                                            net: count_controls$controls/request[17],  ../../project/user_source/hdl_source/pocket_run_controls.v(32)
+                                                                      pin: u_count_command/payload_reg[17]_syn_5.id
+LUT4 (reg)          x033y001z6                                        net: u_count_command/payload[17],  ../../project/user_source/hdl_source/status_cdc.v(8)
+
+
+Begin Point         : u_count_command/payload_reg[17]_syn_5.clk(triggered by clock pll_clk_24m)
+End Point           : u_count_command/payload_reg[17]_syn_5.imf(triggered by clock pll_clk_24m)
+Check Type          : hold
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+clk2q               x033y001z6                                        pin: u_count_command/payload_reg[17]_syn_5.oqa
+net (fo=2)                                                            net: u_count_command/payload[17],  ../../project/user_source/hdl_source/status_cdc.v(8)
+                                                                      pin: u_count_command/payload_reg[17]_syn_5.imf
+LUT4 (reg)          x033y001z6                                        net: u_count_command/payload[17],  ../../project/user_source/hdl_source/status_cdc.v(8)
+
+
+Begin Point         : u_count_command/payload_reg[17]_syn_5.clk(triggered by clock pll_clk_24m)
+End Point           : u_count_command/D_data_reg[17]_syn_5.id(triggered by clock pll_clk_100m)
+Check Type          : hold
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+clk2q               x033y001z6                                        pin: u_count_command/payload_reg[17]_syn_5.oqa
+net (fo=2)                                                            net: u_count_command/payload[17],  ../../project/user_source/hdl_source/status_cdc.v(8)
+                                                                      pin: u_count_command/D_data_reg[17]_syn_5.id
+LUT4 (reg)          x031y001z1                                        net: relay_mode[0],  ../../project/user_source/hdl_source/design_top_wrapper.v(695)
+
+
+Begin Point         : u_count_command/payload_reg[19]_syn_5.clk(triggered by clock pll_clk_24m)
+End Point           : motor_output_reg_syn_3.imb(triggered by clock pll_clk_100m)
+Check Type          : hold
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+clk2q               x033y001z0                                        pin: u_count_command/payload_reg[19]_syn_5.oqa
+net (fo=2)                                                            net: u_count_command/payload[19],  ../../project/user_source/hdl_source/status_cdc.v(8)
+                                                                      pin: motor_output_reg_syn_3.imb
+LUT4 (reg)          x031y001z2                                        net: relay_mode[2],  ../../project/user_source/hdl_source/design_top_wrapper.v(695)
+
+
+Begin Point         : count_controls$controls/mode_reg[2]_syn_5.clk(triggered by clock pll_clk_24m)
+End Point           : u_count_command/payload_reg[19]_syn_5.ib(triggered by clock pll_clk_24m)
+Check Type          : hold
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+clk2q               x033y001z4                                        pin: count_controls$controls/mode_reg[2]_syn_5.oqa
+net (fo=3)                                                            net: count_controls$controls/request[19],  ../../project/user_source/hdl_source/pocket_run_controls.v(32)
+                                                                      pin: u_count_command/payload_reg[19]_syn_5.ib
+LUT4 (reg)          x033y001z0                                        net: u_count_command/payload[19],  ../../project/user_source/hdl_source/status_cdc.v(8)
+
+
+Begin Point         : u_count_command/payload_reg[19]_syn_5.clk(triggered by clock pll_clk_24m)
+End Point           : u_count_command/payload_reg[19]_syn_5.imf(triggered by clock pll_clk_24m)
+Check Type          : hold
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+clk2q               x033y001z0                                        pin: u_count_command/payload_reg[19]_syn_5.oqa
+net (fo=2)                                                            net: u_count_command/payload[19],  ../../project/user_source/hdl_source/status_cdc.v(8)
+                                                                      pin: u_count_command/payload_reg[19]_syn_5.imf
+LUT4 (reg)          x033y001z0                                        net: u_count_command/payload[19],  ../../project/user_source/hdl_source/status_cdc.v(8)
+
+
+
+From ip sdc
+--------------------
+
+u_video_in/U_w128_d512_fifo
+--------------------
+
+u_video_out/U_w128_d512_fifo
+--------------------

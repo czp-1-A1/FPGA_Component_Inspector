@@ -1,0 +1,60 @@
+{
+  "version": "R22_DualROI_Recognition_D1_20261029",
+  "branch": "codex/r22-dual-recognition-d1",
+  "source_commit": "67538ef9642a96972f8fd0d80795089ed1034e79",
+  "parent_archive_commit": "a716eac",
+  "source_worktree": "D:\\CodexWork\\FPGA_R22_Relay_20261027",
+  "build_work": "E:\\2026FPGA\\.codex_tmp\\dual_recognition_d1_build_r1_20261029",
+  "pushed": false,
+  "bit_sha256": "e9938418f0cc69790a583b401897657f4b44dff55e57cb361fcbeada1bad24cd",
+  "bit_bytes": 1789539,
+  "td_version": "V6.2.168116",
+  "seed": 2,
+  "resources": {
+    "slice": 16299,
+    "eram": 100,
+    "dsp": 26,
+    "pll": 5
+  },
+  "slice_percent": 76.8241,
+  "timing_ns": {
+    "SWNS": 0.107,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "source_files": 637,
+  "hardware_dependencies": 105,
+  "parameters": {
+    "DUAL_RECOGNITION_ONLY": 1,
+    "ROI1_X": [
+      400,
+      880
+    ],
+    "ROI1_Y": [
+      240,
+      400
+    ],
+    "ROI2_X": [
+      400,
+      880
+    ],
+    "ROI2_Y": [
+      432,
+      600
+    ],
+    "bounds": "half-open 1280x720 processing pixels",
+    "internal_candidates_per_roi": 4,
+    "visible_results_per_roi": 2,
+    "frame_meta_bits": 631,
+    "counting": false,
+    "auto_parking": false,
+    "five_empty_alarm": false
+  },
+  "gpio": "right J2 pin1/V2 HIGH; board5V supply; original ADC; no LED",
+  "keys": "K1 manual run / K2 pause-run / K3 or K4 stop / SW3 up stop, falling edge run",
+  "constraint_profile": "camera_to_dsi_recognition.sdc: only 3 inactive count-live mailbox bounds omitted; original SDC unchanged",
+  "source_manifest_sha256": "9d04d408b0bff288e0fedc905bfbac111090e50de508ec0ebcb8ff1bed924890",
+  "verification_sha256": "eb9da14a0141e06cefaeb5956d950571d36dbea3d1ff343fc7322fcf3ca81fac",
+  "board_acceptance": "PENDING_HUMAN_TWO_ROI_RECOGNITION_TEST"
+}

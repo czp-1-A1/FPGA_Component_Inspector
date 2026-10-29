@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "inputs": {
+    "user_source/hdl_source/pocket_relay_stop.v": "a3b3644f807914de36a1a5b2248dd97b6b88dc0d8039497c5d98be636102e8d6",
+    "user_source/hdl_source/pocket_relay_stop_v2.v": "90b29dfa9a45b132e191bfc0a459f894cbed5ffc7a85a9c5bb5fc5eb37cb7520",
+    "user_source/hdl_source/classified_pocket_counter.v": "599582c4ec933b9d415a7bec52a85c6c33da431396e8ac595208ea47e822c683",
+    "user_source/hdl_source/classified_count_pipeline.v": "189481c897bf4fad8ef9b6fd817307969c6f106a2902da7dd8904001a94bbaa7",
+    "user_source/hdl_source/pocket_run_controls.v": "25bcd32a860114a8b2e9a4790bd12f81b4c2efcd545ffbd987dbbb82d259f0d2",
+    "user_source/hdl_source/status_cdc.v": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151",
+    "user_source/hdl_source/inspection_region_config.v": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+    "user_source/hdl_source/empty_candidate_probe.v": "b49c6b60396b5940ddef6db4f0e0d297ef8fd01cc7c3deebd6cdecfc43e1462c",
+    "user_source/hdl_source/present_surface_check.v": "fdf6a014295862be953de39755e2259fcb89283a161a3530ad9d71fca23deabc",
+    "user_source/hdl_source/local_edge_surface_check.v": "d0c67c9b30d5e22ba4b3216de2c9fff45af0d3120d79e773a177bbfcc699c791",
+    "user_source/hdl_source/present_review_probe.v": "8e2c7bcc41f9738f469f544841abeae1a28c2cd4feec2e3551e7c8f151449077",
+    "user_source/hdl_source/frame_shape_search.v": "b94ccf0408051078173e07ad9577c9a32b9f810a523fe4e88b2a17fd30031503",
+    "user_source/hdl_source/compact_ascii_rom.v": "101c4b7fd9ba7781057d5919eec743403566bfa2f37ef95049fc0efdbe6fbb99",
+    "user_source/hdl_source/compact_cjk_rom.v": "1f9130ad604aec03e716eca7d2581c767eb22c31c241d089f23cad3424cfe4fd",
+    "user_source/hdl_source/compact_template_rom.v": "f64f1138b64aa502beefe690385fdb368c4072acd7555fd27122c3892d086ee5",
+    "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1",
+    "user_source/hdl_source/compact_inspector_osd.v": "75f2dc38529c771c13cb76aa623e43ff0fee3cc99efe0262d9956d4a5c8d3c50"
+  },
+  "extra_inputs": {
+    "sim/tb_v7_osd.sv": "df0bfa42805085db7649872ec79d57b9c86fdf45d53b37ab43ba9dbd35eeefcf"
+  },
+  "tests": [
+    {
+      "name": "tb_v7_osd",
+      "sha256": "101e42204f14dd79c5761e5fb4e54daeb4704a45cd13f64df481fc705e50e452"
+    }
+  ],
+  "board_acceptance": false
+}

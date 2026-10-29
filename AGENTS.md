@@ -5,7 +5,7 @@
 - 5份既有生产RTL修改+新增独立识别SDC，631份原源与RL7逐SHA不变。637冻结源/105硬件依赖构建E:/2026FPGA/.codex_tmp/dual_recognition_d1_build_r1_20261029已完成；Slice16299/21216=76.82%、ERAM100/108、DSP26/40、PLL5/6；SWNS+.107/HWNS+.020ns、双TNS0。识别SDC仅去掉未实例化count-live邮箱3约束，原SDC不改；严格46活动bound无忽略/20实际Gray/6手动邮箱组/四键SW3/V2无LED审计通过。
 - 10项全新选定仿真通过：dual_d1_initial_r2两项（28按键断言+六RGB/32物理P/E）、osd_r3一项（两完整栅格/792字符）、native_r3一项（七RAW10源帧/14显示完整栅格/13088282逐像素/4views/WB取消）、camera_r1一项（实际302单元相机锥/2复位x126写入）、compat_r1旧键一项、osd_compat_r1旧OSD一项、冻结工程regions/text_plane_prefetch/empty_trace_abort三项。均有输入SHA回执，不当作实板/任意速度/光学召回验收。
 - native早期首帧无效假设失败；同fixture对原RL7和D1均得到完整首帧，最终用例对全部7帧包括首帧执行相同完整字数/提交/像素验证。诊断失败不算PASS、不修改生产源绕过。测试tests/dual_recognition_d1；交接docs/R22_DUAL_RECOGNITION_D1_INTERFACE.md解释608bit候选及帧证明，端口不是计数事件，队友尚未接入。
-- 目标独立发布R22_DualROI_Recognition_D1_20261029.bit，必须复制BIT_FLASH并核SHA。完整原件releases/r22_dual_recognition_d1_20261029及ZIP；实际是否交付/Git归档以docs/R22_DUAL_RECOGNITION_D1_DELIVERY.json和GIT_AUDIT.json为准。生产bit SHAe9938418f0cc69790a583b401897657f4b44dff55e57cb361fcbeada1bad24cd。本记录写入时正在封装，尚不提前称已交付/已提交。全部构建/仿真已结束，不另开构建。
+- 目标独立发布R22_DualROI_Recognition_D1_20261029.bit，必须复制BIT_FLASH并核SHA。完整原件releases/r22_dual_recognition_d1_20261029及ZIP；实际是否交付/Git归档以docs/R22_DUAL_RECOGNITION_D1_DELIVERY.json和GIT_AUDIT.json为准。生产bit SHAe9938418f0cc69790a583b401897657f4b44dff55e57cb361fcbeada1bad24cd。已交付BIT_FLASH并与构建原件/发布原件核SHA一致；源码67538ef，未推送。990载荷ZIP SHAed8d10ea34da67442a51f2450b60b269218877d3dea202464747197c7b2c7997；Git归档字节审计尚以回执为准。全部构建/仿真已结束，不另开构建。
 - 旧RL7 SHA3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750及只读R2 LATEST_READONLY.bit SHA30d067cef0667893fe548ba04e423cd6618b76f119cb2e0ecf48b96ba6a5b20f不覆盖。下一步用户检查D1标识/实时画面、两条料带分别有件/空穴/一条空置以及K1/K2；双列计数与后续自动定位另行集成。
 
 # RL7 已交付（2026-10-28，旧自动停车入口保留）
