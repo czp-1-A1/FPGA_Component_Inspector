@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter RECOGNITION_ONLY=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter SECOND_LANE=0,RECOGNITION_ONLY=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -10,7 +10,7 @@ module compact_inspector_osd #(parameter RECOGNITION_ONLY=0,FIVE_EMPTY_V7=0,ADJA
  input wire [1:0] view_mode,input wire [12:0] edge_count,
  input wire [15:0] lane_errors,format_errors,i2c_errors,gaps,overflow_frames,lost_frames,underflow_frames,
  input wire [31:0] frames,input wire [35:0] diagnostics,input wire [DIAG_BITS-1:0] publish_diagnostic,
- input wire [303:0] objects,input wire [127:0] calibration_record,input wire calibration_valid,
+ input wire [151:0] second_lane_objects,input wire [303:0] objects,input wire [127:0] calibration_record,input wire calibration_valid,
  input wire [3:0] local_wait_reason,
  input wire [63:0] relay_status,input wire [95:0] relay_diagnostic,input wire [2:0] relay_control_mode,
  input wire [255:0] live_record,frame_record,input wire eligible,
@@ -350,6 +350,9 @@ always @(posedge clk or negedge rst_n)begin
  end
 end
 
+reg [151:0] second_obs;
+always @(posedge clk or negedge rst_n)
+ if(!rst_n)second_obs<=0;else if(start)second_obs<=second_lane_objects;
 reg [2:0] line;reg [9:0] plane_address;reg [7:0] code;
 reg [4:0] row,col;reg panel,guide,logo,repair_border;reg [23:0] ink;
 reg [75:0] ob;reg [8:0] id;reg [19:0] id_bcd;
@@ -386,6 +389,13 @@ always @*begin
    if(RECOGNITION_ONLY && (line!=0 || text_dx[9:3]<12))begin
     code=recognition_char(line,text_dx[9:3]);col={2'd0,text_dx[2:0]};
    end
+   if(SECOND_LANE && line==0 && text_dx[9:3]<10)begin
+    case(text_dx[9:3])
+     0:code="R";1:code="L";2:code="7";3:code="+";4:code="D";5:code="2";
+     default:code=32;
+    endcase
+    col={2'd0,text_dx[2:0]};
+   end
    if(row==31)code=32;
    if(page_s && gap_id!=0 && (line==1 || line==2 || line==3))ink=24'hffe080;
   end
@@ -417,16 +427,19 @@ always @*begin
    guide=y>=HEIGHT/3 && y<HEIGHT*5/9 &&
     (((x==448 || x==831) && y[3]) ||
      ((y==HEIGHT/3 || y==HEIGHT*5/9-1) && x>=448 && x<832 && x[3]));
+  if(SECOND_LANE && y>=HEIGHT*3/5 && y<HEIGHT*5/6 &&
+    (((x==WIDTH*5/16 || x==WIDTH*11/16-1) && y[3]) ||
+     ((y==HEIGHT*3/5 || y==HEIGHT*5/6-1) && x>=WIDTH*5/16 && x<WIDTH*11/16 && x[3])))guide=1;
   if(!RELAY_CLEAN_UI && (trace_cross0 || trace_cross1))guide=1;
-  for(t=0;t<4;t=t+1)begin
-   ob=obs[t*76+:76];id=0;id_bcd=0;
-   if(page_s && t/2==record[57])begin
+  for(t=0;t<(SECOND_LANE ? 6 : 4);t=t+1)begin
+   ob=t<4 ? obs[t*76+:76] : second_obs[(t-4)*76+:76];id=0;id_bcd=0;
+   if(t<4 && page_s && t/2==record[57])begin
     id=record[94+t*9+:9];id_bcd=t%2==0 ? label_bcd0 : label_bcd1;
    end
-   if(ready && ob[75] && (!page_s || eligible_s && t/2==record[57]))begin
+   if(ready && ob[75] && (t>=4 || !page_s || eligible_s && t/2==record[57]))begin
     if(((x==ob[41:31] || x==ob[30:20]) && y>=ob[19:10] && y<=ob[9:0]) ||
       ((y==ob[19:10] || y==ob[9:0]) && x>=ob[41:31] && x<=ob[30:20]))guide=1;
-    prefix=page_s && show && id!=0;
+    prefix=t<4 && page_s && show && id!=0;
     lx=ob[41:31]>WIDTH-112 ? WIDTH-112 : ob[41:31];
     ly=t%2==0 ? (ob[19:10]>=108 ? ob[19:10]-28 : 80) : (ob[9:0]<HEIGHT-124 ? ob[9:0]+4 : HEIGHT-120);
     rx=lx+(prefix ? 112 : 72);

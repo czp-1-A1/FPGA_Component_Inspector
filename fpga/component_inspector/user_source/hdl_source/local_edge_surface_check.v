@@ -3,7 +3,7 @@
 // Four 3x3 kernels are read serially at actual bbox side midpoints. Sobel signs
 // must face a bright measured object and its darker surroundings.
 module local_edge_surface_check #(
- parameter WIDTH=1280,HEIGHT=720,FOREGROUND=100,STANDING_REVIEW=0,
+ parameter SECOND_LANE=0,WIDTH=1280,HEIGHT=720,FOREGROUND=100,STANDING_REVIEW=0,
  parameter MIN_GRADIENT=8,MIN_SIDES=3,
  parameter CACHE_X0=((WIDTH*5/16-16)/8)*8,CACHE_X1=((WIDTH*11/16+23)/8)*8,
  parameter CACHE_Y0=((HEIGHT/3-16)/2)*2,CACHE_Y1=((HEIGHT*5/6+17)/2)*2
@@ -14,9 +14,14 @@ module local_edge_surface_check #(
  output reg ready,normal,empty_ok,output reg [31:0] edge_strengths
 );
 localparam X0=CACHE_X0,X1=CACHE_X1,Y0=CACHE_Y0,Y1=CACHE_Y1;
-localparam COLS=(X1-X0)/8,WORDS=COLS*(Y1-Y0)/2,AB=$clog2(WORDS);
-wire capture=write_enable && write_x>=X0 && write_x<X1 && write_y>=Y0 && write_y<Y1;
-wire [AB-1:0] write_address=((write_y-Y0)>>1)*COLS+((write_x-X0)>>3);
+localparam COLS=(X1-X0)/8,BASE_WORDS=COLS*(Y1-Y0)/2;
+// Append only the lower rectangular cache; do not allocate the empty left-lower area.
+localparam LX0=((WIDTH*5/16-16)/8)*8,LX1=((WIDTH*11/16+23)/8)*8,
+ LY0=((HEIGHT*3/5-16)/2)*2,LY1=((HEIGHT*5/6+17)/2)*2,LCOLS=(LX1-LX0)/8,
+ WORDS=BASE_WORDS+(SECOND_LANE ? LCOLS*(LY1-LY0)/2 : 0),AB=$clog2(WORDS);
+wire lower_write=SECOND_LANE && write_x>=LX0 && write_x<LX1 && write_y>=LY0 && write_y<LY1;
+wire capture=write_enable && ((write_x>=X0 && write_x<X1 && write_y>=Y0 && write_y<Y1) || lower_write);
+wire [AB-1:0] write_address=lower_write ? BASE_WORDS+((write_y-LY0)>>1)*LCOLS+((write_x-LX0)>>3) : ((write_y-Y0)>>1)*COLS+((write_x-X0)>>3);
 wire [19:0] packed_gray={write_data[31:27],write_data[23:19],write_data[15:11],write_data[7:3]};
 reg [19:0] memory[0:WORDS-1];reg [19:0] q;reg [AB-1:0] read_address;
 always @(posedge clk)begin
@@ -26,11 +31,15 @@ end
 reg [AB:0] captured;
 wire [10:0] width_now={1'b0,xmax}-xmin+1'b1,height_now={1'b0,ymax}-ymin+1'b1;
 wire [10:0] requested_x={1'b0,xmin}+(width_now>>1),requested_y={1'b0,ymin}+(height_now>>1);
-wire in_cache=xmin>=X0/2+1 && xmax+1<X1/2 && ymin>=Y0/2+1 && ymax+1<Y1/2;
+wire lower_box=SECOND_LANE && ymin>=LY0/2;
+wire [10:0] box_cache_x0=lower_box ? LX0/2 : X0/2,box_cache_x1=lower_box ? LX1/2 : X1/2,
+ box_cache_y0=lower_box ? LY0/2 : Y0/2,box_cache_y1=lower_box ? LY1/2 : Y1/2;
+wire in_cache=xmin>=box_cache_x0+1 && xmax+1<box_cache_x1 && ymin>=box_cache_y0+1 && ymax+1<box_cache_y1;
 wire body_measurable=width_now>=16 && height_now>=16 &&
- requested_x>=X0/2+8 && requested_x+8<=X1/2 && requested_y>=Y0/2+8 && requested_y+8<=Y1/2;
+ requested_x>=box_cache_x0+8 && requested_x+8<=box_cache_x1 && requested_y>=box_cache_y0+8 && requested_y+8<=box_cache_y1;
 wire empty_measurable=width_now>=3 && width_now<=9 && height_now>=3 && height_now<=9;
 wire measurable=captured==WORDS && in_cache && (measure_empty ? empty_measurable : body_measurable);
+reg lower_active;
 reg [10:0] center_x,center_y,cell_x,cell_y;
 reg [9:0] box_x0,box_x1,box_y0,box_y1;
 reg [3:0] phase;reg [2:0] feature;reg [5:0] sample;reg [1:0] byte_index;
@@ -94,7 +103,7 @@ wire side_good=outward>=MIN_GRADIENT;
 wire [2:0] next_good=good_sides+{2'd0,side_good};
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
-  ready<=0;normal<=0;empty_ok<=0;edge_strengths<=0;captured<=0;read_address<=0;
+  lower_active<=0;ready<=0;normal<=0;empty_ok<=0;edge_strengths<=0;captured<=0;read_address<=0;
   center_x<=0;center_y<=0;box_x0<=0;box_x1<=0;box_y0<=0;box_y1<=0;
   phase<=0;feature<=0;sample<=0;byte_index<=0;sum<=0;center_mean<=0;min_edge<=31;
   center_total<=0;max_edge_total<=0;is_empty<=0;legacy_ok<=0;edge_no<=0;tap<=0;good_sides<=0;gx<=0;gy<=0;
@@ -103,13 +112,13 @@ always @(posedge clk or negedge rst_n)begin
   if(capture)captured<=captured+1'b1;
   if(measure)begin
    ready<=!measurable;normal<=0;empty_ok<=0;edge_strengths<=0;
-   center_x<=requested_x;center_y<=requested_y;
+   lower_active<=lower_box;center_x<=requested_x;center_y<=requested_y;
    box_x0<=xmin;box_x1<=xmax;box_y0<=ymin;box_y1<=ymax;
    phase<=measurable ? (measure_empty ? 5 : 2) : 0;
    feature<=0;sample<=0;sum<=0;center_mean<=0;min_edge<=31;center_total<=0;max_edge_total<=0;
    is_empty<=measure_empty;legacy_ok<=0;edge_no<=0;tap<=0;good_sides<=0;gx<=0;gy<=0;
   end else case(phase)
-   2,5:begin read_address<=(cell_y-Y0/2)*COLS+((cell_x-X0/2)>>2);byte_index<=(cell_x-X0/2)&3;phase<=phase+1'b1;end
+   2,5:begin read_address<=lower_active ? BASE_WORDS+(cell_y-LY0/2)*LCOLS+((cell_x-LX0/2)>>2) : (cell_y-Y0/2)*COLS+((cell_x-X0/2)>>2);byte_index<=(cell_x-(lower_active ? LX0/2 : X0/2))&3;phase<=phase+1'b1;end
    3,6:phase<=phase+1'b1;
    4:begin
     if(sample==(feature==0 ? 63 : 31))begin

@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,hashlib,json,os,re,subprocess,sys
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--adjacent-v6',action='store_true');a.add_argument('--five-empty-v7',action='store_true');args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--adjacent-v6',action='store_true');a.add_argument('--five-empty-v7',action='store_true');a.add_argument('--second-lane-d2',action='store_true');args=a.parse_args()
 work=args.work.resolve();project=work/'project';tools=project/'tools';env=dict(os.environ)
 env['TEMP']=env['TMP']=str(work/'temp')
 audit_names=['classified_audit_routed.tcl','classified_audit_gray_packing.tcl']
@@ -87,7 +87,7 @@ area=(work/'runs/phy_1/final.area').read_text()
 assert re.search(r'O_relay_control\s+OUTPUT\s+V2\s+LVCMOS33\s+HDIO\s+4\s+PULLDOWN',area)
 assert 'O_led' not in area
 resources={key:int(re.search(r'^#'+key+r'\s+(\d+)',area,re.M)[1]) for key in ['slice','eram','dsp','pll']}
-expected_eram,expected_dsp=(98,30) if args.keys_v3 else (99,30) if args.left_v2 else (101,27)
+expected_eram,expected_dsp=(106,31) if args.second_lane_d2 else (98,30) if args.keys_v3 else (99,30) if args.left_v2 else (101,27)
 assert resources['slice']<=21216 and resources['eram']==expected_eram and resources['dsp']==expected_dsp and resources['pll']==5
 if args.left_v2 or args.keys_v3:
  assert 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
@@ -129,5 +129,18 @@ if args.five_empty_v7:
  result['alarm_interlock_packed_cell_proof']={'capture_cells':sorted(capture_cells),'V2_output_launch_cells':sorted(output_cells),'actual_alarm_Q_and_registered_motor_LUT':True}
  result['alarm_interlock_routed']=True
  result['status']='PASS_R22_RELAY_V7_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_4_KEYS_V2_ALARM_NO_LED'
+if args.second_lane_d2:
+ assert args.five_empty_v7 and args.adjacent_v6 and args.keys_v3
+ top=(project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
+ assert 'SECOND_LANE=1,DUAL_RECOGNITION_ONLY=0,' in top
+ assert '+152*SECOND_LANE' in top and 'u_count_live_display' in top
+ gate_area=(work/'runs/syn_1/camera_to_dsi_display_gate.area').read_text()
+ assert 'classified_count_pipeline' in gate_area and 'pocket_relay_stop_v2' in gate_area
+ result['status']='PASS_R22_D2_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_4_KEYS_V2_ALARM_NO_LED'
+ result['layout']='Original first-lane right count/left repair and shifted72..232 stop window; independent lower recognition400..879 x432..599; segmented gray cache, ERAM106/DSP31'
+ result['first_lane_counting_and_parking_enabled']=True
+ result['second_lane_recognition_enabled']=True
+ result['second_lane_counting_enabled']=False
+ result['frame_metadata_bits']=1039
 (work/'physical_verification.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({k:result[k] for k in ['status','timing_ns','resources','slice_delta_vs_r22','max_delays_matched','max_delays_ignored','gray_bits_dominating']},indent=2),flush=True)

@@ -70,3 +70,8 @@ fpga/component_inspector/** -text
 /scripts/audit_dual_recognition.py -text
 /scripts/publish_dual_recognition.py -text
 /releases/r22_dual_recognition_d1_20261029/** -text
+
+# D2 preserves original parking and adds a recognition-only second lane.
+/tests/dual_stop_d2/** -text
+/scripts/publish_dual_stop_d2.py -text
+/releases/r22_dual_stop_d2_20261029/** -text
