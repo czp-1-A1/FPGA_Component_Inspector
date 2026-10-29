@@ -1,5 +1,7 @@
 # D2 保留单列停车并加第二条识别（2026-10-29，当前入口，用户纠正D1范围）
 
+- 最新续接：R4 seed4 完整构建通过，生产636源与R3逐SHA相同。Slice19713/21216=92.92%、ERAM106/DSP30/PLL5，SWNS+.038/HWNS+.020/双TNS0；原49bound/20Gray/9邮箱/四键SW3/V2无LED及实际报警互锁审计PASS。R3 seed3完整布线hold-.154/TNS-.203已拒绝，H1~H7 ECO试验未成功且未用于交付；最终bit只来自独立R4，无SDC放松。R4实际303单元相机SYN锥两复位×126笔串行I2C已PASS；18项软件检查均通过，五项R3旧回归用636源逐SHA和日志SHA复用，不冒称R4重跑。当前没有活动PHY任务或硬件动作。目标D2 bit尚待封包。
+
 - 最高优先级r3（20:56起）：r2原17软件检查全过，但布线多轮setup约-.93/-.96/-.90ns，placed关键为candidate_region→high_worst最大值选择→distance比较→high_boxes ERAM使能13级。已核r2唯一父子PID并停止未完成构建，r2ABORT_REASON.json留存；不是routed失败验收。只在现有SCALE拍寄存high_free/high_worst/high_write_index，COMPARE用寄存值，SECOND_LANE=0仍走旧组合，不增加节拍。新d2_pixels_final_r4两项全PASS：原六RGB/48目标逐位等价，新增tb_d2_high_priority用18实际高阈值孔/12保留结果/满bank替换与拒绝/原RL7高阈值缓存逐位等价。新冻结d2_single_stop_second_lane_build_r3_20261029，seed3（前两次seed2），stage-timeout7200，636源/104依赖，全新构建/回归中；不改SYN/SDC约束来通过。publisher改选pixels_final_r4、ui_control_r4、rgb_final_r3、final_compat_r4、keys_compat_r1(编译6源未改)、native_r3、camera_r3、r3工程5旧回归，共18检查；是否完成以实际verification为准。活动构建session89975，RGB50841，RAW17503，UI+兼容67061；本记录之后新session以工具输出为准。r3新18项软件验证除camera_r3收尾均已PASS（RAW17503完成），当前准备提交r3源码；发布前必须核全部636Git blob。
 
 - 最新r2：r1物理布线多轮SWNS停在-1.378ns，placed最差为灰度RAM-bank mux到legacy_ok的11级路径，助手已核唯一D2进程父子PID并停止该未完成构建；不是完整routed审计失败、更没有发布bit。r1冻结源/日志和ABORT_REASON.json保留。只对SECOND_LANE扩展模式加sampled_q一级寄存器及body/Sobel额外等待拍，原两区延迟不变，配对六RGB/48目标仍逐位等价PASS(d2_pixels_r3)。新冻结构建d2_single_stop_second_lane_build_r2_20261029运行中，其他检查正按新输入重跑；不得把r1资源/仿真回执当r2完整通过。用户问上下框为何一长一短，已解释原RL7右计数384×160、下方旧双ROI480×168、左黄窗另计；用户未要求统一尺寸，不改几何。

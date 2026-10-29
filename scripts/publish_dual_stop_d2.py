@@ -36,12 +36,15 @@ def main():
  for rel,d in n['vendor'].items():assert sha(native/'inputs/vendor'/rel)==d
  assert sha(native/'console.log')==n['console_sha256'];passed(native/'console.log','PASS D2 NATIVE UPPER COUNT/PARK + LOWER RECOGNITION:')
  selected.append({'name':n['name'],'group':native.name,'mode':'NEW_RUN','log_sha256':n['console_sha256'],'scope':'7 RAW10 complete sources including first; 14 displayed rasters, 13088282 exact pixels; original upper count/repair and independent lower tuples, 1039bit metadata; WB-canceled live video; counter/parking instantiated, motor permit off. Not a RAW parking cycle or optical E recall.'})
- gate=tmp/'d2_camera_r3_20261029';g=load(gate/'verification.json');assert g['status']=='PASS'
+ gate=tmp/'d2_camera_r4_20261029';g=load(gate/'verification.json');assert g['status']=='PASS'
  assert sha(w/'d2_camera_gate.v')==g['gate_netlist_sha256'] and g['cone_closure']['all_other_consumed_nets_have_selected_cell_drivers']
  for name,d in g['simulation_input_sha256'].items():assert sha(gate/'inputs'/name)==d
  for t in g['tests']:
   log=gate/(t['name']+'.log');assert sha(log)==t['log_sha256'];passed(log,'PASS CAMERA GATE BUS:')
   selected.append({'name':t['name'],'group':gate.name,'mode':'NEW_RUN','log_sha256':sha(log),'scope':'Actual synthesized camera cone; two resets x126 serialized I2C writes; modeled ACK slave, not optical readback.'})
+ reuse=load(w/'EXACT_INPUT_REUSE.json');reuse_source=Path(reuse['source_build'])
+ assert reuse['source_files_identical']==636 and load(reuse_source/'frozen_inputs.json')==source
+ for rel,d in source.items():assert sha(reuse_source/'project'/rel)==d,rel
  legacy=[];sentinels=dict(re.findall(r'Name="([^"]+)";\s*Pass="([^"]+)"',(p/'sim/run_modelsim.ps1').read_text(encoding='utf8')))
  for name in ['regions','classified_counter','result_recorder_pipeline','empty_trace_abort','text_plane_prefetch']:
   folder=p/'sim/modelsim_work'/name;passed(folder/'console.log',sentinels[name]);compiled={}
@@ -53,7 +56,9 @@ def main():
      if token.endswith(('.v','.sv')):
       f=(p/'sim'/token).resolve();rel=f.relative_to(p).as_posix();assert sha(f)==source[rel];compiled[rel]=source[rel]
   assert compiled,name
-  legacy.append({'name':name,'mode':'NEW_RUN','inputs':compiled,'compile_sha256':sha(folder/'compile.log'),'log_sha256':sha(folder/'console.log')})
+  for fname in ['compile.log','console.log']:
+   assert sha(folder/fname)==sha(reuse_source/'project/sim/modelsim_work'/name/fname)==reuse['legacy_logs'][name+'/'+fname]
+  legacy.append({'name':name,'mode':'EXACT_INPUT_REUSE_FROM_R3_SAME_SOURCE','source_build':str(reuse_source),'inputs':compiled,'compile_sha256':sha(folder/'compile.log'),'log_sha256':sha(folder/'console.log')})
  assert len(selected)+len(legacy)==18
  physical=load(w/'physical_verification.json');build=load(w/'build_result.json')
  assert physical['status'].startswith('PASS_R22_D2_ROUTED_') and physical['max_delays_matched']==49 and physical['max_delays_ignored']==0 and physical['gray_bits_dominating']==20
@@ -88,6 +93,9 @@ def main():
   copy(tmp/'d2_single_stop_second_lane_build_r2_20261029/runs/phy_1'/fname,release/'diagnostics/not_selected/second_build'/fname)
  for fname in ['console.log','camera_to_dsi_display_place.timing']:
   copy(tmp/'d2_single_stop_second_lane_build_r1_20261029/runs/phy_1'/fname,release/'diagnostics/not_selected/initial_build'/fname)
+ for fname in ['console.log','final_timing.rpt','final.area']:
+  copy(reuse_source/'runs/phy_1'/fname,release/'diagnostics/not_selected/third_build_hold_failure'/fname)
+ write(release/'diagnostics/not_selected/third_build_hold_failure/DISPOSITION.json',{'status':'REJECTED_ROUTED_HOLD_FAILURE','seed':3,'SWNS_ns':0.0,'HWNS_ns':-0.154,'HTNS_ns':-0.203,'finding':'Two short RAM data paths failed hold. No bit delivered. Final independent seed4 complete build uses identical source and constraints and passes setup and hold; no ECO experiment is part of the delivered bit.'})
  write(release/'diagnostics/not_selected/README.json',{'status':'TEST_FIXTURE_FAILURES_NOT_PASS','finding':'First compat invocation omitted required include support; first pixel fixture accidentally put its outside object inside the original left station. Final independent input truth fixes fixtures, not production RTL. No selected proof suppressed.'})
  copy(repo/'docs/R22_DUAL_STOP_D2_FIELD_GUIDE.md',release/'FIELD_GUIDE.md');copy(repo/'docs/R22_DUAL_STOP_D2_INTERFACE.md',release/'INTERFACE.md');copy(repo/'docs/evidence/dual_stop_d2/simulated_osd.png',release/'SIMULATED_OSD.png')
  for script in ['build_r22_relay.py','audit_r22_relay.py','relay_left_checks.py','relay_left_native_check.py','check_camera_gain_fix.py','publish_dual_stop_d2.py','publish_r22_shift_alarm_v7.py']:
@@ -105,7 +113,7 @@ def main():
  write(release/'VERIFICATION.json',verification);copy(bit,release/(name+'.bit'))
  receipt={'version':name,'branch':'codex/r22-single-stop-plus-second-recognition-d2','source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),'parent_d1_audit_commit':'30d1a5a5','preserved_rl7_archive_commit':'a716eac','source_worktree':str(repo),'build_work':str(w),'pushed':False,'bit_sha256':sha(bit),'bit_bytes':bit.stat().st_size,'td_version':'V6.2.168116','seed':build['seed'],'resources':physical['resources'],'slice_percent':physical['slice_percent'],'timing_ns':physical['timing_ns'],'source_files':636,'hardware_dependencies':104, 'parameters':{'SECOND_LANE':1,'DUAL_RECOGNITION_ONLY':0,'first_lane_count_roi':[448,832,240,400],'first_lane_station_roi':[64,448,240,400],'second_lane_recognition_roi':[400,880,432,600],'bounds':'half-open full1280x720 pixels','window_x':[72,232],'target_x':152,'trigger_x':184,'advance_px':32,'hold_ms':1000,'five_empty_alarm':True,'frame_meta_bits':1039,'first_lane_counting_and_parking':True,'second_lane_counting_and_parking':False},'gpio':'right J2 pin1/V2 HIGH; board5V; original ADC; no LED','keys':'K1 newRUN/count/auto / K2 pause-resume/manual / K3 clear-stop / K4 stop / SW3 up stop falling-edge newRUN','constraint_profile':'Original parking SDC unchanged; 49 bounds, 9 mailbox groups, original alarm/motor Q and V2 FF proof', 'source_manifest_sha256':sha(release/'SOURCE_SHA256.json'),'verification_sha256':sha(release/'VERIFICATION.json'),'board_acceptance':'PENDING_HUMAN_UPPER_STOP_AND_LOWER_RECOGNITION_TEST'}
  write(release/'RELEASE.json',receipt)
- (release/'README.md').write_text('RL7+D2: preserve original first-lane count/IDs/parking/full1000ms/resume/five-empty alarm; add independent lower-lane recognition. Teammate only supplies dual counting; parking integration remains here. FIELD_GUIDE.md and INTERFACE.md explain three internal zones and independent buses. 636 frozen files/104 hardware dependencies, 18 fresh selected checks and original strict 49-bound routed/alarm audit. Hardware acceptance pending. Rebuild to NEW ASCII directory: python scripts/build_r22_relay.py --keys-v3 --seed 3 --stage-timeout 7200 --source project --baseline-manifest baseline/r22_frozen_inputs.json --work E:/2026FPGA/D2_rebuild --td E:/TD ; python scripts/audit_r22_relay.py --keys-v3 --adjacent-v6 --five-empty-v7 --second-lane-d2 --work same_path. SIMULATED_OSD.png is a fixture output, not board photo. Prior RL7/D1/read-only R2 preserved.\n',encoding='utf8')
+ (release/'README.md').write_text('RL7+D2: preserve original first-lane count/IDs/parking/full1000ms/resume/five-empty alarm; add independent lower-lane recognition. Teammate only supplies dual counting; parking integration remains here. FIELD_GUIDE.md and INTERFACE.md explain three internal zones and independent buses. 636 frozen files/104 hardware dependencies, 18 fresh selected checks and original strict 49-bound routed/alarm audit. Hardware acceptance pending. Rebuild to NEW ASCII directory: python scripts/build_r22_relay.py --keys-v3 --seed 4 --stage-timeout 7200 --source project --baseline-manifest baseline/r22_frozen_inputs.json --work E:/2026FPGA/D2_rebuild --td E:/TD ; python scripts/audit_r22_relay.py --keys-v3 --adjacent-v6 --five-empty-v7 --second-lane-d2 --work same_path. SIMULATED_OSD.png is a fixture output, not board photo. Prior RL7/D1/read-only R2 preserved.\n',encoding='utf8')
  payload={f.relative_to(release).as_posix():{'bytes':f.stat().st_size,'sha256':sha(f)} for f in release.rglob('*') if f.is_file()};write(release/'PAYLOAD_SHA256.json',payload)
  with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
   for f in release.rglob('*'):
