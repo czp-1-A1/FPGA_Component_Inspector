@@ -1,0 +1,12 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:34:10 on Oct 29,2026
+vlog -sv -work work E:\2026FPGA\.codex_tmp\d2_first_compat_r1_20261029\inputs\tb_v7_one.sv E:\2026FPGA\.codex_tmp\d2_first_compat_r1_20261029\inputs\tb_v7_five_alarm.sv E:\2026FPGA\.codex_tmp\d2_first_compat_r1_20261029\inputs\tb_v7_osd.sv 
+** Error: E:\2026FPGA\.codex_tmp\d2_first_compat_r1_20261029\inputs\tb_v7_one.sv(1): Cannot find `include file "inputs/tb_v7_transport.sv" in directories:
+    E:/Modelsim/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, E:/Modelsim/uvm-1.1d/../verilog_src/uvm-1.1d/src
+-- Compiling module tb_v7_one
+** Error: E:\2026FPGA\.codex_tmp\d2_first_compat_r1_20261029\inputs\tb_v7_five_alarm.sv(1): Cannot find `include file "inputs/tb_v7_transport.sv" in directories:
+    E:/Modelsim/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, E:/Modelsim/uvm-1.1d/../verilog_src/uvm-1.1d/src
+-- Compiling module tb_v7_five_alarm
+-- Compiling module tb_v7_osd
+End time: 19:34:10 on Oct 29,2026, Elapsed time: 0:00:00
+Errors: 2, Warnings: 0

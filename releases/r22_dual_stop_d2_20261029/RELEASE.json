@@ -1,0 +1,70 @@
+{
+  "version": "R22_SingleStop_SecondRecognition_D2_20261029",
+  "branch": "codex/r22-single-stop-plus-second-recognition-d2",
+  "source_commit": "57793ecedd7c8668fa9f1cffb36b235625b5f438",
+  "parent_d1_audit_commit": "30d1a5a5",
+  "preserved_rl7_archive_commit": "a716eac",
+  "source_worktree": "D:\\CodexWork\\FPGA_R22_Relay_20261027",
+  "build_work": "E:\\2026FPGA\\.codex_tmp\\d2_single_stop_second_lane_build_r4_20261029",
+  "pushed": false,
+  "bit_sha256": "1b2d3c1b0e279b53e8245fe8acd61db0ce6c69e37ae1ff3d9419fbab938803ae",
+  "bit_bytes": 1789539,
+  "td_version": "V6.2.168116",
+  "seed": 4,
+  "resources": {
+    "slice": 19713,
+    "eram": 106,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 92.91572,
+  "timing_ns": {
+    "SWNS": 0.038,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "source_files": 636,
+  "hardware_dependencies": 104,
+  "parameters": {
+    "SECOND_LANE": 1,
+    "DUAL_RECOGNITION_ONLY": 0,
+    "first_lane_count_roi": [
+      448,
+      832,
+      240,
+      400
+    ],
+    "first_lane_station_roi": [
+      64,
+      448,
+      240,
+      400
+    ],
+    "second_lane_recognition_roi": [
+      400,
+      880,
+      432,
+      600
+    ],
+    "bounds": "half-open full1280x720 pixels",
+    "window_x": [
+      72,
+      232
+    ],
+    "target_x": 152,
+    "trigger_x": 184,
+    "advance_px": 32,
+    "hold_ms": 1000,
+    "five_empty_alarm": true,
+    "frame_meta_bits": 1039,
+    "first_lane_counting_and_parking": true,
+    "second_lane_counting_and_parking": false
+  },
+  "gpio": "right J2 pin1/V2 HIGH; board5V; original ADC; no LED",
+  "keys": "K1 newRUN/count/auto / K2 pause-resume/manual / K3 clear-stop / K4 stop / SW3 up stop falling-edge newRUN",
+  "constraint_profile": "Original parking SDC unchanged; 49 bounds, 9 mailbox groups, original alarm/motor Q and V2 FF proof",
+  "source_manifest_sha256": "0268c2b6e45b541e4689cd7b3e79ba64194182354000181bc046a8db6195cdfc",
+  "verification_sha256": "fd62f3c5666c03e22298eebd0821fb6816bcd88ba4f00c3785e1fe70b79f9033",
+  "board_acceptance": "PENDING_HUMAN_UPPER_STOP_AND_LOWER_RECOGNITION_TEST"
+}

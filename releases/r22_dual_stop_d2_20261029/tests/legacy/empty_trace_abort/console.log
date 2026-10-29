@@ -1,0 +1,203 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -voptargs="+acc=rn+/tb_empty_trace_abort" -onfinish exit -l modelsim_work/empty_trace_abort/transcript.log -wlf modelsim_work/empty_trace_abort/wave.wlf -do "run -all; quit -code 1 -force" test_empty_trace_abort.tb_empty_trace_abort 
+# Start time: 21:02:02 on Oct 29,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 40, found 15.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'probe_ready'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'probe_record'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'transport_occupied'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'repair_diagnostic'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'repair_diagnostic_id'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'repair_hold_id'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'repair_empty_only'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'repair_hold_radius'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'repair_hold_y'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'repair_hold_x'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'repair_hold_valid'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'second_lane_objects'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'region_objects'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'objects'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(11): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2685) [TFMPC] - Too few port connections for 'reference'.  Expected 30, found 14.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'probe_ready'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'probe_record'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'region_objects'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'objects'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# ** Warning: empty_trace/tb_empty_trace_abort.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'sample_new'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_empty_trace_abort(fast)
+# Loading work.frame_shape_search(fast)
+# Loading work.frame_shape_search_r19(fast)
+# run -all
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CANCEL point=0 phase_reached=1 cleared=1
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CANCEL point=1 phase_reached=1 cleared=1
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CANCEL point=2 phase_reached=1 cleared=1
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CANCEL point=3 phase_reached=1 cleared=1
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CANCEL point=4 phase_reached=1 cleared=1
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CANCEL point=5 phase_reached=1 cleared=1
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CANCEL point=6 phase_reached=1 cleared=1
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CANCEL point=7 phase_reached=1 cleared=1
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# CANCEL point=8 phase_reached=1 cleared=1
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# CANCEL point=9 phase_reached=1 cleared=1
+# GATE case=0 phase=0,0 blur=1 FG=21 W=5 H=5 shape=1 geometry=1 raw_empty=1 high_lookup=0 bright=6 row_delta=1 border=0 covered=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=0 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=0 half=1 dark=32 edge=0 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=0 dark=32 edge=4 upper=0 vertical=1 left=0 leftedge=0 pass=0
+# CONTEXT case=0 x0=318 x1=322 y0=158 y1=162 side=1 half=1 dark=32 edge=4 upper=0 vertical=1 left=1 leftedge=0 pass=1
+# DARK case=0 kind=3 left=64 right=64 min=48
+# AB case=0 old_empty=1 new_empty=1 expected=1
+# RESULT case=0 px=0 py=0 blur=1 empty=1 present=2 analysis_cycles=51623 records=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c05b048b1552d24a158e005414293d2884e948c05b048b11d2624a158
+# PASS EMPTY_TRACE_ABORT:10 real cancel points, stale publication suppressed, next actual RGB frame recovers
+# ** Note: $finish    : empty_trace/tb_empty_trace_abort.sv(110)
+#    Time: 59313270 ns  Iteration: 1  Instance: /tb_empty_trace_abort
+# End time: 21:02:16 on Oct 29,2026, Elapsed time: 0:00:14
+# Errors: 0, Warnings: 43
