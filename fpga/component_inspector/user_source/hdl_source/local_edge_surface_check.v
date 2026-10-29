@@ -74,7 +74,12 @@ always @*begin
   else cell_y=edge_y+1'b1;
  end
 end
-wire [4:0] pixel=q[byte_index*5+:5];
+// Extra segmented cache adds a RAM-bank mux. Register its output before
+// accumulation/quality arithmetic; compatibility mode keeps original latency.
+reg [19:0] sampled_q;
+always @(posedge clk)sampled_q<=q;
+wire [19:0] proof_q=SECOND_LANE ? sampled_q : q;
+wire [4:0] pixel=proof_q[byte_index*5+:5];
 wire [10:0] next_sum=sum+{6'd0,pixel};
 wire [4:0] mean=feature==0 ? next_sum[10:6] : next_sum[9:5];
 wire [4:0] next_min=mean<min_edge ? mean : min_edge;
@@ -119,7 +124,10 @@ always @(posedge clk or negedge rst_n)begin
    is_empty<=measure_empty;legacy_ok<=0;edge_no<=0;tap<=0;good_sides<=0;gx<=0;gy<=0;
   end else case(phase)
    2,5:begin read_address<=lower_active ? BASE_WORDS+(cell_y-LY0/2)*LCOLS+((cell_x-LX0/2)>>2) : (cell_y-Y0/2)*COLS+((cell_x-X0/2)>>2);byte_index<=(cell_x-(lower_active ? LX0/2 : X0/2))&3;phase<=phase+1'b1;end
-   3,6:phase<=phase+1'b1;
+   3:phase<=SECOND_LANE ? 8 : 4;
+   6:phase<=SECOND_LANE ? 9 : 7;
+   8:phase<=4;
+   9:phase<=7;
    4:begin
     if(sample==(feature==0 ? 63 : 31))begin
      if(feature==0)begin center_mean<=mean;center_total<=next_sum;end

@@ -6,7 +6,7 @@
 
 ## 三个区域与独立通路
 
-共享 `frame_shape_search` 扫描引擎扩展到三个区域，按原第一条计数、第一条定位、新增下方识别顺序扫描；T100/T80 及当前帧的行锚、亮阈值证明、局部暗参考和 Sobel 质量判据分别管理。下方不会使用第一条的 hold/repair 提示，也不参与第一条 transport_occupied。局部灰度缓存保留原上方矩形，追加下方矩形，避免给左下空白分配缓存。
+共享 `frame_shape_search` 扫描引擎扩展到三个区域，按原第一条计数、第一条定位、新增下方识别顺序扫描；T100/T80 及当前帧的行锚、亮阈值证明、局部暗参考和 Sobel 质量判据分别管理。下方不会使用第一条的 hold/repair 提示，也不参与第一条 transport_occupied。局部灰度缓存保留原上方矩形，追加下方矩形，避免给左下空白分配缓存。追加缓存的 RAM 读取经一级寄存器后再做判定，相应测量等待增加一拍；原两区兼容模式的延迟不变。
 
 `isp_top` 在 post_clk 域输出：
 
@@ -19,7 +19,7 @@
 | `detect_source_start / detect_frame_commit / detect_frame_bad` | 当前处理源帧开始、完整提交、坏帧证明 |
 | `detect_config[63:0]` | `{post_config,post_wb}` 配置标签 |
 
-注意：旧 D1 的 `detect_objects` 曾表示上/下两个区；**D2 的这个 608bit 总线恢复为第一条计数/定位两个区**。新增第二条必须读取 `detect_second_objects`。端口旁 D1 的概括性 “Both lanes” 注释不能代替本表。
+注意：旧 D1 的 `detect_objects` 曾表示上/下两个区；**D2 的这个 608bit 总线恢复为第一条计数/定位两个区**。新增第二条必须读取 `detect_second_objects`。端口注释已同步区分 count+repair 与独立下方料道。
 
 每个候选仍为 76bit：valid[75]、kind[74:73]、reason[72:69]、面积[68:56]、形态宽/高[55:49]/[48:42]、xmin/xmax[41:31]/[30:20]、ymin/ymax[19:10]/[9:0]。kind1 待复核、2 有件（需检查 reason）、3 空穴；无效槽不是空穴。坐标是全图 1280×720 像素，形态宽高与边框跨度单位不同，保持原检测器语义。
 

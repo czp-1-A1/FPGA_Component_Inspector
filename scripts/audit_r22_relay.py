@@ -87,7 +87,7 @@ area=(work/'runs/phy_1/final.area').read_text()
 assert re.search(r'O_relay_control\s+OUTPUT\s+V2\s+LVCMOS33\s+HDIO\s+4\s+PULLDOWN',area)
 assert 'O_led' not in area
 resources={key:int(re.search(r'^#'+key+r'\s+(\d+)',area,re.M)[1]) for key in ['slice','eram','dsp','pll']}
-expected_eram,expected_dsp=(106,31) if args.second_lane_d2 else (98,30) if args.keys_v3 else (99,30) if args.left_v2 else (101,27)
+expected_eram,expected_dsp=(106,30) if args.second_lane_d2 else (98,30) if args.keys_v3 else (99,30) if args.left_v2 else (101,27)
 assert resources['slice']<=21216 and resources['eram']==expected_eram and resources['dsp']==expected_dsp and resources['pll']==5
 if args.left_v2 or args.keys_v3:
  assert 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
@@ -137,7 +137,7 @@ if args.second_lane_d2:
  gate_area=(work/'runs/syn_1/camera_to_dsi_display_gate.area').read_text()
  assert 'classified_count_pipeline' in gate_area and 'pocket_relay_stop_v2' in gate_area
  result['status']='PASS_R22_D2_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_4_KEYS_V2_ALARM_NO_LED'
- result['layout']='Original first-lane right count/left repair and shifted72..232 stop window; independent lower recognition400..879 x432..599; segmented gray cache, ERAM106/DSP31'
+ result['layout']='Original first-lane right count/left repair and shifted72..232 stop window; independent lower recognition400..879 x432..599; registered segmented gray cache, ERAM106/DSP30'
  result['first_lane_counting_and_parking_enabled']=True
  result['second_lane_recognition_enabled']=True
  result['second_lane_counting_enabled']=False

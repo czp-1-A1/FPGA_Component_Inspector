@@ -19,7 +19,7 @@ def main():
  body='reg motor_output;'+top.split('reg motor_output;',1)[1].split('assign O_relay_control=motor_output;',1)[0]+'assign O_relay_control=motor_output;'
  assert body in (repo/'tests/dual_stop_d2/extracted_d2_motor.sv').read_text()
  git_source_audit(repo,source)
- groups=[(tmp/'d2_pixels_r2_20261029','dual_stop_d2'),(tmp/'d2_ui_control_r2_20261029','dual_stop_d2'),(tmp/'d2_rgb_r1_20261029','dual_stop_d2'),(tmp/'d2_rgb_alarm_r1_20261029','dual_stop_d2'),(tmp/'d2_first_compat_r2_20261029','shift_alarm_v7'),(tmp/'d2_keys_compat_r1_20261029',None)]
+ groups=[(tmp/'d2_pixels_r3_20261029','dual_stop_d2'),(tmp/'d2_ui_control_r3_20261029','dual_stop_d2'),(tmp/'d2_rgb_final_r2_20261029','dual_stop_d2'),(tmp/'d2_final_compat_r3_20261029','shift_alarm_v7'),(tmp/'d2_keys_compat_r1_20261029',None)]
  selected=[]
  for folder,fixture in groups:
   proof=load(folder/'verification.json');assert proof['status']=='PASS'
@@ -30,13 +30,13 @@ def main():
    log=folder/(t['name']+'.log');assert sha(log)==t['sha256'];passed(log)
    selected.append({'name':t['name'],'group':folder.name,'mode':'NEW_RUN','log_sha256':sha(log)})
  assert len(selected)==10
- native=tmp/'d2_native_r1_20261029';n=load(native/'verification.json');assert n['status']=='PASS'
+ native=tmp/'d2_native_r2_20261029';n=load(native/'verification.json');assert n['status']=='PASS'
  for rel,d in n['inputs'].items():assert source[rel]==d and sha(native/'inputs/project'/rel)==d
  for rel,d in n['extra_inputs'].items():assert sha(repo/'tests/dual_stop_d2'/Path(rel).name)==d and sha(native/'inputs/project'/rel)==d
  for rel,d in n['vendor'].items():assert sha(native/'inputs/vendor'/rel)==d
  assert sha(native/'console.log')==n['console_sha256'];passed(native/'console.log','PASS D2 NATIVE UPPER COUNT/PARK + LOWER RECOGNITION:')
  selected.append({'name':n['name'],'group':native.name,'mode':'NEW_RUN','log_sha256':n['console_sha256'],'scope':'7 RAW10 complete sources including first; 14 displayed rasters, 13088282 exact pixels; original upper count/repair and independent lower tuples, 1039bit metadata; WB-canceled live video; counter/parking instantiated, motor permit off. Not a RAW parking cycle or optical E recall.'})
- gate=tmp/'d2_camera_r1_20261029';g=load(gate/'verification.json');assert g['status']=='PASS'
+ gate=tmp/'d2_camera_r2_20261029';g=load(gate/'verification.json');assert g['status']=='PASS'
  assert sha(w/'d2_camera_gate.v')==g['gate_netlist_sha256'] and g['cone_closure']['all_other_consumed_nets_have_selected_cell_drivers']
  for name,d in g['simulation_input_sha256'].items():assert sha(gate/'inputs'/name)==d
  for t in g['tests']:
@@ -82,6 +82,9 @@ def main():
  for dirname in ['d2_first_compat_r1_20261029','d2_pixels_r1_20261029']:
   for f in (tmp/dirname).iterdir():
    if f.is_file() and f.suffix in ['.log','.json']:copy(f,release/'diagnostics/not_selected'/dirname/f.name)
+ copy(tmp/'d2_single_stop_second_lane_build_r1_20261029/ABORT_REASON.json',release/'diagnostics/not_selected/initial_build/ABORT_REASON.json')
+ for fname in ['console.log','camera_to_dsi_display_place.timing']:
+  copy(tmp/'d2_single_stop_second_lane_build_r1_20261029/runs/phy_1'/fname,release/'diagnostics/not_selected/initial_build'/fname)
  write(release/'diagnostics/not_selected/README.json',{'status':'TEST_FIXTURE_FAILURES_NOT_PASS','finding':'First compat invocation omitted required include support; first pixel fixture accidentally put its outside object inside the original left station. Final independent input truth fixes fixtures, not production RTL. No selected proof suppressed.'})
  copy(repo/'docs/R22_DUAL_STOP_D2_FIELD_GUIDE.md',release/'FIELD_GUIDE.md');copy(repo/'docs/R22_DUAL_STOP_D2_INTERFACE.md',release/'INTERFACE.md');copy(repo/'docs/evidence/dual_stop_d2/simulated_osd.png',release/'SIMULATED_OSD.png')
  for script in ['build_r22_relay.py','audit_r22_relay.py','relay_left_checks.py','relay_left_native_check.py','check_camera_gain_fix.py','publish_dual_stop_d2.py','publish_r22_shift_alarm_v7.py']:

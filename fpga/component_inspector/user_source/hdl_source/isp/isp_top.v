@@ -6,7 +6,9 @@ module isp_top #(
     parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+256*CLASSIFIED_COUNT+152*SECOND_LANE
 ) (
     input processing_clk,
-    // Both lanes, process-clock domain. Consumer must qualify sample_new
+    // Raw per-zone candidates, process-clock domain. In left layout the first
+    // bus is count+repair; detect_second_objects is the independent lower lane.
+    // Consumer must qualify sample_new
     // with source_start/frame_commit/frame_bad; these are not count events.
     output detect_source_start,detect_frame_commit,detect_frame_bad,detect_sample_new,
     output [607:0] detect_objects,output [303:0] detect_second_objects,output [63:0] detect_config,
