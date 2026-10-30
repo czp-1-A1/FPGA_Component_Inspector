@@ -5,7 +5,7 @@ import argparse,hashlib,json,os,re,shutil,subprocess,time
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--prepare-only',action='store_true')
- a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--baseline-label',default='a1cceaa');a.add_argument('--extra-source',nargs='*',default=[]);a.add_argument('--synthesis-only',action='store_true');a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--recognition-only',action='store_true');a.add_argument('--seed',type=int,default=2);a.add_argument('--stage-timeout',type=int,default=2400);args=a.parse_args()
+ a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--baseline-label',default='a1cceaa');a.add_argument('--extra-source',nargs='*',default=[]);a.add_argument('--synthesis-only',action='store_true');a.add_argument('--synthesis-strategy',choices=['Default','AreaOptimizeMedium','AreaOptimizeHigh'],default='Default');a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--recognition-only',action='store_true');a.add_argument('--seed',type=int,default=2);a.add_argument('--stage-timeout',type=int,default=2400);args=a.parse_args()
  repo=Path(__file__).resolve().parents[1];src=args.source.resolve() if args.source else repo/'fpga/component_inspector';work=args.work.resolve()
  assert not work.exists(),'Refuse to overwrite an existing build'
  assert str(work).isascii() and ' ' not in str(work)
@@ -28,6 +28,12 @@ def main():
  (work/'frozen_inputs.json').write_text(json.dumps(manifest,indent=2)+'\n')
  (work/'baseline_delta.json').write_text(json.dumps({'baseline_commit':args.baseline_label,'baseline_manifest_sha256':sha(baseline_path),'changes':changes},indent=2)+'\n')
  td=args.td.resolve();flow=td/'doc/scripts/DefaultFlow.tcl';assert flow.is_file()
+ strategy_params=[]
+ if args.synthesis_strategy!='Default':
+  official_path=td/'doc/strategies/official_strategy_ph1.json';official=json.loads(official_path.read_text())
+  strategy=official[args.synthesis_strategy];assert strategy['is_syn']=='syn'
+  strategy_params=strategy['params'];assert all(x['step'] in ['rtl','gate'] and all(re.fullmatch(r'[A-Za-z0-9_]+',str(x[k])) for k in ['step','param','val']) for x in strategy_params)
+  (work/'BUILD_STRATEGY.json').write_text(json.dumps({'strategy':args.synthesis_strategy,'official_file':str(official_path),'official_file_sha256':sha(official_path),'parameters':strategy_params,'constraints_changed':False,'source_manifest_sha256':sha(work/'frozen_inputs.json')},indent=2)+'\n')
  entry=project/'td_project/camera_to_dsi_display.al';text=entry.read_text()
  deps={}
  for rel in re.findall(r'<File Path="([^"]+)"',text):
@@ -52,7 +58,9 @@ set prj_name camera_to_dsi_display
 set speed 3
 set top_model_name design_top_wrapper
 '''
-  if stage=='syn_1':cfg+='set start_step read_design\nset end_step opt_gate\nset run_type syn\n'
+  if stage=='syn_1':
+   cfg+='set start_step read_design\nset end_step opt_gate\nset run_type syn\n'
+   if strategy_params:cfg+='set synWildParams {'+' '.join(x['step']+' '+x['param']+' '+str(x['val']) for x in strategy_params)+'}\n'
   else:cfg+='''set arr_filter false
 set phyWildParams {place seed 2 place logic_level_opt on place opt_timing high place effort high place fix_hold on}
 set drHoldFix on

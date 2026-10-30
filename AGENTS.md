@@ -1,4 +1,16 @@
-# D3 当前物理验收接续（2026-10-30 15:10，最高优先级）
+# D3 面积优先映射当前接续（2026-10-30 15:37，最高优先级）
+
+- 用户最新“继续”，任务仍两列识别/计数/停车，并解释/优化资源。已commit 6d43dcf0（分支codex/r27b-dual-count-and-stop-d3），704源Git HEAD blob与冻结raw SHA全部匹配，未推送。主RTL全部仍精确R11，不开子代理、不做任何硬件操作。
+- **最新唯一完整TD工作R14**：E:/2026FPGA/.codex_tmp/d3_dual_stop_build_r14_area_high_20261030，session71970，704相同源/107依赖，seed2，原SDC/时钟不改；使用TD本机官方 E:/TD/doc/strategies/official_strategy_ph1.json 的 AreaOptimizeHigh（official SHA b264a5c4ae939a4be0fcf5d2c242a8005132c4812f01d4d060590adee2030729）。参数gate add_map_lut_struct high/map_mode area_prior/multi_thread_mapping partition；RTL resource_sharing auto/shifter_style shifter_reg。build/BUILD_STRATEGY.json保留参数与官方SHA；scripts/build_r22_relay.py新增--synthesis-strategy选项，旧默认Default不变。目前Map Gate显示“extra runtime-consuming opt”，尚无SYN gate.area/DB，继续等待，不可写资源收益结论。
+- R13初期21065Slice可装，但实际路由持续拥塞（12/13轮仍约1.3万overflow，初期SWNS-1.161），未完成路由；已核TD PID18264父8184为r13且无子进程后停止，ABORT_REASON.json留证。不是最终routed失败/PASS；不再靠不断换seed，改比较官方面积优先映射。原R11placed SWNS+.061/HWNS-.264，place.db保留，可做后备独立opt_route续跑，但须标明实际place数据库复用而非新SYN，当前未启动此路线。
+- **软件24项最终组已全部PASS并精确核源**：scripts/verify_d3_checks.py --work r13 已输出 SOFTWARE_VERIFICATION.json。native_r3已完成12真实RAW/24整幅显示/22940160精确像素/双列各4P2E2/WB取消，所有ModelSim均已结束。24组目录在脚本常量，core/Pixels/cache/metadata/key/selector/UI以及两个RAW，另外303cell实际R11 gate相机两复位x126I2C。R14同704源可以复用23项RTL结果，**实际SYN DB改变，必须重新导出/验证R14相机锥**，不可复用旧门级相机证据。
+- scripts/export_d3_camera.py新建（未提交）：--work R14 --check-directory E:/2026FPGA/.codex_tmp/d3_area_camera_r2_20261030；SYN DB完成后才能调用。单行source正确完整TCL，记录CAMERA_EXPORT.json的实际DB/网表/日志SHA，执行check_camera_gain_fix.py。若AreaHigh改了FF别名/primitive，严格闭合锥及实际串行总线检查不能削弱。verify_d3_checks.py已支持当前work/CAMERA_EXPORT.json绑定新门级；没有它才允许原R11精确SYN复用，旧R13调用验证仍24PASS。
+- scripts/publish_dual_stop_d3.py已支持BUILD_STRATEGY/CAMERA_EXPORT及正确seed/strategy重建命令，仍24项+严格物理+704HEAD才发布。期望DSP目前31/ERAM107（audit_dual_stop_d3.py），R14实际SYN若官方映射改变计数须核模块/映射事实后更新具体期望，不能仅为通过而放松上限或关闭功能。还没有新bit/发布包。
+- **资源解释新增关键证据**：旧RL7不是只有一个核，gate.area有右 classified_counting$pipeline/counter 和左 left_station$station/counter 两个完整计数/关联核；R27B双计数也是两核。初始直接合并变四核超限，当前R11/R14保留两主核+一个共享专用位置tracker。docs/D3_RESOURCE_ANALYSIS.md已加表，用户已看到此解释。RL4实85.58/RL7实89.42/R27B实89.14。初始D3综合25976→R11 22821/4DSP减少（12.15%），R14新值未出。
+- Git sparse checkout：新增tests/dual_stop_d3需要git add --sparse；.gitattributes已在6d43添加D3/tests/docs/scripts/releases -text原始字节。不要跑裸git diff --check，会把CRLF上百万行当trailing whitespace产生巨量输出；应git -c core.whitespace=cr-at-eol diff --check并捕获输出，已0通过。不能为换行改冻结生产/fixtures。当前未提交修改7个脚本/文档和.gitattributes增加export_d3_camera -text；新export脚本未跟踪。旧实验4station RTL、bank extraction、旧sim产物仍未跟踪，不stage-all/不删除用户旧产物。
+- 还需：R14 SYN/PHY实际资源与setup/hold；原49bounds/20Gray/9邮箱/四键SW3/V2两个alarm到实际motor FF审计；R14相机门级；更新资源报告/分析/fieldguide，提交新工具及证明，publisher --check-only→封包→BIT_FLASH同SHA→必要Git载荷审计。固定以太网/旧RL7/D2 SHA保留。不要提前称资源/时序整体PASS或实板成功。
+
+# D3 当前物理验收接续（2026-10-30 15:10，以下为历史）
 
 - 最新用户“继续”，保持原完整交付目标，不停在分析。主源码已恢复精确R11：FSS SHAf19d1305bea604ee4eeaef1d4ac073c03856f17df9451a32fe69855d454b5739，灰度两拍写地址/数据/valid及distance9保留。
 - 区域内固定搬移R12：六RGB/64目标、32768次literal三task时序对照均PASS，但实际映射21717>21216，已REJECTED_RESOURCE.json保留，绝不发布。currentFSS已按SHA恢复R11。R12 native_r4 kernel32924身份/输出目录核验后终止，ABORT_REASON.json，不选为PASS；原r11 native_r3 kernel29320仍运行，已到source11，各列4/P2/E2，最后12WB取消待收尾。

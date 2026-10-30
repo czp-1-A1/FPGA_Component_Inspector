@@ -45,14 +45,19 @@ def main():
         'original_R27B_counter_sha256':source['user_source/hdl_source/classified_pocket_counter.v'],
         'board_acceptance':'PENDING_HUMAN_TWO_LANE_RECOGNITION_COUNT_PARKING_TEST','hardware_operated':False,
         'limits':'Existing white3528 recipe; no arbitrary-speed, optical recall, actual nozzle/refill or +/-1mm claim. Real RAW checks use permit=0; separate candidate-stream tests exercise parking.'}
+    strategy=load(w/'BUILD_STRATEGY.json') if (w/'BUILD_STRATEGY.json').is_file() else {'strategy':'Default'}
+    receipt['synthesis_strategy']=strategy
     if args.check_only:
         print(json.dumps({'status':'READY_TO_PUBLISH','receipt':receipt},indent=2));return
     release.mkdir(parents=True)
     for rel in source:copy(p/rel,release/'project'/rel)
     write(release/'SOURCE_SHA256.json',source)
-    for name0 in ['frozen_inputs.json','hardware_inputs.json','baseline_delta.json','build_result.json','physical_verification.json','EXACT_SYNTHESIS_REUSE.json','SOFTWARE_VERIFICATION.json']:
+    for name0 in ['frozen_inputs.json','hardware_inputs.json','baseline_delta.json','build_result.json','physical_verification.json','SOFTWARE_VERIFICATION.json']:
         copy(w/name0,release/'build'/name0)
-    camera_work=tmp/'d3_dual_stop_build_r11_resource_opt_20261030'
+    for name0 in ['EXACT_SYNTHESIS_REUSE.json','BUILD_STRATEGY.json','CAMERA_EXPORT.json']:
+        if (w/name0).is_file():copy(w/name0,release/'build'/name0)
+    if 'official_file' in strategy:copy(Path(strategy['official_file']),release/'build/official_strategy_ph1.json')
+    camera_work=w if (w/'CAMERA_EXPORT.json').is_file() else tmp/'d3_dual_stop_build_r11_resource_opt_20261030'
     copy(camera_work/'d3_camera_gate.v',release/'build/d3_camera_gate.v')
     copy(camera_work/'export_camera.log',release/'build/export_camera.log')
     for stage in ['syn_1','phy_1']:
@@ -78,7 +83,7 @@ def main():
     for name0 in docs:copy(repo/'docs'/name0,release/'docs'/name0)
     copy(repo/'docs/R27B_DUAL_STOP_D3_FIELD_GUIDE.md',release/'FIELD_GUIDE.md')
     scripts=['build_r22_relay.py','reuse_d3_synthesis.py','audit_dual_stop_d3.py','relay_left_checks.py','relay_left_native_check.py',
-        'check_camera_gain_fix.py','verify_d3_checks.py','publish_dual_stop_d3.py','publish_r22_shift_alarm_v7.py',
+        'check_camera_gain_fix.py','export_d3_camera.py','verify_d3_checks.py','publish_dual_stop_d3.py','publish_r22_shift_alarm_v7.py',
         'check_d3_distance_bounds.py','check_d3_observed_counter.py','report_d3_resources.py']
     for name0 in scripts:copy(repo/'scripts'/name0,release/'scripts'/name0)
     rejected=tmp/'d3_dual_stop_build_r12_local_banks_20261030'
@@ -89,7 +94,7 @@ def main():
     write(release/'VERIFICATION.json',{'status':'PASS_EXACT_INPUT_SIMULATION_AND_STRICT_ROUTED_AUDIT',
         'software':software,'physical':physical,'hardware_acceptance':False})
     write(release/'RELEASE.json',receipt);copy(bit,release/(name+'.bit'))
-    (release/'README.md').write_text('R27B 双列识别/独立计数 + D3 双列补件停车。原成功计数算法保留，每列32任务、完整1秒保持、相邻穴继续、各列五空报警、一个共用电机。操作与验收见 FIELD_GUIDE.md。尚未实板验收。构建冻结704源/107依赖，24项精确编译输入软件检查，原49条约束与建立/保持/双报警到V2注册输出审计通过。重建到新目录：python scripts/build_r22_relay.py --source project --keys-v3 --seed 3 --stage-timeout 7200 --baseline-manifest build/frozen_inputs.json --extra-source user_source/hdl_source/observed_classified_pocket_counter.v user_source/hdl_source/global_empty_position_tracker.v user_source/hdl_source/dual_lane_parking.v --work E:/2026FPGA/D3_rebuild 。不得覆盖已有构建目录；重建仍需重新物理审计。\n',encoding='utf8')
+    (release/'README.md').write_text('R27B 双列识别/独立计数 + D3 双列补件停车。原成功计数算法保留，每列32任务、完整1秒保持、相邻穴继续、各列五空报警、一个共用电机。操作与验收见 FIELD_GUIDE.md。尚未实板验收。构建冻结704源/107依赖，24项精确编译输入软件检查，原49条约束与建立/保持/双报警到V2注册输出审计通过。重建到新目录：python scripts/build_r22_relay.py --source project --keys-v3 --seed '+str(build['seed'])+' --synthesis-strategy '+strategy['strategy']+' --stage-timeout 7200 --baseline-manifest build/frozen_inputs.json --extra-source user_source/hdl_source/observed_classified_pocket_counter.v user_source/hdl_source/global_empty_position_tracker.v user_source/hdl_source/dual_lane_parking.v --work E:/2026FPGA/D3_rebuild 。不得覆盖已有构建目录；重建仍需重新物理审计。\n',encoding='utf8')
     payload={f.relative_to(release).as_posix():{'bytes':f.stat().st_size,'sha256':sha(f)} for f in release.rglob('*') if f.is_file()}
     write(release/'PAYLOAD_SHA256.json',payload)
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:

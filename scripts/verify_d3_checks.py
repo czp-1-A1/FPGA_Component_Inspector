@@ -54,20 +54,28 @@ def verify(work):
         selected.append({'name':proof['name'],'folder':str(folder),'mode':'EXACT_COMPILED_SOURCE_AND_FIXTURE_MATCH','log_sha256':sha(folder/'console.log'),
            'scope':'Real RAW/DDR/display or empty RAW proof order. Parking instantiated with motor permit off; not a RAW parking cycle or optical recall test.'})
         evidence[str(folder/'verification.json')]=sha(folder/'verification.json')
-    gate=TMP/'d3_resource_camera_r1_20261030';g=read(gate/'verification.json');assert g['status']=='PASS'
     reference=TMP/'d3_dual_stop_build_r11_resource_opt_20261030'
     assert read(reference/'frozen_inputs.json')==source
-    if work!=reference:
+    export=work/'CAMERA_EXPORT.json'
+    if export.is_file():
+        e=read(export);gate=Path(e['check_directory'])
+        assert e['gate_database_sha256']==sha(work/'runs/syn_1/camera_to_dsi_display_gate.db')
+        assert e['netlist_sha256']==sha(work/'d3_camera_gate.v')
+        netlist=work/'d3_camera_gate.v'
+    else:
+        gate=TMP/'d3_resource_camera_r1_20261030';netlist=reference/'d3_camera_gate.v'
+    if work!=reference and not export.is_file():
         reuse=read(work/'EXACT_SYNTHESIS_REUSE.json')
         assert Path(reuse['source_work']).resolve()==reference.resolve()
         assert reuse['source_files_identical']==704
         assert sha(work/'runs/syn_1/camera_to_dsi_display_gate.db')==sha(reference/'runs/syn_1/camera_to_dsi_display_gate.db')==reuse['synthesis_database_sha256']
-    assert sha(reference/'d3_camera_gate.v')==g['gate_netlist_sha256']
+    g=read(gate/'verification.json');assert g['status']=='PASS'
+    assert sha(netlist)==g['gate_netlist_sha256']
     assert g['cone_closure']['all_other_consumed_nets_have_selected_cell_drivers']
     for name,d in g['simulation_input_sha256'].items():assert sha(gate/'inputs'/name)==d
     for t in g['tests']:
         log=gate/(t['name']+'.log');assert sha(log)==t['log_sha256'];passed(log)
-        selected.append({'name':t['name'],'folder':str(gate),'mode':'ACTUAL_IDENTICAL_SYNTHESIS_CAMERA_CONE','log_sha256':sha(log),'scope':'303 actual synthesized cells; two resets x126 serialized I2C writes; simulated ACK slave, no sensor readback.'})
+        selected.append({'name':t['name'],'folder':str(gate),'mode':'ACTUAL_CANDIDATE_SYNTHESIS_CAMERA_CONE','log_sha256':sha(log),'scope':str(g['cone_closure']['cells'])+' actual synthesized cells; two resets x126 serialized I2C writes; simulated ACK slave, no sensor readback.'})
     evidence[str(gate/'verification.json')]=sha(gate/'verification.json')
     observer=read(ROOT/'docs/D3_OBSERVED_COUNTER_PROOF.json')
     assert observer['original_raw_sha256']==source['user_source/hdl_source/classified_pocket_counter.v']
