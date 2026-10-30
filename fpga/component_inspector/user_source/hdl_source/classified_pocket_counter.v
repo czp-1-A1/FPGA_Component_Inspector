@@ -1,7 +1,7 @@
 // Consumes the UNMODIFIED frame_shape_search four-record result, once per
 // proved source frame. Display rank is never an identity. No pixel RAM/search.
 module classified_pocket_counter #(
- parameter ADJACENT_V6=0,STOP_POSITION=0,LINE_X=640,HYST=3,MAX_STEP=12,Y_STEP=8,MAX_TOTAL=300,RECORD_ONLY=0,MOTION_RECOVERY=0,TAIL_RECOVERY=0,OBS_PER_REGION=2,ORDERED_HANDOFF=0,RECOVERABLE=0,VELOCITY_ASSOC=0,LOCAL_RECOVERY=0
+ parameter LINE_X=640,HYST=3,MAX_STEP=12,Y_STEP=8,MAX_TOTAL=300,RECORD_ONLY=0,MOTION_RECOVERY=0,TAIL_RECOVERY=0,OBS_PER_REGION=2,ORDERED_HANDOFF=0,RECOVERABLE=0,VELOCITY_ASSOC=0,LOCAL_RECOVERY=0
 )(
  input wire clk,rst_n,start_run,finish_run,frame_bad,
  input wire sample_new,input wire [31:0] frame_id,input wire [63:0] config_tag,
@@ -17,18 +17,8 @@ module classified_pocket_counter #(
  input wire [8:0] ledger_address,output reg [5:0] ledger_data,
  input wire [8:0] empty_address,output reg [8:0] empty_id,
  output reg hold_valid,output reg [10:0] hold_x,output reg [9:0] hold_y,
- output reg [15:0] diagnostic,output reg [8:0] uncertainty_from,
- input wire [8:0] stop_query_id,
- input wire stop_stationary,input wire [7:0] stop_detector_diagnostic,input wire [8:0] stop_detector_id,
- output reg [63:0] stop_diagnostic,output wire [5:0] stop_search_radius,
- output reg stop_position_new,output reg [8:0] stop_position_id,
- output reg [10:0] stop_position_x,output reg [9:0] stop_position_y,
- output wire [15:0] stop_position_run,output wire [31:0] stop_position_frame,
- output reg stop_search_valid,output reg [10:0] stop_search_x,output reg [9:0] stop_search_y
+ output reg [15:0] diagnostic,output reg [8:0] uncertainty_from
 );
- reg stop_position_pending;reg [8:0] diagnostic_query;reg [7:0] detector_snapshot,query_flags;
- wire braking=ADJACENT_V6 && stop_stationary;
- assign stop_position_run=run_id;
  localparam IDLE=0,ACQUIRE=1,RUN=2,LOST=3,DONE=4,HOLD=5,CHECK_REQUIRED=6;
  wire tracking=state==RUN || (RECOVERABLE && state==HOLD);
  localparam WAIT=0,LOAD=1,OBS=2,SCAN=3,ASSIGN=4,CHECK=5,MOTION=6,
@@ -45,7 +35,6 @@ module classified_pocket_counter #(
  localparam TRACK_BITS=MOTION_RECOVERY ? 60+DX_BITS+GAP_BITS : (RECORD_ONLY ? 60+GAP_BITS : 60);
  reg [4:0] phase;
  reg [76*OBS_COUNT-1:0] packet;reg packet_region,packet_ambiguous;reg [31:0] source_id,last_frame;
- assign stop_position_frame=source_id;
  function region_has_target;
   input [76*OBS_PER_REGION-1:0] data;
   integer region_slot;
@@ -175,10 +164,6 @@ module classified_pocket_counter #(
  wire anchored_group=ORDERED_HANDOFF && direct_count>=2 && measured_anchor;
  wire signed [13:0] next_hold_x=lead_x+$signed({previous_dx[12],previous_dx});
  wire signed [13:0] order_position=$signed({3'b0,old_x})+$signed({{(14-DX_BITS){missed_dx[DX_BITS-1]}},missed_dx});
- wire signed [13:0] query_search_x=braking ? order_position : order_position+$signed({previous_dx[12],previous_dx});
- assign stop_search_radius=braking && pitch_valid ? (match_step<20 ? {1'b0,match_step[4:0]} : 6'd20) : 6'd12;
- // Pending EMPTY identities are already counted, never synthesized events.
- wire pending_empty=STOP_POSITION && stop_query_id!=0 && old_kind==3 && old_id>=stop_query_id;
  wire [4:0] event_slot=ORDERED_HANDOFF ? emit_track : mapping[oi[OI_BITS-1:0]][4:0];
  wire [1:0] recorded_kind=ORDERED_HANDOFF ? pending_word[5:4] : old_kind;
  wire [3:0] recorded_mask=ORDERED_HANDOFF ? pending_word[3:0] : old_mask;
@@ -188,8 +173,6 @@ module classified_pocket_counter #(
  // class, crossing or event is ever generated from this estimate.
  wire signed [12:0] gap_step=TAIL_RECOVERY && !measured_anchor ? previous_dx : first_dx;
  wire signed [13:0] gap_motion=$signed({{(14-DX_BITS){missed_dx[DX_BITS-1]}},missed_dx})+$signed({gap_step[12],gap_step});
- wire signed [13:0] pending_gap_motion=braking && !measured_anchor ?
-  $signed({{(14-DX_BITS){missed_dx[DX_BITS-1]}},missed_dx}) : gap_motion;
  wire [10:0] trusted_step=VELOCITY_ASSOC && pitch_valid && pitch>2*HYST+2 ? pitch-HYST-1 : match_step;
  wire lone_return=TAIL_RECOVERY && visible==1 && matched_count==1 && pitch_valid &&
   previous_speed<=trusted_step && first_dx>=-$signed({2'b0,trusted_step}) && first_dx<=$signed({2'b0,trusted_step}) &&
@@ -267,9 +250,6 @@ module classified_pocket_counter #(
  end
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
-   stop_search_valid<=0;stop_search_x<=0;stop_search_y<=0;
-   stop_diagnostic<=0;diagnostic_query<=0;detector_snapshot<=0;query_flags<=0;
-   stop_position_new<=0;stop_position_pending<=0;stop_position_id<=0;stop_position_x<=0;stop_position_y<=0;
    state<=IDLE;reason<=0;hold_valid<=0;hold_x<=0;hold_y<=0;phase<=WAIT;busy<=0;snapshot_new<=0;
    diagnostic<=0;uncertainty_from<=0;quarantined<=0;frame_tracks<=0;frame_trusted<=0;gap_open<=0;pitch_candidate<=0;pitch_votes<=0;
    run_id<=0;total<=0;present_total<=0;empty_total<=0;review_total<=0;
@@ -280,17 +260,14 @@ module classified_pocket_counter #(
    found<=32;free_slot<=32;matches<=0;best_error<=14'h3fff;matched_count<=0;positive<=0;negative<=0;visible<=0;motion_count<=0;
    crossings<=0;cross_index<=0;unstable_cross<=0;motion_conflict<=0;event_valid<=0;event_run<=0;event_id<=0;event_frame<=0;event_kind<=0;event_reason<=0;
   end else begin
-   snapshot_new<=0;event_valid<=0;stop_position_new<=0;
-   if(start_run || finish_run || sample_new || frame_bad)stop_search_valid<=0;
+   snapshot_new<=0;event_valid<=0;
    if(start_run)begin
-    stop_position_pending<=0;stop_diagnostic<=0;query_flags<=0;
     diagnostic<=0;uncertainty_from<=0;quarantined<=0;frame_tracks<=0;frame_trusted<=0;gap_open<=0;pitch_candidate<=0;pitch_votes<=0;
     run_id<=run_id+1'b1;hold_valid<=0;state<=ACQUIRE;reason<=1;phase<=WAIT;busy<=0;
     total<=0;present_total<=0;empty_total<=0;review_total<=0;
     valid_tracks<=0;armed<=0;cross_pending<=0;used<=0;object_ids<=0;have_frame<=0;have_region<=0;
     direction_valid<=0;stable_frames<=0;accumulated<=0;pitch_valid<=0;reverse_motion<=0;previous_speed<=0;previous_dx<=0;recovered_far<=0;direct_anchor<=0;direct_count<=0;snapshot_new<=1;
    end else if(finish_run)begin
-    stop_position_pending<=0;
     state<=RECORD_ONLY ? IDLE : DONE;hold_valid<=0;reason<=0;busy<=0;phase<=WAIT;snapshot_new<=1;
     if(RECORD_ONLY)begin
      diagnostic<=0;uncertainty_from<=0;quarantined<=0;frame_tracks<=0;frame_trusted<=0;gap_open<=0;pitch_candidate<=0;pitch_votes<=0;
@@ -312,7 +289,6 @@ module classified_pocket_counter #(
       else packet<=objects;
       packet_region<=incoming_r1;packet_ambiguous<=incoming_r0 && incoming_r1;
       source_id<=frame_id;last_frame<=frame_id;active_config<=config_tag;have_frame<=1;
-      stop_position_pending<=0;diagnostic_query<=stop_query_id;detector_snapshot<=stop_detector_id==stop_query_id ? stop_detector_diagnostic : 8'd0;query_flags<=0;
       busy<=1;phase<=LOAD;used<=0;frame_tracks<=valid_tracks;frame_trusted<=1;gap_open<=0;oi<=0;object_ids<=0;
       matched_count<=0;positive<=0;negative<=0;visible<=0;motion_count<=0;crossings<=0;unstable_cross<=0;motion_conflict<=0;first_dx<=0;recovered_far<=0;direct_anchor<=0;direct_count<=0;
      end
@@ -365,8 +341,6 @@ module classified_pocket_counter #(
     end
     SCAN:begin
      if(!valid_tracks[si[4:0]] && free_slot==32)free_slot<=si;
-     if(ADJACENT_V6 && STOP_POSITION && valid_tracks[si[4:0]] && old_id==diagnostic_query &&
-        target && (direct_near || predicted_near) && dy>=-16 && dy<=16 && old_kind==3 && ob[74:73]!=3)query_flags[1]<=1;
      if(near_track)begin
       if(VELOCITY_ASSOC)begin
        if(matches==0 || association_error<best_error)begin
@@ -381,7 +355,6 @@ module classified_pocket_counter #(
      if(si==31)phase<=READ_ASSIGN;else begin si<=si+1'b1;phase<=READ_SCAN;end
     end
     ASSIGN:begin
-     if(ADJACENT_V6 && STOP_POSITION && matches>1 && old_id==diagnostic_query)query_flags[0]<=1;
      if(matches>1 || (VELOCITY_ASSOC && matches==1 && used[found[4:0]]))begin
       if(LOCAL_RECOVERY && tracking)begin
        // This observation cannot be uniquely attached. Preserve every other
@@ -433,13 +406,8 @@ module classified_pocket_counter #(
      end else if(RECOVERABLE && valid_tracks[si[4:0]] && !used[si[4:0]] && old_id!=0 && tracking)begin
       // Already counted: park its ID for de-duplication. Loss alone cannot
       // block other real crossings. Retire only with measured downstream proof.
-      // A completed count is normally disposable downstream of the gate.
-      // The active repair head still owns a physical task there: preserve
-      // its identity across a bounded missing observation, using the same
-      // existing association/type guards on a real return. This does not
-      // publish a position during the gap or postpone the relay's F6 timer.
-      if(counted_retire_safe && !(STOP_POSITION && old_id==stop_query_id) && !(ADJACENT_V6 && pending_empty))begin valid_tracks[si[4:0]]<=0;armed[si[4:0]]<=0;end
-      else if(missing<8)tracks[track_address]<={(ADJACENT_V6 && pending_empty ? pending_gap_motion[DX_BITS-1:0] : gap_motion[DX_BITS-1:0]),missing+{{(GAP_BITS-1){1'b0}},1'b1},track_word[59:0]};
+      if(counted_retire_safe)begin valid_tracks[si[4:0]]<=0;armed[si[4:0]]<=0;end
+      else if(missing<8)tracks[track_address]<={gap_motion[DX_BITS-1:0],missing+{{(GAP_BITS-1){1'b0}},1'b1},track_word[59:0]};
       if(si==31)phase<=APPLY_SETUP;else begin si<=si+1'b1;phase<=READ_CHECK;end
      end else if(RECOVERABLE && valid_tracks[si[4:0]] && !used[si[4:0]] && armed[si[4:0]] && old_id==0 && tracking)begin
       if(LOCAL_RECOVERY && (quarantined[si[4:0]] || missing>=8))begin
@@ -457,7 +425,9 @@ module classified_pocket_counter #(
       end else begin state<=CHECK_REQUIRED;reason<=4;hold_valid<=0;note_fault(6,si,missing);end
       end
       if(si==31)phase<=APPLY_SETUP;else begin si<=si+1'b1;phase<=READ_CHECK;end
-     end else if(RECORD_ONLY && valid_tracks[si[4:0]] && !used[si[4:0]] && critical && tracking &&
+     // RECOVERABLE already handles every counted track and every armed
+     // uncounted track above. Exclude this unreachable fallback explicitly.
+     end else if(!RECOVERABLE && RECORD_ONLY && valid_tracks[si[4:0]] && !used[si[4:0]] && critical && tracking &&
         ((armed[si[4:0]] && old_id==0) || (MOTION_RECOVERY && old_id!=0 && counted_guard && !counted_retire_safe)))begin
       if(missing<(anchored_group ? 4 : 2) && (TAIL_RECOVERY || previous_speed*(missing+2)<=match_step || (MOTION_RECOVERY && anchor_consistent)))begin
        if(MOTION_RECOVERY)tracks[track_address]<={gap_motion[DX_BITS-1:0],missing+{{(GAP_BITS-1){1'b0}},1'b1},track_word[59:0]};
@@ -523,11 +493,6 @@ module classified_pocket_counter #(
      oi<=0;phase<=READ_APPLY;
     end
     APPLY:begin
-     if(STOP_POSITION && mapping[oi[OI_BITS-1:0]]!=32 && old_id!=0 &&
-        old_id==stop_query_id && target)begin
-      stop_position_pending<=1;stop_position_id<=old_id;
-      stop_position_x<=cx;stop_position_y<=cy;
-     end
      if(mapping[oi[OI_BITS-1:0]]!=32)begin
       if(LOCAL_RECOVERY)quarantined[mi]<=0;
       // The shared classifier owns kind/reason. Record its current result;
@@ -553,11 +518,6 @@ module classified_pocket_counter #(
      else phase<=PUBLISH;
     end
     ORDER_SCAN:begin
-     if(ADJACENT_V6 && STOP_POSITION && valid_tracks[si[4:0]] && old_id==diagnostic_query)query_flags[7]<=1;
-     if(STOP_POSITION && stop_query_id!=0 && valid_tracks[si[4:0]] && old_id==stop_query_id &&
-        (missing<4 || (braking && pending_empty)))begin
-      stop_search_valid<=1;stop_search_x<=query_search_x<0 ? 0 : query_search_x>1279 ? 1279 : query_search_x[10:0];stop_search_y<=old_y;
-     end
      // The leading armed identity owns the next number. A temporarily absent
      // earlier target blocks later genuine crossings; no pitch creates events.
      if(valid_tracks[si[4:0]] && (armed[si[4:0]] || (VELOCITY_ASSOC && state==ACQUIRE && old_confirm>=1)) && old_id==0 &&
@@ -579,11 +539,6 @@ module classified_pocket_counter #(
      if(total>=MAX_TOTAL)begin state<=DONE;phase<=PUBLISH;end
      else begin
       total<=total+1'b1;
-      // Only a currently observed track can seed the newly assigned query ID.
-      // Deferred crossings emitted while absent never become measurements.
-      if(STOP_POSITION && stop_query_id==total+9'd1 && used[event_slot] && missing==0)begin
-       stop_position_pending<=1;stop_position_id<=total+9'd1;stop_position_x<=old_x;stop_position_y<=old_y;
-      end
       // A deferred real crossing can be numbered while its target is absent.
       // Keep its gap displacement; clearing it makes the last measured centre
       // look current and can alias the next physical pocket on the next frame.
@@ -604,14 +559,7 @@ module classified_pocket_counter #(
       else phase<=PUBLISH;
      end
     end
-    PUBLISH:begin
-     // Publish ONLY a same-frame actual association after the entire frame
-     // survives motion/crossing checks. Candidate hold/prediction is not used.
-     stop_position_new<=STOP_POSITION && stop_position_pending && state==RUN && frame_trusted && !gap_open;
-     if(ADJACENT_V6)stop_diagnostic<={source_id,diagnostic_query,state,reason,detector_snapshot,
-       query_flags[7],stop_position_pending,frame_trusted,gap_open,(state==RUN),(state==HOLD),query_flags[1:0]};
-     snapshot_new<=1;busy<=0;phase<=WAIT;
-    end
+    PUBLISH:begin snapshot_new<=1;busy<=0;phase<=WAIT;end
     default:phase<=WAIT;
    endcase
   end

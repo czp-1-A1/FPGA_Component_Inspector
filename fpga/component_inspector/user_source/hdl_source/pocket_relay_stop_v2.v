@@ -1,10 +1,11 @@
 // Left station uses a second REAL ordered gate count. Global IDs are bound
 // only after a proved clear transport startup; predicted search is not position.
 module pocket_relay_stop_v2 #(
- parameter FIVE_EMPTY_V7=0,ADJACENT_V6=0,REACQUIRE_MS=500,RESTART_NEW_RUN=0,CLK_HZ=100000000,TARGET_X=160,ADVANCE_PX=16,POSITION_TOL_PX=8,
+ parameter DIRECT_GLOBAL_TRACK=0,REGISTER_HISTORY=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,REACQUIRE_MS=500,RESTART_NEW_RUN=0,CLK_HZ=100000000,TARGET_X=160,ADVANCE_PX=16,POSITION_TOL_PX=8,
  parameter STILL_PX=2,HOLD_MS=1000,STALE_MS=150,STOP_TIMEOUT_MS=1200,
  parameter ARRIVAL_TIMEOUT_MS=15000,QUEUE_DEPTH=32
 )(
+ input wire external_hold,
  input wire clk,rst_n,permit,pause,start_run,clear_run,good_frame,bad_frame,transport_occupied,
  input wire [31:0] current_frame,input wire [15:0] counter_run,station_run,
  input wire [2:0] counter_state,station_state,
@@ -24,7 +25,7 @@ module pocket_relay_stop_v2 #(
  output wire [63:0] status,output reg cycle_done
 );
  // Unconnected pause preserves legacy benches; production drives a real 0/1.
- wire paused=(pause===1'b1);
+ wire paused=(pause===1'b1);wire peer_holds=(external_hold===1'b1);
  reg feed_command;reg [2:0] empty_streak;reg alarm_latched;
  assign alarm_stop=FIVE_EMPTY_V7 && alarm_latched;
  assign feed_enable=feed_command && !paused && !alarm_stop;
@@ -42,25 +43,39 @@ module pocket_relay_stop_v2 #(
  reg [15:0] arrival_ms;reg [1:0] stable;reg have_position,have_source;
  reg [31:0] last_position_frame;
  reg retry_used;reg [8:0] frozen_head;reg [95:0] frozen_diagnostic;
- assign stationary_hint=ADJACENT_V6 && active && !feed_enable;
+ assign stationary_hint=ADJACENT_V6 && active && (!feed_enable || peer_holds);
  assign diagnostic=!ADJACENT_V6 ? 96'd0 : frozen_diagnostic[95] ? frozen_diagnostic :
   {1'b0,3'd0,active_run,position_age,station_diagnostic,4'd0};
  // Ordered P/E signature is checked before a local ID may drive a stop.
  // Valid prefix bounds guard this RAM; stale data from a previous run cannot
  // be read as a valid record. Equal-kind undetected skips still require field
  // sequence validation: numbering alone cannot prove an unseen physical hole.
- (* ram_style="distributed" *) reg [1:0] kind_history[0:299];
+ wire global_event_bad;wire [1:0] local_history_kind;
+ // Explicit distributed RAM avoids consuming an ERAM per lane for
+ // a 300-bit P/E signature. IDs and prefix bounds retain the original guards.
+ wire history_write=rst_n && !clear_run && !start_run && permit && active && state!=FAULT && event_valid && !global_event_bad;
+ generate if(DIRECT_GLOBAL_TRACK)begin
+  assign local_history_kind=0;
+ end else if(REGISTER_HISTORY)begin : signature_bits
+  (* ram_style="dram" *) reg memory[0:299];
+  always @(posedge clk)if(history_write)memory[event_id-9'd1]<=event_kind[0];
+  assign local_history_kind={1'b1,memory[station_event_id-9'd1]};
+ end else begin : legacy_signature
+  (* ram_style="distributed" *) reg [1:0] kind_history[0:299];
+  always @(posedge clk)if(history_write)kind_history[event_id-9'd1]<=event_kind;
+  assign local_history_kind=kind_history[station_event_id-9'd1];
+ end endgenerate
  reg [8:0] history_total,verified_total,verify_id;
  reg verify_pending;reg [1:0] expected_kind,observed_kind;
- wire global_event_bad=event_valid && (event_run!=active_run || event_id!=history_total+9'd1 ||
+ assign global_event_bad=event_valid && (event_run!=active_run || event_id!=history_total+9'd1 ||
   event_id>300 || event_id==0 || event_kind<2);
- wire local_event_bad=station_event_valid && (station_event_run!=active_run ||
+ wire local_event_bad=!DIRECT_GLOBAL_TRACK && station_event_valid && (station_event_run!=active_run ||
   station_event_id!=verified_total+9'd1 || station_event_id>history_total || station_event_id==0);
- wire signature_bad=verify_pending && expected_kind!=observed_kind;
+ wire signature_bad=!DIRECT_GLOBAL_TRACK && verify_pending && expected_kind!=observed_kind;
  wire tick=divider==DIV-1;
  assign query_id=count!=0 ? queue[rd] : 9'd0;
  wire measured=position_new && count!=0 && position_id==query_id &&
-  position_run==active_run && position_frame==current_frame && position_id<=station_total && position_id<=verified_total &&
+  position_run==active_run && position_frame==current_frame && (DIRECT_GLOBAL_TRACK ? position_id<=counter_total : position_id<=station_total && position_id<=verified_total) &&
   (!have_source || position_frame!=last_position_frame);
  wire push=active && event_valid && event_kind==3 && event_run==active_run && event_id>last_empty;
  wire within_x=position_x>=TARGET_X-POSITION_TOL_PX && position_x<=TARGET_X+POSITION_TOL_PX;
@@ -69,10 +84,10 @@ module pocket_relay_stop_v2 #(
  wire at_anchor={1'b0,position_x}+STILL_PX>=anchor_x && position_x<=anchor_x+STILL_PX &&
   {1'b0,position_y}+STILL_PX>=anchor_y && position_y<=anchor_y+STILL_PX;
  wire counter_fault=bad_frame || counter_state==3 || counter_state==4 || counter_state==6 ||
-  station_state==3 || station_state==4 || station_state==6;
- wire wrong_direction=(direction_valid && direction_right) || (station_dv && station_dr);
- wire uncertain=counter_uncertainty!=0 || station_uncertainty!=0;
- wire prefix_bad=counter_run!=active_run || station_run!=active_run || station_total>counter_total;
+  (!DIRECT_GLOBAL_TRACK && (station_state==3 || station_state==4 || station_state==6));
+ wire wrong_direction=(direction_valid && direction_right) || (!DIRECT_GLOBAL_TRACK && station_dv && station_dr);
+ wire uncertain=counter_uncertainty!=0 || (!DIRECT_GLOBAL_TRACK && station_uncertainty!=0);
+ wire prefix_bad=counter_run!=active_run || (!DIRECT_GLOBAL_TRACK && (station_run!=active_run || station_total>counter_total));
  wire healthy=!counter_fault && !wrong_direction && !uncertain && !prefix_bad &&
   !global_event_bad && !local_event_bad && !signature_bad && !(push && count==QUEUE_DEPTH);
  // Only proved, ordered GLOBAL IDs count; repeated frames and queue depth do not.
@@ -116,7 +131,7 @@ module pocket_relay_stop_v2 #(
     if(frame_age!=255)frame_age<=frame_age+1'b1;
     if(position_age!=255)position_age<=position_age+1'b1;
     if(!paused && (state==SETTLE || state==HOLD || (ADJACENT_V6 && (state==NEXT || state==REACQUIRE))) && phase_ms!=2047)phase_ms<=phase_ms+1'b1;
-    if(!paused && state==FEED && count!=0 && !have_source && arrival_ms!=65535)arrival_ms<=arrival_ms+1'b1;
+    if(!paused && !peer_holds && state==FEED && count!=0 && !have_source && arrival_ms!=65535)arrival_ms<=arrival_ms+1'b1;
    end
    if(good_frame)frame_age<=0;
    if(measured)begin
@@ -143,11 +158,11 @@ module pocket_relay_stop_v2 #(
    end else if(!permit)begin active<=0;feed_command<=0;if(state!=FAULT)state<=IDLE;end
    else if(active && state!=FAULT)begin
     if(event_valid && !global_event_bad)begin
-     kind_history[event_id-9'd1]<=event_kind;history_total<=event_id;
+     history_total<=event_id;
      if(FIVE_EMPTY_V7)empty_streak<=event_kind==3 ? (empty_streak<5 ? empty_streak+1'b1 : 3'd5) : 3'd0;
     end
     if(station_event_valid && !local_event_bad)begin
-     expected_kind<=kind_history[station_event_id-9'd1];observed_kind<=station_event_kind;
+     expected_kind<=local_history_kind;observed_kind<=station_event_kind;
      verify_id<=station_event_id;verify_pending<=1;
     end
     if(verify_pending && !signature_bad)verified_total<=verify_id;

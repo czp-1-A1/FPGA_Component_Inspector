@@ -1,3 +1,53 @@
+# D3 当前物理验收接续（2026-10-30 15:10，最高优先级）
+
+- 最新用户“继续”，保持原完整交付目标，不停在分析。主源码已恢复精确R11：FSS SHAf19d1305bea604ee4eeaef1d4ac073c03856f17df9451a32fe69855d454b5739，灰度两拍写地址/数据/valid及distance9保留。
+- 区域内固定搬移R12：六RGB/64目标、32768次literal三task时序对照均PASS，但实际映射21717>21216，已REJECTED_RESOURCE.json保留，绝不发布。currentFSS已按SHA恢复R11。R12 native_r4 kernel32924身份/输出目录核验后终止，ABORT_REASON.json，不选为PASS；原r11 native_r3 kernel29320仍运行，已到source11，各列4/P2/E2，最后12WB取消待收尾。
+- 当前唯一完整TD任务：r13 E:/2026FPGA/.codex_tmp/d3_dual_stop_build_r13_resource_seed3_20261030，session39145，来自R11完全相同704源+实际gate.db，EXACT_SYNTHESIS_REUSE.json证明，physical seed3。初步映射21065（776+20289）/99.29%，107ERAM31DSP；在Detailed Placement，完整布线/时序未验收。R11 placed SWNS+.061/HWNS-.264，只是Placed，不能说最终hold失败/PASS。R11此前被终止且ABORT_REASON保留；r13若失败可针对具体路径，或复制R11实际place.db到独立新构建opt_route续跑（不能声称重新SYN），不修改冻结目录。
+- R11最终选定24项软件证明已准备scripts/verify_d3_checks.py，严格核每个实际编译源/夹具/日志SHA、actualtop motor及metadata literal映射、observer恢复原件、distance穷举267648中心点。仍等待native_r3 verification.json所以尚未生成最终SOFTWARE_VERIFICATION.json；其他组已过源一致核验。最新UI d3_final_ui_r4绑定r13 SHA PASS。原d3_distance_selection_r1是R11源、65,536实际selector检查PASS；cache_address_r1全部20440字/20bank及取消恢复PASS；pixels_r7六完整RGB/64对象主区与R27B相同。
+- empty_native_r3 R11源已PASS：第二例FEdelay4000实测detector先于proof23120ns，accept在proof后10ns；第一例proof先于detector12430ns。真实完整RAW/原vendorRAM/两个LOCKING零事件/下一FS保护。
+- camera_r1已从R11实际gate.db导出303cell相机锥并PASS两复位x126串行I2C。导出首次把TCL正文pipe给交互TD出现missingbrace，已改为单行source完整TCL重跑并有export_camera.log，实际新网表SHA与回执绑定。r13复用同SHA gate.db可透明复用相机证据，不冒称新导出。非实物读回。
+- docs/D3_RESOURCE_ANALYSIS.md/.json及scripts/report_d3_resources.py提供同阶段对照；实际RL4 85.58%、RL7 89.42%、R27B89.14%，不能把R27B综合96.74和最终89.14混比。初始D3综合25976→22821，省3155估算Slice/4DSP；r12失败已明确。新docs D3_DISTANCE_BOUNDS.json已恢复绑定最终FSS。
+- scripts/publish_dual_stop_d3.py已准备，需最终物理严格审计、24软件PASS、704 Git HEAD blob一致才可--check-only再发布。目标R27B_DualCount_DualStop_D3_20261030.bit，release r27b_dual_count_dual_stop_d3_20261030，固定BIT_FLASH副本+SHA，保护旧RL7/D2/以太网R2。尚未提交本轮Git、尚未产生可交付bit。audit_dual_stop_d3.py期望ERAM107/DSP31，原49bounds/20Gray/9邮箱/双alarm→注册V2，约束未松。
+
+# D3 资源优化接续（2026-10-30 14:49，以下为历史）
+
+- 用户最新追问86%双列计数/85%单列为何合并超限，要求认真资源优化；仍保持两列识别/计数/停车交付目标。不能切功能、降队列、松SDC，只优化重复计算和存储表示。
+- 已从实际final.area核实：RL4 18156/85.58%，RL7 18972/89.42%（下文某处18672是RL6），R27B 18913/89.14%。R27B SYN Slice*=20524/96.74%，不能拿综合估算与最终Slice混比。R27B101ERAM，初始D3重复左计数SYN25976/122.44%，直接全局tracker r9为22886/107.87%、107ERAM32DSP。scripts/report_d3_resources.py输出逐报告SHA和层级占用，docs/D3_RESOURCE_ANALYSIS.json尚待当前candidate完整报告刷新。
+- r9实际映射21496超限；r10同源seed2初步映射20943可装下，但placed SWNS-1.049ns，主要cap_row→surface/write_address经过重复station行乘法和bankdecode。已核TD PID19940父23008为r10且无子进程后终止未完成r10，ABORT_REASON.json保留，不能称最终routed失败/PASS。没有bit交付。
+- 当前r11全新SYN+PHY（seed2）冻结704源/107依赖，E:/2026FPGA/.codex_tmp/d3_dual_stop_build_r11_resource_opt_20261030，session22077。仅另改frame_shape_search/local_edge_surface_check：固定1280x720四区存储distance12→9（瞬时distance仍12，非本配置仍12）；四区267648坐标穷举最大324，docs/D3_DISTANCE_BOUNDS.json。缓存写入先选row再乘一次42、address/data/enable成对两拍、cancel同时清有效，captured跟实际commit，原DUAL_STOP0不变。r11冻结后生产源未再改。
+- 当前新增检查：d3_resource_opt_pixels_r7六完整RGB/64目标、主608+trace与R27B逐位PASS；d3_resource_cache_address_r1穷举20440字/20bank的地址数据、所有边界/间隙/空闲、双阶段取消恢复PASS。tests/dual_stop_d3/tb_d3_cache_address.sv。
+- r9冻结完整RAW final_native_r2已PASS：12真实1920x1080 RAW/24全显示/22940160精确像素、双P,E,E,P/变速/WB取消/实际顶层DDR映射，permit0故不冒称RAW停车周期。新r11要跑同源绑定，不能拿r9不同缓存/FSS源当最终。
+- final_empty_r2虽PASS但两例都proof先于detector，没有early-result顺序覆盖；tb_d3_empty_native第二例FEdelay已1200→4000，新r11 empty_native_r3 session26497运行中，需确认实测第二例detector先于proof。13direct_cases_r3/keys_real_second_r2/metadata_final_r2/tracker_guards_r1的编译核心源未受本次两文件改动影响，可逐SHA核后复用；OSD检查编译了FSS/cache即使未实例化，也要新选绑定回执。
+- 无子代理、无硬件动作、无推送。r11还需真实资源/严格原约束setup+hold审计、相机实际SYN锥串行I2C、最终SHA封包并复制BIT_FLASH；保护旧RL7/D2/只读R2。
+
+# D3 执行中最新状态（2026-10-30，以下为过程历史）
+
+- 最新14:15：r8布局后的真实最差路径是surface/edge_no→read_address，15逻辑级，SWNS-2.516ns；已核TD PID29204的父进程为本r8构建且无子进程后只终止该TD，r8/ABORT_REASON.json留证，未完成路由且无bit交付。不能当“完整routed失败”或PASS。
+- 新r9 E:/2026FPGA/.codex_tmp/d3_dual_stop_build_r9_20261030，session44480，704源/107依赖，seed4，全新SYN+PHY正在执行。包含tracker sourceFS检查pending/waiting，以及DUAL_STOP灰度地址两拍：phase2/5寄存row/column/zone，3/6算地址，8/9等RAM，10/11等sampled_q，再4/7取样；每个取样增加一拍，旧DUAL_STOP0完全不变。新d3_address_pipeline_pixels_r6六完整RGB/64目标主区逐位R27B对照PASS。r9目前与当前全部704生产源相同（后续以SHA核验为准）。
+- keys_real_second_r2已经两项PASS：27按键检查、真实100MHz/100000000周期完整1秒。13项final_cases_r3、三UI、1024metadata已PASS。scripts/check_d3_observed_counter.py及docs/D3_OBSERVED_COUNTER_PROOF.json证明观察副本仅新增7只读输出/7assign，恢复后与R27B原文完全一致；另有每拍1197公开位对照。
+- 原native_r1 session75400仍跑旧r8缓存，在第5源后已有真实双列事件；源在运行后更改了local_edge_surface_check，因此结束时原runner会报源hash变化，不选最终新缓存回归。只能作为被替代候选诊断，不能改runner绕过校验。最终native须指向r9冻结project而非活动源码，再新跑真实RAW/顶层/DDR/显示；可按新时序改动用足够帧数验证，不能用旧R27B PASS冒充。
+
+
+- 用户已回复“执行”，持续做到两列识别/计数/停车和可审阅交付；不再询问同意，不烧录/操纵硬件，不开子代理。工作树/分支仍D:/CodexWork/FPGA_R22_Relay_20261027的codex/r27b-dual-count-and-stop-d3，尚未提交本轮文件。
+- 资源路线已经改变：两套完整左站分别计数实际24361 Slice超限；共享两核仅综合25744（r4）/加R27B不可达分支保护25358（r5），收益不足，均拒绝交付。保留它们的冻结目录证据，生产.al已去掉parking_station_counter/pipeline/shared_counter/service四文件，不能继续把它们当当前实现。
+- 当前生产：R27B classified_pocket_counter.v原文件SHA67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c未改；observed_classified_pocket_counter.v是其只增加只读snapshot/motion/radius/真实event坐标输出的副本，原状态转移完全相同。classified_count_pipeline新增OBSERVE_PARKING选择，双列默认观察副本、单核旧默认原件。global_empty_position_tracker仅关联已全局编号的EMPTY，每列32任务状态，共用一个小FSM；预测只用于关联/提示，position_new只给同ID/当前帧唯一实测EMPTY。主计数仍接原R27B四候选，算法/输入不扩区不改。pocket_relay_stop_v2新增DIRECT_GLOBAL_TRACK=1使用全局ID，不再本地重计数/签名比对；原150ms/有界重定位/完整1000ms/五空/新RUN/各列队列、共电机&互锁、四键SW3、V2无LED保留。
+- FPGA资源证据：r6直接全局跟踪综合23096，实际物理映射21253/21216超37，未交付。r7固定候选mux/共享bank选择综合22947。r8复用现有UI数字转换器取消停车文字除法，综合22951，实际映射21015（776+20239）已装下，正在完整PHY；最终资源/时序以最终报告为准。
+- 当前真实构建E:/2026FPGA/.codex_tmp/d3_dual_stop_build_r8_20261030，704源/107硬件依赖，seed4，session35398（TD PID29204，13:58:35启动；最新处于opt_place/post-place normal nets routing，时序仍负，不能发布）。r8冻结后加了source_start时检查tracker pending/waiting_result的保护（原只检查phase）；所以r8即使通过也不等于当前最终源，须新r9冻结并全构建。其他生产文件目前没有后改。
+- 当前最终源码的13项direct_final_cases_r3全部PASS：case0交错、1同时、2/3每列五连独立锁停+单清、4变速4+P+4、5暂停、6漏1帧、7漏7帧返回、8永久丢失、9错类别、10不清零连跑两轮530帧、11两列各四空不合并报警、alarm_control21项实际提取top motor逻辑（legacy控制器负例单位作用，不冒称双列端到端）。所有传送用真实main+站候选，无force位置/事件；每拍1197公开位与原R27B核对照，每个发布坐标与独立物理ID轨迹对照。负例8/9保留ID锁F6且无旧坐标完成。结果E:/2026FPGA/.codex_tmp/d3_direct_final_cases_r3_20261030/verification.json。
+- 已有六完整RGB/64真实对象主区逐位与R27B对照PASS（d3_pixels_banked_cache_r5）；三完整UI栅格/双列计数ID列表/双黄窗/两列十进制状态/原子快照/三拍PASS（d3_osd_formatter_r1）。d3_metadata_proto_r1的1024实际top映射随机PASS，需核提取块仍literal并重跑最终夹具。旧shared/rawcore51628通过只属于被拒绝资源原型，不选最终功能证据。
+- 正在跑native：session75400，vsimk PID2040（14:01:27启动），d3_native_r1_20261030。12源实际RAW10、100MHz处理/27FPS native cadence、真demosaic/WB/vendorERAM、AUTO_RELAY1且permit0、实际提取top元数据映射接DDR、逐像素完整显示。仅仿真计数/显示，不冒称RAW停车周期/光学召回。当前仅前两源已完成，未PASS；不可停止/复用原R27B旧PASS冒充本轮。scripts/relay_left_native_check.py新增--extra-rtl。
+- keys_real_second_r2 session67063：tb_d3_keys已PASS27项单键/CDC/六SW3；tb_d3_real_second正在100MHz整100000000周期计时。之前keys_hold_r1第二个旧.*夹具缺新端口编译失败，已用V7对应夹具+external_hold0+DIRECT_GLOBAL_TRACK1修正，不是生产故障也不选旧失败为PASS。
+- scripts/audit_dual_stop_d3.py已准备，以旧严格物理审计为基础，仍49bound/20Gray/9mailboxes/四键/V2/无LED，检查两个alarm FF到实际motor输出FF；未执行，需最终r9真正routed后运行，可能需适配层级名字但不能放松约束。还需只读导出实际SYN网表并做camera_cone两复位x126串行I2C；旧导出TCL参考d2_single_stop_second_lane_build_r4_20261029/export_camera.tcl。需要生成observer可复原字节证明、最终source/fixture冻结、Git blob审计、publisher、严格资源/时序通过后交付bit并核BIT_FLASH副本SHA。所有旧bit/只读R2不改。
+
+# R27B 双列计数与停车合并（2026-10-30，最高优先级）
+
+- 用户已明确确认：队友 R27B 双列计数实板成功，必须作为成功计数基线保留，不能归咎于 R27B。新任务是两列识别/独立计数/停车；一个电机协调两列，K1/K2/K3/K4、V2板载5V/无LED/完整1秒/各列五空报警保留。分支codex/r27b-dual-count-and-stop-d3，从0df23c84建；无子代理，无硬件动作。
+- 交接ZIP SHA2a4dc51449708d797bcea40dc4b4c102e05042a2ce1836cde04d7d9b1cf3070c，解包E:/2026FPGA/.codex_tmp/r27b_dual_merge_handoff_20261030/R27B_DualColumn_Code_and_Handoff；2341载荷/680冻结源逐SHA通过。原附带AGENTS只是交接资料，不覆盖本工程规则。4个新回放在r27b_merge_analysis_replay_20261030：two_region_count、restart_epoch(123072)、empty_result_proof(202)、sparse_equivalence(14图)全部PASS。用户要求多分析R27B已有修复，必须携带R25稀疏扫描/队列预读、R26新epoch、R27 early-result/proof汇合、R27B平衡选择器，不能只移植双计数wrapper。
+- 已确认并独立负例复现D2顶层错误：frame_view取[1038:783]而原计数在[886:631]，下列[1038:887]被当ID改写，且[782:631]152位未驱动；实测夹具下列y0=480变0，标签跑y80。证据r27b_merge_analysis_replay_20261030/metadata_negative/vsim.log，不能称修复PASS。此前ISP/DDR回归未覆盖实际顶层格式变换。R27B按ORIGINAL_META_WIDTH+bank*256显式映射可避免。新交付必须补顶层连通回归。
+- 最新用户要求多分析R27B怎么解决消失/超时。本机追加11项原R27B恢复/排序/持续丢失/容量测试，合计15项PASS；docs/R27B_ANALYSIS_REPLAY_VERIFICATION.json逐项核实际编译源SHA/仿真完成。R27B LOCAL_RECOVERY可设置uncertainty_from后继续其他真实计数；不能用这种不确定编号直接停车。C6帧结果与F6队首位置新鲜度是两层条件，现有F6是150ms后有界重定位。主计数器仍与交接字节一致SHA67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c。
+- 当前生产RTL已导入并开发D3原型，未出新bit。D2视频是RUN0，不可宣称已计数C6；密集超时仍需复现。详见docs/R27B_DUAL_STOP_MERGE_ANALYSIS.md。元数据1024随机、主区六RGB对照、265帧12对象/五次完整1秒传送已局部PASS，不能当整体交付。第三次综合probe_r3估算25976/21216 Slice*=122.44%、107ERAM/35DSP，未布局布线，拒绝交付；前两次3视频FIFO被临时RAM补齐挤入DRAM，第三次显式20x1024缓存银行已解决该溢出但计算逻辑仍过量。不可削功能/放松SDC。
+- 只共享两个左站的资源优化原型：shared_parking_station_counter.v由scripts/generate_shared_station_counter.py生成，94份上下文存储银行化、397公开位51628选中时钟等价PASS；主R27B计数两核不共享不改。服务调度尚未实现/接入，也未加入.al。parking_station_pipeline新增EXTERNAL_COUNTER默认0与397bit响应适配，最近编辑未重跑。工作树含未完成原型，不可打包或称整体通过；下一步需冻结/集成/新帧预算/资源/严格时序。无后台构建或硬件动作。送料默认仍屏幕右→左（旧用户确认），R27B视频右向运动是计数成功证据，不等于停车方向改了。
+
 # D2 保留单列停车并加第二条识别（2026-10-29，当前入口，用户纠正D1范围）
 
 - 已交付D2：E:/2026FPGA/BIT_FLASH/R22_SingleStop_SecondRecognition_D2_20261029.bit，SHA1b2d3c1b0e279b53e8245fe8acd61db0ce6c69e37ae1ff3d9419fbab938803ae，与R4构建/发布原件一致。源码57793ece（生产44664cbe），分支codex/r22-single-stop-plus-second-recognition-d2，未推送。最终独立seed4，Slice19713/21216=92.92%、ERAM106/108、DSP30/40、PLL5/6，SWNS+.038/HWNS+.020/双TNS0。18项选定软件检查和原49bound/20Gray/9邮箱/四键SW3/V2/实际报警互锁审计PASS；R4相机303单元两复位×126完整串行I2C PASS。全部TD/ModelSim已结束，无硬件动作。

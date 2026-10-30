@@ -1,7 +1,7 @@
 // All inputs are in the 100 MHz processing domain. The counter is driven by
 // source results, never VS/DDR readout. The 256-bit extension accompanies the
 // unchanged legacy metadata through the existing slot/epoch attachment.
-module classified_count_pipeline #(parameter ADJACENT_V6=0,STOP_POSITION=0,LINE_X=640,STOP_CYCLES=15000000,PAGE_CYCLES=200000000,DIAGNOSTICS=0,RECORD_ONLY=0,MOTION_RECOVERY=0,TAIL_RECOVERY=0,OBS_PER_REGION=2,ORDERED_HANDOFF=0,RECOVERABLE=0,VELOCITY_ASSOC=0,LOCAL_RECOVERY=0)(
+module classified_count_pipeline #(parameter OBSERVE_PARKING=0,LINE_X=640,STOP_CYCLES=15000000,PAGE_CYCLES=200000000,DIAGNOSTICS=0,RECORD_ONLY=0,MOTION_RECOVERY=0,TAIL_RECOVERY=0,OBS_PER_REGION=2,ORDERED_HANDOFF=0,RECOVERABLE=0,VELOCITY_ASSOC=0,LOCAL_RECOVERY=0)(
  input wire clk,rst_n,source_start,frame_commit,frame_bad,sample_new,
  input wire [63:0] config_tag,input wire [152*OBS_PER_REGION-1:0] objects,input wire [31:0] empty_probe,
  input wire [16:0] command,
@@ -11,17 +11,14 @@ module classified_count_pipeline #(parameter ADJACENT_V6=0,STOP_POSITION=0,LINE_
  output wire [8:0] event_id,output wire [31:0] event_frame,
  output wire [1:0] event_kind,output wire [3:0] event_reason,
  output wire hold_valid,output wire [10:0] hold_x,output wire [9:0] hold_y,
- input wire [8:0] stop_query_id,
- input wire stop_stationary,input wire [7:0] stop_detector_diagnostic,input wire [8:0] stop_detector_id,
- output wire [63:0] stop_diagnostic,output wire [5:0] stop_search_radius,
- output wire stop_position_new,output wire [8:0] stop_position_id,
- output wire [10:0] stop_position_x,output wire [9:0] stop_position_y,
- output wire [15:0] stop_position_run,output wire [31:0] stop_position_frame,
- output wire stop_begin,stop_clear,stop_good_frame,stop_bad_frame,
- output wire [31:0] stop_current_frame,output wire [15:0] stop_run,
- output wire [2:0] stop_state,output wire stop_direction_valid,stop_direction_right,
- output wire [8:0] stop_total,stop_uncertainty,
- output wire stop_search_valid,output wire [10:0] stop_search_x,output wire [9:0] stop_search_y
+ // Passive process-domain status for parking. No counter or epoch behavior changes.
+ output wire parking_snapshot,parking_motion_valid,parking_seed_valid,
+ output wire signed [12:0] parking_dx,output wire [5:0] parking_radius,
+ output wire [10:0] parking_seed_x,output wire [9:0] parking_seed_y,
+ output wire parking_start,parking_clear,parking_good,parking_bad,
+ output wire [15:0] parking_run,output wire [31:0] parking_frame,
+ output wire [2:0] parking_state,output wire parking_dv,parking_dr,
+ output wire [8:0] parking_total,parking_uncertainty
 );
  reg [15:0] command_seen,visible_run;reg [31:0] source_id;
  reg epoch_open,proved,result_seen,epoch_bad;reg [31:0] probe_snapshot;
@@ -31,17 +28,16 @@ module classified_count_pipeline #(parameter ADJACENT_V6=0,STOP_POSITION=0,LINE_
  wire timeout_bad=silence==STOP_CYCLES-1 && !timeout_sent;
  wire lost_epoch=source_start && epoch_open && (!proved || !result_seen);
  wire reject=(frame_bad && epoch_open) || timeout_bad || lost_epoch;
- wire accept=sample_new && proved && !epoch_bad && !frame_bad && !source_start;
+ wire accept=sample_new && (!RECORD_ONLY || epoch_open) && proved && !epoch_bad && !frame_bad && !source_start &&
+  !(RECORD_ONLY && (begin_run || end_run));
  wire busy,snapshot_new,dv,dr,region;wire [2:0] state;wire [3:0] reason;
  wire [15:0] run;wire [8:0] total,pt,et,rt;wire [35:0] ids;
  reg [8:0] empty_address;wire [8:0] empty_value;
  wire [5:0] unused_ledger;wire [15:0] diagnostic;wire [8:0] uncertainty_from;
- classified_pocket_counter #(.ADJACENT_V6(ADJACENT_V6),.STOP_POSITION(STOP_POSITION),.LINE_X(LINE_X),.HYST(RECORD_ONLY ? 4 : 3),.RECORD_ONLY(RECORD_ONLY),.MOTION_RECOVERY(MOTION_RECOVERY),.TAIL_RECOVERY(TAIL_RECOVERY),.OBS_PER_REGION(OBS_PER_REGION),.ORDERED_HANDOFF(ORDERED_HANDOFF),.RECOVERABLE(RECOVERABLE),.VELOCITY_ASSOC(VELOCITY_ASSOC),.LOCAL_RECOVERY(LOCAL_RECOVERY)) counter(
-  .stop_stationary(stop_stationary),.stop_detector_diagnostic(stop_detector_diagnostic),.stop_detector_id(stop_detector_id),.stop_diagnostic(stop_diagnostic),.stop_search_radius(stop_search_radius),
-  .stop_query_id(stop_query_id),.stop_position_new(stop_position_new),.stop_position_id(stop_position_id),
-  .stop_position_x(stop_position_x),.stop_position_y(stop_position_y),
-  .stop_position_run(stop_position_run),.stop_position_frame(stop_position_frame),
-  .stop_search_valid(stop_search_valid),.stop_search_x(stop_search_x),.stop_search_y(stop_search_y),
+ generate if(OBSERVE_PARKING)begin : observe_counter
+ observed_classified_pocket_counter #(.LINE_X(LINE_X),.HYST(RECORD_ONLY ? 4 : 3),.RECORD_ONLY(RECORD_ONLY),.MOTION_RECOVERY(MOTION_RECOVERY),.TAIL_RECOVERY(TAIL_RECOVERY),.OBS_PER_REGION(OBS_PER_REGION),.ORDERED_HANDOFF(ORDERED_HANDOFF),.RECOVERABLE(RECOVERABLE),.VELOCITY_ASSOC(VELOCITY_ASSOC),.LOCAL_RECOVERY(LOCAL_RECOVERY)) counter(
+  .parking_snapshot(parking_snapshot),.parking_motion_valid(parking_motion_valid),.parking_seed_valid(parking_seed_valid),
+  .parking_dx(parking_dx),.parking_radius(parking_radius),.parking_seed_x(parking_seed_x),.parking_seed_y(parking_seed_y),
   .clk(clk),.rst_n(rst_n),.start_run(begin_run),.finish_run(end_run),.frame_bad(reject),
   .sample_new(accept),.frame_id(source_id),.config_tag(config_tag),.objects(objects),
   .busy(busy),.snapshot_new(snapshot_new),.state(state),.reason(reason),.run_id(run),
@@ -51,11 +47,24 @@ module classified_count_pipeline #(parameter ADJACENT_V6=0,STOP_POSITION=0,LINE_
   .event_kind(event_kind),.event_reason(event_reason),
   .hold_valid(hold_valid),.hold_x(hold_x),.hold_y(hold_y),.diagnostic(diagnostic),.uncertainty_from(uncertainty_from),
   .ledger_address(9'd511),.ledger_data(unused_ledger),.empty_address(empty_address),.empty_id(empty_value));
- assign stop_total=total;assign stop_uncertainty=uncertainty_from;
- assign stop_begin=begin_run;assign stop_clear=end_run;
- assign stop_good_frame=accept;assign stop_bad_frame=reject;
- assign stop_current_frame=source_id;assign stop_run=run;assign stop_state=state;
- assign stop_direction_valid=dv;assign stop_direction_right=dr;
+ end else begin : original_counter
+ classified_pocket_counter #(.LINE_X(LINE_X),.HYST(RECORD_ONLY ? 4 : 3),.RECORD_ONLY(RECORD_ONLY),.MOTION_RECOVERY(MOTION_RECOVERY),.TAIL_RECOVERY(TAIL_RECOVERY),.OBS_PER_REGION(OBS_PER_REGION),.ORDERED_HANDOFF(ORDERED_HANDOFF),.RECOVERABLE(RECOVERABLE),.VELOCITY_ASSOC(VELOCITY_ASSOC),.LOCAL_RECOVERY(LOCAL_RECOVERY)) counter(
+  .clk(clk),.rst_n(rst_n),.start_run(begin_run),.finish_run(end_run),.frame_bad(reject),
+  .sample_new(accept),.frame_id(source_id),.config_tag(config_tag),.objects(objects),
+  .busy(busy),.snapshot_new(snapshot_new),.state(state),.reason(reason),.run_id(run),
+  .total(total),.present_total(pt),.empty_total(et),.review_total(rt),
+  .direction_valid(dv),.direction_right(dr),.region(region),.object_ids(ids),
+  .event_valid(event_valid),.event_run(event_run),.event_id(event_id),.event_frame(event_frame),
+  .event_kind(event_kind),.event_reason(event_reason),
+  .hold_valid(hold_valid),.hold_x(hold_x),.hold_y(hold_y),.diagnostic(diagnostic),.uncertainty_from(uncertainty_from),
+  .ledger_address(9'd511),.ledger_data(unused_ledger),.empty_address(empty_address),.empty_id(empty_value));
+ assign parking_snapshot=snapshot_new;assign parking_motion_valid=0;assign parking_seed_valid=0;
+ assign parking_dx=0;assign parking_radius=0;assign parking_seed_x=0;assign parking_seed_y=0;
+ end endgenerate
+ assign parking_start=begin_run;assign parking_clear=end_run;
+ assign parking_good=accept;assign parking_bad=reject;
+ assign parking_run=run;assign parking_frame=source_id;assign parking_state=state;
+ assign parking_dv=dv;assign parking_dr=dr;assign parking_total=total;assign parking_uncertainty=uncertainty_from;
  reg [8:0] last_id;reg [1:0] last_kind;reg [3:0] last_reason;
  reg [5:0] page;reg [71:0] page_ids;
  reg [3:0] fetch;reg [2:0] lane;reg [1:0] wait_read;
@@ -96,7 +105,10 @@ module classified_count_pipeline #(parameter ADJACENT_V6=0,STOP_POSITION=0,LINE_
     if(RECORD_ONLY)begin
      visible_run<=end_run ? 16'd0 : visible_run+16'd1;
      silence<=0;timeout_sent<=0;frame_pending<=0;build_pending<=1;settle<=3;fetch<=0;
-     if(end_run)begin frame_record<=0;epoch_open<=0;proved<=0;result_seen<=0;epoch_bad<=0;end
+     // A new run cannot inherit a partly captured/result-pending old frame.
+     // Join only an FS on this edge or the next FS; timeout protection stays
+     // active while waiting. Source IDs and the internal run stay monotonic.
+     frame_record<=0;epoch_open<=begin_run && source_start;proved<=0;result_seen<=0;epoch_bad<=0;
     end
    end
    if(event_valid && !begin_run && !(RECORD_ONLY && end_run))begin last_id<=event_id;last_kind<=event_kind;last_reason<=event_reason;end
@@ -120,4 +132,53 @@ module classified_count_pipeline #(parameter ADJACENT_V6=0,STOP_POSITION=0,LINE_
    end
   end
  end
+endmodule
+
+// Each bank sees only its own classified observations. Source proof and user
+// commands are shared; identities, direction, recovery and empty lists are not.
+// Both records must belong to the current source epoch before publication.
+module dual_region_count_pipeline #(
+ parameter OBSERVE_PARKING=1,LINE_X=640,STOP_CYCLES=15000000,PAGE_CYCLES=200000000,
+ parameter DIAGNOSTICS=0,RECORD_ONLY=1,MOTION_RECOVERY=1,TAIL_RECOVERY=1,
+ parameter OBS_PER_REGION=4,ORDERED_HANDOFF=1,RECOVERABLE=1,VELOCITY_ASSOC=1,LOCAL_RECOVERY=1
+)(
+ input wire clk,rst_n,source_start,frame_commit,frame_bad,sample_new,
+ input wire [63:0] config_tag,input wire [152*OBS_PER_REGION-1:0] objects,
+ input wire [31:0] empty_probe,input wire [16:0] command,
+ output wire [511:0] frame_record,live_record,output wire record_ready,
+ output wire [1:0] event_valid,output wire [31:0] event_run,
+ output wire [17:0] event_id,output wire [63:0] event_frame,
+ output wire [3:0] event_kind,output wire [7:0] event_reason,
+ output wire [1:0] hold_valid,output wire [21:0] hold_x,output wire [19:0] hold_y,
+ output wire [1:0] parking_snapshot,parking_motion_valid,parking_seed_valid,
+ output wire [25:0] parking_dx,output wire [11:0] parking_radius,
+ output wire [21:0] parking_seed_x,output wire [19:0] parking_seed_y,
+ output wire [1:0] parking_start,parking_clear,parking_good,parking_bad,
+ output wire [31:0] parking_run,output wire [63:0] parking_frame,
+ output wire [5:0] parking_state,output wire [1:0] parking_dv,parking_dr,
+ output wire [17:0] parking_total,parking_uncertainty
+);
+ wire [1:0] ready;
+ genvar bank;
+ generate for(bank=0;bank<2;bank=bank+1)begin : regions
+  wire [152*OBS_PER_REGION-1:0] isolated_objects;
+  if(bank==0)assign isolated_objects={{(76*OBS_PER_REGION){1'b0}},objects[0+:76*OBS_PER_REGION]};
+  else assign isolated_objects={objects[76*OBS_PER_REGION+:76*OBS_PER_REGION],{(76*OBS_PER_REGION){1'b0}}};
+  classified_count_pipeline #(.OBSERVE_PARKING(OBSERVE_PARKING),.LINE_X(LINE_X),.STOP_CYCLES(STOP_CYCLES),.PAGE_CYCLES(PAGE_CYCLES),
+   .DIAGNOSTICS(DIAGNOSTICS),.RECORD_ONLY(RECORD_ONLY),.MOTION_RECOVERY(MOTION_RECOVERY),
+   .TAIL_RECOVERY(TAIL_RECOVERY),.OBS_PER_REGION(OBS_PER_REGION),.ORDERED_HANDOFF(ORDERED_HANDOFF),
+   .RECOVERABLE(RECOVERABLE),.VELOCITY_ASSOC(VELOCITY_ASSOC),.LOCAL_RECOVERY(LOCAL_RECOVERY)) pipeline(
+   .clk(clk),.rst_n(rst_n),.source_start(source_start),.frame_commit(frame_commit),.frame_bad(frame_bad),
+   .sample_new(sample_new),.config_tag(config_tag),.objects(isolated_objects),.empty_probe(empty_probe),.command(command),
+   .frame_record(frame_record[bank*256+:256]),.live_record(live_record[bank*256+:256]),.record_ready(ready[bank]),
+   .event_valid(event_valid[bank]),.event_run(event_run[bank*16+:16]),.event_id(event_id[bank*9+:9]),
+   .event_frame(event_frame[bank*32+:32]),.event_kind(event_kind[bank*2+:2]),.event_reason(event_reason[bank*4+:4]),
+   .hold_valid(hold_valid[bank]),.hold_x(hold_x[bank*11+:11]),.hold_y(hold_y[bank*10+:10]),
+   .parking_snapshot(parking_snapshot[bank]),.parking_motion_valid(parking_motion_valid[bank]),.parking_seed_valid(parking_seed_valid[bank]),
+   .parking_dx(parking_dx[bank*13+:13]),.parking_radius(parking_radius[bank*6+:6]),.parking_seed_x(parking_seed_x[bank*11+:11]),.parking_seed_y(parking_seed_y[bank*10+:10]),
+   .parking_start(parking_start[bank]),.parking_clear(parking_clear[bank]),.parking_good(parking_good[bank]),.parking_bad(parking_bad[bank]),
+   .parking_run(parking_run[bank*16+:16]),.parking_frame(parking_frame[bank*32+:32]),.parking_state(parking_state[bank*3+:3]),
+   .parking_dv(parking_dv[bank]),.parking_dr(parking_dr[bank]),.parking_total(parking_total[bank*9+:9]),.parking_uncertainty(parking_uncertainty[bank*9+:9]));
+ end endgenerate
+ assign record_ready=&ready;
 endmodule

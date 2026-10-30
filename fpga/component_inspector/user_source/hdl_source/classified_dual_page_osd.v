@@ -1,10 +1,11 @@
 // Original page is the unchanged 5509006 experiment_osd module. Page selection changes only in vertical blank.
 // Sampling UI. Three pixel clocks for RGB, DE, HS, VS and ENABLE bypass.
 module classified_dual_page_osd #(
- parameter SECOND_LANE=0,RECOGNITION_ONLY=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,REPORT_NUMBER_GAPS=1,COMPACT_UI=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,WIDTH=1024,HEIGHT=600,DIAG_BITS=26,RESOLUTION_V11=0,REGIONS=0,CALIBRATION=0,
+ parameter AUTO_RELAY=0,RELAY_TARGET_X=152,RELAY_TOL_PX=80,DUAL_REGION_COUNT=0,PRESENT_TRACE=0,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,REPORT_NUMBER_GAPS=1,COMPACT_UI=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,WIDTH=1024,HEIGHT=600,DIAG_BITS=26,RESOLUTION_V11=0,REGIONS=0,CALIBRATION=0,
  parameter LOCAL_SEARCH=0,SHAPE_MODEL=0,TRACKING=0,MULTI_POCKETS=0,DIRECT_DETECTION=0,CLASS_THRESHOLD=58,ENABLE=1,ROI_X0=256,ROI_X1=768,ROI_Y0=172,ROI_Y1=428,
  parameter SAMPLE_X0=472,SAMPLE_X1=552,SAMPLE_Y0=260,SAMPLE_Y1=340,HOLE_Y=220,FRAME_OBJECTS=0
 )(
+ input wire [127:0] relay_status,input wire [2:0] relay_mode,input wire relay_motor,
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,
  input wire [15:0] exposure,gain,
  input wire [7:0] wb_r,wb_b,input wire wb_tune,wb_pending,
@@ -20,12 +21,10 @@ module classified_dual_page_osd #(
  input wire track_valid,input wire [10:0] track_x0,track_x1,
  input wire [3:0] track_reason,input wire [2:0] track_rows,
  output wire out_vs,out_hs,out_de,output wire [23:0] out_rgb,
- input wire [151:0] second_lane_objects,
  input wire [(REGIONS ? 304 : 152)-1:0] frame_objects,
  input wire [127:0] calibration_record,input wire calibration_valid,
  input wire [3:0] local_wait_reason,
- input wire [255:0] count_live_record,count_frame_record,input wire count_eligible,
- input wire [63:0] relay_status,input wire [95:0] relay_diagnostic,input wire [2:0] relay_control_mode,
+ input wire [256*(1+DUAL_REGION_COUNT)-1:0] count_live_record,count_frame_record,input wire count_eligible,
  input wire count_page_switch
 );
 wire lv,lh,ld;wire [23:0] legacy_rgb;
@@ -109,16 +108,17 @@ end else begin
  assign cv=0;assign ch=0;assign cd=0;assign count_logo=0;assign count_rgb=0;
 end endgenerate
 generate if(COMPACT_UI)begin : compact_page
- compact_inspector_osd #(.SECOND_LANE(SECOND_LANE),.RECOGNITION_ONLY(RECOGNITION_ONLY),.FIVE_EMPTY_V7(FIVE_EMPTY_V7),.ADJACENT_V6(ADJACENT_V6),.RELAY_CLEAN_UI(RELAY_CLEAN_UI),.RELAY_KEYS_V3(RELAY_KEYS_V3),.RELAY_LEFT_LAYOUT(RELAY_LEFT_LAYOUT),.AUTO_RELAY(AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_ADVANCE_PX(RELAY_ADVANCE_PX),.RELAY_TOL_PX(RELAY_TOL_PX),.BUILD_R22(BUILD_R22),.EMPTY_TRACE(EMPTY_TRACE),.BUILD_R20(BUILD_R20),.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE),.REPORT_NUMBER_GAPS(REPORT_NUMBER_GAPS),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.DIAG_BITS(DIAG_BITS),.ENABLE(ENABLE)) render(
+ compact_inspector_osd #(.AUTO_RELAY(AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_TOL_PX(RELAY_TOL_PX),.DUAL_REGION_COUNT(DUAL_REGION_COUNT),.PRESENT_TRACE(PRESENT_TRACE),.BUILD_R22(BUILD_R22),.EMPTY_TRACE(EMPTY_TRACE),.BUILD_R20(BUILD_R20),.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE),.REPORT_NUMBER_GAPS(REPORT_NUMBER_GAPS),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.DIAG_BITS(DIAG_BITS),.ENABLE(ENABLE)) render(
+ .relay_status(relay_status),.relay_mode(relay_mode),.relay_motor(relay_motor),
  .clk(clk),.rst_n(rst_n),.vs(vs),.hs(hs),.de(de),.rgb(rgb),.page(page_s),
  .exposure(exposure),.gain(gain),.fps(fps),.width(width),.height(height),
  .wb_r(wb_r),.wb_b(wb_b),.roi_mean(roi_mean),.roi_min(roi_min),.roi_max(roi_max),
  .wb_tune(wb_tune),.wb_pending(wb_pending),.roi_valid(roi_valid),.cfg_done(cfg_done),
  .view_mode(view_mode),.edge_count(edge_count),.lane_errors(lane_errors),.format_errors(format_errors),
  .i2c_errors(i2c_errors),.gaps(gaps),.overflow_frames(overflow_frames),.lost_frames(lost_frames),.underflow_frames(underflow_frames),
- .frames(frames),.diagnostics(diagnostics),.publish_diagnostic(publish_diagnostic),.second_lane_objects(second_lane_objects),.objects(frame_objects),
+ .frames(frames),.diagnostics(diagnostics),.publish_diagnostic(publish_diagnostic),.objects(frame_objects),
  .calibration_record(calibration_record),.calibration_valid(calibration_valid),.local_wait_reason(local_wait_reason),
- .relay_status(relay_status),.relay_diagnostic(relay_diagnostic),.relay_control_mode(relay_control_mode),.live_record(count_live_record),.frame_record(count_frame_record),.eligible(count_eligible),
+ .live_record(count_live_record),.frame_record(count_frame_record),.eligible(count_eligible),
  .out_vs(out_vs),.out_hs(out_hs),.out_de(out_de),.out_rgb(out_rgb));
 end else begin : unchanged_pages
  assign out_vs=lv;assign out_hs=lh;assign out_de=ld;

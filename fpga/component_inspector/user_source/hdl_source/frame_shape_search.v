@@ -2,7 +2,8 @@
 // Legacy: two objects. REGIONS: two independently bound zones, two objects each.
 // A shared flood-fill engine runs during vertical blanking, without video backpressure.
 module frame_shape_search #(
- parameter SECOND_LANE=0,ADJACENT_V6=0,WIDTH=1024,HEIGHT=600,REGIONS=0,RELAY_LEFT_LAYOUT=0,
+ parameter DUAL_STOP=0,PRESENT_TRACE=0,SPARSE_ROW_SCAN=0,
+ parameter WIDTH=1024,HEIGHT=600,REGIONS=0,DUAL_REGION_COUNT=0,
  parameter INDEXED_CANDIDATES=1,
  // Counting-only trial margin from upstream's measured six-cell extent.
  // A phase-eroded locating hole can also measure six cells. Expand only in
@@ -36,25 +37,30 @@ module frame_shape_search #(
  output wire [303:0] region_objects,output wire [31:0] empty_probe,
  // Extra classified neighbours stay in this processing domain. Original UI
  // always receives its original best2, independently of this counting sideband.
- output wire [607:0] recorder_objects,
- output wire [303:0] second_lane_objects,
+ output wire [607:0] recorder_objects,output wire [607:0] station_objects,
+ input wire [1:0] station_hold_valid,station_hold_empty_only,input wire [21:0] station_hold_x,input wire [19:0] station_hold_y,
+ input wire [11:0] station_hold_radius,output wire [1:0] transport_occupied,
  input wire recorder_hold_valid,input wire [10:0] recorder_hold_x,input wire [9:0] recorder_hold_y,
- input wire repair_hold_valid,input wire [10:0] repair_hold_x,input wire [9:0] repair_hold_y,
- input wire [5:0] repair_hold_radius,input wire repair_empty_only,input wire [8:0] repair_hold_id,output wire [8:0] repair_diagnostic_id,output wire [7:0] repair_diagnostic,
- output wire transport_occupied,
+ input wire recorder_hold_valid2,input wire [10:0] recorder_hold_x2,input wire [9:0] recorder_hold_y2,
  output wire [127:0] probe_record,output wire probe_ready
 );
 // Average each 2x2 source block; every source pixel contributes. Detection
 // covers WIDTH x HEIGHT, with a half-size internal mask. 220 mm needs new calibration.
 localparam W=WIDTH/2,H=HEIGHT/2,WORDS=W*H/4;
 localparam INDEXED=INDEXED_CANDIDATES && REGIONS && COUNT_CANDIDATES && !EMPTY_DIAGNOSTICS;
-localparam ZONES=SECOND_LANE ? 3 : 2,RB=$clog2(ZONES),SB=RB+2;
+localparam ZONES=DUAL_STOP ? 4 : 2,RB=$clog2(ZONES),SB=RB+2;
+// Only in the fixed 1280x720 four-zone configuration, retained candidates
+// are inside a zone: max Manhattan distance is 240+84=324 (<512).
+// Keep the full transient distance for out-of-zone diagnostics and all
+// other configurations; only the valid, retained distance banks narrow.
+localparam DIST_BITS=DUAL_STOP && REGIONS && WIDTH==1280 && HEIGHT==720 ? 9 : 12;
 reg [151:0] legacy_objects;reg [303:0] legacy_region_objects;reg [ZONES*304-1:0] recorder_storage;
 assign objects=INDEXED ? (ready ? recorder_storage[151:0] : 152'd0) : legacy_objects;
 assign region_objects=INDEXED ? (ready ? {recorder_storage[455:304],recorder_storage[151:0]} : 304'd0) : legacy_region_objects;
 assign recorder_objects=INDEXED ? (ready ? recorder_storage[607:0] : 608'd0) : recorder_storage[607:0];
-generate if(SECOND_LANE)assign second_lane_objects=ready ? recorder_storage[608+:304] : 304'd0;
-else assign second_lane_objects=0;endgenerate
+generate if(DUAL_STOP)assign station_objects=ready ? recorder_storage[608+:608] : 608'd0;
+else assign station_objects=0;endgenerate
+reg [1:0] occupied_pending;assign transport_occupied=occupied_pending;
  localparam XB=$clog2(W),YB=$clog2(H),QB=XB+YB;
 reg [7:0] mask [0:WORDS-1];reg [QB-1:0] queue [0:1023];
 reg [17:0] pair_line [0:WIDTH/4-1];reg [17:0] pair_q,pair_d;
@@ -73,6 +79,7 @@ wire [1:0] half_dark={block1[9:2]<=FOREGROUND,block0[9:2]<=FOREGROUND};
 reg [1:0] first_fg,first_dark;
 reg [15:0] cap_addr;reg [7:0] cap_data;reg cap_write,cap_last,seen;
 reg [15:0] cap_count;reg [17:0] capture_foreground;
+reg [YB-1:0] cap_row;wire small_capture_foreground;
 reg small_pass;
 wire processed_body_we;wire [15:0] processed_body_addr;
 // Certify complete words connected to a border or a >=44-cell horizontal run.
@@ -117,14 +124,14 @@ always @(posedge clk or negedge rst_n)begin
  else if(!cap_write && back_count!=0)begin back_count<=back_count-1'b1;back_addr<=back_addr-1'b1;end
 end
 always @(posedge clk or negedge rst_n)begin
- if(!rst_n)begin accept_d<=0;x_d<=0;y_d<=0;pair_d<=0;first_fg<=0;first_dark<=0;cap_write<=0;cap_last<=0;cap_addr<=0;cap_data<=0;border_left<=0;cap_ignored<=0;cap_column<=0;foreground_run<=0;cap_backfill<=0;end
+ if(!rst_n)begin accept_d<=0;x_d<=0;y_d<=0;pair_d<=0;first_fg<=0;first_dark<=0;cap_write<=0;cap_last<=0;cap_addr<=0;cap_data<=0;border_left<=0;cap_ignored<=0;cap_column<=0;foreground_run<=0;cap_backfill<=0;cap_row<=0;end
  else begin
   accept_d<=pixel_accept && !invalidate && !frame_start;x_d<=pixel_x;y_d<=pixel_y;pair_d<={pair1,pair0};
   cap_write<=accept_d && y_d[0] && x_d[2] && !invalidate && !frame_start;
   cap_last<=x_d==WIDTH-4 && y_d==HEIGHT-1;cap_addr<=address(x_d[10:1],y_d[9:1]);
   if(accept_d && y_d[0] && !x_d[2])begin first_fg<=half_fg;first_dark<=half_dark;end
   cap_data<={half_dark,first_dark,(ignore_capture_word ? 4'd0 : capture_fg_word)};
-  cap_ignored<=ignore_capture_word;cap_column<=x_d[10:3];
+  cap_ignored<=ignore_capture_word;cap_column<=x_d[10:3];cap_row<=y_d[9:1];
   cap_backfill<=REGIONS && (&capture_fg_word) && foreground_run==10 && !border_left;
   if(accept_d && y_d[0] && x_d[2])begin
    border_left<=ignore_capture_word;
@@ -175,6 +182,7 @@ generate if(SMALL_HOLES)begin : small_holes
   x_d<8 || x_d==WIDTH-4 || (y_d>SMALL_Y0+1 && line_q) || (x_d>=8 && left_border) || foreground_run==10);
  reg [3:0] cap_small;reg cap_ignore,cap_inside;
  wire capture=cap_write && cap_inside;
+ assign small_capture_foreground=cap_inside && |cap_small;
  // Once T100 has identified a body, its T80 rectangle is already accounted
  // for. Certify it through the existing one-bit map instead of flooding it
  // twice. This also prevents low-threshold fragments inside it becoming holes.
@@ -219,7 +227,7 @@ generate if(SMALL_HOLES)begin : small_holes
  assign small_q=read_inside_d ? (forward ? forward_value : read_value) : 4'd0;
  assign small_ignored=!read_inside_d || read_ignore;
 end else begin : no_small_holes
- assign small_q=0;assign small_ignored=0;
+ assign small_q=0;assign small_ignored=0;assign small_capture_foreground=0;
 end endgenerate
 localparam IDLE=0,SCAN_REQ=1,SCAN_WAIT=2,SCAN_CHECK=3,SEED_MARK=4,
  POP_REQ=5,POP_WAIT=6,POP_VALUE=7,NEIGH_REQ=8,NEIGH_WAIT=9,NEIGH_CHECK=10,
@@ -233,8 +241,8 @@ reg [5:0] candidate_after_phase;
 // candidate bank. T80 must independently measure the EXACT bounding box.
 // One synchronous-read contour cache, no pixel RAM and no array reset.
 localparam HIGH_BOX_BITS=2*(XB+YB);
-(* ram_style="distributed" *) reg [HIGH_BOX_BITS-1:0] high_boxes[0:ZONES*4-1];
-reg [11:0] high_distances[0:ZONES*4-1];reg [ZONES*4-1:0] high_valid;
+(* ram_style="dram" *) reg [HIGH_BOX_BITS-1:0] high_boxes[0:ZONES*4-1];
+reg [DIST_BITS-1:0] high_distances[0:ZONES*4-1];reg [ZONES*4-1:0] high_valid;
 reg [SB-1:0] high_index;reg [HIGH_BOX_BITS-1:0] high_box_q;
 reg high_confirmed;
 always @(posedge clk)if(phase==HIGH_REQ)high_box_q<=high_boxes[high_index];
@@ -253,10 +261,7 @@ reg [17:0] component_area;
 wire [83:0] region_bounds;wire [31:0] region_models;
 wire [239:0] region_recipes;wire [1:0] region_supported;
 generate if(REGIONS)begin : regions
- inspection_region_config #(.WIDTH(WIDTH),.HEIGHT(HEIGHT),
-  .X00(RELAY_LEFT_LAYOUT ? 448 : WIDTH*5/16),.X01(RELAY_LEFT_LAYOUT ? 832 : WIDTH*11/16),
-  .X10(RELAY_LEFT_LAYOUT ? 64 : WIDTH*5/16),.X11(RELAY_LEFT_LAYOUT ? 448 : WIDTH*11/16),
-  .Y10(RELAY_LEFT_LAYOUT ? HEIGHT/3 : HEIGHT*3/5),.Y11(RELAY_LEFT_LAYOUT ? HEIGHT*5/9 : HEIGHT*5/6)) cfg(region_bounds,region_models,region_recipes,region_supported);
+ inspection_region_config #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) cfg(region_bounds,region_models,region_recipes,region_supported);
 end else begin : full_frame
  assign region_bounds=0;assign region_models=0;assign region_recipes=0;assign region_supported=0;
 end endgenerate
@@ -267,16 +272,16 @@ endfunction
 wire [10:0] center_x=({1'b0,xmin}+xmax),center_y=({1'b0,ymin}+ymax);
 wire in_region0=inside_region(center_x,center_y[9:0],region_bounds[41:0]);
 wire in_region1=inside_region(center_x,center_y[9:0],region_bounds[83:42]);
-localparam [10:0] SECOND_X0=WIDTH*5/16,SECOND_X1=WIDTH*11/16;
-localparam [9:0] SECOND_Y0=HEIGHT*3/5,SECOND_Y1=HEIGHT*5/6;
-localparam [41:0] SECOND_BOUNDS={SECOND_X0,SECOND_X1,SECOND_Y0,SECOND_Y1};
-wire in_region2=SECOND_LANE && inside_region(center_x,center_y[9:0],SECOND_BOUNDS);
-wire [RB-1:0] region_now=in_region0 ? 0 : in_region1 ? 1 : SECOND_LANE && in_region2 ? 2 : 0;
-wire allowed_now=!REGIONS || ((in_region0 || in_region1 || in_region2) && (region_now==2 ? region_supported[0] : region_supported[region_now]));
-reg held_valid;reg [10:0] held_x;reg [9:0] held_y;reg [ZONES-1:0] held_found;
-reg [8:0] repair_id;reg repair_valid,repair_only_empty;reg [5:0] repair_radius;reg [3:0] repair_seen;reg [10:0] repair_x;reg [9:0] repair_y;reg occupied_pending;
+localparam [10:0] ST_X0=64,ST_X1=400;
+localparam [9:0] ST_Y00=HEIGHT/3,ST_Y01=HEIGHT*5/9,ST_Y10=HEIGHT*3/5,ST_Y11=HEIGHT*5/6;
+localparam [41:0] ST_BOUNDS0={ST_X0,ST_X1,ST_Y00,ST_Y01},ST_BOUNDS1={ST_X0,ST_X1,ST_Y10,ST_Y11};
+wire in_region2=DUAL_STOP && inside_region(center_x,center_y[9:0],ST_BOUNDS0);
+wire in_region3=DUAL_STOP && inside_region(center_x,center_y[9:0],ST_BOUNDS1);
+wire [RB-1:0] region_now=in_region0 ? 0 : in_region1 ? 1 : in_region2 ? 2 : in_region3 ? 3 : 0;
+wire allowed_now=!REGIONS || ((in_region0 || in_region1 || in_region2 || in_region3) && region_supported[region_now[0]]);
+reg held_valid,held_valid2;reg [10:0] held_x,held_x2;reg [9:0] held_y,held_y2;reg [ZONES-1:0] held_found;
 reg [RB-1:0] candidate_region;reg candidate_allowed;reg [11:0] distance;
-wire [41:0] candidate_bounds=candidate_region==2 ? SECOND_BOUNDS : candidate_region==1 ? region_bounds[83:42] : region_bounds[41:0];
+wire [41:0] candidate_bounds=DUAL_STOP && candidate_region>=2 ? (candidate_region[0] ? ST_BOUNDS1 : ST_BOUNDS0) : candidate_region[0] ? region_bounds[83:42] : region_bounds[41:0];
 wire [10:0] target_x=REGIONS ? ({1'b0,candidate_bounds[41:31]}+candidate_bounds[30:20])/2 : WIDTH/2;
 wire [10:0] target_y=REGIONS ? ({1'b0,candidate_bounds[19:10]}+candidate_bounds[9:0])/2 : HEIGHT/2;
 wire [10:0] dx=center_x>target_x ? center_x-target_x : target_x-center_x;
@@ -289,7 +294,7 @@ wire [9:0] width_now={1'b0,xmax}-xmin+1'b1,height_now={1'b0,ymax}-ymin+1'b1;
 reg [9:0] long_side,short_side;
 reg [22:0] fg20,area17,fg5,area3,fg10,area9,fg4;
 reg [13:0] long20,short21,short31,long5,short7,short9;
-wire [119:0] profile=candidate_region==1 ? region_recipes[239:120] : region_recipes[119:0];
+wire [119:0] profile=candidate_region[0] ? region_recipes[239:120] : region_recipes[119:0];
 wire [7:0] p_lmin=REGIONS ? profile[7:0] : PRESENT_LONG_MIN,p_lmax=REGIONS ? profile[15:8] : PRESENT_LONG_MAX;
 wire [7:0] p_smin=REGIONS ? profile[23:16] : PRESENT_SHORT_MIN,p_smax=REGIONS ? profile[31:24] : PRESENT_SHORT_MAX;
 wire [7:0] r_lmax=REGIONS ? profile[39:32] : REVIEW_LONG_MAX,r_smax=REGIONS ? profile[47:40] : REVIEW_SHORT_MAX;
@@ -312,7 +317,7 @@ wire circular=long5<=short7 && fg5>=area3 && fg10<=area9;
 // The anchor comes only from a recognized body in THIS source frame. No
 // previous/bad-frame row is reused and no unobserved pocket is generated.
 reg [ZONES-1:0] row_anchor_valid;
-reg [10:0] row_anchor_y [0:ZONES-1];reg [11:0] row_anchor_distance [0:ZONES-1];
+reg [10:0] row_anchor_y [0:ZONES-1];reg [DIST_BITS-1:0] row_anchor_distance [0:ZONES-1];
 wire row_anchor_available=ROW_GUARDED_BRIGHT_EMPTY && REGIONS && row_anchor_valid[candidate_region];
 wire [10:0] empty_row_target=row_anchor_available ? row_anchor_y[candidate_region] : target_y;
 wire [10:0] empty_row_delta=center_y>empty_row_target ? center_y-empty_row_target : empty_row_target-center_y;
@@ -353,25 +358,41 @@ wire covers_body;
 wire high_lookup=MULTITHRESHOLD_EMPTY && small_pass && width_now==4 && height_now==4 && empty_geometry &&
  guarded_bright_empty && long5<=short7 && fg5>=area3 && fg10>area9 &&
  !sprocket_match && !covers_body;
-reg [SB-1:0] high_write_index;reg [11:0] high_worst;reg high_free;integer hi;
-// Region is captured in AREA_CALC. Select the old-bank replacement in SCALE,
-// then compare its registered score in COMPARE; no extra detection cycle.
-reg [SB-1:0] high_write_index_q;reg [11:0] high_worst_q;reg high_free_q;
-wire [SB-1:0] selected_high_index=SECOND_LANE ? high_write_index_q : high_write_index;
-wire [11:0] selected_high_worst=SECOND_LANE ? high_worst_q : high_worst;
-wire selected_high_free=SECOND_LANE ? high_free_q : high_free;
-always @*begin
- high_write_index={candidate_region,2'b00};high_worst=0;high_free=0;
- for(hi=0;hi<4;hi=hi+1)begin
-  if(!high_valid[{candidate_region,2'b00}+hi])begin
-   if(!high_free)high_write_index={candidate_region,2'b00}+hi;
-   high_free=1;
-  end else if(!high_free && high_distances[{candidate_region,2'b00}+hi]>=high_worst)begin
-   high_write_index={candidate_region,2'b00}+hi;
-   high_worst=high_distances[{candidate_region,2'b00}+hi];
-  end
+// Compute both banks before selecting the region. A balanced maximum keeps
+// candidate_region out of the serial distance-comparison/write-enable path.
+// Prefix masks preserve high_worst even when the first free slot stops the
+// old scan. Equal distances still select the last slot, and free slots the first.
+function [14:0] high_slot_choice;
+ input [3:0] valid;
+ input [11:0] d0,d1,d2,d3;
+ reg [11:0] p0,p1,p2,p3,m01,m23,worst;
+ reg [1:0] s01,s23,slot;
+ begin
+  p0=valid[0] ? d0 : 12'd0;
+  p1=(&valid[1:0]) ? d1 : 12'd0;
+  p2=(&valid[2:0]) ? d2 : 12'd0;
+  p3=(&valid) ? d3 : 12'd0;
+  if(p1>=p0)begin m01=p1;s01=1;end else begin m01=p0;s01=0;end
+  if(p3>=p2)begin m23=p3;s23=3;end else begin m23=p2;s23=2;end
+  if(m23>=m01)begin worst=m23;slot=s23;end else begin worst=m01;slot=s01;end
+  if(!valid[0])slot=0;
+  else if(!valid[1])slot=1;
+  else if(!valid[2])slot=2;
+  else if(!valid[3])slot=3;
+  high_slot_choice={!(&valid),worst,slot};
  end
-end
+endfunction
+wire [14:0] high_choices[0:ZONES-1];
+genvar hc;generate for(hc=0;hc<ZONES;hc=hc+1)begin : high_parallel
+ assign high_choices[hc]=high_slot_choice(high_valid[hc*4+:4],high_distances[hc*4],high_distances[hc*4+1],high_distances[hc*4+2],high_distances[hc*4+3]);
+end endgenerate
+wire [14:0] high_choice=high_choices[candidate_region];
+wire [SB-1:0] high_write_index={candidate_region,high_choice[1:0]};
+wire [11:0] high_worst=high_choice[13:2];wire high_free=high_choice[14];
+reg [SB-1:0] high_index_q;reg [11:0] high_worst_q;reg high_free_q;
+wire [SB-1:0] high_selected_index=DUAL_STOP ? high_index_q : high_write_index;
+wire [11:0] high_selected_worst=DUAL_STOP ? high_worst_q : high_worst;
+wire high_selected_free=DUAL_STOP ? high_free_q : high_free;
 wire [1:0] candidate_state=SMALL_HOLES ?
  (small_pass ? (sprocket_match ? 0 : (empty_match || (MULTITHRESHOLD_EMPTY && high_confirmed)) ? 3 : pose_match ? 2 : 1) : (present_match || present_review_match) ? 2 : 1) :
  sprocket_match ? 0 : (present_match || present_review_match) ? 2 : empty_match ? 3 : 1;
@@ -379,15 +400,16 @@ wire [3:0] candidate_reason={1'b0,(PLACEMENT_REVIEW ? fg5<{component_area,2'b00}
  long_side<p_lmin || long_side>p_lmax || short_side<p_smin || short_side>p_smax};
 localparam REGION_SLOTS=REGIONS && COUNT_CANDIDATES ? 4 : 2;
 localparam SLOTS=REGIONS ? ZONES*REGION_SLOTS : 2;
-reg found_bank [0:SLOTS-1];reg [11:0] distance_bank [0:SLOTS-1];reg [17:0] count_bank [0:SLOTS-1];
+reg found_bank [0:SLOTS-1];reg [DIST_BITS-1:0] distance_bank [0:SLOTS-1];reg [17:0] count_bank [0:SLOTS-1];
 reg [XB-1:0] xmin_bank [0:SLOTS-1],xmax_bank [0:SLOTS-1];
 reg [YB-1:0] ymin_bank [0:SLOTS-1],ymax_bank [0:SLOTS-1];
 reg [1:0] state_bank [0:SLOTS-1];reg [3:0] reason_bank [0:SLOTS-1];
 reg weak_bank[0:SLOTS-1];reg [15:0] dark_bank[0:SLOTS-1];
 localparam SURFACE_ACTIVE=SURFACE_REVIEW && REGIONS;
 wire surface_ready,surface_normal,surface_empty_ok;wire [31:0] local_edge_strengths;
+wire present_trace_select;wire [100:0] present_trace_metrics;
 reg [$clog2(SLOTS)-1:0] ref_index;reg legacy_pair_selected;
-wire surface_needed=(SURFACE_ACTIVE && state_bank[ref_index]==2 && !weak_bank[ref_index]) ||
+wire surface_needed=(SURFACE_ACTIVE && (!DUAL_STOP || ref_index<8) && state_bank[ref_index]==2 && !weak_bank[ref_index]) ||
  (LOCAL_EDGE_ASSIST && REGIONS && state_bank[ref_index]==3);
 wire [RB-1:0] edge_reference_region=REGIONS ? ref_index/REGION_SLOTS : 0;
 localparam GEOMETRY_BITS=2*(XB+YB);
@@ -400,8 +422,8 @@ wire [1:0] pack_order=pack_index[1:0]==0 ? 2'd3 : pack_index[1:0]==1 ? 2'd0 : pa
 wire [SB-1:0] pack_slot={pack_index[SB-1:2],pack_order};
 wire swap0=found_bank[1] && xmin_bank[1]<xmin_bank[0];
 wire swap1=found_bank[5] && xmin_bank[5]<xmin_bank[4];
-wire swap2=SECOND_LANE && found_bank[SLOTS-3] && xmin_bank[SLOTS-3]<xmin_bank[SLOTS-4];
-wire [SB-1:0] pack_destination=pack_slot[1:0]<2 && (pack_slot[SB-1:2]==2 ? swap2 : pack_slot[2] ? swap1 : swap0) ? pack_slot^1 : pack_slot;
+wire pack_swap=found_bank[{pack_slot[SB-1:2],2'd1}] && xmin_bank[{pack_slot[SB-1:2],2'd1}]<xmin_bank[{pack_slot[SB-1:2],2'd0}];
+wire [SB-1:0] pack_destination=pack_slot[1:0]<2 && pack_swap ? pack_slot^1 : pack_slot;
 wire geometry_read=INDEXED && ((phase==COVER_REQ) || (phase==COVER_SCAN && cover_index!=3) ||
  (phase==REF_ORIGIN && found_bank[ref_index]) || phase==PACK_REQ || (phase==PACK_SCAN && pack_index!=ZONES*4-1));
 wire [SB-1:0] next_pack_index=pack_index+1'b1;
@@ -422,7 +444,7 @@ always @*begin
  for(free_i=0;free_i<4;free_i=free_i+1)if(!retained_pending[free_i] && !free_found)begin allocated_record=free_i;free_found=1;end
 end
 generate if(INDEXED)begin : indexed_geometry
- reg [GEOMETRY_BITS-1:0] memory[0:ZONES*4-1];reg [GEOMETRY_BITS-1:0] q;
+ (* ram_style="dram" *) reg [GEOMETRY_BITS-1:0] memory[0:ZONES*4-1];reg [GEOMETRY_BITS-1:0] q;
  always @(posedge clk)begin
   if(rst_n && !frame_start && !invalidate && !pixel_sof)begin
    if(phase==CAND_COMMIT && pending_new)memory[{candidate_region,allocated_record}]<={ymax,ymin,xmax,xmin};
@@ -436,15 +458,12 @@ end endgenerate
 wire [$clog2(SLOTS)-1:0] bank0=candidate_region*REGION_SLOTS,bank1=bank0+1'b1;
 wire [$clog2(SLOTS)-1:0] bank2=COUNT_CANDIDATES && REGIONS ? bank0+2 : bank0,bank3=COUNT_CANDIDATES && REGIONS ? bank0+3 : bank0;
 wire candidate_preferred=candidate_state>=2;
-wire use_repair=RELAY_LEFT_LAYOUT && candidate_region==1;
-wire [10:0] selected_hold_x=use_repair ? repair_x : held_x;
-wire [9:0] selected_hold_y=use_repair ? repair_y : held_y;
-wire selected_hold_valid=use_repair ? repair_valid : held_valid && (!SECOND_LANE || candidate_region==0);
-wire [10:0] held_dx=center_x>selected_hold_x ? center_x-selected_hold_x : selected_hold_x-center_x;
-wire [10:0] held_dy=center_y>selected_hold_y ? center_y-selected_hold_y : selected_hold_y-center_y;
-wire [5:0] selected_radius=ADJACENT_V6 && use_repair ? repair_radius : 6'd12;
-wire preferred_main=COUNT_CANDIDATES && REGIONS && selected_hold_valid && candidate_preferred &&
- (!ADJACENT_V6 || !use_repair || !repair_only_empty || candidate_state==3) && held_dx<=selected_radius && held_dy<=16;
+wire [10:0] selected_held_x=DUAL_STOP && candidate_region>=2 ? station_hold_x[candidate_region[0]*11+:11] : DUAL_REGION_COUNT && candidate_region[0] ? held_x2 : held_x;
+wire [9:0] selected_held_y=DUAL_STOP && candidate_region>=2 ? station_hold_y[candidate_region[0]*10+:10] : DUAL_REGION_COUNT && candidate_region[0] ? held_y2 : held_y;
+wire selected_held_valid=DUAL_STOP && candidate_region>=2 ? station_hold_valid[candidate_region[0]] : DUAL_REGION_COUNT && candidate_region[0] ? held_valid2 : held_valid;
+wire [10:0] held_dx=center_x>selected_held_x ? center_x-selected_held_x : selected_held_x-center_x;
+wire [10:0] held_dy=center_y>selected_held_y ? center_y-selected_held_y : selected_held_y-center_y;
+wire preferred_main=COUNT_CANDIDATES && REGIONS && selected_held_valid && candidate_preferred && (!DUAL_STOP || candidate_region<2 || !station_hold_empty_only[candidate_region[0]] || candidate_state==3) && held_dx<=(DUAL_STOP && candidate_region>=2 ? station_hold_radius[candidate_region[0]*6+:6] : 6'd12) && held_dy<=16;
 wire before_best=!found_bank[bank0] || (candidate_preferred && state_bank[bank0]<2) ||
  ((candidate_preferred==(state_bank[bank0]>=2)) && (distance<distance_bank[bank0] ||
  (distance==distance_bank[bank0] && component_count>count_bank[bank0])));
@@ -477,7 +496,7 @@ always @*begin
   else if(found_bank[{candidate_region,old_source[1:0]}])retained_now[pointer_bank[{candidate_region,old_source[1:0]}]]=1;
  end
 end
-wire found=found_bank[0] || found_bank[1] || (REGIONS && (found_bank[REGION_SLOTS] || found_bank[REGION_SLOTS+1])) || (SECOND_LANE && (found_bank[SLOTS-REGION_SLOTS] || found_bank[SLOTS-REGION_SLOTS+1]));
+reg found;integer fi;always @*begin found=0;for(fi=0;fi<ZONES;fi=fi+1)if(fi==0 || REGIONS)found=found || found_bank[fi*REGION_SLOTS] || found_bank[fi*REGION_SLOTS+1];end
 
 reg [8:0] left_dark,right_dark;
 reg ref_side;reg [2:0] ref_word;reg [6:0] ref_row;
@@ -508,7 +527,7 @@ wire [2:0] context_edge_sum=context_edge_dark+context_edge_word;
 wire context_edge_ok=context_upper_edge_ok && context_edge_sum<=2;
 wire context_reference_ok=context_vertical_ok &&
  (context_left_ok || context_left_edge) && (context_sector_ok || context_edge_ok);
-wire [7:0] ref_min=local_empty_ref ? 8'd48 : REGIONS ? (ref_index/REGION_SLOTS==1 ? region_recipes[239:232] : region_recipes[119:112]) : 8'd240;
+wire [7:0] ref_min=local_empty_ref ? 8'd48 : REGIONS ? ((ref_index/REGION_SLOTS)%2 ? region_recipes[239:232] : region_recipes[119:112]) : 8'd240;
 wire signed [10:0] strip_start=context_ref ?
  (ref_side ? (ref_row[2] ? $signed({1'b0,context_x1})+11'sd1 : $signed({1'b0,context_x0})-11'sd8) : $signed({1'b0,origin_x})-11'sd4) :
  $signed({1'b0,origin_x})+(local_empty_ref ? (ref_side ? 11'sd4 : -11'sd12) : (ref_side ? 11'sd20 : -11'sd28));
@@ -591,9 +610,25 @@ generate for(slot=0;slot<4;slot=slot+1)begin : region_seed
  assign seed_mask[slot]=!REGIONS ||
   (region_supported[0] && inside_region(seed_x,seed_y,region_bounds[41:0])) ||
   (region_supported[1] && inside_region(seed_x,seed_y,region_bounds[83:42])) ||
-  (SECOND_LANE && region_supported[0] && inside_region(seed_x,seed_y,SECOND_BOUNDS));
+  (DUAL_STOP && region_supported[0] && inside_region(seed_x,seed_y,ST_BOUNDS0)) ||
+  (DUAL_STOP && region_supported[1] && inside_region(seed_x,seed_y,ST_BOUNDS1));
 end endgenerate
 wire [3:0] seed_word=mem_q[3:0] & seed_mask & {4{!active_ignored}};
+// A conservative union of captured T100/T80 foreground rows. Later border
+// certificates/marking may only clear pixels, so a zero bit proves that the
+// whole row can be skipped in both passes. Dark-reference pixels stay intact.
+wire sparse_row_empty;
+generate if(SPARSE_ROW_SCAN)begin : sparse_rows
+ reg [H-1:0] occupied;
+ always @(posedge clk or negedge rst_n)begin
+  if(!rst_n)occupied<=0;
+  else if(frame_start || invalidate || pixel_sof)occupied<=0;
+  else if(cap_write && ((|cap_data[3:0]) || small_capture_foreground))occupied[cap_row]<=1'b1;
+ end
+ assign sparse_row_empty=!occupied[sy];
+end else begin : full_row_scan
+ assign sparse_row_empty=0;
+end endgenerate
 // Do not duplicate a body with a small low-threshold fragment. Conversely,
 // remove T100 fragments contained in a measured T80 empty/feed contour.
 assign covers_body=INDEXED ? covered_body : (found_bank[bank0] && state_bank[bank0]==2 && xmin<=xmax_bank[bank0] && xmax>=xmin_bank[bank0] && ymin<=ymax_bank[bank0] && ymax>=ymin_bank[bank0]) ||
@@ -622,39 +657,11 @@ generate if(REGIONS && EMPTY_DIAGNOSTICS)begin : empty_diagnostics
 end else begin : no_empty_diagnostics
  assign empty_probe=0;
 end endgenerate
-// Consumed only together with the proved sample_new; a no-candidate frame
-// finishes directly without going through PUBLISH in the original detector.
-assign transport_occupied=occupied_pending;
-// D[7:0]: hint valid, raw E, raw P, retained E, retained P,
-// reserved slot, result ready, unclassified primary. Passive same-frame trace.
-assign repair_diagnostic_id=ADJACENT_V6 ? repair_id : 9'd0;
-assign repair_diagnostic=ADJACENT_V6 ? {repair_valid,repair_seen,held_found[1],ready,(ready && state==1)} : 8'd0;
-wire [11:0] repair_packed_x={1'b0,packed_one[41:31]}+packed_one[30:20];
-wire [10:0] repair_packed_y={1'b0,packed_one[19:10]}+packed_one[9:0];
-wire repair_packed_near=repair_packed_x+{6'd0,repair_radius,1'b0}>={repair_x,1'b0} &&
- repair_packed_x<={repair_x,1'b0}+{6'd0,repair_radius,1'b0} &&
- repair_packed_y+11'd32>={repair_y,1'b0} && repair_packed_y<={repair_y,1'b0}+11'd32;
 always @(posedge clk or negedge rst_n)begin
- if(!rst_n)begin repair_id<=0;repair_valid<=0;repair_x<=0;repair_y<=0;repair_only_empty<=0;repair_radius<=12;repair_seen<=0;occupied_pending<=0;end
- else if(frame_start || invalidate || pixel_sof)begin
-  occupied_pending<=0;repair_seen<=0;
-  if(pixel_sof)begin
-   repair_id<=repair_hold_id;repair_valid<=RELAY_LEFT_LAYOUT && repair_hold_valid;repair_x<=repair_hold_x;repair_y<=repair_hold_y;
-   repair_only_empty<=ADJACENT_V6 && repair_empty_only;
-   repair_radius<=ADJACENT_V6 && repair_hold_radius!=0 && repair_hold_radius<=20 ? repair_hold_radius : 6'd12;
-  end
- end else begin
-  if(ADJACENT_V6 && repair_valid && phase==CAND_COMMIT && candidate_allowed && candidate_region==1 && held_dx<=repair_radius && held_dy<=16)begin
-   if(candidate_state==3)repair_seen[3]<=1;
-   if(candidate_state==2)repair_seen[2]<=1;
-  end
-  if(ADJACENT_V6 && repair_valid && phase==PACK_SCAN && pack_slot[SB-1:2]==1 && packed_one[75] && repair_packed_near)begin
-   if(packed_one[74:73]==3)repair_seen[1]<=1;
-   if(packed_one[74:73]==2)repair_seen[0]<=1;
-  end
-  if(RELAY_LEFT_LAYOUT && phase==CAND_COMMIT && candidate_allowed && candidate_preferred &&
-     (candidate_region==1 || (candidate_region==0 && center_x<=648)))occupied_pending<=1;
- end
+ if(!rst_n)occupied_pending<=0;
+ else if(frame_start || invalidate || pixel_sof)occupied_pending<=0;
+ else if(DUAL_STOP && phase==CAND_COMMIT && candidate_allowed && candidate_preferred &&
+   (candidate_region>=2 || center_x<=648))occupied_pending[candidate_region[0]]<=1;
 end
 integer bi;
 reg [9:0] trial_x,trial_y;reg neighbor_ok;
@@ -669,14 +676,14 @@ always @*begin
 end
 // Scan only the enabled regions; the shared mask still stores complete image context.
 reg [RB-1:0] scan_region;
-wire [41:0] scan_bounds=scan_region==2 ? SECOND_BOUNDS : scan_region==1 ? region_bounds[83:42] : region_bounds[41:0];
-wire [41:0] next_scan_bounds=SECOND_LANE && scan_region==1 ? SECOND_BOUNDS : region_bounds[83:42];
+wire [41:0] scan_bounds=scan_region>=2 ? (scan_region[0] ? ST_BOUNDS1 : ST_BOUNDS0) : scan_region[0] ? region_bounds[83:42] : region_bounds[41:0];
+wire [41:0] next_scan_bounds=scan_region==0 ? region_bounds[83:42] : scan_region==1 ? ST_BOUNDS0 : ST_BOUNDS1;
 wire [XB-1:0] scan_x0=REGIONS ? (scan_bounds[41:31]>>3)<<2 : 0;
 wire [XB-1:0] scan_xlast=REGIONS ? ((scan_bounds[30:20]-1)>>3)<<2 : W-4;
 wire [YB-1:0] scan_ylast=REGIONS ? (scan_bounds[9:0]-1)>>1 : H-1;
 task advance_scan;
  begin
-  if(sx>=scan_xlast)begin
+  if(sx>=scan_xlast || sparse_row_empty)begin
    sx<=scan_x0;
    if(sy>=scan_ylast)begin
     if(REGIONS && scan_region<ZONES-1)begin
@@ -755,10 +762,11 @@ always @(posedge clk or negedge rst_n)begin
   cover_index<=0;covered_body<=0;contained_mask<=0;retained_pending<=0;pending_new<=0;candidate_after_phase<=SCAN_REQ;
   pack_index<=0;pack_anchor<=0;pack_duplicate<=0;
   for(bi=0;bi<ZONES*4;bi=bi+1)pointer_bank[bi]<=bi%4;
-  high_write_index_q<=0;high_worst_q<=0;high_free_q<=0;high_valid<=0;high_index<=0;high_confirmed<=0;
-  held_valid<=0;held_x<=0;held_y<=0;held_found<=0;
+  high_valid<=0;high_index<=0;high_confirmed<=0;
+  held_valid<=0;held_x<=0;held_y<=0;held_valid2<=0;held_x2<=0;held_y2<=0;held_found<=0;
   edge_feed_observed<=0;row_anchor_valid<=0;
   for(bi=0;bi<ZONES;bi=bi+1)begin edge_feed_y[bi]<=0;row_anchor_y[bi]<=0;row_anchor_distance[bi]<=4095;end
+  high_index_q<=0;high_worst_q<=0;high_free_q<=0;
   small_pass<=0;ready<=0;sample_new<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;foreground_count<=0;box_width<=0;box_height<=0;
   box_x0<=0;box_x1<=0;box_y0<=0;box_y1<=0;seen<=0;cap_count<=0;capture_foreground<=0;phase<=IDLE;
   mem_addr<=0;mem_write_addr<=0;mem_data<=0;mem_write<=0;q_read<=0;q_write_addr<=0;q_data<=0;q_write<=0;
@@ -773,10 +781,11 @@ always @(posedge clk or negedge rst_n)begin
   left_dark<=0;right_dark<=0;context_dark<=0;context_good<=0;context_vertical_ok<=1;context_left_ok<=0;context_left_edge<=0;context_edge_dark<=0;context_upper_edge_ok<=0;
  end else begin
   sample_new<=0;mem_write<=0;q_write<=0;
-  if(frame_start || invalidate)begin high_valid<=0;high_confirmed<=0;held_valid<=0;held_found<=0;edge_feed_observed<=0;row_anchor_valid<=0;small_pass<=0;ready<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;phase<=IDLE;seen<=0;cap_count<=0;capture_foreground<=0;end
+  if(frame_start || invalidate)begin high_valid<=0;high_confirmed<=0;held_valid<=0;held_valid2<=0;held_found<=0;edge_feed_observed<=0;row_anchor_valid<=0;small_pass<=0;ready<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;phase<=IDLE;seen<=0;cap_count<=0;capture_foreground<=0;end
   else if(pixel_sof)begin
    high_valid<=0;high_confirmed<=0;
    held_valid<=COUNT_CANDIDATES && recorder_hold_valid;held_x<=recorder_hold_x;held_y<=recorder_hold_y;held_found<=0;
+   held_valid2<=COUNT_CANDIDATES && DUAL_REGION_COUNT && recorder_hold_valid2;held_x2<=recorder_hold_x2;held_y2<=recorder_hold_y2;
    edge_feed_observed<=0;row_anchor_valid<=0;small_pass<=0;scan_region<=0;seen<=1;cap_count<=0;capture_foreground<=0;ready<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;phase<=IDLE;
    foreground_count<=0;box_width<=0;box_height<=0;
    for(bi=0;bi<SLOTS;bi=bi+1)begin
@@ -811,7 +820,16 @@ always @(posedge clk or negedge rst_n)begin
    end
    POP_REQ:begin q_read<=q_head;phase<=POP_WAIT;end
    POP_WAIT:phase<=POP_VALUE;
-   POP_VALUE:begin cx<=q_q[XB-1:0];cy<=q_q[QB-1:XB];q_head<=q_head+1'b1;q_count<=q_count-1'b1;direction<=0;phase<=NEIGH_REQ;end
+   POP_VALUE:begin
+    cx<=q_q[XB-1:0];cy<=q_q[QB-1:XB];q_head<=q_head+1'b1;q_count<=q_count-1'b1;direction<=0;
+    // The queue word is already registered. Issue its first neighbour read
+    // here instead of spending a cycle copying the same coordinates first.
+    if(SPARSE_ROW_SCAN)begin
+     nx<=q_q[XB-1:0]-1'b1;ny<=q_q[QB-1:XB];
+     mem_addr<=address(q_q[XB-1:0]-1'b1,q_q[QB-1:XB]);
+     phase<=q_q[XB-1:0]!=0 ? NEIGH_WAIT : NEIGH_NEXT;
+    end else phase<=NEIGH_REQ;
+   end
    NEIGH_REQ:begin
     if(neighbor_ok)begin nx<=trial_x[XB-1:0];ny<=trial_y[YB-1:0];mem_addr<=address(trial_x[XB-1:0],trial_y[YB-1:0]);phase<=NEIGH_WAIT;end
     else phase<=NEIGH_NEXT;
@@ -832,7 +850,11 @@ always @(posedge clk or negedge rst_n)begin
     end
     if(!(neighbor_foreground && (q_count==1024 || component_count==W*H)))begin
      if(direction==3)begin
-      if(q_count==0 && !neighbor_foreground)phase<=AREA_CALC;else phase<=POP_REQ;
+      if(q_count==0 && !neighbor_foreground)phase<=AREA_CALC;
+      // Read an already queued head in this existing neighbour cycle. If the
+      // only pending word is being enqueued now, retain the RAM write/read gap.
+      else if(SPARSE_ROW_SCAN && q_count!=0)begin q_read<=q_head;phase<=POP_WAIT;end
+      else phase<=POP_REQ;
      end else begin
       direction<=direction+1'b1;
       // Issue the next read now; the preceding mark has its own write address.
@@ -845,13 +867,17 @@ always @(posedge clk or negedge rst_n)begin
     end
    end
    NEIGH_NEXT:begin
-    if(direction==3)begin if(q_count==0)phase<=AREA_CALC;else phase<=POP_REQ;end
+    if(direction==3)begin
+     if(q_count==0)phase<=AREA_CALC;
+     else if(SPARSE_ROW_SCAN)begin q_read<=q_head;phase<=POP_WAIT;end
+     else phase<=POP_REQ;
+    end
     else begin direction<=direction+1'b1;phase<=NEIGH_REQ;end
    end
    AREA_CALC:begin high_confirmed<=0;candidate_region<=region_now;candidate_allowed<=allowed_now;component_area<=width_now*height_now;
     long_side<=width_now>height_now ? width_now : height_now;short_side<=width_now<height_now ? width_now : height_now;phase<=SCALE;end
    SCALE:begin
-    high_write_index_q<=high_write_index;high_worst_q<=high_worst;high_free_q<=high_free;
+    high_index_q<=high_write_index;high_worst_q<=high_worst;high_free_q<=high_free;
     distance<=distance_now;
     fg20<={4'b0,component_count}*23'd20;area17<={4'b0,component_area}*23'd17;
     fg5<={4'b0,component_count}*23'd5;area3<={4'b0,component_area}*23'd3;
@@ -869,9 +895,9 @@ always @(posedge clk or negedge rst_n)begin
     end
     phase<=SCAN_REQ;
     if(high_shape && candidate_allowed && !border && component_count>=6 &&
-       width_now>=3 && height_now>=3 && (selected_high_free || distance<selected_high_worst))begin
-     high_boxes[selected_high_index]<={ymax,ymin,xmax,xmin};
-     high_distances[selected_high_index]<=distance;high_valid[selected_high_index]<=1;
+       width_now>=3 && height_now>=3 && (high_selected_free || distance<high_selected_worst))begin
+     high_boxes[high_selected_index]<={ymax,ymin,xmax,xmin};
+     high_distances[high_selected_index]<=distance;high_valid[high_selected_index]<=1;
     end
     if(candidate_allowed && (!REGIONS || candidate_state!=0 || small_pass) && !border && (component_count>=8 || (small_pass && empty_match && component_count>=6)) && width_now>=3 && height_now>=3)begin
      if(!small_pass)begin
@@ -998,7 +1024,10 @@ always @(posedge clk or negedge rst_n)begin
    PACK_FINISH:begin
     if(pack_duplicate[0])recorder_storage[3*76+:76]<=0;
     if(pack_duplicate[1])recorder_storage[7*76+:76]<=0;
-    if(SECOND_LANE && pack_duplicate[ZONES-1])recorder_storage[(ZONES*4-1)*76+:76]<=0;
+    if(DUAL_STOP)begin
+     if(pack_duplicate[2])recorder_storage[11*76+:76]<=0;
+     if(pack_duplicate[3])recorder_storage[15*76+:76]<=0;
+    end
     phase<=PUBLISH;
    end
    PUBLISH:begin
@@ -1017,22 +1046,53 @@ always @(posedge clk or negedge rst_n)begin
 end
 // Passive diagnostics never feed classification, retention, FSM or readiness.
 wire [127:0] review_probe_record;wire review_probe_ready;
-generate if(EMPTY_TRACE && REGIONS)begin : empty_trace_measurement
+generate if(PRESENT_TRACE && REGIONS && LOCAL_EDGE_ASSIST)begin : present_motion_trace
+ reg chosen,region_tag,weak_tag;
+ reg [1:0] public_slot,grid_phase;
+ reg [3:0] final_reason;
+ reg [$clog2(SLOTS)-1:0] chosen_bank;
+ wire region_now=ref_index>=REGION_SLOTS;
+ wire visible_slot=ref_index==0 || ref_index==1 || ref_index==REGION_SLOTS || ref_index==REGION_SLOTS+1;
+ wire swapped=region_now ? (found_bank[REGION_SLOTS+1] && xmin_bank[REGION_SLOTS+1]<xmin_bank[REGION_SLOTS]) : swap0;
+ wire select_phase=INDEXED ? phase==REF_BOX : phase==REF_ORIGIN;
+ wire allow_trace=!chosen || (region_now==region_tag && final_reason==0);
+ assign present_trace_select=select_phase && allow_trace && found_bank[ref_index] && state_bank[ref_index]==2 && visible_slot && !weak_bank[ref_index];
+ wire [100:0] observed=weak_tag ? 101'd0 : present_trace_metrics;
+ assign probe_record=chosen ? {4'h1,1'b1,region_tag,public_slot,weak_tag,observed[8],
+  (weak_tag ? 8'h80 : observed[7:0]),observed[100:90],observed[89:50],observed[49:14],
+  observed[13:11],observed[10],observed[9],final_reason,grid_phase,12'd0} : 128'd0;
+ assign probe_ready=1;
+ always @(posedge clk or negedge rst_n)begin
+  if(!rst_n)begin chosen<=0;region_tag<=0;weak_tag<=0;public_slot<=0;grid_phase<=0;final_reason<=0;chosen_bank<=0;end
+  else if(frame_start || invalidate || pixel_sof)begin chosen<=0;region_tag<=0;weak_tag<=0;public_slot<=0;grid_phase<=0;final_reason<=0;chosen_bank<=0;end
+  else begin
+   if(select_phase && allow_trace && found_bank[ref_index] && state_bank[ref_index]==2 && visible_slot)begin
+    chosen<=1;chosen_bank<=ref_index;region_tag<=region_now;weak_tag<=weak_bank[ref_index];
+    public_slot<={1'b0,ref_index[0]^swapped};
+    grid_phase<=INDEXED ? {read_ymin[0],read_xmin[0]} : {ymin_bank[ref_index][0],xmin_bank[ref_index][0]};
+    final_reason<=reason_bank[ref_index];
+   end
+   if(chosen && ref_index==chosen_bank && phase==REF_CHECK && ref_side && ref_word==2 && ref_last_row)begin
+    final_reason<=surface_needed ? {!surface_normal,reason_bank[ref_index][2:0]} : reason_bank[ref_index];
+   end
+  end
+ end
+end else if(EMPTY_TRACE && REGIONS)begin : empty_trace_measurement
  wire [10:0] trace_ref_x=INDEXED ? ({1'b0,read_xmin}+read_xmax) : ({1'b0,xmin_bank[ref_index]}+xmax_bank[ref_index]);
  wire [9:0] trace_ref_y=INDEXED ? ({1'b0,read_ymin}+read_ymax) : ({1'b0,ymin_bank[ref_index]}+ymax_bank[ref_index]);
  wire [9:0] trace_ref_w=INDEXED ? ({1'b0,read_xmax}-read_xmin+1'b1) : ({1'b0,xmax_bank[ref_index]}-xmin_bank[ref_index]+1'b1);
  wire [9:0] trace_ref_h=INDEXED ? ({1'b0,read_ymax}-read_ymin+1'b1) : ({1'b0,ymax_bank[ref_index]}-ymin_bank[ref_index]+1'b1);
  empty_gate_trace trace(
   .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
-  .measure(phase==COMPARE && small_pass && candidate_allowed && candidate_region<2 && width_now<=12 && height_now<=12),
+  .measure(phase==COMPARE && small_pass && candidate_allowed && (!DUAL_STOP || candidate_region<2) && width_now<=12 && height_now<=12),
   .region(candidate_region[0]),.score({1'b0,dx}+empty_row_delta),.x(center_x),.y(center_y[9:0]),
   .width(width_now[4:0]),.height(height_now[4:0]),.area(component_count),.bright(bright_count),.row_delta(empty_row_delta),
   .flags({row_anchor_available,empty_geometry,circular,robust_small_shape,guarded_bright_empty,sprocket_match,covers_body,
           (empty_match && !sprocket_match && !covers_body),border}),
-  .insert(phase==SMALL_INSERT && candidate_region<2),.reference_begin((INDEXED ? phase==REF_BOX : phase==REF_ORIGIN) && ref_index<2*REGION_SLOTS && found_bank[ref_index] && state_bank[ref_index]==3),
-  .reference_done(ref_index<2*REGION_SLOTS && phase==REF_CHECK && ref_side && ref_word==2 && ref_last_row && state_bank[ref_index]==3),
+  .insert(phase==SMALL_INSERT),.reference_begin((INDEXED ? phase==REF_BOX : phase==REF_ORIGIN) && found_bank[ref_index] && state_bank[ref_index]==3),
+  .reference_done(phase==REF_CHECK && ref_side && ref_word==2 && ref_last_row && state_bank[ref_index]==3),
   .reference_region(phase==PACK_SCAN ? pack_index[2] : ref_index>=REGION_SLOTS),.reference_x(trace_ref_x),.reference_y(trace_ref_y),.reference_width(trace_ref_w),.reference_height(trace_ref_h),.reference_ok(reference_ok),
-  .publish(phase==PACK_SCAN && pack_slot<8 && found_bank[pack_slot] && state_bank[pack_slot]==3),.sample(sample_new),
+  .publish(phase==PACK_SCAN && found_bank[pack_slot] && state_bank[pack_slot]==3),.sample(sample_new),
   .overflow(phase==NEIGH_CHECK && neighbor_foreground && (q_count==1024 || component_count==W*H)),.record(probe_record));
  assign probe_ready=1'b1;
 end else begin : no_empty_trace
@@ -1053,7 +1113,10 @@ generate if((REVIEW_PROBE || SURFACE_REVIEW || LOCAL_EDGE_ASSIST) && REGIONS)beg
    if(frame_start || invalidate || pixel_sof)first_gray<=0;
   end
  end
- if(REVIEW_PROBE)begin : diagnostic_probe
+ if(!(PRESENT_TRACE && REGIONS && LOCAL_EDGE_ASSIST))begin : no_present_trace_selection
+ assign present_trace_select=0;
+end
+if(REVIEW_PROBE)begin : diagnostic_probe
  present_review_probe #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) probe(
   .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
   .write_enable(cap_write),.write_x(gray_x),.write_y(gray_y),.write_data(gray_word),
@@ -1062,18 +1125,17 @@ end else begin : no_diagnostic_probe
  assign review_probe_record=0;assign review_probe_ready=1;
 end
 if(LOCAL_EDGE_ASSIST)begin : edge_surface_measurement
- local_edge_surface_check #(.SECOND_LANE(SECOND_LANE),.STANDING_REVIEW(STANDING_REVIEW),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.FOREGROUND(FOREGROUND),
-  .CACHE_X0(RELAY_LEFT_LAYOUT ? 48 : ((WIDTH*5/16-16)/8)*8),
-  .CACHE_X1(RELAY_LEFT_LAYOUT ? 848 : ((WIDTH*11/16+23)/8)*8),
-  .CACHE_Y1(RELAY_LEFT_LAYOUT ? ((HEIGHT*5/9+17)/2)*2 : ((HEIGHT*5/6+17)/2)*2)) surface(
+ local_edge_surface_check #(.DUAL_STOP(DUAL_STOP),.TRACE(PRESENT_TRACE && REGIONS),.STANDING_REVIEW(STANDING_REVIEW),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.FOREGROUND(FOREGROUND)) surface(
   .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
   .write_enable(cap_write),.write_x(gray_x),.write_y(gray_y),.write_data(gray_word),
   .measure((INDEXED ? phase==REF_BOX : phase==REF_ORIGIN) && found_bank[ref_index] && surface_needed),
-  .measure_empty(state_bank[ref_index]==3),
+  .measure_station(DUAL_STOP && ref_index>=8),.measure_empty(state_bank[ref_index]==3),
   .xmin({{(10-XB){1'b0}},(INDEXED ? read_xmin : xmin_bank[ref_index])}),.xmax({{(10-XB){1'b0}},(INDEXED ? read_xmax : xmax_bank[ref_index])}),
   .ymin({{(10-YB){1'b0}},(INDEXED ? read_ymin : ymin_bank[ref_index])}),.ymax({{(10-YB){1'b0}},(INDEXED ? read_ymax : ymax_bank[ref_index])}),
-  .ready(surface_ready),.normal(surface_normal),.empty_ok(surface_empty_ok),.edge_strengths(local_edge_strengths));
+  .ready(surface_ready),.normal(surface_normal),.empty_ok(surface_empty_ok),.edge_strengths(local_edge_strengths),
+  .trace_enable(present_trace_select),.trace_metrics(present_trace_metrics));
 end else if(SURFACE_REVIEW)begin : surface_measurement
+ assign present_trace_metrics=0;
  assign surface_empty_ok=1;assign local_edge_strengths=0;
  present_surface_check #(.STANDING_REVIEW(STANDING_REVIEW),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.FOREGROUND(FOREGROUND)) surface(
   .clk(clk),.rst_n(rst_n),.cancel(frame_start || invalidate || pixel_sof),
@@ -1083,10 +1145,10 @@ end else if(SURFACE_REVIEW)begin : surface_measurement
   .ymin({{(10-YB){1'b0}},(INDEXED ? read_ymin : ymin_bank[ref_index])}),.ymax({{(10-YB){1'b0}},(INDEXED ? read_ymax : ymax_bank[ref_index])}),
   .ready(surface_ready),.normal(surface_normal));
 end else begin : surface_disabled
- assign surface_ready=1;assign surface_normal=0;assign surface_empty_ok=1;assign local_edge_strengths=0;
+ assign present_trace_metrics=0;assign surface_ready=1;assign surface_normal=0;assign surface_empty_ok=1;assign local_edge_strengths=0;
 end
 end else begin : no_review_measurement
- assign surface_ready=1;assign surface_normal=0;assign surface_empty_ok=1;assign local_edge_strengths=0;
+ assign present_trace_metrics=0;assign surface_ready=1;assign surface_normal=0;assign surface_empty_ok=1;assign local_edge_strengths=0;
  assign review_probe_record=0;assign review_probe_ready=1;
 end endgenerate
 endmodule

@@ -1,7 +1,7 @@
 from pathlib import Path
 import argparse,hashlib,json,os,re,shutil,subprocess,winreg
 r=Path(__file__).resolve().parents[1]
-a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--only',nargs='+');a.add_argument('--support',nargs='+');a.add_argument('--bench-dir',type=Path);a.add_argument('--osd',action='store_true');args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--only',nargs='+');a.add_argument('--support',nargs='+');a.add_argument('--extra-rtl',nargs='*',default=[]);a.add_argument('--bench-dir',type=Path);a.add_argument('--osd',action='store_true');args=a.parse_args()
 p=args.source or r/'fpga/component_inspector';out=args.out.resolve();out.mkdir(parents=True,exist_ok=False);env=dict(os.environ)
 for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
  if not env.get(key):
@@ -11,7 +11,7 @@ for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
     break
    except OSError:pass
 env['TEMP']=env['TMP']=str(out);sim=Path('E:/Modelsim/win64')
-rtl=['pocket_relay_stop','pocket_relay_stop_v2','classified_pocket_counter','classified_count_pipeline','pocket_run_controls','status_cdc']
+rtl=['pocket_relay_stop','pocket_relay_stop_v2','classified_pocket_counter','classified_count_pipeline','pocket_run_controls','status_cdc']+args.extra_rtl
 benches=args.only or ['tb_relay_left_faults','tb_relay_left_transport','tb_pocket_relay_stop','tb_relay_numbered_pipeline','tb_relay_real_second']
 files=['user_source/hdl_source/'+n+'.v' for n in rtl]+['sim/'+n+'.sv' for n in (args.support or [])+benches]
 

@@ -1,0 +1,50 @@
+{
+  "status": "PASS_FIXED_ZONE_RETAINED_DISTANCE_BOUND",
+  "source_sha256": "f19d1305bea604ee4eeaef1d4ac073c03856f17df9451a32fe69855d454b5739",
+  "valid_distance_bits": 9,
+  "transient_distance_bits": 12,
+  "zones": [
+    {
+      "bounds": [
+        400,
+        880,
+        240,
+        400
+      ],
+      "max_distance": 320,
+      "coordinates_checked": 76800
+    },
+    {
+      "bounds": [
+        400,
+        880,
+        432,
+        600
+      ],
+      "max_distance": 324,
+      "coordinates_checked": 80640
+    },
+    {
+      "bounds": [
+        64,
+        400,
+        240,
+        400
+      ],
+      "max_distance": 248,
+      "coordinates_checked": 53760
+    },
+    {
+      "bounds": [
+        64,
+        400,
+        432,
+        600
+      ],
+      "max_distance": 252,
+      "coordinates_checked": 56448
+    }
+  ],
+  "invalid_entries": "Distance reset truncates to 511; found/high_valid/row_anchor_valid mask invalid values before use.",
+  "scope": "Only fixed 1280x720 DUAL_STOP/REGIONS; all other configurations keep original 12 bits. RGB equivalence is separate."
+}

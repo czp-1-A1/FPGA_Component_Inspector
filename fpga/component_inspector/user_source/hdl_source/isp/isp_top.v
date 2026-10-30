@@ -1,19 +1,24 @@
 module isp_top #(
     parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
+    parameter AUTO_RELAY=0,RELAY_TARGET_X=152,RELAY_ADVANCE_PX=32,RELAY_TOL_PX=80,
+    parameter PRESENT_TRACE=0,
     parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,LOCAL_EDGE_ASSIST=0,EMPTY_TRACE=0,ROBUST_EMPTY_CONTEXT=0,ROBUST_SMALL_EMPTY=0,STANDING_REVIEW=0,SURFACE_REVIEW=0,REVIEW_PROBE=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,
-    parameter SECOND_LANE=0,RECOGNITION_ONLY=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,
-    parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+256*CLASSIFIED_COUNT+152*SECOND_LANE
+    parameter DUAL_REGION_COUNT=0,COUNT_BITS=256*(1+DUAL_REGION_COUNT),
+    parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+COUNT_BITS*CLASSIFIED_COUNT
 ) (
     input processing_clk,
-    // Raw per-zone candidates, process-clock domain. In left layout the first
-    // bus is count+repair; detect_second_objects is the independent lower lane.
-    // Consumer must qualify sample_new
-    // with source_start/frame_commit/frame_bad; these are not count events.
-    output detect_source_start,detect_frame_commit,detect_frame_bad,detect_sample_new,
-    output [607:0] detect_objects,output [303:0] detect_second_objects,output [63:0] detect_config,
-    input relay_permit,relay_pause,output relay_feed,output relay_alarm,output [63:0] relay_status,output [95:0] relay_diagnostic,
-    input [16:0] count_command,output [255:0] count_live,
+    input relay_permit,relay_pause,actual_motor_running,output relay_feed,relay_alarm,
+    output [127:0] relay_status,output [191:0] relay_diagnostic,
+    input [16:0] count_command,output [COUNT_BITS-1:0] count_live,
+    // Processing-clock events for a downstream recorder/transport. Two lanes
+    // can assert together; a consumer must accept both, with no backpressure.
+    output [DUAL_REGION_COUNT:0] count_event_valid,
+    output [16*(1+DUAL_REGION_COUNT)-1:0] count_event_run,
+    output [9*(1+DUAL_REGION_COUNT)-1:0] count_event_id,
+    output [32*(1+DUAL_REGION_COUNT)-1:0] count_event_frame,
+    output [2*(1+DUAL_REGION_COUNT)-1:0] count_event_kind,
+    output [4*(1+DUAL_REGION_COUNT)-1:0] count_event_reason,
     input 			axi4s_video_aclk,
     input 			I_rst_n			,
     input 			I_tlast			,
@@ -165,7 +170,6 @@ end
 wire source_pixel_valid=awb_O_tvalid && !frame_input_closed;
 wire source_pixel_sof=awb_pixel_sof && !frame_input_closed;
 wire [(REGIONS ? 304 : 152)-1:0] search_objects;
-wire [303:0] second_candidates;
 wire [151:0] legacy_search_objects;wire [303:0] region_search_objects;
 assign search_objects=REGIONS ? region_search_objects : legacy_search_objects;
 wire search_probe_ready;wire [127:0] search_probe_record;
@@ -314,94 +318,91 @@ end
 end endgenerate
 // The result settles after the ROI/search rows and the 28-cycle divider.
 // Freeze it early; frame proof, word count and epoch still gate publication.
-wire [255:0] classified_record;wire classified_ready;wire [31:0] search_empty_probe;wire [607:0] recorder_candidates;wire recorder_hold_valid;wire [10:0] recorder_hold_x;wire [9:0] recorder_hold_y;
-wire repair_hold_valid,transport_occupied,repair_empty_only;wire [5:0] repair_hold_radius;wire [7:0] repair_detector_diagnostic;wire [8:0] repair_detector_id,repair_hold_id;wire [10:0] repair_hold_x;wire [9:0] repair_hold_y;
-reg detect_pixels_started;
-always @(posedge post_clk or negedge I_rst_n)
- if(!I_rst_n)detect_pixels_started<=0;
- else if(post_start)detect_pixels_started<=0;
- else if(post_early)detect_pixels_started<=1;
-assign detect_source_start=post_start;
-assign detect_frame_commit=post_commit && !video_frame_bad;
-assign detect_frame_bad=detect_pixels_started && video_frame_bad && !post_start && !post_early;
-assign detect_sample_new=search_new;
-assign detect_objects=recorder_candidates;assign detect_second_objects=second_candidates;
-assign detect_config={post_config,post_wb};
-generate if(CLASSIFIED_COUNT && !RECOGNITION_ONLY)begin : classified_counting
- wire [8:0] stop_query,stop_id,ev_id;wire pos_new,ev_new,stop_begin,stop_clear,stop_good,stop_bad;
- wire [10:0] stop_x;wire [9:0] stop_y;wire [15:0] stop_run,pos_run,ev_run;
- wire [31:0] stop_frame,pos_frame;wire [2:0] stop_state;wire stop_dv,stop_dr;wire [1:0] ev_kind;
+wire [607:0] station_candidates;wire [1:0] transport_occupied;
+wire [1:0] station_hold_valid,station_hold_empty_only;wire [21:0] station_hold_x;wire [19:0] station_hold_y;wire [11:0] station_hold_radius;
+wire [COUNT_BITS-1:0] classified_record;wire classified_ready;wire [31:0] search_empty_probe;wire [607:0] recorder_candidates;wire [1:0] recorder_hold_valid;wire [21:0] recorder_hold_x;wire [19:0] recorder_hold_y;
+generate if(CLASSIFIED_COUNT)begin : classified_counting
  reg pixels_started;
- wire [8:0] main_total,main_uncertainty;
- if(AUTO_RELAY && RELAY_LEFT_LAYOUT)begin : left_station
-  wire [15:0] local_run;wire [2:0] local_state;wire local_dv,local_dr;wire [8:0] local_total,local_uncertainty;
-  wire local_new,search_valid,lead_valid,local_ev,stationary;wire [63:0] station_diagnostic;wire [5:0] search_radius;wire [15:0] local_ev_run;wire [8:0] local_ev_id;wire [1:0] local_ev_kind;
-  wire [8:0] local_id;wire [10:0] local_x,search_x,lead_x;
-  wire [9:0] local_y,search_y,lead_y;wire [15:0] local_pos_run;wire [31:0] local_frame;
-  classified_count_pipeline #(.ADJACENT_V6(ADJACENT_V6),.STOP_POSITION(1),.LINE_X(256),.RECORD_ONLY(1),.MOTION_RECOVERY(1),
-   .TAIL_RECOVERY(1),.OBS_PER_REGION(4),.ORDERED_HANDOFF(1),.RECOVERABLE(1),.VELOCITY_ASSOC(1),.LOCAL_RECOVERY(0)) station(
-   .clk(post_clk),.rst_n(I_rst_n),.source_start(post_start),.frame_commit(post_commit && !video_frame_bad),
-   .frame_bad(pixels_started && video_frame_bad && !post_start && !post_early),.sample_new(search_new),
-   .config_tag({post_config,post_wb}),.objects({304'd0,recorder_candidates[607:304]}),.empty_probe(32'd0),.command(count_command),
-   .stop_stationary(stationary),.stop_detector_diagnostic(repair_detector_diagnostic),.stop_detector_id(repair_detector_id),.stop_diagnostic(station_diagnostic),.stop_search_radius(search_radius),
-   .stop_query_id(stop_query),.stop_position_new(local_new),.stop_position_id(local_id),.stop_position_x(local_x),.stop_position_y(local_y),
-   .event_valid(local_ev),.event_run(local_ev_run),.event_id(local_ev_id),.event_kind(local_ev_kind),
-   .stop_position_run(local_pos_run),.stop_position_frame(local_frame),.stop_run(local_run),.stop_state(local_state),
-   .stop_direction_valid(local_dv),.stop_direction_right(local_dr),.stop_total(local_total),.stop_uncertainty(local_uncertainty),
-   .stop_search_valid(search_valid),.stop_search_x(search_x),.stop_search_y(search_y),
-   .hold_valid(lead_valid),.hold_x(lead_x),.hold_y(lead_y));
-  assign repair_hold_id=search_valid ? stop_query : 9'd0;
-  assign repair_hold_radius=search_valid ? search_radius : 6'd12;assign repair_empty_only=search_valid;
-  assign repair_hold_valid=search_valid || lead_valid;assign repair_hold_x=search_valid ? search_x : lead_x;assign repair_hold_y=search_valid ? search_y : lead_y;
-  pocket_relay_stop_v2 #(.FIVE_EMPTY_V7(FIVE_EMPTY_V7),.ADJACENT_V6(ADJACENT_V6),.RESTART_NEW_RUN(RELAY_KEYS_V3),.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
-   .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.pause(RELAY_KEYS_V3 && relay_pause),.start_run(stop_begin),.clear_run(stop_clear),
-   .good_frame(stop_good),.bad_frame(stop_bad),.transport_occupied(transport_occupied),.current_frame(stop_frame),
-   .counter_run(stop_run),.counter_state(stop_state),.direction_valid(stop_dv),.direction_right(stop_dr),
-   .station_run(local_run),.station_state(local_state),.station_dv(local_dv),.station_dr(local_dr),
-   .counter_total(main_total),.station_total(local_total),.counter_uncertainty(main_uncertainty),.station_uncertainty(local_uncertainty),
-   .event_valid(ev_new),.event_run(ev_run),.event_id(ev_id),.event_kind(ev_kind),.query_id(stop_query),
-   .station_event_valid(local_ev),.station_event_run(local_ev_run),.station_event_id(local_ev_id),.station_event_kind(local_ev_kind),
-   .position_new(local_new),.position_id(local_id),.position_run(local_pos_run),.position_frame(local_frame),
-   .alarm_stop(relay_alarm),.station_diagnostic(station_diagnostic),.diagnostic(relay_diagnostic),.stationary_hint(stationary),
-   .position_x(local_x),.position_y(local_y),.feed_enable(relay_feed),.state(),.fault(),.status(relay_status),.cycle_done());
- end else if(AUTO_RELAY)begin : automatic_relay
-  assign relay_alarm=0;assign relay_diagnostic=0;assign repair_hold_id=0;assign repair_hold_radius=12;assign repair_empty_only=0;
-  assign repair_hold_valid=0;assign repair_hold_x=0;assign repair_hold_y=0;
-  pocket_relay_stop #(.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
-   .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.start_run(stop_begin),.clear_run(stop_clear),
-   .good_frame(stop_good),.bad_frame(stop_bad),.current_frame(stop_frame),.counter_run(stop_run),.counter_state(stop_state),
-   .direction_valid(stop_dv),.direction_right(stop_dr),.event_valid(ev_new),.event_run(ev_run),.event_id(ev_id),.event_kind(ev_kind),
-   .query_id(stop_query),.position_new(pos_new),.position_id(stop_id),.position_run(pos_run),.position_frame(pos_frame),
-   .position_x(stop_x),.position_y(stop_y),.feed_enable(relay_feed),.state(),.fault(),.status(relay_status),.cycle_done());
- end else begin assign relay_alarm=0;assign relay_diagnostic=0;assign repair_hold_id=0;assign repair_hold_radius=12;assign repair_empty_only=0;assign repair_hold_valid=0;assign repair_hold_x=0;assign repair_hold_y=0;assign stop_query=0;assign relay_feed=0;assign relay_status=0;end
  always @(posedge post_clk or negedge I_rst_n)begin
   if(!I_rst_n)pixels_started<=0;
   else if(post_start)pixels_started<=0;
   else if(post_early)pixels_started<=1;
  end
+ // Empty scenes can finish analysis before the native packet proof arrives.
+ // The detector holds its objects until FS/cancel; retain that notification
+ // and release it only after proof of this same source epoch.
+ reg count_frame_proved,count_result_pending;
+ wire count_sample_new=count_frame_proved && search_ready &&
+  (search_new || count_result_pending) && !post_start && !post_early &&
+  !sample_cancel && !video_frame_bad;
+ always @(posedge post_clk or negedge I_rst_n)begin
+  if(!I_rst_n)begin count_frame_proved<=0;count_result_pending<=0;end
+  else if(post_start || post_early || sample_cancel || (pixels_started && video_frame_bad))begin
+   count_frame_proved<=0;count_result_pending<=0;
+  end else begin
+   if(post_commit && !video_frame_bad)count_frame_proved<=1;
+   if(count_sample_new)count_result_pending<=0;
+   else if(search_new)count_result_pending<=1;
+  end
+ end
  wire [152*(RESULT_RECORDER ? 4 : 2)-1:0] count_candidates;
- if(RESULT_RECORDER)assign count_candidates=RELAY_LEFT_LAYOUT ? {304'd0,recorder_candidates[303:0]} : recorder_candidates;else assign count_candidates=region_search_objects;
- classified_count_pipeline #(.STOP_POSITION(AUTO_RELAY && !RELAY_LEFT_LAYOUT),.LINE_X(WIDTH/2),.DIAGNOSTICS(!RESULT_RECORDER),.RECORD_ONLY(RESULT_RECORDER),.MOTION_RECOVERY(RESULT_RECORDER),.TAIL_RECOVERY(RESULT_RECORDER),.OBS_PER_REGION(RESULT_RECORDER ? 4 : 2),.ORDERED_HANDOFF(RESULT_RECORDER),.RECOVERABLE(RESULT_RECORDER),.VELOCITY_ASSOC(RESULT_RECORDER),.LOCAL_RECOVERY(LOCAL_RECOVERY)) pipeline(
+ if(RESULT_RECORDER)assign count_candidates=recorder_candidates;else assign count_candidates=region_search_objects;
+ if(DUAL_REGION_COUNT)begin : dual_regions
+ wire [1:0] main_snapshot,main_motion_valid,main_seed_valid;wire [25:0] main_dx;wire [11:0] main_radius;
+ wire [21:0] main_seed_x;wire [19:0] main_seed_y;
+ wire [1:0] main_start,main_clear,main_good,main_bad,main_dv,main_dr;
+ wire [31:0] main_run;wire [63:0] main_frame;wire [5:0] main_state;
+ wire [17:0] main_total,main_uncertainty;
+ dual_region_count_pipeline #(.LINE_X(WIDTH/2),.DIAGNOSTICS(!RESULT_RECORDER),.RECORD_ONLY(RESULT_RECORDER),.MOTION_RECOVERY(RESULT_RECORDER),.TAIL_RECOVERY(RESULT_RECORDER),.OBS_PER_REGION(RESULT_RECORDER ? 4 : 2),.ORDERED_HANDOFF(RESULT_RECORDER),.RECOVERABLE(RESULT_RECORDER),.VELOCITY_ASSOC(RESULT_RECORDER),.LOCAL_RECOVERY(LOCAL_RECOVERY)) pipeline(
   .clk(post_clk),.rst_n(I_rst_n),.source_start(post_start),.frame_commit(post_commit && !video_frame_bad),
-  .frame_bad(pixels_started && video_frame_bad && !post_start && !post_early),.sample_new(search_new),
+  .frame_bad(pixels_started && video_frame_bad && !post_start && !post_early),.sample_new(count_sample_new),
   .config_tag({post_config,post_wb}),.objects(count_candidates),.empty_probe(search_empty_probe),.command(count_command),
   .frame_record(classified_record),.record_ready(classified_ready),.live_record(count_live),
-  .event_valid(ev_new),.event_run(ev_run),.event_id(ev_id),.event_frame(),.event_kind(ev_kind),.event_reason(),
-  .stop_query_id(stop_query),.stop_position_new(pos_new),.stop_position_id(stop_id),.stop_position_x(stop_x),.stop_position_y(stop_y),
-  .stop_position_run(pos_run),.stop_position_frame(pos_frame),.stop_begin(stop_begin),.stop_clear(stop_clear),
-  .stop_good_frame(stop_good),.stop_bad_frame(stop_bad),.stop_current_frame(stop_frame),.stop_run(stop_run),.stop_state(stop_state),
-  .stop_direction_valid(stop_dv),.stop_direction_right(stop_dr),.stop_total(main_total),.stop_uncertainty(main_uncertainty),
-  .hold_valid(recorder_hold_valid),.hold_x(recorder_hold_x),.hold_y(recorder_hold_y));
+  .event_valid(count_event_valid),.event_run(count_event_run),.event_id(count_event_id),.event_frame(count_event_frame),.event_kind(count_event_kind),.event_reason(count_event_reason),
+  .hold_valid(recorder_hold_valid),.hold_x(recorder_hold_x),.hold_y(recorder_hold_y),
+  .parking_snapshot(main_snapshot),.parking_motion_valid(main_motion_valid),.parking_seed_valid(main_seed_valid),
+  .parking_dx(main_dx),.parking_radius(main_radius),.parking_seed_x(main_seed_x),.parking_seed_y(main_seed_y),
+  .parking_start(main_start),.parking_clear(main_clear),.parking_good(main_good),.parking_bad(main_bad),
+  .parking_run(main_run),.parking_frame(main_frame),.parking_state(main_state),.parking_dv(main_dv),.parking_dr(main_dr),.parking_total(main_total),.parking_uncertainty(main_uncertainty));
+ if(AUTO_RELAY)begin : dual_parking
+ dual_lane_parking #(.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.TOL_PX(RELAY_TOL_PX)) parking(
+  .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.pause(relay_pause),.actual_motor_running(actual_motor_running),
+  .source_start(post_start),.frame_commit(post_commit && !video_frame_bad),.frame_bad(pixels_started && video_frame_bad && !post_start && !post_early),
+  .sample_new(count_sample_new),.config_tag({post_config,post_wb}),.command(count_command),.station_objects(station_candidates),
+  .main_snapshot(main_snapshot),.main_motion_valid(main_motion_valid),.main_seed_valid(main_seed_valid),
+  .main_dx(main_dx),.main_radius(main_radius),.main_seed_x(main_seed_x),.main_seed_y(main_seed_y),
+  .main_start(main_start),.main_clear(main_clear),.main_good(main_good),.main_bad(main_bad),.main_run(main_run),.main_frame(main_frame),.main_state(main_state),
+  .main_dv(main_dv),.main_dr(main_dr),.main_total(main_total),.main_uncertainty(main_uncertainty),
+  .event_valid(count_event_valid),.event_run(count_event_run),.event_id(count_event_id),.event_kind(count_event_kind),.transport_occupied(transport_occupied),
+  .feed_enable(relay_feed),.alarm_stop(relay_alarm),.status(relay_status),.diagnostic(relay_diagnostic),
+  .hold_valid(station_hold_valid),.hold_empty_only(station_hold_empty_only),.hold_x(station_hold_x),.hold_y(station_hold_y),.hold_radius(station_hold_radius));
+ end else begin
+  assign relay_feed=0;assign relay_alarm=0;assign relay_status=0;assign relay_diagnostic=0;
+  assign station_hold_valid=0;assign station_hold_empty_only=0;assign station_hold_x=0;assign station_hold_y=0;assign station_hold_radius=0;
+ end
+ end else begin : single_region
+ assign relay_feed=0;assign relay_alarm=0;assign relay_status=0;assign relay_diagnostic=0;
+ assign station_hold_valid=0;assign station_hold_empty_only=0;assign station_hold_x=0;assign station_hold_y=0;assign station_hold_radius=0;
+ classified_count_pipeline #(.LINE_X(WIDTH/2),.DIAGNOSTICS(!RESULT_RECORDER),.RECORD_ONLY(RESULT_RECORDER),.MOTION_RECOVERY(RESULT_RECORDER),.TAIL_RECOVERY(RESULT_RECORDER),.OBS_PER_REGION(RESULT_RECORDER ? 4 : 2),.ORDERED_HANDOFF(RESULT_RECORDER),.RECOVERABLE(RESULT_RECORDER),.VELOCITY_ASSOC(RESULT_RECORDER),.LOCAL_RECOVERY(LOCAL_RECOVERY)) pipeline(
+  .clk(post_clk),.rst_n(I_rst_n),.source_start(post_start),.frame_commit(post_commit && !video_frame_bad),
+  .frame_bad(pixels_started && video_frame_bad && !post_start && !post_early),.sample_new(count_sample_new),
+  .config_tag({post_config,post_wb}),.objects(count_candidates),.empty_probe(search_empty_probe),.command(count_command),
+  .frame_record(classified_record),.record_ready(classified_ready),.live_record(count_live),
+  .event_valid(count_event_valid),.event_run(count_event_run),.event_id(count_event_id),.event_frame(count_event_frame),.event_kind(count_event_kind),.event_reason(count_event_reason),
+  .hold_valid(recorder_hold_valid[0]),.hold_x(recorder_hold_x[10:0]),.hold_y(recorder_hold_y[9:0]));
+ assign recorder_hold_valid[1]=0;assign recorder_hold_x[21:11]=0;assign recorder_hold_y[19:10]=0;
+ end
 end else begin : no_classified_counting
- assign relay_alarm=0;assign relay_diagnostic=0;assign repair_hold_id=0;assign repair_hold_radius=12;assign repair_empty_only=0;
- assign repair_hold_valid=0;assign repair_hold_x=0;assign repair_hold_y=0;
- assign relay_feed=0;assign relay_status=0;
+ assign relay_feed=0;assign relay_alarm=0;assign relay_status=0;assign relay_diagnostic=0;
+ assign station_hold_valid=0;assign station_hold_empty_only=0;assign station_hold_x=0;assign station_hold_y=0;assign station_hold_radius=0;
  assign classified_record=0;assign classified_ready=1;assign count_live=0;assign recorder_hold_valid=0;assign recorder_hold_x=0;assign recorder_hold_y=0;
+ assign count_event_valid=0;assign count_event_run=0;assign count_event_id=0;
+ assign count_event_frame=0;assign count_event_kind=0;assign count_event_reason=0;
 end endgenerate
-localparam ORIGINAL_META_WIDTH=META_WIDTH-256*CLASSIFIED_COUNT-152*SECOND_LANE;
+localparam ORIGINAL_META_WIDTH=META_WIDTH-COUNT_BITS*CLASSIFIED_COUNT;
 reg [7:0] metadata_wait;reg metadata_pending;reg [31:0] frame_config;
 wire [127:0] calibration_record;
-generate if((EMPTY_TRACE || REVIEW_PROBE) && REGIONS)begin : review_calibration_measurement
+generate if((PRESENT_TRACE || EMPTY_TRACE || REVIEW_PROBE) && REGIONS)begin : review_calibration_measurement
  assign calibration_record=search_probe_record;
 end else if(CALIBRATION)begin : calibration_measurement
  calibration_probes #(.WIDTH(WIDTH),.HEIGHT(HEIGHT)) probes(
@@ -427,8 +428,7 @@ always @(posedge post_clk or negedge I_rst_n) begin
    // Low metadata fields retain their V12 layout. The extension travels in
    // the SAME slot/epoch/late-attachment/VS snapshot as all four detections.
    if(CALIBRATION)frame_metadata[ORIGINAL_META_WIDTH-1 -:129]<={1'b1,calibration_record};
-   if(CLASSIFIED_COUNT)frame_metadata[ORIGINAL_META_WIDTH+:256]<=classified_record;
-   if(SECOND_LANE)frame_metadata[ORIGINAL_META_WIDTH+256*CLASSIFIED_COUNT+:152]<=second_candidates[151:0];
+   if(CLASSIFIED_COUNT)frame_metadata[META_WIDTH-1 -:COUNT_BITS]<=classified_record;
    frame_metadata_ready<=1;metadata_pending<=0;
   end
  end
@@ -455,14 +455,14 @@ roi_statistics #(.DYNAMIC_ROI(TRACKING),.X0(ROI_X0),.X1(ROI_X1),.Y0(ROI_Y0),.Y1(
     .frame_commit(result_commit),.invalidate(sample_cancel),.sample_valid(legacy_valid),
     .mean(legacy_mean),.minimum(legacy_min),.maximum(legacy_max),.sample_pixels(),.sample_sum(),.sample_new(legacy_new),.frame_start(post_start));
 generate if(USE_SEARCH) begin : local_shape_detection
- frame_shape_search #(.SECOND_LANE(SECOND_LANE),.ADJACENT_V6(ADJACENT_V6),.RELAY_LEFT_LAYOUT(RELAY_LEFT_LAYOUT),.LOCAL_EDGE_ASSIST(LOCAL_EDGE_ASSIST),.EMPTY_TRACE(EMPTY_TRACE),.ROBUST_EMPTY_CONTEXT(ROBUST_EMPTY_CONTEXT),.ROBUST_SMALL_EMPTY(ROBUST_SMALL_EMPTY),.STANDING_REVIEW(STANDING_REVIEW),.SURFACE_REVIEW(SURFACE_REVIEW),.REVIEW_PROBE(REVIEW_PROBE),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS),.COUNT_EMPTY_MARGIN(CLASSIFIED_COUNT || RECOGNITION_ONLY),.EMPTY_DIAGNOSTICS(CLASSIFIED_COUNT && !RESULT_RECORDER),.ROW_GUARDED_BRIGHT_EMPTY(CLASSIFIED_COUNT || RECOGNITION_ONLY),.COUNT_CANDIDATES(RESULT_RECORDER),.MULTITHRESHOLD_EMPTY(MULTITHRESHOLD_EMPTY)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
+ frame_shape_search #(.DUAL_STOP(AUTO_RELAY && DUAL_REGION_COUNT),.SPARSE_ROW_SCAN(DUAL_REGION_COUNT),.DUAL_REGION_COUNT(DUAL_REGION_COUNT),.PRESENT_TRACE(PRESENT_TRACE),.LOCAL_EDGE_ASSIST(LOCAL_EDGE_ASSIST),.EMPTY_TRACE(EMPTY_TRACE),.ROBUST_EMPTY_CONTEXT(ROBUST_EMPTY_CONTEXT),.ROBUST_SMALL_EMPTY(ROBUST_SMALL_EMPTY),.STANDING_REVIEW(STANDING_REVIEW),.SURFACE_REVIEW(SURFACE_REVIEW),.REVIEW_PROBE(REVIEW_PROBE),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.REGIONS(REGIONS),.COUNT_EMPTY_MARGIN(CLASSIFIED_COUNT),.EMPTY_DIAGNOSTICS(CLASSIFIED_COUNT && !RESULT_RECORDER),.ROW_GUARDED_BRIGHT_EMPTY(CLASSIFIED_COUNT),.COUNT_CANDIDATES(RESULT_RECORDER),.MULTITHRESHOLD_EMPTY(MULTITHRESHOLD_EMPTY)) detector(.clk(post_clk),.rst_n(I_rst_n),.frame_start(post_start),.pixel_sof(post_sof),
   .pixel_accept(post_accept),.invalidate(sample_cancel),.pixel_x(post_x),.pixel_y(post_y),.rgb(post_rgb),
   .ready(search_ready),.sample_new(search_new),.located(search_located),.state(search_state),.foreground_count(search_fg),
-  .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(legacy_search_objects),.region_objects(region_search_objects),.empty_probe(search_empty_probe),.second_lane_objects(second_candidates),.recorder_objects(recorder_candidates),.recorder_hold_valid(recorder_hold_valid),.recorder_hold_x(recorder_hold_x),.recorder_hold_y(recorder_hold_y),.repair_hold_id(repair_hold_id),.repair_diagnostic_id(repair_detector_id),.repair_hold_radius(repair_hold_radius),.repair_empty_only(repair_empty_only),.repair_diagnostic(repair_detector_diagnostic),.repair_hold_valid(repair_hold_valid),.repair_hold_x(repair_hold_x),.repair_hold_y(repair_hold_y),.transport_occupied(transport_occupied),.probe_record(search_probe_record),.probe_ready(search_probe_ready));
+  .box_width(search_w),.box_height(search_h),.box_x0(search_x0),.box_x1(search_x1),.box_y0(search_y0),.box_y1(search_y1),.review_required(search_review),.objects(legacy_search_objects),.region_objects(region_search_objects),.empty_probe(search_empty_probe),.recorder_objects(recorder_candidates),.station_objects(station_candidates),.transport_occupied(transport_occupied),.station_hold_valid(station_hold_valid),.station_hold_empty_only(station_hold_empty_only),.station_hold_x(station_hold_x),.station_hold_y(station_hold_y),.station_hold_radius(station_hold_radius),.recorder_hold_valid(recorder_hold_valid[0]),.recorder_hold_x(recorder_hold_x[10:0]),.recorder_hold_y(recorder_hold_y[9:0]),.recorder_hold_valid2(recorder_hold_valid[1]),.recorder_hold_x2(recorder_hold_x[21:11]),.recorder_hold_y2(recorder_hold_y[19:10]),.probe_record(search_probe_record),.probe_ready(search_probe_ready));
 end else begin : no_local_search
- assign transport_occupied=1;
+ assign station_candidates=0;assign transport_occupied=0;
  assign search_probe_record=0;assign search_probe_ready=1;
- assign second_candidates=0;assign legacy_search_objects=0;assign region_search_objects=0;assign recorder_candidates=0;assign search_empty_probe=0;assign search_ready=0;assign search_new=0;assign search_located=0;assign search_state=1;assign search_review=0;
+ assign legacy_search_objects=0;assign region_search_objects=0;assign recorder_candidates=0;assign search_empty_probe=0;assign search_ready=0;assign search_new=0;assign search_located=0;assign search_state=1;assign search_review=0;
  assign search_fg=0;assign search_w=0;assign search_h=0;assign search_x0=0;assign search_x1=0;assign search_y0=0;assign search_y1=0;
 end
 if(USE_SEARCH) begin : search_features

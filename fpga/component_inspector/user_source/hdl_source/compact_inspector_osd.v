@@ -2,7 +2,8 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter SECOND_LANE=0,RECOGNITION_ONLY=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter AUTO_RELAY=0,RELAY_TARGET_X=152,RELAY_TOL_PX=80,DUAL_REGION_COUNT=0,PRESENT_TRACE=0,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+ input wire [127:0] relay_status,input wire [2:0] relay_mode,input wire relay_motor,
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -10,118 +11,25 @@ module compact_inspector_osd #(parameter SECOND_LANE=0,RECOGNITION_ONLY=0,FIVE_E
  input wire [1:0] view_mode,input wire [12:0] edge_count,
  input wire [15:0] lane_errors,format_errors,i2c_errors,gaps,overflow_frames,lost_frames,underflow_frames,
  input wire [31:0] frames,input wire [35:0] diagnostics,input wire [DIAG_BITS-1:0] publish_diagnostic,
- input wire [151:0] second_lane_objects,input wire [303:0] objects,input wire [127:0] calibration_record,input wire calibration_valid,
+ input wire [303:0] objects,input wire [127:0] calibration_record,input wire calibration_valid,
  input wire [3:0] local_wait_reason,
- input wire [63:0] relay_status,input wire [95:0] relay_diagnostic,input wire [2:0] relay_control_mode,
- input wire [255:0] live_record,frame_record,input wire eligible,
+ input wire [256*(1+DUAL_REGION_COUNT)-1:0] live_record,frame_record,input wire eligible,
  output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb
 );
-reg [63:0] relay_snapshot;reg [95:0] diagnostic_snapshot;reg [2:0] relay_mode_snapshot;
-function [7:0] relay_char;
- input [5:0] char_index;reg [383:0] text;
- begin
-  text="RLY S0 F0 Q0 ID000 X000 T000 A000               ";
-  // Status numerals are hexadecimal; target/advance are processing pixels.
-  if(RELAY_LEFT_LAYOUT)begin
-   text="RL2 S0 F0 Q00 N000 X--- L000 V0 T000 A000 W0000 ";
-   case(char_index)
-    2:relay_char=FIVE_EMPTY_V7 ? "7" : ADJACENT_V6 ? "6" : RELAY_CLEAN_UI ? "5" : RELAY_KEYS_V3 ? (RELAY_TOL_PX>8 ? "4" : "3") : "2";
-    5:relay_char=hexchar({1'b0,relay_snapshot[31:29]});
-    8:relay_char=hexchar(relay_snapshot[28:25]);
-    11:relay_char=hexchar({2'b0,relay_snapshot[63:62]});12:relay_char=hexchar(relay_snapshot[61:58]);
-    15:relay_char=hexchar({3'b0,relay_snapshot[20]});16:relay_char=hexchar(relay_snapshot[19:16]);17:relay_char=hexchar(relay_snapshot[15:12]);
-    20:relay_char=relay_snapshot[57] ? hexchar({1'b0,relay_snapshot[11:9]}) : "-";
-    21:relay_char=relay_snapshot[57] ? hexchar(relay_snapshot[8:5]) : "-";
-    22:relay_char=relay_snapshot[57] ? hexchar(relay_snapshot[4:1]) : "-";
-    25:relay_char=hexchar({3'b0,relay_snapshot[56]});26:relay_char=hexchar(relay_snapshot[55:52]);27:relay_char=hexchar(relay_snapshot[51:48]);
-    30:relay_char=relay_snapshot[57] ? "1" : "0";
-    33:relay_char=hexchar((RELAY_TARGET_X>>8)&15);34:relay_char=hexchar((RELAY_TARGET_X>>4)&15);35:relay_char=hexchar(RELAY_TARGET_X&15);
-    38:relay_char=hexchar((RELAY_ADVANCE_PX>>8)&15);39:relay_char=hexchar((RELAY_ADVANCE_PX>>4)&15);40:relay_char=hexchar(RELAY_ADVANCE_PX&15);
-    43:relay_char=hexchar(relay_snapshot[47:44]);44:relay_char=hexchar(relay_snapshot[43:40]);45:relay_char=hexchar(relay_snapshot[39:36]);46:relay_char=hexchar(relay_snapshot[35:32]);
-    default:relay_char=char_index<48 ? text[383-char_index*8-:8] : 8'd32;
-   endcase
-  end else case(char_index)
-   5:relay_char=hexchar({1'b0,relay_snapshot[31:29]});
-   8:relay_char=hexchar(relay_snapshot[28:25]);
-   11:relay_char=hexchar(relay_snapshot[24:21]);
-   15:relay_char=hexchar({3'd0,relay_snapshot[20]});
-   16:relay_char=hexchar(relay_snapshot[19:16]);17:relay_char=hexchar(relay_snapshot[15:12]);
-   20:relay_char=hexchar({1'b0,relay_snapshot[11:9]});21:relay_char=hexchar(relay_snapshot[8:5]);22:relay_char=hexchar(relay_snapshot[4:1]);
-   25:relay_char=hexchar((RELAY_TARGET_X>>8)&15);26:relay_char=hexchar((RELAY_TARGET_X>>4)&15);27:relay_char=hexchar(RELAY_TARGET_X&15);
-   30:relay_char=hexchar((RELAY_ADVANCE_PX>>8)&15);31:relay_char=hexchar((RELAY_ADVANCE_PX>>4)&15);32:relay_char=hexchar(RELAY_ADVANCE_PX&15);
-   default:relay_char=char_index<48 ? text[383-char_index*8-:8] : 8'd32;
-  endcase
- end
-endfunction
-function [7:0] relay_diag_char;
- input [6:0] ci;reg [423:0] text;
- begin
-  text="RD Z0 E0 F0 R0000 N000 T00000000 A00 D00 C00 S0 W0 U0";
-  case(ci)
-   4:relay_diag_char=hexchar({3'd0,diagnostic_snapshot[95]});
-   7:relay_diag_char=hexchar({1'd0,diagnostic_snapshot[94:92]});
-   10:relay_diag_char=hexchar(diagnostic_snapshot[3:0]);
-   13:relay_diag_char=hexchar(diagnostic_snapshot[91:88]);
-   14:relay_diag_char=hexchar(diagnostic_snapshot[87:84]);
-   15:relay_diag_char=hexchar(diagnostic_snapshot[83:80]);
-   16:relay_diag_char=hexchar(diagnostic_snapshot[79:76]);
-   19:relay_diag_char=hexchar({3'd0,diagnostic_snapshot[35]});
-   20:relay_diag_char=hexchar(diagnostic_snapshot[34:31]);
-   21:relay_diag_char=hexchar(diagnostic_snapshot[30:27]);
-   24:relay_diag_char=hexchar(diagnostic_snapshot[67:64]);
-   25:relay_diag_char=hexchar(diagnostic_snapshot[63:60]);
-   26:relay_diag_char=hexchar(diagnostic_snapshot[59:56]);
-   27:relay_diag_char=hexchar(diagnostic_snapshot[55:52]);
-   28:relay_diag_char=hexchar(diagnostic_snapshot[51:48]);
-   29:relay_diag_char=hexchar(diagnostic_snapshot[47:44]);
-   30:relay_diag_char=hexchar(diagnostic_snapshot[43:40]);
-   31:relay_diag_char=hexchar(diagnostic_snapshot[39:36]);
-   34:relay_diag_char=hexchar(diagnostic_snapshot[75:72]);
-   35:relay_diag_char=hexchar(diagnostic_snapshot[71:68]);
-   38:relay_diag_char=hexchar(diagnostic_snapshot[19:16]);
-   39:relay_diag_char=hexchar(diagnostic_snapshot[15:12]);
-   42:relay_diag_char=hexchar(diagnostic_snapshot[11:8]);
-   43:relay_diag_char=hexchar(diagnostic_snapshot[7:4]);
-   46:relay_diag_char=hexchar({1'd0,diagnostic_snapshot[26:24]});
-   49:relay_diag_char=hexchar(diagnostic_snapshot[23:20]);
-   52:relay_diag_char=hexchar({1'b0,relay_mode_snapshot});
-   default:relay_diag_char=ci<53 ? text[423-ci*8-:8] : 8'd32;
-  endcase
- end
-endfunction
-
-function [7:0] alarm_char;
- input [6:0] ci;reg [295:0] text;
- begin text="ALARM 5 EMPTY - MOTOR STOP - K3 CLEAR";alarm_char=ci<37 ? text[295-ci*8-:8] : 8'd32;end
-endfunction
-wire five_empty_alarm=FIVE_EMPTY_V7 && relay_snapshot[31:29]==4 && relay_snapshot[28:25]==15;
-function [7:0] recognition_char;
- input [2:0] ln;input [6:0] ci;reg [511:0] text;
- begin
-  case(ln)
-   0:text="DUAL ROI D1                                                     ";
-   1:text="UPPER + LOWER ROI - RECOGNITION ONLY                            ";
-   2:text="K1 RUN  K2 PAUSE/RUN  K3/K4 STOP  MOTOR:0                       ";
-   3:text="ROI1 UPPER - SEE RESULT BOXES                                   ";
-   4:text="ROI2 LOWER - SEE RESULT BOXES                                   ";
-   5:text="PRESENT / EMPTY / REVIEW                                        ";
-   6:text="COUNTING: WAITING   AUTO PARK: OFF                              ";
-   default:text=0;
-  endcase
-  recognition_char=ci<64 ? text[511-ci*8-:8] : 8'd32;
-  if(ln==2 && ci==40)recognition_char=relay_snapshot[0] ? "1" : "0";
- end
-endfunction
 reg de_d;reg [10:0] x;reg [9:0] y;
 wire start=de && !de_d && y==0;
+reg [7:0] relay_q0,relay_q1;reg [11:0] relay_id0,relay_id1;
+reg [127:0] relay_s;reg [2:0] relay_mode_s;reg relay_motor_s;
 reg page_s,eligible_s,show,cal_s,gray_s,cfg_s,tune_s,pending_s;
 reg [1:0] mode_s;reg [3:0] wait_s;
-reg [255:0] live,record;reg [303:0] obs;reg [127:0] cal;
+reg [255:0] live,record,live2,record2;reg show2;
+wire [255:0] input_live2=live_record[256*DUAL_REGION_COUNT+:256];
+wire [255:0] input_record2=frame_record[256*DUAL_REGION_COUNT+:256];reg [303:0] obs;reg [127:0] cal;
 reg [15:0] ex,ga,fp,iw,ih,wr,wb,gm,gn,gx,ec;
 reg [15:0] le,fe,ie,gp,ofl,ufl,lost;
 reg [31:0] fr,pub;reg [35:0] diag;
 reg [75:0] primary;reg [2:0] np,ne,nu;
-wire [19:0] cache[0:31];reg [19:0] label_bcd0,label_bcd1;reg [4:0] fmt,step;
+wire [19:0] cache[0:31];reg [19:0] label_bcd0,label_bcd1,label_bcd2,label_bcd3;reg [5:0] fmt;reg [4:0] step;
 reg [15:0] number,next_number;reg [19:0] bcd,adjusted;
 reg formatting,feeding,write_valid,ready;
 reg [9:0] cursor,write_cursor;
@@ -132,10 +40,10 @@ generate for(cache_word=0;cache_word<32;cache_word=cache_word+1)begin : numeric_
  assign cache[cache_word]=plane[896+cache_word];
 end endgenerate
 reg [9:0] token_d,write_cursor_d;reg write_valid_d;
-wire cache_write=rst_n && !start && formatting && step==16;
+wire cache_write=rst_n && !start && formatting && step==16 && fmt<32;
 wire text_write=rst_n && !start && write_valid_d;
 always @(posedge clk)begin
- if(cache_write)plane[{5'd28,fmt}]<={adjusted[18:0],number[15]};
+ if(cache_write)plane[{5'd28,fmt[4:0]}]<={adjusted[18:0],number[15]};
  else if(text_write)plane[write_cursor_d]<={12'd0,decoded};
 end
 // Predict exactly the next x/y register state, so a synchronous text-plane
@@ -158,7 +66,7 @@ reg [19:0] plane_q;
 wire [9:0] shared_read_address=(feeding || write_valid) ? {5'd28,token[7:3]} : plane_next_address;
 always @(posedge clk)plane_q<=plane[shared_read_address];
 
-compact_template_rom #(.BUILD_R22(BUILD_R22),.EMPTY_TRACE(EMPTY_TRACE),.BUILD_R20(BUILD_R20),.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
+compact_template_rom #(.DUAL_REGION_COUNT(DUAL_REGION_COUNT),.PRESENT_TRACE(PRESENT_TRACE),.BUILD_R22(BUILD_R22),.EMPTY_TRACE(EMPTY_TRACE),.BUILD_R20(BUILD_R20),.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
 // R15 production suppresses numbering-confidence UI only; classification
 // colours and LOST/HOLD/CHECK state protection remain active.
 wire [8:0] gap_id=!REPORT_NUMBER_GAPS ? 9'd0 : live[57] ? live[102:94] : live[120:112];
@@ -174,9 +82,9 @@ function [7:0] hexchar;
 endfunction
 // Packed strings are always eight characters, indexed from the right.
 function [7:0] state_char;
- input [2:0] pos;reg [63:0] word;
+ input [2:0] pos;input [2:0] value;reg [63:0] word;
  begin
-  case(live[50:48])
+  case(value)
    0:word="READY   ";1:word="LOCKING ";
    2:word=gap_id!=0 ? "RUN GAP " : "RUN     ";3:word="LOST    ";
    4:word="DONE    ";5:word="HOLD    ";6:word="CHECK   ";default:word="?       ";
@@ -240,6 +148,18 @@ function [31:0] hexvalue;
     21:hexvalue={17'd0,c[14:0]};22:hexvalue={28'd0,trace_reason(c)};
    endcase
   end
+
+  if(PRESENT_TRACE && slot>=16 && slot<=27)begin
+   hexvalue=0;
+   if(cal_s && cal[123] && cal[127:124]==1)case(slot)
+    16:hexvalue={24'd0,cal[117:110]};17:hexvalue={21'd0,cal[109:99]};
+    18:hexvalue={22'd0,cal[98:89]};19:hexvalue={22'd0,cal[88:79]};
+    20:hexvalue={22'd0,cal[78:69]};21:hexvalue={22'd0,cal[68:59]};
+    22:hexvalue={23'd0,cal[58:50]};23:hexvalue={23'd0,cal[49:41]};
+    24:hexvalue={23'd0,cal[40:32]};25:hexvalue={23'd0,cal[31:23]};
+    26:hexvalue={29'd0,cal[22:20]};27:hexvalue={28'd0,cal[17:14]};
+   endcase
+  end
  end
 endfunction
 function [7:0] special_char;
@@ -247,7 +167,7 @@ function [7:0] special_char;
  begin
   special_char=32;message="IDS UNCONFIRMED ";
   case(slot)
-   1:special_char=state_char(pos);
+   1:special_char=state_char(pos,live[50:48]);
    2:special_char=hexchar(live[54:51]);
    3:special_char=!live[55] ? "?" : live[56] ? "R" : "L";
    4:special_char="1"+live[57];5:special_char=(page_s ? eligible_s : gray_s) ? "1" : "0";
@@ -264,6 +184,11 @@ function [7:0] special_char;
    17:special_char=gap_id!=0 ? message[127-(14-pos)*8-:8] : 8'd32;
    18:special_char=live[210:202]!=0 ? class_char(live[212:211],live[212:211]==2 && live[216:213]!=0,8) : 8'd32;
    19:special_char=gap_id!=0 ? "R" : " ";
+   20:if(DUAL_REGION_COUNT && page_s)special_char=state_char(pos,live2[50:48]);else if(PRESENT_TRACE)special_char=cal_s && cal[123] ? "1"+cal[122] : "0";
+   21:if(DUAL_REGION_COUNT && page_s)special_char=hexchar(live2[54:51]);else if(PRESENT_TRACE)special_char=cal_s && cal[123] ? "0"+cal[121:120] : "0";
+   22:if(DUAL_REGION_COUNT && page_s)special_char=!live2[55] ? "?" : live2[56] ? "R" : "L";else if(PRESENT_TRACE)special_char=!(cal_s && cal[123]) ? "-" : cal[119] ? "W" : "S";
+   23:if(PRESENT_TRACE)special_char=!(cal_s && cal[123]) ? "-" : "0"+cal[118];
+   24:if(PRESENT_TRACE)special_char=cal_s && cal[123] ? "1" : "0";
   endcase
  end
 endfunction
@@ -271,7 +196,7 @@ wire [31:0] hexadecimal=hexvalue(token_d[7:3]);
 always @*begin
  case(token_d[9:8])
   0:decoded=token_d[7:0];
-  1:decoded=token_d[7:3]==20 && gap_id==0 ? 8'd32 : "0"+((plane_q>>(token_d[2:0]*4))&4'hf);
+  1:decoded=token_d[7:3]==20 && gap_id==0 && !(DUAL_REGION_COUNT && page_s) ? 8'd32 : "0"+((plane_q>>(token_d[2:0]*4))&4'hf);
   2:decoded=hexchar(hexadecimal>>(token_d[2:0]*4));
   default:decoded=special_char(token_d[7:3],token_d[2:0]);
  endcase
@@ -298,6 +223,22 @@ always @*begin
   26:next_number={9'd0,primary[55:49]};27:next_number={9'd0,primary[48:42]};
   28:next_number={3'd0,primary[68:56]};29:next_number=iw;30:next_number=ih;31:next_number=ec;
  endcase
+ if(DUAL_REGION_COUNT && page_s)case(fmt)
+  5:next_number={7'd0,live2[130+:9]};
+  20:next_number={7'd0,live2[139+:9]};
+  21:next_number={7'd0,live2[148+:9]};
+  22:next_number={7'd0,live2[157+:9]};
+  23:next_number={7'd0,live2[66:58]};24:next_number={7'd0,live2[75:67]};
+  25:next_number={7'd0,live2[84:76]};26:next_number={7'd0,live2[93:85]};
+  27:next_number={7'd0,live2[166+:9]};28:next_number={7'd0,live2[175+:9]};
+  29:next_number={7'd0,live2[184+:9]};30:next_number={7'd0,live2[193+:9]};
+  31:next_number={10'd0,live2[222:217]}+1'b1;
+  32:next_number={7'd0,record2[112+:9]};33:next_number={7'd0,record2[121+:9]};
+ endcase
+ if(AUTO_RELAY)case(fmt)
+  34:next_number={10'd0,relay_s[63:58]};35:next_number={7'd0,relay_s[20:12]};
+  36:next_number={10'd0,relay_s[127:122]};37:next_number={7'd0,relay_s[84:76]};
+ endcase
  adjusted=bcd;
  if(bcd[3:0]>=5)adjusted[3:0]=bcd[3:0]+3;
  if(bcd[7:4]>=5)adjusted[7:4]=bcd[7:4]+3;
@@ -307,9 +248,10 @@ always @*begin
 end
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
-  relay_snapshot<=0;diagnostic_snapshot<=0;relay_mode_snapshot<=0;
+  relay_q0<=0;relay_q1<=0;relay_id0<=0;relay_id1<=0;
+  relay_s<=0;relay_mode_s<=0;relay_motor_s<=0;
   de_d<=0;x<=0;y<=0;page_s<=0;eligible_s<=0;show<=0;cal_s<=0;gray_s<=0;cfg_s<=0;tune_s<=0;pending_s<=0;
-  mode_s<=0;wait_s<=0;live<=0;record<=0;obs<=0;cal<=0;primary<=0;np<=0;ne<=0;nu<=0;
+  mode_s<=0;wait_s<=0;live<=0;record<=0;live2<=0;record2<=0;show2<=0;obs<=0;cal<=0;primary<=0;np<=0;ne<=0;nu<=0;
   ex<=0;ga<=0;fp<=0;iw<=0;ih<=0;wr<=0;wb<=0;gm<=0;gn<=0;gx<=0;ec<=0;
   le<=0;fe<=0;ie<=0;gp<=0;ofl<=0;ufl<=0;lost<=0;fr<=0;pub<=0;diag<=0;
   token_d<=0;write_cursor_d<=0;write_valid_d<=0;fmt<=0;step<=0;number<=0;bcd<=0;formatting<=0;feeding<=0;write_valid<=0;ready<=0;cursor<=0;write_cursor<=0;
@@ -318,12 +260,15 @@ always @(posedge clk or negedge rst_n)begin
   if(vs)begin x<=0;y<=0;end
   else if(de)x<=x+1'b1;else if(de_d)begin x<=0;y<=y+1'b1;end
   if(start)begin
-   relay_snapshot<=relay_status;diagnostic_snapshot<=relay_diagnostic;relay_mode_snapshot<=relay_control_mode;
-   page_s<=RECOGNITION_ONLY ? 1'b0 : page;live<=live_record;record<=frame_record;obs<=objects;cal<=calibration_record;
+   relay_s<=relay_status;relay_mode_s<=relay_mode;relay_motor_s<=relay_motor;
+   page_s<=page;live<=live_record[255:0];record<=frame_record[255:0];live2<=input_live2;record2<=input_record2;obs<=objects;cal<=calibration_record;
    eligible_s<=eligible;cal_s<=calibration_valid;gray_s<=roi_valid;cfg_s<=cfg_done;tune_s<=wb_tune;pending_s<=wb_pending;
    show<=eligible && frame_record[47:32]==live_record[47:32] &&
     (frame_record[50:48]==1 || frame_record[50:48]==2 || frame_record[50:48]==5) &&
     (live_record[50:48]==1 || live_record[50:48]==2 || live_record[50:48]==5);
+   show2<=eligible && input_record2[223] && input_record2[47:32]==input_live2[47:32] &&
+    (input_record2[50:48]==1 || input_record2[50:48]==2 || input_record2[50:48]==5) &&
+    (input_live2[50:48]==1 || input_live2[50:48]==2 || input_live2[50:48]==5);
    ex<=exposure;ga<=gain;fp<=fps;iw<=width;ih<=height;wr<={8'd0,wb_r};wb<={8'd0,wb_b};
    gm<=roi_valid ? {8'd0,roi_mean} : 0;gn<=roi_valid ? {8'd0,roi_min} : 0;gx<=roi_valid ? {8'd0,roi_max} : 0;ec<={3'd0,edge_count};
    primary<=frame_record[57] ? (objects[227] ? objects[227:152] : objects[303:228]) : (objects[75] ? objects[75:0] : objects[151:76]);
@@ -339,7 +284,13 @@ always @(posedge clk or negedge rst_n)begin
      if(step==16)begin
       if(fmt==18)label_bcd0<={adjusted[18:0],number[15]};
       if(fmt==19)label_bcd1<={adjusted[18:0],number[15]};step<=0;
-      if(fmt==31)begin formatting<=0;feeding<=1;cursor<=0;end else fmt<=fmt+1'b1;
+      if(fmt==32)label_bcd2<={adjusted[18:0],number[15]};
+      if(fmt==33)label_bcd3<={adjusted[18:0],number[15]};
+      if(AUTO_RELAY)case(fmt)
+       34:relay_q0<={adjusted[6:0],number[15]};35:relay_id0<={adjusted[10:0],number[15]};
+       36:relay_q1<={adjusted[6:0],number[15]};37:relay_id1<={adjusted[10:0],number[15]};
+      endcase
+      if(fmt==(AUTO_RELAY ? 37 : DUAL_REGION_COUNT && page_s ? 33 : 31))begin formatting<=0;feeding<=1;cursor<=0;end else fmt<=fmt+1'b1;
      end else step<=step+1'b1;
     end
    end
@@ -350,24 +301,41 @@ always @(posedge clk or negedge rst_n)begin
  end
 end
 
-reg [151:0] second_obs;
-always @(posedge clk or negedge rst_n)
- if(!rst_n)second_obs<=0;else if(start)second_obs<=second_lane_objects;
+// Compact per-lane stop status uses the existing font/read pipeline.
+function [7:0] relay_hex;input [3:0] v;begin relay_hex=v<10 ? "0"+v : "A"+v-10;end endfunction
+function [7:0] relay_char;
+ input [4:0] char_pos;input lane;input [63:0] st;input [2:0] mode;input motor;input [7:0] q_decimal;input [11:0] id_decimal;
+ reg [8:0] id;reg [5:0] q;
+ begin id=st[20:12];q=st[63:58];relay_char=32;
+ case(char_pos)
+  0:relay_char="L";1:relay_char=lane ? "2" : "1";
+  3:relay_char="S";4:relay_char="0"+st[31:29];
+  6:relay_char="F";7:relay_char=relay_hex(st[28:25]);
+  9:relay_char="Q";10:relay_char="0"+q_decimal[7:4];11:relay_char="0"+q_decimal[3:0];
+  13:relay_char="N";14:relay_char="0"+id_decimal[11:8];15:relay_char="0"+id_decimal[7:4];16:relay_char="0"+id_decimal[3:0];
+  18:relay_char="X";19:relay_char=relay_hex({1'b0,st[11:9]});20:relay_char=relay_hex(st[8:5]);21:relay_char=relay_hex(st[4:1]);
+  23:relay_char=mode==2 ? "P" : "M";24:relay_char=motor ? "1" : "0";
+ endcase
+ end
+endfunction
+function [7:0] alarm_char;input [5:0] char_pos;reg [8*26-1:0] msg;
+ begin msg="ALARM FIVE EMPTY K3 CLEAR ";alarm_char=char_pos<26 ? msg[(25-char_pos)*8+:8] : 8'd32;end
+endfunction
 reg [2:0] line;reg [9:0] plane_address;reg [7:0] code;
 reg [4:0] row,col;reg panel,guide,logo,repair_border;reg [23:0] ink;
 reg [75:0] ob;reg [8:0] id;reg [19:0] id_bcd;
 reg [10:0] lx,rx;reg [9:0] ly;reg [3:0] glyph_cell;
-wire trace_cross0=EMPTY_TRACE && cal_s && cal[63] &&
+wire trace_cross0=!PRESENT_TRACE && EMPTY_TRACE && cal_s && cal[63] &&
  ((x==cal[62:52] && y+4>=cal[51:42] && y<=cal[51:42]+4) ||
   (y==cal[51:42] && x+4>=cal[62:52] && x<=cal[62:52]+4));
-wire trace_cross1=EMPTY_TRACE && cal_s && cal[127] &&
+wire trace_cross1=!PRESENT_TRACE && EMPTY_TRACE && cal_s && cal[127] &&
  ((x==cal[126:116] && y+4>=cal[115:106] && y<=cal[115:106]+4) ||
   (y==cal[115:106] && x+4>=cal[126:116] && x<=cal[126:116]+4));
 reg prefix;integer t;
 wire [10:0] text_dx=x-11'd136;
 always @*begin
- line=0;plane_address=0;code=32;row=0;col=0;panel=0;guide=0;logo=0;repair_border=0;ink=24'h70ffdd;
- ob=0;id=0;id_bcd=0;lx=0;rx=0;ly=0;glyph_cell=0;prefix=0;
+ line=0;plane_address=0;code=32;row=0;col=0;panel=0;guide=0;logo=0;ink=24'h70ffdd;
+ ob=0;id=0;id_bcd=0;lx=0;rx=0;ly=0;glyph_cell=0;prefix=0;repair_border=0;
  if(y<80 || y>=HEIGHT-96)begin
   panel=1;logo=x>=16 && x<112 && y>=8 && y<72;
   if(x>=136 && x<1160 && ready)begin
@@ -381,65 +349,25 @@ always @*begin
    else row=31;
    plane_address={line,text_dx[9:3]};code=plane_q;col={2'd0,text_dx[2:0]};
    if(code[7])col={code[5:4],3'd0}+text_dx[2:0];
-   if(AUTO_RELAY && line==2 && text_dx[9:3]>=72)code=relay_char(text_dx[9:3]-72);
-   if(ADJACENT_V6 && !RECOGNITION_ONLY && line==6)code=relay_diag_char(text_dx[9:3]);
-   if(!RECOGNITION_ONLY && five_empty_alarm && line==2 && text_dx[9:3]<64)begin
-    code=alarm_char(text_dx[9:3]);col={2'd0,text_dx[2:0]};ink=24'hff5050;
-   end
-   if(RECOGNITION_ONLY && (line!=0 || text_dx[9:3]<12))begin
-    code=recognition_char(line,text_dx[9:3]);col={2'd0,text_dx[2:0]};
-   end
-   if(SECOND_LANE && line==0 && text_dx[9:3]<10)begin
-    case(text_dx[9:3])
-     0:code="R";1:code="L";2:code="7";3:code="+";4:code="D";5:code="2";
-     default:code=32;
-    endcase
-    col={2'd0,text_dx[2:0]};
-   end
    if(row==31)code=32;
    if(page_s && gap_id!=0 && (line==1 || line==2 || line==3))ink=24'hffe080;
   end
  end else begin
   guide=(((x==WIDTH*5/16 || x==WIDTH*11/16-1) && ((y>=HEIGHT/3 && y<HEIGHT*5/9)||(y>=HEIGHT*3/5 && y<HEIGHT*5/6))) ||
    ((y==HEIGHT/3 || y==HEIGHT*5/9-1 || y==HEIGHT*3/5 || y==HEIGHT*5/6-1) && x>=WIDTH*5/16 && x<WIDTH*11/16)) && (x[3] || y[3]);
-  if(!RECOGNITION_ONLY && x==WIDTH/2 && y[2] && ((y>=HEIGHT/3 && y<HEIGHT*5/9 && (!page_s || !record[57])) ||
-   (y>=HEIGHT*3/5 && y<HEIGHT*5/6 && (!page_s || record[57]))))guide=1;
-  if(AUTO_RELAY && ((y>=HEIGHT/3 && y<HEIGHT*5/9)||(y>=HEIGHT*3/5 && y<HEIGHT*5/6)) &&
-    (x==RELAY_TARGET_X || (x==RELAY_TARGET_X-RELAY_ADVANCE_PX && y[2])))guide=1;
-  if(RELAY_LEFT_LAYOUT)begin
-   // Same upper tape row: right count gate / left independent repair gate.
-   guide=y>=HEIGHT/3 && y<HEIGHT*5/9 &&
-    (((x==64 || x==447 || x==448 || x==831) && y[3]) ||
-     ((y==HEIGHT/3 || y==HEIGHT*5/9-1) && x>=64 && x<832 && x[3]) ||
-     (x==WIDTH/2 && y[2]) || (x==256 && y[3]) ||
-     x==RELAY_TARGET_X || (x==RELAY_TARGET_X+RELAY_ADVANCE_PX && y[2]));
-  end
-  // Amber dashed box is the acceptance window, not a new detection ROI.
-  // It changes display only; classification still consumes original pixels.
-  if(AUTO_RELAY && RELAY_LEFT_LAYOUT && RELAY_TOL_PX>8)
-   repair_border=y>=HEIGHT/3 && y<HEIGHT*5/9 &&
-    (((x==RELAY_TARGET_X-RELAY_TOL_PX || x==RELAY_TARGET_X+RELAY_TOL_PX) && y[3]) ||
-     ((y==HEIGHT/3 || y==HEIGHT*5/9-1) && x>=RELAY_TARGET_X-RELAY_TOL_PX &&
-      x<=RELAY_TARGET_X+RELAY_TOL_PX && x[3]));
-  // Production view shows one count ROI and the amber acceptance window.
-  // Internal station ROI, gate, prediction and trigger are unchanged.
-  if(RELAY_CLEAN_UI && AUTO_RELAY && RELAY_LEFT_LAYOUT)
-   guide=y>=HEIGHT/3 && y<HEIGHT*5/9 &&
-    (((x==448 || x==831) && y[3]) ||
-     ((y==HEIGHT/3 || y==HEIGHT*5/9-1) && x>=448 && x<832 && x[3]));
-  if(SECOND_LANE && y>=HEIGHT*3/5 && y<HEIGHT*5/6 &&
-    (((x==WIDTH*5/16 || x==WIDTH*11/16-1) && y[3]) ||
-     ((y==HEIGHT*3/5 || y==HEIGHT*5/6-1) && x>=WIDTH*5/16 && x<WIDTH*11/16 && x[3])))guide=1;
-  if(!RELAY_CLEAN_UI && (trace_cross0 || trace_cross1))guide=1;
-  for(t=0;t<(SECOND_LANE ? 6 : 4);t=t+1)begin
-   ob=t<4 ? obs[t*76+:76] : second_obs[(t-4)*76+:76];id=0;id_bcd=0;
-   if(t<4 && page_s && t/2==record[57])begin
-    id=record[94+t*9+:9];id_bcd=t%2==0 ? label_bcd0 : label_bcd1;
+  if(x==WIDTH/2 && y[2] && ((y>=HEIGHT/3 && y<HEIGHT*5/9 && (!page_s || DUAL_REGION_COUNT || !record[57])) ||
+   (y>=HEIGHT*3/5 && y<HEIGHT*5/6 && (!page_s || DUAL_REGION_COUNT || record[57]))))guide=1;
+  if(trace_cross0 || trace_cross1)guide=1;
+  for(t=0;t<4;t=t+1)begin
+   ob=obs[t*76+:76];id=0;id_bcd=0;
+   if(page_s && (DUAL_REGION_COUNT || t/2==record[57]))begin
+    id=DUAL_REGION_COUNT && t>=2 ? record2[94+t*9+:9] : record[94+t*9+:9];
+    id_bcd=DUAL_REGION_COUNT && t>=2 ? (t%2==0 ? label_bcd2 : label_bcd3) : (t%2==0 ? label_bcd0 : label_bcd1);
    end
-   if(ready && ob[75] && (t>=4 || !page_s || eligible_s && t/2==record[57]))begin
+   if(ready && ob[75] && (!page_s || eligible_s && (DUAL_REGION_COUNT || t/2==record[57])))begin
     if(((x==ob[41:31] || x==ob[30:20]) && y>=ob[19:10] && y<=ob[9:0]) ||
       ((y==ob[19:10] || y==ob[9:0]) && x>=ob[41:31] && x<=ob[30:20]))guide=1;
-    prefix=t<4 && page_s && show && id!=0;
+    prefix=page_s && (DUAL_REGION_COUNT && t>=2 ? show2 : show) && id!=0;
     lx=ob[41:31]>WIDTH-112 ? WIDTH-112 : ob[41:31];
     ly=t%2==0 ? (ob[19:10]>=108 ? ob[19:10]-28 : 80) : (ob[9:0]<HEIGHT-124 ? ob[9:0]+4 : HEIGHT-120);
     rx=lx+(prefix ? 112 : 72);
@@ -452,6 +380,25 @@ always @*begin
      ink=ob[74:73]==3 ? 24'hffe080 : ob[74:73]==2 && ob[72:69]==0 ? 24'h70ffdd : 24'hffb070;
     end
    end
+  end
+ end
+ if(AUTO_RELAY)begin
+  repair_border=(((x==RELAY_TARGET_X-RELAY_TOL_PX || x==RELAY_TARGET_X+RELAY_TOL_PX) && y[3]) ||
+    ((y==HEIGHT/3 || y==HEIGHT*5/9-1 || y==HEIGHT*3/5 || y==HEIGHT*5/6-1) && x[3])) &&
+   x>=RELAY_TARGET_X-RELAY_TOL_PX && x<=RELAY_TARGET_X+RELAY_TOL_PX &&
+   ((y>=HEIGHT/3 && y<HEIGHT*5/9) || (y>=HEIGHT*3/5 && y<HEIGHT*5/6));
+  if(ready && x>=1080 && x<1280 && ((y>=32 && y<48) || (y>=56 && y<72)))begin
+   panel=1;logo=0;row=y>=56 ? y-56 : y-32;col=(x-1080)&7;
+   code=relay_char((x-1080)>>3,y>=56,y>=56 ? relay_s[127:64] : relay_s[63:0],relay_mode_s,relay_motor_s,y>=56 ? relay_q1 : relay_q0,y>=56 ? relay_id1 : relay_id0);
+   ink=(y>=56 ? relay_s[92:89] : relay_s[28:25])!=0 ? 24'hff7060 : 24'h70ffdd;
+  end
+  if(ready && x>=136 && x<344 && y>=80 && y<96 &&
+   (relay_s[28:25]==15 || relay_s[92:89]==15))begin
+   panel=1;logo=0;row=y-80;col=(x-136)&7;code=alarm_char((x-136)>>3);ink=24'hff4040;
+  end
+  if(ready && x>=136 && x<208 && y>=8 && y<24)begin
+   panel=1;logo=0;row=y-8;col=(x-136)&7;
+   case((x-136)>>3)0:code="D";1:code="3";2:code="+";3:code="R";4:code="2";5:code="7";6:code="B";default:code=32;endcase
   end
  end
 end

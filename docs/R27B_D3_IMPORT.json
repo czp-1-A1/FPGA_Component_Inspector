@@ -1,0 +1,117 @@
+{
+  "user_confirmed_counting_baseline": true,
+  "zip_sha256": "2a4dc51449708d797bcea40dc4b4c102e05042a2ce1836cde04d7d9b1cf3070c",
+  "imported_production": {
+    "design_top_wrapper.v": {
+      "r27b": "f4a3621f7793d60f6a9ddfcd02fc0c6f81f135918e0a7ac36814d61bd2c450ab",
+      "previous_d2": "19c909720e603a2f276868240d59b2943d289f8e9482de862acadb7150bf4ef1"
+    },
+    "isp/isp_top.v": {
+      "r27b": "9558c0037531221852620d3f796ab629f3f9ed0fe82535b6b25743dff7a928ac",
+      "previous_d2": "6ef380cc9075e5e2be50a5b6c00d724384287eb788d594626906547280f5256e"
+    },
+    "classified_count_pipeline.v": {
+      "r27b": "3231fbd4af8b0074176eff456278f9ca886a99caecb54350da4b43760dcdbad9",
+      "previous_d2": "189481c897bf4fad8ef9b6fd817307969c6f106a2902da7dd8904001a94bbaa7"
+    },
+    "classified_pocket_counter.v": {
+      "r27b": "67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c",
+      "previous_d2": "599582c4ec933b9d415a7bec52a85c6c33da431396e8ac595208ea47e822c683"
+    },
+    "frame_shape_search.v": {
+      "r27b": "330b54adabd0ea3221e5b0eaaeffe976cf8b70ebdf0850822b4003fc533dff08",
+      "previous_d2": "6bee1e70e13707cf729b38833c50d5e98a16bfa78289c782ca446c4d0b8c3466"
+    },
+    "local_edge_surface_check.v": {
+      "r27b": "b8a43301376b742421941f5a4e758ec0c7a9ba94c6ccea742a4dfd939d5dfb13",
+      "previous_d2": "8b90d1c31cd199dd954bd2784b9bdb73951f8a640df5b50cf6f661669b3f68df"
+    },
+    "classified_dual_page_osd.v": {
+      "r27b": "27fc3dfbc7582cc620ad3eeed05cc0e879506fd4ee3471b4189f554156eab753",
+      "previous_d2": "5f1b6b12ed50142a425e11edbd2528eabd8dcd959d533030de9394dfa91b976f"
+    },
+    "compact_inspector_osd.v": {
+      "r27b": "1fdb8e82687ec651e89eb2f06590d81979c75df5716741d5e10ca74847e9ab4b",
+      "previous_d2": "dd283cc10ad7ed5abd4cf2465d08066dd50581706860db6caacd2801e8ac0d04"
+    },
+    "compact_template_rom.v": {
+      "r27b": "64e5b3b7342ec6cc32b411e17c4d2daeea7748426e981e9acd87990dfc6a5850",
+      "previous_d2": "f64f1138b64aa502beefe690385fdb368c4072acd7555fd27122c3892d086ee5"
+    }
+  },
+  "added_reference_files": [
+    "R26_FROZEN_INPUTS.json",
+    "R27A_FROZEN_INPUTS.json",
+    "README_R24.md",
+    "README_R24_C2.md",
+    "README_R25.md",
+    "README_R25_DELIVERY.md",
+    "README_R26.md",
+    "README_R26_DELIVERY.md",
+    "README_R27.md",
+    "sim/present_motion/__init__.py",
+    "sim/present_motion/frame_shape_search_r22.v",
+    "sim/present_motion/local_edge_surface_check_r22.v",
+    "sim/present_motion/reference_metrics.py",
+    "sim/present_motion/tb_present_trace_detector.sv",
+    "sim/present_motion/tb_present_trace_raw.v",
+    "sim/present_motion/tb_present_trace_raw_mode1.v",
+    "sim/present_motion/tb_present_trace_raw_mode2.v",
+    "sim/present_motion/tb_present_trace_raw_mode3.v",
+    "sim/present_motion/tb_present_trace_ui.sv",
+    "sim/present_motion/tb_present_trace_unit.sv",
+    "sim/present_motion/unit/bounds.hex",
+    "sim/present_motion/unit/expected.hex",
+    "sim/present_motion/unit/fixtures.hex",
+    "sim/present_motion/unit/flags.hex",
+    "sim/present_motion/unit/independent_reference.json",
+    "sim/present_motion/unit/kinds.hex",
+    "sim/present_motion/verify_present_ui.py",
+    "sim/reference/classified_pocket_counter_r24_base.v",
+    "sim/reference/frame_shape_search_r24.v",
+    "sim/reference/frame_shape_search_r27a.v",
+    "sim/tb_counter_timing_case1.sv",
+    "sim/tb_counter_timing_case2.sv",
+    "sim/tb_counter_timing_case3.sv",
+    "sim/tb_counter_timing_case4.sv",
+    "sim/tb_counter_timing_equivalence.sv",
+    "sim/tb_empty_native.v",
+    "sim/tb_empty_result_proof.sv",
+    "sim/tb_high_slot_choice.sv",
+    "sim/tb_restart_epoch.sv",
+    "sim/tb_restart_native.v",
+    "sim/tb_sparse_equivalence.sv",
+    "sim/tb_sparse_row_detector.sv",
+    "sim/tb_two_region_count.sv",
+    "sim/tb_two_region_dense_raw.v",
+    "sim/tb_two_region_detector.sv",
+    "sim/tb_two_region_raw.v",
+    "sim/tb_two_region_ui.sv",
+    "tools/check_present_detector.py",
+    "tools/check_present_raw.py",
+    "tools/check_present_unit.py",
+    "tools/check_two_region_raw.py",
+    "tools/check_two_region_ui.py",
+    "tools/finalize_dual_region_r24.tcl",
+    "tools/finalize_dual_region_r25.tcl",
+    "tools/finalize_dual_region_r26.tcl",
+    "tools/finalize_dual_region_r27.tcl",
+    "tools/prepare_dual_region_r24.py",
+    "tools/prepare_dual_region_r25.py",
+    "tools/prepare_dual_region_r26.py",
+    "tools/prepare_dual_region_r27.py",
+    "tools/verify_dual_region_c2.py",
+    "tools/verify_dual_region_r24.py",
+    "tools/verify_dual_region_r25.py",
+    "tools/verify_dual_region_r26.py",
+    "tools/verify_dual_region_r27.py"
+  ],
+  "preserved_local": [
+    "pocket_run_controls.v",
+    "uics500_cfg/SC500GainTbl.v",
+    "user_source/constraints_source/pin.adc",
+    "td_project/camera_to_dsi_display.sdc"
+  ],
+  "parking_station_reference": "RL7 engine preserved under independent module names; not integrated yet",
+  "board_operated": false
+}
