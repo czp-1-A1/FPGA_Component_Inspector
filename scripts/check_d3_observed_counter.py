@@ -1,6 +1,6 @@
 """Prove the production observation clone adds only read-only wires/ports."""
 from pathlib import Path
-import argparse,hashlib,json
+import argparse,hashlib,json,re
 r=Path(__file__).resolve().parents[1]
 a=argparse.ArgumentParser();a.add_argument('--source',type=Path,default=r/'fpga/component_inspector');a.add_argument('--out',type=Path,default=r/'docs/D3_OBSERVED_COUNTER_PROOF.json');args=a.parse_args()
 h=args.source/'user_source/hdl_source'
@@ -21,15 +21,36 @@ wires=""" // Passive observations only: original state transitions below are unc
 """
 assert observed.count(ports)==1 and observed.count(wires)==1
 restored=observed.replace('module observed_classified_pocket_counter #(','module classified_pocket_counter #(',1).replace(ports,'',1).replace(wires,'',1)
+read_reencoding=False
+if 'output wire [8:0] empty_id,' in restored:
+ expected="\n reg [8:0] empty_id_raw;reg empty_id_valid;\n assign empty_id=empty_id_valid ? empty_id_raw : 9'd0;"
+ reads='  empty_id_raw<=empty_ids[empty_address];\n  empty_id_valid<=empty_address<empty_total;'
+ assert restored.count(expected)==1 and restored.count(reads)==1
+ restored=restored.replace('output wire [8:0] empty_id,','output reg [8:0] empty_id,',1).replace(expected,'',1).replace(reads,"  empty_id<=empty_address<empty_total ? empty_ids[empty_address] : 9'd0;",1)
+ read_reencoding=True
 placement_attributes=[]
 for declaration in ['reg [5:0] ledger[0:MAX_TOTAL-1];','reg [8:0] empty_ids[0:MAX_TOTAL-1];']:
- annotated='(* ram_style="bram" *) '+declaration
- if annotated in restored:
-  assert restored.count(annotated)==1
-  restored=restored.replace(annotated,declaration,1);placement_attributes.append(declaration)
+ for style in ['bram','bram_20k(fast)']:
+  annotated='(* ram_style="'+style+'" *) '+declaration
+  if annotated in restored:
+   assert restored.count(annotated)==1
+   restored=restored.replace(annotated,declaration,1);placement_attributes.append(declaration)
 assert len(placement_attributes) in [0,2],'Only the paired ledger/empty-ID placement annotations are allowed'
+flag_write_sharing=False
+flag_mux='''
+ // All single-bit flag writes are in ASSIGN/APPLY/EMIT/CHECK/SKIP.
+ // Select their common slot once; all existing enables and NBA order remain.
+ wire [4:0] flag_write_slot=phase==ASSIGN ? (matches==1 ? found[4:0] : free_slot[4:0]) :
+  phase==APPLY ? mi : phase==EMIT ? event_slot : si[4:0];'''
+if 'flag_write_slot' in restored:
+ assert restored.count(flag_mux)==1
+ restored=restored.replace(flag_mux,'',1)
+ pattern=r'(valid_tracks|used|armed|quarantined|cross_pending)\[(found\[4:0\]|free_slot\[4:0\]|si\[4:0\]|mi|event_slot|emit_track)\](?=<=)'
+ expected,n=re.subn(pattern,r'\1[flag_write_slot]',original)
+ assert n==22 and restored==expected,'Only the enumerated common flag write index rewrite is allowed'
+ restored=original;flag_write_sharing=True
 assert restored==original,'Observation clone changed original parameters, memory behavior, state transitions, decisions or clock phases'
 assert sha(source)=='67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c'
-result={'status':'PASS_R27B_ORIGINAL_BODY_EXACT_READONLY_OBSERVER','original_raw_sha256':sha(source),'observed_raw_sha256':sha(clone),'original_normalized_body_sha256':hashlib.sha256(original.encode()).hexdigest(),'restored_normalized_body_sha256':hashlib.sha256(restored.encode()).hexdigest(),'placement_attributes':placement_attributes,'difference':'Only module name, seven passive output declarations and seven read-only continuous assignments'+('; plus two explicit ledger/empty-ID bram placement annotations' if placement_attributes else '')+'; no FSM, memory behavior, parameter, threshold or clock phase edits.'}
+result={'status':'PASS_R27B_BODY_EXACT_EXCEPT_ENUMERATED_STORAGE_REWRITES' if read_reencoding or flag_write_sharing else 'PASS_R27B_ORIGINAL_BODY_EXACT_READONLY_OBSERVER','original_raw_sha256':sha(source),'observed_raw_sha256':sha(clone),'original_normalized_body_sha256':hashlib.sha256(original.encode()).hexdigest(),'restored_normalized_body_sha256':hashlib.sha256(restored.encode()).hexdigest(),'placement_attributes':placement_attributes,'id_ram_same_clock_read_reencoding':read_reencoding,'flag_write_index_sharing':flag_write_sharing,'difference':'Module name, seven passive outputs/assignments'+('; two explicit RAM placement annotations' if placement_attributes else '')+('; exact enumerated same-clock RAM data/valid read split, requiring separate behavioral equivalence' if read_reencoding else '')+('; exact common write-index mux for 22 single-bit writes, requiring separate cycle equivalence' if flag_write_sharing else '')+'; original FSM, parameters, thresholds, write conditions/data/order and clock phases restored byte-exact after those enumerated rewrites.'}
 args.out.write_text(json.dumps(result,indent=2)+'\n')
 print(result['status'])

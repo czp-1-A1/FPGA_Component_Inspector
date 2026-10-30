@@ -2,12 +2,12 @@
 from pathlib import Path
 import argparse,hashlib,json,subprocess,zipfile
 from publish_r22_shift_alarm_v7 import sha,load,write,copy,git_source_audit
-from verify_d3_checks import verify
+from verify_d3_full_candidate import verify
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--work',type=Path,required=True);ap.add_argument('--check-only',action='store_true');args=ap.parse_args()
     repo=Path(__file__).resolve().parents[1];w=args.work.resolve();p=w/'project';tmp=Path('E:/2026FPGA/.codex_tmp')
-    software=verify(w);assert software['selected_checks']==software['expected_checks']==30 and software['profile']=='lossless-v3'
+    software=verify(w,require_production=True,suite_map=load(w/'SUITE_MAP.json'));assert software['selected_checks']==software['expected_checks']==33 and software['profile']=='lossless-v5'
     source=load(w/'frozen_inputs.json');assert len(source)==704
     assert len(load(w/'hardware_inputs.json'))==107
     git_source_audit(repo,source)
@@ -22,7 +22,7 @@ def main():
     assert physical['frame_metadata_bits']==1143 and physical['count_record_bits']==512
     assert physical['alarm_interlock_packed_cell_proof']['actual_alarm_Q_and_registered_motor_LUT']
     assert all(physical['timing_ns'][k]>=0 for k in ['SWNS','HWNS','STNS','HTNS'])
-    assert physical['resources']['slice']<=21216 and physical['resources']['eram']==104 and physical['resources']['dsp']==31
+    assert physical['resources']['slice']<=21216 and physical['resources']['eram']==105 and physical['resources']['dsp']==31
     bit=w/'runs/phy_1/camera_to_dsi_display.bit';assert sha(bit)==build['bit_sha256']==physical['bit_sha256']
     flash_root=Path('E:/2026FPGA/BIT_FLASH')
     protected={
@@ -30,7 +30,7 @@ def main():
         'R22_RelayAuto_Left_V7_ShiftAlarm_20261028.bit':'3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750',
         'R22_SingleStop_SecondRecognition_D2_20261029.bit':'1b2d3c1b0e279b53e8245fe8acd61db0ce6c69e37ae1ff3d9419fbab938803ae'}
     for name,d in protected.items():assert sha(flash_root/name)==d
-    name='R27B_DualCount_DualStop_D3_20261030';release=repo/'releases/r27b_dual_count_dual_stop_d3_20261030';archive=release.with_suffix('.zip');flash=flash_root/(name+'.bit')
+    name='R27B_DualCount_DualStop_D3_Slice_20261031';release=repo/'releases/r27b_dual_count_dual_stop_d3_slice_20261031';archive=release.with_suffix('.zip');flash=flash_root/(name+'.bit')
     assert not release.exists() and not archive.exists() and not flash.exists()
     receipt={'version':name,'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),
         'branch':subprocess.check_output(['git','branch','--show-current'],cwd=repo,text=True).strip(),'pushed':False,
@@ -56,7 +56,7 @@ def main():
     write(release/'SOURCE_SHA256.json',source)
     for name0 in ['frozen_inputs.json','hardware_inputs.json','baseline_delta.json','build_result.json','physical_verification.json','SOFTWARE_VERIFICATION.json']:
         copy(w/name0,release/'build'/name0)
-    for name0 in ['EXACT_SYNTHESIS_REUSE.json','BUILD_STRATEGY.json','PHYSICAL_STRATEGY.json','CAMERA_EXPORT.json','CHECK_PROFILE.json']:
+    for name0 in ['EXACT_SYNTHESIS_REUSE.json','BUILD_STRATEGY.json','PHYSICAL_STRATEGY.json','CAMERA_EXPORT.json','CHECK_PROFILE.json','SUITE_MAP.json','OBSERVER_PROOF.json','FONT_SYNTHESIS_PROOF.json','ID_RAM_SYNTHESIS_PROOF.json']:
         if (w/name0).is_file():copy(w/name0,release/'build'/name0)
     if 'official_file' in strategy:copy(Path(strategy['official_file']),release/'build/official_strategy_ph1.json')
     camera_work=w if (w/'CAMERA_EXPORT.json').is_file() else tmp/'d3_dual_stop_build_r11_resource_opt_20261030'
@@ -81,7 +81,8 @@ def main():
     for f in (repo/'tests/camera_gain_fix').iterdir():
         if f.is_file():copy(f,release/'tests/camera_gain_fix'/f.name)
     docs=['R27B_DUAL_STOP_D3_FIELD_GUIDE.md','R27B_DUAL_STOP_MERGE_ANALYSIS.md','D3_RESOURCE_ANALYSIS.md','D3_RESOURCE_ANALYSIS.json',
-        'D3_DISTANCE_BOUNDS.json','D3_OBSERVED_COUNTER_PROOF.json','D3_RANK_REFERENCE.json','D3_RESIZE_REFERENCE.json','D3_LOSSLESS_OPTIMIZATION.json','R27B_D3_IMPORT.json','R27B_ANALYSIS_REPLAY_VERIFICATION.json']
+        'D3_DISTANCE_BOUNDS.json','D3_OBSERVED_COUNTER_PROOF.json','D3_RANK_REFERENCE.json','D3_RESIZE_REFERENCE.json','D3_LOSSLESS_OPTIMIZATION.json','R27B_D3_IMPORT.json','R27B_ANALYSIS_REPLAY_VERIFICATION.json',
+        'D3_SLICE_CODE_REVIEW_20261031.md','D3_SLICE_CODE_REVIEW_20261031_EVIDENCE.json','D3_ID_RAM_PORT_EXTRACTION.json','D3_SLICE_EXECUTION_20261031.md']
     for name0 in docs:copy(repo/'docs'/name0,release/'docs'/name0)
     comparison=load(repo/'docs/D3_RESOURCE_ANALYSIS.json');comparison_index={}
     for label,row in comparison['reports'].items():
@@ -92,7 +93,7 @@ def main():
     copy(repo/'docs/R27B_DUAL_STOP_D3_FIELD_GUIDE.md',release/'FIELD_GUIDE.md')
     scripts=['build_r22_relay.py','reuse_d3_synthesis.py','run_d3_prepared.py','audit_dual_stop_d3.py','relay_left_checks.py','relay_left_native_check.py',
         'check_camera_gain_fix.py','export_d3_camera.py','verify_d3_checks.py','publish_dual_stop_d3.py','publish_r22_shift_alarm_v7.py',
-        'check_d3_distance_bounds.py','check_d3_observed_counter.py','report_d3_resources.py']
+        'check_d3_distance_bounds.py','check_d3_observed_counter.py','report_d3_resources.py','verify_d3_full_candidate.py','check_d3_synthesis_storage.py','probe_d3_slice_stage.py','make_d3_id_ram_equivalence.py']
     for name0 in scripts:copy(repo/'scripts'/name0,release/'scripts'/name0)
     rejected=tmp/'d3_dual_stop_build_r12_local_banks_20261030'
     copy(rejected/'REJECTED_RESOURCE.json',release/'diagnostics/rejected_local_bank_unroll/REJECTED_RESOURCE.json')
@@ -102,7 +103,7 @@ def main():
     write(release/'VERIFICATION.json',{'status':'PASS_EXACT_INPUT_SIMULATION_AND_STRICT_ROUTED_AUDIT',
         'software':software,'physical':physical,'hardware_acceptance':False})
     write(release/'RELEASE.json',receipt);copy(bit,release/(name+'.bit'))
-    (release/'README.md').write_text('R27B 双列识别/独立计数 + D3 双列补件停车。原成功计数算法保留，每列32任务、完整1秒保持、相邻穴继续、各列五空报警、一个共用电机。操作与验收见 FIELD_GUIDE.md。尚未实板验收。构建冻结704源/107依赖，30项精确编译输入软件检查，原49条约束与建立/保持/双报警到V2注册输出审计通过。重建到新目录：python scripts/build_r22_relay.py --source project --keys-v3 --seed '+str(build['seed'])+' --synthesis-strategy '+strategy['strategy']+' --physical-strategy '+physical_strategy['strategy']+' --stage-timeout 7200 --baseline-manifest build/frozen_inputs.json --extra-source user_source/hdl_source/observed_classified_pocket_counter.v user_source/hdl_source/global_empty_position_tracker.v user_source/hdl_source/dual_lane_parking.v --work E:/2026FPGA/D3_rebuild 。不得覆盖已有构建目录；重建仍需重新物理审计。\n',encoding='utf8')
+    (release/'README.md').write_text('R27B 双列识别/独立计数 + D3 双列补件停车。原成功计数算法保留，每列32任务、完整1秒保持、相邻穴继续、各列五空报警、一个共用电机。操作与验收见 FIELD_GUIDE.md。尚未实板验收。构建冻结704源/107依赖，33项精确编译输入软件检查，原49条约束与建立/保持/双报警到V2注册输出审计通过。重建到新目录：python scripts/build_r22_relay.py --source project --keys-v3 --seed '+str(build['seed'])+' --synthesis-strategy '+strategy['strategy']+' --physical-strategy '+physical_strategy['strategy']+' --stage-timeout 7200 --baseline-manifest build/frozen_inputs.json --extra-source user_source/hdl_source/observed_classified_pocket_counter.v user_source/hdl_source/global_empty_position_tracker.v user_source/hdl_source/dual_lane_parking.v --work E:/2026FPGA/D3_rebuild 。不得覆盖已有构建目录；重建仍需重新物理审计。\n',encoding='utf8')
     payload={f.relative_to(release).as_posix():{'bytes':f.stat().st_size,'sha256':sha(f)} for f in release.rglob('*') if f.is_file()}
     write(release/'PAYLOAD_SHA256.json',payload)
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:

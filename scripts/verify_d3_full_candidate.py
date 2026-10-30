@@ -11,7 +11,7 @@ TMP=Path('E:/2026FPGA/.codex_tmp')
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 read=lambda p:json.loads(p.read_text(encoding='utf-8-sig'))
 
-def verify(work,require_production=False):
+def verify(work,require_production=False,suite_map=None):
     source=read(work/'frozen_inputs.json');project=work/'project'
     assert len(source)==704
     for rel,d in source.items():
@@ -41,6 +41,8 @@ def verify(work,require_production=False):
         assert 'PASS ' in t and not re.search(r'\*\* (?:Fatal|Error):|Errors:\s*[1-9]',t),log
     groups=[Path('D:/CodexWork/D3_Record_RAM_Cases_R34_20261030'),
         TMP/'d3_lossless_units_r8_20261030',TMP/'d3_byte_font_equivalence_r35_20261030']
+    if suite_map is not None:
+        groups=[Path(p) for p in suite_map['unit_groups']]
     for folder in groups:
         p=read(folder/'verification.json');assert p['status']=='PASS'
         for rel,d in p['inputs'].items():assert source[rel]==sha(folder/'inputs'/Path(rel).name)==d,(folder,rel)
@@ -54,7 +56,9 @@ def verify(work,require_production=False):
             passed(folder/(test['name']+'.log'),test['sha256'])
             selected.append({'name':test['name'],'folder':str(folder),'log_sha256':test['sha256'],'mode':'EXACT_COMPILED_SOURCE_AND_FIXTURE_MATCH'})
         evidence[str(folder/'verification.json')]=sha(folder/'verification.json')
-    for folder in [TMP/'d3_lossless_native_r8_20261030',TMP/'d3_lossless_empty_native_r8_20261030']:
+    native_groups=[TMP/'d3_lossless_native_r8_20261030',TMP/'d3_lossless_empty_native_r8_20261030']
+    if suite_map is not None:native_groups=[Path(p) for p in suite_map['native_groups']]
+    for folder in native_groups:
         p=read(folder/'verification.json');assert p['status']=='PASS'
         for rel,d in p['inputs'].items():assert source[rel]==sha(folder/'inputs/project'/rel)==d,(folder,rel)
         for rel,d in p['extra_inputs'].items():assert sha(fixture/Path(rel).name)==sha(folder/'inputs/project'/rel)==d,(folder,rel)
@@ -78,6 +82,20 @@ def verify(work,require_production=False):
     assert observer['observed_raw_sha256']==source['user_source/hdl_source/observed_classified_pocket_counter.v']
     assert observer['restored_normalized_body_sha256']==observer['original_normalized_body_sha256']
     assert observer['placement_attributes']==['reg [5:0] ledger[0:MAX_TOTAL-1];','reg [8:0] empty_ids[0:MAX_TOTAL-1];']
+    if suite_map is not None:
+        assert observer['id_ram_same_clock_read_reencoding'] is True
+        assert observer['flag_write_index_sharing']==suite_map['flag_write_index_sharing']
+        extraction=read(ROOT/'docs/D3_ID_RAM_PORT_EXTRACTION.json')
+        assert extraction['inputs']['classified_pocket_counter.v']==source['user_source/hdl_source/classified_pocket_counter.v']
+        assert extraction['inputs']['observed_classified_pocket_counter.v']==source['user_source/hdl_source/observed_classified_pocket_counter.v']
+        assert extraction['fixture_sha256']==sha(fixture/'extracted_d3_id_ram.sv')
+        evidence[str(ROOT/'docs/D3_ID_RAM_PORT_EXTRACTION.json')]=sha(ROOT/'docs/D3_ID_RAM_PORT_EXTRACTION.json')
+        storage=read(work/'ID_RAM_SYNTHESIS_PROOF.json')
+        assert storage['status']=='PASS_ACTUAL_SYNTHESIS_TWO_INDEPENDENT_ID_ERAMS'
+        assert storage['gate_database_sha256']==export['gate_database_sha256'] and storage['netlist_sha256']==export['netlist_sha256']
+        assert len(storage['cells'])==2 and {v['lane'] for v in storage['cells']}=={0,1}
+        assert all(v['write_count_address_bits']==v['independent_read_address_bits']==9 for v in storage['cells'])
+        evidence[str(work/'ID_RAM_SYNTHESIS_PROOF.json')]=sha(work/'ID_RAM_SYNTHESIS_PROOF.json')
     assert bounds['source_sha256']==source['user_source/hdl_source/frame_shape_search.v']
     font=read(work/'FONT_SYNTHESIS_PROOF.json')
     assert font['status']=='PASS_ACTUAL_SYNTHESIS_FONT_INITIALIZATION' and font['init_blocks_exact']==64
@@ -91,14 +109,16 @@ def verify(work,require_production=False):
         'tb_d3_resize_equivalence','tb_d3_rgb_ring','tb_d3_rgb_wide','tb_d3_math_bounds',
         'tb_d3_shared_font','tb_d3_osd_equivalence','tb_d3_osd_overlap','tb_d3_native','tb_d3_empty_native'}
     required|={t['name'] for t in gate['tests']}
-    assert len(selected)==len(required)==32 and {t['name'] for t in selected}==required
-    result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','profile':'lossless-v4','selected':selected,
-        'selected_checks':32,'expected_checks':32,'inputs_manifest_sha256':sha(work/'frozen_inputs.json'),
+    if suite_map is not None:required.add('tb_d3_id_ram')
+    expected_count=33 if suite_map is not None else 32
+    assert len(selected)==len(required)==expected_count and {t['name'] for t in selected}==required
+    result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','profile':'lossless-v5' if suite_map is not None else 'lossless-v4','selected':selected,
+        'selected_checks':expected_count,'expected_checks':expected_count,'inputs_manifest_sha256':sha(work/'frozen_inputs.json'),
         'evidence':evidence,'production_source_match_required':require_production,
         'hardware_acceptance':False,'resource_or_timing_acceptance':False}
     (work/'SOFTWARE_VERIFICATION.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
 
 if __name__=='__main__':
-    a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--require-production',action='store_true');x=a.parse_args()
-    r=verify(x.work.resolve(),x.require_production);print(r['status'],r['selected_checks'],'PRODUCTION_MATCH',x.require_production)
+    a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--require-production',action='store_true');a.add_argument('--suite-map',type=Path);x=a.parse_args()
+    r=verify(x.work.resolve(),x.require_production,read(x.suite_map) if x.suite_map else None);print(r['status'],r['selected_checks'],'PRODUCTION_MATCH',x.require_production)
