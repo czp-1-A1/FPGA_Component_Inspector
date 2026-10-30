@@ -1,4 +1,14 @@
-# D3 R37 当前物理仍运行、32项软件PASS（2026-10-30 20:56，最高优先级）
+# D3 R37已停止，先向用户分析、禁止自行下一轮（2026-10-30 21:13，最高优先级）
+
+- **用户要求本轮不成功就停止、先分析方案再继续；当前已触发该条件。不得自行开始任何新SYN/PHY/RTL原型/新seed/策略尝试，也不要继续空等旧job。** 应向用户交付分析说明，等待其审阅后的新指示。没有活动goal工具状态，不用create/update_goal。
+- R37 E:/2026FPGA/.codex_tmp/d3_lossless_physical_r37_20261030，**21:13已核唯一TD PID35536 parent31824、父命令含当前R37、无child后仅停止此进程**。session46883已poll关闭exit1（主动中止后runnerassert），所有ModelSim此前也结束。Get-CimInstance确认没有TD/vsimk；不留后台新任务。
+- 停止依据：route iter20最低over3522/212.54s→21 3528/264.17s→22 3689/367.96s→23 3912/298.87s，连线长度1.22096e7→1.28175e7，三轮变差且数千冲突仍未解。**这是未完成route的主动中止，不是完整routed最终时序失败，也不能宣称本版逻辑不能工作。** crit0不代表最终setup/holdPASS。
+- R37/ABORT_REASON.json保留frozen manifest、退出后console、32项软件回执、placed报告SHA，bit_exists=false、next_build_authorized=false、production_rtl_replaced/features_removed/board_operated=false。整份R37冻结源和placeDB保持。没有D3可交付bit、无BIT_FLASH改动。
+- 软件32精确源全部PASS，资源placed20565/21216=96.93%、103ERAM/31DSP/5PLL。生产RTL仍R28，与3c0c86d3源一致；新候选未合入。HEAD刚提交f35a07d2（仅文档、32检查收据、孤立实验脚本/夹具），之前9506336d只加30生产检查证据。无推送、无子代理、无实板/电机动作。
+- 分析说明已写实据：docs/D3_R37_ATTEMPT_AND_OPTIONS.md，32回执docs/D3_R37_SOFTWARE_VERIFICATION.json。建议先审阅：最小模块验证空穴编号表无复位同步读+同拍valid零填充、保持原读口周期/清零行为/9bit含256和300，再看实际SYN是否迁入ERAM；未使用ledger原本已删不能算收益；实际SYN-5105读口不兼容证据准确。**只是后续建议，没有执行该新原型。** RAM迁移未生效是已确认的优化问题，尚不能单独归因它导致全局不收敛。其次需拿到实际热点证据后研究RAM周边/宽总线局部控制与布局；report_congestion只读导出TD退出1未成功，不能假称已有热点网。
+- 四种显示/边缘算法/双列计数停车/32队列/完整1秒/各列五空/四键SW3/V2保持。用户还在考虑RAW+灰度显示取舍，不得擅自删。待下一次明确继续再实施用户选定方案。
+
+# D3 R37 当前物理仍运行、32项软件PASS（2026-10-30 20:56，以下为历史）
 
 - 用户“这版不成功就先停下来，分析一下解决方法，在继续执行”及不删显示/算法的约束继续最高优先级。**当前R37作为本轮最后一次完整尝试；失败/停止后先给用户分析，不能自行开始R38、换seed或新RTL试验。** 未开子代理、未推送/烧录/动电机。
 - 当前HEAD **9506336d**，只提交30项生产验证/文档/夹具，生产RTL仍等同R28/3c0c86d3；R36/R37四文件新候选依然隔离，未拷贝生产源，没有D3 bit发布。生产30项lossless-v3仍精确通过；不能把新候选32项称为已生产合入。
