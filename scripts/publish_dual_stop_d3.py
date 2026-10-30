@@ -7,7 +7,7 @@ from verify_d3_checks import verify
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--work',type=Path,required=True);ap.add_argument('--check-only',action='store_true');args=ap.parse_args()
     repo=Path(__file__).resolve().parents[1];w=args.work.resolve();p=w/'project';tmp=Path('E:/2026FPGA/.codex_tmp')
-    software=verify(w);assert software['selected_checks']==24
+    software=verify(w);assert software['selected_checks']==software['expected_checks']==29 and software['profile']=='lossless-v2'
     source=load(w/'frozen_inputs.json');assert len(source)==704
     assert len(load(w/'hardware_inputs.json'))==107
     git_source_audit(repo,source)
@@ -22,7 +22,7 @@ def main():
     assert physical['frame_metadata_bits']==1143 and physical['count_record_bits']==512
     assert physical['alarm_interlock_packed_cell_proof']['actual_alarm_Q_and_registered_motor_LUT']
     assert all(physical['timing_ns'][k]>=0 for k in ['SWNS','HWNS','STNS','HTNS'])
-    assert physical['resources']['slice']<=21216 and physical['resources']['eram']==107 and physical['resources']['dsp']==31
+    assert physical['resources']['slice']<=21216 and physical['resources']['eram']==104 and physical['resources']['dsp']==31
     bit=w/'runs/phy_1/camera_to_dsi_display.bit';assert sha(bit)==build['bit_sha256']==physical['bit_sha256']
     flash_root=Path('E:/2026FPGA/BIT_FLASH')
     protected={
@@ -37,7 +37,7 @@ def main():
         'source_worktree':str(repo),'build_work':str(w),'seed':build['seed'],'td_version':'V6.2.168116',
         'bit_sha256':sha(bit),'bit_bytes':bit.stat().st_size,'resources':physical['resources'],
         'slice_percent':physical['slice_percent'],'timing_ns':physical['timing_ns'],'source_files':704,'hardware_dependencies':107,
-        'selected_checks':24,'gpio':'Right J2 pin1/V2: HIGH run, LOW stop. Existing board5V relay supply; no LEDs.',
+        'selected_checks':software['selected_checks'],'gpio':'Right J2 pin1/V2: HIGH run, LOW stop. Existing board5V relay supply; no LEDs.',
         'keys':'K1 new dual run; K2 pause/resume or idle motor debug; K3 clear/stop; K4 stop; SW3 up-stop/down-new-run.',
         'parameters':{'DUAL_REGION_COUNT':1,'ENABLE_AUTO_RELAY':1,'main_rois':[[400,880,240,400],[400,880,432,600]],
             'station_x':[64,400],'refill_windows_x':[72,232],'target_x':152,'trigger_x':184,'hold_ms':1000,
@@ -47,6 +47,8 @@ def main():
         'limits':'Existing white3528 recipe; no arbitrary-speed, optical recall, actual nozzle/refill or +/-1mm claim. Real RAW checks use permit=0; separate candidate-stream tests exercise parking.'}
     strategy=load(w/'BUILD_STRATEGY.json') if (w/'BUILD_STRATEGY.json').is_file() else {'strategy':'Default'}
     receipt['synthesis_strategy']=strategy
+    physical_strategy=load(w/'PHYSICAL_STRATEGY.json') if (w/'PHYSICAL_STRATEGY.json').is_file() else {'strategy':'Default'}
+    receipt['physical_strategy']=physical_strategy
     if args.check_only:
         print(json.dumps({'status':'READY_TO_PUBLISH','receipt':receipt},indent=2));return
     release.mkdir(parents=True)
@@ -54,7 +56,7 @@ def main():
     write(release/'SOURCE_SHA256.json',source)
     for name0 in ['frozen_inputs.json','hardware_inputs.json','baseline_delta.json','build_result.json','physical_verification.json','SOFTWARE_VERIFICATION.json']:
         copy(w/name0,release/'build'/name0)
-    for name0 in ['EXACT_SYNTHESIS_REUSE.json','BUILD_STRATEGY.json','CAMERA_EXPORT.json']:
+    for name0 in ['EXACT_SYNTHESIS_REUSE.json','BUILD_STRATEGY.json','PHYSICAL_STRATEGY.json','CAMERA_EXPORT.json','CHECK_PROFILE.json']:
         if (w/name0).is_file():copy(w/name0,release/'build'/name0)
     if 'official_file' in strategy:copy(Path(strategy['official_file']),release/'build/official_strategy_ph1.json')
     camera_work=w if (w/'CAMERA_EXPORT.json').is_file() else tmp/'d3_dual_stop_build_r11_resource_opt_20261030'
@@ -79,10 +81,16 @@ def main():
     for f in (repo/'tests/camera_gain_fix').iterdir():
         if f.is_file():copy(f,release/'tests/camera_gain_fix'/f.name)
     docs=['R27B_DUAL_STOP_D3_FIELD_GUIDE.md','R27B_DUAL_STOP_MERGE_ANALYSIS.md','D3_RESOURCE_ANALYSIS.md','D3_RESOURCE_ANALYSIS.json',
-        'D3_DISTANCE_BOUNDS.json','D3_OBSERVED_COUNTER_PROOF.json','R27B_D3_IMPORT.json','R27B_ANALYSIS_REPLAY_VERIFICATION.json']
+        'D3_DISTANCE_BOUNDS.json','D3_OBSERVED_COUNTER_PROOF.json','D3_RANK_REFERENCE.json','D3_RESIZE_REFERENCE.json','D3_LOSSLESS_OPTIMIZATION.json','R27B_D3_IMPORT.json','R27B_ANALYSIS_REPLAY_VERIFICATION.json']
     for name0 in docs:copy(repo/'docs'/name0,release/'docs'/name0)
+    comparison=load(repo/'docs/D3_RESOURCE_ANALYSIS.json');comparison_index={}
+    for label,row in comparison['reports'].items():
+        f=Path(row['path']);assert sha(f)==row['sha256']
+        target=release/'resource_comparison'/(label+'.area');copy(f,target)
+        comparison_index[label]={'file':target.relative_to(release).as_posix(),'sha256':sha(target),'original_path':str(f)}
+    write(release/'resource_comparison/REPORTS.json',comparison_index)
     copy(repo/'docs/R27B_DUAL_STOP_D3_FIELD_GUIDE.md',release/'FIELD_GUIDE.md')
-    scripts=['build_r22_relay.py','reuse_d3_synthesis.py','audit_dual_stop_d3.py','relay_left_checks.py','relay_left_native_check.py',
+    scripts=['build_r22_relay.py','reuse_d3_synthesis.py','run_d3_prepared.py','audit_dual_stop_d3.py','relay_left_checks.py','relay_left_native_check.py',
         'check_camera_gain_fix.py','export_d3_camera.py','verify_d3_checks.py','publish_dual_stop_d3.py','publish_r22_shift_alarm_v7.py',
         'check_d3_distance_bounds.py','check_d3_observed_counter.py','report_d3_resources.py']
     for name0 in scripts:copy(repo/'scripts'/name0,release/'scripts'/name0)
@@ -94,7 +102,7 @@ def main():
     write(release/'VERIFICATION.json',{'status':'PASS_EXACT_INPUT_SIMULATION_AND_STRICT_ROUTED_AUDIT',
         'software':software,'physical':physical,'hardware_acceptance':False})
     write(release/'RELEASE.json',receipt);copy(bit,release/(name+'.bit'))
-    (release/'README.md').write_text('R27B 双列识别/独立计数 + D3 双列补件停车。原成功计数算法保留，每列32任务、完整1秒保持、相邻穴继续、各列五空报警、一个共用电机。操作与验收见 FIELD_GUIDE.md。尚未实板验收。构建冻结704源/107依赖，24项精确编译输入软件检查，原49条约束与建立/保持/双报警到V2注册输出审计通过。重建到新目录：python scripts/build_r22_relay.py --source project --keys-v3 --seed '+str(build['seed'])+' --synthesis-strategy '+strategy['strategy']+' --stage-timeout 7200 --baseline-manifest build/frozen_inputs.json --extra-source user_source/hdl_source/observed_classified_pocket_counter.v user_source/hdl_source/global_empty_position_tracker.v user_source/hdl_source/dual_lane_parking.v --work E:/2026FPGA/D3_rebuild 。不得覆盖已有构建目录；重建仍需重新物理审计。\n',encoding='utf8')
+    (release/'README.md').write_text('R27B 双列识别/独立计数 + D3 双列补件停车。原成功计数算法保留，每列32任务、完整1秒保持、相邻穴继续、各列五空报警、一个共用电机。操作与验收见 FIELD_GUIDE.md。尚未实板验收。构建冻结704源/107依赖，29项精确编译输入软件检查，原49条约束与建立/保持/双报警到V2注册输出审计通过。重建到新目录：python scripts/build_r22_relay.py --source project --keys-v3 --seed '+str(build['seed'])+' --synthesis-strategy '+strategy['strategy']+' --physical-strategy '+physical_strategy['strategy']+' --stage-timeout 7200 --baseline-manifest build/frozen_inputs.json --extra-source user_source/hdl_source/observed_classified_pocket_counter.v user_source/hdl_source/global_empty_position_tracker.v user_source/hdl_source/dual_lane_parking.v --work E:/2026FPGA/D3_rebuild 。不得覆盖已有构建目录；重建仍需重新物理审计。\n',encoding='utf8')
     payload={f.relative_to(release).as_posix():{'bytes':f.stat().st_size,'sha256':sha(f)} for f in release.rglob('*') if f.is_file()}
     write(release/'PAYLOAD_SHA256.json',payload)
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
@@ -108,7 +116,7 @@ def main():
     assert sha(flash)==sha(bit)
     for file,d in protected.items():assert sha(flash_root/file)==d
     delivery={'status':'DELIVERED_FOR_HUMAN_TWO_LANE_COUNT_AND_PARKING_TEST','release':str(release),'archive':str(archive),
-        'archive_sha256':sha(archive),'flash_copy':str(flash),'bit_sha256':sha(bit),'payload_count':len(payload),'selected_checks':24}
+        'archive_sha256':sha(archive),'flash_copy':str(flash),'bit_sha256':sha(bit),'payload_count':len(payload),'selected_checks':software['selected_checks']}
     write(repo/'docs/R27B_DUAL_STOP_D3_DELIVERY.json',delivery);print(json.dumps(delivery,indent=2),flush=True)
 
 if __name__=='__main__':main()

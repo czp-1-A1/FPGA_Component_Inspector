@@ -21,8 +21,9 @@ module rgb_resize_2_3 #(parameter WIDTH=1920,HEIGHT=1080)(
  function [7:0] blend(input [7:0] a,b,input heavy_a);
   reg [9:0] sum;
   begin
-   sum=heavy_a?({2'b0,a}+{1'b0,a,1'b0}+{2'b0,b}):
-                ({2'b0,a}+{2'b0,b}+{1'b0,b,1'b0});
+   // 3*a+b or a+3*b = (a+b)+2*(heavy_a ? a : b).
+   // Full 10-bit sum (maximum 1020); unchanged truncation to bits[9:2].
+   sum=({2'b0,a}+{2'b0,b})+{1'b0,(heavy_a ? a : b),1'b0};
    blend=sum[9:2];
   end
  endfunction

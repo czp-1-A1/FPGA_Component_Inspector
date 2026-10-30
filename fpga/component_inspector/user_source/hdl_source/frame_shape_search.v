@@ -400,6 +400,7 @@ wire [3:0] candidate_reason={1'b0,(PLACEMENT_REVIEW ? fg5<{component_area,2'b00}
  long_side<p_lmin || long_side>p_lmax || short_side<p_smin || short_side>p_smax};
 localparam REGION_SLOTS=REGIONS && COUNT_CANDIDATES ? 4 : 2;
 localparam SLOTS=REGIONS ? ZONES*REGION_SLOTS : 2;
+localparam COMPACT_RANK=DUAL_STOP && INDEXED;
 reg found_bank [0:SLOTS-1];reg [DIST_BITS-1:0] distance_bank [0:SLOTS-1];reg [17:0] count_bank [0:SLOTS-1];
 reg [XB-1:0] xmin_bank [0:SLOTS-1],xmax_bank [0:SLOTS-1];
 reg [YB-1:0] ymin_bank [0:SLOTS-1],ymax_bank [0:SLOTS-1];
@@ -413,8 +414,11 @@ wire surface_needed=(SURFACE_ACTIVE && (!DUAL_STOP || ref_index<8) && state_bank
  (LOCAL_EDGE_ASSIST && REGIONS && state_bank[ref_index]==3);
 wire [RB-1:0] edge_reference_region=REGIONS ? ref_index/REGION_SLOTS : 0;
 localparam GEOMETRY_BITS=2*(XB+YB);
+localparam RANK_BITS=DIST_BITS+18,RECORD_BITS=GEOMETRY_BITS+(COMPACT_RANK ? RANK_BITS : 0);
 reg [1:0] pointer_bank[0:ZONES*4-1];
 wire [GEOMETRY_BITS-1:0] geometry_q;
+wire [RANK_BITS-1:0] rank_q;
+reg [RANK_BITS-1:0] rank_cache[0:3];
 reg [1:0] cover_index;reg covered_body;reg [3:0] contained_mask;
 reg [3:0] retained_pending;reg pending_new;
 reg [SB-1:0] pack_index;reg [GEOMETRY_BITS-1:0] pack_anchor;reg [ZONES-1:0] pack_duplicate;
@@ -444,19 +448,32 @@ always @*begin
  for(free_i=0;free_i<4;free_i=free_i+1)if(!retained_pending[free_i] && !free_found)begin allocated_record=free_i;free_found=1;end
 end
 generate if(INDEXED)begin : indexed_geometry
- (* ram_style="dram" *) reg [GEOMETRY_BITS-1:0] memory[0:ZONES*4-1];reg [GEOMETRY_BITS-1:0] q;
+ // Geometry and immutable count/distance share the same physical record.
+ // Sorting moves only pointers and the existing small quality fields.
+ (* ram_style="dram" *) reg [RECORD_BITS-1:0] memory[0:ZONES*4-1];reg [RECORD_BITS-1:0] q;
  always @(posedge clk)begin
   if(rst_n && !frame_start && !invalidate && !pixel_sof)begin
-   if(phase==CAND_COMMIT && pending_new)memory[{candidate_region,allocated_record}]<={ymax,ymin,xmax,xmin};
+   if(phase==CAND_COMMIT && pending_new)begin
+    if(COMPACT_RANK)memory[{candidate_region,allocated_record}]<={component_count,distance[DIST_BITS-1:0],ymax,ymin,xmax,xmin};
+    else memory[{candidate_region,allocated_record}]<={ymax,ymin,xmax,xmin};
+   end
    if(geometry_read)q<=memory[{geometry_read_slot[SB-1:2],pointer_bank[geometry_read_slot]}];
   end
  end
- assign geometry_q=q;
+ assign geometry_q=q[GEOMETRY_BITS-1:0];
+ if(COMPACT_RANK)assign rank_q=q[GEOMETRY_BITS+:RANK_BITS];else assign rank_q=0;
 end else begin : no_indexed_geometry
- assign geometry_q=0;
+ assign geometry_q=0;assign rank_q=0;
 end endgenerate
+always @(posedge clk)if(COMPACT_RANK && rst_n && !frame_start && !invalidate && !pixel_sof && phase==COVER_SCAN)
+ rank_cache[cover_index]<=rank_q;
 wire [$clog2(SLOTS)-1:0] bank0=candidate_region*REGION_SLOTS,bank1=bank0+1'b1;
 wire [$clog2(SLOTS)-1:0] bank2=COUNT_CANDIDATES && REGIONS ? bank0+2 : bank0,bank3=COUNT_CANDIDATES && REGIONS ? bank0+3 : bank0;
+wire [DIST_BITS-1:0] rank_distance[0:3];wire [17:0] rank_count[0:3];
+genvar rc;generate for(rc=0;rc<4;rc=rc+1)begin : rank_inputs
+ assign rank_distance[rc]=COMPACT_RANK ? rank_cache[rc][DIST_BITS-1:0] : distance_bank[rc==0 ? bank0 : rc==1 ? bank1 : rc==2 ? bank2 : bank3];
+ assign rank_count[rc]=COMPACT_RANK ? rank_cache[rc][DIST_BITS+:18] : count_bank[rc==0 ? bank0 : rc==1 ? bank1 : rc==2 ? bank2 : bank3];
+end endgenerate
 wire candidate_preferred=candidate_state>=2;
 wire [10:0] selected_held_x=DUAL_STOP && candidate_region>=2 ? station_hold_x[candidate_region[0]*11+:11] : DUAL_REGION_COUNT && candidate_region[0] ? held_x2 : held_x;
 wire [9:0] selected_held_y=DUAL_STOP && candidate_region>=2 ? station_hold_y[candidate_region[0]*10+:10] : DUAL_REGION_COUNT && candidate_region[0] ? held_y2 : held_y;
@@ -465,17 +482,17 @@ wire [10:0] held_dx=center_x>selected_held_x ? center_x-selected_held_x : select
 wire [10:0] held_dy=center_y>selected_held_y ? center_y-selected_held_y : selected_held_y-center_y;
 wire preferred_main=COUNT_CANDIDATES && REGIONS && selected_held_valid && candidate_preferred && (!DUAL_STOP || candidate_region<2 || !station_hold_empty_only[candidate_region[0]] || candidate_state==3) && held_dx<=(DUAL_STOP && candidate_region>=2 ? station_hold_radius[candidate_region[0]*6+:6] : 6'd12) && held_dy<=16;
 wire before_best=!found_bank[bank0] || (candidate_preferred && state_bank[bank0]<2) ||
- ((candidate_preferred==(state_bank[bank0]>=2)) && (distance<distance_bank[bank0] ||
- (distance==distance_bank[bank0] && component_count>count_bank[bank0])));
+ ((candidate_preferred==(state_bank[bank0]>=2)) && (distance<rank_distance[0] ||
+ (distance==rank_distance[0] && component_count>rank_count[0])));
 wire before_second=!found_bank[bank1] || (candidate_preferred && state_bank[bank1]<2) ||
- ((candidate_preferred==(state_bank[bank1]>=2)) && (distance<distance_bank[bank1] ||
- (distance==distance_bank[bank1] && component_count>count_bank[bank1])));
+ ((candidate_preferred==(state_bank[bank1]>=2)) && (distance<rank_distance[1] ||
+ (distance==rank_distance[1] && component_count>rank_count[1])));
 wire before_third=!found_bank[bank2] || (candidate_preferred && state_bank[bank2]<2) ||
- ((candidate_preferred==(state_bank[bank2]>=2)) && (distance<distance_bank[bank2] ||
- (distance==distance_bank[bank2] && component_count>count_bank[bank2])));
+ ((candidate_preferred==(state_bank[bank2]>=2)) && (distance<rank_distance[2] ||
+ (distance==rank_distance[2] && component_count>rank_count[2])));
 wire before_fourth=!found_bank[bank3] || (candidate_preferred && state_bank[bank3]<2) ||
- ((candidate_preferred==(state_bank[bank3]>=2)) && (distance<distance_bank[bank3] ||
- (distance==distance_bank[bank3] && component_count>count_bank[bank3])));
+ ((candidate_preferred==(state_bank[bank3]>=2)) && (distance<rank_distance[3] ||
+ (distance==rank_distance[3] && component_count>rank_count[3])));
 // Compile the original nonblocking destination priorities to old-source/new
 // tags. Allocation is registered BEFORE the write edge to bound its path.
 reg [11:0] sort_actions;reg [3:0] retained_now;reg has_new_now;integer action_i;reg [2:0] old_source;
@@ -572,8 +589,9 @@ wire [10:0] packed_x0=read_xmin*2>1 ? read_xmin*2-2 : 0;
 wire [10:0] packed_x1=read_xmax*2+4<WIDTH ? read_xmax*2+4 : WIDTH;
 wire [9:0] packed_y0=read_ymin*2>1 ? read_ymin*2-2 : 0;
 wire [9:0] packed_y1=read_ymax*2+4<HEIGHT ? read_ymax*2+4 : HEIGHT;
+wire [17:0] packed_count=COMPACT_RANK ? rank_q[DIST_BITS+:18] : count_bank[pack_slot];
 wire [75:0] packed_one=found_bank[pack_slot] ?
- {1'b1,state_bank[pack_slot],reason_bank[pack_slot],(count_bank[pack_slot]>2047 ? 13'd8191 : {count_bank[pack_slot][10:0],2'b0}),
+ {1'b1,state_bank[pack_slot],reason_bank[pack_slot],(packed_count>2047 ? 13'd8191 : {packed_count[10:0],2'b0}),
  (packed_w>127 ? 7'd127 : packed_w[6:0]),(packed_h>127 ? 7'd127 : packed_h[6:0]),packed_x0,packed_x1,packed_y0,packed_y1} : 76'd0;
 wire [151:0] sorted0=INDEXED ? recorder_storage[151:0] : found_bank[1] && xmin_bank[1]<xmin_bank[0] ?
  {records[75:0],records[151:76]} : records[151:0];
@@ -706,7 +724,7 @@ endtask
 task copy_candidate;
  input [$clog2(SLOTS)-1:0] dst,src;
  begin
-  found_bank[dst]<=found_bank[src];distance_bank[dst]<=distance_bank[src];count_bank[dst]<=count_bank[src];
+  found_bank[dst]<=found_bank[src];if(!COMPACT_RANK)begin distance_bank[dst]<=distance_bank[src];count_bank[dst]<=count_bank[src];end
   if(!INDEXED)begin xmin_bank[dst]<=xmin_bank[src];xmax_bank[dst]<=xmax_bank[src];ymin_bank[dst]<=ymin_bank[src];ymax_bank[dst]<=ymax_bank[src];end
   else begin pointer_bank[dst]<=pointer_bank[src];if(dst%4<2)xmin_bank[dst]<=xmin_bank[src];end
   state_bank[dst]<=state_bank[src];reason_bank[dst]<=reason_bank[src];weak_bank[dst]<=weak_bank[src];
@@ -715,7 +733,7 @@ endtask
 task store_candidate;
  input [$clog2(SLOTS)-1:0] dst;
  begin
-  found_bank[dst]<=1;distance_bank[dst]<=distance;count_bank[dst]<=component_count;
+  found_bank[dst]<=1;if(!COMPACT_RANK)begin distance_bank[dst]<=distance;count_bank[dst]<=component_count;end
   if(!INDEXED)begin xmin_bank[dst]<=xmin;xmax_bank[dst]<=xmax;ymin_bank[dst]<=ymin;ymax_bank[dst]<=ymax;end
   else begin pointer_bank[dst]<=allocated_record;if(dst%4<2)xmin_bank[dst]<=xmin;end
   state_bank[dst]<=candidate_state;reason_bank[dst]<=small_pass ? (candidate_state==2 ? 4'hf : (LOCAL_EDGE_ASSIST && candidate_state==3 && !base_empty_geometry) ? 4'h1 : 4'd0) : candidate_reason;weak_bank[dst]<=small_pass;
@@ -737,19 +755,19 @@ task retain_candidate;
      end
      if(before_best)begin
       if(found_bank[bank0])begin
-       found_bank[bank1]<=1;distance_bank[bank1]<=distance_bank[bank0];count_bank[bank1]<=count_bank[bank0];
+       found_bank[bank1]<=1;if(!COMPACT_RANK)begin distance_bank[bank1]<=distance_bank[bank0];count_bank[bank1]<=count_bank[bank0];end
        xmin_bank[bank1]<=xmin_bank[bank0];
        if(!INDEXED)begin xmax_bank[bank1]<=xmax_bank[bank0];ymin_bank[bank1]<=ymin_bank[bank0];ymax_bank[bank1]<=ymax_bank[bank0];end
        else pointer_bank[bank1]<=pointer_bank[bank0];
        state_bank[bank1]<=state_bank[bank0];reason_bank[bank1]<=reason_bank[bank0];weak_bank[bank1]<=weak_bank[bank0];
       end
-      found_bank[bank0]<=1;distance_bank[bank0]<=distance;count_bank[bank0]<=component_count;
+      found_bank[bank0]<=1;if(!COMPACT_RANK)begin distance_bank[bank0]<=distance;count_bank[bank0]<=component_count;end
       xmin_bank[bank0]<=xmin;
       if(!INDEXED)begin xmax_bank[bank0]<=xmax;ymin_bank[bank0]<=ymin;ymax_bank[bank0]<=ymax;end
       else pointer_bank[bank0]<=allocated_record;
       state_bank[bank0]<=candidate_state;reason_bank[bank0]<=small_pass ? (candidate_state==2 ? 4'hf : (LOCAL_EDGE_ASSIST && candidate_state==3 && !base_empty_geometry) ? 4'h1 : 4'd0) : candidate_reason;weak_bank[bank0]<=small_pass;
      end else if(before_second)begin
-      found_bank[bank1]<=1;distance_bank[bank1]<=distance;count_bank[bank1]<=component_count;
+      found_bank[bank1]<=1;if(!COMPACT_RANK)begin distance_bank[bank1]<=distance;count_bank[bank1]<=component_count;end
       xmin_bank[bank1]<=xmin;
       if(!INDEXED)begin xmax_bank[bank1]<=xmax;ymin_bank[bank1]<=ymin;ymax_bank[bank1]<=ymax;end
       else pointer_bank[bank1]<=allocated_record;
@@ -886,7 +904,7 @@ always @(posedge clk or negedge rst_n)begin
     long20<={4'b0,long_side}*14'd20;short21<={4'b0,short_side}*14'd21;short31<={4'b0,short_side}*14'd31;
     long5<={4'b0,long_side}*14'd5;short7<={4'b0,short_side}*14'd7;short9<={4'b0,short_side}*14'd9;
     covered_body<=0;contained_mask<=0;cover_index<=0;
-    phase<=INDEXED && small_pass && allowed_now && !border && component_count>=6 && width_now>=3 && height_now>=3 ? COVER_REQ : COMPARE;
+    phase<=INDEXED && (small_pass || COMPACT_RANK) && allowed_now && !border && component_count>=6 && width_now>=3 && height_now>=3 ? COVER_REQ : COMPARE;
    end
    COMPARE:begin
     if(LOCAL_EDGE_ASSIST && candidate_allowed && !border && component_count>=8 && circular &&
@@ -946,7 +964,7 @@ always @(posedge clk or negedge rst_n)begin
    end
    COVER_REQ:begin cover_index<=0;phase<=COVER_SCAN;end
    COVER_SCAN:begin
-    if(found_bank[{candidate_region,cover_index}])begin
+    if(found_bank[{candidate_region,cover_index}] && (!COMPACT_RANK || small_pass))begin
      if(cover_index<2 && state_bank[{candidate_region,cover_index}]==2 &&
         xmin<=read_xmax && xmax>=read_xmin && ymin<=read_ymax && ymax>=read_ymin)covered_body<=1;
      if(state_bank[{candidate_region,cover_index}]!=2 && read_xmin>=xmin && read_xmax<=xmax && read_ymin>=ymin && read_ymax<=ymax)contained_mask[cover_index]<=1;

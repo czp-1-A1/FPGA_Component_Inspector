@@ -1,4 +1,36 @@
-# D3 面积优先映射当前接续（2026-10-30 15:37，最高优先级）
+# D3 无损优化 R29 完整物理构建中（2026-10-30 17:43，最高优先级）
+
+- 最新用户要求继续优化Slice，包括调试，但绝不影响功能。本轮已采用四份源的无损重排：rank记录存一次+指针排序、选中标签后共享字符格式、显示缩放加法合并、RGB三行环形缓存（灰度仍四行/原溢出保护不改）。**最终保留原ASCII/CJK字库；合并字库因352LUT+1DSP反而不利被拒绝，未合入。** R11其余700份冻结输入逐SHA不变，R27B计数核心原件SHA67dfbdd7...仍不变，所有功能/调试信息/按键/IO/SDC保留。
+- 已把采用的四份源合入主工作区，生产FSS SHAe031d235d78b1bfbd271f33718d064d15c0eeb80f55b3cd6f938dacd358813a4，bounds证明已重新生成。尚未提交本轮/尚无新bit发布，无推送、子代理、硬件动作。
+- **R28已完成默认综合** D:/CodexWork/D3_Lossless_Synthesis_R28_20261030：Slice*22821→22188（省633/2.77%），LUT29345→28596，FF23557→23262，ERAM107→104，DSP31/PLL5不变。不要把综合估算当实际物理Slice；实际收益/时序仍待R29。
+- **唯一活动完整TD：R29** D:/CodexWork/D3_Lossless_Physical_R29_20261030，session90647。从R28逐SHA相同704源+实际gate.db复用，EXACT_SYNTHESIS_REUSE.json；默认PHY/seed2，原SDC不改。17:42已完成GlobalPlacement、进入DetailedPlacement。不能提前宣布资源/布线通过。
+- **新实际相机综合网表已PASS** d3_lossless_camera_r3_20261030：302cells闭合锥、两复位×126完整I2C EXP1092/GAIN40/WB100100；R28/CAMERA_EXPORT.json及网表/导出日志SHA已复制R29，绑定同SHA gate.db，不复用旧相机结论。
+- 29项选定检查由verify_d3_checks.py中的lossless-v2 profile列出并固定必需测试名；R29/CHECK_PROFILE.json绑定源manifest。原24项保留、额外5项rank/OSD等价/重叠/resize/ring。旧核心17项编译源完全不变可逐SHA复用；新d3_lossless_units_r6（5项）全部PASS；OSD两项d3_osd_share_pixels_r1、resize_r1、rgb_ring_r2精确编译源匹配。docs/D3_LOSSLESS_OPTIMIZATION.json及scripts/check_d3_lossless.py已PASS旧参考真实性/原字体/8082地址边界/9项新源检查。
+- **RAW仍待收尾**：新d3_lossless_native_r6_20261030，session26321，精确R27/R28源，17:42 source3/12；新d3_lossless_empty_native_r6已完成PASS（session43747尚可poll结束），两RAW暗/亮且两种proof时序。旧r4参数PASS token拼错提前终止；旧r5因候选更换到三行缓存且源不一致终止，ABORT_REASON都保留，均不选作PASS。
+- auditor/publisher更新具体资源期望104ERAM/31DSP（实际新SYN，未放松容量），publisher要求29项lossless-v2+原49bounds/20Gray/9邮箱/双alarm→注册V2严格物理审计。run_d3_prepared.py已修默认策略无需PHYSICAL_STRATEGY的seed读取；活动旧进程为兼容已记录真实Default/seed2元数据。发布前更新实际final资源和docs、commit全部冻结源、704HEAD blob核验，再publisher check-only→release/ZIP→BIT_FLASH副本SHA。目标R27B_DualCount_DualStop_D3_20261030.bit，旧RL7/D2/只读R2均不覆盖。
+- 新build放D盘避开E盘低空间（17:35 E约1.1GB、D2.9GB）；不要删旧证据/用户文件，不要重跑未变源测试。不要启动第二个TD全构建。git diff校验必须-c core.whitespace=cr-at-eol，避免CRLF巨量噪声；不要stage-all，旧实验station/bank和sim产物保持未跟踪。9个新增等价夹具、4个原始参考和生成/检查脚本按明确清单stage。
+
+# D3 无损资源优化实验（2026-10-30 17:22，以下为历史）
+
+- 用户要求继续优化 Slice，优先调试/显示/重复计算，**绝对不能影响功能**。两列识别、独立计数/编号、各32停车队列、完整1s、每列五空报警、四键/SW3、V2/板载5V均保留；不能关闭诊断、缩短缓存/队列或松约束换资源。没有子代理、硬件或推送操作。
+- R14/R15路由均已中止，分别 ABORT_REASON.json，未完成验收、无新bit。R14初步20911/21216 Slice，107/108ERAM；R15 CongestionHigh初步21117且时序更差，已拒绝。旧R11生产RTL仍在Git，未被实验覆盖。
+- 新隔离候选：E:/2026FPGA/.codex_tmp/d3_resize_share_source_r22_20261030/project，仅3份源相对R11改变：frame_shape_search无损候选rank存储、compact_inspector_osd共享标签格式+合并字体零填充、rgb_resize_2_3合并完整精度加权加法。唯一活动TD为 d3_font_resize_synthesis_r23_20261030，session21054，synthesis-only/默认策略，尚无最终资源；不要另开TD完整任务。R17/R19综合已结束。
+- R17 rank存储：Slice*22821→22637，LUT29345→29107，reg23557→23263，107ERAM不变；R19再共享标签：Slice*22543，LUT28953，107ERAM。这些都是综合估算，不冒充实际Slice或最终时序。原R11/R27B主计数核原件不改，18bit排序计数不截断。
+- 已PASS：rank_r9六RGB/64目标；rank_stress_pixels_r1九幅完整RGB、拥挤>4候选/等距/远端锁定/丢锁定/大面积18bit计数与FG饱和，1216候选+304显示+128trace+occupied对照原R11四区；osd_share_pixels_r1和shared_font_pixels_r2各11幅完整1280x720图像逐像素对照原R11（双页/重叠/上下边界/无效/跨RUN/帧内突变）；字体全73728类型地址列与原ASCII/CJK逐项同拍一致；resize_share_pixels_r1全部131072输入权重+36连续/间隙/取消/错行尾流逐拍一致。
+- 新参考/夹具及生成脚本在 scripts/probe_d3_*.py、scripts/make_d3_*equivalence.py、tests/dual_stop_d3/r11_reference_*.sv、tb_d3_*equivalence/overlap/shared_font/rank_pixels.sv，原始SHA在docs/D3_RANK_REFERENCE.json与D3_RESIZE_REFERENCE.json。仅输出未接引脚的ModelSim warning，旧参考只改模块名/换行。shared_font_pixels_r1是声明顺序编译失败，已留原件；r2通过，未改期望。
+- 后续先收R23实际综合收益。若采用需把3份源合入主树、刷新bounds SHA、源一致验证目录profile；重跑所有编译到改变源的检查（包括native RAW及实际新SYN相机锥），不能把旧24项当新源PASS。完整物理布局布线/原49bounds/20Gray/9邮箱/双报警到V2注册输出审计仍必须过，不能提前交付bit。新bit仍须额外复制BIT_FLASH并核SHA，旧RL7/D2/只读R2保持。
+
+# D3 R14 布线中（2026-10-30 16:02，以下为历史）
+
+- 活动唯一TD完整构建仍R14 E:/2026FPGA/.codex_tmp/d3_dual_stop_build_r14_area_high_20261030，session71970，SYN已完成1154.2秒（官方AreaOptimizeHigh）。当前完整route早期Stage2.5.1.4 Rip-up And ReRoute，原时钟/SDC不改。**初步映射20911Slice=776+20135，98.56%，107ERAM31DSP5PLL。Placed SWNS+.115/TNS0，HWNS-.304/TNS-69.997只是布局。路由早期setup已收敛到-0.010/TNS-.010/仅1endpoint，仍未最终验收。不能提前交付bit。**
+- R14实际SYN：28865LUT、22985Slice*估算（比默认R11 LUT29345少480，但估算Slice22821→22985变大；实际映射却21065→20911少154，必须区分口径）。default完整r13已中止拥塞，不再运行。当前主RTL仍704份与R11原始字节一致，生产6d43dcf0；最新Git249359cf只增加官方策略/相机导出工具，不改生产。未推送、无硬件动作、无子代理。
+- **R14门级相机已重新PASS**：scripts/export_d3_camera.py --work R14 --check-directory E:/2026FPGA/.codex_tmp/d3_area_camera_r2_20261030，session23177完成exit0。闭合锥292cells（不是R11的303），只有clock/reset/SDA三个外部输入，两复位x126完整I2C EXP1092/GAIN40/WB100100。R14/CAMERA_EXPORT.json绑定实际新SYN gate.db+netlist+日志SHA。verifier中的相机cell数已改为从回执读取，模式ACTUAL_CANDIDATE_SYNTHESIS_CAMERA_CONE，不伪称相同SYN。这处scope改动尚未提交。
+- scripts/verify_d3_checks.py --work R14 已PASS全部24项（23项同704RTL精确SHA复用 + 新实际R14门级相机）；R14/SOFTWARE_VERIFICATION.json已生成。不要再重跑21分钟RAW，除非生产RTL变化。所有ModelSim已结束。
+- docs/D3_RESOURCE_ANALYSIS.json已刷新含RL7两个counter层级+R11默认+R14AreaHigh策略SHA/参数/SYN数据，待final.area出来再次刷新；docsD3_RESOURCE_ANALYSIS.md还需补最新High实测数据、最终审计。rootAGENTS及该JSON/verify相机scope目前有未提交修改。先保留活动冻结源不变。
+- 剩余：等R14完整bit/Route结束；strict scripts/audit_dual_stop_d3.py --work R14 --dual-stop-d3 --keys-v3 --adjacent-v6 --five-empty-v7，原49bounds/20Gray/9邮箱/四键SW3/V2双alarm实际FF连通，资源107/31/5具体期望未改。如果真实setup/hold失败，不能发布；针对实际路径修。若通过，更新文档/策略rebuild说明、Git提交工具+说明（704源HEAD blob仍需核），publisher --check-only→publish→BIT_FLASH副本与构建/发布SHA一致→最终Git载荷审计。目标R27B_DualCount_DualStop_D3_20261030.bit与release r27b_dual_count_dual_stop_d3_20261030。旧RL7/D2/固定只读R2绝不覆盖。
+- 若需要源码原始协议/各回归目录，读scripts/verify_d3_checks.py及下文历史。源核心参数仍两列计数、两列停车、各32队列、完整1s、各列五空报警、K1新RUN/K2暂停继续/K3清停/K4停/SW3兼容、右J2 pin1/V2/板载5V/无LED。用户最新是“继续”，不得停止只给计划或为确认重复提问。
+
+# D3 面积优先映射当前接续（2026-10-30 15:37，以下为历史）
 
 - 用户最新“继续”，任务仍两列识别/计数/停车，并解释/优化资源。已commit 6d43dcf0（分支codex/r27b-dual-count-and-stop-d3），704源Git HEAD blob与冻结raw SHA全部匹配，未推送。主RTL全部仍精确R11，不开子代理、不做任何硬件操作。
 - **最新唯一完整TD工作R14**：E:/2026FPGA/.codex_tmp/d3_dual_stop_build_r14_area_high_20261030，session71970，704相同源/107依赖，seed2，原SDC/时钟不改；使用TD本机官方 E:/TD/doc/strategies/official_strategy_ph1.json 的 AreaOptimizeHigh（official SHA b264a5c4ae939a4be0fcf5d2c242a8005132c4812f01d4d060590adee2030729）。参数gate add_map_lut_struct high/map_mode area_prior/multi_thread_mapping partition；RTL resource_sharing auto/shifter_style shifter_reg。build/BUILD_STRATEGY.json保留参数与官方SHA；scripts/build_r22_relay.py新增--synthesis-strategy选项，旧默认Default不变。目前Map Gate显示“extra runtime-consuming opt”，尚无SYN gate.area/DB，继续等待，不可写资源收益结论。

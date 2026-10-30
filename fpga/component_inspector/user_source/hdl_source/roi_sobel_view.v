@@ -88,9 +88,21 @@ end endgenerate
 // Four gray rows require parallel neighborhood reads. RGB only needs the
 // current middle row, so store all RGB rows in one synchronous dual-port RAM.
 // The dense address retains every pixel; no reduced precision or extra cycle.
-localparam RGB_WORDS=4*BEATS,RGB_BITS=$clog2(RGB_WORDS);
-wire [RGB_BITS-1:0] rgb_write_address=write_row[1:0]*BEATS+write_address;
-wire [RGB_BITS-1:0] rgb_read_address=read_y[1:0]*BEATS+read_address;
+// write_row >= read_y+3 already aborts before any valid read/output.
+// Middle-row RGB therefore needs only three rows; top/mid/bottom gray keeps
+// four rows because its oldest required row is read_y-1.
+localparam RGB_WORDS=3*BEATS,RGB_BITS=$clog2(RGB_WORDS);
+reg [1:0] rgb_write_bank,rgb_read_bank;
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin rgb_write_bank<=0;rgb_read_bank<=0;end
+ else if(early_sof || pixel_sof)begin rgb_write_bank<=0;rgb_read_bank<=0;end
+ else begin
+  if(input_valid && pixel_last)rgb_write_bank<=rgb_write_bank==2 ? 0 : rgb_write_bank+1'b1;
+  if(read_issue && read_address==BEATS-1)rgb_read_bank<=rgb_read_bank==2 ? 0 : rgb_read_bank+1'b1;
+ end
+end
+wire [RGB_BITS-1:0] rgb_write_address=(pixel_sof ? 2'd0 : rgb_write_bank)*BEATS+write_address;
+wire [RGB_BITS-1:0] rgb_read_address=rgb_read_bank*BEATS+read_address;
 reg [95:0] rgb_memory[0:RGB_WORDS-1];reg [95:0] rgb_read_q;
 always @(posedge clk)begin
  if(rst_n && input_valid && !bypass_tail && !frame_bad && (pixel_sof ? mode[1] : frame_mode[1]))

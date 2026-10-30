@@ -87,7 +87,7 @@ area=(work/'runs/phy_1/final.area').read_text()
 assert re.search(r'O_relay_control\s+OUTPUT\s+V2\s+LVCMOS33\s+HDIO\s+4\s+PULLDOWN',area)
 assert 'O_led' not in area
 resources={key:int(re.search(r'^#'+key+r'\s+(\d+)',area,re.M)[1]) for key in ['slice','eram','dsp','pll']}
-expected_eram,expected_dsp=(107,31) if args.dual_stop_d3 else (106,30) if args.second_lane_d2 else (98,30) if args.keys_v3 else (99,30) if args.left_v2 else (101,27)
+expected_eram,expected_dsp=(104,31) if args.dual_stop_d3 else (106,30) if args.second_lane_d2 else (98,30) if args.keys_v3 else (99,30) if args.left_v2 else (101,27)
 assert resources['slice']<=21216 and resources['eram']==expected_eram and resources['dsp']==expected_dsp and resources['pll']==5
 if args.left_v2 or args.keys_v3:
  assert args.dual_stop_d3 or 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')

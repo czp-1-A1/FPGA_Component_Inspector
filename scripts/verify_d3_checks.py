@@ -27,6 +27,9 @@ def verify(work):
     assert mapping in (fixture/'extracted_d3_metadata.sv').read_text()
     assert mapping in (fixture/'tb_d3_native.sv').read_text()
     selected=[];evidence={}
+    profile_path=work/'CHECK_PROFILE.json'
+    profile=read(profile_path) if profile_path.is_file() else {'name':'r11-original'}
+    assert profile['name'] in ['r11-original','lossless-v2']
     groups=[
         'd3_direct_final_cases_r3_20261030',
         'd3_keys_real_second_r2_20261030',
@@ -37,6 +40,12 @@ def verify(work):
         'd3_distance_selection_r1_20261030',
         'd3_final_ui_r4_20261030',
     ]
+    native_groups=['d3_resource_native_r3_20261030','d3_resource_empty_native_r3_20261030']
+    if profile['name']=='lossless-v2':
+        assert profile['source_manifest_sha256']==sha(work/'frozen_inputs.json')
+        groups=groups[:4]+['d3_lossless_units_r6_20261030','d3_osd_share_pixels_r1_20261030','d3_resize_share_pixels_r1_20261030','d3_rgb_ring_pixels_r2_20261030']
+        native_groups=['d3_lossless_native_r6_20261030','d3_lossless_empty_native_r6_20261030']
+        evidence[str(profile_path)]=sha(profile_path)
     for name in groups:
         folder=TMP/name;proof=read(folder/'verification.json');assert proof['status']=='PASS'
         for rel,d in proof['inputs'].items():assert source[rel]==d and sha(folder/'inputs'/Path(rel).name)==d,(name,rel)
@@ -45,7 +54,7 @@ def verify(work):
             log=folder/(test['name']+'.log');assert sha(log)==test['sha256'];passed(log)
             selected.append({'name':test['name'],'folder':str(folder),'mode':'EXACT_COMPILED_SOURCE_AND_FIXTURE_MATCH','log_sha256':sha(log)})
         evidence[str(folder/'verification.json')]=sha(folder/'verification.json')
-    for name in ['d3_resource_native_r3_20261030','d3_resource_empty_native_r3_20261030']:
+    for name in native_groups:
         folder=TMP/name;proof=read(folder/'verification.json');assert proof['status']=='PASS'
         for rel,d in proof['inputs'].items():assert source[rel]==d and sha(folder/'inputs/project'/rel)==d,(name,rel)
         for rel,d in proof['extra_inputs'].items():assert sha(fixture/Path(rel).name)==sha(folder/'inputs/project'/rel)==d,(name,rel)
@@ -55,7 +64,15 @@ def verify(work):
            'scope':'Real RAW/DDR/display or empty RAW proof order. Parking instantiated with motor permit off; not a RAW parking cycle or optical recall test.'})
         evidence[str(folder/'verification.json')]=sha(folder/'verification.json')
     reference=TMP/'d3_dual_stop_build_r11_resource_opt_20261030'
-    assert read(reference/'frozen_inputs.json')==source
+    reference_source=read(reference/'frozen_inputs.json')
+    if profile['name']=='lossless-v2':
+        assert set(reference_source)==set(source)
+        assert {rel for rel,d in source.items() if reference_source[rel]!=d}=={
+            'user_source/hdl_source/frame_shape_search.v',
+            'user_source/hdl_source/compact_inspector_osd.v',
+            'user_source/hdl_source/rgb_resize_2_3.v',
+            'user_source/hdl_source/roi_sobel_view.v'}
+    else:assert reference_source==source
     export=work/'CAMERA_EXPORT.json'
     if export.is_file():
         e=read(export);gate=Path(e['check_directory'])
@@ -63,6 +80,7 @@ def verify(work):
         assert e['netlist_sha256']==sha(work/'d3_camera_gate.v')
         netlist=work/'d3_camera_gate.v'
     else:
+        assert profile['name']=='r11-original','A changed-source candidate needs its actual new synthesis camera export.'
         gate=TMP/'d3_resource_camera_r1_20261030';netlist=reference/'d3_camera_gate.v'
     if work!=reference and not export.is_file():
         reuse=read(work/'EXACT_SYNTHESIS_REUSE.json')
@@ -85,7 +103,18 @@ def verify(work):
     assert bounds['source_sha256']==source['user_source/hdl_source/frame_shape_search.v']
     for path in ['docs/D3_OBSERVED_COUNTER_PROOF.json','docs/D3_DISTANCE_BOUNDS.json']:
         evidence[str(ROOT/path)]=sha(ROOT/path)
+    required={'tb_d3_case'+str(i) for i in range(12)} | {
+        'tb_d3_alarm_control','tb_d3_keys','tb_d3_real_second','tb_d3_metadata',
+        'tb_d3_tracker_guards','tb_d3_pixels','tb_d3_cache_address',
+        'tb_d3_distance_selection','tb_d3_osd','tb_d3_native','tb_d3_empty_native'}
+    # Camera bench names come from the actual closed-cone export proof.
+    required|={t['name'] for t in g['tests']}
+    if profile['name']=='lossless-v2':required|={
+        'tb_d3_rank_pixels','tb_d3_rgb_ring','tb_d3_osd_equivalence',
+        'tb_d3_osd_overlap','tb_d3_resize_equivalence'}
+    assert len(selected)==len(required) and {t['name'] for t in selected}==required,([t['name'] for t in selected],sorted(required))
     result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','selected':selected,'selected_checks':len(selected),
+        'profile':profile['name'],'expected_checks':len(required),
         'inputs_manifest_sha256':sha(work/'frozen_inputs.json'),'evidence':evidence,
         'original_R27B_counter_sha256':observer['original_raw_sha256'],
         'hardware_acceptance':False,'resource_or_timing_acceptance':False}

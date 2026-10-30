@@ -5,7 +5,7 @@ import argparse,hashlib,json,os,re,shutil,subprocess,time
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--prepare-only',action='store_true')
- a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--baseline-label',default='a1cceaa');a.add_argument('--extra-source',nargs='*',default=[]);a.add_argument('--synthesis-only',action='store_true');a.add_argument('--synthesis-strategy',choices=['Default','AreaOptimizeMedium','AreaOptimizeHigh'],default='Default');a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--recognition-only',action='store_true');a.add_argument('--seed',type=int,default=2);a.add_argument('--stage-timeout',type=int,default=2400);args=a.parse_args()
+ a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--baseline-label',default='a1cceaa');a.add_argument('--extra-source',nargs='*',default=[]);a.add_argument('--synthesis-only',action='store_true');a.add_argument('--synthesis-strategy',choices=['Default','AreaOptimizeMedium','AreaOptimizeHigh'],default='Default');a.add_argument('--physical-strategy',choices=['Default','CongestionHigh','CongestionMedium','TimingUltra'],default='Default');a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--recognition-only',action='store_true');a.add_argument('--seed',type=int,default=2);a.add_argument('--stage-timeout',type=int,default=2400);args=a.parse_args()
  repo=Path(__file__).resolve().parents[1];src=args.source.resolve() if args.source else repo/'fpga/component_inspector';work=args.work.resolve()
  assert not work.exists(),'Refuse to overwrite an existing build'
  assert str(work).isascii() and ' ' not in str(work)
@@ -34,6 +34,12 @@ def main():
   strategy=official[args.synthesis_strategy];assert strategy['is_syn']=='syn'
   strategy_params=strategy['params'];assert all(x['step'] in ['rtl','gate'] and all(re.fullmatch(r'[A-Za-z0-9_]+',str(x[k])) for k in ['step','param','val']) for x in strategy_params)
   (work/'BUILD_STRATEGY.json').write_text(json.dumps({'strategy':args.synthesis_strategy,'official_file':str(official_path),'official_file_sha256':sha(official_path),'parameters':strategy_params,'constraints_changed':False,'source_manifest_sha256':sha(work/'frozen_inputs.json')},indent=2)+'\n')
+ physical_params=[]
+ if args.physical_strategy!='Default':
+  official_path=td/'doc/strategies/official_strategy_ph1.json';official=json.loads(official_path.read_text())
+  strategy=official[args.physical_strategy];assert strategy['is_syn']=='phy'
+  physical_params=strategy['params'];assert all(x['step'] in ['place','route'] and all(re.fullmatch(r'[A-Za-z0-9_.]+',str(x[k])) for k in ['step','param','val']) for x in physical_params)
+  (work/'PHYSICAL_STRATEGY.json').write_text(json.dumps({'strategy':args.physical_strategy,'official_file':str(official_path),'official_file_sha256':sha(official_path),'parameters':physical_params,'constraints_changed':False,'seed':args.seed,'source_manifest_sha256':sha(work/'frozen_inputs.json')},indent=2)+'\n')
  entry=project/'td_project/camera_to_dsi_display.al';text=entry.read_text()
  deps={}
  for rel in re.findall(r'<File Path="([^"]+)"',text):
@@ -73,6 +79,7 @@ set run_type phy
   active_sdc='camera_to_dsi_recognition.sdc' if args.recognition_only else 'camera_to_dsi_display.sdc'
   cfg=cfg.replace('../../camera_to_dsi_display.sdc',Path(os.path.relpath(entry.parent/active_sdc,run)).as_posix())
   cfg=cfg.replace('place seed 2 ','place seed '+str(args.seed)+' ')
+  if stage=='phy_1' and physical_params:cfg+='set phyWildParams [concat $phyWildParams {'+' '.join(x['step']+' '+x['param']+' '+str(x['val']) for x in physical_params)+'}]\n'
   (run/'settings.cfg').write_text(cfg)
   commands='if {[catch {\nsource {'+flow.as_posix()+'}\ncheck_timing -file constraint_coverage.txt -verbose\n'
   if stage=='phy_1':commands+='report_timing_summary -file final_timing.rpt\nreport_area -io_info -file final.area\n'

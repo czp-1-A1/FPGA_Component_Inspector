@@ -1,0 +1,86 @@
+{
+  "status": "PASS_SOURCE_PROVENANCE_AND_BOUNDED_LOSSLESS_CHECKS",
+  "candidate": "D:\\CodexWork\\D3_Lossless_Synthesis_R28_20261030",
+  "candidate_manifest_sha256": "31e8b0d5138bd958b485510ad97a4e4d817bb1148406702c94eee20e67022484",
+  "changed_inputs": [
+    "user_source/hdl_source/compact_inspector_osd.v",
+    "user_source/hdl_source/frame_shape_search.v",
+    "user_source/hdl_source/rgb_resize_2_3.v",
+    "user_source/hdl_source/roi_sobel_view.v"
+  ],
+  "unchanged_inputs": 700,
+  "original_R27B_counter_unchanged": true,
+  "all_fonts_and_diagnostics_retained": true,
+  "oracles": {
+    "frame_shape_search": {
+      "original_sha256": "f19d1305bea604ee4eeaef1d4ac073c03856f17df9451a32fe69855d454b5739",
+      "reference_sha256": "000e7ff77473205fcb01d0163ed188e0fd8bacd086f9b5928db9fa9ae58b28c1",
+      "restored_normalized_body_identical": true
+    },
+    "compact_inspector_osd": {
+      "original_sha256": "aa9bf88000cadaa14d7ac24fe820a1ce64df982c6d1f600ad1c8de9c879d1be9",
+      "reference_sha256": "674c640476ad09b4b4657523868efda3fa66e5de078d3269b7f6fa8e1e99fbf2",
+      "restored_normalized_body_identical": true
+    },
+    "rgb_resize_2_3": {
+      "original_sha256": "b89a8ecc0719e9818e5cedb515bb899449c086ace6470ec1ff67c9f7517a4140",
+      "reference_sha256": "7b58f0c9a0a376beb7fddeb02eca5172790ef49905fc8a7dcbfca5b79925a28f",
+      "restored_normalized_body_identical": true
+    },
+    "roi_sobel_view": {
+      "original_sha256": "6321490f7eff53cc8936b51fd58463b49eb8454e8953325560013ec2eb1316b7",
+      "reference_sha256": "9c4eaacf9f2f1b2bb27dbb4915f1a5cda48ae93b8f6f741c8091657796e54c5c",
+      "restored_normalized_body_identical": true
+    }
+  },
+  "rgb_ring_bounded_address_checks": 8082,
+  "proofs": {
+    "d3_lossless_units_r6_20261030": {
+      "verification_sha256": "477359b40121655a4c2c086995c9c6aab760d3b45b040587d35c85c536ac3ebd",
+      "tests": [
+        "tb_d3_pixels",
+        "tb_d3_rank_pixels",
+        "tb_d3_cache_address",
+        "tb_d3_distance_selection",
+        "tb_d3_osd"
+      ]
+    },
+    "d3_osd_share_pixels_r1_20261030": {
+      "verification_sha256": "cd9709f42600727e1445c80fb3eb810df6a055454744e5e8d46967e652f5a256",
+      "tests": [
+        "tb_d3_osd_equivalence",
+        "tb_d3_osd_overlap"
+      ]
+    },
+    "d3_resize_share_pixels_r1_20261030": {
+      "verification_sha256": "0c6fb6d148e7d4d9267a26a0a3f7feaf497b88adb3e8152f5de4af8cb48f005c",
+      "tests": [
+        "tb_d3_resize_equivalence"
+      ]
+    },
+    "d3_rgb_ring_pixels_r2_20261030": {
+      "verification_sha256": "554c8fb8e1f09f79f878847b4926406aae7029e85b42025fca6cb87f4c8c260d",
+      "tests": [
+        "tb_d3_rgb_ring"
+      ]
+    }
+  },
+  "synthesis_comparison": {
+    "R11": {
+      "slice_estimate": 22821,
+      "lut": 29345,
+      "reg": 23557,
+      "eram": 107,
+      "dsp": 31
+    },
+    "R28": {
+      "slice_estimate": 22188,
+      "lut": 28596,
+      "reg": 23262,
+      "eram": 104,
+      "dsp": 31
+    }
+  },
+  "rejected_font_experiment": "All font bits passed equivalence, but TD mapped its 1-bit ROM to 352 logic LUT +1DSP. Original fonts restored.",
+  "scope": "No complete sequential formal proof, full RAW/physical timing verdict or board acceptance claimed here."
+}

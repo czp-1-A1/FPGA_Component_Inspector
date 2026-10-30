@@ -38,6 +38,7 @@ def main():
         'RL7_single_stop_synthesis':ROOT/'releases/r22_relay_shift_alarm_v7_20261028/build/runs/syn_1/camera_to_dsi_display_gate.area',
         'R27B_dual_count_final':HANDOFF/'phy_1/camera_to_dsi_display_phy.area',
         'R27B_dual_count_synthesis':HANDOFF/'syn_1/camera_to_dsi_display_gate.area',
+        'D3_initial_cache_spill_synthesis':TMP/'d3_dual_stop_resource_probe_r1_20261030/runs/syn_1/camera_to_dsi_display_gate.area',
         'D3_initial_repeated_station_synthesis':TMP/'d3_dual_stop_resource_probe_r3_20261030/runs/syn_1/camera_to_dsi_display_gate.area',
         'D3_direct_global_before_width_address_opt_synthesis':TMP/'d3_dual_stop_build_r9_20261030/runs/syn_1/camera_to_dsi_display_gate.area',
         'D3_direct_global_default_mapping_synthesis':TMP/'d3_dual_stop_build_r11_resource_opt_20261030/runs/syn_1/camera_to_dsi_display_gate.area',
@@ -55,6 +56,8 @@ def main():
         'candidate_final_available':final.is_file()}
     strategy=a.candidate/'BUILD_STRATEGY.json'
     if strategy.is_file():result['candidate_build_strategy']={'sha256':sha(strategy),'settings':json.loads(strategy.read_text())}
+    physical_strategy=a.candidate/'PHYSICAL_STRATEGY.json'
+    if physical_strategy.is_file():result['candidate_physical_strategy']={'sha256':sha(physical_strategy),'settings':json.loads(physical_strategy.read_text())}
     a.out.write_text(json.dumps(result,indent=2)+'\n',encoding='utf8')
     for name,r in reports.items():print(name, {k:v for k,v in r.items() if k not in ['path','sha256','hierarchy']})
     base=reports['R27B_dual_count_synthesis']['hierarchy']
