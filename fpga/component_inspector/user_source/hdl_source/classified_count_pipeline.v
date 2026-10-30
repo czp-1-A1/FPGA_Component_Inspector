@@ -20,7 +20,8 @@ module classified_count_pipeline #(parameter LINE_X=640,STOP_CYCLES=15000000,PAG
  wire timeout_bad=silence==STOP_CYCLES-1 && !timeout_sent;
  wire lost_epoch=source_start && epoch_open && (!proved || !result_seen);
  wire reject=(frame_bad && epoch_open) || timeout_bad || lost_epoch;
- wire accept=sample_new && proved && !epoch_bad && !frame_bad && !source_start;
+ wire accept=sample_new && (!RECORD_ONLY || epoch_open) && proved && !epoch_bad && !frame_bad && !source_start &&
+  !(RECORD_ONLY && (begin_run || end_run));
  wire busy,snapshot_new,dv,dr,region;wire [2:0] state;wire [3:0] reason;
  wire [15:0] run;wire [8:0] total,pt,et,rt;wire [35:0] ids;
  reg [8:0] empty_address;wire [8:0] empty_value;
@@ -75,7 +76,10 @@ module classified_count_pipeline #(parameter LINE_X=640,STOP_CYCLES=15000000,PAG
     if(RECORD_ONLY)begin
      visible_run<=end_run ? 16'd0 : visible_run+16'd1;
      silence<=0;timeout_sent<=0;frame_pending<=0;build_pending<=1;settle<=3;fetch<=0;
-     if(end_run)begin frame_record<=0;epoch_open<=0;proved<=0;result_seen<=0;epoch_bad<=0;end
+     // A new run cannot inherit a partly captured/result-pending old frame.
+     // Join only an FS on this edge or the next FS; timeout protection stays
+     // active while waiting. Source IDs and the internal run stay monotonic.
+     frame_record<=0;epoch_open<=begin_run && source_start;proved<=0;result_seen<=0;epoch_bad<=0;
     end
    end
    if(event_valid && !begin_run && !(RECORD_ONLY && end_run))begin last_id<=event_id;last_kind<=event_kind;last_reason<=event_reason;end

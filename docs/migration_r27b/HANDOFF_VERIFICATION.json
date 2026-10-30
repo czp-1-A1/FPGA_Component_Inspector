@@ -1,0 +1,14 @@
+{
+  "status": "PASS_DOCUMENT_SOURCE_REVIEW_680_FROZEN_INPUTS_AND_R23_PATCH_CHECK",
+  "scope": "documentation and read-only migration diff; no RTL changes or new bit",
+  "baseline_patch_check": "git apply --check --ignore-space-change --ignore-whitespace exited 0 on local R23",
+  "modified_production_files": 9,
+  "unchanged_user_source_files": 226,
+  "frozen_inputs_verified": 680,
+  "board_acceptance": "HUMAN_PENDING",
+  "files": {
+    "DUAL_COLUMN_HANDOFF_R27B.md": "b42dba708f92c2d06dcd37ce84ccc8b0c11f145a283f6c3e6136285fbeab5e53",
+    "R23_to_R27B_production.patch": "afa8459bc232a3b2447fe2a7776da9d91fae1bf2d5502da1096db38e76fd9119",
+    "SOURCE_CHANGE_MANIFEST.json": "4ed7cabe67c4e47c234a0d1b5c19c23dc8d5a0fa6a2805ac0f8332366cafe1b5"
+  }
+}

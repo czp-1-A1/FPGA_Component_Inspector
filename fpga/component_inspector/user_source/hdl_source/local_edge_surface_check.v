@@ -69,10 +69,15 @@ wire [4:0] pixel=q[byte_index*5+:5];
 wire [10:0] next_sum=sum+{6'd0,pixel};
 wire [4:0] mean=feature==0 ? next_sum[10:6] : next_sum[9:5];
 wire [4:0] next_min=mean<min_edge ? mean : min_edge;
-wire [7:0] edge5={3'd0,next_min}+{1'b0,next_min,2'b0};
-wire [6:0] center4={center_mean,2'b0};
 wire [9:0] next_max=next_sum[9:0]>max_edge_total ? next_sum[9:0] : max_edge_total;
 wire [10:0] center_limit=center_total+11'd16;
+// min(a,b)*5 >= center*4 iff both a,b >= ceil(center*4/5).
+// For integral center, ceil(center*4/5) = center-floor(center/5).
+// Distribute the extrema comparisons to avoid RAM -> sum -> mux -> compare.
+wire [4:0] edge_floor=center_mean-center_mean/5'd5;
+wire contrast_ok=min_edge>=edge_floor && mean>=edge_floor;
+wire standing_ok=max_edge_total<=center_limit[10:1] && next_sum[9:0]<=center_limit[10:1];
+wire gray_ok_now=center_mean>=((FOREGROUND+7)/8) && contrast_ok && (!STANDING_REVIEW || standing_ok);
 wire signed [8:0] gray_signed=$signed({4'b0,pixel});
 reg signed [8:0] term_x,term_y;
 always @*begin
@@ -117,7 +122,7 @@ always @(posedge clk or negedge rst_n)begin
      else begin min_edge<=next_min;max_edge_total<=next_max;end
      sample<=0;sum<=0;
      if(feature==4)begin
-      legacy_ok<=center_mean>=((FOREGROUND+7)/8) && edge5>={1'b0,center4} && (!STANDING_REVIEW || {next_max,1'b0}<=center_limit);
+      legacy_ok<=gray_ok_now;
       phase<=5;
      end else begin feature<=feature+1'b1;phase<=2;end
     end else begin sum<=next_sum;sample<=sample+1'b1;phase<=2;end
@@ -169,9 +174,9 @@ generate if(TRACE)begin : passive_trace
     endcase
     if(feature==4)begin
      failures[0]<=center_mean<((FOREGROUND+7)/8);
-     failures[1]<=edge5<{1'b0,center4};
-     failures[2]<=STANDING_REVIEW && {next_max,1'b0}>center_limit;
-     gray_ok<=center_mean>=((FOREGROUND+7)/8) && edge5>={1'b0,center4} && (!STANDING_REVIEW || {next_max,1'b0}<=center_limit);
+     failures[1]<=!contrast_ok;
+     failures[2]<=STANDING_REVIEW && !standing_ok;
+     gray_ok<=gray_ok_now;
     end
    end
    if(phase==7 && tap==8)begin

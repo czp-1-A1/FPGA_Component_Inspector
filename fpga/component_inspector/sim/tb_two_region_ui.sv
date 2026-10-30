@@ -44,7 +44,7 @@ module tb_two_region_ui;
     for(xx=0;xx<1280;xx++)@(negedge clk);
     de=0;repeat(10)@(negedge clk);
     if(yy==7)begin
-     text_at(0,0,"COUNT R24");
+     text_at(0,0,"COUNT R27");
      text_at(0,52,"DUAL ROI       ");
      text_at(1,0,"ROI1  TOTAL 027  PRESENT 020  EMPTY 007  REVIEW 002");
      text_at(2,0,"ROI2  TOTAL 043  PRESENT 040  EMPTY 003  REVIEW 005");

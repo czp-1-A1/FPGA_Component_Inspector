@@ -4001,8 +4001,8 @@ memory[1715]=10'h228;
 
 end
 if(DUAL_REGION_COUNT)begin
- memory[8]=10'h032;memory[9]=10'h034;
- memory[1031]=10'h032;memory[1032]=10'h034;
+ memory[8]=10'h032;memory[9]=10'h037;
+ memory[1031]=10'h032;memory[1032]=10'h037;
 end
 end
 always @(posedge clk)data<=memory[address];

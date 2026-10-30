@@ -2,7 +2,7 @@
 // Legacy: two objects. REGIONS: two independently bound zones, two objects each.
 // A shared flood-fill engine runs during vertical blanking, without video backpressure.
 module frame_shape_search #(
- parameter PRESENT_TRACE=0,
+ parameter PRESENT_TRACE=0,SPARSE_ROW_SCAN=0,
  parameter WIDTH=1024,HEIGHT=600,REGIONS=0,DUAL_REGION_COUNT=0,
  parameter INDEXED_CANDIDATES=1,
  // Counting-only trial margin from upstream's measured six-cell extent.
@@ -68,6 +68,7 @@ wire [1:0] half_dark={block1[9:2]<=FOREGROUND,block0[9:2]<=FOREGROUND};
 reg [1:0] first_fg,first_dark;
 reg [15:0] cap_addr;reg [7:0] cap_data;reg cap_write,cap_last,seen;
 reg [15:0] cap_count;reg [17:0] capture_foreground;
+reg [YB-1:0] cap_row;wire small_capture_foreground;
 reg small_pass;
 wire processed_body_we;wire [15:0] processed_body_addr;
 // Certify complete words connected to a border or a >=44-cell horizontal run.
@@ -112,14 +113,14 @@ always @(posedge clk or negedge rst_n)begin
  else if(!cap_write && back_count!=0)begin back_count<=back_count-1'b1;back_addr<=back_addr-1'b1;end
 end
 always @(posedge clk or negedge rst_n)begin
- if(!rst_n)begin accept_d<=0;x_d<=0;y_d<=0;pair_d<=0;first_fg<=0;first_dark<=0;cap_write<=0;cap_last<=0;cap_addr<=0;cap_data<=0;border_left<=0;cap_ignored<=0;cap_column<=0;foreground_run<=0;cap_backfill<=0;end
+ if(!rst_n)begin accept_d<=0;x_d<=0;y_d<=0;pair_d<=0;first_fg<=0;first_dark<=0;cap_write<=0;cap_last<=0;cap_addr<=0;cap_data<=0;border_left<=0;cap_ignored<=0;cap_column<=0;foreground_run<=0;cap_backfill<=0;cap_row<=0;end
  else begin
   accept_d<=pixel_accept && !invalidate && !frame_start;x_d<=pixel_x;y_d<=pixel_y;pair_d<={pair1,pair0};
   cap_write<=accept_d && y_d[0] && x_d[2] && !invalidate && !frame_start;
   cap_last<=x_d==WIDTH-4 && y_d==HEIGHT-1;cap_addr<=address(x_d[10:1],y_d[9:1]);
   if(accept_d && y_d[0] && !x_d[2])begin first_fg<=half_fg;first_dark<=half_dark;end
   cap_data<={half_dark,first_dark,(ignore_capture_word ? 4'd0 : capture_fg_word)};
-  cap_ignored<=ignore_capture_word;cap_column<=x_d[10:3];
+  cap_ignored<=ignore_capture_word;cap_column<=x_d[10:3];cap_row<=y_d[9:1];
   cap_backfill<=REGIONS && (&capture_fg_word) && foreground_run==10 && !border_left;
   if(accept_d && y_d[0] && x_d[2])begin
    border_left<=ignore_capture_word;
@@ -170,6 +171,7 @@ generate if(SMALL_HOLES)begin : small_holes
   x_d<8 || x_d==WIDTH-4 || (y_d>SMALL_Y0+1 && line_q) || (x_d>=8 && left_border) || foreground_run==10);
  reg [3:0] cap_small;reg cap_ignore,cap_inside;
  wire capture=cap_write && cap_inside;
+ assign small_capture_foreground=cap_inside && |cap_small;
  // Once T100 has identified a body, its T80 rectangle is already accounted
  // for. Certify it through the existing one-bit map instead of flooding it
  // twice. This also prevents low-threshold fragments inside it becoming holes.
@@ -214,7 +216,7 @@ generate if(SMALL_HOLES)begin : small_holes
  assign small_q=read_inside_d ? (forward ? forward_value : read_value) : 4'd0;
  assign small_ignored=!read_inside_d || read_ignore;
 end else begin : no_small_holes
- assign small_q=0;assign small_ignored=0;
+ assign small_q=0;assign small_ignored=0;assign small_capture_foreground=0;
 end endgenerate
 localparam IDLE=0,SCAN_REQ=1,SCAN_WAIT=2,SCAN_CHECK=3,SEED_MARK=4,
  POP_REQ=5,POP_WAIT=6,POP_VALUE=7,NEIGH_REQ=8,NEIGH_WAIT=9,NEIGH_CHECK=10,
@@ -340,19 +342,36 @@ wire covers_body;
 wire high_lookup=MULTITHRESHOLD_EMPTY && small_pass && width_now==4 && height_now==4 && empty_geometry &&
  guarded_bright_empty && long5<=short7 && fg5>=area3 && fg10>area9 &&
  !sprocket_match && !covers_body;
-reg [2:0] high_write_index;reg [11:0] high_worst;reg high_free;integer hi;
-always @*begin
- high_write_index={candidate_region,2'b00};high_worst=0;high_free=0;
- for(hi=0;hi<4;hi=hi+1)begin
-  if(!high_valid[{candidate_region,2'b00}+hi])begin
-   if(!high_free)high_write_index={candidate_region,2'b00}+hi;
-   high_free=1;
-  end else if(!high_free && high_distances[{candidate_region,2'b00}+hi]>=high_worst)begin
-   high_write_index={candidate_region,2'b00}+hi;
-   high_worst=high_distances[{candidate_region,2'b00}+hi];
-  end
+// Compute both banks before selecting the region. A balanced maximum keeps
+// candidate_region out of the serial distance-comparison/write-enable path.
+// Prefix masks preserve high_worst even when the first free slot stops the
+// old scan. Equal distances still select the last slot, and free slots the first.
+function [14:0] high_slot_choice;
+ input [3:0] valid;
+ input [11:0] d0,d1,d2,d3;
+ reg [11:0] p0,p1,p2,p3,m01,m23,worst;
+ reg [1:0] s01,s23,slot;
+ begin
+  p0=valid[0] ? d0 : 12'd0;
+  p1=(&valid[1:0]) ? d1 : 12'd0;
+  p2=(&valid[2:0]) ? d2 : 12'd0;
+  p3=(&valid) ? d3 : 12'd0;
+  if(p1>=p0)begin m01=p1;s01=1;end else begin m01=p0;s01=0;end
+  if(p3>=p2)begin m23=p3;s23=3;end else begin m23=p2;s23=2;end
+  if(m23>=m01)begin worst=m23;slot=s23;end else begin worst=m01;slot=s01;end
+  if(!valid[0])slot=0;
+  else if(!valid[1])slot=1;
+  else if(!valid[2])slot=2;
+  else if(!valid[3])slot=3;
+  high_slot_choice={!(&valid),worst,slot};
  end
-end
+endfunction
+wire [14:0] high_choice0=high_slot_choice(high_valid[3:0],high_distances[0],high_distances[1],high_distances[2],high_distances[3]);
+wire [14:0] high_choice1=high_slot_choice(high_valid[7:4],high_distances[4],high_distances[5],high_distances[6],high_distances[7]);
+wire [14:0] high_choice=candidate_region ? high_choice1 : high_choice0;
+wire [2:0] high_write_index={candidate_region,high_choice[1:0]};
+wire [11:0] high_worst=high_choice[13:2];
+wire high_free=high_choice[14];
 wire [1:0] candidate_state=SMALL_HOLES ?
  (small_pass ? (sprocket_match ? 0 : (empty_match || (MULTITHRESHOLD_EMPTY && high_confirmed)) ? 3 : pose_match ? 2 : 1) : (present_match || present_review_match) ? 2 : 1) :
  sprocket_match ? 0 : (present_match || present_review_match) ? 2 : empty_match ? 3 : 1;
@@ -571,6 +590,21 @@ generate for(slot=0;slot<4;slot=slot+1)begin : region_seed
   (region_supported[1] && inside_region(seed_x,seed_y,region_bounds[83:42]));
 end endgenerate
 wire [3:0] seed_word=mem_q[3:0] & seed_mask & {4{!active_ignored}};
+// A conservative union of captured T100/T80 foreground rows. Later border
+// certificates/marking may only clear pixels, so a zero bit proves that the
+// whole row can be skipped in both passes. Dark-reference pixels stay intact.
+wire sparse_row_empty;
+generate if(SPARSE_ROW_SCAN)begin : sparse_rows
+ reg [H-1:0] occupied;
+ always @(posedge clk or negedge rst_n)begin
+  if(!rst_n)occupied<=0;
+  else if(frame_start || invalidate || pixel_sof)occupied<=0;
+  else if(cap_write && ((|cap_data[3:0]) || small_capture_foreground))occupied[cap_row]<=1'b1;
+ end
+ assign sparse_row_empty=!occupied[sy];
+end else begin : full_row_scan
+ assign sparse_row_empty=0;
+end endgenerate
 // Do not duplicate a body with a small low-threshold fragment. Conversely,
 // remove T100 fragments contained in a measured T80 empty/feed contour.
 assign covers_body=INDEXED ? covered_body : (found_bank[bank0] && state_bank[bank0]==2 && xmin<=xmax_bank[bank0] && xmax>=xmin_bank[bank0] && ymin<=ymax_bank[bank0] && ymax>=ymin_bank[bank0]) ||
@@ -618,7 +652,7 @@ wire [XB-1:0] scan_xlast=REGIONS ? ((scan_bounds[30:20]-1)>>3)<<2 : W-4;
 wire [YB-1:0] scan_ylast=REGIONS ? (scan_bounds[9:0]-1)>>1 : H-1;
 task advance_scan;
  begin
-  if(sx>=scan_xlast)begin
+  if(sx>=scan_xlast || sparse_row_empty)begin
    sx<=scan_x0;
    if(sy>=scan_ylast)begin
     if(REGIONS && !scan_region)begin
@@ -753,7 +787,16 @@ always @(posedge clk or negedge rst_n)begin
    end
    POP_REQ:begin q_read<=q_head;phase<=POP_WAIT;end
    POP_WAIT:phase<=POP_VALUE;
-   POP_VALUE:begin cx<=q_q[XB-1:0];cy<=q_q[QB-1:XB];q_head<=q_head+1'b1;q_count<=q_count-1'b1;direction<=0;phase<=NEIGH_REQ;end
+   POP_VALUE:begin
+    cx<=q_q[XB-1:0];cy<=q_q[QB-1:XB];q_head<=q_head+1'b1;q_count<=q_count-1'b1;direction<=0;
+    // The queue word is already registered. Issue its first neighbour read
+    // here instead of spending a cycle copying the same coordinates first.
+    if(SPARSE_ROW_SCAN)begin
+     nx<=q_q[XB-1:0]-1'b1;ny<=q_q[QB-1:XB];
+     mem_addr<=address(q_q[XB-1:0]-1'b1,q_q[QB-1:XB]);
+     phase<=q_q[XB-1:0]!=0 ? NEIGH_WAIT : NEIGH_NEXT;
+    end else phase<=NEIGH_REQ;
+   end
    NEIGH_REQ:begin
     if(neighbor_ok)begin nx<=trial_x[XB-1:0];ny<=trial_y[YB-1:0];mem_addr<=address(trial_x[XB-1:0],trial_y[YB-1:0]);phase<=NEIGH_WAIT;end
     else phase<=NEIGH_NEXT;
@@ -774,7 +817,11 @@ always @(posedge clk or negedge rst_n)begin
     end
     if(!(neighbor_foreground && (q_count==1024 || component_count==W*H)))begin
      if(direction==3)begin
-      if(q_count==0 && !neighbor_foreground)phase<=AREA_CALC;else phase<=POP_REQ;
+      if(q_count==0 && !neighbor_foreground)phase<=AREA_CALC;
+      // Read an already queued head in this existing neighbour cycle. If the
+      // only pending word is being enqueued now, retain the RAM write/read gap.
+      else if(SPARSE_ROW_SCAN && q_count!=0)begin q_read<=q_head;phase<=POP_WAIT;end
+      else phase<=POP_REQ;
      end else begin
       direction<=direction+1'b1;
       // Issue the next read now; the preceding mark has its own write address.
@@ -787,7 +834,11 @@ always @(posedge clk or negedge rst_n)begin
     end
    end
    NEIGH_NEXT:begin
-    if(direction==3)begin if(q_count==0)phase<=AREA_CALC;else phase<=POP_REQ;end
+    if(direction==3)begin
+     if(q_count==0)phase<=AREA_CALC;
+     else if(SPARSE_ROW_SCAN)begin q_read<=q_head;phase<=POP_WAIT;end
+     else phase<=POP_REQ;
+    end
     else begin direction<=direction+1'b1;phase<=NEIGH_REQ;end
    end
    AREA_CALC:begin high_confirmed<=0;candidate_region<=region_now;candidate_allowed<=allowed_now;component_area<=width_now*height_now;

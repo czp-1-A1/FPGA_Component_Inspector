@@ -1,0 +1,179 @@
+{
+  "status": "PASS_R27B_25_ACTUAL_SOFTWARE_TESTS_EARLY_EMPTY_RESULT_JOIN_AND_SELECTOR_EQUIVALENCE",
+  "identities": {
+    "build": {
+      "source_manifest_sha256": "d2940ffcffb52efd099898e7de51c2330ddb25165fc8a7ad36015891750932ca",
+      "source_files": 680,
+      "production_dependencies": 102,
+      "production_changes": [
+        "user_source/hdl_source/compact_template_rom.v",
+        "user_source/hdl_source/frame_shape_search.v",
+        "user_source/hdl_source/isp/isp_top.v"
+      ],
+      "physical_seed": 2
+    },
+    "units": {
+      "source_manifest_sha256": "d2940ffcffb52efd099898e7de51c2330ddb25165fc8a7ad36015891750932ca",
+      "source_files": 680,
+      "production_dependencies": 102,
+      "production_changes": [
+        "user_source/hdl_source/compact_template_rom.v",
+        "user_source/hdl_source/frame_shape_search.v",
+        "user_source/hdl_source/isp/isp_top.v"
+      ],
+      "physical_seed": 2
+    }
+  },
+  "actual_tests": 25,
+  "identity_reused_tests": 0,
+  "tests": {
+    "counter_timing_equivalence": {
+      "compile_sha256": "db8ff934c0ea6e16968407f321d98fe1e42faa006ec47a3437df4e37bebc377c",
+      "console_sha256": "b038d8be9da3c16675ac7d3f22be24999821e6916b5931aa8420cc95386f3d7d",
+      "actual_execution": true
+    },
+    "counter_timing_case1": {
+      "compile_sha256": "1dac5bed6610d913288a7bb3cb1251ca779cab9945de1fe5cc3b8cd93a1d4849",
+      "console_sha256": "e8ef4215474983036bfb4bf159e5939c09f945d0b0e5cd0f4467fc7574092224",
+      "actual_execution": true
+    },
+    "counter_timing_case2": {
+      "compile_sha256": "9fa5ed3a6962f0a9991357bbb04f77bf861f8ba6b9727446cebd01fb92aad55d",
+      "console_sha256": "19bead1744e7e009b0b3e66af6e6735e7280e9f6e7354c6c0fbe596e72e9b549",
+      "actual_execution": true
+    },
+    "counter_timing_case3": {
+      "compile_sha256": "8263b6333baec9ae4a8b19568b8d26dbf445fe8f7e73bebfcd3e9d5fd51ae0ef",
+      "console_sha256": "28d2b3211126381bda99d151f23c125fecd49091240e30bdf167845f2e2c06db",
+      "actual_execution": true
+    },
+    "counter_timing_case4": {
+      "compile_sha256": "91659497591e495dee3bd0a0ca23fb6a9762a533ce25abf52b60ed2ce8467109",
+      "console_sha256": "44bf7ae07b2a8f76160d3f9fbbcfb0f9add906d70fb95b5b65d0bfb933ab5099",
+      "actual_execution": true
+    },
+    "two_region_count": {
+      "compile_sha256": "a676936178d390d0c32a035e3bc513df22b5e29c79ca806776a0906ac569a765",
+      "console_sha256": "09ead5f18cb890795beed6ebe3bf433038817231dc597120d734f38656978c53",
+      "actual_execution": true
+    },
+    "classified_counter": {
+      "compile_sha256": "a0624e44b1927397a91c3a78b35d55f83d682e274f00a038c69fb5603018b271",
+      "console_sha256": "96814d4bd11b07326523520c9ed3e02f0acf10489a924ed7723904b3d45e4249",
+      "actual_execution": true
+    },
+    "local_pipeline": {
+      "compile_sha256": "d918f9e303aa5c8a3fc366e5b8b26aabefcc27055a073b71a59219279e53a7b0",
+      "console_sha256": "13cc15c1f52c6b849d5970f1c13fdbba3e6005582af007f7f2377db4cdeb23e1",
+      "actual_execution": true
+    },
+    "velocity_pipeline": {
+      "compile_sha256": "574f8cb884b21ad4c5ab373209136305470080ed3289e1431bcc63facdedb897",
+      "console_sha256": "4616f768f61d6874a95abe30507278c98459684f95fe934672fe89d4c5f9edd3",
+      "actual_execution": true
+    },
+    "local_recovery": {
+      "compile_sha256": "950ec55f8862ec17a9724c156ef83694f155368cd0876577cac7f3e9515b0698",
+      "console_sha256": "3210d346e9cb4dc8475bb3a865fbc190893c681daf3ac35da41acbe7da3f7eb3",
+      "actual_execution": true
+    },
+    "result_recorder_pipeline": {
+      "compile_sha256": "6e1633fcc4654d6d94b315ed7df522c3b342bf632b9601c2ba7e94c444281a5f",
+      "console_sha256": "d8c51ad254e3cd71aa6a35fef4ab9d66b13cb1606944e212e5da1c9c204bf9ea",
+      "actual_execution": true
+    },
+    "two_region_ui": {
+      "compile_sha256": "93c968e3f3aab483b5b1d02aa1e3ccf9d22767cacfa101fe33a1e4eb5e2cf898",
+      "console_sha256": "8c5561535b12f9e845a5a6b1036e930c3132a31034a5aad67c0376f55db48f64",
+      "actual_execution": true
+    },
+    "two_region_detector": {
+      "compile_sha256": "f9c1a5604921e2663d127884dcbbcfcbd363c2a11902d1700baaa4dd779bc068",
+      "console_sha256": "9134add85dee525716a774f497d075dbfb3406f1fd92ffccaeebdc61169a3b1e",
+      "actual_execution": true
+    },
+    "present_trace_unit": {
+      "compile_sha256": "02d4a069d88b597c66a9a37f52ea23d22888cc516a5867a3b345547478bc0376",
+      "console_sha256": "e5376dc125f28e3b39fdf294e4fe1cde17eef5df2c7d558a499ce0d807bd40e7",
+      "actual_execution": true
+    },
+    "present_trace_detector": {
+      "compile_sha256": "0baba2e0784e32c60bd67d0e48346dcad481137c70e4ff153e05247ec3835161",
+      "console_sha256": "6b3214425be2da68cbba119f01f49418fa9b66f6803e029c747f45e89e7a47f9",
+      "actual_execution": true
+    },
+    "present_trace_ui": {
+      "compile_sha256": "923bd3e7a6d534e5df694b013bcc1b82fb524fe9ea2af4fe92a788b28a86f13f",
+      "console_sha256": "e7523607c78857b58a843411ffacc94a77d730b66d920b05e994317a86c9e1fc",
+      "actual_execution": true
+    },
+    "regions": {
+      "compile_sha256": "03acec623c768aed1008268aa778f67d2a0184403530f47ec132fe74e46eed4b",
+      "console_sha256": "841ae6878817d63ee2947cc81a4df2e7843060db8f402426fea6efbee4cc21c2",
+      "actual_execution": true
+    },
+    "frame_metadata": {
+      "compile_sha256": "9f5b17e3070959a5934c73da474cb36e2b5429407d073fad55b7937189050cb9",
+      "console_sha256": "06971e7b5ce8341f53c2473c20b4ac3de337bc032b5e3f9c17d76f22ae8a0162",
+      "actual_execution": true
+    },
+    "sparse_row_detector": {
+      "compile_sha256": "059066b79db6a8292f61eef5818387d194216f8378c80c2ee9e2442680b88d1a",
+      "console_sha256": "68f5886e65e06a9890d6148e9f21e6c491600a342b837e945d827a18423aa572",
+      "actual_execution": true
+    },
+    "sparse_equivalence": {
+      "compile_sha256": "e36ded4e46aab25759e9855996068a897ff4b0b1cb1e5f9448bbb977116b3300",
+      "console_sha256": "0baf8de2264f1a3d6be403d9b510d54b1545b4921c7479c22251c578ed9c8917",
+      "actual_execution": true
+    },
+    "restart_epoch": {
+      "compile_sha256": "90c89193d6672b01211f669ccf3f1214108fa340afb1e160255817100cfc08f1",
+      "console_sha256": "3417749ae8100699b57273fea41fedccea684c3a2bfd9452a02dcfd1f648e180",
+      "actual_execution": true
+    },
+    "switch_recorder_controls": {
+      "compile_sha256": "e42a17e8f536dbbfe92873868d21be581baae1b0ebbfa1df96c6e2c4ba89270e",
+      "console_sha256": "db21eff339fdc555b6a019d28fed8becb870a96c5cca7e7753ee6e5330e911aa",
+      "actual_execution": true
+    },
+    "empty_result_proof": {
+      "compile_sha256": "43a69b33cf77f0677c32f768926721ff5b5540e634daca7cdf49e4278daaad2b",
+      "console_sha256": "fe0e1ce7280e627d50779d2b27e5f5046e0c04238865ae88b4765fa927b49d89",
+      "actual_execution": true
+    },
+    "high_slot_choice": {
+      "compile_sha256": "c7aedb8a2260f793fd694ea49b14a904dce2a10ea18d8cc1256d55673161d4ef",
+      "console_sha256": "a64f360b44373c5917ec87bd4ceaf236d949afd995510a39675051332e3910c4",
+      "actual_execution": true
+    },
+    "empty_native": {
+      "compile_sha256": "18cdf0d349a0e4dc2c2cce69d4b6369af7a658dc451663da0ee1689390b867ce",
+      "console_sha256": "b1409d6c5db166423f570ebdd6635ac398f9dbdb9bfd931e7cc2aa328dde5a4d",
+      "actual_execution": true
+    }
+  },
+  "independent_reports": {
+    "sim/two_region_ui_verification.json": "dae57e1e6a3721868f46f67ad5a87bfb20bb0e85b78a3433e0987d20c04a041f",
+    "sim/present_motion/unit_independent_result.json": "f7bc2c77a182f77ec9d99977cce0f135eb3005ba41fb9ac8e78d808cc7a6fc38",
+    "sim/present_motion/detector_independent_reference.json": "67f8f9adcd56d293965377e754d4f551610687d6de0c1be79a8a19b549bb7d45",
+    "sim/present_motion/independent_pixels/verification.json": "2a4171fc504ca842ea8eee74802c36b38ad4cb6bab92ec4a050987376f7740f1"
+  },
+  "native_empty_results": [
+    [
+      "1",
+      "120",
+      "-5870.000000",
+      "5870.000000"
+    ],
+    [
+      "2",
+      "880",
+      "4790.000000",
+      "10.000000"
+    ]
+  ],
+  "old_failure_console_sha256": "ac2202ba40606ac93e15c49883aa8746f17a6f44f6c269d6ad525cd5adefea71",
+  "board_acceptance": "HUMAN_PENDING",
+  "scope": "24 short tests and one two-source native RAW test; old R26 12-source motion/10-source restart executions are historical only."
+}

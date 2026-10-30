@@ -1,3 +1,16 @@
+# 当前交付：R27B 双列计数（2026-10-30）
+
+当前分支 `r27b-dual-roi-20261030-handoff`，固定发布标签 `r27b-dual-roi-20261030-release`。
+
+- [完整代码、交接说明和正式 bit](https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/tag/r27b-dual-roi-20261030-release)
+- [单列转双列的改动清单与以太网接口](docs/DUAL_COLUMN_HANDOFF_R27B.md)
+- [构建、时序和烧录验收](R27_DELIVERY.md)
+- [发布包与 SHA](releases/r27b_20261030/README.md)
+
+工程目录 `fpga/component_inspector`，两列独立编号/统计。逐号事件已提供，网络实现由对接队员负责。25项本版仿真及Routed审计通过，实板验收待人工完成。以下原内容保留为历史版本说明。
+
+---
+
 ## R24已完成远端上传交接
 
 源码固定提交ee0f63300315c3f68d436497e2be3fa041f557c3，标签r24-dual-roi-20261028-release，发布页https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/tag/r24-dual-roi-20261028-release。全部7附件已上传且独立下载SHA相同，新克隆654源/1560载荷/19测试日志身份及真实物理证据核验通过，fresh 102项TD依赖准备通过。公开页面和匿名SHA文件下载均通过。详见releases/r24_20261028/GITHUB_UPLOAD_RECEIPT.json及REMOTE_DOWNLOAD_VERIFICATION.json。
