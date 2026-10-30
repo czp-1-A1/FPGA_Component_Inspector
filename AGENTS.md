@@ -1,4 +1,18 @@
-# D3 当前最后一次尝试 R37；失败后必须停下分析（2026-10-30 20:25，最高优先级）
+# D3 R37 当前物理仍运行、32项软件PASS（2026-10-30 20:56，最高优先级）
+
+- 用户“这版不成功就先停下来，分析一下解决方法，在继续执行”及不删显示/算法的约束继续最高优先级。**当前R37作为本轮最后一次完整尝试；失败/停止后先给用户分析，不能自行开始R38、换seed或新RTL试验。** 未开子代理、未推送/烧录/动电机。
+- 当前HEAD **9506336d**，只提交30项生产验证/文档/夹具，生产RTL仍等同R28/3c0c86d3；R36/R37四文件新候选依然隔离，未拷贝生产源，没有D3 bit发布。生产30项lossless-v3仍精确通过；不能把新候选32项称为已生产合入。
+- **唯一活动全TD R37** E:/2026FPGA/.codex_tmp/d3_lossless_physical_r37_20261030，session46883，PID35536 parent31824，20:22:03开始，Default/seed4，原时钟/SDC不变。实际placed Slice20565/21216=96.93%、ERAM103/DSP31/PLL5，placed_intermediate.area/PLACED_AREA_PROVENANCE.json已保存，DB SHAe08c9751f53bd2b1c7cf4c980c4f2e18e87d1cfb77d71425c99211dda7aa9173。只是placed，未最终验收。
+- 最新实际route：iter16 over5038→17 4772→18 4695→19 4537→**20 3522**（212.54s），crit0，继续有进展，尚无final/bit。前期postclock setup+.152、routeinitialsetup-1.714，经setup优化-.135后ripup；这些中间值不能当最终setup/holdPASS。不要放松49约束/20gray/9mailbox/双alarm→注册V2。若需停止，先核对PID/父进程，保留ABORT_REASON，告知是未收敛中止而不是完整routed判决。
+- **R37精确32项软件汇总已PASS**：scripts/verify_d3_full_candidate.py --work E:/2026FPGA/.codex_tmp/d3_lossless_physical_r37_20261030。R37/SOFTWARE_VERIFICATION.json是lossless-v4，selected_checks32，production_source_match_required=false（隔离候选）；未物理验收。13旧core使用R34相同编译源逐SHA复用；新units_r8 13项、R35字库/OSD3项、新native/empty各1、新实际SYN相机1，共32。所有ModelSim结束，不用重跑已PASS测试。
+- native_r8 **20:47:32完成PASS**：12真实1920x1080RAW、24完整显示栅格、22940160精确像素、OF/UF0，每列4/P2/E2、变速20→32/晚WB取消、真顶层DDRmetadata；permit0，所以不是RAW停车周期/光学召回。session91901已poll关闭。empty_r8 20:33:36 PASS两暗/亮RAW、proof-first-12430ns与detect-first+23120ns/accept10ns；session85808已关闭。units13 session68271已关闭。新相机session55912已关闭，**实际闭合锥300cells**（原R28是302，旧段落误记302勿沿用）、两复位各126完整I2C。
+- actual字体综合INIT 64×256bit已与源码全部相同，R36/FONT_SYNTHESIS_PROOF.json及OBSERVER_PROOF.json复制R37。字库73728地址/像素与实际vendor模型一致，全部字形保留、ERAM103真实。
+- **迁RAM失败原因已细化**：ledger地址在classified_count_pipeline固定511且输出unused，原本已经综合删掉，不可算作潜在节省。实际只有每列empty_ids表值得处理；SYN-5105第1457/1460行指出第259行读口零填充分支/上游地址与total复位组合不支持bram，回退dram（总DRAMLUT792不变）。原读always本身**没有复位**，不要误说数组复位导致；方案应拆raw同步读与valid同步标记、保持下一时钟零填充/原读延迟，必要时显式RAM原语，但**本轮不得再修改/综合试验，须用户先看分析**。
+- 后续分析在docs/D3_R37_ATTEMPT_AND_OPTIONS.md（已更新32PASS，最终物理仍pending），显示选择另在D3_FEATURE_RESOURCE_OPTIONS.md（用户未选删除，不执行）。本轮新候选验证脚本verify_d3_full_candidate.py与probe_d3_byte_font/math/font_primitive、run_d3_prepared_synthesis、tb_d3_math_bounds/shared_font仍未跟踪，必要时明确stage，勿stage-all旧station/bank/sim产物。若本轮失败，保存32收据到独立docs/D3_R37_SOFTWARE_VERIFICATION.json，不覆盖生产旧30收据。
+- 20:51只读加载placed DB试图report_congestion -step place -line25，TD退出1/日志在此命令处结束（READONLY_PLACED_DIAGNOSTICS.json记录REPORT_TOOL_ERROR、DB SHA前后未变）；没有得到热点表，**不把它当R37主物理失败，不反复试该命令**。只读进程已结束，主PID35536一直正常运行。尚未生成placed_timing_analysis。
+- 如果R37成功再做：将4新增候选差异（observer/OSD/resize/sobel，FSS已相同）逐SHA合入并提交生产、更新strict软件publisher到lossless-v4/32且require_production=true、实际资源auditor103ERAM/31DSP/5PLL、仍全部49约束/setup+hold通过后源704Gitblob审核封包/ZIP/同SHA BIT_FLASH。不能用旧publisher30或104资源期待去发布新源。若R37失败，只分析/报告，不做下一构建。保护BIT_FLASH旧RL7/D2/LATEST_READONLY三个文件。
+
+# D3 当前最后一次尝试 R37；失败后必须停下分析（2026-10-30 20:25，以下为历史）
 
 - 用户已明确：**显示精简还要考虑，先过完整功能版；“这版不成功就先停下来，分析一下解决方法，在继续执行”**。已向用户承诺：当前候选作为本轮最后一次尝试，若布局布线/时序不通过，停止新构建，先交付原因/证据/下一步方案，等用户看过再继续。**不得再自行换seed/策略/RTL连跑下一候选。** 没有删模式、算法、计数/停车/调试功能。
 - 生产HEAD仍3c0c86d3/R28四项无损源，未采用新候选，无bit发布、无推送/实板/电机动作。主工作区只有检查/文档/实验脚本和夹具修改，原生产RTL未覆盖。

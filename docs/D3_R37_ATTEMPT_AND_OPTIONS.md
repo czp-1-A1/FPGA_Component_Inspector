@@ -54,5 +54,7 @@ R36 在 R28 上的额外修改仅为：完整精度的缩放/Sobel 算术重用�
 - 13 项当前源码像素/排名/缓存/元数据/按键/算术/完整 1 秒检查：`d3_lossless_units_r8_20261030/verification.json`。
 - 全字库 73728 种地址/列组合及完整界面对照：`d3_byte_font_equivalence_r35_20261030/verification.json`，实际官方物理 RAM 模型。
 - 当前实际综合相机锥：`d3_lossless_camera_r4_20261030/verification.json`，300 个闭合锥单元，两次复位各 126 个串行 I2C 包；不代表传感器光学读回。
-- 完整 RAW/DDR/双列计数显示回放：`d3_lossless_native_r8_20261030`；暗/亮空场回放：`d3_lossless_empty_native_r8_20261030`。完整回放尚在运行，不能提前宣称最终 32 项 PASS。
+- 完整 RAW/DDR/双列计数显示回放：`d3_lossless_native_r8_20261030`，20:47:32 已 PASS：12 个真实 1920×1080 RAW 帧、24 个完整显示栅格、22940160 个精确比较像素，OF/UF 均零，每列独立 4 个编号、2 有件、2 空穴，并覆盖变速和晚白平衡取消。停车许可为零，不能称为实际 RAW 驱动的停车周期或光学召回率验证。
+- 暗/亮空场回放：`d3_lossless_empty_native_r8_20261030` 已 PASS，包括完整帧证明先于/晚于检测结果两种顺序。
+- `scripts/verify_d3_full_candidate.py --work E:/2026FPGA/.codex_tmp/d3_lossless_physical_r37_20261030` 已汇总 **32 项精确源码检查 PASS**，收据在 R37 `SOFTWARE_VERIFICATION.json`。它验证隔离候选，`production_source_match_required=false`，不代表候选已经合入生产或物理验收通过。
 - 原始物理日志：R37 `runs/phy_1/console.log`。最终判定尚待本轮结束。只有最终验收通过才生成发布包，并将同 SHA 的 bit 另存到 `E:/2026FPGA/BIT_FLASH`；现有已交付版本不覆盖。
