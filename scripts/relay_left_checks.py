@@ -30,13 +30,19 @@ def run(tool,arguments,name):
   x=subprocess.run([str(sim/(tool+'.exe')),*arguments],cwd=out,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=300)
  assert x.returncode==0,(tool,name,(out/name).read_text()[-1800:])
 run('vlib',['work'],'setup.log')
+vendor_inputs={};vendor_font=any(n=='compact_inspector_osd' for n in rtl) and 'PH1P_PHY_ERAM_V2 #(' in (sealed/'compact_inspector_osd.v').read_text()
+if vendor_font:
+ vendor_names=['common/al_phy_glbl.v','ph1p/ph1p_phy_gsr.v','ph1p/ph1p_phy_eram_v2.v'];vfiles=[]
+ for rel in vendor_names:
+  dest=sealed/'vendor'/rel;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(Path('E:/TD/sim_release')/rel,dest);vfiles.append(str(dest));vendor_inputs[rel]=hashlib.sha256(dest.read_bytes()).hexdigest()
+ run('vlib',['anlogic_sim'],'vendor_setup.log');run('vlog',['-work','anlogic_sim',*vfiles],'vendor_compile.log')
 run('vlog',['-work','work',*[str(sealed/(n+'.v')) for n in rtl]],'compile_rtl.log')
 run('vlog',['-sv','-work','work',*[str(sealed/(n+'.sv')) for n in (args.support or [])+benches]],'compile_bench.log')
 tests=[]
 for bench in benches:
- run('vsim',['-c','-onfinish','stop','work.'+bench,'-do','onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0'],bench+'.log')
+ run('vsim',['-c',*(['-L','anlogic_sim'] if vendor_font else []),'-onfinish','stop','work.'+bench,*(['anlogic_sim.glbl','anlogic_sim.PH1P_PHY_GSR'] if vendor_font else []),'-do','onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0'],bench+'.log')
  text=(out/(bench+'.log')).read_text();assert 'PASS ' in text and not re.search(r'\*\* (Fatal|Error):',text),text[-1600:]
  tests.append({'name':bench,'sha256':hashlib.sha256((out/(bench+'.log')).read_bytes()).hexdigest()});print(text[-700:],flush=True)
 for rel,d in manifest.items():assert hashlib.sha256((p/rel).read_bytes()).hexdigest()==d
 for rel,d in extra_inputs.items():assert hashlib.sha256((args.bench_dir/Path(rel).name).read_bytes()).hexdigest()==d
-(out/'verification.json').write_text(json.dumps({'status':'PASS','inputs':manifest,'extra_inputs':extra_inputs,'tests':tests,'board_acceptance':False},indent=2)+'\n')
+(out/'verification.json').write_text(json.dumps({'status':'PASS','inputs':manifest,'extra_inputs':extra_inputs,'vendor_inputs':vendor_inputs,'tests':tests,'board_acceptance':False},indent=2)+'\n')

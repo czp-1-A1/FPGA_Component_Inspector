@@ -7,7 +7,7 @@ from verify_d3_checks import verify
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--work',type=Path,required=True);ap.add_argument('--check-only',action='store_true');args=ap.parse_args()
     repo=Path(__file__).resolve().parents[1];w=args.work.resolve();p=w/'project';tmp=Path('E:/2026FPGA/.codex_tmp')
-    software=verify(w);assert software['selected_checks']==software['expected_checks']==29 and software['profile']=='lossless-v2'
+    software=verify(w);assert software['selected_checks']==software['expected_checks']==30 and software['profile']=='lossless-v3'
     source=load(w/'frozen_inputs.json');assert len(source)==704
     assert len(load(w/'hardware_inputs.json'))==107
     git_source_audit(repo,source)
@@ -102,7 +102,7 @@ def main():
     write(release/'VERIFICATION.json',{'status':'PASS_EXACT_INPUT_SIMULATION_AND_STRICT_ROUTED_AUDIT',
         'software':software,'physical':physical,'hardware_acceptance':False})
     write(release/'RELEASE.json',receipt);copy(bit,release/(name+'.bit'))
-    (release/'README.md').write_text('R27B 双列识别/独立计数 + D3 双列补件停车。原成功计数算法保留，每列32任务、完整1秒保持、相邻穴继续、各列五空报警、一个共用电机。操作与验收见 FIELD_GUIDE.md。尚未实板验收。构建冻结704源/107依赖，29项精确编译输入软件检查，原49条约束与建立/保持/双报警到V2注册输出审计通过。重建到新目录：python scripts/build_r22_relay.py --source project --keys-v3 --seed '+str(build['seed'])+' --synthesis-strategy '+strategy['strategy']+' --physical-strategy '+physical_strategy['strategy']+' --stage-timeout 7200 --baseline-manifest build/frozen_inputs.json --extra-source user_source/hdl_source/observed_classified_pocket_counter.v user_source/hdl_source/global_empty_position_tracker.v user_source/hdl_source/dual_lane_parking.v --work E:/2026FPGA/D3_rebuild 。不得覆盖已有构建目录；重建仍需重新物理审计。\n',encoding='utf8')
+    (release/'README.md').write_text('R27B 双列识别/独立计数 + D3 双列补件停车。原成功计数算法保留，每列32任务、完整1秒保持、相邻穴继续、各列五空报警、一个共用电机。操作与验收见 FIELD_GUIDE.md。尚未实板验收。构建冻结704源/107依赖，30项精确编译输入软件检查，原49条约束与建立/保持/双报警到V2注册输出审计通过。重建到新目录：python scripts/build_r22_relay.py --source project --keys-v3 --seed '+str(build['seed'])+' --synthesis-strategy '+strategy['strategy']+' --physical-strategy '+physical_strategy['strategy']+' --stage-timeout 7200 --baseline-manifest build/frozen_inputs.json --extra-source user_source/hdl_source/observed_classified_pocket_counter.v user_source/hdl_source/global_empty_position_tracker.v user_source/hdl_source/dual_lane_parking.v --work E:/2026FPGA/D3_rebuild 。不得覆盖已有构建目录；重建仍需重新物理审计。\n',encoding='utf8')
     payload={f.relative_to(release).as_posix():{'bytes':f.stat().st_size,'sha256':sha(f)} for f in release.rglob('*') if f.is_file()}
     write(release/'PAYLOAD_SHA256.json',payload)
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:

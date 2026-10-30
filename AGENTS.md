@@ -1,4 +1,27 @@
-# D3 R30 宏布局策略进行中（2026-10-30 18:14，最高优先级）
+# D3 当前最后一次尝试 R37；失败后必须停下分析（2026-10-30 20:25，最高优先级）
+
+- 用户已明确：**显示精简还要考虑，先过完整功能版；“这版不成功就先停下来，分析一下解决方法，在继续执行”**。已向用户承诺：当前候选作为本轮最后一次尝试，若布局布线/时序不通过，停止新构建，先交付原因/证据/下一步方案，等用户看过再继续。**不得再自行换seed/策略/RTL连跑下一候选。** 没有删模式、算法、计数/停车/调试功能。
+- 生产HEAD仍3c0c86d3/R28四项无损源，未采用新候选，无bit发布、无推送/实板/电机动作。主工作区只有检查/文档/实验脚本和夹具修改，原生产RTL未覆盖。
+- R31已19:03核对唯一TD PID35064 parent28696后停止；best iter20 over4070→21 4296→22 4595→23 4598，单轮耗时219→243→296→406秒。D:/CodexWork/D3_Congestion_Physical_R31_20261030/ABORT_REASON.json含退出后日志SHA（Windows写锁阻止退出前GetFileHash），session8555已结束exit1为主动停止后runnerassert，未完整route，非最终时序判决。
+- **唯一活动全TD R37** E:/2026FPGA/.codex_tmp/d3_lossless_physical_r37_20261030，session46883，TD PID35536 parent31824，20:22开始，Default/seed4，当前全局布局。冻结704源/107依赖，复用R36实际gate.db，EXACT_SYNTHESIS_REUSE完整。若本轮失败遵守上条停止，不再尝试R38等。
+- R36综合已完成200.3秒：E:/2026FPGA/.codex_tmp/d3_lossless_synthesis_r36_20261030，session35501已poll结束，Slice*22073（R28 22188省115），LUT28554、FF23294、ERAM103（省1）、DSP31/PLL5。源manifest f9111f8ff04af80f17eb058361999c7bb550eb96c547a67120d9acfa1920f115，gateDB69c57457062524924def97e412d16a0c0ef576ddc6263ef6687d01b9b0a1a562。是SYN估算而非物理数。额外优化来自R32 full10bit数学共享、R35 bytefont（95ASCII*16行+7CJK*24行*3byte=2024byte，原padding全零验证、1物理ERAM/19LUT/noDSP）；observer仅两个bram属性，但**迁RAM没有实现**，DRAMLUT792保持。
+- R36 SYN实际警告已找到根因：console行1457/1460 SYN-5105：observer第259行的记录RAM无法推断bram，因输出寄存器同步复位与读地址寄存器异步复位不受支持，回退DRAM；原distributed属性还报SYN-5041 auto。这是后续分析证据，**本轮不再改RTL试修**。后续可提出拆分RAM无复位同步读与有效/复位门控，保持原读口周期/复位行为、FSM/编号不变，再逐拍对照+实际映射验证，须先交给用户审阅。
+- 新候选仍隔离：E:/2026FPGA/.codex_tmp/d3_byte_font_source_r35_20261030/project。scripts/probe_d3_byte_font.py生成；scripts/run_d3_prepared_synthesis.py仅运行冻结源且拒绝并发TD。R35字体73728type/address/col、OSD3栅格+8重叠栅格已PASS实际PH1P_PHY_ERAM_V2 vendor模型，verification在d3_byte_font_equivalence_r35_20261030。RAM属性13case仍可从D:/CodexWork/D3_Record_RAM_Cases_R34_20261030逐SHA复用，1197公开位每拍原R27B对照。
+- 运行当前R37的必要验证：**session68271** E:/2026FPGA/.codex_tmp/d3_lossless_units_r8_20261030，13bench sequential（pixels/rank/cache/distance/osd/keys/metadata/tracker/resize/ring/wide/mathbounds/真实100MHz1秒），R35模型已由relay_left_checks.py自动加载；**session91901** d3_lossless_native_r8_20261030（当前R37源12真实RAW/双计数/DDR全显示，permit0，不冒称RAW停车），20:24开始尚未PASS。尚待同源empty_native及最终软件profile收据；本轮若物理失败不再启动新构建。
+- 新实际R36相机SYN锥导出/两次复位126I2C已PASS：d3_lossless_camera_r4_20261030，session55912尚可poll关闭，R36 CAMERA_EXPORT和netlist已复制R37，302cell新DB实际证明，不复用旧网表。当前新profile预计32项（原30+字体穷举+数学穷举），**尚未汇总，不得宣称32PASS**。原生产R28/R31的30精确源PASS仍有效但不能冒充R37源。
+- scripts/check_d3_observed_counter.py新增--source/--out，只允许额外去除ledger/empty_ids EXACT两条bram属性后恢复原R27B全文（不允许其他FSM/memory行为/参数/时钟修改）；R36/OBSERVER_PROOF.json已PASS；未覆盖生产docs旧proof。verify_d3_checks.py已额外核vendor_inputs冻结SHA，当前生产仍lossless-v3/30要求。
+- E约5GB/D约1.96GB，用户已清出E，R35/36/37均在E。无子代理，保护旧BIT_FLASH三版。所有后续bit仍需完整route/setup+hold/实际资源与704Git源审核通过后封包+BIT_FLASH同SHA；本轮失败不得发布未验收bit。
+
+# D3 最新：显示取舍分析，完整功能 R31 仍布线（2026-10-30 18:55，以下为历史）
+
+- 最新用户询问若本版无法跑通，删除边缘显示但保留算法是否可行，以及当前功能清单。已核源码两套边缘路径：全帧 roi_sobel_view 用于显示，frame_shape_search 内 local_edge_surface_check 用于识别。仅删模式2、保留模式3预计收益小；RAW+灰度候选可研究移除显示全帧通路但保留局部识别。**用户尚未选择删功能，不得擅自采用。** docs/D3_FEATURE_RESOURCE_OPTIONS.md 是选择清单，不是实施记录。
+- 生产 HEAD **3c0c86d3**，四项无损 RTL 同55c092a9/R28；未推送，无新bit/实板/电机操作，无子代理。700其他冻结输入及 R27B 主计数原件保持。当前30项软件检查lossless-v3精确绑定R31全部PASS；新增tb_d3_rgb_wide覆盖4完整720p/4模式/3686400像素/460800梯度，原R11逐拍对照。软件30PASS不是物理通过。
+- **唯一活动完整TD R31** D:/CodexWork/D3_Congestion_Physical_R31_20261030，session8555，TD PID35064 parent28696，官方CongestionMedium/seed2，相同704源和R28实际gate.db。实际place20904 Slice/98.53%、104ERAM、31DSP、5PLL；18:53左右route iter20 over4070→21 over4296，未完成，不得宣称最终时序PASS。R29默认布局20737/97.74%比旧R11 21160/99.74%省423真实placed Slice，但R29路由迭代20→23变差后已终止留ABORT_REASON。**R30 MacroTiming已TD工具崩溃**，TOOL_CRASH.json及minidump留证，不再运行。不得并发第二个全TD作业。
+- 主工作区未提交：verify_d3_checks.py及publish_dual_stop_d3.py支持/要求30lossless-v3；docs/D3_SOFTWARE_VERIFICATION.json是实际R31的30PASS；tb_d3_rgb_wide.sv需明确stage；relay_left_checks.py新增仅在物理字体候选自动加载vendor ERAM仿真模型，当前生产30检查未用此模型。其他旧未跟踪station/bank/sim文件不要stage-all。
+- **仅隔离实验，未采用也无综合收益数字**：R32 D3_Math_Source_R32预计算resize×3和共享Sobel绝对值，穷举1048576绝对值+resize131072/36流+48ring+4全720p全部PASS；R33 D3_Font_Primitive_Source_R33直接PH1P_PHY_ERAM_V2字体保留全部glyph，实际vendor模型73728地址及3+8完整OSD栅格PASS，试省字库RAM但未SYN；R34 D3_Record_RAM_Source_R34仅observer的ledger/empty_ids两RAM加ram_style="bram"，13case全部已完成verification.json。R34尚需看实际SYN映射，若采用需更新observer可逆证明只允许移除这两个属性、补vendor依赖HASH校验、源绑定新camera/native/软件/物理，不可把旧30PASS冒充新源。R33推测省RAM/R34推测省DRAMLUT均未测，不得当实际收益。
+- 继续保护BIT_FLASH旧RL7/D2/LATEST_READONLY；无新bit前不覆盖发布入口。E约1GB/D约2GB，不删除用户/旧证据。完整route和严格setup/hold/源HASH审计通过才可发布。上一段18:14仅历史，尤其R30活动状态已失效。
+
+# D3 R30 宏布局策略进行中（2026-10-30 18:14，以下为历史）
 
 - 生产提交 **55c092a9**（分支codex/r27b-dual-count-and-stop-d3，未推送）：已合入4份无损优化源；704个冻结输入与HEAD blob全部核对。其他700输入、原R27B计数核心、全部字体/诊断、32队列/完整1秒/双列五空/按键V2/ADC/SDC保持。详见下方17:43记录。没有新bit、无子代理/实板/电机操作。
 - **全部29项精确源码软件检查已PASS**：scripts/verify_d3_checks.py --work D:/CodexWork/D3_Lossless_Physical_R29_20261030；新native_r6真实12RAW/24显示/22940160精确像素、每列4/P2/E2、晚WB取消，17:57结束，native permit0，停车由独立case检查不混称RAW停车。empty_native_r6也PASS。所有ModelSim已结束。docs/D3_SOFTWARE_VERIFICATION.json保存相同回执，目前尚未提交（gitignore可能需-f add）。

@@ -158,6 +158,12 @@
       "log_sha256": "9d6dcb696f5f93041c935d4c7daf5cd3c6e377558bfe5a67c51bf1b83c3a3dcb"
     },
     {
+      "name": "tb_d3_rgb_wide",
+      "folder": "D:\\CodexWork\\D3_RGB_Wide_R28_20261030",
+      "mode": "EXACT_COMPILED_SOURCE_AND_FIXTURE_MATCH",
+      "log_sha256": "c650a74db926ffe81e080f5698d5cdeac5ff96fafdfce857660a7081fac7be2c"
+    },
+    {
       "name": "tb_d3_native",
       "folder": "E:\\2026FPGA\\.codex_tmp\\d3_lossless_native_r6_20261030",
       "mode": "EXACT_COMPILED_SOURCE_AND_FIXTURE_MATCH",
@@ -179,12 +185,12 @@
       "scope": "302 actual synthesized cells; two resets x126 serialized I2C writes; simulated ACK slave, no sensor readback."
     }
   ],
-  "selected_checks": 29,
-  "profile": "lossless-v2",
-  "expected_checks": 29,
+  "selected_checks": 30,
+  "profile": "lossless-v3",
+  "expected_checks": 30,
   "inputs_manifest_sha256": "31e8b0d5138bd958b485510ad97a4e4d817bb1148406702c94eee20e67022484",
   "evidence": {
-    "D:\\CodexWork\\D3_Lossless_Physical_R29_20261030\\CHECK_PROFILE.json": "e20c2ab655aafc3ac16fd7d9d3cfde1d1ef4fb8cd03c6b4a6f51fba55caa840d",
+    "D:\\CodexWork\\D3_Congestion_Physical_R31_20261030\\CHECK_PROFILE.json": "37695d53bfdfa9c358fe0b92efafc07ac5284ff5e4bbdcbb7e8da12ec9642a0e",
     "E:\\2026FPGA\\.codex_tmp\\d3_direct_final_cases_r3_20261030\\verification.json": "b411bd7c426f08d80b49d1c9817a02d72a9bcb98c07644c91c38f8ea4abfb8d6",
     "E:\\2026FPGA\\.codex_tmp\\d3_keys_real_second_r2_20261030\\verification.json": "28e112c9755020dd7209c940f39f704c55fdf76633d4eeda8b615df84fc389ec",
     "E:\\2026FPGA\\.codex_tmp\\d3_metadata_final_r2_20261030\\verification.json": "e4479eebe9176d4fd5dcb6722b67f2975b85877c2e9afcab0c8135faf70cf683",
@@ -193,6 +199,7 @@
     "E:\\2026FPGA\\.codex_tmp\\d3_osd_share_pixels_r1_20261030\\verification.json": "cd9709f42600727e1445c80fb3eb810df6a055454744e5e8d46967e652f5a256",
     "E:\\2026FPGA\\.codex_tmp\\d3_resize_share_pixels_r1_20261030\\verification.json": "0c6fb6d148e7d4d9267a26a0a3f7feaf497b88adb3e8152f5de4af8cb48f005c",
     "E:\\2026FPGA\\.codex_tmp\\d3_rgb_ring_pixels_r2_20261030\\verification.json": "554c8fb8e1f09f79f878847b4926406aae7029e85b42025fca6cb87f4c8c260d",
+    "D:\\CodexWork\\D3_RGB_Wide_R28_20261030\\verification.json": "fa6ee79ae04dbadf78b215529ab6649d2ab7fd15b16c1f76ba8396446f1276db",
     "E:\\2026FPGA\\.codex_tmp\\d3_lossless_native_r6_20261030\\verification.json": "fd1b3ef4cfbbf080e13f395041f2747aea5acac03ce8926c443b0b9ab7f4d892",
     "E:\\2026FPGA\\.codex_tmp\\d3_lossless_empty_native_r6_20261030\\verification.json": "77090672c947f1c73c6497f5731c6aeb9288af429d1c0746b7871c7d4773127e",
     "E:\\2026FPGA\\.codex_tmp\\d3_lossless_camera_r3_20261030\\verification.json": "662cab94c5091dd25ae615b7775afbb95a8db92cfda68cc31e98044908ad9570",

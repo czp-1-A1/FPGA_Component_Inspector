@@ -29,7 +29,7 @@ def verify(work):
     selected=[];evidence={}
     profile_path=work/'CHECK_PROFILE.json'
     profile=read(profile_path) if profile_path.is_file() else {'name':'r11-original'}
-    assert profile['name'] in ['r11-original','lossless-v2']
+    assert profile['name'] in ['r11-original','lossless-v2','lossless-v3']
     groups=[
         'd3_direct_final_cases_r3_20261030',
         'd3_keys_real_second_r2_20261030',
@@ -41,15 +41,21 @@ def verify(work):
         'd3_final_ui_r4_20261030',
     ]
     native_groups=['d3_resource_native_r3_20261030','d3_resource_empty_native_r3_20261030']
-    if profile['name']=='lossless-v2':
+    if profile['name'] in ['lossless-v2','lossless-v3']:
         assert profile['source_manifest_sha256']==sha(work/'frozen_inputs.json')
         groups=groups[:4]+['d3_lossless_units_r6_20261030','d3_osd_share_pixels_r1_20261030','d3_resize_share_pixels_r1_20261030','d3_rgb_ring_pixels_r2_20261030']
+        if profile['name']=='lossless-v3':groups+=['D:/CodexWork/D3_RGB_Wide_R28_20261030']
         native_groups=['d3_lossless_native_r6_20261030','d3_lossless_empty_native_r6_20261030']
         evidence[str(profile_path)]=sha(profile_path)
     for name in groups:
-        folder=TMP/name;proof=read(folder/'verification.json');assert proof['status']=='PASS'
+        folder=Path(name) if Path(name).is_absolute() else TMP/name;proof=read(folder/'verification.json');assert proof['status']=='PASS'
         for rel,d in proof['inputs'].items():assert source[rel]==d and sha(folder/'inputs'/Path(rel).name)==d,(name,rel)
         for rel,d in proof['extra_inputs'].items():assert sha(fixture/Path(rel).name)==sha(folder/'inputs'/Path(rel).name)==d,(name,rel)
+        vendor=proof.get('vendor_inputs',{})
+        font=folder/'inputs/compact_inspector_osd.v'
+        if font.is_file() and 'PH1P_PHY_ERAM_V2 #(' in font.read_text():
+            assert set(vendor)=={'common/al_phy_glbl.v','ph1p/ph1p_phy_gsr.v','ph1p/ph1p_phy_eram_v2.v'},name
+        for rel,d in vendor.items():assert sha(folder/'inputs/vendor'/rel)==d,(name,rel)
         for test in proof['tests']:
             log=folder/(test['name']+'.log');assert sha(log)==test['sha256'];passed(log)
             selected.append({'name':test['name'],'folder':str(folder),'mode':'EXACT_COMPILED_SOURCE_AND_FIXTURE_MATCH','log_sha256':sha(log)})
@@ -65,7 +71,7 @@ def verify(work):
         evidence[str(folder/'verification.json')]=sha(folder/'verification.json')
     reference=TMP/'d3_dual_stop_build_r11_resource_opt_20261030'
     reference_source=read(reference/'frozen_inputs.json')
-    if profile['name']=='lossless-v2':
+    if profile['name'] in ['lossless-v2','lossless-v3']:
         assert set(reference_source)==set(source)
         assert {rel for rel,d in source.items() if reference_source[rel]!=d}=={
             'user_source/hdl_source/frame_shape_search.v',
@@ -109,9 +115,10 @@ def verify(work):
         'tb_d3_distance_selection','tb_d3_osd','tb_d3_native','tb_d3_empty_native'}
     # Camera bench names come from the actual closed-cone export proof.
     required|={t['name'] for t in g['tests']}
-    if profile['name']=='lossless-v2':required|={
+    if profile['name'] in ['lossless-v2','lossless-v3']:required|={
         'tb_d3_rank_pixels','tb_d3_rgb_ring','tb_d3_osd_equivalence',
         'tb_d3_osd_overlap','tb_d3_resize_equivalence'}
+    if profile['name']=='lossless-v3':required.add('tb_d3_rgb_wide')
     assert len(selected)==len(required) and {t['name'] for t in selected}==required,([t['name'] for t in selected],sorted(required))
     result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','selected':selected,'selected_checks':len(selected),
         'profile':profile['name'],'expected_checks':len(required),
