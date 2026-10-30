@@ -1,4 +1,14 @@
-# D3 无损优化 R29 完整物理构建中（2026-10-30 17:43，最高优先级）
+# D3 R30 宏布局策略进行中（2026-10-30 18:14，最高优先级）
+
+- 生产提交 **55c092a9**（分支codex/r27b-dual-count-and-stop-d3，未推送）：已合入4份无损优化源；704个冻结输入与HEAD blob全部核对。其他700输入、原R27B计数核心、全部字体/诊断、32队列/完整1秒/双列五空/按键V2/ADC/SDC保持。详见下方17:43记录。没有新bit、无子代理/实板/电机操作。
+- **全部29项精确源码软件检查已PASS**：scripts/verify_d3_checks.py --work D:/CodexWork/D3_Lossless_Physical_R29_20261030；新native_r6真实12RAW/24显示/22940160精确像素、每列4/P2/E2、晚WB取消，17:57结束，native permit0，停车由独立case检查不混称RAW停车。empty_native_r6也PASS。所有ModelSim已结束。docs/D3_SOFTWARE_VERIFICATION.json保存相同回执，目前尚未提交（gitignore可能需-f add）。
+- **同阶段真实物理节省**：从R11与R29各自实际place.db只读导出，Slice21160/99.74%→20737/97.74%，省423、空闲56→479；ERAM107→104；DSP31/PLL5不变。导出原始报告、DB/脚本/报告SHA在R29/placed_intermediate.area、baseline_r11_placed.area、PLACED_AREA_PROVENANCE.json、BASELINE_PLACED_AREA_PROVENANCE.json。仅Placed，不是最终routed验收。
+- **R29路由已终止未完成，不是PASS/最终时序失败**。默认PHY/seed2初期setup+.044、crit0，但iteration20 over3780→21 3852→22 4038→23 4374连续变差，线路增长，已核唯一TD PID15624 parent23280无child后停止，ABORT_REASON.json留证。原place.db/日志保持。session90647需poll结束，无bit可发布。
+- **唯一活动完整TD：R30** D:/CodexWork/D3_Macro_Physical_R30_20261030，session21685，TD PID11764 parent31704。复用R28相同704源+实际gate.db，EXACT_SYNTHESIS_REUSE，官方MacroTiming/seed2，针对104ERAM的macro_congestion/anchor布局；所有时钟/SDC/IO不改。18:13仍Placement优化，未有最终资源。scripts/build_r22_relay.py增加MacroTiming选择尚未提交。
+- R30/CHECK_PROFILE.json、CAMERA_EXPORT/302cell实际相机网表证明与R28同SHA DB已复制；**R30 verify_d3_checks已重新精确核源29PASS**，不重跑22分钟RAW。源码仍R28，后续仅不同物理策略。不要开第二个TD全构建或改冻结源。
+- 主工作区本轮未提交：docs/D3_RESOURCE_ANALYSIS.md/json已增加同阶段Placed实际数字；scripts/report_d3_resources.py增加读取中间area，build脚本MacroTiming；docs/D3_SOFTWARE_VERIFICATION.json可能被ignore。发布准备脚本在55c已要求29项lossless-v2、104ERAM/31DSP、原49bounds/20Gray/9mailbox/双alarm到V2；先完整route/setup+hold都通过，再严格audit/publisher。物理若继续不收敛，须继续无损优化/针对实际物理路径，不能关闭功能或松约束。
+
+# D3 无损优化 R29 完整物理构建中（2026-10-30 17:43，以下为历史）
 
 - 最新用户要求继续优化Slice，包括调试，但绝不影响功能。本轮已采用四份源的无损重排：rank记录存一次+指针排序、选中标签后共享字符格式、显示缩放加法合并、RGB三行环形缓存（灰度仍四行/原溢出保护不改）。**最终保留原ASCII/CJK字库；合并字库因352LUT+1DSP反而不利被拒绝，未合入。** R11其余700份冻结输入逐SHA不变，R27B计数核心原件SHA67dfbdd7...仍不变，所有功能/调试信息/按键/IO/SDC保留。
 - 已把采用的四份源合入主工作区，生产FSS SHAe031d235d78b1bfbd271f33718d064d15c0eeb80f55b3cd6f938dacd358813a4，bounds证明已重新生成。尚未提交本轮/尚无新bit发布，无推送、子代理、硬件动作。

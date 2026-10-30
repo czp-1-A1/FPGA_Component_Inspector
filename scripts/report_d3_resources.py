@@ -44,8 +44,13 @@ def main():
         'D3_direct_global_default_mapping_synthesis':TMP/'d3_dual_stop_build_r11_resource_opt_20261030/runs/syn_1/camera_to_dsi_display_gate.area',
         'D3_candidate_synthesis':a.candidate/'runs/syn_1/camera_to_dsi_display_gate.area',
     }
+    placed_evidence=Path('D:/CodexWork/D3_Lossless_Physical_R29_20261030')
+    for label,name in [('D3_R11_default_placed','baseline_r11_placed.area'),('D3_R29_default_placed','placed_intermediate.area')]:
+        if (placed_evidence/name).is_file():sources[label]=placed_evidence/name
     final=a.candidate/'runs/phy_1/final.area'
     if final.is_file():sources['D3_candidate_final']=final
+    for label,name in [('D3_R11_same_stage_placed','baseline_r11_placed.area'),('D3_candidate_placed','placed_intermediate.area')]:
+        if (a.candidate/name).is_file():sources[label]=a.candidate/name
     reports={k:report(p) for k,p in sources.items() if p.is_file()}
     assert all(k in reports for k in ['RL4_single_stop_final','RL7_single_stop_final','R27B_dual_count_final'])
     result={'status':'REPORT_COMPARISON_NOT_BIT_ACCEPTANCE', 'reports':reports,
