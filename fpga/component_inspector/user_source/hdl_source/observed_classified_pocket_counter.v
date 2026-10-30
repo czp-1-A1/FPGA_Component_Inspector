@@ -15,7 +15,7 @@ module observed_classified_pocket_counter #(
  output reg [8:0] event_id,output reg [31:0] event_frame,
  output reg [1:0] event_kind,output reg [3:0] event_reason,
  input wire [8:0] ledger_address,output reg [5:0] ledger_data,
- input wire [8:0] empty_address,output reg [8:0] empty_id,
+ input wire [8:0] empty_address,output wire [8:0] empty_id,
  output reg hold_valid,output reg [10:0] hold_x,output reg [9:0] hold_y,
  output wire parking_snapshot,parking_motion_valid,parking_seed_valid,
  output wire signed [12:0] parking_dx,output wire [5:0] parking_radius,
@@ -77,7 +77,9 @@ module observed_classified_pocket_counter #(
  (* ram_style="distributed" *) reg [37:0] pending_event[0:31];
  reg [5:0] lead_track;reg [4:0] emit_track;reg signed [13:0] lead_x;
  wire [37:0] pending_word=pending_event[emit_track];
- reg [5:0] ledger[0:MAX_TOTAL-1];reg [8:0] empty_ids[0:MAX_TOTAL-1];
+ (* ram_style="bram" *) reg [5:0] ledger[0:MAX_TOTAL-1];(* ram_style="bram_20k(fast)" *) reg [8:0] empty_ids[0:MAX_TOTAL-1];
+ reg [8:0] empty_id_raw;reg empty_id_valid;
+ assign empty_id=empty_id_valid ? empty_id_raw : 9'd0;
  wire [75:0] ob=packet[oi[OI_BITS-1:0]*76+:76];
  wire [11:0] cx_sum={1'b0,ob[41:31]}+ob[30:20];
  // OBS already precedes every SCAN/ASSIGN, and READ_APPLY already
@@ -213,6 +215,10 @@ module observed_classified_pocket_counter #(
  wire [11:0] separation2=({1'b0,pair[117:107]}+pair[106:96])-({1'b0,pair[41:31]}+pair[30:20]);
  wire [10:0] separation=separation2[11:1];
  wire [4:0] mi=mapping[oi[OI_BITS-1:0]][4:0];
+ // All single-bit flag writes are in ASSIGN/APPLY/EMIT/CHECK/SKIP.
+ // Select their common slot once; all existing enables and NBA order remain.
+ wire [4:0] flag_write_slot=phase==ASSIGN ? (matches==1 ? found[4:0] : free_slot[4:0]) :
+  phase==APPLY ? mi : phase==EMIT ? event_slot : si[4:0];
  wire upstream=RECORD_ONLY ? (direction_right ? cx<LINE_X-HYST : cx>LINE_X+HYST) : (direction_right ? ob[30:20]<LINE_X-HYST : ob[41:31]>LINE_X+HYST);
  wire downstream=RECORD_ONLY ? (direction_right ? cx>LINE_X+HYST : cx<LINE_X-HYST) : (direction_right ? ob[41:31]>LINE_X+HYST : ob[30:20]<LINE_X-HYST);
  wire signed [13:0] skipped_motion=$signed({{(14-DX_BITS){missed_dx[DX_BITS-1]}},missed_dx})+$signed({previous_dx[12],previous_dx});
@@ -256,7 +262,8 @@ module observed_classified_pocket_counter #(
  // RAM contents are run-length bounded; never reset or expose stale addresses.
  always @(posedge clk)begin
   ledger_data<=ledger_address<total ? ledger[ledger_address] : 6'd0;
-  empty_id<=empty_address<empty_total ? empty_ids[empty_address] : 9'd0;
+  empty_id_raw<=empty_ids[empty_address];
+  empty_id_valid<=empty_address<empty_total;
  end
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
@@ -377,7 +384,7 @@ module observed_classified_pocket_counter #(
       note_fault(2,found,missing);next_observation();
      end
      else if(matches==1)begin
-      mapping[oi[OI_BITS-1:0]]<=found;used[found[4:0]]<=1;matched_count<=matched_count+1'b1;
+      mapping[oi[OI_BITS-1:0]]<=found;used[flag_write_slot]<=1;matched_count<=matched_count+1'b1;
       if(missing==0 && !(RECOVERABLE && old_id!=0 && old_kind==3))begin direct_anchor<=1;direct_count<=direct_count+1'b1;end
       if(MOTION_RECOVERY && missing!=0 && !direct_near)recovered_far<=1;
       // A recovered observation spans several frames. Do not compare that
@@ -393,9 +400,9 @@ module observed_classified_pocket_counter #(
       else if(oi==OBS_COUNT-1)begin si<=0;phase<=RECOVERABLE ? MOTION : READ_CHECK;end else begin oi<=oi+1'b1;phase<=OBS;end
      end else if(free_slot==32)lose(8);
      else begin
-      mapping[oi[OI_BITS-1:0]]<=free_slot;used[free_slot[4:0]]<=1;valid_tracks[free_slot[4:0]]<=1;
+      mapping[oi[OI_BITS-1:0]]<=free_slot;used[flag_write_slot]<=1;valid_tracks[flag_write_slot]<=1;
       tracks[track_address]<={ob[72:69],2'd0,ob[74:73],9'd0,ob[30:20],ob[41:31],cy,cx};
-      armed[free_slot[4:0]]<=0;quarantined[free_slot[4:0]]<=0;
+      armed[flag_write_slot]<=0;quarantined[flag_write_slot]<=0;
       if(oi==OBS_COUNT-1)begin si<=0;phase<=RECOVERABLE ? MOTION : READ_CHECK;end else begin oi<=oi+1'b1;phase<=OBS;end
      end
     end
@@ -416,7 +423,7 @@ module observed_classified_pocket_counter #(
      end else if(RECOVERABLE && valid_tracks[si[4:0]] && !used[si[4:0]] && old_id!=0 && tracking)begin
       // Already counted: park its ID for de-duplication. Loss alone cannot
       // block other real crossings. Retire only with measured downstream proof.
-      if(counted_retire_safe)begin valid_tracks[si[4:0]]<=0;armed[si[4:0]]<=0;end
+      if(counted_retire_safe)begin valid_tracks[flag_write_slot]<=0;armed[flag_write_slot]<=0;end
       else if(missing<8)tracks[track_address]<={gap_motion[DX_BITS-1:0],missing+{{(GAP_BITS-1){1'b0}},1'b1},track_word[59:0]};
       if(si==31)phase<=APPLY_SETUP;else begin si<=si+1'b1;phase<=READ_CHECK;end
      end else if(RECOVERABLE && valid_tracks[si[4:0]] && !used[si[4:0]] && armed[si[4:0]] && old_id==0 && tracking)begin
@@ -424,8 +431,8 @@ module observed_classified_pocket_counter #(
        // The ordered grace has expired. Keep the actual identity locally,
        // release later observed crossings, and make numbering uncertainty
        // persistent. Neither this branch nor retirement increments totals.
-       quarantined[si[4:0]]<=1;mark_gap();note_fault(6,si,missing);
-       if(missing==15)begin valid_tracks[si[4:0]]<=0;armed[si[4:0]]<=0;quarantined[si[4:0]]<=0;end
+       quarantined[flag_write_slot]<=1;mark_gap();note_fault(6,si,missing);
+       if(missing==15)begin valid_tracks[flag_write_slot]<=0;armed[flag_write_slot]<=0;quarantined[flag_write_slot]<=0;end
        else tracks[track_address]<={gap_motion[DX_BITS-1:0],missing+{{(GAP_BITS-1){1'b0}},1'b1},track_word[59:0]};
       end else begin
       gap_open<=1;
@@ -446,7 +453,7 @@ module observed_classified_pocket_counter #(
       end else lose(4);
      end else if(!RECORD_ONLY && valid_tracks[si[4:0]] && !used[si[4:0]] && old_left<=LINE_X+HYST+MAX_STEP && old_right>=LINE_X-HYST-MAX_STEP && tracking)lose(4);
      else begin
-      if(!used[si[4:0]])begin valid_tracks[si[4:0]]<=0;armed[si[4:0]]<=0;end
+      if(!used[si[4:0]])begin valid_tracks[flag_write_slot]<=0;armed[flag_write_slot]<=0;end
       if(si==31)phase<=RECOVERABLE ? APPLY_SETUP : MOTION;else begin si<=si+1'b1;phase<=READ_CHECK;end
      end
     end
@@ -488,8 +495,8 @@ module observed_classified_pocket_counter #(
       if(missing<8)tracks[track_address]<={skipped_motion[DX_BITS-1:0],missing+{{(GAP_BITS-1){1'b0}},1'b1},track_word[59:0]};
       else if(armed[si[4:0]] && old_id==0 && !cross_pending[si[4:0]])begin
        if(LOCAL_RECOVERY)begin
-        quarantined[si[4:0]]<=1;mark_gap();
-        if(missing==15)begin valid_tracks[si[4:0]]<=0;armed[si[4:0]]<=0;quarantined[si[4:0]]<=0;end
+        quarantined[flag_write_slot]<=1;mark_gap();
+        if(missing==15)begin valid_tracks[flag_write_slot]<=0;armed[flag_write_slot]<=0;quarantined[flag_write_slot]<=0;end
         else tracks[track_address]<={skipped_motion[DX_BITS-1:0],missing+{{(GAP_BITS-1){1'b0}},1'b1},track_word[59:0]};
        end else begin state<=CHECK_REQUIRED;hold_valid<=0;end
       end
@@ -504,17 +511,17 @@ module observed_classified_pocket_counter #(
     end
     APPLY:begin
      if(mapping[oi[OI_BITS-1:0]]!=32)begin
-      if(LOCAL_RECOVERY)quarantined[mi]<=0;
+      if(LOCAL_RECOVERY)quarantined[flag_write_slot]<=0;
       // The shared classifier owns kind/reason. Record its current result;
       // the recorder does not run another classifier or reject class changes.
       tracks[track_address]<={(RECORD_ONLY ? ob[72:69] : (old_mask | ob[72:69])),(old_confirm<3 ? old_confirm+2'd1 : old_confirm),(RECORD_ONLY ? ob[74:73] : old_kind),old_id,ob[30:20],ob[41:31],cy,cx};
       if(display_slot)object_ids[display_index*9+:9]<=old_id;
       if(tracking && direction_valid)begin
-       if(upstream && old_id==0)armed[mi]<=1;
+       if(upstream && old_id==0)armed[flag_write_slot]<=1;
        if(armed[mi] && downstream && old_id==0 && (!ORDERED_HANDOFF || !cross_pending[mi]))begin
         if(old_confirm<(RECORD_ONLY ? 1 : 2))unstable_cross<=1;
         crossings[oi[OI_BITS-1:0]]<=1;cross_index<=oi[OI_BITS-1:0];
-        if(ORDERED_HANDOFF)begin cross_pending[mi]<=1;pending_event[mi]<={source_id,ob[74:73],ob[72:69]};end
+        if(ORDERED_HANDOFF)begin cross_pending[flag_write_slot]<=1;pending_event[mi]<={source_id,ob[74:73],ob[72:69]};end
        end
       end
      end
@@ -554,9 +561,9 @@ module observed_classified_pocket_counter #(
       // look current and can alias the next physical pocket on the next frame.
       if(RECOVERABLE)tracks[track_address]<={track_word[TRACK_BITS-1:52],(total+9'd1),track_word[42:0]};
       else tracks[track_address]<={track_word[59:52],(total+9'd1),track_word[42:0]};
-      armed[event_slot]<=0;
+      armed[flag_write_slot]<=0;
       if(ORDERED_HANDOFF)begin
-       cross_pending[emit_track]<=0;
+       cross_pending[flag_write_slot]<=0;
        for(q=0;q<OBS_COUNT;q=q+1)if(mapping[q]=={1'b0,emit_track} && q%OBS_PER_REGION<2)
         object_ids[(((ORDERED_HANDOFF ? region : q/OBS_PER_REGION)*2)+q%OBS_PER_REGION)*9+:9]<=total+1'b1;
       end else object_ids[display_index*9+:9]<=total+1'b1;

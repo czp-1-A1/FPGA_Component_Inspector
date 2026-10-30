@@ -1,0 +1,20 @@
+{
+  "status": "PASS_ACTUAL_SYNTHESIS_TWO_INDEPENDENT_ID_ERAMS",
+  "gate_database_sha256": "4f40efab253fffe466e89e43b94868ef621373790d954b16584c32bc7139ef85",
+  "netlist_sha256": "b43437e47c28587c1f51035ab9a8912a84d2a9fae598587f19b9bdc894e5d29c",
+  "cells": [
+    {
+      "lane": 0,
+      "cell": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/ramread6_syn_23",
+      "write_count_address_bits": 9,
+      "independent_read_address_bits": 9
+    },
+    {
+      "lane": 1,
+      "cell": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/ramread6_syn_23",
+      "write_count_address_bits": 9,
+      "independent_read_address_bits": 9
+    }
+  ],
+  "scope": "Mapping/width/address independence proof; source read-port and counter behavior proven separately by simulation. No post-route or board acceptance."
+}

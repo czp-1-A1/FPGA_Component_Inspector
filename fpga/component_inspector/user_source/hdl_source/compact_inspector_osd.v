@@ -32,6 +32,31 @@ reg [75:0] primary;reg [2:0] np,ne,nu;
 wire [19:0] cache[0:31];reg [19:0] label_bcd0,label_bcd1,label_bcd2,label_bcd3;reg [5:0] fmt;reg [4:0] step;
 reg [15:0] number,next_number;reg [19:0] bcd,adjusted;
 reg formatting,feeding,write_valid,ready;
+// One shared geometry calculator runs in the existing frame preparation time.
+// Data comes only from the atomic snapshot; ready masks all four writes.
+reg [2:0] label_prepare;
+reg [10:0] label_left[0:3],label_right[0:3],label_bottom[0:3];
+reg [9:0] label_top[0:3];reg [3:0] label_prefix;
+wire [75:0] prep_ob=obs[label_prepare[1:0]*76+:76];
+wire [8:0] prep_id=DUAL_REGION_COUNT && label_prepare[1] ?
+ record2[94+label_prepare[1:0]*9+:9] : record[94+label_prepare[1:0]*9+:9];
+wire prep_prefix=page_s && (DUAL_REGION_COUNT && label_prepare[1] ? show2 : show) && prep_id!=0;
+wire [10:0] prep_left=prep_ob[41:31]>WIDTH-112 ? WIDTH-112 : prep_ob[41:31];
+wire [9:0] prep_top=!label_prepare[0] ? (prep_ob[19:10]>=108 ? prep_ob[19:10]-28 : 80) :
+ (prep_ob[9:0]<HEIGHT-124 ? prep_ob[9:0]+4 : HEIGHT-120);
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)label_prepare<=4;
+ else if(start)label_prepare<=0;
+ else if(label_prepare<4)begin
+  label_left[label_prepare[1:0]]<=prep_left;
+  label_right[label_prepare[1:0]]<=prep_left+(prep_prefix ? 11'd112 : 11'd72);
+  label_top[label_prepare[1:0]]<=prep_top;
+  label_bottom[label_prepare[1:0]]<={1'b0,prep_top}+11'd24;
+  label_prefix[label_prepare[1:0]]<=prep_prefix;
+  label_prepare<=label_prepare+1'b1;
+ end
+end
+
 reg [9:0] cursor,write_cursor;
 wire [9:0] token;reg [7:0] decoded;
 reg [19:0] plane[0:1023];
@@ -367,11 +392,7 @@ always @*begin
    if(ready && ob[75] && (!page_s || eligible_s && (DUAL_REGION_COUNT || t/2==record[57])))begin
     if(((x==ob[41:31] || x==ob[30:20]) && y>=ob[19:10] && y<=ob[9:0]) ||
       ((y==ob[19:10] || y==ob[9:0]) && x>=ob[41:31] && x<=ob[30:20]))guide=1;
-    prefix=page_s && (DUAL_REGION_COUNT && t>=2 ? show2 : show) && id!=0;
-    lx=ob[41:31]>WIDTH-112 ? WIDTH-112 : ob[41:31];
-    ly=t%2==0 ? (ob[19:10]>=108 ? ob[19:10]-28 : 80) : (ob[9:0]<HEIGHT-124 ? ob[9:0]+4 : HEIGHT-120);
-    rx=lx+(prefix ? 112 : 72);
-    if(x>=lx && x<rx && y>=ly && y<ly+24)begin label_hit=1;label_slot=t;end
+    if(x>=label_left[t] && x<label_right[t] && y>=label_top[t] && y<label_bottom[t])begin label_hit=1;label_slot=t;end
    end
   end
   if(label_hit)begin
@@ -382,9 +403,8 @@ always @*begin
     3:begin ob=obs[303:228];id=DUAL_REGION_COUNT ? record2[121+:9] : record[121+:9];id_bcd=label_bcd3;end
    endcase
    if(!DUAL_REGION_COUNT)id_bcd=label_slot[0] ? label_bcd1 : label_bcd0;
-   prefix=page_s && (DUAL_REGION_COUNT && label_slot[1] ? show2 : show) && id!=0;
-   lx=ob[41:31]>WIDTH-112 ? WIDTH-112 : ob[41:31];
-   ly=!label_slot[0] ? (ob[19:10]>=108 ? ob[19:10]-28 : 80) : (ob[9:0]<HEIGHT-124 ? ob[9:0]+4 : HEIGHT-120);
+   prefix=label_prefix[label_slot];
+   lx=label_left[label_slot];ly=label_top[label_slot];
    panel=1;row=y-ly;glyph_cell=(x-lx)>>3;col=(x-lx)&7;
    if(prefix && glyph_cell<4)code=glyph_cell==0 ? (frame_gap!=0 && id>=frame_gap ? "R" : "N") : "0"+((id_bcd>>((3-glyph_cell)*4))&4'hf);
    else if(prefix && glyph_cell==4)code=32;
@@ -416,12 +436,13 @@ end
 reg [10:0] ascii_address;reg [7:0] cjk_address;reg [12:0] logo_address;
 wire [7:0] ascii_bits;wire [23:0] cjk_bits;wire [1:0] logo_pixel;
 wire [5:0] logo_y=y-10'd8;wire [6:0] logo_x=x-11'd16;
-compact_ascii_rom ascii_font(clk,ascii_address,ascii_bits);
-compact_cjk_rom cjk_font(clk,cjk_address,cjk_bits);
+wire font_pixel;
+
 osd_logo_rom anlogic_logo(clk,logo_address,logo_pixel);
 reg [1:0] vp,hp,dp,pp,lp,cp;reg [4:0] c0,c1;
+compact_shared_font_rom shared_font(clk,cp[0],ascii_address,cjk_address,c0,font_pixel);
 reg [23:0] rgb0,rgb1,ink0,ink1;
-wire text_ink=cp[1] ? c1<24 && cjk_bits[23-c1] : c1<8 && ascii_bits[7-c1];
+wire text_ink=font_pixel;
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
   ascii_address<=0;cjk_address<=0;logo_address<=0;vp<=0;hp<=0;dp<=0;pp<=0;lp<=0;cp<=0;
@@ -436,4 +457,97 @@ always @(posedge clk or negedge rst_n)begin
    text_ink ? ink1 : 24'h142336) : rgb1;
  end
 end
+endmodule
+
+module compact_shared_font_rom(
+ input wire clk,cjk,input wire [10:0] ascii_address,input wire [7:0] cjk_address,
+ input wire [4:0] column,output wire pixel);
+ wire [6:0] ac=ascii_address[10:4];wire [3:0] ar=ascii_address[3:0];
+ wire [2:0] cc=cjk_address[7:5];wire [4:0] cr=cjk_address[4:0];
+ wire av=ac>=32 && ac<=126 && column<8;
+ wire cv=cc>=1 && cr<24 && column<24;
+ wire [6:0] ascii_index=ac-7'd32;
+ wire [2:0] chinese_index=cc-3'd1;
+ wire [10:0] ai={ascii_index,ar};
+ wire [10:0] char_offset={2'd0,chinese_index,6'd0}+{5'd0,chinese_index,3'd0};
+ wire [10:0] row_offset={5'd0,cr,1'b0}+{6'd0,cr};
+ wire [10:0] ci=11'd1520+char_offset+row_offset+{9'd0,column[4:3]};
+ wire [13:0] address={cjk ? ci : ai,3'b000};
+ wire [15:0] raw;reg valid_q;reg [2:0] column_q;
+ always @(posedge clk)begin valid_q<=cjk ? cv : av;column_q<=column[2:0];end
+ assign pixel=valid_q && raw[7-column_q];
+ PH1P_PHY_ERAM_V2 #(
+  .DATA_WIDTH_A("10"),.DATA_WIDTH_B("10"),.MODE("DP20K"),
+  .REGMODE_A("NOREG"),.REGMODE_B("NOREG"),.GSR("DISABLE"),
+  .CSA0("1"),.CSA1("1"),.CSA2("1"),.CSB0("0"),.CSB1("0"),.CSB2("0"),
+  .INIT_00(256'h0000001818001018181818181800000000000000000000000000000000000000),
+  .INIT_01(256'h0000000068282cfe24247f2424000000000000000000000000002c2c2c000000),
+  .INIT_02(256'h000000ce4a2a3e101868d4d662000000000030107c16161e3c7858683c080000),
+  .INIT_03(256'h000000000000000000001818180000000000007a4ecede7230686c6c38000000),
+  .INIT_04(256'h000020301808080c0c0c08081830200000000408181030202020301018080400),
+  .INIT_05(256'h0000000000181818fe181818000000000000000000000010543c3c5410000000),
+  .INIT_06(256'h0000000000000000003c00000000000000000000000030181818000000000000),
+  .INIT_07(256'h00000040602030101018080c0406000000000000000000181800000000000000),
+  .INIT_08(256'h000000007e1818181818587818000000000000003c6446625a4e46663c000000),
+  .INIT_09(256'h00000000780406063c0c040478000000000000007e6030180c04044438000000),
+  .INIT_0A(256'h00000000780406067c6060607c000000000000000c0cfe4c6c2c3c1c0c000000),
+  .INIT_0B(256'h0000000020301018080c04067e000000000000003c664242667c60301c000000),
+  .INIT_0C(256'h00000000780c063e664646643c000000000000003c66466e3c6446663c000000),
+  .INIT_0D(256'h0000000030181818000000181800000000000000001818000000181800000000),
+  .INIT_0E(256'h00000000000000007e007e000000000000000000040c106060100c0400000000),
+  .INIT_0F(256'h00000010100010180404040c38000000000000002030180c0c18302000000000),
+  .INIT_10(256'h00000000c3c27e6664242c381800000000003844c0beaaabafbddf4342261c00),
+  .INIT_11(256'h000000003c624040404040623c000000000000007c4646467c4446467c000000),
+  .INIT_12(256'h000000007e6060607c6060607e00000000000000784c4642424246467c000000),
+  .INIT_13(256'h000000003e6242c2cec040623c00000000000000606060607c6060607e000000),
+  .INIT_14(256'h000000007e181818181818187e00000000000000424242427e42424242000000),
+  .INIT_15(256'h00000000464c48707050484c4600000000000000384c0404040404047c000000),
+  .INIT_16(256'h00000000c2c2c2d2daea626646000000000000007e6060606060606060000000),
+  .INIT_17(256'h000000003c6642c2c2c242663c0000000000000046464e4a5252726262000000),
+  .INIT_18(256'h0000000f183c6642c2c2c242663c0000000000004040407c464646467c000000),
+  .INIT_19(256'h000000007c0606063c6040603c000000000000004646444c784446447c000000),
+  .INIT_1A(256'h000000003c6642424242424242000000000000001818181818181818fe000000),
+  .INIT_1B(256'h0000000066666a5a5adac2c2c20000000000000018383c24646646c2c3000000),
+  .INIT_1C(256'h0000000018181818382c6446c300000000000000c2662c3818382c6446000000),
+  .INIT_1D(256'h00003c30303030303030303030303c00000000007e60201010080c047e000000),
+  .INIT_1E(256'h000038080808080808080808080838000000000604040c081810302020600000),
+  .INIT_1F(256'h00000000000000ff000000000000000000000000000000000046243818000000),
+  .INIT_20(256'h00000000007e46663e06463c0000000000000000000000000000001020000000),
+  .INIT_21(256'h00000000003e60604060201e000000000000007c64464242667c404040000000),
+  .INIT_22(256'h00000000003e60407e46663c000000000000003e6e464646663e060606000000),
+  .INIT_23(256'h0000007c46427e40786446643e0000000000001010101010fe1010180e000000),
+  .INIT_24(256'h0000007e1818181818780018180000000000004646464646667c404040000000),
+  .INIT_25(256'h000000666c7870786c66606060000000000078080c0c0c0c0c0c0c7c000c0c00),
+  .INIT_26(256'h0000000000dadadadadadaf6000000000000007e181818181818181878000000),
+  .INIT_27(256'h00000000003c66424242663c0000000000000000004646464646665c00000000),
+  .INIT_28(256'h0000000606063e6e464646663e0000000000004040407c64464242665c000000),
+  .INIT_29(256'h00000000007c06063c60603c0000000000000000006060606062767c00000000),
+  .INIT_2A(256'h00000000003e6e464646464600000000000000001e3030303030fe3030000000),
+  .INIT_2B(256'h0000000000666e5a5adac2c200000000000000000018382c2464464200000000),
+  .INIT_2C(256'h000000e0301018382824644642000000000000000046643c1838246600000000),
+  .INIT_2D(256'h00000c18101010106010101010180c0000000000007e20301008047c00000000),
+  .INIT_2E(256'h00007018181818080e0818181818700000181818181818181818181818181800),
+  .INIT_2F(256'h7ffeff7f00c00000c0000060000000000000000000000000ce5a720000000000),
+  .INIT_30(256'h300006300046f0ffe7f0ff7730003e30001ef0ff0ff0ff07000003008003fcff),
+  .INIT_31(256'h3106800106000000000000c00706e00706300006300006f0ff07f0ff07300006),
+  .INIT_32(256'h598001d88081f880817980c13880c138fcff18fc7f1880610c80710c80310e80),
+  .INIT_33(256'h000000800118800118800118800118800118800118800118800118feff19feff),
+  .INIT_34(256'h000ec0810780c3030c82600c0060fcff7ffcff7f001800003000003000000000),
+  .INIT_35(256'h7f003800003800003800003800003800e0ff0ff0ff1f0c00601c007038003cf0),
+  .INIT_36(256'h0c0060fcff7ffcff7f001800001800003000003000000000000000fcff7ffcff),
+  .INIT_37(256'h000cc0000ec001068001038003030083030083010087010086010c06600c0060),
+  .INIT_38(256'h38fcff1c00030c0003060003060000000000000c00601e007038003870001ce0),
+  .INIT_39(256'h606058fcfff9feff79600038000018fcff1dfeff0d0003460003e6000370f8ff),
+  .INIT_3A(256'h0006000006000000000000c00718e00f18600018601018603818603018606018),
+  .INIT_3B(256'h0ff0ff0f30000830000cf0ff0f300048f0ff6ff0ff3f000038fcff1ffcff0f00),
+  .INIT_3C(256'h0000001c003cfe813fe0ff01003e4080e770e08119f0000ff0ff07008003f0ff),
+  .INIT_3D(256'h7f3e60301c70181c301c1c000c7ffefffffeff0c80010c00030c00030c000000),
+  .INIT_3E(256'h0c1c3c0c380e0cf0c30ce0e10ce0780c701ccc300ecc18076c8c033dccff3fe0),
+  .INIT_3F(256'h00000000000000000000000000000000000000000000000000000004600c0e70)
+ ) font_bits(
+  .dia(16'd0),.dia_extra(4'd0),.csa(3'b111),.addra(address),.ocea(1'b1),.clka(clk),.wea(1'b0),.orsta(1'b0),
+  .dib(16'd0),.dib_extra(4'd0),.csb(3'b000),.addrb(14'd0),.oceb(1'b0),.clkb(clk),.web(1'b0),.orstb(1'b0),
+  .doa(raw),.doa_extra(),.dob(),.dob_extra(),.ecc_sbiterr(),.ecc_dbiterr(),.ecc_sbiterrinj(1'b0),.ecc_dbiterrinj(1'b0),
+  .fifoctrl_waddr(14'd0),.fifoctrl_raddr(14'd0),.fifoctrl_we(1'b0),.fifoctrl_re(1'b0),
+  .addra_casin(14'd0),.addrb_casin(14'd0),.addra_casout(),.addrb_casout(),.pib_rst_redmeet_n(1'b1),.probe_redmeet_pa(),.probe_redmeet_pb());
 endmodule

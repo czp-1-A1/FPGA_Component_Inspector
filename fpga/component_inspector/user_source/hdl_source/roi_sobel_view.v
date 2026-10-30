@@ -201,9 +201,15 @@ reg [9:0] xp [0:3],xn [0:3],yp [0:3],yn [0:3];
 reg [10:0] magnitude [0:3];
 reg [3:0] neighborhood3,core3,inside3,neighborhood4,core4,inside4;
 wire [9:0] dx [0:3];wire [9:0] dy [0:3];
+// One full-width signed subtraction and magnitude conversion replaces a
+// comparator and two subtractors. Full ten-bit operand domain is preserved.
+function [9:0] abs_diff10;
+ input [9:0] a,b;reg [10:0] delta;
+ begin delta={1'b0,a}-{1'b0,b};abs_diff10=delta[10] ? (~delta[9:0])+10'd1 : delta[9:0];end
+endfunction
 generate for(g=0;g<4;g=g+1) begin : gradients
- assign dx[g]=xp[g]>=xn[g] ? xp[g]-xn[g] : xn[g]-xp[g];
- assign dy[g]=yp[g]>=yn[g] ? yp[g]-yn[g] : yn[g]-yp[g];
+ assign dx[g]=abs_diff10(xp[g],xn[g]);
+ assign dy[g]=abs_diff10(yp[g],yn[g]);
 end endgenerate
 always @(posedge clk or negedge rst_n) begin
  if(!rst_n) begin

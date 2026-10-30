@@ -12,12 +12,26 @@ module rgb_resize_2_3 #(parameter WIDTH=1920,HEIGHT=1080)(
  reg [1:0] input_phase,row_phase;
  reg [X_BITS-1:0] input_group;
  reg [Y_BITS-1:0] input_row;
- reg [95:0] first,second,pending_rgb,h_rgb;
+ reg [119:0] first,second;reg [95:0] pending_rgb,h_rgb;
  reg pending,h_valid,h_last;
  reg [1:0] pending_phase,h_phase;
  reg [A_BITS-1:0] output_group,h_group,pending_group;
  reg pending_last;
- wire [287:0] block_rgb={first,second,rgb};
+ // Only the middle source pixel in each triple is a light-weight sample.
+ // Endpoints are stored as exact 3*value in ten bits (maximum765).
+ // All three capture phases share these twelve combinational triplers.
+ wire [119:0] first_data,second_data,third_data;
+ genvar wl,wc;
+ generate for(wl=0;wl<4;wl=wl+1)begin : weighted_input
+  for(wc=0;wc<3;wc=wc+1)begin : channel
+   wire [7:0] v=rgb[95-wl*24-wc*8-:8];
+   wire [9:0] triple={2'd0,v}+{1'd0,v,1'b0};
+   assign first_data[119-wl*30-wc*10-:10]=wl==1 ? {2'd0,v} : triple;
+   assign second_data[119-wl*30-wc*10-:10]=(wl==0 || wl==3) ? {2'd0,v} : triple;
+   assign third_data[119-wl*30-wc*10-:10]=wl==2 ? {2'd0,v} : triple;
+  end
+ end endgenerate
+ wire [359:0] block_rgb={first,second,third_data};
  function [7:0] blend(input [7:0] a,b,input heavy_a);
   reg [9:0] sum;
   begin
@@ -27,13 +41,14 @@ module rgb_resize_2_3 #(parameter WIDTH=1920,HEIGHT=1080)(
    blend=sum[9:2];
   end
  endfunction
- function [23:0] horizontal(input [287:0] pixels,input integer index);
-  integer a,b,c;
+ function [23:0] horizontal(input [359:0] pixels,input integer index);
+  integer heavy,light,c;reg [9:0] sum;
   begin
-   a=(index/2)*3+(index%2);b=a+1;
-   for(c=0;c<3;c=c+1)
-    horizontal[23-c*8-:8]=blend(pixels[287-a*24-c*8-:8],
-                                  pixels[287-b*24-c*8-:8],index%2==0);
+   heavy=(index/2)*3+(index%2==0 ? 0 : 2);light=(index/2)*3+1;
+   for(c=0;c<3;c=c+1)begin
+    sum=pixels[359-heavy*30-c*10-:10]+pixels[359-light*30-c*10-:10];
+    horizontal[23-c*8-:8]=sum[9:2];
+   end
   end
  endfunction
  integer lane;
@@ -55,8 +70,8 @@ module rgb_resize_2_3 #(parameter WIDTH=1920,HEIGHT=1080)(
    if(valid && !frame_bad)begin
     if(input_row>=HEIGHT || last!=(input_group==IN_BEATS-1))frame_bad<=1;
     case(input_phase)
-     0:begin first<=rgb;input_phase<=1;end
-     1:begin second<=rgb;input_phase<=2;end
+     0:begin first<=first_data;input_phase<=1;end
+     1:begin second<=second_data;input_phase<=2;end
      2:begin
       input_phase<=0;h_valid<=1;h_phase<=row_phase;h_group<=output_group;
       pending<=1;pending_phase<=row_phase;pending_group<=output_group+1'b1;

@@ -1,5 +1,11 @@
 # D3 Slice 优化已获执行授权（2026-10-31，最新）
 
+- **最新进度：33/33严格精确输入检查PASS，已将四份已验证RTL复制到生产工作区且全部704份逐SHA匹配R44，尚待提交与最终物理验收。** Native session2771已poll关闭PASS，12RAW/24RGB/22940160像素/OFUF0；`--require-production`通过，docs/D3_SOFTWARE_VERIFICATION.json已更新lossless-v5/33。不要再按旧R28恢复源码或重跑这些已过检查。R44仍唯一TD（phase3重布线），未有新bit发布。
+
+- **当前唯一 TD 全物理 R44 正在布线，不要启动第二个或改冻结源。** `E:/2026FPGA/.codex_tmp/d3_slice_physical_r44_20261031`，session23472，TD PID34708 parent39908；Default/seed4。同R43 SYN DB `4f40efab253fffe466e89e43b94868ef621373790d954b16584c32bc7139ef85`，manifest `6632596c2c539a401893279fd67477a6b83e5a8c54d7341ea6f0b48f7b8ead56`。实际placed **20124/21216=94.85%，比R37少441 Slice**，105ERAM/31DSP/5PLL；报告与来源SHA已保存 `placed_intermediate.area`/`PLACED_AREA_PROVENANCE.json`。只是placed，未最终route/setup/hold验收。
+- 软件**32/33**：R42b 13原计数停车/报警、R43 units13、R40字体/OSD3、R39 ID读口1、R43 actualSYN camera1、R43 emptyRAW1均PASS并有精确输入证据。仅native仍运行：session2771，`d3_slice_native_r43_20261031`，12真实RAW/24完整显示，预计较久；不要重跑已过项。其他session1120/19999/93920/90469/88823/35790/67791/40817/89057均已poll关闭。旧vsim34696/34408是本轮开始前既有stub，不碰。
+- `scripts/verify_d3_full_candidate.py --work R44 --suite-map R44/SUITE_MAP.json` 支持新lossless-v5/33，尚未汇总，不能说33全过；新增actual ID ERAM/字体INIT校验在check_d3_synthesis_storage.py，R44三份storage/observer proof已保存。publisher已改严格33/105ERAM、新名D3_Slice_20261031；生产源尚未覆盖，所以require-production必须在正式合入后再跑。原计数器原件SHA保持；观察副本只枚举RAM同拍读口和22处写地址共享后恢复全文，源决策/阈值/写使能与顺序不变。
+- R38/R39 RAM读口：SYN22073→21847(-226)，ERAM103→105，DRAM792→536；R40/R41标签准备：21756(-91)，DRAM544；R42b/R43 flags：21375(-381)，累计698综合估算，不是实际节省。代码生成与精准逐拍/像素验证已入本地提交cc79ec71；生产RTL仍旧R28。docs/D3_SLICE_EXECUTION_20261031.md记录阶段结果。无bit发布，无推送/硬件动作，旧BIT_FLASH三个SHA已验证未变。
 - 用户审阅 `docs/D3_SLICE_CODE_REVIEW_20261031.md` 对应分析后明确回复“执行”。旧 R37 停止后等待分析的条件已经满足，现允许按分析顺序实施：编号 RAM 读口、OSD 标签准备阶段复用、必要时状态位写口译码；先逐项证明行为与资源收益，再组合物理验证。无需再次询问是否继续。
 - 不删功能、不改 IO/时钟/SDC、不操作实板、不推送；R27B 已成功双列计数是行为基准。新候选先隔离；失败/负收益方案留证但不合入。既有 R36 的字体/完整精度算术优化保持，生产树暂不覆盖。
 - 当前开始于生产 HEAD c5c5d7e5；上一轮报告实际布局 20565/21216 Slice、103ERAM。空穴编号表 256 个 DRAM Slice 是现有成本，不是净收益承诺；CDC 实际为1705 logic LUT（不是可直接删除 Slice）。分析证据 JSON 已保存。
