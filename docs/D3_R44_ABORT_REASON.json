@@ -1,0 +1,102 @@
+{
+  "status": "STOPPED_R44_FOR_POST_ROUTE_TIMING_REGRESSION_NOT_FINAL_ROUTED_VERDICT",
+  "stopped_at": "2026-10-31T02:31:49+08:00",
+  "reason": "After successful Slice optimization and seven legal route passes, completed-route setup WNS worsened three consecutive phases after phase4. Stop current attempt for analysis per user request. No new RTL or physical experiment.",
+  "aborted_during": "Phase8 Rip-up And ReRoute",
+  "completed_phases": [
+    {
+      "phase": 1,
+      "legal_route": true,
+      "setup_wns_ns": -7.259,
+      "setup_tns_ns": -6415.89,
+      "setup_fep": 4292,
+      "hold_wns_ns": -0.201,
+      "hold_tns_ns": -2.903,
+      "hold_fep": 81
+    },
+    {
+      "phase": 2,
+      "legal_route": true,
+      "setup_wns_ns": -6.051,
+      "setup_tns_ns": -2623.303,
+      "setup_fep": 2299,
+      "hold_wns_ns": -0.085,
+      "hold_tns_ns": -0.62,
+      "hold_fep": 21
+    },
+    {
+      "phase": 3,
+      "legal_route": true,
+      "setup_wns_ns": -5.716,
+      "setup_tns_ns": -2748.239,
+      "setup_fep": 1976,
+      "hold_wns_ns": -0.087,
+      "hold_tns_ns": -0.596,
+      "hold_fep": 18
+    },
+    {
+      "phase": 4,
+      "legal_route": true,
+      "setup_wns_ns": -5.14,
+      "setup_tns_ns": -2802.278,
+      "setup_fep": 2446,
+      "hold_wns_ns": -0.087,
+      "hold_tns_ns": -0.546,
+      "hold_fep": 14
+    },
+    {
+      "phase": 5,
+      "legal_route": true,
+      "setup_wns_ns": -6.981,
+      "setup_tns_ns": -3249.216,
+      "setup_fep": 2174,
+      "hold_wns_ns": -0.087,
+      "hold_tns_ns": -0.434,
+      "hold_fep": 13
+    },
+    {
+      "phase": 6,
+      "legal_route": true,
+      "setup_wns_ns": -8.9,
+      "setup_tns_ns": -3367.487,
+      "setup_fep": 2718,
+      "hold_wns_ns": -0.085,
+      "hold_tns_ns": -0.302,
+      "hold_fep": 7
+    },
+    {
+      "phase": 7,
+      "legal_route": true,
+      "setup_wns_ns": -15.27,
+      "setup_tns_ns": -6918.125,
+      "setup_fep": 2726,
+      "hold_wns_ns": -0.085,
+      "hold_tns_ns": -0.308,
+      "hold_fep": 10
+    }
+  ],
+  "source_commit": "57794a1805f8471413b2455a238d3254756f87d2",
+  "source_manifest_sha256": "6632596c2c539a401893279fd67477a6b83e5a8c54d7341ea6f0b48f7b8ead56",
+  "gate_database_sha256": "4f40efab253fffe466e89e43b94868ef621373790d954b16584c32bc7139ef85",
+  "placed_database_sha256": "fbb05ec45eafa2c2dfd5e0dbb14be2c569d8ead92806f400c9ff165fdb4b0e95",
+  "placed_area_sha256": "dc3591318305ea5cb93bffa163a0e2d85f5d64deeb4561239858d6e6688761a6",
+  "console_sha256_after_exit": "98a89b451151fda6444878625237a49de5551d9bb682134149e3884fb471b8b0",
+  "software_checks": 33,
+  "software_verification_sha256": "6866d2fe9957a78905f27352c0bc167a4e992a81c2c51fb8b192d0f48ef1f8cd",
+  "placed_slice": 20124,
+  "placed_slice_capacity": 21216,
+  "placed_slice_percent": 94.85,
+  "placed_slice_reduction_vs_R37": 441,
+  "eram": 105,
+  "dsp": 31,
+  "pll": 5,
+  "production_rtl_adopted": true,
+  "features_removed": false,
+  "bit_exists": false,
+  "bit_published": false,
+  "board_operated": false,
+  "final_routed_timing_report_exists": false,
+  "next_experiment_started": false,
+  "next_build_authorized": false,
+  "limits": "Intermediate completed-pass timing values, not final routed signoff. Only placed DB was saved, no routed DB or exact final worst-path report. Specific timing endpoints remain unproven."
+}

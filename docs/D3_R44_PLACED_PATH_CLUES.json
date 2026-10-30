@@ -1,0 +1,31 @@
+{
+  "scope": "Placed timing ONLY, not a post-route worst-path diagnosis. Stored after R44 stop; no new TD invocation.",
+  "report_sha256": "88f173ee1014d14c80e7c2486508c746a97d9d67a8460fdec6846fcff0096d60",
+  "path_group": "pll_clk_100m -> pll_clk_100m",
+  "setup_wns_ns": 0.77,
+  "first_10_endpoints": [
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/armed_reg[26]_syn_14.imb",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/armed_reg[29]_syn_16.id",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/armed_reg[3]_syn_12.id",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/armed_reg[31]_syn_134.ie",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/armed_reg[6]_syn_12.ie",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/armed_reg[23]_syn_14.id",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/armed_reg[24]_syn_15.id",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/armed_reg[27]_syn_14.imb",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/armed_reg[26]_syn_14.id",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/armed_reg[30]_syn_16.id"
+  ],
+  "begin_points": [
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/negative_reg[1]_syn_6.clk",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/negative_reg[1]_syn_6.clk",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/negative_reg[1]_syn_6.clk",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/negative_reg[1]_syn_6.clk",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/negative_reg[1]_syn_6.clk",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/negative_reg[1]_syn_6.clk",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/negative_reg[1]_syn_6.clk",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/negative_reg[1]_syn_6.clk",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/negative_reg[1]_syn_6.clk",
+    "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/negative_reg[1]_syn_6.clk"
+  ],
+  "candidate_action": "Study existing READ states for precomputing stable association/recovery distances and phase-specific flag addresses before action/writeback. Preserve current-cycle direction, reset/clear/NBA semantics and original R27B public outputs. No implementation or test claim."
+}

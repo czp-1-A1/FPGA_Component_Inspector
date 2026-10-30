@@ -1,5 +1,13 @@
-# D3 Slice 优化已获执行授权（2026-10-31，最新）
+# D3 R44已停止，交付分析后等待下一步（2026-10-31 02:31，最高优先级）
 
+- 用户此前要求本轮不成功就先停下分析；R44已经完成7轮合法布线，但阶段4→5→6→7完成后的setup WNS为-5.140→-6.981→-8.900→-15.270ns，连续三次恶化、最后2726个setup违例端点。02:31核对仅属于R44的TD34708/parent39908且无子进程后停止；session23472已poll关闭exit1（主动终止使runner断言），GetCIM确认无TD/vsimk任务。**不得自行新seed/策略/RTL/时钟/约束尝试，先交付分析、待用户新指示。没有活动goal，不用create/update_goal。**
+- 源码优化已提交**57794a18**（四份优化源+33严格检查+源/资源证据；前cc79ec71夹具/分析）。原R27B计数器原件SHA不变；生产704源与R44/Git blob完全一致，33/33 lossless-v5/require-production全部PASS。没有删任何功能或显示，没有新bit、BIT_FLASH未改，无实板/电机操作、无推送。
+- 实际placed20124/21216=94.85%，比R37少441，105ERAM/31DSP/5PLL。只是placed，不是最终route资源/时序。R44路径E:/2026FPGA/.codex_tmp/d3_slice_physical_r44_20261031，ABORT_REASON.json及docs/D3_R44_ABORT_REASON.json保存7轮数据、停止后console SHA、704源manifest/SYN DB/place DB/area/33回执SHA；只有place DB，**没有route DB或最终失败端点**。不将中间crit0、setup+.100当最终PASS。
+- 结果与下一步：docs/D3_R44_RESULT_AND_NEXT_STEP.md；布局线索docs/D3_R44_PLACED_PATH_CLUES.json：100M前10setup端点均为下列counter armed，第一negative1→armed26、13级/9.010ns/slack+.770（仅布局线索，不是实际route根因）。后续优先实际时序诊断及计数器长链READ准备阶段前移帧参数，注意READ同拍track_word是旧记录，不可串轨迹；尚未实施。不能擅自删边缘显示，用户仍未选择。
+
+# D3 Slice 优化执行过程（以下为历史）
+
+- **生产优化已提交57794a18**（前一提交cc79ec71为夹具/分析），所有704冻结输入与当前Git HEAD blob逐字节核验PASS；33项lossless-v5/require-production全部PASS。R44仍在默认流程第6轮时序修正/重布线，只有session23472/TD34708运行；不要重复native/单元/综合或启动第二轮全物理。已多次合法布线，但中间post-route仍有负setup/hold，不能把crit0或中间setup+.100当最终验收。等当前流程给出最终结果；若失败，先保留证据并向用户分析，不自行换seed或展开新的RTL/约束试验。没有bit发布/实板操作。
 - **最新进度：33/33严格精确输入检查PASS，已将四份已验证RTL复制到生产工作区且全部704份逐SHA匹配R44，尚待提交与最终物理验收。** Native session2771已poll关闭PASS，12RAW/24RGB/22940160像素/OFUF0；`--require-production`通过，docs/D3_SOFTWARE_VERIFICATION.json已更新lossless-v5/33。不要再按旧R28恢复源码或重跑这些已过检查。R44仍唯一TD（phase3重布线），未有新bit发布。
 
 - **当前唯一 TD 全物理 R44 正在布线，不要启动第二个或改冻结源。** `E:/2026FPGA/.codex_tmp/d3_slice_physical_r44_20261031`，session23472，TD PID34708 parent39908；Default/seed4。同R43 SYN DB `4f40efab253fffe466e89e43b94868ef621373790d954b16584c32bc7139ef85`，manifest `6632596c2c539a401893279fd67477a6b83e5a8c54d7341ea6f0b48f7b8ead56`。实际placed **20124/21216=94.85%，比R37少441 Slice**，105ERAM/31DSP/5PLL；报告与来源SHA已保存 `placed_intermediate.area`/`PLACED_AREA_PROVENANCE.json`。只是placed，未最终route/setup/hold验收。
