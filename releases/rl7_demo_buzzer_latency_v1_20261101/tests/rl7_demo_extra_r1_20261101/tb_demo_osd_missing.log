@@ -1,0 +1,35 @@
+Reading E:/Modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish stop work.tb_demo_osd_missing -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 00:49:56 on Nov 01,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_demo_osd_missing(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# PASS DEMO OSD MISSING: two complete720p rasters, current-frame measured latency/source, disjoint display counts, red5-empty alarm, frozen snapshots, debug hidden, unchanged3-clock stream
+# ** Note: $finish    : E:/2026FPGA/.codex_tmp/rl7_demo_extra_r1_20261101/inputs/tb_demo_osd_missing.sv(91)
+#    Time: 18778600 ns  Iteration: 1  Instance: /tb_demo_osd_missing
+# Break at E:/2026FPGA/.codex_tmp/rl7_demo_extra_r1_20261101/inputs/tb_demo_osd_missing.sv line 91
+# Stopped at E:/2026FPGA/.codex_tmp/rl7_demo_extra_r1_20261101/inputs/tb_demo_osd_missing.sv line 91
+#  quit -code 0
+# End time: 00:50:00 on Nov 01,2026, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 0

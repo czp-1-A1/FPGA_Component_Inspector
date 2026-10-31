@@ -1,0 +1,320 @@
+{
+  "status": "PASS_38_EXACT_SOURCE_CHECKS",
+  "selected": [
+    {
+      "name": "tb_demo_buzzer",
+      "group": "rl7_demo_units_r2_20261101",
+      "log_sha256": "7fe55941fc2546e7406c9e555297512ce5a032098de21f7c413e24d61dbc822a",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_demo_latency",
+      "group": "rl7_demo_units_r2_20261101",
+      "log_sha256": "c3c656321ac80d6a34bc5ddfe5809cabc790106f9342956fb85e5e6da0c0a578",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_demo_osd",
+      "group": "rl7_demo_units_r2_20261101",
+      "log_sha256": "e152460eda62760316275b9d63b7ee3685e30724776c4658fe733e48f9b30bd8",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_demo_osd_missing",
+      "group": "rl7_demo_extra_r1_20261101",
+      "log_sha256": "3cebcf91621da4fe523a0c2f3b5893d26d9e4ea106e8219f7607b7088c92fbba",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_demo_buzzer_real",
+      "group": "rl7_demo_extra_r1_20261101",
+      "log_sha256": "42834abe5410144478f1b0c255ef58bc8e7b9d94614369c180ad221418519767",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_demo_alarm",
+      "group": "rl7_demo_alarm_r1_20261101",
+      "log_sha256": "8a0c63bb1dcc6657e386a0545f16b98bc1735673bdd8b3a30d806a0291a0f4d7",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_v7_position_control",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "69ed3426ac0ddec42101cf516b0bdc885051913345b5df877293fcd4e08b9d4d",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_osd",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "61b16aa45f732dec64728b725234e275feb2aa2b87ac93ae644fa5acf62b249b",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_transport",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "6c4ec64d1d1030ac7943614e275b73f5994842a4f7ea95c0fccc55ef231555ae",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_one",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "1e1738f86c2f4e390365156d165674f60a27c8b513781a0ce73dbff8ba582e56",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_two",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "1673d3cc01181ce228f00b509f533680fbd708434debe476f8b368635a75c48b",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_four",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "97d04588ea4c8abc093a53deb7fc0d299c87b40ce963a54e5882e72078b93641",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_five_alarm",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "e67b4b03b674703a890e2f88205c407a408af56c37b53feb31b919670425e683",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_eight_alarm",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "afbe0d39cf8e1159c1def598dd34442c772f674d63757fce4c050ff86e632c1b",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_return",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "b6e17ae1b3854bd456c9e7a4c72a5275be6fc0ddc3ab22540c1ef1a9e8a7315a",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_missing",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "e9f9cb8effdc12cf64a967a116f0491be01edc9199a57dbda66cf2c3a3b471d9",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_wrong_kind",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "04cad388d602a1abb8cb959475688157192caa2d0efcd8562a9dad7c1f24458c",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_variable",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "fbfa7fe9549206295df3c9898c4239d5e859011785a9e7e51edc7adf323116c9",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_fast",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "897ad208819560662c1c6aecba68aa877e004ad6bcda7302dcfc78dbfc549357",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_alarm_control",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "a08f017ddd998910a381080436102f206e87426cf030465b4b631d089d77d510",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_rgb",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "76035df216486d44e41449b5d1cda8f9b66206d30186eed91a244a3b4ea7a41b",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_real_second",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "6d9f80cf08476deea955ba86b6c6340a9b1f515b551d71e0645d7f42d3dec025",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_v7_rgb_five_alarm",
+      "group": "rl7_demo_regression_r3c_20261101",
+      "log_sha256": "ca634fd62f544cd9e4c0ad0ad54d4b84a802370a8f5cc112cd6197eb88b29e48",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_relay_v3_keys",
+      "group": "rl7_demo_compat_r1_20261101",
+      "log_sha256": "9ae1fe83592af907ac0c165c3ed8ff71ed669e1c77b91e704a9c5bcfa98ae090",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_relay_v3_stop",
+      "group": "rl7_demo_compat_r1_20261101",
+      "log_sha256": "c49fe7d96f99d73307fa845bc28ccfd3ef79927c646f57d7ee9cb625997f180b",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_relay_v3_transport",
+      "group": "rl7_demo_compat_r1_20261101",
+      "log_sha256": "f170dd0a8b34b54a786315b7697bf66f886e58295010e877aff436ddf66d8fd6",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_relay_left_faults",
+      "group": "rl7_demo_compat_r1_20261101",
+      "log_sha256": "d88d5642dc0011c6c9689f959fe70895454684a785dca02c01a74538b7677b93",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_relay_left_transport",
+      "group": "rl7_demo_compat_r1_20261101",
+      "log_sha256": "b4d207f0dcaf0adcbe62c3f2fa24c75e270a4319751c4cd919ece0f9766e6fe7",
+      "mode": "EXACT_UNCHANGED_MODULE_REUSE"
+    },
+    {
+      "name": "tb_demo_select_stage",
+      "group": "rl7_demo_select_stage_r1_20261101",
+      "log_sha256": "9a48647f6400b7d9c46c8c25b6fa3a414d21875a7a6f43477feacccef2d4daec",
+      "mode": "NEW_RUN_R3B"
+    },
+    {
+      "name": "tb_demo_native",
+      "group": "rl7_demo_native_r3b_20261101",
+      "log_sha256": "5f89739815561a7b507dfaca014b5ea1d9d71fc2a26fa249352e0bc7075f2f8b",
+      "mode": "NEW_RUN",
+      "scope": "Actual12RAW/24display rasters plus matched raw-SOF/slot/post-OSD HDMI measurements; RAW does not reach parking line"
+    },
+    {
+      "name": "tb_camera_gate",
+      "group": "rl7_demo_camera_gate_r3b_20261101",
+      "log_sha256": "04c1f94f48fbf88bd27b6c29b1435f148e399f90c496500335846cf5b42e8921",
+      "mode": "NEW_RUN",
+      "scope": "Actual synthesized camera cone; modeled ACK, not physical sensor readback"
+    }
+  ],
+  "legacy": [
+    {
+      "name": "classified_counter",
+      "group": "legacy",
+      "inputs": {
+        "user_source/hdl_source/classified_pocket_counter.v": "599582c4ec933b9d415a7bec52a85c6c33da431396e8ac595208ea47e822c683",
+        "sim/tb_classified_counter.v": "946d9ca313c8b76f0e7ee63c4e32b995750db994009e98db5568123c230a401f"
+      },
+      "compile_sha256": "972f6912048275920cbade6763b20d1acdd9be2c4e5cae1f5e41500f17ba90d3",
+      "log_sha256": "24b13c1785d49a4431dd16aadb1b55d03dd8567b5fad071e379dd04bded62653",
+      "mode": "NEW_RUN"
+    },
+    {
+      "name": "result_recorder_pipeline",
+      "group": "legacy",
+      "inputs": {
+        "user_source/hdl_source/classified_pocket_counter.v": "599582c4ec933b9d415a7bec52a85c6c33da431396e8ac595208ea47e822c683",
+        "user_source/hdl_source/classified_count_pipeline.v": "189481c897bf4fad8ef9b6fd817307969c6f106a2902da7dd8904001a94bbaa7",
+        "sim/tb_result_recorder_pipeline.v": "b34830674197c2cd8b1dff66696ddc0f4a1a7ef1b43f6e120748afa5c9ef2bbf"
+      },
+      "compile_sha256": "ee0990ba8182bf1555941e8121ac39d2b66ddc89c3be5a79fcfbfd63e535b7b7",
+      "log_sha256": "b2097eafc2102618be9e7fe91d23f6f1f46f1653fbb33b4af3c5a10e41bdcf42",
+      "mode": "NEW_RUN"
+    },
+    {
+      "name": "local_pipeline",
+      "group": "legacy",
+      "inputs": {
+        "user_source/hdl_source/classified_pocket_counter.v": "599582c4ec933b9d415a7bec52a85c6c33da431396e8ac595208ea47e822c683",
+        "user_source/hdl_source/classified_count_pipeline.v": "189481c897bf4fad8ef9b6fd817307969c6f106a2902da7dd8904001a94bbaa7",
+        "sim/tb_local_pipeline.v": "a103c53d9b345a729bf4cdfb07ee6bd3c194dcf38d906217d65aab578daffe09"
+      },
+      "compile_sha256": "2059049d05231e9729385fb892b7999a2cc1140c250cdb413c6e891335280c17",
+      "log_sha256": "eac7483cd833cf9bd979cab9b9055229ab6e286df207791678b2eb415b9fd3d6",
+      "mode": "NEW_RUN"
+    },
+    {
+      "name": "switch_recorder_controls",
+      "group": "legacy",
+      "inputs": {
+        "user_source/hdl_source/pocket_run_controls.v": "28f81bdf90fc77ed9f5f97305b216ef6108de2f4c4c383b8a18c4325932636bc",
+        "user_source/hdl_source/uiisp_beta/ae_set.v": "ee26166e4b9a9e6ee37db793426a538bcabc1d4fb44add843532b5d98570f32a",
+        "sim/tb_switch_recorder_controls.v": "850e605e61e42adc6980e7bef98ce52ab2a41d0ed9da22bb6c330bd9829dbbdf"
+      },
+      "compile_sha256": "f7ebd862291beaa7d80ff8bc0e8df311f7c77f07c3f78c9383945f0744e52024",
+      "log_sha256": "d56d5c04b67c29862dbd106f1ecea0dfaad05b06c02009b59c4d62c3966e7ee9",
+      "mode": "NEW_RUN"
+    },
+    {
+      "name": "recovery_protection",
+      "group": "legacy",
+      "inputs": {
+        "user_source/hdl_source/classified_pocket_counter.v": "599582c4ec933b9d415a7bec52a85c6c33da431396e8ac595208ea47e822c683",
+        "sim/tb_recovery_protection.v": "91d474626af681a913cea72a311e112c7c8761c92b7b7bef919138a27e1e5e33"
+      },
+      "compile_sha256": "8ec84c1854af75a4b408e1887d3cbf155cf020b3170923d3eca1f46f4cd50f09",
+      "log_sha256": "ebfc6f2ff6dc47f400eb6c1ad120728172f3a1e0f6e2b94863bd78303b88abb4",
+      "mode": "NEW_RUN"
+    },
+    {
+      "name": "simple_recovery_ui",
+      "group": "legacy",
+      "inputs": {
+        "user_source/hdl_source/bin16_bcd.v": "e8ac13eaa52618336a3475f74cc5f19b725d8440061774f0d3ffbd1027fee4e5",
+        "user_source/hdl_source/osd_ascii_rom.v": "c084869524e0ebfc4c9d002bb6f3b14d212d6bca88ed097216347f10dceff754",
+        "user_source/hdl_source/osd_cjk_rom.v": "5e86cb3f5a752cf3bf812c17f38844dc4e54afd2a09fb7c615c29db9de3d979d",
+        "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1",
+        "user_source/hdl_source/inspection_region_config.v": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+        "user_source/hdl_source/experiment_osd.v": "1d333acdcd12c948baa2f6c5f1887325ba365ad5596daa8e4df29a430cd6edcf",
+        "user_source/hdl_source/classified_count_renderer.v": "4dbc3f7e8b7d74ffea7e8009dbe826d8d03a882a92d93ff4248a2f47eeec025c",
+        "user_source/hdl_source/compact_ascii_rom.v": "101c4b7fd9ba7781057d5919eec743403566bfa2f37ef95049fc0efdbe6fbb99",
+        "user_source/hdl_source/compact_inspector_osd.v": "40b597d1ed7e7d49072078dbbe9ded4051e5d53b09f7fe38085236e6c719c6b4",
+        "user_source/hdl_source/compact_cjk_rom.v": "1f9130ad604aec03e716eca7d2581c767eb22c31c241d089f23cad3424cfe4fd",
+        "user_source/hdl_source/compact_template_rom.v": "f64f1138b64aa502beefe690385fdb368c4072acd7555fd27122c3892d086ee5",
+        "user_source/hdl_source/classified_dual_page_osd.v": "858518fcfe248fdfd1722affbc0216e397cf5216b50adef41783e3754b67b8c4",
+        "sim/tb_simple_recovery_ui.sv": "abaebe1aecb92682c5fc47fa62c48c4ad37b206e36a6ea7b6db116cea349eca6"
+      },
+      "compile_sha256": "05c7631663584d20606154a54ceeae33022881c0a2a0dc40779ae652a730ef42",
+      "log_sha256": "cfe81498cf0d8934a391d735174cc6515b10d5df31260ff5a868bb5cccb37694",
+      "mode": "NEW_RUN"
+    },
+    {
+      "name": "text_plane_prefetch",
+      "group": "legacy",
+      "inputs": {
+        "user_source/hdl_source/compact_ascii_rom.v": "101c4b7fd9ba7781057d5919eec743403566bfa2f37ef95049fc0efdbe6fbb99",
+        "user_source/hdl_source/compact_cjk_rom.v": "1f9130ad604aec03e716eca7d2581c767eb22c31c241d089f23cad3424cfe4fd",
+        "user_source/hdl_source/compact_template_rom.v": "f64f1138b64aa502beefe690385fdb368c4072acd7555fd27122c3892d086ee5",
+        "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1",
+        "user_source/hdl_source/compact_inspector_osd.v": "40b597d1ed7e7d49072078dbbe9ded4051e5d53b09f7fe38085236e6c719c6b4",
+        "sim/reference/R16_previous_compact_inspector_osd_r6.v": "9b43e0c67dc82f6e49e5e0fadf751c58258f58cec65d143d4706643002f0d3d6",
+        "sim/tb_text_plane_prefetch.sv": "94774f6cca15ea1d4d7660e441e4b60a4400e7063cd4a3deb7eb99780b2687dd"
+      },
+      "compile_sha256": "6e389003c9542f8865e7a566c99cc7774e6aba75b345a0965185778f6e76e910",
+      "log_sha256": "33b916f93844e36ec7f3dbe3c689d5644a1c28571f3d8ef3108002807385eb95",
+      "mode": "NEW_RUN"
+    }
+  ],
+  "source_files": 637,
+  "scope": {
+    "status": "PASS_RL7_SCOPE_INVARIANTS",
+    "base_files": 636,
+    "unchanged": 626,
+    "changed": [
+      "td_project/camera_to_dsi_display.al",
+      "td_project/camera_to_dsi_display.sdc",
+      "user_source/constraints_source/pin.adc",
+      "user_source/hdl_source/classified_dual_page_osd.v",
+      "user_source/hdl_source/compact_inspector_osd.v",
+      "user_source/hdl_source/design_top_wrapper.v",
+      "user_source/hdl_source/isp/isp_top.v",
+      "user_source/hdl_source/video_in.v",
+      "user_source/hdl_source/video_out.v",
+      "user_source/hdl_source/frame_shape_search.v"
+    ],
+    "new_module": "user_source/hdl_source/contest_latency_clock.v",
+    "new_source_files": 637,
+    "counter_relay_controller_keys_camera_sources_unchanged": true,
+    "classifier_decision_predicates_unchanged": true,
+    "detector_timing_only": "Original first-free/last-tied-largest combinational selector unchanged; latch three outputs in existing SCALE; consume in COMPARE. No new states/cycles/thresholds/ranking changes."
+  },
+  "board_operated": false,
+  "new_hardware_acceptance": false,
+  "classification_or_cold_start_fixed": false,
+  "actual_refill_actuator_implemented": false,
+  "precision_1mm_acceptance": false,
+  "measurement": "FPGA decoded RAW10 SOF -> actual first valid pixel after OSD at HDMI transmitter; excludes exposure-before-SOF and panel delay"
+}

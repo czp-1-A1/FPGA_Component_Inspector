@@ -1,0 +1,1 @@
+RL7 demonstration candidate. Read FIELD_GUIDE.md. Original classification rules/stop/keys unchanged; candidate selection snapshot in existing SCALE for timing. C12 buzzer and measured RAW-SOF to post-OSD HDMI pixel age/source.38 exact-source checks plus actual strict routed audit; human board acceptance pending. Never overwrite old RL7 or readonly Ethernet bits.

@@ -1,0 +1,30 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 01:57:31 on Nov 01,2026
+vlog -work test_simple_recovery_ui ../user_source/hdl_source/bin16_bcd.v ../user_source/hdl_source/osd_ascii_rom.v ../user_source/hdl_source/osd_cjk_rom.v ../user_source/hdl_source/osd_logo_rom.v ../user_source/hdl_source/inspection_region_config.v ../user_source/hdl_source/experiment_osd.v ../user_source/hdl_source/classified_count_renderer.v ../user_source/hdl_source/compact_ascii_rom.v ../user_source/hdl_source/compact_inspector_osd.v ../user_source/hdl_source/compact_cjk_rom.v ../user_source/hdl_source/compact_template_rom.v ../user_source/hdl_source/classified_dual_page_osd.v 
+-- Compiling module bin16_bcd
+-- Compiling module osd_ascii_rom
+-- Compiling module osd_cjk_rom
+-- Compiling module osd_logo_rom
+-- Compiling module inspection_region_config
+-- Compiling module experiment_osd
+-- Compiling module calibration_osd
+-- Compiling module classified_count_renderer
+-- Compiling module compact_ascii_rom
+-- Compiling module compact_inspector_osd
+-- Compiling module compact_cjk_rom
+-- Compiling module compact_template_rom
+-- Compiling module classified_dual_page_osd
+
+Top level modules:
+	classified_dual_page_osd
+End time: 01:57:31 on Nov 01,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 01:57:31 on Nov 01,2026
+vlog -sv -work test_simple_recovery_ui tb_simple_recovery_ui.sv 
+-- Compiling module tb_simple_recovery_ui
+
+Top level modules:
+	tb_simple_recovery_ui
+End time: 01:57:31 on Nov 01,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

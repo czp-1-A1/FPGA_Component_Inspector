@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "inputs": {},
+  "tests": [
+    {
+      "name": "tb_camera_gate",
+      "log_sha256": "04c1f94f48fbf88bd27b6c29b1435f148e399f90c496500335846cf5b42e8921"
+    }
+  ],
+  "board_operated": false,
+  "scope": "lookup equivalence and real serialized I2C with modeled ACK slave; not optical readback",
+  "fixture_sha256": {
+    "camera_expected.hex": "8d9d0823e2ffef12bf3ab707fa3b989f2d990080cde00c7bed43821bb149a568",
+    "original_gain_reference.v": "ad9f93fd03eb48080171e18f6bb88e937ebb9cc33c10955c41d39deb3c985e4c",
+    "REFERENCE.json": "9344c79eb44cce3f742df22f1d8d103b68d9a208cd1b5f56fb7d6afa6d52821b",
+    "tb_camera_startup_bus.sv": "4d91ba604c647ca051ced4e394a7e8d6c43c1ccccfcecbf74ce8da54cf0209fa",
+    "tb_gain_equivalence.sv": "5adb494e9ab2d8008fa1850ab8d592adfa4a7142f307aab64cf2b573f96642d6"
+  },
+  "simulation_input_sha256": {
+    "camera_cone.v": "a7b1b625f93fdc35942f281c45df7833415bba48950c5b3242b53bcbf9f36e0a",
+    "camera_expected.hex": "8d9d0823e2ffef12bf3ab707fa3b989f2d990080cde00c7bed43821bb149a568",
+    "original_gain_reference.v": "ad9f93fd03eb48080171e18f6bb88e937ebb9cc33c10955c41d39deb3c985e4c",
+    "REFERENCE.json": "9344c79eb44cce3f742df22f1d8d103b68d9a208cd1b5f56fb7d6afa6d52821b",
+    "tb_camera_gate.sv": "6348810b4243526a6696e5b7c12dfc04f52aedc3a4f4a98ce2f4548f7fd33dee",
+    "tb_camera_startup_bus.sv": "4d91ba604c647ca051ced4e394a7e8d6c43c1ccccfcecbf74ce8da54cf0209fa",
+    "tb_gain_equivalence.sv": "5adb494e9ab2d8008fa1850ab8d592adfa4a7142f307aab64cf2b573f96642d6"
+  },
+  "library_sha256": {
+    "E:\\TD\\sim_release\\common\\al_map_basic.v": "ac0aa7f986fdfba39fb7b361b26ace4ba1049807d6feccde09b2fa21eb0903da",
+    "E:\\TD\\sim_release\\common\\al_map_lut.v": "a8af44de361088c0bb66a58d5af9b8eb5aa6e9b8ca56992d6164a9f689c488f0",
+    "E:\\TD\\sim_release\\common\\al_map_seq.v": "484d26a861f1243ab949873529c45dc2d545571af47a348249fa7b01b1500c50",
+    "E:\\TD\\sim_release\\common\\al_map_adder.v": "02dfbc0864687bcba96cbed80c69dada2c511e24c89b0e4e308fed3ccc8ccf84",
+    "E:\\TD\\sim_release\\common\\al_phy_glbl.v": "c194f5335b54a6d707a8b633b8f4d3a171e52006337600f7433379b11fb3b2ff",
+    "E:\\TD\\sim_release\\ph1p\\ph1p_phy_gsr.v": "787312a19b4007bef3b76986bce267966b2d04c1871290ce29905629e38f1524",
+    "E:\\TD\\sim_release\\ph1p\\ph1p_phy_lslice.v": "bf1b01f9b22304fead0f4e75a777d27b7465019fe522f6c6ef0258d9fb358af2",
+    "E:\\TD\\sim_release\\ph1p\\ph1p_logic_slice.v": "682f22f9088afcde0697c24b526350b321e4e9e6de8ed6f0a213148f367a7147"
+  },
+  "gate_netlist_sha256": "4116300a7a837062740a5cb5ef2544f78b687b802f5725f405f33f6b1b51869a",
+  "cone_closure": {
+    "cells": 308,
+    "driverless_inputs": [
+      "IO_cam_sda_dup_1",
+      "O_cam_24m_dup_1",
+      "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/sys_rst_n"
+    ],
+    "modeled_inputs": "clock, reset, open-drain SDA with ACK slave only",
+    "all_other_consumed_nets_have_selected_cell_drivers": true
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "status": "PASS",
+  "inputs": {
+    "user_source/hdl_source/pocket_relay_stop.v": "a3b3644f807914de36a1a5b2248dd97b6b88dc0d8039497c5d98be636102e8d6",
+    "user_source/hdl_source/pocket_relay_stop_v2.v": "90b29dfa9a45b132e191bfc0a459f894cbed5ffc7a85a9c5bb5fc5eb37cb7520",
+    "user_source/hdl_source/classified_pocket_counter.v": "599582c4ec933b9d415a7bec52a85c6c33da431396e8ac595208ea47e822c683",
+    "user_source/hdl_source/classified_count_pipeline.v": "189481c897bf4fad8ef9b6fd817307969c6f106a2902da7dd8904001a94bbaa7",
+    "user_source/hdl_source/pocket_run_controls.v": "28f81bdf90fc77ed9f5f97305b216ef6108de2f4c4c383b8a18c4325932636bc",
+    "user_source/hdl_source/status_cdc.v": "e5fdb5849aca067a9166a4e93fc1fcb057f9cbfc07f8f0eb5eb83d1cd072f151",
+    "user_source/hdl_source/inspection_region_config.v": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+    "user_source/hdl_source/empty_candidate_probe.v": "b49c6b60396b5940ddef6db4f0e0d297ef8fd01cc7c3deebd6cdecfc43e1462c",
+    "user_source/hdl_source/present_surface_check.v": "fdf6a014295862be953de39755e2259fcb89283a161a3530ad9d71fca23deabc",
+    "user_source/hdl_source/local_edge_surface_check.v": "d0c67c9b30d5e22ba4b3216de2c9fff45af0d3120d79e773a177bbfcc699c791",
+    "user_source/hdl_source/present_review_probe.v": "8e2c7bcc41f9738f469f544841abeae1a28c2cd4feec2e3551e7c8f151449077",
+    "user_source/hdl_source/frame_shape_search.v": "85a7fe0e66de12ca57ff53264fc8547417d54d29890c3a3ca3bc8f8da177514e",
+    "user_source/hdl_source/compact_ascii_rom.v": "101c4b7fd9ba7781057d5919eec743403566bfa2f37ef95049fc0efdbe6fbb99",
+    "user_source/hdl_source/compact_cjk_rom.v": "1f9130ad604aec03e716eca7d2581c767eb22c31c241d089f23cad3424cfe4fd",
+    "user_source/hdl_source/compact_template_rom.v": "f64f1138b64aa502beefe690385fdb368c4072acd7555fd27122c3892d086ee5",
+    "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1",
+    "user_source/hdl_source/compact_inspector_osd.v": "40b597d1ed7e7d49072078dbbe9ded4051e5d53b09f7fe38085236e6c719c6b4"
+  },
+  "extra_inputs": {
+    "sim/extracted_production_motor.sv": "4ec4798e566d13c78b20d7f8f271ad3dabbc8f650d1c96b3006e73e9321f9581",
+    "sim/tb_v7_position_control.sv": "1596ee041f5af3288990151f5c01f2d521a752eb0dff4fba524c6a19246875c0",
+    "sim/tb_v7_osd.sv": "df0bfa42805085db7649872ec79d57b9c86fdf45d53b37ab43ba9dbd35eeefcf",
+    "sim/tb_v7_transport.sv": "4a6ae90335b286e0d00c6f5d5ce9267079d12ed030d49da4c0568fe4bd1ea11f",
+    "sim/tb_v7_one.sv": "b251ba806601a5adb8247dcdd6e563612eec5f5905f5f8c8231d6f02f6f435c9",
+    "sim/tb_v7_two.sv": "0226aad322ce449c90e7778cae5b4b04ac814981537c9b8a13cc3625aa035cc8",
+    "sim/tb_v7_four.sv": "31a918737e835ef939e835b7124aeb5f4c22c12dae7fe5ef96c8da3c8a532e9f",
+    "sim/tb_v7_five_alarm.sv": "eb86b441d3bc5c8e349f9ee5d81ae02e5e36dd5b37317f0d14ce736292e39729",
+    "sim/tb_v7_eight_alarm.sv": "c9ad589fb494f2e868044895aafaad83d95d51dcc26a0c16924ff6df52e2fb2d",
+    "sim/tb_v7_return.sv": "7151cbfc73071b978dc20aac101a2590d7fa2b527a767a33750309cca9ed25e1",
+    "sim/tb_v7_missing.sv": "8d649d6fc13201f0d44d5c6be6a1edfe7113c76d7ae4bc6ddac212f0cc142bb9",
+    "sim/tb_v7_wrong_kind.sv": "15b8eb263bb4bfd359d49d40486b0e100e964129ddd9e70076678e56a8e2a6ae",
+    "sim/tb_v7_variable.sv": "9d469f061a031eb545bde0fada2a10df696ece2796dd0da6ae0d95a63c15e231",
+    "sim/tb_v7_fast.sv": "95e58bbb189b55abe25b8325256b5329f00fb11b87137372b067e68cb36a9a25",
+    "sim/tb_v7_alarm_control.sv": "b6fd0c56a2659ae32c369d62b2baeae9dd5b63171f4eb0e7fd4cd9e67ae9476a",
+    "sim/tb_v7_rgb.sv": "74095ec3c7ee8830739d604638bb934ee350812543973178096537b58b8018a6",
+    "sim/tb_v7_real_second.sv": "8774b9bc717602a860603b653856369a5208dc4f2cd2c2dbe5408e1e4d8ef5b2",
+    "sim/tb_v7_rgb_five_alarm.sv": "acb654e284283a5c8f948794dfce6f562e73c0f13d06df479aee08623644aec0"
+  },
+  "tests": [
+    {
+      "name": "tb_v7_position_control",
+      "sha256": "69ed3426ac0ddec42101cf516b0bdc885051913345b5df877293fcd4e08b9d4d"
+    },
+    {
+      "name": "tb_v7_osd",
+      "sha256": "61b16aa45f732dec64728b725234e275feb2aa2b87ac93ae644fa5acf62b249b"
+    },
+    {
+      "name": "tb_v7_transport",
+      "sha256": "6c4ec64d1d1030ac7943614e275b73f5994842a4f7ea95c0fccc55ef231555ae"
+    },
+    {
+      "name": "tb_v7_one",
+      "sha256": "1e1738f86c2f4e390365156d165674f60a27c8b513781a0ce73dbff8ba582e56"
+    },
+    {
+      "name": "tb_v7_two",
+      "sha256": "1673d3cc01181ce228f00b509f533680fbd708434debe476f8b368635a75c48b"
+    },
+    {
+      "name": "tb_v7_four",
+      "sha256": "97d04588ea4c8abc093a53deb7fc0d299c87b40ce963a54e5882e72078b93641"
+    },
+    {
+      "name": "tb_v7_five_alarm",
+      "sha256": "e67b4b03b674703a890e2f88205c407a408af56c37b53feb31b919670425e683"
+    },
+    {
+      "name": "tb_v7_eight_alarm",
+      "sha256": "afbe0d39cf8e1159c1def598dd34442c772f674d63757fce4c050ff86e632c1b"
+    },
+    {
+      "name": "tb_v7_return",
+      "sha256": "b6e17ae1b3854bd456c9e7a4c72a5275be6fc0ddc3ab22540c1ef1a9e8a7315a"
+    },
+    {
+      "name": "tb_v7_missing",
+      "sha256": "e9f9cb8effdc12cf64a967a116f0491be01edc9199a57dbda66cf2c3a3b471d9"
+    },
+    {
+      "name": "tb_v7_wrong_kind",
+      "sha256": "04cad388d602a1abb8cb959475688157192caa2d0efcd8562a9dad7c1f24458c"
+    },
+    {
+      "name": "tb_v7_variable",
+      "sha256": "fbfa7fe9549206295df3c9898c4239d5e859011785a9e7e51edc7adf323116c9"
+    },
+    {
+      "name": "tb_v7_fast",
+      "sha256": "897ad208819560662c1c6aecba68aa877e004ad6bcda7302dcfc78dbfc549357"
+    },
+    {
+      "name": "tb_v7_alarm_control",
+      "sha256": "a08f017ddd998910a381080436102f206e87426cf030465b4b631d089d77d510"
+    },
+    {
+      "name": "tb_v7_rgb",
+      "sha256": "76035df216486d44e41449b5d1cda8f9b66206d30186eed91a244a3b4ea7a41b"
+    },
+    {
+      "name": "tb_v7_real_second",
+      "sha256": "6d9f80cf08476deea955ba86b6c6340a9b1f515b551d71e0645d7f42d3dec025"
+    },
+    {
+      "name": "tb_v7_rgb_five_alarm",
+      "sha256": "ca634fd62f544cd9e4c0ad0ad54d4b84a802370a8f5cc112cd6197eb88b29e48"
+    }
+  ],
+  "board_acceptance": false
+}

@@ -1,0 +1,35 @@
+{
+  "version": "R22_RL7_Demo_BuzzerLatency_V1_20261101",
+  "branch": "codex/rl7-demo-buzzer-latency",
+  "source_commit": "d8f495681c771457574d173707374d93b2a25d6c",
+  "baseline": "RL7 a716eac",
+  "bit_sha256": "c25af6efc844f7d01e81d70d102ffeb4c08f04f476654c25c91c74b818ffd626",
+  "bit_bytes": 1789539,
+  "resources": {
+    "slice": 19076,
+    "eram": 99,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 89.91327,
+  "timing_ns": {
+    "SWNS": 0.05,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "baseline_rl7_slice": 18972,
+  "slice_delta_vs_rl7": 104,
+  "eram_delta_vs_rl7": 1,
+  "td_version": "6.2.168116",
+  "seed": 1,
+  "source_files": 637,
+  "hardware_dependencies": 105,
+  "selected_software_checks": 38,
+  "verification_reuse": "Exact compiled source/fixture hashes checked; Unchanged-module tests retained by exact hashes; affected detector/native/core/camera checks rerun for SCALE snapshot",
+  "buzzer": "C12/O_buzzer_n/LVCMOS33/PULLUP/active-low;100MHz;2kHz;200msON300msOFF;fifth-EMPTY latch",
+  "measurement": "FPGA decoded RAW10 SOF -> actual first valid pixel after OSD at HDMI transmitter; excludes exposure-before-SOF and panel delay",
+  "ui": "INSPECT RL7 DEMO; debug hidden; normalP=P-review; original classification predicates/stop/keys unchanged;16bit candidate snapshot in existing SCALE",
+  "board_acceptance": "PENDING_HUMAN_LIVE_IMAGE_BUZZER_LATENCY_AND_STOP_RETEST",
+  "pushed": false
+}
