@@ -95,4 +95,12 @@ R50 工程：`E:/2026FPGA/.codex_tmp/d3_check_minimal_physical_r50_20261031`。�
 
 **严格 lossless-v6-check-prepare 34/34 PASS，`--require-production` PASS。** 通过后仅将 R50 的观察副本复制到正式工程，逐 SHA 核验所有704份正式输入与冻结候选相同；原 R27B 计数器不变。`docs/D3_R50_SOURCE_ADOPTION.json`、`D3_OBSERVED_COUNTER_PROOF.json`、`D3_SOFTWARE_VERIFICATION.json` 保存收据。R47 偏移候选没有采用。
 
-目前完整 route 尚在运行，没有物理或实板验收。只有最终 route setup／hold、49条约束／20 Gray／9 mailbox／按键与双报警到注册 V2 审计通过后才可发布 bit；完整实现若失败，先停下保存证据并分析，不盲目开启下一轮。
+## R50 已按约定停止：没有新 bit
+
+31次信号布线迭代后仍未完成合法布线。第28次的最佳残留为1140，随后连续三次变为1202、1232、1317，同时线长从1.22051e7增加至1.23212e7、1.24037e7、1.24881e7。第28～31次分别用时511.19、433.16、338.95、400.43秒。
+
+12:42核对TD33224、父进程38676确属本轮、没有子进程后主动停止；runner session13596已关闭exit1，原settings已由finally恢复。该退出断言来自主动停止，不能称为工具完成最终route后的签核失败，也不能称电路永远无法工作。此前clock-only局部布线的over0不算整个信号布线完成。
+
+只有place DB，没有route DB，没有bit，没有最终routed setup/hold验收。原BIT_FLASH中的只读R2、单列V7、D2三个保护文件SHA均不变。代码和全部34项证据已提交`38408179`，所有704份Git blob与实际构建输入一致；本轮仅有文档/证据收尾，没有启动下一轮RTL、SYN、seed或策略。
+
+停止证据：`docs/D3_R50_ABORT_REASON.json`及工程同名ABORT_REASON；完整迭代、源/数据库/面积/停止后console/软件证明SHA和进程身份均保存。结果及下一步见`docs/D3_R50_RESULT_AND_NEXT_STEP.md`。在用户审阅本轮结果前保持停止。后续仍须最终route setup/hold、49约束/20 Gray/9 mailbox/按键/双报警至注册V2全部审计通过，才能发布bit。
