@@ -1,4 +1,4 @@
-"""Compare two saved placements of the same D3 netlist; never sign off routing."""
+"""Compare saved D3 placements, with an explicit reversible-FSS exception."""
 import argparse
 import hashlib
 import json
@@ -74,10 +74,26 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--reference', type=Path, required=True)
     parser.add_argument('--work', type=Path, required=True)
+    parser.add_argument('--fss-reference-preparation', action='store_true')
     args = parser.parse_args()
     before, after = read_placement(args.reference.resolve()), read_placement(args.work.resolve())
-    assert before['manifest_sha256'] == after['manifest_sha256']
-    assert before['synthesis_database_sha256'] == after['synthesis_database_sha256']
+    source_relation = 'IDENTICAL_SOURCE_AND_SYNTHESIS_DB'
+    if args.fss_reference_preparation:
+        from d3_fss_ref_prepare_rewrite import restore
+        baseline_manifest = json.loads((args.reference / 'frozen_inputs.json').read_text())
+        candidate_manifest = json.loads((args.work / 'frozen_inputs.json').read_text())
+        target = 'user_source/hdl_source/frame_shape_search.v'
+        assert set(baseline_manifest) == set(candidate_manifest)
+        assert {name for name in baseline_manifest if baseline_manifest[name] != candidate_manifest[name]} == {target}
+        assert restore((args.work / 'project' / target).read_text()) == (args.reference / 'project' / target).read_text()
+        proof = json.loads((args.work / 'FSS_REFERENCE_PREPARATION_PROOF.json').read_text())
+        assert proof['status'] == 'PASS_FSS_REFERENCE_PREPARATION_SOURCE_AND_TARGETED_EQUIVALENCE'
+        assert proof['source_manifest_sha256'] == after['manifest_sha256']
+        assert proof['after_sha256'] == candidate_manifest[target] and proof['before_sha256'] == baseline_manifest[target]
+        source_relation = 'ONLY_CANONICALLY_REVERSIBLE_FSS_REFERENCE_PREPARATION_DIFFERENCE'
+    else:
+        assert before['manifest_sha256'] == after['manifest_sha256']
+        assert before['synthesis_database_sha256'] == after['synthesis_database_sha256']
     assert set(before['clock_groups']) == set(after['clock_groups'])
     clock_delta = {}
     for name, group in after['clock_groups'].items():
@@ -85,7 +101,8 @@ def main():
         assert group['period_ns'] == old['period_ns']
         clock_delta[name] = {key: round(group[key] - old[key], 6) for key in
                              ['setup_wns_ns', 'setup_tns_ns', 'hold_wns_ns', 'hold_tns_ns']}
-    result = {'status': 'SAME_NETLIST_PLACEMENT_COMPARISON_ONLY',
+    result = {'status': 'EQUIVALENT_FSS_PLACEMENT_COMPARISON_ONLY' if args.fss_reference_preparation else 'SAME_NETLIST_PLACEMENT_COMPARISON_ONLY',
+              'source_relation': source_relation,
               'reference': before, 'candidate': after,
               'slice_delta': after['resources']['slice']['used'] - before['resources']['slice']['used'],
               'area_component_deltas': {key: value - before['area_components'][key]

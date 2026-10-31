@@ -1,0 +1,32 @@
+{
+  "status": "PASS_FSS_REFERENCE_PREPARATION_SOURCE_AND_TARGETED_EQUIVALENCE",
+  "baseline": "E:\\2026FPGA\\.codex_tmp\\d3_check_minimal_physical_r50_20261031",
+  "changed_files": [
+    "user_source/hdl_source/frame_shape_search.v"
+  ],
+  "unchanged_inputs": 703,
+  "before_sha256": "e031d235d78b1bfbd271f33718d064d15c0eeb80f55b3cd6f938dacd358813a4",
+  "after_sha256": "0206428dea4d2089d4f5f2e15bcf709a3eeb7e83c02f5d39168f733423b9c27c",
+  "source_manifest_sha256": "0a3a1335bf633d24be2f35b82d81729cbc116d434e791c61344cb8456aee16e1",
+  "restored_original_normalized_sha256": "fc627da94f0b744de85ff5ec2a7f009c2648a7991407c05a7a369b2f7dbf6fb2",
+  "original_normalized_sha256": "fc627da94f0b744de85ff5ec2a7f009c2648a7991407c05a7a369b2f7dbf6fb2",
+  "reference_oracle_sha256": "8ab457350a4369501c4fdf50a90c6e0b00d19812215ec725e87560343ecdf6d5",
+  "rewrite_helper_sha256": "6d09be4fd5b9177ee36dadf95cc4e3e84f80b597c38263851e50325bfec4afeb",
+  "selected_tests": [
+    "tb_d3_fss_ref_math",
+    "tb_d3_fss_ref_prepare",
+    "tb_d3_pixels",
+    "tb_d3_rank_pixels",
+    "tb_d3_fss_ref_pixels"
+  ],
+  "evidence": {
+    "E:\\2026FPGA\\.codex_tmp\\d3_fss_ref_boundaries_r52c_20261031\\verification.json": "ccfad2767037c303c9804d25963864f518cb21c57525ac26e76ee25c24e51b33",
+    "E:\\2026FPGA\\.codex_tmp\\d3_fss_ref_pixels_r52b_20261031\\verification.json": "0bee0d5bbedbea58a3c1c9a8649d19e9a45f523fffd93585f6b922b8c51e7563",
+    "E:\\2026FPGA\\.codex_tmp\\d3_fss_ref_cycle_pixels_r52_20261031\\verification.json": "5bafab356d98e145aa77f0fb23120d83c380b40f81bce172ead1f4b838bf6077"
+  },
+  "stability_scope": "Original REF_WAIT case only changes phase. left_dark/right_dark/ref_index/state_bank and constant inspection recipes remain stable until consuming REF_CHECK. Reset/frame_start/invalidate/pixel_sof discard that check; capture priority either stalls with stable operands or leaves the phase. Legal known mask bits give dark_word 0..4.",
+  "original_9bit_predicates_and_32bit_diagnostics_preserved": true,
+  "added_FSM_cycles": 0,
+  "production_modified": false,
+  "complete_software_or_physical_or_hardware_acceptance": false
+}

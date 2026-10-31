@@ -9,8 +9,17 @@ import argparse,csv,hashlib,io,json,os,re,subprocess,time
 a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--stage',choices=['place','route'],required=True);x=a.parse_args()
 w=x.work.resolve();run=w/'runs/phy_1';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 load=lambda p:json.loads(p.read_text())
-manifest=load(w/'frozen_inputs.json');reuse=load(w/'EXACT_SYNTHESIS_REUSE.json')
-assert len(manifest)==704 and reuse['source_files_identical']==704
+manifest=load(w/'frozen_inputs.json')
+if (w/'EXACT_SYNTHESIS_REUSE.json').is_file():
+ reuse=load(w/'EXACT_SYNTHESIS_REUSE.json');assert reuse['source_files_identical']==704
+ synthesis_mode='EXACT_DATABASE_REUSE'
+else:
+ syn=load(w/'synthesis_result.json')
+ assert syn['status']=='SYNTHESIS_ONLY_NOT_ROUTED_NOT_DELIVERABLE' and syn['sources']==704
+ assert syn['source_manifest_sha256']==sha(w/'frozen_inputs.json')
+ reuse={'synthesis_database_sha256':syn['gate_database_sha256'],'source_work':str(w)}
+ synthesis_mode='ACTUAL_CANDIDATE_SYNTHESIS'
+assert len(manifest)==704
 for rel,d in manifest.items():assert sha(w/'project'/rel)==d,rel
 for rel,d in load(w/'hardware_inputs.json').items():assert sha(w/'project'/rel)==d,rel
 assert sha(w/'runs/syn_1/camera_to_dsi_display_gate.db')==reuse['synthesis_database_sha256']
@@ -40,7 +49,7 @@ else:
 assert not log.exists() and not result_file.exists()
 cfg.write_bytes(active.encode());started=time.monotonic();(w/'temp').mkdir(exist_ok=True)
 env=dict(os.environ);env['TEMP']=env['TMP']=str(w/'temp')
-stage_receipt={'stage':x.stage,'original_settings_sha256':hashlib.sha256(original.encode()).hexdigest(),'active_settings_sha256':sha(cfg),'official_flow_sha256':sha(Path('E:/TD/doc/scripts/DefaultFlow.tcl')),'source_manifest_sha256':sha(w/'frozen_inputs.json'),'placement_database_before_sha256':sha(db) if db.exists() else None,'seed_strategy_clocks_constraints_changed':False,'board_operated':False}
+stage_receipt={'stage':x.stage,'synthesis_mode':synthesis_mode,'original_settings_sha256':hashlib.sha256(original.encode()).hexdigest(),'active_settings_sha256':sha(cfg),'official_flow_sha256':sha(Path('E:/TD/doc/scripts/DefaultFlow.tcl')),'source_manifest_sha256':sha(w/'frozen_inputs.json'),'placement_database_before_sha256':sha(db) if db.exists() else None,'seed_strategy_clocks_constraints_changed':False,'board_operated':False}
 (w/('STAGE_'+x.stage.upper()+'.json')).write_text(json.dumps(stage_receipt,indent=2)+'\n')
 try:
  with log.open('w') as output:
@@ -56,5 +65,5 @@ if x.stage=='place':
  result.update(status='PLACED_ONLY_NOT_ROUTED_NOT_DELIVERABLE',placement_database_sha256=sha(db),area_sha256=sha(run/'placed_intermediate.area'),timing_sha256=sha(run/'camera_to_dsi_display_place.timing'))
 else:
  bit=run/'camera_to_dsi_display.bit';assert bit.is_file() and sha(db)==stage_receipt['placement_database_before_sha256']
- result.update(status='BUILT_NEEDS_RESOURCE_TIMING_AND_IO_AUDIT',bit=str(bit),bit_sha256=sha(bit),sources=704,seed=re.search(r'place seed (\d+)',original)[1],stages=[{'stage':'syn_1','mode':'EXACT_DATABASE_REUSE','source_build':reuse['source_work']},{'stage':'phy_1','mode':'SAVED_PLACEMENT_THEN_ROUTE','placement_receipt_sha256':sha(w/'PLACEMENT_RESULT.json'),'seconds':round(time.monotonic()-started+placed['seconds'],1),'console_sha256':sha(log)}])
+ result.update(status='BUILT_NEEDS_RESOURCE_TIMING_AND_IO_AUDIT',bit=str(bit),bit_sha256=sha(bit),sources=704,seed=re.search(r'place seed (\d+)',original)[1],stages=[{'stage':'syn_1','mode':synthesis_mode,'source_build':reuse['source_work']},{'stage':'phy_1','mode':'SAVED_PLACEMENT_THEN_ROUTE','placement_receipt_sha256':sha(w/'PLACEMENT_RESULT.json'),'seconds':round(time.monotonic()-started+placed['seconds'],1),'console_sha256':sha(log)}])
 result_file.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)

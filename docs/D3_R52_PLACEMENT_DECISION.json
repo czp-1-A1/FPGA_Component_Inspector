@@ -1,0 +1,95 @@
+{
+  "status": "REJECTED_AT_PLACEMENT_AREA_REGRESSION_NO_FULL_ROUTE",
+  "timestamp": "2026-10-31T14:49:19.267052+08:00",
+  "work": "E:\\2026FPGA\\.codex_tmp\\d3_fss_ref_prepare_r52_20261031",
+  "production_head_before_experiment": "840149dad92ab71189d85bfee7e4ee0eca2ed7cb",
+  "reason": "FSS reference preparation improves placed setup by 0.377 ns, but adds 117 Slice with only 0.66/0.11 pp top1/top5 congestion reduction; top10/top15 worsen. Reject for resource/routability objective. Not proof it cannot route.",
+  "slice_before_after": [
+    19994,
+    20111
+  ],
+  "slice_percent_before_after": [
+    94.24,
+    94.79
+  ],
+  "logic_lut_slices_delta": -27,
+  "register_only_slices_delta": 144,
+  "registers_delta": 6,
+  "setup_wns_ns_before_after": [
+    0.349,
+    0.726
+  ],
+  "hold_wns_ns_before_after": [
+    -0.284,
+    -0.284
+  ],
+  "hold_tns_ns_before_after": [
+    -82.542,
+    -87.948
+  ],
+  "control_group_statistics_at_same_post_detailed_placement_stage": {
+    "R50": {
+      "clock_groups_reported": 8,
+      "CE_entries_reported": 857,
+      "SSR_ASR_entries_reported": 25,
+      "control_sets_reported": 934
+    },
+    "R52": {
+      "clock_groups_reported": 8,
+      "CE_entries_reported": 862,
+      "SSR_ASR_entries_reported": 25,
+      "control_sets_reported": 937
+    }
+  },
+  "first_placed_setup_path": {
+    "begin": "u_isp_top/local_shape_detection$detector/mult18_syn_165.clk",
+    "end": "u_isp_top/local_shape_detection$detector/pointer_bank_reg[9]_syn_8.ia",
+    "data_delay_ns": 9.054,
+    "cell_delay_ns": 5.194,
+    "net_delay_ns": 3.86,
+    "logic_levels": 11,
+    "max_fanout": 35,
+    "scope": "placed estimate, not actual routed failure endpoint"
+  },
+  "targeted_checks": 5,
+  "full_software_suite_or_hardware_acceptance": false,
+  "production_modified": false,
+  "all_704_R50_production_inputs_still_match": true,
+  "candidate_changed_files": [
+    "user_source/hdl_source/frame_shape_search.v"
+  ],
+  "all_other_703_candidate_inputs_unchanged": true,
+  "functions_or_four_display_modes_removed": false,
+  "seed": 4,
+  "synthesis_strategy": "Default",
+  "physical_strategy": "Default",
+  "IO_clocks_SDC_changed": false,
+  "placement_job_exit_code": 0,
+  "placement_settings_restored": true,
+  "full_route_started": false,
+  "bit_generated_or_published": false,
+  "active_TD_CLI_or_vsimk_jobs": 0,
+  "protected_BIT_FLASH_sha256": {
+    "LATEST_READONLY.bit": "30d067cef0667893fe548ba04e423cd6618b76f119cb2e0ecf48b96ba6a5b20f",
+    "R22_RelayAuto_Left_V7_ShiftAlarm_20261028.bit": "3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750",
+    "R22_SingleStop_SecondRecognition_D2_20261029.bit": "1b2d3c1b0e279b53e8245fe8acd61db0ce6c69e37ae1ff3d9419fbab938803ae"
+  },
+  "evidence_sha256": {
+    "frozen_inputs.json": "0a3a1335bf633d24be2f35b82d81729cbc116d434e791c61344cb8456aee16e1",
+    "hardware_inputs.json": "9727f824bb7a9b9e6f1fa08be09064c7a4239710359bd9572965d2c739166eba",
+    "FSS_REFERENCE_PREPARATION_PROOF.json": "56b9db05a5b004cd72e7dd6b84f43e2dc0a8c6b911ef096f25bdd65e6ad8a0dd",
+    "synthesis_result.json": "71f8cfa8d9febbc2c8d40154c2d0a3bb6636427fbeed9fdaf811d4223fe265cb",
+    "PLACEMENT_RESULT.json": "2ca7208fc1ab2dd821f393047336ffbda03f2598959fa47b5f969664473ab16c",
+    "PLACEMENT_COMPARISON.json": "031d35796350990318a5f07f92007bbea733f9f7dec13aa2b9bca5f38ad3c655",
+    "STAGE_PLACE.json": "1380d0095d7c9a94293f6f6023173b07637b8a73730e1207b8cee21e025d61ec",
+    "runs/syn_1/camera_to_dsi_display_gate.db": "166e1d962330b0e1a6d80861832628cdf6de2dd9cdc22a7925a7bda5422e14b6",
+    "runs/syn_1/camera_to_dsi_display_gate.area": "89ab9b999ecfa57389194de8863d9f1e29a80766f7326f4085a716ead5edb5ae",
+    "runs/syn_1/console.log": "a157dabc8ede3bc9fccff814c4982314b424fb33ca1351a54c8da80028b67f49",
+    "runs/phy_1/settings.cfg": "0a89f1e7d34a16989152a86435acf7129cb3e4ae0b98c67eaa47ddc02418624d",
+    "runs/phy_1/camera_to_dsi_display_place.db": "9c8feb4048f106a6d9454b040a8be362825c53d8f40774b13bf52f62330a7598",
+    "runs/phy_1/placed_intermediate.area": "5dbbf33f974c6886964bfd12eaa1678930561b007ef6c27182540b31c5531032",
+    "runs/phy_1/camera_to_dsi_display_place.timing": "4e7bc8a4882283580358f32e5d1e06e3564696194fffa94c1fde6d22ac1f54cc",
+    "runs/phy_1/place_console.log": "f1a264ef38311af52b4a987c09eac8adcdeb2bb5377d9f380e0c4524e9ea397b"
+  },
+  "next_analysis_only": "Audit FF control grouping and actual Slice packing of retained R50; no new RTL/seed/strategy or build started."
+}
