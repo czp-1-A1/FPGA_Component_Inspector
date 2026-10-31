@@ -1,0 +1,1732 @@
+{
+  "status": "STOPPED_AT_7200_SECOND_SOFTWARE_WATCHDOG_WITHOUT_FINAL_ROUTED_TIMING_ACCEPTANCE",
+  "timestamp": "2026-10-31T21:15:55.124261+08:00",
+  "watchdog_seconds": 7200,
+  "tool_reported_impossibility": false,
+  "full_attempt_completed": false,
+  "all_frozen_sources": 704,
+  "unchanged_sources_vs_r50": 700,
+  "software_profile": "raw-monochrome-edge-v1",
+  "software_checks": 37,
+  "production_adopted": false,
+  "all704_production_still_R50": true,
+  "original_R27B_counter_sha256": "67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c",
+  "placed_resources": {
+    "slice": 19777,
+    "capacity": 21216,
+    "percent": 93.22,
+    "eram": 100,
+    "dsp": 31,
+    "pll": 5
+  },
+  "placed_setup_wns_ns": 0.807,
+  "placed_hold_wns_ns": -0.281,
+  "first_signal_legal_iteration": 35,
+  "completed_internal_signal_legal_phases": 5,
+  "internal_phases_not_final_signoff": [
+    {
+      "phase": 1,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 7170450.0,
+          "over_count": 32340,
+          "over": 33864,
+          "worst": 5,
+          "crit": 15,
+          "seconds": 47.37
+        },
+        {
+          "iteration": 2,
+          "wire_length": 7236420.0,
+          "over_count": 25465,
+          "over": 26033,
+          "worst": 4,
+          "crit": 5,
+          "seconds": 36.47
+        },
+        {
+          "iteration": 3,
+          "wire_length": 7251620.0,
+          "over_count": 21721,
+          "over": 22015,
+          "worst": 3,
+          "crit": 0,
+          "seconds": 33.29
+        },
+        {
+          "iteration": 4,
+          "wire_length": 7383730.0,
+          "over_count": 17646,
+          "over": 17801,
+          "worst": 3,
+          "crit": 0,
+          "seconds": 40.59
+        },
+        {
+          "iteration": 5,
+          "wire_length": 7477010.0,
+          "over_count": 14504,
+          "over": 14557,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 31.25
+        },
+        {
+          "iteration": 6,
+          "wire_length": 7512480.0,
+          "over_count": 13055,
+          "over": 13093,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 24.58
+        },
+        {
+          "iteration": 7,
+          "wire_length": 7533250.0,
+          "over_count": 12012,
+          "over": 12043,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 26.15
+        },
+        {
+          "iteration": 8,
+          "wire_length": 7839820.0,
+          "over_count": 8028,
+          "over": 8034,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 51.32
+        },
+        {
+          "iteration": 9,
+          "wire_length": 7936080.0,
+          "over_count": 6637,
+          "over": 6639,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 32.81
+        },
+        {
+          "iteration": 10,
+          "wire_length": 8187470.0,
+          "over_count": 5992,
+          "over": 5996,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 26.13
+        },
+        {
+          "iteration": 11,
+          "wire_length": 8379740.0,
+          "over_count": 5494,
+          "over": 5498,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 33.32
+        },
+        {
+          "iteration": 12,
+          "wire_length": 8796880.0,
+          "over_count": 3595,
+          "over": 3596,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 59.0
+        },
+        {
+          "iteration": 13,
+          "wire_length": 9005600.0,
+          "over_count": 2800,
+          "over": 2802,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 42.03
+        },
+        {
+          "iteration": 14,
+          "wire_length": 9070370.0,
+          "over_count": 2120,
+          "over": 2121,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 23.69
+        },
+        {
+          "iteration": 15,
+          "wire_length": 9168720.0,
+          "over_count": 1859,
+          "over": 1860,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 30.43
+        },
+        {
+          "iteration": 16,
+          "wire_length": 9387020.0,
+          "over_count": 1153,
+          "over": 1154,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 44.43
+        },
+        {
+          "iteration": 17,
+          "wire_length": 9500690.0,
+          "over_count": 852,
+          "over": 854,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 33.92
+        },
+        {
+          "iteration": 18,
+          "wire_length": 9570080.0,
+          "over_count": 648,
+          "over": 648,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 26.35
+        },
+        {
+          "iteration": 19,
+          "wire_length": 9622000.0,
+          "over_count": 543,
+          "over": 543,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 16.86
+        },
+        {
+          "iteration": 20,
+          "wire_length": 9684510.0,
+          "over_count": 284,
+          "over": 284,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 28.31
+        },
+        {
+          "iteration": 21,
+          "wire_length": 9736220.0,
+          "over_count": 192,
+          "over": 192,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 20.1
+        },
+        {
+          "iteration": 22,
+          "wire_length": 9762830.0,
+          "over_count": 156,
+          "over": 156,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 13.55
+        },
+        {
+          "iteration": 23,
+          "wire_length": 9786220.0,
+          "over_count": 121,
+          "over": 121,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 12.96
+        },
+        {
+          "iteration": 24,
+          "wire_length": 9810910.0,
+          "over_count": 76,
+          "over": 76,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 17.96
+        },
+        {
+          "iteration": 25,
+          "wire_length": 9824960.0,
+          "over_count": 47,
+          "over": 47,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 13.84
+        },
+        {
+          "iteration": 26,
+          "wire_length": 9833500.0,
+          "over_count": 31,
+          "over": 31,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 6.49
+        },
+        {
+          "iteration": 27,
+          "wire_length": 9838340.0,
+          "over_count": 18,
+          "over": 18,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.29
+        },
+        {
+          "iteration": 28,
+          "wire_length": 9840980.0,
+          "over_count": 12,
+          "over": 12,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.04
+        },
+        {
+          "iteration": 29,
+          "wire_length": 9842480.0,
+          "over_count": 12,
+          "over": 12,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.45
+        },
+        {
+          "iteration": 30,
+          "wire_length": 9845220.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.43
+        },
+        {
+          "iteration": 31,
+          "wire_length": 9846930.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.76
+        },
+        {
+          "iteration": 32,
+          "wire_length": 9848380.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.58
+        },
+        {
+          "iteration": 33,
+          "wire_length": 9848300.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.77
+        },
+        {
+          "iteration": 34,
+          "wire_length": 9848530.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.16
+        },
+        {
+          "iteration": 35,
+          "wire_length": 9848670.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 0.58
+        }
+      ],
+      "signal_legal_seen": true,
+      "internal_update_timing_not_final_signoff": {
+        "setup_wns_ns": -9.81,
+        "setup_tns_ns": -6407.075,
+        "setup_fep": 3553,
+        "hold_wns_ns": -0.158,
+        "hold_tns_ns": -2.781,
+        "hold_fep": 72
+      }
+    },
+    {
+      "phase": 2,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 9730210.0,
+          "over_count": 3271,
+          "over": 3281,
+          "worst": 3,
+          "crit": 1,
+          "seconds": 37.17
+        },
+        {
+          "iteration": 2,
+          "wire_length": 9683390.0,
+          "over_count": 2494,
+          "over": 2494,
+          "worst": 1,
+          "crit": 1,
+          "seconds": 21.45
+        },
+        {
+          "iteration": 3,
+          "wire_length": 9673170.0,
+          "over_count": 2121,
+          "over": 2121,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 15.93
+        },
+        {
+          "iteration": 4,
+          "wire_length": 9731520.0,
+          "over_count": 1528,
+          "over": 1528,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 30.53
+        },
+        {
+          "iteration": 5,
+          "wire_length": 9741600.0,
+          "over_count": 1306,
+          "over": 1306,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 24.81
+        },
+        {
+          "iteration": 6,
+          "wire_length": 9747600.0,
+          "over_count": 1209,
+          "over": 1209,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 19.21
+        },
+        {
+          "iteration": 7,
+          "wire_length": 9748450.0,
+          "over_count": 1180,
+          "over": 1180,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 14.18
+        },
+        {
+          "iteration": 8,
+          "wire_length": 9913300.0,
+          "over_count": 635,
+          "over": 635,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 53.16
+        },
+        {
+          "iteration": 9,
+          "wire_length": 9942220.0,
+          "over_count": 507,
+          "over": 507,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 25.62
+        },
+        {
+          "iteration": 10,
+          "wire_length": 10016800.0,
+          "over_count": 432,
+          "over": 432,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 31.79
+        },
+        {
+          "iteration": 11,
+          "wire_length": 10061400.0,
+          "over_count": 345,
+          "over": 345,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 26.35
+        },
+        {
+          "iteration": 12,
+          "wire_length": 10139400.0,
+          "over_count": 198,
+          "over": 198,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 32.94
+        },
+        {
+          "iteration": 13,
+          "wire_length": 10176700.0,
+          "over_count": 148,
+          "over": 148,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 23.16
+        },
+        {
+          "iteration": 14,
+          "wire_length": 10193500.0,
+          "over_count": 105,
+          "over": 105,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 22.06
+        },
+        {
+          "iteration": 15,
+          "wire_length": 10210200.0,
+          "over_count": 95,
+          "over": 95,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 15.75
+        },
+        {
+          "iteration": 16,
+          "wire_length": 10237000.0,
+          "over_count": 59,
+          "over": 59,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 20.1
+        },
+        {
+          "iteration": 17,
+          "wire_length": 10249700.0,
+          "over_count": 48,
+          "over": 48,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 15.27
+        },
+        {
+          "iteration": 18,
+          "wire_length": 10263000.0,
+          "over_count": 36,
+          "over": 36,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 12.11
+        },
+        {
+          "iteration": 19,
+          "wire_length": 10271900.0,
+          "over_count": 29,
+          "over": 29,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 8.72
+        },
+        {
+          "iteration": 20,
+          "wire_length": 10279100.0,
+          "over_count": 11,
+          "over": 11,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 14.82
+        },
+        {
+          "iteration": 21,
+          "wire_length": 10280800.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 6.61
+        },
+        {
+          "iteration": 22,
+          "wire_length": 10284000.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.08
+        },
+        {
+          "iteration": 23,
+          "wire_length": 10285200.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.25
+        },
+        {
+          "iteration": 24,
+          "wire_length": 10286100.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.77
+        },
+        {
+          "iteration": 25,
+          "wire_length": 10286700.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.97
+        },
+        {
+          "iteration": 26,
+          "wire_length": 10286800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.88
+        },
+        {
+          "iteration": 27,
+          "wire_length": 10286800.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 0.08
+        }
+      ],
+      "signal_legal_seen": true,
+      "internal_update_timing_not_final_signoff": {
+        "setup_wns_ns": -7.712,
+        "setup_tns_ns": -3174.608,
+        "setup_fep": 2071,
+        "hold_wns_ns": -0.158,
+        "hold_tns_ns": -1.186,
+        "hold_fep": 26
+      }
+    },
+    {
+      "phase": 3,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 10163700.0,
+          "over_count": 1880,
+          "over": 1884,
+          "worst": 3,
+          "crit": 1,
+          "seconds": 56.58
+        },
+        {
+          "iteration": 2,
+          "wire_length": 10155700.0,
+          "over_count": 1373,
+          "over": 1373,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 43.22
+        },
+        {
+          "iteration": 3,
+          "wire_length": 10141700.0,
+          "over_count": 1134,
+          "over": 1134,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 26.38
+        },
+        {
+          "iteration": 4,
+          "wire_length": 10211900.0,
+          "over_count": 752,
+          "over": 752,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 43.34
+        },
+        {
+          "iteration": 5,
+          "wire_length": 10219900.0,
+          "over_count": 682,
+          "over": 682,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 29.12
+        },
+        {
+          "iteration": 6,
+          "wire_length": 10227900.0,
+          "over_count": 636,
+          "over": 636,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 25.95
+        },
+        {
+          "iteration": 7,
+          "wire_length": 10231700.0,
+          "over_count": 595,
+          "over": 595,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 24.6
+        },
+        {
+          "iteration": 8,
+          "wire_length": 10348000.0,
+          "over_count": 334,
+          "over": 334,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 79.3
+        },
+        {
+          "iteration": 9,
+          "wire_length": 10377000.0,
+          "over_count": 232,
+          "over": 232,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 48.37
+        },
+        {
+          "iteration": 10,
+          "wire_length": 10418200.0,
+          "over_count": 215,
+          "over": 215,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 51.59
+        },
+        {
+          "iteration": 11,
+          "wire_length": 10443000.0,
+          "over_count": 193,
+          "over": 193,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 35.07
+        },
+        {
+          "iteration": 12,
+          "wire_length": 10483200.0,
+          "over_count": 122,
+          "over": 122,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 53.59
+        },
+        {
+          "iteration": 13,
+          "wire_length": 10505700.0,
+          "over_count": 99,
+          "over": 99,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 35.63
+        },
+        {
+          "iteration": 14,
+          "wire_length": 10524700.0,
+          "over_count": 62,
+          "over": 62,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 27.62
+        },
+        {
+          "iteration": 15,
+          "wire_length": 10531200.0,
+          "over_count": 66,
+          "over": 66,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 16.45
+        },
+        {
+          "iteration": 16,
+          "wire_length": 10550200.0,
+          "over_count": 39,
+          "over": 39,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 32.9
+        },
+        {
+          "iteration": 17,
+          "wire_length": 10562800.0,
+          "over_count": 25,
+          "over": 25,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 21.35
+        },
+        {
+          "iteration": 18,
+          "wire_length": 10567200.0,
+          "over_count": 20,
+          "over": 20,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 15.0
+        },
+        {
+          "iteration": 19,
+          "wire_length": 10570000.0,
+          "over_count": 16,
+          "over": 16,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 9.62
+        },
+        {
+          "iteration": 20,
+          "wire_length": 10573400.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 11.11
+        },
+        {
+          "iteration": 21,
+          "wire_length": 10574800.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.23
+        },
+        {
+          "iteration": 22,
+          "wire_length": 10577400.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.12
+        },
+        {
+          "iteration": 23,
+          "wire_length": 10577500.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.35
+        },
+        {
+          "iteration": 24,
+          "wire_length": 10578400.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.95
+        },
+        {
+          "iteration": 25,
+          "wire_length": 10579100.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.36
+        },
+        {
+          "iteration": 26,
+          "wire_length": 10578400.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.17
+        },
+        {
+          "iteration": 27,
+          "wire_length": 10578600.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.78
+        },
+        {
+          "iteration": 28,
+          "wire_length": 10578900.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 0.16
+        }
+      ],
+      "signal_legal_seen": true,
+      "internal_update_timing_not_final_signoff": {
+        "setup_wns_ns": -6.892,
+        "setup_tns_ns": -3438.371,
+        "setup_fep": 1954,
+        "hold_wns_ns": -0.158,
+        "hold_tns_ns": -0.794,
+        "hold_fep": 15
+      }
+    },
+    {
+      "phase": 4,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 10568300.0,
+          "over_count": 1174,
+          "over": 1175,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 81.53
+        },
+        {
+          "iteration": 2,
+          "wire_length": 10573900.0,
+          "over_count": 777,
+          "over": 777,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 42.4
+        },
+        {
+          "iteration": 3,
+          "wire_length": 10579500.0,
+          "over_count": 638,
+          "over": 638,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 31.65
+        },
+        {
+          "iteration": 4,
+          "wire_length": 10642600.0,
+          "over_count": 411,
+          "over": 411,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 56.8
+        },
+        {
+          "iteration": 5,
+          "wire_length": 10661600.0,
+          "over_count": 344,
+          "over": 344,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 35.76
+        },
+        {
+          "iteration": 6,
+          "wire_length": 10663400.0,
+          "over_count": 326,
+          "over": 326,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 28.48
+        },
+        {
+          "iteration": 7,
+          "wire_length": 10666300.0,
+          "over_count": 300,
+          "over": 300,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 28.17
+        },
+        {
+          "iteration": 8,
+          "wire_length": 10749100.0,
+          "over_count": 183,
+          "over": 183,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 82.52
+        },
+        {
+          "iteration": 9,
+          "wire_length": 10768000.0,
+          "over_count": 145,
+          "over": 145,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 52.07
+        },
+        {
+          "iteration": 10,
+          "wire_length": 10800400.0,
+          "over_count": 128,
+          "over": 128,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 47.47
+        },
+        {
+          "iteration": 11,
+          "wire_length": 10831300.0,
+          "over_count": 108,
+          "over": 108,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 38.86
+        },
+        {
+          "iteration": 12,
+          "wire_length": 10857500.0,
+          "over_count": 69,
+          "over": 69,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 58.94
+        },
+        {
+          "iteration": 13,
+          "wire_length": 10874100.0,
+          "over_count": 59,
+          "over": 59,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 42.36
+        },
+        {
+          "iteration": 14,
+          "wire_length": 10884800.0,
+          "over_count": 31,
+          "over": 31,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 33.36
+        },
+        {
+          "iteration": 15,
+          "wire_length": 10892600.0,
+          "over_count": 28,
+          "over": 28,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 20.67
+        },
+        {
+          "iteration": 16,
+          "wire_length": 10897400.0,
+          "over_count": 21,
+          "over": 21,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 25.5
+        },
+        {
+          "iteration": 17,
+          "wire_length": 10904000.0,
+          "over_count": 14,
+          "over": 14,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 23.67
+        },
+        {
+          "iteration": 18,
+          "wire_length": 10909400.0,
+          "over_count": 8,
+          "over": 8,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 12.09
+        },
+        {
+          "iteration": 19,
+          "wire_length": 10910900.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 7.94
+        },
+        {
+          "iteration": 20,
+          "wire_length": 10912900.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 10.3
+        },
+        {
+          "iteration": 21,
+          "wire_length": 10913500.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.18
+        },
+        {
+          "iteration": 22,
+          "wire_length": 10914100.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 5.4
+        },
+        {
+          "iteration": 23,
+          "wire_length": 10916000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.62
+        },
+        {
+          "iteration": 24,
+          "wire_length": 10915900.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.49
+        },
+        {
+          "iteration": 25,
+          "wire_length": 10916300.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.92
+        },
+        {
+          "iteration": 26,
+          "wire_length": 10916900.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.85
+        },
+        {
+          "iteration": 27,
+          "wire_length": 10918200.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 2.63
+        }
+      ],
+      "signal_legal_seen": true,
+      "internal_update_timing_not_final_signoff": {
+        "setup_wns_ns": -10.546,
+        "setup_tns_ns": -5478.616,
+        "setup_fep": 2107,
+        "hold_wns_ns": -0.158,
+        "hold_tns_ns": -0.571,
+        "hold_fep": 10
+      }
+    },
+    {
+      "phase": 5,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 10958900.0,
+          "over_count": 927,
+          "over": 929,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 190.73
+        },
+        {
+          "iteration": 2,
+          "wire_length": 10995000.0,
+          "over_count": 570,
+          "over": 571,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 54.45
+        },
+        {
+          "iteration": 3,
+          "wire_length": 11006600.0,
+          "over_count": 449,
+          "over": 450,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 58.49
+        },
+        {
+          "iteration": 4,
+          "wire_length": 11060400.0,
+          "over_count": 304,
+          "over": 305,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 72.28
+        },
+        {
+          "iteration": 5,
+          "wire_length": 11079200.0,
+          "over_count": 239,
+          "over": 240,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 78.18
+        },
+        {
+          "iteration": 6,
+          "wire_length": 11087900.0,
+          "over_count": 217,
+          "over": 218,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 62.92
+        },
+        {
+          "iteration": 7,
+          "wire_length": 11088800.0,
+          "over_count": 212,
+          "over": 213,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 62.41
+        },
+        {
+          "iteration": 8,
+          "wire_length": 11152800.0,
+          "over_count": 140,
+          "over": 141,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 137.5
+        },
+        {
+          "iteration": 9,
+          "wire_length": 11156100.0,
+          "over_count": 125,
+          "over": 125,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 80.93
+        },
+        {
+          "iteration": 10,
+          "wire_length": 11193300.0,
+          "over_count": 121,
+          "over": 121,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 64.66
+        },
+        {
+          "iteration": 11,
+          "wire_length": 11224700.0,
+          "over_count": 94,
+          "over": 94,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 50.82
+        },
+        {
+          "iteration": 12,
+          "wire_length": 11255600.0,
+          "over_count": 65,
+          "over": 65,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 75.0
+        },
+        {
+          "iteration": 13,
+          "wire_length": 11274900.0,
+          "over_count": 48,
+          "over": 48,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 39.73
+        },
+        {
+          "iteration": 14,
+          "wire_length": 11283600.0,
+          "over_count": 31,
+          "over": 31,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 42.55
+        },
+        {
+          "iteration": 15,
+          "wire_length": 11291200.0,
+          "over_count": 31,
+          "over": 31,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 21.54
+        },
+        {
+          "iteration": 16,
+          "wire_length": 11298400.0,
+          "over_count": 25,
+          "over": 25,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 20.5
+        },
+        {
+          "iteration": 17,
+          "wire_length": 11308000.0,
+          "over_count": 18,
+          "over": 18,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 12.18
+        },
+        {
+          "iteration": 18,
+          "wire_length": 11312100.0,
+          "over_count": 14,
+          "over": 14,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 11.69
+        },
+        {
+          "iteration": 19,
+          "wire_length": 11317600.0,
+          "over_count": 12,
+          "over": 12,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 11.88
+        },
+        {
+          "iteration": 20,
+          "wire_length": 11319500.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 19.18
+        },
+        {
+          "iteration": 21,
+          "wire_length": 11320100.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 9.12
+        },
+        {
+          "iteration": 22,
+          "wire_length": 11321600.0,
+          "over_count": 9,
+          "over": 9,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 10.81
+        },
+        {
+          "iteration": 23,
+          "wire_length": 11322300.0,
+          "over_count": 9,
+          "over": 9,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 9.19
+        },
+        {
+          "iteration": 24,
+          "wire_length": 11325700.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 12.02
+        },
+        {
+          "iteration": 25,
+          "wire_length": 11328900.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 11.38
+        },
+        {
+          "iteration": 26,
+          "wire_length": 11330200.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.31
+        },
+        {
+          "iteration": 27,
+          "wire_length": 11330400.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 6.45
+        },
+        {
+          "iteration": 28,
+          "wire_length": 11330600.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.9
+        },
+        {
+          "iteration": 29,
+          "wire_length": 11331500.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.78
+        },
+        {
+          "iteration": 30,
+          "wire_length": 11332700.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.63
+        },
+        {
+          "iteration": 31,
+          "wire_length": 11332200.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.8
+        },
+        {
+          "iteration": 32,
+          "wire_length": 11332000.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.65
+        },
+        {
+          "iteration": 33,
+          "wire_length": 11333200.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.96
+        },
+        {
+          "iteration": 34,
+          "wire_length": 11334000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.98
+        },
+        {
+          "iteration": 35,
+          "wire_length": 11334000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.75
+        },
+        {
+          "iteration": 36,
+          "wire_length": 11334400.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.97
+        },
+        {
+          "iteration": 37,
+          "wire_length": 11334800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.95
+        },
+        {
+          "iteration": 38,
+          "wire_length": 11335000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.03
+        },
+        {
+          "iteration": 39,
+          "wire_length": 11335100.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.08
+        },
+        {
+          "iteration": 40,
+          "wire_length": 11334800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.6
+        },
+        {
+          "iteration": 41,
+          "wire_length": 11334900.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.64
+        },
+        {
+          "iteration": 42,
+          "wire_length": 11335000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.65
+        },
+        {
+          "iteration": 43,
+          "wire_length": 11335000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.64
+        },
+        {
+          "iteration": 44,
+          "wire_length": 11334800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.82
+        },
+        {
+          "iteration": 45,
+          "wire_length": 11334800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.0
+        },
+        {
+          "iteration": 46,
+          "wire_length": 11335400.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.14
+        },
+        {
+          "iteration": 47,
+          "wire_length": 11335400.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 0.08
+        }
+      ],
+      "signal_legal_seen": true,
+      "internal_update_timing_not_final_signoff": {
+        "setup_wns_ns": -10.26,
+        "setup_tns_ns": -6427.443,
+        "setup_fep": 2808,
+        "hold_wns_ns": -0.158,
+        "hold_tns_ns": -0.44,
+        "hold_fep": 9
+      }
+    },
+    {
+      "phase": 6,
+      "completed_internal_phase": false,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 11468000.0,
+          "over_count": 864,
+          "over": 864,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 430.84
+        },
+        {
+          "iteration": 2,
+          "wire_length": 11508800.0,
+          "over_count": 535,
+          "over": 535,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 137.38
+        },
+        {
+          "iteration": 3,
+          "wire_length": 11527300.0,
+          "over_count": 434,
+          "over": 434,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 87.42
+        },
+        {
+          "iteration": 4,
+          "wire_length": 11594600.0,
+          "over_count": 293,
+          "over": 293,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 172.11
+        },
+        {
+          "iteration": 5,
+          "wire_length": 11604300.0,
+          "over_count": 265,
+          "over": 265,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 293.26
+        },
+        {
+          "iteration": 6,
+          "wire_length": 11609200.0,
+          "over_count": 258,
+          "over": 258,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 200.1
+        },
+        {
+          "iteration": 7,
+          "wire_length": 11614400.0,
+          "over_count": 246,
+          "over": 246,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 195.53
+        },
+        {
+          "iteration": 8,
+          "wire_length": 11694600.0,
+          "over_count": 187,
+          "over": 187,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 311.45
+        },
+        {
+          "iteration": 9,
+          "wire_length": 11717900.0,
+          "over_count": 152,
+          "over": 152,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 219.25
+        },
+        {
+          "iteration": 10,
+          "wire_length": 11761200.0,
+          "over_count": 151,
+          "over": 151,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 166.12
+        },
+        {
+          "iteration": 11,
+          "wire_length": 11795400.0,
+          "over_count": 126,
+          "over": 126,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 153.06
+        },
+        {
+          "iteration": 12,
+          "wire_length": 11829100.0,
+          "over_count": 108,
+          "over": 108,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 207.9
+        },
+        {
+          "iteration": 13,
+          "wire_length": 11857500.0,
+          "over_count": 89,
+          "over": 89,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 157.63
+        }
+      ],
+      "signal_legal_seen": false,
+      "internal_update_timing_not_final_signoff": null
+    }
+  ],
+  "final_route_database_exists": false,
+  "final_routed_resource_or_timing_accepted": false,
+  "bit_generated_or_delivered": false,
+  "software_watchdog_is_not_hardware_timing_relaxation": true,
+  "next_trial_started": false,
+  "hardware_operated": false,
+  "evidence_sha256": {
+    "STOP_PROCESS_RECORD.json": "a99e8650e6e726ee17a8fe6b105d9b524a412da7ddb2c6c77dd88fd47b846898",
+    "frozen_inputs.json": "7ee656e6c330be7c3a0fe9fac7944f90cfd770e311ab2f7fa29767ea4f70b804",
+    "hardware_inputs.json": "cf8bf3e51a9b9ba3d550f274eb10bdfa135a2850b41957dc75d2e10388737727",
+    "synthesis_result.json": "b85e0b66e8087d533ac0bad269c37f2d67adc38c8670efdc148c86386f83cfb8",
+    "STAGE_ROUTE.json": "09068df30cbbfcfc640b370107f31797b70c67e5fa8d8103516340b12c385ece",
+    "PLACEMENT_RESULT.json": "4ad528144685576bfd4db2e8a8fb5906b902c48d7a24f4c00fe9e8eb42355542",
+    "PLACEMENT_COMPARISON.json": "d8a32a5174fc91aeb59a0b33e1ee938b6a6f0453eb34e200efd966f9b56937b6",
+    "RAW_EDGE_DISPLAY_PROOF.json": "27febe146aa0ad0f5b3cbcd3a9b0ae552adb0978e8f1f524e5ed4f9a78212c1b",
+    "RAW_EDGE_SYNTHESIS_PROOF.json": "acca6c764a2e7050b0a150c2189d5459a096eae25643a5eb7597749f24ec96a4",
+    "SOFTWARE_VERIFICATION.json": "9908a693885208efa5513c4e1acac8372851551a7e90447256f7712b9befe964",
+    "SOURCE_INVARIANTS.json": "47cf6b4d1207c7938f381184351f746f91c3ea579dc7cde5bf4be29d62bbf739",
+    "CAMERA_EXPORT.json": "e60f8e3a8280527ae41180abc91547e5042bfd43389ba5448113649e4f9e10f4",
+    "FONT_SYNTHESIS_PROOF.json": "1ca2e6679f1cf5d3401158d578b509f3e7887ddd845d3451252d97fbaf9e9707",
+    "ID_RAM_SYNTHESIS_PROOF.json": "412a112c461529170b037c156207e39e4d4f43702b8dcefa3b04d30b00ea13f7",
+    "runs/syn_1/camera_to_dsi_display_gate.db": "54a65c2c59dba632e09107a2759e873049b5d5219384185c4e82f0054af8b6b7",
+    "runs/phy_1/camera_to_dsi_display_place.db": "bd87efed2db573304c39a804e56dec6f08b508a75dc1d4c89d20dcbc24b68aed",
+    "runs/phy_1/placed_intermediate.area": "9df4fa5513ab7f72ff071595681e369dec2cd59ea80efee004c73e4529152033",
+    "runs/phy_1/camera_to_dsi_display_place.timing": "1feaa54c0a401fd3a4c92a372f153956cd17dc4b95fc4359fc8200f8a0c1b9c4",
+    "runs/phy_1/console.log": "b1a2a69632c15010274f39af5a9a7a339e21169607295a669c386973716bfb4e",
+    "runs/phy_1/settings.cfg": "0a89f1e7d34a16989152a86435acf7129cb3e4ae0b98c67eaa47ddc02418624d"
+  }
+}
