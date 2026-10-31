@@ -1,0 +1,27 @@
+--- R44/user_source/hdl_source/observed_classified_pocket_counter.v
++++ R50/user_source/hdl_source/observed_classified_pocket_counter.v
+@@ -177,14 +177,22 @@
+  // The prior displacement below predicts ASSOCIATION ONLY. No absent box,
+  // class, crossing or event is ever generated from this estimate.
+  wire signed [12:0] gap_step=TAIL_RECOVERY && !measured_anchor ? previous_dx : first_dx;
+- wire signed [13:0] gap_motion=$signed({{(14-DX_BITS){missed_dx[DX_BITS-1]}},missed_dx})+$signed({gap_step[12],gap_step});
++ // CHECK follows the existing READ_CHECK RAM fetch. Only frame parameters
++ // are prepared here; fresh track_word data is consumed in CHECK as before.
++ reg signed [12:0] check_gap_step;
++ reg check_retire_anchor;
++ always @(posedge clk)if(phase==READ_CHECK)begin
++  check_gap_step<=gap_step;
++  check_retire_anchor<=motion_count!=0 && (TAIL_RECOVERY ? measured_anchor : anchor_consistent);
++ end
++ wire signed [13:0] gap_motion=$signed({{(14-DX_BITS){missed_dx[DX_BITS-1]}},missed_dx})+$signed({check_gap_step[12],check_gap_step});
+  wire [10:0] trusted_step=VELOCITY_ASSOC && pitch_valid && pitch>2*HYST+2 ? pitch-HYST-1 : match_step;
+  wire lone_return=TAIL_RECOVERY && visible==1 && matched_count==1 && pitch_valid &&
+   previous_speed<=trusted_step && first_dx>=-$signed({2'b0,trusted_step}) && first_dx<=$signed({2'b0,trusted_step}) &&
+   (!VELOCITY_ASSOC || (anchor_error>=-8 && anchor_error<=8));
+  wire signed [13:0] travelled_x=$signed({3'b0,old_x})+gap_motion;
+  wire signed [13:0] counted_distance=direction_right ? travelled_x-LINE_X : LINE_X-travelled_x;
+- wire counted_retire_safe=MOTION_RECOVERY && old_id!=0 && motion_count!=0 && (TAIL_RECOVERY ? measured_anchor : anchor_consistent) &&
++ wire counted_retire_safe=MOTION_RECOVERY && old_id!=0 && check_retire_anchor &&
+   counted_distance>$signed({3'b0,reverse_limit})+HYST;
+  wire local_return_near=!LOCAL_RECOVERY || !quarantined[si[4:0]] || predicted_near;
+  wire near_track=valid_tracks[si[4:0]] && local_return_near &&

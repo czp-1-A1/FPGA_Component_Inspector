@@ -81,6 +81,16 @@ def verify(work,require_production=False,suite_map=None):
     assert observer['original_raw_sha256']==source['user_source/hdl_source/classified_pocket_counter.v']
     assert observer['observed_raw_sha256']==source['user_source/hdl_source/observed_classified_pocket_counter.v']
     assert observer['restored_normalized_body_sha256']==observer['original_normalized_body_sha256']
+    check_prepare=observer.get('check_prepare_retiming',False)
+    if check_prepare:
+        assert observer['check_prepare_variant'] in ['offset','minimal']
+    if check_prepare and observer['check_prepare_variant']=='offset':
+        math=read(work/'CHECK_PREPARE_MATH_PROOF.json')
+        assert math['status']=='PASS_EXHAUSTIVE_CHECK_DISTANCE_MODULO_14'
+        assert math['source_sha256']==source['user_source/hdl_source/observed_classified_pocket_counter.v']
+        assert math['script_sha256']==sha(ROOT/'scripts/check_d3_check_prepare_math.py')
+        assert math['line_x']==[640] and math['comparisons']==268435456
+        evidence[str(work/'CHECK_PREPARE_MATH_PROOF.json')]=sha(work/'CHECK_PREPARE_MATH_PROOF.json')
     assert observer['placement_attributes']==['reg [5:0] ledger[0:MAX_TOTAL-1];','reg [8:0] empty_ids[0:MAX_TOTAL-1];']
     if suite_map is not None:
         assert observer['id_ram_same_clock_read_reencoding'] is True
@@ -110,9 +120,10 @@ def verify(work,require_production=False,suite_map=None):
         'tb_d3_shared_font','tb_d3_osd_equivalence','tb_d3_osd_overlap','tb_d3_native','tb_d3_empty_native'}
     required|={t['name'] for t in gate['tests']}
     if suite_map is not None:required.add('tb_d3_id_ram')
-    expected_count=33 if suite_map is not None else 32
+    if check_prepare:required.add('tb_d3_check_prepare')
+    expected_count=(33 if suite_map is not None else 32)+int(check_prepare)
     assert len(selected)==len(required)==expected_count and {t['name'] for t in selected}==required
-    result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','profile':'lossless-v5' if suite_map is not None else 'lossless-v4','selected':selected,
+    result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','profile':'lossless-v6-check-prepare' if check_prepare else 'lossless-v5' if suite_map is not None else 'lossless-v4','selected':selected,
         'selected_checks':expected_count,'expected_checks':expected_count,'inputs_manifest_sha256':sha(work/'frozen_inputs.json'),
         'evidence':evidence,'production_source_match_required':require_production,
         'hardware_acceptance':False,'resource_or_timing_acceptance':False}

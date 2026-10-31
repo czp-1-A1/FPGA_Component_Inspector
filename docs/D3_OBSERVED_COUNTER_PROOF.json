@@ -1,7 +1,7 @@
 {
-  "status": "PASS_R27B_BODY_EXACT_EXCEPT_ENUMERATED_STORAGE_REWRITES",
+  "status": "PASS_R27B_BODY_EXACT_EXCEPT_ENUMERATED_CHECK_PREPARATION",
   "original_raw_sha256": "67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c",
-  "observed_raw_sha256": "2c41ab461faf1a1125219f6ff8226b6ed1a659feb1f046669a5691afb6f18ca8",
+  "observed_raw_sha256": "33a91491ceae46f0bc0791574814a1a7133d54d19d8a6629d41b5082bb4dcc94",
   "original_normalized_body_sha256": "5a96de28654b6b0bef04907aa9d32f9af7245359c453d30126f80e8b61153e53",
   "restored_normalized_body_sha256": "5a96de28654b6b0bef04907aa9d32f9af7245359c453d30126f80e8b61153e53",
   "placement_attributes": [
@@ -10,5 +10,7 @@
   ],
   "id_ram_same_clock_read_reencoding": true,
   "flag_write_index_sharing": true,
-  "difference": "Module name, seven passive outputs/assignments; two explicit RAM placement annotations; exact enumerated same-clock RAM data/valid read split, requiring separate behavioral equivalence; exact common write-index mux for 22 single-bit writes, requiring separate cycle equivalence; original FSM, parameters, thresholds, write conditions/data/order and clock phases restored byte-exact after those enumerated rewrites."
+  "check_prepare_retiming": true,
+  "difference": "Module name, seven passive outputs/assignments; two explicit RAM placement annotations; exact enumerated same-clock RAM data/valid read split, requiring separate behavioral equivalence; exact common write-index mux for 22 single-bit writes, requiring separate cycle equivalence; exact two-block READ_CHECK preparation rewrite, original signed distance arithmetic retained; requiring separate frame-parameter stability, fresh-track and cycle equivalence; original FSM, parameters, thresholds, write conditions/data/order and clock phases restored byte-exact after those enumerated rewrites.",
+  "check_prepare_variant": "minimal"
 }
