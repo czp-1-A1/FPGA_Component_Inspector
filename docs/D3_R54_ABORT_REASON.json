@@ -1,0 +1,384 @@
+{
+  "status": "STOPPED_BEFORE_LEGAL_ROUTE_AFTER_THREE_OVER_AND_WIRE_REGRESSIONS",
+  "timestamp": "2026-10-31T17:46:05.433341+08:00",
+  "stop_scope": "Owned R54 TD42476/parent40612 only; runner52830 polled exit1 intentional stop; settings restored; no next physical experiment",
+  "baseline_production_source_commit": "38408179255b6c49d20d776c948bc0c115977449",
+  "candidate_fss_sha256": "9981d8aa09f969d5039ab033f92bbd80d0a26074e6cb1c69da8333263e94d7c8",
+  "candidate_adopted": false,
+  "all_704_production_and_head_sources_match_r50": true,
+  "unchanged_candidate_inputs_vs_r50": 703,
+  "software_profile": "lossless-v7-slot-valid",
+  "software_checks": 36,
+  "software_scope": "Exact compiled inputs and fixtures checked; unchanged groups reused only after exact match. RAW parking motor permit off. Actual SYN camera bus 307 cells, 2 resets x126 writes; no sensor readback or board acceptance.",
+  "placed_resources": {
+    "slice": 19934,
+    "capacity": 21216,
+    "percent": 93.96,
+    "remaining_slice": 1282,
+    "delta_vs_r50": -60,
+    "register_only": 1182,
+    "logic_lut_slices": 14972,
+    "carry": 3236,
+    "dram": 544,
+    "ff": 23122,
+    "eram": 105,
+    "dsp": 31,
+    "pll": 5
+  },
+  "placed_timing_not_route": {
+    "setup_wns_ns": 0.239,
+    "hold_wns_ns": -0.27
+  },
+  "routing_legal": false,
+  "actual_routed_resource_or_timing_acceptance": false,
+  "completed_post_route_passes": 0,
+  "iterations_scope": "First SIGNAL reroute only; excludes earlier clock-only zero overflow",
+  "iterations": [
+    {
+      "iteration": 1,
+      "wire_length": 7649950.0,
+      "over_count": 35092,
+      "over": 36785,
+      "worst": 5,
+      "crit": 5,
+      "seconds": 63.5
+    },
+    {
+      "iteration": 2,
+      "wire_length": 7715630.0,
+      "over_count": 28766,
+      "over": 29548,
+      "worst": 4,
+      "crit": 3,
+      "seconds": 61.76
+    },
+    {
+      "iteration": 3,
+      "wire_length": 7733500.0,
+      "over_count": 25270,
+      "over": 25720,
+      "worst": 4,
+      "crit": 2,
+      "seconds": 44.07
+    },
+    {
+      "iteration": 4,
+      "wire_length": 7905730.0,
+      "over_count": 19929,
+      "over": 20102,
+      "worst": 4,
+      "crit": 0,
+      "seconds": 50.24
+    },
+    {
+      "iteration": 5,
+      "wire_length": 7987220.0,
+      "over_count": 17211,
+      "over": 17308,
+      "worst": 4,
+      "crit": 0,
+      "seconds": 35.48
+    },
+    {
+      "iteration": 6,
+      "wire_length": 8009730.0,
+      "over_count": 16208,
+      "over": 16286,
+      "worst": 4,
+      "crit": 0,
+      "seconds": 24.59
+    },
+    {
+      "iteration": 7,
+      "wire_length": 8031380.0,
+      "over_count": 15372,
+      "over": 15450,
+      "worst": 4,
+      "crit": 0,
+      "seconds": 30.27
+    },
+    {
+      "iteration": 8,
+      "wire_length": 8368720.0,
+      "over_count": 11073,
+      "over": 11097,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 67.63
+    },
+    {
+      "iteration": 9,
+      "wire_length": 8440750.0,
+      "over_count": 9891,
+      "over": 9904,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 39.15
+    },
+    {
+      "iteration": 10,
+      "wire_length": 8746450.0,
+      "over_count": 9814,
+      "over": 9834,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 47.83
+    },
+    {
+      "iteration": 11,
+      "wire_length": 9045870.0,
+      "over_count": 8603,
+      "over": 8622,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 66.95
+    },
+    {
+      "iteration": 12,
+      "wire_length": 9594100.0,
+      "over_count": 6428,
+      "over": 6438,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 129.9
+    },
+    {
+      "iteration": 13,
+      "wire_length": 9910880.0,
+      "over_count": 5518,
+      "over": 5526,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 96.15
+    },
+    {
+      "iteration": 14,
+      "wire_length": 9998160.0,
+      "over_count": 4573,
+      "over": 4575,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 67.77
+    },
+    {
+      "iteration": 15,
+      "wire_length": 10144000.0,
+      "over_count": 4415,
+      "over": 4417,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 64.54
+    },
+    {
+      "iteration": 16,
+      "wire_length": 10568000.0,
+      "over_count": 3358,
+      "over": 3365,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 142.67
+    },
+    {
+      "iteration": 17,
+      "wire_length": 10818800.0,
+      "over_count": 2863,
+      "over": 2868,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 132.33
+    },
+    {
+      "iteration": 18,
+      "wire_length": 10981000.0,
+      "over_count": 2689,
+      "over": 2691,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 107.47
+    },
+    {
+      "iteration": 19,
+      "wire_length": 11112000.0,
+      "over_count": 2566,
+      "over": 2570,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 120.4
+    },
+    {
+      "iteration": 20,
+      "wire_length": 11280800.0,
+      "over_count": 2004,
+      "over": 2005,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 140.36
+    },
+    {
+      "iteration": 21,
+      "wire_length": 11473100.0,
+      "over_count": 1876,
+      "over": 1876,
+      "worst": 1,
+      "crit": 0,
+      "seconds": 162.53
+    },
+    {
+      "iteration": 22,
+      "wire_length": 11625800.0,
+      "over_count": 1795,
+      "over": 1796,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 147.85
+    },
+    {
+      "iteration": 23,
+      "wire_length": 11748600.0,
+      "over_count": 1796,
+      "over": 1798,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 164.11
+    },
+    {
+      "iteration": 24,
+      "wire_length": 11999700.0,
+      "over_count": 1674,
+      "over": 1676,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 297.33
+    },
+    {
+      "iteration": 25,
+      "wire_length": 12167200.0,
+      "over_count": 1604,
+      "over": 1606,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 248.68
+    },
+    {
+      "iteration": 26,
+      "wire_length": 12286300.0,
+      "over_count": 1601,
+      "over": 1602,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 244.54
+    },
+    {
+      "iteration": 27,
+      "wire_length": 12340900.0,
+      "over_count": 1367,
+      "over": 1367,
+      "worst": 1,
+      "crit": 0,
+      "seconds": 180.11
+    },
+    {
+      "iteration": 28,
+      "wire_length": 12579100.0,
+      "over_count": 1316,
+      "over": 1317,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 461.08
+    },
+    {
+      "iteration": 29,
+      "wire_length": 12685600.0,
+      "over_count": 1446,
+      "over": 1446,
+      "worst": 1,
+      "crit": 0,
+      "seconds": 236.74
+    },
+    {
+      "iteration": 30,
+      "wire_length": 12831800.0,
+      "over_count": 1539,
+      "over": 1540,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 441.9
+    },
+    {
+      "iteration": 31,
+      "wire_length": 12923100.0,
+      "over_count": 1638,
+      "over": 1639,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 520.36
+    }
+  ],
+  "best_over": 1317,
+  "stop_sequence": [
+    {
+      "iteration": 28,
+      "wire_length": 12579100.0,
+      "over_count": 1316,
+      "over": 1317,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 461.08
+    },
+    {
+      "iteration": 29,
+      "wire_length": 12685600.0,
+      "over_count": 1446,
+      "over": 1446,
+      "worst": 1,
+      "crit": 0,
+      "seconds": 236.74
+    },
+    {
+      "iteration": 30,
+      "wire_length": 12831800.0,
+      "over_count": 1539,
+      "over": 1540,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 441.9
+    },
+    {
+      "iteration": 31,
+      "wire_length": 12923100.0,
+      "over_count": 1638,
+      "over": 1639,
+      "worst": 2,
+      "crit": 0,
+      "seconds": 520.36
+    }
+  ],
+  "final_route_database_exists": false,
+  "bit_generated_or_delivered": false,
+  "production_or_protected_bit_modified": false,
+  "hardware_operated": false,
+  "next_rtl_seed_strategy_or_physical_trial_started": false,
+  "evidence_sha256": {
+    "STOP_PROCESS_RECORD.json": "8f2c16364808103b1c3bbe47b75f56fc0c37572f195019757bd768475e7ec222",
+    "frozen_inputs.json": "06244bde1d37077a858b64d2276d1350acbcfebe3420eb8b310cc55890aa3c81",
+    "hardware_inputs.json": "37057e5e61ced2111c1b56771a4eff48a9534b76227b4cbfef21cf88ae008aeb",
+    "STAGE_ROUTE.json": "451c693e9006e619f3deb861fcc9b0e7adb24a9c18dea63005c2c979eda6faf1",
+    "SLOT_VALID_STORAGE_PROOF.json": "91b0e5dd677de1e28723eef869a9eda99d52c6b176854a53028f69de17b6e7c7",
+    "SOURCE_INVARIANTS.json": "328127a6b929d974c5cc3b4f77ecd3c7cd3f8bef84dd786cdf4584903b80f67c",
+    "SOFTWARE_VERIFICATION.json": "dc593d41b3830d1a030b4e1341e49eaf91833efad2d76bab815fb956c4e067c0",
+    "OBSERVER_PROOF.json": "3eff4ab5261798c8d4d0b25e458d199849d32aa835c07fb40b8ce7de712420de",
+    "CAMERA_EXPORT.json": "8ccb174d5e0ce8c409ebbb360023558424403935216bc4a4a3e1ad6a36eefd83",
+    "FONT_SYNTHESIS_PROOF.json": "ce3aabd0e0f3fd1ad257aa02ae992f48208b1134a4ad4c53eb29664e3001c5a7",
+    "ID_RAM_SYNTHESIS_PROOF.json": "5229b642c2325c8274c8b7116b488622bbe322c665c158d668e35fc8dbfaea53",
+    "PRESERVATION_AUDIT.json": "cba358b758a99ede5b501857779da6a93f42e38cbc581d464c9305e3d56c83ae",
+    "BASELINE_DISTRIBUTED_RAM_AUDIT.json": "7249a7da24a94107b275b58f0bb6a8f628cb991cb2438f0c77d02bbb075022ae",
+    "PLACEMENT_RESULT.json": "0df1cebdd3bfeee440b0ba8432f3fe6808f85245d0db1b86695259106d21fa4e",
+    "PLACEMENT_COMPARISON.json": "daf0c08943c69b608715cb1c5082b6152e12d82d890d90056d0a72312ce2be0b",
+    "runs/syn_1/camera_to_dsi_display_gate.db": "65e024961615c4afe36aedac570025f3b13ec53f4f7f6ccdba34b018396b23ce",
+    "runs/phy_1/camera_to_dsi_display_place.db": "58f97865779efbfbc911734742ea3e433c7aca3d51a323176b1c2bd612d1c4bb",
+    "runs/phy_1/placed_intermediate.area": "526a8321fd1c24f77c0b88264fc399db56b9381e6265faade16850eda9c784fa",
+    "runs/phy_1/camera_to_dsi_display_place.timing": "7eb53a0c2f44cad72ab4fc52e598b07bb7dd5e4b9e196b658278ef8b4bcc5bc3",
+    "runs/phy_1/console.log": "d942d344057cb8da691826e2858a352fbb2910ddb6a082c5899cdcbe529bc5da",
+    "runs/phy_1/settings.cfg": "0a89f1e7d34a16989152a86435acf7129cb3e4ae0b98c67eaa47ddc02418624d"
+  }
+}

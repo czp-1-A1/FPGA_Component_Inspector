@@ -1,0 +1,24 @@
+{
+  "status": "PASS_PRESERVED_R50_PRODUCTION_AND_ISOLATED_R54_INPUTS_NOT_PHYSICAL_ACCEPTANCE",
+  "timestamp": "2026-10-31T17:44:44.614770+08:00",
+  "head": "e906b2af9eee3cc99df3e543d64ac0cbce9fa8c9",
+  "production_and_head_match_r50_files": 704,
+  "isolated_candidate_files": 704,
+  "unchanged_candidate_vs_r50_files": 703,
+  "only_candidate_change": [
+    "user_source/hdl_source/frame_shape_search.v"
+  ],
+  "hardware_inputs": 107,
+  "original_r27b_counter_sha256": "67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c",
+  "synthesis_database_sha256": "65e024961615c4afe36aedac570025f3b13ec53f4f7f6ccdba34b018396b23ce",
+  "saved_placement_database_sha256": "58f97865779efbfbc911734742ea3e433c7aca3d51a323176b1c2bd612d1c4bb",
+  "restored_settings_sha256": "0a89f1e7d34a16989152a86435acf7129cb3e4ae0b98c67eaa47ddc02418624d",
+  "protected_bit_hashes": {
+    "LATEST_READONLY.bit": "30d067cef0667893fe548ba04e423cd6618b76f119cb2e0ecf48b96ba6a5b20f",
+    "R22_RelayAuto_Left_V7_ShiftAlarm_20261028.bit": "3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750",
+    "R22_SingleStop_SecondRecognition_D2_20261029.bit": "1b2d3c1b0e279b53e8245fe8acd61db0ce6c69e37ae1ff3d9419fbab938803ae"
+  },
+  "candidate_adopted": false,
+  "new_bit_generated_or_delivered": false,
+  "hardware_operated": false
+}

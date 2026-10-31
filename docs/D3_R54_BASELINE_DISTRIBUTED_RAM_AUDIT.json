@@ -1,0 +1,604 @@
+{
+  "status": "READ_ONLY_BASELINE_DISTRIBUTED_RAM_ACCOUNTING_NOT_OPTIMIZATION",
+  "placement_database_sha256": "ba68f6407f244fb4e9acd3632430067e4514eef24114d400759941a73ce85512",
+  "placed_netlist_sha256": "dff8970e30e4888879cabe9e50dbc72800819846c5b704ce84338d098ce4ae30",
+  "export_receipt_sha256": "b63148be2e7ac8fbb53c536bcb9f05b35bc04c569c2e23962d55380caf4baac8",
+  "script_sha256": "e1389287adf5c271ba54d9d1e7723503264fd0031e9ba10b875af6ef38334874",
+  "total_slices": 544,
+  "vendor_ddr_slices": 296,
+  "application_slices": 248,
+  "groups": [
+    {
+      "hierarchy": "u_experiment_osd/compact_page$render",
+      "slice_count": 8,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_experiment_osd/compact_page$render/code_b41 [1]",
+        "ib": "1'b0",
+        "ic": "1'b0",
+        "id": "1'b0",
+        "ie": "1'b0",
+        "imf": "\\u_experiment_osd/compact_page$render/code_b41 [0]"
+      },
+      "sample_cells": [
+        "\\u_experiment_osd/compact_page$render/ramread24_syn_268",
+        "\\u_experiment_osd/compact_page$render/ramread24_syn_269"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_experiment_osd/compact_page$render/code_b71 [1]"
+        },
+        {
+          "ofb": "\\u_experiment_osd/compact_page$render/code_b71 [2]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller",
+      "slice_count": 8,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd [0]",
+        "ib": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd [1]",
+        "ic": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd [2]",
+        "id": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd [3]",
+        "ie": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd [4]",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/ramread0_syn_25",
+        "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/ramread0_syn_26"
+      ],
+      "sample_outputs": [
+        {
+          "ofa": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/query_id_b1 [0]",
+          "ofb": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/query_id_b1 [8]"
+        },
+        {
+          "ofa": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/query_id_b1 [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller",
+      "slice_count": 8,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/rd [0]",
+        "ib": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/rd [1]",
+        "ic": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/rd [2]",
+        "id": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/rd [3]",
+        "ie": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/rd [4]",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/ramread0_syn_25",
+        "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/ramread0_syn_26"
+      ],
+      "sample_outputs": [
+        {
+          "ofa": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/query_id_b1 [0]",
+          "ofb": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/query_id_b1 [8]"
+        },
+        {
+          "ofa": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/query_id_b1 [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker",
+      "slice_count": 48,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/index [0]",
+        "ib": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/index [1]",
+        "ic": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/index [2]",
+        "id": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/index [3]",
+        "ie": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/index [4]",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/ramread0_syn_309",
+        "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/ramread0_syn_310"
+      ],
+      "sample_outputs": [
+        {
+          "oqa": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/read_data[1] [0]",
+          "oqb": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/read_data[1] [8]"
+        },
+        {
+          "oqa": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/read_data[1] [1]",
+          "oqb": "\\u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/read_data[1] [9]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter",
+      "slice_count": 8,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/emit_track [1]",
+        "ib": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/emit_track [2]",
+        "ic": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/emit_track [3]",
+        "id": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/emit_track [4]",
+        "ie": "1'b0",
+        "imf": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/emit_track [0]"
+      },
+      "sample_cells": [
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/ramread7_syn_26",
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/ramread7_syn_27"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/recorded_mask [0]"
+        },
+        {
+          "ofb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/recorded_mask [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter",
+      "slice_count": 8,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/oi [1]",
+        "ib": "1'b0",
+        "ic": "1'b0",
+        "id": "1'b0",
+        "ie": "1'b0",
+        "imf": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/ramread1_syn_49 [1]"
+      },
+      "sample_cells": [
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/ramread1_syn_335",
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/ramread1_syn_336"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/mi [0]"
+        },
+        {
+          "ofb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/mi [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter",
+      "slice_count": 40,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/track_address [0]",
+        "ib": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/track_address [1]",
+        "ic": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/track_address [2]",
+        "id": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/track_address [3]",
+        "ie": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/track_address [4]",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/ramread0_syn_2825",
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/ramread0_syn_2826"
+      ],
+      "sample_outputs": [
+        {
+          "oqa": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/parking_seed_x [0]",
+          "oqb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/parking_seed_x [8]"
+        },
+        {
+          "oqa": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/parking_seed_x [1]",
+          "oqb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/observe_counter$counter/parking_seed_x [9]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter",
+      "slice_count": 8,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/emit_track [1]",
+        "ib": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/emit_track [2]",
+        "ic": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/emit_track [3]",
+        "id": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/emit_track [4]",
+        "ie": "1'b0",
+        "imf": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/emit_track [0]"
+      },
+      "sample_cells": [
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/ramread7_syn_26",
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/ramread7_syn_27"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/recorded_mask [0]"
+        },
+        {
+          "ofb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/recorded_mask [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter",
+      "slice_count": 8,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/oi [1]",
+        "ib": "1'b0",
+        "ic": "1'b0",
+        "id": "1'b0",
+        "ie": "1'b0",
+        "imf": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/ramread1_syn_49 [1]"
+      },
+      "sample_cells": [
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/ramread1_syn_344",
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/ramread1_syn_345"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/mi [0]"
+        },
+        {
+          "ofb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/mi [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter",
+      "slice_count": 40,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/track_address [0]",
+        "ib": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/track_address [1]",
+        "ic": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/track_address [2]",
+        "id": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/track_address [3]",
+        "ie": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/track_address [4]",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/ramread0_syn_2828",
+        "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/ramread0_syn_2829"
+      ],
+      "sample_outputs": [
+        {
+          "oqa": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/parking_seed_x [0]",
+          "oqb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/parking_seed_x [8]"
+        },
+        {
+          "oqa": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/parking_seed_x [1]",
+          "oqb": "\\u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/parking_seed_x [9]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/local_shape_detection$detector",
+      "slice_count": 24,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/local_shape_detection$detector/high_index [0]",
+        "ib": "\\u_isp_top/local_shape_detection$detector/high_index [1]",
+        "ic": "\\u_isp_top/local_shape_detection$detector/high_index [2]",
+        "id": "\\u_isp_top/local_shape_detection$detector/high_index [3]",
+        "ie": "1'b0",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_isp_top/local_shape_detection$detector/ramread22_syn_27",
+        "\\u_isp_top/local_shape_detection$detector/ramread22_syn_28"
+      ],
+      "sample_outputs": [
+        {
+          "oqa": "\\u_isp_top/local_shape_detection$detector/high_box_q [0]",
+          "oqb": "\\u_isp_top/local_shape_detection$detector/high_box_q [8]"
+        },
+        {
+          "oqa": "\\u_isp_top/local_shape_detection$detector/high_box_q [1]",
+          "oqb": "\\u_isp_top/local_shape_detection$detector/high_box_q [9]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_isp_top/local_shape_detection$detector",
+      "slice_count": 40,
+      "vendor_ddr": false,
+      "read_address_pins": {
+        "ia": "\\u_isp_top/local_shape_detection$detector/indexed_geometry$q_b4 [0]",
+        "ib": "\\u_isp_top/local_shape_detection$detector/indexed_geometry$q_b4 [1]",
+        "ic": "\\u_isp_top/local_shape_detection$detector/geometry_read_slot [2]",
+        "id": "\\u_isp_top/local_shape_detection$detector/geometry_read_slot [3]",
+        "ie": "1'b0",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_isp_top/local_shape_detection$detector/ramread7_syn_109",
+        "\\u_isp_top/local_shape_detection$detector/ramread7_syn_110"
+      ],
+      "sample_outputs": [
+        {
+          "oqa": "\\u_isp_top/local_shape_detection$detector/packed_count [17]"
+        },
+        {}
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo",
+      "slice_count": 8,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo/rdptr [1]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo/rdptr [2]",
+        "ic": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo/rdptr [3]",
+        "id": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo/rdptr [4]",
+        "ie": "1'b0",
+        "imf": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo/rdptr [0]"
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo/ramread0_syn_25",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo/ramread0_syn_26"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo/dout [0]"
+        },
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo/dout [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buffer[0]$u_rd_data_buf",
+      "slice_count": 64,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/ram_init_addr [0]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/ram_init_addr [1]",
+        "ic": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/ram_init_addr [2]",
+        "id": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/ram_init_addr [3]",
+        "ie": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/ram_init_addr [4]",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buffer[0]$u_rd_data_buf/ramread0_syn_112",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buffer[0]$u_rd_data_buf/ramread0_syn_113"
+      ],
+      "sample_outputs": [
+        {
+          "ofa": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_out_data [64]",
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_out_data [72]"
+        },
+        {
+          "ofa": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_out_data [65]",
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_out_data [73]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/u_status_ram0",
+      "slice_count": 8,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/ram_init_addr [1]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/ram_init_addr [2]",
+        "ic": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/ram_init_addr [3]",
+        "id": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/ram_init_addr [4]",
+        "ie": "1'b0",
+        "imf": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/ram_init_addr [0]"
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/u_status_ram0/ramread0_syn_25",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/u_status_ram0/ramread0_syn_26"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_status [0]"
+        },
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_status [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/u_status_ram1",
+      "slice_count": 8,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/status_ram_wr_addr_ns [1]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/status_ram_wr_addr_ns [2]",
+        "ic": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/status_ram_wr_addr_ns [3]",
+        "id": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/status_ram_wr_addr_ns [4]",
+        "ie": "1'b0",
+        "imf": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/status_ram_wr_addr_ns [0]"
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/u_status_ram1/ramread0_syn_26",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/u_status_ram1/ramread0_syn_27"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/wr_status [0]"
+        },
+        {}
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo",
+      "slice_count": 8,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/rdptr [1]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/rdptr [2]",
+        "ic": "1'b0",
+        "id": "1'b0",
+        "ie": "1'b0",
+        "imf": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/rdptr [0]"
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/ramread0_syn_25",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/ramread0_syn_26"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/dout [0]"
+        },
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/dout [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/u_ptr_ram0",
+      "slice_count": 8,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wr_data_indx_r [1]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wr_data_indx_r [2]",
+        "ic": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wr_data_indx_r [3]",
+        "id": "1'b0",
+        "ie": "1'b0",
+        "imf": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wr_data_indx_r [0]"
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/u_ptr_ram0/ramread0_syn_25",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/u_ptr_ram0/ramread0_syn_26"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wr_data_pntr [0]",
+          "oqb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wb_wr_data_addr_r [0]"
+        },
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wr_data_pntr [1]",
+          "oqb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wb_wr_data_addr_r [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/u_ptr_ram1",
+      "slice_count": 8,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/data_buf_addr_cnt_r [1]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/data_buf_addr_cnt_r [2]",
+        "ic": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/data_buf_addr_cnt_r [3]",
+        "id": "1'b0",
+        "ie": "1'b0",
+        "imf": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/data_buf_addr_cnt_r [0]"
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/u_ptr_ram1/ramread0_syn_25",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/u_ptr_ram1/ramread0_syn_26"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_axi_rx/wr_data_buf_addr [0]"
+        },
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_axi_rx/wr_data_buf_addr [1]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wr_buffer[0]$u_wdata_ram",
+      "slice_count": 64,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/dout [0]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/dout [1]",
+        "ic": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/dout [2]",
+        "id": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wbuf_addr_fifo/dout [3]",
+        "ie": "1'b0",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wr_buffer[0]$u_wdata_ram/ramread0_syn_112",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_wr_data/wr_buffer[0]$u_wdata_ram/ramread0_syn_113"
+      ],
+      "sample_outputs": [
+        {
+          "oqa": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/dhi_wdata [64]",
+          "oqb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/dhi_wdata [72]"
+        },
+        {
+          "oqa": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/dhi_wdata [65]",
+          "oqb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/dhi_wdata [73]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init",
+      "slice_count": 56,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/rom_addr [1]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/rom_addr [2]",
+        "ic": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/rom_addr [3]",
+        "id": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/rom_addr [4]",
+        "ie": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/rom_addr [5]",
+        "imf": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/rom_addr [0]"
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_111",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/ramread0_syn_112"
+      ],
+      "sample_outputs": [
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/rom_data_b1 [32]"
+        },
+        {
+          "ofb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/rom_data_b1 [33]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync",
+      "slice_count": 32,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync/rdptr [0]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync/rdptr [1]",
+        "ic": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync/rdptr [2]",
+        "id": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync/rdptr [3]",
+        "ie": "1'b0",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync/ramread0_syn_28",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync/ramread0_syn_29"
+      ],
+      "sample_outputs": [
+        {
+          "oqa": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_in_data [0]",
+          "oqb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_in_data [8]"
+        },
+        {
+          "oqa": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_in_data [1]",
+          "oqb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_in_data [9]"
+        }
+      ]
+    },
+    {
+      "hierarchy": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[1]$u_wfifo_sync",
+      "slice_count": 32,
+      "vendor_ddr": true,
+      "read_address_pins": {
+        "ia": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync/rdptr [0]",
+        "ib": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync/rdptr [1]",
+        "ic": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync/rdptr [2]",
+        "id": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[0]$u_wfifo_sync/rdptr [3]",
+        "ie": "1'b0",
+        "imf": ""
+      },
+      "sample_cells": [
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[1]$u_wfifo_sync/ramread0_syn_28",
+        "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/byteIdx_1[1]$u_wfifo_sync/ramread0_syn_29"
+      ],
+      "sample_outputs": [
+        {
+          "oqa": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_in_data [64]",
+          "oqb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_in_data [72]"
+        },
+        {
+          "oqa": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_in_data [65]",
+          "oqb": "\\u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rd_data/rd_buf_in_data [73]"
+        }
+      ]
+    }
+  ],
+  "scope": "Actual primitive count and read-pin grouping. Output/register pins can be shared with other logic. No exclusive reclaimable-Slice estimate, ERAM-port equivalence, full schematic reconstruction, new physical experiment, or hardware acceptance."
+}
