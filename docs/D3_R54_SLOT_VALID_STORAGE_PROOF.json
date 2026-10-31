@@ -1,0 +1,27 @@
+{
+  "status": "PASS_SLOT_VALID_PRIVATE_BUFFER_SOURCE_AND_TARGETED_EQUIVALENCE",
+  "baseline": "E:\\2026FPGA\\.codex_tmp\\d3_check_minimal_physical_r50_20261031",
+  "before_sha256": "e031d235d78b1bfbd271f33718d064d15c0eeb80f55b3cd6f938dacd358813a4",
+  "after_sha256": "9981d8aa09f969d5039ab033f92bbd80d0a26074e6cb1c69da8333263e94d7c8",
+  "source_manifest_sha256": "06244bde1d37077a858b64d2276d1350acbcfebe3420eb8b310cc55890aa3c81",
+  "unchanged_inputs": 703,
+  "restored_normalized_sha256": "fc627da94f0b744de85ff5ec2a7f009c2648a7991407c05a7a369b2f7dbf6fb2",
+  "original_normalized_sha256": "fc627da94f0b744de85ff5ec2a7f009c2648a7991407c05a7a369b2f7dbf6fb2",
+  "oracle_sha256": "8ab457350a4369501c4fdf50a90c6e0b00d19812215ec725e87560343ecdf6d5",
+  "rewrite_helper_sha256": "1a0bdca9e9134fa04a85e58fb5dbb0e571581bc77b27e075143f14f46cf38a79",
+  "selected_tests": [
+    "tb_d3_slot_valid_storage",
+    "tb_d3_slot_valid_pixels",
+    "tb_d3_pixels",
+    "tb_d3_rank_pixels"
+  ],
+  "evidence": {
+    "E:\\2026FPGA\\.codex_tmp\\d3_slot_valid_boundaries_r54_20261031\\verification.json": "d48de20abed3f167e056c2a6decfb3f0e2aad1a5fbf527f38da3a58a0307289c",
+    "E:\\2026FPGA\\.codex_tmp\\d3_slot_valid_pixels_r54_20261031\\verification.json": "5a7d958615a8582a8def1cd7e925582751e2f0e140cf77e9a09f90f9c99c7834"
+  },
+  "encoding_invariant": "Each private visible word equals written ? raw_word : 0. Reset/frame clears only written; same prioritized PACK_SCAN writes set the selected word-valid bit and data; duplicate-zero writes preserve visible zero even if unwritten. All other edges hold. This preserves partial/error packets, not just full valid frames.",
+  "FSM_cycles_added": 0,
+  "original_counter_or_IO_or_clocks_or_SDC_or_display_modes_changed": false,
+  "production_modified": false,
+  "complete_software_or_physical_or_hardware_acceptance": false
+}

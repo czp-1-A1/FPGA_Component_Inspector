@@ -106,7 +106,25 @@ def verify(work,require_production=False,suite_map=None):
         assert len(storage['cells'])==2 and {v['lane'] for v in storage['cells']}=={0,1}
         assert all(v['write_count_address_bits']==v['independent_read_address_bits']==9 for v in storage['cells'])
         evidence[str(work/'ID_RAM_SYNTHESIS_PROOF.json')]=sha(work/'ID_RAM_SYNTHESIS_PROOF.json')
-    assert bounds['source_sha256']==source['user_source/hdl_source/frame_shape_search.v']
+    slot_valid = (work/'SLOT_VALID_STORAGE_PROOF.json').is_file()
+    if slot_valid:
+        from d3_slot_valid_storage_rewrite import restore
+        slot = read(work/'SLOT_VALID_STORAGE_PROOF.json')
+        assert slot['status']=='PASS_SLOT_VALID_PRIVATE_BUFFER_SOURCE_AND_TARGETED_EQUIVALENCE'
+        assert slot['before_sha256']==bounds['source_sha256']=='e031d235d78b1bfbd271f33718d064d15c0eeb80f55b3cd6f938dacd358813a4'
+        target='user_source/hdl_source/frame_shape_search.v'
+        assert slot['after_sha256']==source[target] and slot['source_manifest_sha256']==sha(work/'frozen_inputs.json')
+        assert slot['unchanged_inputs']==703 and slot['FSM_cycles_added']==0
+        assert slot['rewrite_helper_sha256']==sha(ROOT/'scripts/d3_slot_valid_storage_rewrite.py')
+        baseline=Path(slot['baseline']);baseline_source=read(baseline/'frozen_inputs.json')
+        assert set(baseline_source)==set(source) and {n for n in source if source[n]!=baseline_source[n]}=={target}
+        original=baseline/'project'/target
+        assert sha(original)==bounds['source_sha256'] and restore((project/target).read_text())==original.read_text()
+        assert hashlib.sha256(original.read_text().encode()).hexdigest()==slot['original_normalized_sha256']==slot['restored_normalized_sha256']
+        assert slot['oracle_sha256']==sha(fixture/'r50_reference_frame_shape_search.sv')
+        evidence[str(work/'SLOT_VALID_STORAGE_PROOF.json')]=sha(work/'SLOT_VALID_STORAGE_PROOF.json')
+    else:
+        assert bounds['source_sha256']==source['user_source/hdl_source/frame_shape_search.v']
     font=read(work/'FONT_SYNTHESIS_PROOF.json')
     assert font['status']=='PASS_ACTUAL_SYNTHESIS_FONT_INITIALIZATION' and font['init_blocks_exact']==64
     assert font['gate_database_sha256']==export['gate_database_sha256'] and font['netlist_sha256']==export['netlist_sha256']
@@ -121,9 +139,11 @@ def verify(work,require_production=False,suite_map=None):
     required|={t['name'] for t in gate['tests']}
     if suite_map is not None:required.add('tb_d3_id_ram')
     if check_prepare:required.add('tb_d3_check_prepare')
-    expected_count=(33 if suite_map is not None else 32)+int(check_prepare)
+    if slot_valid:required|={'tb_d3_slot_valid_storage','tb_d3_slot_valid_pixels'}
+    expected_count=(33 if suite_map is not None else 32)+int(check_prepare)+2*int(slot_valid)
     assert len(selected)==len(required)==expected_count and {t['name'] for t in selected}==required
-    result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','profile':'lossless-v6-check-prepare' if check_prepare else 'lossless-v5' if suite_map is not None else 'lossless-v4','selected':selected,
+    if slot_valid:assert suite_map is not None and check_prepare and observer['check_prepare_variant']=='minimal'
+    result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','profile':'lossless-v7-slot-valid' if slot_valid else 'lossless-v6-check-prepare' if check_prepare else 'lossless-v5' if suite_map is not None else 'lossless-v4','selected':selected,
         'selected_checks':expected_count,'expected_checks':expected_count,'inputs_manifest_sha256':sha(work/'frozen_inputs.json'),
         'evidence':evidence,'production_source_match_required':require_production,
         'hardware_acceptance':False,'resource_or_timing_acceptance':False}

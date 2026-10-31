@@ -1,0 +1,596 @@
+{
+  "status": "PASS_RECONCILED_PHYSICAL_REGISTER_SHARING_COMPARISON",
+  "reference": "E:\\2026FPGA\\.codex_tmp\\d3_packing_audit_r53_20261031\\r50_export",
+  "candidate": "E:\\2026FPGA\\.codex_tmp\\d3_packing_audit_r53_20261031\\r52_export",
+  "reference_audit_sha256": "0276629304f331a447d89cdcc9816e704c2ed31d505df16875b274b377ac0358",
+  "candidate_audit_sha256": "1eed434c02a563b7fcad6748f43f343205c399e53ce94ad2c1c58c7fc6af4b16",
+  "before_totals": {
+    "logic_or_carry_slices": 18137,
+    "logic_or_carry_0ff_slices": 6252,
+    "registers": 23105,
+    "logic_or_carry_1ff_slices": 3675,
+    "logic_or_carry_2ff_slices": 8210,
+    "register_only_slices": 1313,
+    "register_only_2ff_slices": 1140,
+    "register_only_1ff_slices": 173,
+    "distributed_ram_slices": 544,
+    "distributed_ram_0ff_slices": 251,
+    "distributed_ram_2ff_slices": 264,
+    "distributed_ram_1ff_slices": 29
+  },
+  "after_totals": {
+    "logic_or_carry_slices": 18110,
+    "registers": 23111,
+    "logic_or_carry_1ff_slices": 3735,
+    "logic_or_carry_2ff_slices": 8027,
+    "register_only_slices": 1457,
+    "register_only_2ff_slices": 1308,
+    "logic_or_carry_0ff_slices": 6348,
+    "register_only_1ff_slices": 149,
+    "distributed_ram_slices": 544,
+    "distributed_ram_0ff_slices": 251,
+    "distributed_ram_2ff_slices": 264,
+    "distributed_ram_1ff_slices": 29
+  },
+  "same_named_Q_bits": 23094,
+  "reference_only_Q_names": 11,
+  "candidate_only_Q_names": 17,
+  "same_named_FF_into_register_only": 1613,
+  "same_named_FF_out_of_register_only": 1301,
+  "reference_only_register_only_ff": 0,
+  "candidate_only_register_only_ff": 0,
+  "new_preparation_FF_all_LUT_shared_and_CE1": [
+    {
+      "slice": "\\u_isp_top/local_shape_detection$detector/reference_bad_choices_reg[2]_syn_12",
+      "side": "A",
+      "q_raw": "\\u_isp_top/local_shape_detection$detector/reference_bad_choices [1]",
+      "q": "u_isp_top/local_shape_detection$detector/reference_bad_choices[1]",
+      "family": "u_isp_top/local_shape_detection$detector/reference_bad_choices",
+      "owner": "FSS/main",
+      "category": "logic_or_carry",
+      "clock": "u_isp_top/processing_clk",
+      "clock_mux": "\"SIG\"",
+      "ce_mode": "1",
+      "ce": "1",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "data_mux": "\"LUT5A\"",
+      "data": ""
+    },
+    {
+      "slice": "\\u_isp_top/local_shape_detection$detector/reference_bad_choices_reg[2]_syn_12",
+      "side": "B",
+      "q_raw": "\\u_isp_top/local_shape_detection$detector/reference_bad_choices [2]",
+      "q": "u_isp_top/local_shape_detection$detector/reference_bad_choices[2]",
+      "family": "u_isp_top/local_shape_detection$detector/reference_bad_choices",
+      "owner": "FSS/main",
+      "category": "logic_or_carry",
+      "clock": "u_isp_top/processing_clk",
+      "clock_mux": "\"SIG\"",
+      "ce_mode": "1",
+      "ce": "1",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "data_mux": "\"LUT6\"",
+      "data": "u_isp_top/local_shape_detection$detector/reference_bad_choices_reg[2]_syn_9"
+    },
+    {
+      "slice": "\\u_isp_top/local_shape_detection$detector/reference_bad_choices_reg[3]_syn_12",
+      "side": "B",
+      "q_raw": "\\u_isp_top/local_shape_detection$detector/reference_bad_choices [3]",
+      "q": "u_isp_top/local_shape_detection$detector/reference_bad_choices[3]",
+      "family": "u_isp_top/local_shape_detection$detector/reference_bad_choices",
+      "owner": "FSS/main",
+      "category": "logic_or_carry",
+      "clock": "u_isp_top/processing_clk",
+      "clock_mux": "\"SIG\"",
+      "ce_mode": "1",
+      "ce": "1",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "data_mux": "\"LUT6\"",
+      "data": ""
+    },
+    {
+      "slice": "\\u_isp_top/local_shape_detection$detector/reference_bad_choices_reg[4]_syn_9",
+      "side": "A",
+      "q_raw": "\\u_isp_top/local_shape_detection$detector/reference_bad_choices [0]",
+      "q": "u_isp_top/local_shape_detection$detector/reference_bad_choices[0]",
+      "family": "u_isp_top/local_shape_detection$detector/reference_bad_choices",
+      "owner": "FSS/main",
+      "category": "logic_or_carry",
+      "clock": "u_isp_top/processing_clk",
+      "clock_mux": "\"SIG\"",
+      "ce_mode": "1",
+      "ce": "1",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "data_mux": "\"LUT5A\"",
+      "data": "u_isp_top/local_shape_detection$detector/reference_bad_choices_reg[0]_syn_4"
+    },
+    {
+      "slice": "\\u_isp_top/local_shape_detection$detector/reference_bad_choices_reg[4]_syn_9",
+      "side": "B",
+      "q_raw": "\\u_isp_top/local_shape_detection$detector/reference_bad_choices [4]",
+      "q": "u_isp_top/local_shape_detection$detector/reference_bad_choices[4]",
+      "family": "u_isp_top/local_shape_detection$detector/reference_bad_choices",
+      "owner": "FSS/main",
+      "category": "logic_or_carry",
+      "clock": "u_isp_top/processing_clk",
+      "clock_mux": "\"SIG\"",
+      "ce_mode": "1",
+      "ce": "1",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "data_mux": "\"LUT6\"",
+      "data": "u_isp_top/local_shape_detection$detector/reference_bad_choices_reg[4]_syn_6"
+    }
+  ],
+  "largest_register_only_ff_increases": [
+    {
+      "family": "u_count_live_display/D_data",
+      "before_total_ff": 286,
+      "before_register_only_ff": 152,
+      "after_total_ff": 286,
+      "after_register_only_ff": 203,
+      "register_only_ff_delta": 51,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/live_record",
+      "before_total_ff": 185,
+      "before_register_only_ff": 15,
+      "after_total_ff": 185,
+      "after_register_only_ff": 50,
+      "register_only_ff_delta": 35,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_active_frame_display/D_data",
+      "before_total_ff": 382,
+      "before_register_only_ff": 103,
+      "after_total_ff": 382,
+      "after_register_only_ff": 130,
+      "register_only_ff_delta": 27,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_experiment_osd/compact_page$render/live",
+      "before_total_ff": 169,
+      "before_register_only_ff": 28,
+      "after_total_ff": 169,
+      "after_register_only_ff": 52,
+      "register_only_ff_delta": 24,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_awb/signal_delay_d/blk_mem_gen_awb_delay_signal_d/ram_f84573da5ab5_Inst/dia",
+      "before_total_ff": 96,
+      "before_register_only_ff": 22,
+      "after_total_ff": 96,
+      "after_register_only_ff": 46,
+      "register_only_ff_delta": 24,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_roi_sobel_view/m",
+      "before_total_ff": 32,
+      "before_register_only_ff": 0,
+      "after_total_ff": 32,
+      "after_register_only_ff": 24,
+      "register_only_ff_delta": 24,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_input_monitor/rx_mailbox/payload",
+      "before_total_ff": 94,
+      "before_register_only_ff": 24,
+      "after_total_ff": 94,
+      "after_register_only_ff": 46,
+      "register_only_ff_delta": 22,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_demosaic/raw_matrix_3x3_buffer_d/data_d0_d",
+      "before_total_ff": 32,
+      "before_register_only_ff": 0,
+      "after_total_ff": 32,
+      "after_register_only_ff": 21,
+      "register_only_ff_delta": 21,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/page_ctrl[2]$u_page_ctrl/cas_pend_fifo",
+      "before_total_ff": 40,
+      "before_register_only_ff": 0,
+      "after_total_ff": 40,
+      "after_register_only_ff": 20,
+      "register_only_ff_delta": 20,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_raw10_unpacket/I_csi_data",
+      "before_total_ff": 32,
+      "before_register_only_ff": 2,
+      "after_total_ff": 32,
+      "after_register_only_ff": 19,
+      "register_only_ff_delta": 17,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/scaled_processing$resize/current_row",
+      "before_total_ff": 96,
+      "before_register_only_ff": 58,
+      "after_total_ff": 96,
+      "after_register_only_ff": 74,
+      "register_only_ff_delta": 16,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_camera_receive/payload",
+      "before_total_ff": 18,
+      "before_register_only_ff": 1,
+      "after_total_ff": 18,
+      "after_register_only_ff": 16,
+      "register_only_ff_delta": 15,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_count_live_display/payload",
+      "before_total_ff": 324,
+      "before_register_only_ff": 8,
+      "after_total_ff": 324,
+      "after_register_only_ff": 23,
+      "register_only_ff_delta": 15,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/local_shape_detection$detector/review_measurement$edge_surface_measurement$surface/trace_metrics",
+      "before_total_ff": 98,
+      "before_register_only_ff": 6,
+      "after_total_ff": 98,
+      "after_register_only_ff": 21,
+      "register_only_ff_delta": 15,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/page_ctrl[1]$u_page_ctrl/cas_dbuf_fifo",
+      "before_total_ff": 20,
+      "before_register_only_ff": 0,
+      "after_total_ff": 20,
+      "after_register_only_ff": 15,
+      "register_only_ff_delta": 15,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_experiment_osd/publish_diagnostic",
+      "before_total_ff": 27,
+      "before_register_only_ff": 5,
+      "after_total_ff": 27,
+      "after_register_only_ff": 19,
+      "register_only_ff_delta": 14,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_roi_sobel_view/rgb_p",
+      "before_total_ff": 96,
+      "before_register_only_ff": 2,
+      "after_total_ff": 96,
+      "after_register_only_ff": 16,
+      "register_only_ff_delta": 14,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_raw10_unpacket/S_csi_data_1d",
+      "before_total_ff": 32,
+      "before_register_only_ff": 12,
+      "after_total_ff": 32,
+      "after_register_only_ff": 26,
+      "register_only_ff_delta": 14,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "camera_receive_d",
+      "before_total_ff": 17,
+      "before_register_only_ff": 0,
+      "after_total_ff": 17,
+      "after_register_only_ff": 13,
+      "register_only_ff_delta": 13,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/continuous_processing$tag",
+      "before_total_ff": 18,
+      "before_register_only_ff": 0,
+      "after_total_ff": 18,
+      "after_register_only_ff": 13,
+      "register_only_ff_delta": 13,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_experiment_osd/compact_page$render/fr",
+      "before_total_ff": 32,
+      "before_register_only_ff": 1,
+      "after_total_ff": 32,
+      "after_register_only_ff": 13,
+      "register_only_ff_delta": 12,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_active_frame_display/payload",
+      "before_total_ff": 563,
+      "before_register_only_ff": 46,
+      "after_total_ff": 563,
+      "after_register_only_ff": 57,
+      "register_only_ff_delta": 11,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "camera_receive",
+      "before_total_ff": 17,
+      "before_register_only_ff": 0,
+      "after_total_ff": 17,
+      "after_register_only_ff": 11,
+      "register_only_ff_delta": 11,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "count_display_live",
+      "before_total_ff": 16,
+      "before_register_only_ff": 4,
+      "after_total_ff": 16,
+      "after_register_only_ff": 15,
+      "register_only_ff_delta": 11,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_experiment_osd/compact_page$render/diag",
+      "before_total_ff": 36,
+      "before_register_only_ff": 0,
+      "after_total_ff": 36,
+      "after_register_only_ff": 11,
+      "register_only_ff_delta": 11,
+      "total_ff_delta": 0
+    }
+  ],
+  "largest_register_only_ff_decreases": [
+    {
+      "family": "u_isp_top/local_shape_detection$detector/recorder_storage",
+      "before_total_ff": 750,
+      "before_register_only_ff": 247,
+      "after_total_ff": 750,
+      "after_register_only_ff": 180,
+      "register_only_ff_delta": -67,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_video_out/O_active_metadata",
+      "before_total_ff": 560,
+      "before_register_only_ff": 274,
+      "after_total_ff": 560,
+      "after_register_only_ff": 235,
+      "register_only_ff_delta": -39,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/page_ctrl[0]$u_page_ctrl/cas_pend_fifo",
+      "before_total_ff": 48,
+      "before_register_only_ff": 30,
+      "after_total_ff": 48,
+      "after_register_only_ff": 2,
+      "register_only_ff_delta": -28,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_demosaic/raw_matrix_3x3_buffer_d/mipi_to_raw_converter_r0/O_raw_tdata",
+      "before_total_ff": 32,
+      "before_register_only_ff": 28,
+      "after_total_ff": 32,
+      "after_register_only_ff": 9,
+      "register_only_ff_delta": -19,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_relay_display/D_data",
+      "before_total_ff": 70,
+      "before_register_only_ff": 27,
+      "after_total_ff": 70,
+      "after_register_only_ff": 9,
+      "register_only_ff_delta": -18,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_roi_sobel_view/rgb4",
+      "before_total_ff": 96,
+      "before_register_only_ff": 29,
+      "after_total_ff": 96,
+      "after_register_only_ff": 11,
+      "register_only_ff_delta": -18,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_roi_sobel_view/rgb3",
+      "before_total_ff": 96,
+      "before_register_only_ff": 67,
+      "after_total_ff": 96,
+      "after_register_only_ff": 54,
+      "register_only_ff_delta": -13,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/page_ctrl[0]$u_page_ctrl/pageInfo",
+      "before_total_ff": 56,
+      "before_register_only_ff": 12,
+      "after_total_ff": 56,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -12,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/page_ctrl[1]$u_page_ctrl/cas_pend_fifo",
+      "before_total_ff": 40,
+      "before_register_only_ff": 28,
+      "after_total_ff": 40,
+      "after_register_only_ff": 16,
+      "register_only_ff_delta": -12,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_video_in/metadata$crossing/payload",
+      "before_total_ff": 577,
+      "before_register_only_ff": 11,
+      "after_total_ff": 577,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -11,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/counter_run",
+      "before_total_ff": 16,
+      "before_register_only_ff": 10,
+      "after_total_ff": 16,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -10,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/page_ctrl[1]$u_page_ctrl/txn_fifo",
+      "before_total_ff": 92,
+      "before_register_only_ff": 18,
+      "after_total_ff": 92,
+      "after_register_only_ff": 8,
+      "register_only_ff_delta": -10,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_axi_rx/app_addr_r1",
+      "before_total_ff": 22,
+      "before_register_only_ff": 10,
+      "after_total_ff": 22,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -10,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_experiment_osd/compact_page$render/cal",
+      "before_total_ff": 106,
+      "before_register_only_ff": 23,
+      "after_total_ff": 106,
+      "after_register_only_ff": 14,
+      "register_only_ff_delta": -9,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_video_in/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/rd_to_wr_cross_inst/primary_addr_gray_sync",
+      "before_total_ff": 9,
+      "before_register_only_ff": 9,
+      "after_total_ff": 9,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -9,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_awb/signal_delay_d/I_data",
+      "before_total_ff": 96,
+      "before_register_only_ff": 58,
+      "after_total_ff": 96,
+      "after_register_only_ff": 50,
+      "register_only_ff_delta": -8,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_roi_statistics/minimum",
+      "before_total_ff": 8,
+      "before_register_only_ff": 8,
+      "after_total_ff": 8,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -8,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_video_in/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/rd_to_wr_cross_inst/sync_r1",
+      "before_total_ff": 9,
+      "before_register_only_ff": 8,
+      "after_total_ff": 9,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -8,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_demosaic/bilinear_interpolation_d/r3_matrix_plus",
+      "before_total_ff": 9,
+      "before_register_only_ff": 7,
+      "after_total_ff": 9,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -7,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/u_roi_result_snapshot/record",
+      "before_total_ff": 25,
+      "before_register_only_ff": 7,
+      "after_total_ff": 25,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -7,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_isp_top/observation_request",
+      "before_total_ff": 18,
+      "before_register_only_ff": 7,
+      "after_total_ff": 18,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -7,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_hdmi_tx/u_red/data",
+      "before_total_ff": 8,
+      "before_register_only_ff": 6,
+      "after_total_ff": 8,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -6,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_experiment_osd/compact_page$render/ramread27_syn_113",
+      "before_total_ff": 7,
+      "before_register_only_ff": 6,
+      "after_total_ff": 7,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -6,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_hdmi_tx/u_avi/video_b",
+      "before_total_ff": 10,
+      "before_register_only_ff": 5,
+      "after_total_ff": 10,
+      "after_register_only_ff": 0,
+      "register_only_ff_delta": -5,
+      "total_ff_delta": 0
+    },
+    {
+      "family": "u_input_monitor/rx_mailbox/D_data",
+      "before_total_ff": 94,
+      "before_register_only_ff": 69,
+      "after_total_ff": 94,
+      "after_register_only_ff": 64,
+      "register_only_ff_delta": -5,
+      "total_ff_delta": 0
+    }
+  ],
+  "reference_pairing_only_capacity_upper_bound_slices": 86,
+  "scope": "Actual packed Slice/Q contents, string-corresponding Q nets and exact aggregate reconciliation. Not a sequential netlist equivalence proof or a legal repacking/timing guarantee.",
+  "RTL_or_SDC_or_implementation_changed": false
+}

@@ -1,0 +1,1504 @@
+{
+  "status": "PASS_ACTUAL_SAVED_SLICE_AND_REGISTER_COUNT_RECONCILIATION",
+  "export_directory": "E:\\2026FPGA\\.codex_tmp\\d3_packing_audit_r53_20261031\\r50_export",
+  "input_receipt_sha256": "b63148be2e7ac8fbb53c536bcb9f05b35bc04c569c2e23962d55380caf4baac8",
+  "placed_netlist_sha256": "dff8970e30e4888879cabe9e50dbc72800819846c5b704ce84338d098ce4ae30",
+  "area_sha256": "c57dc85d47aeb6b9b6e20cc165d6b6168a7fc1e540a6836b250934a658f12664",
+  "totals": {
+    "logic_or_carry_slices": 18137,
+    "logic_or_carry_0ff_slices": 6252,
+    "registers": 23105,
+    "logic_or_carry_1ff_slices": 3675,
+    "logic_or_carry_2ff_slices": 8210,
+    "register_only_slices": 1313,
+    "register_only_2ff_slices": 1140,
+    "register_only_1ff_slices": 173,
+    "distributed_ram_slices": 544,
+    "distributed_ram_0ff_slices": 251,
+    "distributed_ram_2ff_slices": 264,
+    "distributed_ram_1ff_slices": 29
+  },
+  "classes": {
+    "logic_or_carry": {
+      "ff": 20095,
+      "ce_1": 5966,
+      "ce_SIG": 14129
+    },
+    "register_only": {
+      "ff": 2453,
+      "ce_1": 579,
+      "ce_SIG": 1874
+    },
+    "distributed_ram": {
+      "ff": 557,
+      "ce_1": 198,
+      "ce_SIG": 359
+    }
+  },
+  "register_only_pure_owner_slice_counts": {
+    "count_controls$controls": 6,
+    "hdmi_reset_sync[1]": 1,
+    "S_hdmi_rst_n": 1,
+    "roi_display[11]": 1,
+    "u_active_frame_display": 79,
+    "roi_display[19]": 1,
+    "roi_display[3]": 1,
+    "u_experiment_osd": 144,
+    "MIXED": 19,
+    "cam_display[0]": 1,
+    "u_camera_display": 8,
+    "u_camera_receive": 1,
+    "u_count_command": 3,
+    "u_count_live_display": 83,
+    "u_raw10_unpacket": 15,
+    "u_csi_unpacket": 7,
+    "u_hdmi_tx": 11,
+    "u_input_monitor": 62,
+    "parking/lanes[1]$controller": 2,
+    "u_isp_top": 268,
+    "parking/lanes[0]$controller": 5,
+    "FSS/main": 159,
+    "FSS/review_measurement$edge_surface_measurement$surface": 3,
+    "u_mc_to_user_interface": 1,
+    "u_mipi_dphy_rx_ph1p_mipiio_wrapper": 11,
+    "mon_display[119]": 1,
+    "u_monitor_display": 44,
+    "u_native_phase": 1,
+    "u_observation_controls": 2,
+    "u_observation_display": 5,
+    "u_observation_receive": 7,
+    "u_ph1p35_324_ddr_wrapper": 82,
+    "u_uial2axis": 13,
+    "u_relay_display": 14,
+    "u_tracking_age": 1,
+    "u_video_in": 95,
+    "u_video_out": 155
+  },
+  "top_register_only_families": [
+    {
+      "family": "u_video_out/O_active_metadata",
+      "total_ff": 560,
+      "logic_or_carry_ff": 286,
+      "register_only_ff": 274
+    },
+    {
+      "family": "u_isp_top/local_shape_detection$detector/recorder_storage",
+      "total_ff": 750,
+      "register_only_ff": 247,
+      "logic_or_carry_ff": 503
+    },
+    {
+      "family": "u_count_live_display/D_data",
+      "total_ff": 286,
+      "logic_or_carry_ff": 134,
+      "register_only_ff": 152
+    },
+    {
+      "family": "u_video_in/metadata_receive",
+      "total_ff": 569,
+      "logic_or_carry_ff": 452,
+      "register_only_ff": 117
+    },
+    {
+      "family": "u_active_frame_display/D_data",
+      "total_ff": 382,
+      "logic_or_carry_ff": 279,
+      "register_only_ff": 103
+    },
+    {
+      "family": "u_monitor_display/payload",
+      "total_ff": 126,
+      "register_only_ff": 82,
+      "logic_or_carry_ff": 44
+    },
+    {
+      "family": "u_input_monitor/rx_mailbox/D_data",
+      "total_ff": 94,
+      "logic_or_carry_ff": 25,
+      "register_only_ff": 69
+    },
+    {
+      "family": "u_isp_top/u_roi_sobel_view/rgb3",
+      "total_ff": 96,
+      "logic_or_carry_ff": 29,
+      "register_only_ff": 67
+    },
+    {
+      "family": "u_isp_top/scaled_processing$resize/current_row",
+      "total_ff": 96,
+      "logic_or_carry_ff": 38,
+      "register_only_ff": 58
+    },
+    {
+      "family": "u_isp_top/u_awb/signal_delay_d/I_data",
+      "total_ff": 96,
+      "register_only_ff": 58,
+      "logic_or_carry_ff": 38
+    },
+    {
+      "family": "u_active_frame_display/payload",
+      "total_ff": 563,
+      "logic_or_carry_ff": 517,
+      "register_only_ff": 46
+    },
+    {
+      "family": "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/live_record",
+      "total_ff": 139,
+      "logic_or_carry_ff": 107,
+      "register_only_ff": 32
+    },
+    {
+      "family": "u_experiment_osd/compact_page$render/live2",
+      "total_ff": 123,
+      "logic_or_carry_ff": 91,
+      "register_only_ff": 32
+    },
+    {
+      "family": "u_isp_top/u_awb/I_tdata_d0",
+      "total_ff": 72,
+      "logic_or_carry_ff": 42,
+      "register_only_ff": 30
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/page_ctrl[0]$u_page_ctrl/cas_pend_fifo",
+      "total_ff": 48,
+      "register_only_ff": 30,
+      "logic_or_carry_ff": 18
+    },
+    {
+      "family": "u_isp_top/u_roi_sobel_view/rgb4",
+      "total_ff": 96,
+      "logic_or_carry_ff": 67,
+      "register_only_ff": 29
+    },
+    {
+      "family": "u_experiment_osd/compact_page$render/live",
+      "total_ff": 169,
+      "logic_or_carry_ff": 141,
+      "register_only_ff": 28
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/page_ctrl[1]$u_page_ctrl/cas_pend_fifo",
+      "total_ff": 40,
+      "register_only_ff": 28,
+      "logic_or_carry_ff": 12
+    },
+    {
+      "family": "u_isp_top/u_demosaic/raw_matrix_3x3_buffer_d/mipi_to_raw_converter_r0/O_raw_tdata",
+      "total_ff": 32,
+      "register_only_ff": 28,
+      "logic_or_carry_ff": 4
+    },
+    {
+      "family": "u_relay_display/D_data",
+      "total_ff": 70,
+      "logic_or_carry_ff": 43,
+      "register_only_ff": 27
+    },
+    {
+      "family": "u_uial2axis/I_data",
+      "total_ff": 32,
+      "register_only_ff": 27,
+      "logic_or_carry_ff": 5
+    },
+    {
+      "family": "u_isp_top/u_demosaic/raw_matrix_3x3_buffer_d/zhenghe_d/blk_mem_gen_zhenghe_d1/ram_d32970204f32_Inst/dia",
+      "total_ff": 32,
+      "logic_or_carry_ff": 6,
+      "register_only_ff": 26
+    },
+    {
+      "family": "u_experiment_osd/calibration_record",
+      "total_ff": 106,
+      "register_only_ff": 24,
+      "logic_or_carry_ff": 82
+    },
+    {
+      "family": "u_input_monitor/rx_mailbox/payload",
+      "total_ff": 94,
+      "logic_or_carry_ff": 70,
+      "register_only_ff": 24
+    },
+    {
+      "family": "u_experiment_osd/compact_page$render/cal",
+      "total_ff": 106,
+      "logic_or_carry_ff": 83,
+      "register_only_ff": 23
+    },
+    {
+      "family": "u_isp_top/u_awb/signal_delay_d/blk_mem_gen_awb_delay_signal_d/ram_f84573da5ab5_Inst/dia",
+      "total_ff": 96,
+      "register_only_ff": 22,
+      "logic_or_carry_ff": 74
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/page_ctrl[1]$u_page_ctrl/txn_fifo",
+      "total_ff": 92,
+      "logic_or_carry_ff": 74,
+      "register_only_ff": 18
+    },
+    {
+      "family": "u_isp_top/m_aixs_tdata_96",
+      "total_ff": 96,
+      "logic_or_carry_ff": 80,
+      "register_only_ff": 16
+    },
+    {
+      "family": "u_isp_top/classified_counting$dual_regions$pipeline/regions[0]$pipeline/live_record",
+      "total_ff": 185,
+      "logic_or_carry_ff": 170,
+      "register_only_ff": 15
+    },
+    {
+      "family": "u_experiment_osd/diagnostics",
+      "total_ff": 36,
+      "logic_or_carry_ff": 21,
+      "register_only_ff": 15
+    },
+    {
+      "family": "u_raw10_unpacket/S_csi_data_2d",
+      "total_ff": 32,
+      "register_only_ff": 15,
+      "logic_or_carry_ff": 17
+    },
+    {
+      "family": "u_camera_display/payload",
+      "total_ff": 18,
+      "logic_or_carry_ff": 4,
+      "register_only_ff": 14
+    },
+    {
+      "family": "u_observation_receive/payload",
+      "total_ff": 18,
+      "register_only_ff": 14,
+      "logic_or_carry_ff": 4
+    },
+    {
+      "family": "u_experiment_osd/frames",
+      "total_ff": 32,
+      "logic_or_carry_ff": 19,
+      "register_only_ff": 13
+    },
+    {
+      "family": "u_isp_top/scaled_processing$resize/first",
+      "total_ff": 114,
+      "logic_or_carry_ff": 102,
+      "register_only_ff": 12
+    },
+    {
+      "family": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/page_ctrl[0]$u_page_ctrl/pageInfo",
+      "total_ff": 56,
+      "logic_or_carry_ff": 44,
+      "register_only_ff": 12
+    },
+    {
+      "family": "u_isp_top/u_awb/rgb888_g_d1",
+      "total_ff": 32,
+      "register_only_ff": 12,
+      "logic_or_carry_ff": 20
+    },
+    {
+      "family": "u_raw10_unpacket/S_csi_data_1d",
+      "total_ff": 32,
+      "logic_or_carry_ff": 20,
+      "register_only_ff": 12
+    },
+    {
+      "family": "u_csi_unpacket/S_hs_data_1d",
+      "total_ff": 15,
+      "register_only_ff": 12,
+      "logic_or_carry_ff": 3
+    },
+    {
+      "family": "u_video_in/metadata$crossing/payload",
+      "total_ff": 577,
+      "logic_or_carry_ff": 566,
+      "register_only_ff": 11
+    }
+  ],
+  "owners": [
+    {
+      "owner": "u_isp_top",
+      "total_ff": 5655,
+      "logic_or_carry_ff": 5135,
+      "register_only_ff": 520
+    },
+    {
+      "owner": "u_video_out",
+      "total_ff": 899,
+      "logic_or_carry_ff": 607,
+      "register_only_ff": 292
+    },
+    {
+      "owner": "FSS/main",
+      "total_ff": 2559,
+      "logic_or_carry_ff": 2167,
+      "register_only_ff": 289,
+      "distributed_ram_ff": 103
+    },
+    {
+      "owner": "u_experiment_osd",
+      "total_ff": 1939,
+      "logic_or_carry_ff": 1652,
+      "register_only_ff": 287
+    },
+    {
+      "owner": "u_video_in",
+      "total_ff": 2006,
+      "logic_or_carry_ff": 1836,
+      "register_only_ff": 170
+    },
+    {
+      "owner": "u_count_live_display",
+      "total_ff": 616,
+      "logic_or_carry_ff": 455,
+      "register_only_ff": 161
+    },
+    {
+      "owner": "u_ph1p35_324_ddr_wrapper",
+      "total_ff": 3310,
+      "logic_or_carry_ff": 2898,
+      "register_only_ff": 152,
+      "distributed_ram_ff": 260
+    },
+    {
+      "owner": "u_active_frame_display",
+      "total_ff": 951,
+      "logic_or_carry_ff": 802,
+      "register_only_ff": 149
+    },
+    {
+      "owner": "u_input_monitor",
+      "total_ff": 434,
+      "logic_or_carry_ff": 322,
+      "register_only_ff": 112
+    },
+    {
+      "owner": "u_monitor_display",
+      "total_ff": 132,
+      "logic_or_carry_ff": 50,
+      "register_only_ff": 82
+    },
+    {
+      "owner": "u_raw10_unpacket",
+      "total_ff": 136,
+      "logic_or_carry_ff": 106,
+      "register_only_ff": 30
+    },
+    {
+      "owner": "u_relay_display",
+      "total_ff": 140,
+      "logic_or_carry_ff": 113,
+      "register_only_ff": 27
+    },
+    {
+      "owner": "u_uial2axis",
+      "total_ff": 60,
+      "register_only_ff": 27,
+      "logic_or_carry_ff": 33
+    },
+    {
+      "owner": "u_mipi_dphy_rx_ph1p_mipiio_wrapper",
+      "total_ff": 216,
+      "logic_or_carry_ff": 194,
+      "register_only_ff": 22
+    },
+    {
+      "owner": "u_hdmi_tx",
+      "total_ff": 134,
+      "logic_or_carry_ff": 115,
+      "register_only_ff": 19
+    },
+    {
+      "owner": "u_camera_display",
+      "total_ff": 24,
+      "logic_or_carry_ff": 9,
+      "register_only_ff": 15
+    },
+    {
+      "owner": "u_csi_unpacket",
+      "total_ff": 68,
+      "logic_or_carry_ff": 54,
+      "register_only_ff": 14
+    },
+    {
+      "owner": "u_observation_receive",
+      "total_ff": 24,
+      "logic_or_carry_ff": 10,
+      "register_only_ff": 14
+    },
+    {
+      "owner": "count_controls$controls",
+      "total_ff": 85,
+      "logic_or_carry_ff": 74,
+      "register_only_ff": 11
+    },
+    {
+      "owner": "parking/lanes[0]$controller",
+      "total_ff": 217,
+      "logic_or_carry_ff": 207,
+      "register_only_ff": 10
+    },
+    {
+      "owner": "u_observation_display",
+      "total_ff": 18,
+      "register_only_ff": 9,
+      "logic_or_carry_ff": 9
+    },
+    {
+      "owner": "FSS/review_measurement$edge_surface_measurement$surface",
+      "total_ff": 407,
+      "logic_or_carry_ff": 401,
+      "register_only_ff": 6
+    },
+    {
+      "owner": "u_count_command",
+      "total_ff": 26,
+      "logic_or_carry_ff": 21,
+      "register_only_ff": 5
+    },
+    {
+      "owner": "parking/lanes[1]$controller",
+      "total_ff": 184,
+      "logic_or_carry_ff": 180,
+      "register_only_ff": 4
+    },
+    {
+      "owner": "u_observation_controls",
+      "total_ff": 44,
+      "logic_or_carry_ff": 40,
+      "register_only_ff": 4
+    },
+    {
+      "owner": "hdmi_reset_sync[1]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "S_hdmi_rst_n",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "u_tracking_age",
+      "total_ff": 28,
+      "logic_or_carry_ff": 27,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "roi_display[11]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "roi_display[19]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "roi_display[3]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "roi_display[5]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "roi_display[13]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "roi_display[21]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "roi_display[8]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "roi_display[0]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "u_mc_to_user_interface",
+      "total_ff": 29,
+      "logic_or_carry_ff": 28,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "cam_display[0]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "u_camera_receive",
+      "total_ff": 25,
+      "logic_or_carry_ff": 24,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "count_display_live[40]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "count_display_live[37]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "count_display_live[47]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "count_display_live[39]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "mon_display[119]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "mon_display[122]",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "u_native_phase",
+      "total_ff": 3,
+      "logic_or_carry_ff": 2,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "S_raw10_frame_end",
+      "total_ff": 1,
+      "register_only_ff": 1
+    },
+    {
+      "owner": "hdmi_reset_sync[0]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[0]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[12]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[13]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[15]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[11]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[19]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[2]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[7]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[6]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[8]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[5]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[9]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[14]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "csi_frame_open",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[10]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "active_frame_display[1145]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[23]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[2]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[4]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[12]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "calibration_display[128]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[34]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[32]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[35]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[39]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[37]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[42]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[41]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[6]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[14]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[17]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[7]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[15]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[223]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[44]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[40]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[36]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[38]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[43]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[9]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[1]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "cam_display[20]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[10]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[13]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[12]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[14]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[11]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[1]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[4]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[20]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[5]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[3]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[2]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[6]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[15]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[8]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[7]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[9]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive[16]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "relay_mode[1]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "relay_mode[2]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "relay_mode[0]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[34]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[36]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[35]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[38]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[32]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[42]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[41]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[44]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[43]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[46]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_live[33]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_data[24]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[18]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[20]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[16]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[47]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[46]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "roi_display[22]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[45]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_display_frame[33]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "u_hdmi_vtc",
+      "total_ff": 23,
+      "logic_or_carry_ff": 23
+    },
+    {
+      "owner": "parking/tracker",
+      "total_ff": 549,
+      "logic_or_carry_ff": 479,
+      "distributed_ram_ff": 70
+    },
+    {
+      "owner": "parking/main",
+      "total_ff": 2,
+      "logic_or_carry_ff": 2
+    },
+    {
+      "owner": "count_observer/lane0",
+      "total_ff": 916,
+      "logic_or_carry_ff": 854,
+      "distributed_ram_ff": 62
+    },
+    {
+      "owner": "O_relay_control_dup_3",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "count_observer/lane1",
+      "total_ff": 899,
+      "logic_or_carry_ff": 837,
+      "distributed_ram_ff": 62
+    },
+    {
+      "owner": "u_wb_process",
+      "total_ff": 8,
+      "logic_or_carry_ff": 8
+    },
+    {
+      "owner": "camera_receive_d[10]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[3]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[4]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "camera_receive_d[1]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[114]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[115]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[112]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[116]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[113]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[118]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[117]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[120]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[124]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[121]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[125]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[123]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[127]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "mon_display[126]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[0]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[15]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[14]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[17]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[10]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[1]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[2]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[3]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[16]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[4]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[12]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[5]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[7]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[13]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[8]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[11]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[9]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "observation_display[6]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "u_overflow_display",
+      "total_ff": 53,
+      "logic_or_carry_ff": 53
+    },
+    {
+      "owner": "u_publish_display",
+      "total_ff": 27,
+      "logic_or_carry_ff": 27
+    },
+    {
+      "owner": "count_display_live[45]",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    },
+    {
+      "owner": "u_transport_display",
+      "total_ff": 18,
+      "logic_or_carry_ff": 18
+    },
+    {
+      "owner": "u_uicfgcs500",
+      "total_ff": 101,
+      "logic_or_carry_ff": 101
+    },
+    {
+      "owner": "O_cam_scl_dup_3",
+      "total_ff": 1,
+      "logic_or_carry_ff": 1
+    }
+  ],
+  "top_shared_control_groups": [
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_isp_top/processing_clk",
+      "asr_mux": "\"INV\"",
+      "asr": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/sys_rst_n",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 10046,
+      "logic_or_carry_ff": 9472,
+      "register_only_ff": 574
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_experiment_osd/compact_page$render/clk",
+      "asr_mux": "\"INV\"",
+      "asr": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/sys_rst_n",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 2622,
+      "logic_or_carry_ff": 2087,
+      "register_only_ff": 535
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_isp_top/u_demosaic/raw_matrix_3x3_buffer_d/zhenghe_d/blk_mem_gen_zhenghe_d1/ram_d32970204f32_Inst/clkb",
+      "asr_mux": "\"INV\"",
+      "asr": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/sys_rst_n",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 2213,
+      "logic_or_carry_ff": 1924,
+      "register_only_ff": 289
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/clk",
+      "asr_mux": "\"INV\"",
+      "asr": "S_hdmi_rst_n",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 630,
+      "logic_or_carry_ff": 356,
+      "register_only_ff": 274
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "I_sys_clk_syn_8",
+      "asr_mux": "\"INV\"",
+      "asr": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/sys_rst_n",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 523,
+      "logic_or_carry_ff": 340,
+      "register_only_ff": 183
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/clk",
+      "asr_mux": "\"INV\"",
+      "asr": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/sys_rst_n",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 1883,
+      "logic_or_carry_ff": 1711,
+      "register_only_ff": 172
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_isp_top/u_demosaic/raw_matrix_3x3_buffer_d/zhenghe_d/blk_mem_gen_zhenghe_d1/ram_d32970204f32_Inst/clkb",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 228,
+      "register_only_ff": 87,
+      "logic_or_carry_ff": 141
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/clk",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 747,
+      "logic_or_carry_ff": 684,
+      "register_only_ff": 63
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/clk",
+      "asr_mux": "\"SIG\"",
+      "asr": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/u_rbuf_addr_fifo/rst",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 1388,
+      "logic_or_carry_ff": 1073,
+      "register_only_ff": 59,
+      "distributed_ram_ff": 256
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_experiment_osd/compact_page$render/clk",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 192,
+      "logic_or_carry_ff": 135,
+      "register_only_ff": 57
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "O_cam_24m_syn_3",
+      "asr_mux": "\"INV\"",
+      "asr": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/sys_rst_n",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 177,
+      "logic_or_carry_ff": 145,
+      "register_only_ff": 32
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/clk",
+      "asr_mux": "\"INV\"",
+      "asr": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy/dx_byte[1]$dx_byte_used$u_ddrphy_dx_byte_wrapper/dx_phy_rst_n",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 1031,
+      "logic_or_carry_ff": 1001,
+      "register_only_ff": 30
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_isp_top/processing_clk",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 688,
+      "distributed_ram_ff": 297,
+      "logic_or_carry_ff": 364,
+      "register_only_ff": 27
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_isp_top/processing_clk",
+      "asr_mux": "\"SIG\"",
+      "asr": "u_video_in/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst/rsta",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 45,
+      "register_only_ff": 17,
+      "logic_or_carry_ff": 28
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_alc_mc_top/clk",
+      "asr_mux": "\"SIG\"",
+      "asr": "u_video_in/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst/rstb",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 45,
+      "logic_or_carry_ff": 31,
+      "register_only_ff": 14
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_experiment_osd/compact_page$render/clk",
+      "asr_mux": "\"SIG\"",
+      "asr": "u_video_out/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/ram_inst/rstb",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 45,
+      "logic_or_carry_ff": 31,
+      "register_only_ff": 14
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_experiment_osd/compact_page$render/clk",
+      "asr_mux": "\"INV\"",
+      "asr": "S_hdmi_rst_n",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 150,
+      "logic_or_carry_ff": 140,
+      "register_only_ff": 10
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_hdmi_tx/u_phy/u0_lane_lvds_8_1/I_serial_clk_syn_1",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 13,
+      "register_only_ff": 4,
+      "logic_or_carry_ff": 9
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_experiment_osd/compact_page$render/clk",
+      "asr_mux": "\"INV\"",
+      "asr": "S_hdmi_async_rst_n",
+      "ssr_mux": "\"0\"",
+      "ssr": "1'b1",
+      "latchmode": "\"DFF\"",
+      "total_ff": 3,
+      "logic_or_carry_ff": 1,
+      "register_only_ff": 2
+    },
+    {
+      "clock_mux": "\"SIG\"",
+      "clock": "u_isp_top/u_demosaic/raw_matrix_3x3_buffer_d/zhenghe_d/blk_mem_gen_zhenghe_d1/ram_d32970204f32_Inst/clkb",
+      "asr_mux": "\"0\"",
+      "asr": "1'b1",
+      "ssr_mux": "\"INV\"",
+      "ssr": "u_csi_unpacket/S_data_en",
+      "latchmode": "\"DFF\"",
+      "total_ff": 49,
+      "logic_or_carry_ff": 47,
+      "register_only_ff": 2
+    }
+  ],
+  "register_only_pairing_capacity_upper_bound_slices": 86,
+  "scope": "Each physical LSLICE/MSLICE instance is one packed Slice. Actual connected QA/QB pins reconcile FF count; absent LUTMODE matches register-only area. Logical family/owner from Q net is representative, not RTL-exclusive ownership. No X/Y location or complete legal packing compatibility claimed.",
+  "CE_interpretation": "CEAMUX/CEBMUX 1 means always enabled; SIG means pin controlled. A/B CE and data muxes are independent. Shared clock/ASR/SSR tuple is descriptive; tool internal Control Set counts are a different definition.",
+  "files_sha256": {
+    "register_only_slices.csv": "0b7e293ca1e6a1f4e2c4a3e7a77c5813ca5370ee5291fe0e012120673c12e658",
+    "register_families.csv": "878c408e0c0098378577a4682dd7f87f4fd9f895d344f804a0376d35f241ea4b",
+    "shared_control_groups.csv": "da8fe477f34980c6edd4f4a60bd462e9960718ff71b21539c8415fbbfcc003e7",
+    "all_slice_registers.csv": "a7663d054a573636039ad024fda130fb390a056c1025890d7595ebdcc1078dfb"
+  },
+  "optimization_or_hardware_action": false
+}
