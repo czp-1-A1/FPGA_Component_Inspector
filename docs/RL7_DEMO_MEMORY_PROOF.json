@@ -1,0 +1,25 @@
+{
+  "status": "PASS_ACTUAL_SYNTHESIS_BRIDGE_ERAM_3_TO_4_TOTAL98_TO99",
+  "netlists": {
+    "rl7": {
+      "netlist_sha256": "6e4c07afa3bc94721946e1014c86d0829933e3164f4abcad17decef33806921f",
+      "actual_eram_cells": 98,
+      "actual_bridge_eram_cells": [
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_107",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_25",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_66"
+      ]
+    },
+    "demo": {
+      "netlist_sha256": "b73204f639ac42177445f7617b39aec65b2311f830f0420bf1ae9d0ed1814021",
+      "actual_eram_cells": 99,
+      "actual_bridge_eram_cells": [
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_107",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_148",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_25",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_66"
+      ]
+    }
+  },
+  "scope": "Same128bit bridge definition. Previously constant header bits were pruned; timestamp makes them variable. No added full-frame pixel store."
+}

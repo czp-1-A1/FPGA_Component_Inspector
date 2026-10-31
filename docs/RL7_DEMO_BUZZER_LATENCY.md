@@ -8,7 +8,7 @@
 - 演示界面显示实时统计、操作状态、空穴编号、按键提示和实际测得的帧延迟。
 - 原分类判据、计数与编号、位置查询、停车窗口/提前量、1秒保持、五连报警及四键/SW3 行为不改。背面/正面复核波动和冷启动问题按用户要求暂缓处理。
 
-源码范围核对在 `RL7_DEMO_SOURCE_SCOPE.json`：原 636 份冻结文件中 627 份逐 SHA 不变；9 份修改用于顶层/显示/帧元数据/新增 IO 和时序约束；新加 `contest_latency_clock.v`，合计 637 源文件、105 项硬件依赖。图像桥仍为 128bit，利用原生 SOF 头部既有的 33 个空余位传递时间信息，没有增加图像缓存或等待分类结果才发布视频。
+源码范围核对在 `RL7_DEMO_SOURCE_SCOPE.json`：原 636 份冻结文件中 627 份逐 SHA 不变；9 份修改用于顶层/显示/帧元数据/新增 IO 和时序约束；新加 `contest_latency_clock.v`，合计 637 源文件、105 项硬件依赖。图像桥定义仍为 128bit，利用原生 SOF 头部既有的 33 个空余位传递时间信息；没有新增整帧像素缓存，也不等待分类结果才发布视频。原来头部中始终为0的20位可以在综合时裁掉，现在用于时间戳后需要实际存储，SYN/placed报告因此显示 ERAM 从98增为99（多1块桥FIFO存储），不是丢失或替换原有图像/识别缓存。最终资源仍以布线报告为准。
 
 ## 蜂鸣器
 
@@ -59,7 +59,7 @@
 
 **显示统计采用互斥口径：正常有件 = 后端有件数 − 待复核数。** 后端仍保留原“有件包含复核”的记录方式，计数/编号事件不改。这样演示页的总数等于正常有件 + 空穴 + 待复核，不因同一个复核件被重复计入两项而产生误解。
 
-K1 新 RUN；K2 自动暂停/继续并保留队列（待机手动电机启停）；K3 单键清零停止；K4 停止保留结果；SW3 上停、下新 RUN。演示构建固定使用计数演示布局，SW4不再切回旧调试界面。诊断/旧页仍可通过显式 `DEMO_UI=0` 的兼容源码构建恢复，但不属于供演示烧录的默认设置。
+K1 新 RUN；K2 自动暂停/继续并保留队列（待机手动电机启停）；K3 单键清零停止；K4 停止保留结果；SW3 上停、下新 RUN。演示构建固定使用计数演示布局，SW4不再切回旧调试界面。旧页的叶模块默认仍为 `DEMO_UI=0`，用于兼容回归；供演示的bit固定使用演示页。后续若需诊断镜像，需按对应时序/构建配置单独生成。
 
 状态包括 READY、RUNNING、HOLD 1S、PAUSED、MANUAL、STOPPED、FAULT、ALARM。相邻空穴已经在窗口内时，仍可能连续停数秒完成多个独立1秒保持，这是原有行为。
 
@@ -68,7 +68,7 @@ K1 新 RUN；K2 自动暂停/继续并保留队列（待机手动电机启停）
 使用 Windows、Python3.10+、TD6.2.168116及本机合法的 ModelSim2019.2 许可。完整发布中原项目位于 `project/`；在原仓库中位于 `fpga/component_inspector/`。每次输出选新的短英文目录，不覆盖已有结果。
 
 ```powershell
-python scripts/build_r22_relay.py --keys-v3 --demo-rl7 --source project --baseline-manifest baseline/r22_frozen_inputs.json --work E:/FPGA_WORK/RL7_DEMO_BUILD --td E:/TD
+python scripts/build_r22_relay.py --keys-v3 --demo-rl7 --seed 1 --source project --baseline-manifest baseline/r22_frozen_inputs.json --work E:/FPGA_WORK/RL7_DEMO_BUILD --td E:/TD
 python scripts/audit_r22_relay.py --keys-v3 --adjacent-v6 --five-empty-v7 --demo-rl7 --work E:/FPGA_WORK/RL7_DEMO_BUILD
 ```
 

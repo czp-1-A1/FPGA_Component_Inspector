@@ -108,7 +108,7 @@ area=(work/'runs/phy_1/final.area').read_text()
 assert re.search(r'O_relay_control\s+OUTPUT\s+V2\s+LVCMOS33\s+HDIO\s+4\s+PULLDOWN',area)
 assert 'O_led' not in area
 resources={key:int(re.search(r'^#'+key+r'\s+(\d+)',area,re.M)[1]) for key in ['slice','eram','dsp','pll']}
-expected_eram,expected_dsp=(98,30) if args.keys_v3 else (99,30) if args.left_v2 else (101,27)
+expected_eram,expected_dsp=(99,30) if args.demo_rl7 else (98,30) if args.keys_v3 else (99,30) if args.left_v2 else (101,27)
 assert resources['slice']<=21216 and resources['eram']==expected_eram and resources['dsp']==expected_dsp and resources['pll']==5
 if args.left_v2 or args.keys_v3:
  assert 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
@@ -160,7 +160,12 @@ if args.demo_rl7:
    name=f'latency_{bank}_{bit}.timing';report=(folder/name).read_text()
    line=next(x for x in bindings.splitlines() if x.startswith(f'LATENCY_GRAY {bank} {bit} SOURCE '))
    assert f'{bank}/gray_meta[{bit}]' in report,(name,'destination missing')
-   assert f'u_latency_clock/us_gray[{bit}]' in report or (bit==31 and 'u_latency_clock/us_binary[31]' in report),(name,'actual source Q missing')
+   # TD binds the RTL us_gray alias to top-level latency_gray_us; bit31
+   # shares the binary-MSB FF. Require actual Q net and exact binding, not
+   # merely a logical source spelling in a printed SDC command.
+   qname=f'latency_gray_us[{bit}]' if bit<31 else 'u_latency_clock/us_binary[31]'
+   assert f'SOURCE {{{qname}}} THROUGH {{{qname}}}' in line,(name,'typed Q binding missing')
+   assert re.search(r'net:\s+'+re.escape(qname)+r',',report),(name,'actual source Q missing')
    assert ' THROUGH ' in line and ' DESTINATION ' in line
    assert re.search(r'constraint delay\s+8\.000\s+8\.000',report),(name,'new8ns bound not dominant')
    assert 'Check Type          : setup' in report

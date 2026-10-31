@@ -30,6 +30,15 @@ def main():
  assert len(source)==637 and set(source)-set(old)=={'user_source/hdl_source/contest_latency_clock.v'}
  scope=load(repo/'docs/RL7_DEMO_SOURCE_SCOPE.json');changed=[n for n in old if source[n]!=old[n]]
  assert set(changed)==set(scope['changed']) and len(changed)==9
+ expected_changed={'td_project/camera_to_dsi_display.al','td_project/camera_to_dsi_display.sdc','user_source/constraints_source/pin.adc'}|{'user_source/hdl_source/'+n+'.v' for n in ['design_top_wrapper','isp/isp_top','video_in','video_out','compact_inspector_osd','classified_dual_page_osd']}
+ assert set(changed)==expected_changed
+ for rel in ['td_project/camera_to_dsi_display.sdc','user_source/constraints_source/pin.adc']:
+  base_bytes=subprocess.check_output(['git','show','a716eac:fpga/component_inspector/'+rel],cwd=repo)
+  assert (project/rel).read_bytes().startswith(base_bytes),('Inherited pin/timing prefix changed',rel)
+ memory=load(repo/'docs/RL7_DEMO_MEMORY_PROOF.json')
+ assert memory['status']=='PASS_ACTUAL_SYNTHESIS_BRIDGE_ERAM_3_TO_4_TOTAL98_TO99'
+ assert memory['netlists']['demo']['netlist_sha256']==sha(work/'rl7_demo_camera_gate.v')
+
  for n,d in source.items():assert sha(project/n)==sha(repo/'fpga/component_inspector'/n)==d,n
  assert len(load(work/'hardware_inputs.json'))==105
  git_blobs(repo,source)
@@ -102,6 +111,7 @@ def main():
  for rel in source:copy(project/rel,release/'project'/rel)
  copy(bit,release/(name+'.bit'));copy(repo/'docs/RL7_DEMO_BUZZER_LATENCY.md',release/'FIELD_GUIDE.md')
  copy(repo/'docs/RL7_DEMO_SOURCE_SCOPE.json',release/'SOURCE_SCOPE.json')
+ copy(repo/'docs/RL7_DEMO_MEMORY_PROOF.json',release/'MEMORY_PROOF.json')
  write(release/'SOURCE_SHA256.json',source);write(release/'VERIFICATION.json',software)
  for p in (repo/'baseline').glob('*.json'):copy(p,release/'baseline'/p.name)
  for fixture in ['demo_rl7','shift_alarm_v7','camera_gain_fix']:
@@ -128,7 +138,7 @@ def main():
  record={'version':name,'branch':subprocess.check_output(['git','branch','--show-current'],cwd=repo,text=True).strip(),
   'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),'baseline':'RL7 a716eac',
   'bit_sha256':sha(bit),'bit_bytes':bit.stat().st_size,'resources':physical['resources'],'slice_percent':physical['slice_percent'],'timing_ns':physical['timing_ns'],
-  'td_version':'6.2.168116','seed':2,'source_files':637,'hardware_dependencies':105,'fresh_selected_checks':37,
+  'td_version':'6.2.168116','seed':build['seed'],'source_files':637,'hardware_dependencies':105,'selected_software_checks':37,'verification_reuse':'Exact compiled source/fixture hashes checked; R1 tests retained for unchanged RTL',
   'buzzer':'C12/O_buzzer_n/LVCMOS33/PULLUP/active-low;100MHz;2kHz;200msON300msOFF;fifth-EMPTY latch',
   'measurement':software['measurement'],'ui':'INSPECT RL7 DEMO; debug hidden; normalP=P-review; original classification/stop/keys unchanged',
   'board_acceptance':'PENDING_HUMAN_LIVE_IMAGE_BUZZER_LATENCY_AND_STOP_RETEST','pushed':False}
@@ -144,8 +154,9 @@ def main():
   for rel,d in payload.items():assert hashlib.sha256(z.read(rel)).hexdigest()==d['sha256']
  copy(release/(name+'.bit'),flash);assert sha(flash)==sha(bit)
  copy(release/'FIELD_GUIDE.md',flashdir/(name+'_说明.md'));write(flashdir/(name+'_RELEASE.json'),record)
+ copy(release/'preview/demo_rgb.png',flashdir/(name+'_界面预览.png'))
  receipt={'status':'DELIVERED_FOR_HUMAN_RETEST','release':str(release),'archive':str(archive),'archive_sha256':sha(archive),
-  'flash_copy':str(flash),'bit_sha256':sha(bit),'payload_count':len(payload),'fresh_selected_checks':37,'protected_bits_unchanged':True,'board_operated':False}
+  'flash_copy':str(flash),'bit_sha256':sha(bit),'payload_count':len(payload),'selected_software_checks':37,'verification_reuse':'Exact compiled source/fixture hashes checked; R1 tests retained for unchanged RTL','protected_bits_unchanged':True,'board_operated':False}
  for f,d in protected.items():assert sha(flashdir/f)==d
  write(repo/'docs/RL7_DEMO_DELIVERY.json',receipt);print(json.dumps(receipt,indent=2))
 
