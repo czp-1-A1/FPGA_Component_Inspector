@@ -1,0 +1,2311 @@
+{
+  "status": "STOPPED_AT_14400_SECOND_WATCHDOG_WITHOUT_FINAL_ROUTED_TIMING_OR_BIT",
+  "timestamp": "2026-11-01T01:43:15.821008+08:00",
+  "started_at": "2026-10-31T21:39:42.590695+08:00",
+  "stopped_at": "2026-11-01T01:39:42.842983+08:00",
+  "watchdog_seconds": 14400,
+  "seconds": 14400.2,
+  "tool_reported_impossibility": false,
+  "full_attempt_completed": false,
+  "final_timing_accepted": false,
+  "final_critical_endpoints_available": false,
+  "software_profile": "raw-monochrome-edge-v1",
+  "software_checks": 37,
+  "production_adopted": false,
+  "bit_delivered": false,
+  "hardware_operated": false,
+  "next_attempt_authorized": false,
+  "automation_id": "r55-30",
+  "automation_status": "DELETED",
+  "placed_resources_not_final": {
+    "slice": 19777,
+    "capacity": 21216,
+    "percent": 93.22,
+    "eram": 100,
+    "dsp": 31,
+    "pll": 5
+  },
+  "completed_internal_signal_legal_phases": 6,
+  "internal_phases_not_final_signoff": [
+    {
+      "phase": 1,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 7170450.0,
+          "over_count": 32340,
+          "over": 33864,
+          "worst": 5,
+          "crit": 15,
+          "seconds": 40.68
+        },
+        {
+          "iteration": 2,
+          "wire_length": 7236420.0,
+          "over_count": 25465,
+          "over": 26033,
+          "worst": 4,
+          "crit": 5,
+          "seconds": 28.74
+        },
+        {
+          "iteration": 3,
+          "wire_length": 7251620.0,
+          "over_count": 21721,
+          "over": 22015,
+          "worst": 3,
+          "crit": 0,
+          "seconds": 27.74
+        },
+        {
+          "iteration": 4,
+          "wire_length": 7383730.0,
+          "over_count": 17646,
+          "over": 17801,
+          "worst": 3,
+          "crit": 0,
+          "seconds": 24.35
+        },
+        {
+          "iteration": 5,
+          "wire_length": 7477010.0,
+          "over_count": 14504,
+          "over": 14557,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 24.56
+        },
+        {
+          "iteration": 6,
+          "wire_length": 7512480.0,
+          "over_count": 13055,
+          "over": 13093,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 18.49
+        },
+        {
+          "iteration": 7,
+          "wire_length": 7533250.0,
+          "over_count": 12012,
+          "over": 12043,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 16.66
+        },
+        {
+          "iteration": 8,
+          "wire_length": 7839820.0,
+          "over_count": 8028,
+          "over": 8034,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 35.98
+        },
+        {
+          "iteration": 9,
+          "wire_length": 7936080.0,
+          "over_count": 6637,
+          "over": 6639,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 25.81
+        },
+        {
+          "iteration": 10,
+          "wire_length": 8187470.0,
+          "over_count": 5992,
+          "over": 5996,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 33.5
+        },
+        {
+          "iteration": 11,
+          "wire_length": 8379740.0,
+          "over_count": 5494,
+          "over": 5498,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 30.14
+        },
+        {
+          "iteration": 12,
+          "wire_length": 8796880.0,
+          "over_count": 3595,
+          "over": 3596,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 67.59
+        },
+        {
+          "iteration": 13,
+          "wire_length": 9005600.0,
+          "over_count": 2800,
+          "over": 2802,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 43.48
+        },
+        {
+          "iteration": 14,
+          "wire_length": 9070370.0,
+          "over_count": 2120,
+          "over": 2121,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 21.69
+        },
+        {
+          "iteration": 15,
+          "wire_length": 9168720.0,
+          "over_count": 1859,
+          "over": 1860,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 104.1
+        },
+        {
+          "iteration": 16,
+          "wire_length": 9387020.0,
+          "over_count": 1153,
+          "over": 1154,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 85.22
+        },
+        {
+          "iteration": 17,
+          "wire_length": 9500690.0,
+          "over_count": 852,
+          "over": 854,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 39.22
+        },
+        {
+          "iteration": 18,
+          "wire_length": 9570080.0,
+          "over_count": 648,
+          "over": 648,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 30.66
+        },
+        {
+          "iteration": 19,
+          "wire_length": 9622000.0,
+          "over_count": 543,
+          "over": 543,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 24.33
+        },
+        {
+          "iteration": 20,
+          "wire_length": 9684510.0,
+          "over_count": 284,
+          "over": 284,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 38.27
+        },
+        {
+          "iteration": 21,
+          "wire_length": 9736220.0,
+          "over_count": 192,
+          "over": 192,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 25.84
+        },
+        {
+          "iteration": 22,
+          "wire_length": 9762830.0,
+          "over_count": 156,
+          "over": 156,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 24.39
+        },
+        {
+          "iteration": 23,
+          "wire_length": 9786220.0,
+          "over_count": 121,
+          "over": 121,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 62.31
+        },
+        {
+          "iteration": 24,
+          "wire_length": 9810910.0,
+          "over_count": 76,
+          "over": 76,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 75.21
+        },
+        {
+          "iteration": 25,
+          "wire_length": 9824960.0,
+          "over_count": 47,
+          "over": 47,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 25.29
+        },
+        {
+          "iteration": 26,
+          "wire_length": 9833500.0,
+          "over_count": 31,
+          "over": 31,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 9.25
+        },
+        {
+          "iteration": 27,
+          "wire_length": 9838340.0,
+          "over_count": 18,
+          "over": 18,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 10.18
+        },
+        {
+          "iteration": 28,
+          "wire_length": 9840980.0,
+          "over_count": 12,
+          "over": 12,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.11
+        },
+        {
+          "iteration": 29,
+          "wire_length": 9842480.0,
+          "over_count": 12,
+          "over": 12,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.56
+        },
+        {
+          "iteration": 30,
+          "wire_length": 9845220.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.18
+        },
+        {
+          "iteration": 31,
+          "wire_length": 9846930.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.21
+        },
+        {
+          "iteration": 32,
+          "wire_length": 9848380.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.58
+        },
+        {
+          "iteration": 33,
+          "wire_length": 9848300.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.7
+        },
+        {
+          "iteration": 34,
+          "wire_length": 9848530.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.82
+        },
+        {
+          "iteration": 35,
+          "wire_length": 9848670.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 0.48
+        }
+      ],
+      "signal_legal_seen": true,
+      "last_signal_iteration": {
+        "iteration": 35,
+        "wire_length": 9848670.0,
+        "over_count": 0,
+        "over": 0,
+        "worst": 0,
+        "crit": 0,
+        "seconds": 0.48
+      },
+      "internal_timing_not_final": {
+        "setup_wns_ns": -9.81,
+        "setup_tns_ns": -6407.075,
+        "setup_failing_endpoints": 3553,
+        "hold_wns_ns": -0.158,
+        "hold_tns_ns": -2.781,
+        "hold_failing_endpoints": 72
+      },
+      "seconds": 1034.94121
+    },
+    {
+      "phase": 2,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 9730210.0,
+          "over_count": 3271,
+          "over": 3281,
+          "worst": 3,
+          "crit": 1,
+          "seconds": 43.34
+        },
+        {
+          "iteration": 2,
+          "wire_length": 9683390.0,
+          "over_count": 2494,
+          "over": 2494,
+          "worst": 1,
+          "crit": 1,
+          "seconds": 46.64
+        },
+        {
+          "iteration": 3,
+          "wire_length": 9673170.0,
+          "over_count": 2121,
+          "over": 2121,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 29.59
+        },
+        {
+          "iteration": 4,
+          "wire_length": 9731520.0,
+          "over_count": 1528,
+          "over": 1528,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 40.49
+        },
+        {
+          "iteration": 5,
+          "wire_length": 9741600.0,
+          "over_count": 1306,
+          "over": 1306,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 30.37
+        },
+        {
+          "iteration": 6,
+          "wire_length": 9747600.0,
+          "over_count": 1209,
+          "over": 1209,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 19.58
+        },
+        {
+          "iteration": 7,
+          "wire_length": 9748450.0,
+          "over_count": 1180,
+          "over": 1180,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 34.36
+        },
+        {
+          "iteration": 8,
+          "wire_length": 9913300.0,
+          "over_count": 635,
+          "over": 635,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 52.43
+        },
+        {
+          "iteration": 9,
+          "wire_length": 9942220.0,
+          "over_count": 507,
+          "over": 507,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 19.8
+        },
+        {
+          "iteration": 10,
+          "wire_length": 10016800.0,
+          "over_count": 432,
+          "over": 432,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 30.7
+        },
+        {
+          "iteration": 11,
+          "wire_length": 10061400.0,
+          "over_count": 345,
+          "over": 345,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 23.39
+        },
+        {
+          "iteration": 12,
+          "wire_length": 10139400.0,
+          "over_count": 198,
+          "over": 198,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 29.25
+        },
+        {
+          "iteration": 13,
+          "wire_length": 10176700.0,
+          "over_count": 148,
+          "over": 148,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 21.23
+        },
+        {
+          "iteration": 14,
+          "wire_length": 10193500.0,
+          "over_count": 105,
+          "over": 105,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 27.08
+        },
+        {
+          "iteration": 15,
+          "wire_length": 10210200.0,
+          "over_count": 95,
+          "over": 95,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 17.41
+        },
+        {
+          "iteration": 16,
+          "wire_length": 10237000.0,
+          "over_count": 59,
+          "over": 59,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 40.0
+        },
+        {
+          "iteration": 17,
+          "wire_length": 10249700.0,
+          "over_count": 48,
+          "over": 48,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 14.42
+        },
+        {
+          "iteration": 18,
+          "wire_length": 10263000.0,
+          "over_count": 36,
+          "over": 36,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 10.14
+        },
+        {
+          "iteration": 19,
+          "wire_length": 10271900.0,
+          "over_count": 29,
+          "over": 29,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 7.63
+        },
+        {
+          "iteration": 20,
+          "wire_length": 10279100.0,
+          "over_count": 11,
+          "over": 11,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 12.59
+        },
+        {
+          "iteration": 21,
+          "wire_length": 10280800.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 6.1
+        },
+        {
+          "iteration": 22,
+          "wire_length": 10284000.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.49
+        },
+        {
+          "iteration": 23,
+          "wire_length": 10285200.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.93
+        },
+        {
+          "iteration": 24,
+          "wire_length": 10286100.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.5
+        },
+        {
+          "iteration": 25,
+          "wire_length": 10286700.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.9
+        },
+        {
+          "iteration": 26,
+          "wire_length": 10286800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.84
+        },
+        {
+          "iteration": 27,
+          "wire_length": 10286800.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 0.18
+        }
+      ],
+      "signal_legal_seen": true,
+      "last_signal_iteration": {
+        "iteration": 27,
+        "wire_length": 10286800.0,
+        "over_count": 0,
+        "over": 0,
+        "worst": 0,
+        "crit": 0,
+        "seconds": 0.18
+      },
+      "internal_timing_not_final": {
+        "setup_wns_ns": -7.712,
+        "setup_tns_ns": -3174.608,
+        "setup_failing_endpoints": 2071,
+        "hold_wns_ns": -0.158,
+        "hold_tns_ns": -1.186,
+        "hold_failing_endpoints": 26
+      },
+      "seconds": 710.481284
+    },
+    {
+      "phase": 3,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 10163700.0,
+          "over_count": 1880,
+          "over": 1884,
+          "worst": 3,
+          "crit": 1,
+          "seconds": 49.71
+        },
+        {
+          "iteration": 2,
+          "wire_length": 10155700.0,
+          "over_count": 1373,
+          "over": 1373,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 44.21
+        },
+        {
+          "iteration": 3,
+          "wire_length": 10141700.0,
+          "over_count": 1134,
+          "over": 1134,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 24.26
+        },
+        {
+          "iteration": 4,
+          "wire_length": 10211900.0,
+          "over_count": 752,
+          "over": 752,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 40.25
+        },
+        {
+          "iteration": 5,
+          "wire_length": 10219900.0,
+          "over_count": 682,
+          "over": 682,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 26.95
+        },
+        {
+          "iteration": 6,
+          "wire_length": 10227900.0,
+          "over_count": 636,
+          "over": 636,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 23.62
+        },
+        {
+          "iteration": 7,
+          "wire_length": 10231700.0,
+          "over_count": 595,
+          "over": 595,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 20.03
+        },
+        {
+          "iteration": 8,
+          "wire_length": 10348000.0,
+          "over_count": 334,
+          "over": 334,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 66.14
+        },
+        {
+          "iteration": 9,
+          "wire_length": 10377000.0,
+          "over_count": 232,
+          "over": 232,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 43.52
+        },
+        {
+          "iteration": 10,
+          "wire_length": 10418200.0,
+          "over_count": 215,
+          "over": 215,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 48.97
+        },
+        {
+          "iteration": 11,
+          "wire_length": 10443000.0,
+          "over_count": 193,
+          "over": 193,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 35.44
+        },
+        {
+          "iteration": 12,
+          "wire_length": 10483200.0,
+          "over_count": 122,
+          "over": 122,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 50.64
+        },
+        {
+          "iteration": 13,
+          "wire_length": 10505700.0,
+          "over_count": 99,
+          "over": 99,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 34.59
+        },
+        {
+          "iteration": 14,
+          "wire_length": 10524700.0,
+          "over_count": 62,
+          "over": 62,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 30.48
+        },
+        {
+          "iteration": 15,
+          "wire_length": 10531200.0,
+          "over_count": 66,
+          "over": 66,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 17.96
+        },
+        {
+          "iteration": 16,
+          "wire_length": 10550200.0,
+          "over_count": 39,
+          "over": 39,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 34.84
+        },
+        {
+          "iteration": 17,
+          "wire_length": 10562800.0,
+          "over_count": 25,
+          "over": 25,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 40.44
+        },
+        {
+          "iteration": 18,
+          "wire_length": 10567200.0,
+          "over_count": 20,
+          "over": 20,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 22.76
+        },
+        {
+          "iteration": 19,
+          "wire_length": 10570000.0,
+          "over_count": 16,
+          "over": 16,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 11.43
+        },
+        {
+          "iteration": 20,
+          "wire_length": 10573400.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 12.66
+        },
+        {
+          "iteration": 21,
+          "wire_length": 10574800.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.6
+        },
+        {
+          "iteration": 22,
+          "wire_length": 10577400.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.47
+        },
+        {
+          "iteration": 23,
+          "wire_length": 10577500.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.96
+        },
+        {
+          "iteration": 24,
+          "wire_length": 10578400.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.43
+        },
+        {
+          "iteration": 25,
+          "wire_length": 10579100.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.41
+        },
+        {
+          "iteration": 26,
+          "wire_length": 10578400.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.22
+        },
+        {
+          "iteration": 27,
+          "wire_length": 10578600.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.93
+        },
+        {
+          "iteration": 28,
+          "wire_length": 10578900.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 0.36
+        }
+      ],
+      "signal_legal_seen": true,
+      "last_signal_iteration": {
+        "iteration": 28,
+        "wire_length": 10578900.0,
+        "over_count": 0,
+        "over": 0,
+        "worst": 0,
+        "crit": 0,
+        "seconds": 0.36
+      },
+      "internal_timing_not_final": {
+        "setup_wns_ns": -6.892,
+        "setup_tns_ns": -3438.371,
+        "setup_failing_endpoints": 1954,
+        "hold_wns_ns": -0.158,
+        "hold_tns_ns": -0.794,
+        "hold_failing_endpoints": 15
+      },
+      "seconds": 748.150937
+    },
+    {
+      "phase": 4,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 10568300.0,
+          "over_count": 1174,
+          "over": 1175,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 138.21
+        },
+        {
+          "iteration": 2,
+          "wire_length": 10573900.0,
+          "over_count": 777,
+          "over": 777,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 43.17
+        },
+        {
+          "iteration": 3,
+          "wire_length": 10579500.0,
+          "over_count": 638,
+          "over": 638,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 37.79
+        },
+        {
+          "iteration": 4,
+          "wire_length": 10642600.0,
+          "over_count": 411,
+          "over": 411,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 53.69
+        },
+        {
+          "iteration": 5,
+          "wire_length": 10661600.0,
+          "over_count": 344,
+          "over": 344,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 33.49
+        },
+        {
+          "iteration": 6,
+          "wire_length": 10663400.0,
+          "over_count": 326,
+          "over": 326,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 25.31
+        },
+        {
+          "iteration": 7,
+          "wire_length": 10666300.0,
+          "over_count": 300,
+          "over": 300,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 26.22
+        },
+        {
+          "iteration": 8,
+          "wire_length": 10749100.0,
+          "over_count": 183,
+          "over": 183,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 79.29
+        },
+        {
+          "iteration": 9,
+          "wire_length": 10768000.0,
+          "over_count": 145,
+          "over": 145,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 47.78
+        },
+        {
+          "iteration": 10,
+          "wire_length": 10800400.0,
+          "over_count": 128,
+          "over": 128,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 45.98
+        },
+        {
+          "iteration": 11,
+          "wire_length": 10831300.0,
+          "over_count": 108,
+          "over": 108,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 36.67
+        },
+        {
+          "iteration": 12,
+          "wire_length": 10857500.0,
+          "over_count": 69,
+          "over": 69,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 56.09
+        },
+        {
+          "iteration": 13,
+          "wire_length": 10874100.0,
+          "over_count": 59,
+          "over": 59,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 43.81
+        },
+        {
+          "iteration": 14,
+          "wire_length": 10884800.0,
+          "over_count": 31,
+          "over": 31,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 35.37
+        },
+        {
+          "iteration": 15,
+          "wire_length": 10892600.0,
+          "over_count": 28,
+          "over": 28,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 21.41
+        },
+        {
+          "iteration": 16,
+          "wire_length": 10897400.0,
+          "over_count": 21,
+          "over": 21,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 23.49
+        },
+        {
+          "iteration": 17,
+          "wire_length": 10904000.0,
+          "over_count": 14,
+          "over": 14,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 22.3
+        },
+        {
+          "iteration": 18,
+          "wire_length": 10909400.0,
+          "over_count": 8,
+          "over": 8,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 11.52
+        },
+        {
+          "iteration": 19,
+          "wire_length": 10910900.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 7.52
+        },
+        {
+          "iteration": 20,
+          "wire_length": 10912900.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 9.97
+        },
+        {
+          "iteration": 21,
+          "wire_length": 10913500.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.05
+        },
+        {
+          "iteration": 22,
+          "wire_length": 10914100.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 5.11
+        },
+        {
+          "iteration": 23,
+          "wire_length": 10916000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.54
+        },
+        {
+          "iteration": 24,
+          "wire_length": 10915900.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.44
+        },
+        {
+          "iteration": 25,
+          "wire_length": 10916300.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.82
+        },
+        {
+          "iteration": 26,
+          "wire_length": 10916900.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.77
+        },
+        {
+          "iteration": 27,
+          "wire_length": 10918200.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 2.51
+        }
+      ],
+      "signal_legal_seen": true,
+      "last_signal_iteration": {
+        "iteration": 27,
+        "wire_length": 10918200.0,
+        "over_count": 0,
+        "over": 0,
+        "worst": 0,
+        "crit": 0,
+        "seconds": 2.51
+      },
+      "internal_timing_not_final": {
+        "setup_wns_ns": -10.546,
+        "setup_tns_ns": -5478.616,
+        "setup_failing_endpoints": 2107,
+        "hold_wns_ns": -0.158,
+        "hold_tns_ns": -0.571,
+        "hold_failing_endpoints": 10
+      },
+      "seconds": 855.005337
+    },
+    {
+      "phase": 5,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 10958900.0,
+          "over_count": 927,
+          "over": 929,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 192.22
+        },
+        {
+          "iteration": 2,
+          "wire_length": 10995000.0,
+          "over_count": 570,
+          "over": 571,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 58.13
+        },
+        {
+          "iteration": 3,
+          "wire_length": 11006600.0,
+          "over_count": 449,
+          "over": 450,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 62.75
+        },
+        {
+          "iteration": 4,
+          "wire_length": 11060400.0,
+          "over_count": 304,
+          "over": 305,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 75.52
+        },
+        {
+          "iteration": 5,
+          "wire_length": 11079200.0,
+          "over_count": 239,
+          "over": 240,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 81.39
+        },
+        {
+          "iteration": 6,
+          "wire_length": 11087900.0,
+          "over_count": 217,
+          "over": 218,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 64.36
+        },
+        {
+          "iteration": 7,
+          "wire_length": 11088800.0,
+          "over_count": 212,
+          "over": 213,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 60.7
+        },
+        {
+          "iteration": 8,
+          "wire_length": 11152800.0,
+          "over_count": 140,
+          "over": 141,
+          "worst": 2,
+          "crit": 0,
+          "seconds": 140.56
+        },
+        {
+          "iteration": 9,
+          "wire_length": 11156100.0,
+          "over_count": 125,
+          "over": 125,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 85.34
+        },
+        {
+          "iteration": 10,
+          "wire_length": 11193300.0,
+          "over_count": 121,
+          "over": 121,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 65.65
+        },
+        {
+          "iteration": 11,
+          "wire_length": 11224700.0,
+          "over_count": 94,
+          "over": 94,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 50.71
+        },
+        {
+          "iteration": 12,
+          "wire_length": 11255600.0,
+          "over_count": 65,
+          "over": 65,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 76.23
+        },
+        {
+          "iteration": 13,
+          "wire_length": 11274900.0,
+          "over_count": 48,
+          "over": 48,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 41.83
+        },
+        {
+          "iteration": 14,
+          "wire_length": 11283600.0,
+          "over_count": 31,
+          "over": 31,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 44.27
+        },
+        {
+          "iteration": 15,
+          "wire_length": 11291200.0,
+          "over_count": 31,
+          "over": 31,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 21.22
+        },
+        {
+          "iteration": 16,
+          "wire_length": 11298400.0,
+          "over_count": 25,
+          "over": 25,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 21.14
+        },
+        {
+          "iteration": 17,
+          "wire_length": 11308000.0,
+          "over_count": 18,
+          "over": 18,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 12.66
+        },
+        {
+          "iteration": 18,
+          "wire_length": 11312100.0,
+          "over_count": 14,
+          "over": 14,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 11.87
+        },
+        {
+          "iteration": 19,
+          "wire_length": 11317600.0,
+          "over_count": 12,
+          "over": 12,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 12.21
+        },
+        {
+          "iteration": 20,
+          "wire_length": 11319500.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 19.51
+        },
+        {
+          "iteration": 21,
+          "wire_length": 11320100.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 9.35
+        },
+        {
+          "iteration": 22,
+          "wire_length": 11321600.0,
+          "over_count": 9,
+          "over": 9,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 11.11
+        },
+        {
+          "iteration": 23,
+          "wire_length": 11322300.0,
+          "over_count": 9,
+          "over": 9,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 9.43
+        },
+        {
+          "iteration": 24,
+          "wire_length": 11325700.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 12.42
+        },
+        {
+          "iteration": 25,
+          "wire_length": 11328900.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 11.69
+        },
+        {
+          "iteration": 26,
+          "wire_length": 11330200.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.43
+        },
+        {
+          "iteration": 27,
+          "wire_length": 11330400.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 6.65
+        },
+        {
+          "iteration": 28,
+          "wire_length": 11330600.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.99
+        },
+        {
+          "iteration": 29,
+          "wire_length": 11331500.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.83
+        },
+        {
+          "iteration": 30,
+          "wire_length": 11332700.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.65
+        },
+        {
+          "iteration": 31,
+          "wire_length": 11332200.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.86
+        },
+        {
+          "iteration": 32,
+          "wire_length": 11332000.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.69
+        },
+        {
+          "iteration": 33,
+          "wire_length": 11333200.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.98
+        },
+        {
+          "iteration": 34,
+          "wire_length": 11334000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.99
+        },
+        {
+          "iteration": 35,
+          "wire_length": 11334000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.78
+        },
+        {
+          "iteration": 36,
+          "wire_length": 11334400.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.97
+        },
+        {
+          "iteration": 37,
+          "wire_length": 11334800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.97
+        },
+        {
+          "iteration": 38,
+          "wire_length": 11335000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.02
+        },
+        {
+          "iteration": 39,
+          "wire_length": 11335100.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.09
+        },
+        {
+          "iteration": 40,
+          "wire_length": 11334800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.69
+        },
+        {
+          "iteration": 41,
+          "wire_length": 11334900.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.68
+        },
+        {
+          "iteration": 42,
+          "wire_length": 11335000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.74
+        },
+        {
+          "iteration": 43,
+          "wire_length": 11335000.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.78
+        },
+        {
+          "iteration": 44,
+          "wire_length": 11334800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.66
+        },
+        {
+          "iteration": 45,
+          "wire_length": 11334800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1.0
+        },
+        {
+          "iteration": 46,
+          "wire_length": 11335400.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.14
+        },
+        {
+          "iteration": 47,
+          "wire_length": 11335400.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 0.07
+        }
+      ],
+      "signal_legal_seen": true,
+      "last_signal_iteration": {
+        "iteration": 47,
+        "wire_length": 11335400.0,
+        "over_count": 0,
+        "over": 0,
+        "worst": 0,
+        "crit": 0,
+        "seconds": 0.07
+      },
+      "internal_timing_not_final": {
+        "setup_wns_ns": -10.26,
+        "setup_tns_ns": -6427.443,
+        "setup_failing_endpoints": 2808,
+        "hold_wns_ns": -0.158,
+        "hold_tns_ns": -0.44,
+        "hold_failing_endpoints": 9
+      },
+      "seconds": 1337.284016
+    },
+    {
+      "phase": 6,
+      "completed_internal_phase": true,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 11468000.0,
+          "over_count": 864,
+          "over": 864,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 440.89
+        },
+        {
+          "iteration": 2,
+          "wire_length": 11508800.0,
+          "over_count": 535,
+          "over": 535,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 138.88
+        },
+        {
+          "iteration": 3,
+          "wire_length": 11527300.0,
+          "over_count": 434,
+          "over": 434,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 88.87
+        },
+        {
+          "iteration": 4,
+          "wire_length": 11594600.0,
+          "over_count": 293,
+          "over": 293,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 195.15
+        },
+        {
+          "iteration": 5,
+          "wire_length": 11604300.0,
+          "over_count": 265,
+          "over": 265,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 142.36
+        },
+        {
+          "iteration": 6,
+          "wire_length": 11609200.0,
+          "over_count": 258,
+          "over": 258,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 137.61
+        },
+        {
+          "iteration": 7,
+          "wire_length": 11614400.0,
+          "over_count": 246,
+          "over": 246,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 156.57
+        },
+        {
+          "iteration": 8,
+          "wire_length": 11694600.0,
+          "over_count": 187,
+          "over": 187,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 346.25
+        },
+        {
+          "iteration": 9,
+          "wire_length": 11717900.0,
+          "over_count": 152,
+          "over": 152,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 203.32
+        },
+        {
+          "iteration": 10,
+          "wire_length": 11761200.0,
+          "over_count": 151,
+          "over": 151,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 141.35
+        },
+        {
+          "iteration": 11,
+          "wire_length": 11795400.0,
+          "over_count": 126,
+          "over": 126,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 105.62
+        },
+        {
+          "iteration": 12,
+          "wire_length": 11829100.0,
+          "over_count": 108,
+          "over": 108,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 152.74
+        },
+        {
+          "iteration": 13,
+          "wire_length": 11857500.0,
+          "over_count": 89,
+          "over": 89,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 95.47
+        },
+        {
+          "iteration": 14,
+          "wire_length": 11870500.0,
+          "over_count": 62,
+          "over": 62,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 130.09
+        },
+        {
+          "iteration": 15,
+          "wire_length": 11881000.0,
+          "over_count": 57,
+          "over": 57,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 68.54
+        },
+        {
+          "iteration": 16,
+          "wire_length": 11894600.0,
+          "over_count": 52,
+          "over": 52,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 76.47
+        },
+        {
+          "iteration": 17,
+          "wire_length": 11906900.0,
+          "over_count": 40,
+          "over": 40,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 62.17
+        },
+        {
+          "iteration": 18,
+          "wire_length": 11914200.0,
+          "over_count": 35,
+          "over": 35,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 47.57
+        },
+        {
+          "iteration": 19,
+          "wire_length": 11927000.0,
+          "over_count": 27,
+          "over": 27,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 43.03
+        },
+        {
+          "iteration": 20,
+          "wire_length": 11934900.0,
+          "over_count": 25,
+          "over": 25,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 47.56
+        },
+        {
+          "iteration": 21,
+          "wire_length": 11942100.0,
+          "over_count": 21,
+          "over": 21,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 30.2
+        },
+        {
+          "iteration": 22,
+          "wire_length": 11947100.0,
+          "over_count": 20,
+          "over": 20,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 25.68
+        },
+        {
+          "iteration": 23,
+          "wire_length": 11947600.0,
+          "over_count": 18,
+          "over": 18,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 21.04
+        },
+        {
+          "iteration": 24,
+          "wire_length": 11951400.0,
+          "over_count": 17,
+          "over": 17,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 23.99
+        },
+        {
+          "iteration": 25,
+          "wire_length": 11954100.0,
+          "over_count": 15,
+          "over": 15,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 21.01
+        },
+        {
+          "iteration": 26,
+          "wire_length": 11960100.0,
+          "over_count": 12,
+          "over": 12,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 18.25
+        },
+        {
+          "iteration": 27,
+          "wire_length": 11969400.0,
+          "over_count": 11,
+          "over": 11,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 20.52
+        },
+        {
+          "iteration": 28,
+          "wire_length": 11969300.0,
+          "over_count": 10,
+          "over": 10,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 17.1
+        },
+        {
+          "iteration": 29,
+          "wire_length": 11971900.0,
+          "over_count": 9,
+          "over": 9,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 18.08
+        },
+        {
+          "iteration": 30,
+          "wire_length": 11976800.0,
+          "over_count": 9,
+          "over": 9,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 14.57
+        },
+        {
+          "iteration": 31,
+          "wire_length": 11980600.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 6.91
+        },
+        {
+          "iteration": 32,
+          "wire_length": 11983000.0,
+          "over_count": 5,
+          "over": 5,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 6.99
+        },
+        {
+          "iteration": 33,
+          "wire_length": 11984900.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.9
+        },
+        {
+          "iteration": 34,
+          "wire_length": 11985000.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.56
+        },
+        {
+          "iteration": 35,
+          "wire_length": 11985100.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 8.9
+        },
+        {
+          "iteration": 36,
+          "wire_length": 11985100.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.82
+        },
+        {
+          "iteration": 37,
+          "wire_length": 11985500.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.69
+        },
+        {
+          "iteration": 38,
+          "wire_length": 11985200.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 6.33
+        },
+        {
+          "iteration": 39,
+          "wire_length": 11985400.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 6.94
+        },
+        {
+          "iteration": 40,
+          "wire_length": 11987400.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 5.9
+        },
+        {
+          "iteration": 41,
+          "wire_length": 11987200.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.56
+        },
+        {
+          "iteration": 42,
+          "wire_length": 11988500.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.98
+        },
+        {
+          "iteration": 43,
+          "wire_length": 11988800.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.41
+        },
+        {
+          "iteration": 44,
+          "wire_length": 11989700.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 6.36
+        },
+        {
+          "iteration": 45,
+          "wire_length": 11988600.0,
+          "over_count": 3,
+          "over": 3,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.08
+        },
+        {
+          "iteration": 46,
+          "wire_length": 11988100.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.59
+        },
+        {
+          "iteration": 47,
+          "wire_length": 11988000.0,
+          "over_count": 6,
+          "over": 6,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.47
+        },
+        {
+          "iteration": 48,
+          "wire_length": 11991700.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 5.09
+        },
+        {
+          "iteration": 49,
+          "wire_length": 11992400.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 5.38
+        },
+        {
+          "iteration": 50,
+          "wire_length": 11994800.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.99
+        },
+        {
+          "iteration": 51,
+          "wire_length": 11993900.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 4.14
+        },
+        {
+          "iteration": 52,
+          "wire_length": 11994200.0,
+          "over_count": 4,
+          "over": 4,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.49
+        },
+        {
+          "iteration": 53,
+          "wire_length": 11995900.0,
+          "over_count": 2,
+          "over": 2,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 3.23
+        },
+        {
+          "iteration": 54,
+          "wire_length": 11996500.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 2.93
+        },
+        {
+          "iteration": 55,
+          "wire_length": 11996600.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.79
+        },
+        {
+          "iteration": 56,
+          "wire_length": 11996800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.81
+        },
+        {
+          "iteration": 57,
+          "wire_length": 11997800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.86
+        },
+        {
+          "iteration": 58,
+          "wire_length": 11997800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.73
+        },
+        {
+          "iteration": 59,
+          "wire_length": 11997800.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.71
+        },
+        {
+          "iteration": 60,
+          "wire_length": 11997900.0,
+          "over_count": 1,
+          "over": 1,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 0.73
+        },
+        {
+          "iteration": 61,
+          "wire_length": 11997900.0,
+          "over_count": 0,
+          "over": 0,
+          "worst": 0,
+          "crit": 0,
+          "seconds": 0.53
+        }
+      ],
+      "signal_legal_seen": true,
+      "last_signal_iteration": {
+        "iteration": 61,
+        "wire_length": 11997900.0,
+        "over_count": 0,
+        "over": 0,
+        "worst": 0,
+        "crit": 0,
+        "seconds": 0.53
+      },
+      "internal_timing_not_final": {
+        "setup_wns_ns": -15.68,
+        "setup_tns_ns": -19315.472,
+        "setup_failing_endpoints": 5598,
+        "hold_wns_ns": -0.092,
+        "hold_tns_ns": -0.233,
+        "hold_failing_endpoints": 6
+      },
+      "seconds": 3204.105609
+    },
+    {
+      "phase": 7,
+      "completed_internal_phase": false,
+      "signal_iterations": [
+        {
+          "iteration": 1,
+          "wire_length": 12491200.0,
+          "over_count": 2096,
+          "over": 2096,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 1558.32
+        },
+        {
+          "iteration": 2,
+          "wire_length": 12686900.0,
+          "over_count": 1272,
+          "over": 1272,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 598.76
+        },
+        {
+          "iteration": 3,
+          "wire_length": 12752900.0,
+          "over_count": 972,
+          "over": 972,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 527.59
+        },
+        {
+          "iteration": 4,
+          "wire_length": 12859800.0,
+          "over_count": 783,
+          "over": 783,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 622.91
+        },
+        {
+          "iteration": 5,
+          "wire_length": 12903400.0,
+          "over_count": 707,
+          "over": 707,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 515.41
+        },
+        {
+          "iteration": 6,
+          "wire_length": 12918000.0,
+          "over_count": 675,
+          "over": 675,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 416.29
+        },
+        {
+          "iteration": 7,
+          "wire_length": 12953700.0,
+          "over_count": 609,
+          "over": 609,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 577.05
+        },
+        {
+          "iteration": 8,
+          "wire_length": 13060800.0,
+          "over_count": 581,
+          "over": 581,
+          "worst": 1,
+          "crit": 0,
+          "seconds": 909.39
+        }
+      ],
+      "signal_legal_seen": false,
+      "last_signal_iteration": {
+        "iteration": 8,
+        "wire_length": 13060800.0,
+        "over_count": 581,
+        "over": 581,
+        "worst": 1,
+        "crit": 0,
+        "seconds": 909.39
+      },
+      "internal_timing_not_final": null,
+      "seconds": null
+    }
+  ],
+  "missing_final_artifacts": [
+    "runs/phy_1/camera_to_dsi_display_pr.db",
+    "runs/phy_1/camera_to_dsi_display_pr.timing",
+    "runs/phy_1/final_timing.rpt",
+    "runs/phy_1/camera_to_dsi_display.bit",
+    "build_result.json"
+  ],
+  "source_invariants_sha256": "bd635d1fc2cd5d3b288f39bbbf29383eb9f81f97cf1354902385f69ada189bf9",
+  "stop_process_record_sha256": "09b6230052d69126a9dff52818af39cfad42099fdcb20ba7f42d74496428068e",
+  "console_sha256": "808a3f56c3f5f102ab8372fdff484e6534ebdcef8d235a2d1c3fcd29aa08b7f1",
+  "runner_stderr_sha256": "48f514a8f02aa065172f293d33625179c92599f3806a239c2e335183de193c48",
+  "source_manifest_sha256": "7ee656e6c330be7c3a0fe9fac7944f90cfd770e311ab2f7fa29767ea4f70b804",
+  "synthesis_database_sha256": "54a65c2c59dba632e09107a2759e873049b5d5219384185c4e82f0054af8b6b7",
+  "saved_placement_database_sha256": "bd87efed2db573304c39a804e56dec6f08b508a75dc1d4c89d20dcbc24b68aed",
+  "analysis": "Same candidate gets legal signal topology repeatedly, but complete internal timing updates remain negative; phase6 setup WNS -15.680ns/FEP5598, phase7 rewire iter8 residual581 at watchdog. Evidence supports a routing/timing convergence bottleneck rather than only insufficient runtime. No final DB exists, so no particular RTL endpoint is proven responsible; extending the same run further is not the recommended next step."
+}

@@ -1,0 +1,13 @@
+{
+  "status": "PLACEMENT_ONLY_CLUE_NOT_ROUTED_CRITICAL_PATH",
+  "report_sha256": "1feaa54c0a401fd3a4c92a372f153956cd17dc4b95fc4359fc8200f8a0c1b9c4",
+  "confidence": "Placed",
+  "clock_mhz": 100,
+  "setup_slack_ns": 0.807,
+  "begin_point": "u_isp_top/continuous_processing$bridge/ramread0_syn_107.clkb (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+  "end_point": "u_isp_top/classified_counting$dual_regions$pipeline/regions[1]$pipeline/observe_counter$counter/ramread0_syn_2873.imb (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+  "data_path": "8.883ns (cell 3.537ns (39%), net 5.346ns (61%))",
+  "logic_level": "11 ( LUT5=3  LUT2=3  LUT3=2  LUT6=1  LUT4=1  DRAM=1 )",
+  "max_fanout": 196,
+  "inference": "Prioritize read-only tracing of frame/config/metadata control distribution and count-memory write qualification; preserve successful R27B decisions. This is only a placement clue and does not establish the -15.680ns routed-stage endpoint."
+}

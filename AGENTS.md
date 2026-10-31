@@ -1,3 +1,12 @@
+# D3 R55 four-hour route STOPPED; automation DELETED (2026-11-01 01:39, current)
+
+- Unique authorized retry ended at14400.2sec watchdog, TIMED_OUT. OwnedTD45716/runner14160 both gone, settingsSHA0a89f1e7 restored. No manualkill, no finalpr.db/finaltiming/bit/build_result. No sourceadoption, no physical signoff. User stop/analyze boundary met: do NOT launch anotherRTL/SYN/place/route/seed/strategy or extend budget without new user direction. No hardware/push/subagents/goals.
+- Native automation r55-30 DELETED through app tool at terminal heartbeat per current developer lifecycle instructions; saved beforedelete TOML and work/AUTOMATION.json now DELETED. CHECK_HISTORY terminal entry and ABORT_REASON/STOP_PROCESS_RECORD/SOURCE_INVARIANTS saved. No further scheduledchecks needed. This is no longer active.
+- D:/CodexWork/D3_RawEdge_R55_4h_20261031: 6completed internal signallegal phases; setupWNS -9.810,-7.712,-6.892,-10.546,-10.260,-15.680ns; lastsetupFEP5598,hold-.092/FEP6. Phase7 interrupted iter8over581,wire13060800, not finalsignoff/impossibility. Phase6 cost3204s, phase7iter1=1558s; broaderroute/timingconvergence difficulty, do not propose only more runtime as solution. No actual routedendpoint available.
+- All704R55source/107HW unchanged,700samevsR50, originalR27B67df, gate54a65/placebd87 immutable. Production all704 R50; protected3bits and originalR55twohourlogs/sourcezip SHA110488 preserved. Software37 passed, placed19777/93.22%,100ERAM NOTfinalaccepted. No deliverybit.
+- Read-only Placed clue ONLY: 100M +.807ns path processingbridgeERAM -> lowerlane counterRAM imb endpoint,11levels,8.883ns(cell3.537/net5.346=61%),maxfanout196. Not proof it caused internal-15.680. docs/D3_R55_4H_PLACED_PATH_CLUES.json. NextproposalONLY: verify official way to export intermediate timing/DB before new costly trial; read-only control/metadata/frame/config fanout/path analysis, preserve R27B algorithms. Not implemented.
+- Result docs/D3_R55_4H_RESULT_AND_NEXT_STEP.md; copies D3_R55_4H_ABORT_REASON.json and SOURCE_INVARIANTS.json. Final notify failure/no bit and timerdeleted, link resultanalysis. No next experiment.
+
 # D3 R55 same-source four-hour route ACTIVE (2026-10-31 21:39, current)
 
 - User explicitly authorized the proposed single longer R55 route and requested checks EVERY 30 MINUTES (supersedes earlier proposed 15). Only software watchdog budget changes; no RTL/seed/strategy/clocks/IO/SDC changes, no new SYN/place. Previous stop boundary superseded ONLY for this one attempt. No hardware/push/subagents/goals.
