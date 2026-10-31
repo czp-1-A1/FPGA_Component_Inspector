@@ -29,9 +29,24 @@ def main():
  tmp=Path('E:/2026FPGA/.codex_tmp');source=load(work/'frozen_inputs.json');old=load(repo/'baseline/rl7_source_sha256.json')
  assert len(source)==637 and set(source)-set(old)=={'user_source/hdl_source/contest_latency_clock.v'}
  scope=load(repo/'docs/RL7_DEMO_SOURCE_SCOPE.json');changed=[n for n in old if source[n]!=old[n]]
- assert set(changed)==set(scope['changed']) and len(changed)==9
- expected_changed={'td_project/camera_to_dsi_display.al','td_project/camera_to_dsi_display.sdc','user_source/constraints_source/pin.adc'}|{'user_source/hdl_source/'+n+'.v' for n in ['design_top_wrapper','isp/isp_top','video_in','video_out','compact_inspector_osd','classified_dual_page_osd']}
+ assert set(changed)==set(scope['changed']) and len(changed)==10
+ expected_changed={'td_project/camera_to_dsi_display.al','td_project/camera_to_dsi_display.sdc','user_source/constraints_source/pin.adc'}|{'user_source/hdl_source/'+n+'.v' for n in ['design_top_wrapper','isp/isp_top','video_in','video_out','compact_inspector_osd','classified_dual_page_osd','frame_shape_search']}
  assert set(changed)==expected_changed
+ # Prove the detector differs ONLY by the documented SCALE snapshot;
+ # all original decision expressions, ordering and state transitions restore
+ # byte-for-byte to the frozen RL7 file when that snapshot is undone.
+ detector_rel='user_source/hdl_source/frame_shape_search.v'
+ detector=(project/detector_rel).read_bytes()
+ edits=[
+  (b'// Same selection, registered in existing SCALE before COMPARE; no extra cycle.\n// Region/high arrays remain stable between these phases; reset cancels work.\nreg [2:0] high_write_held;reg [11:0] high_worst_held;reg high_free_held;\n',b''),
+  (b'  high_write_held<=0;high_worst_held<=0;high_free_held<=0;\n',b''),
+  (b'    high_write_held<=high_write_index;high_worst_held<=high_worst;high_free_held<=high_free;\n',b''),
+  (b'(high_free_held || distance<high_worst_held))begin\n     high_boxes[high_write_held]<={ymax,ymin,xmax,xmin};\n     high_distances[high_write_held]<=distance;high_valid[high_write_held]<=1;',
+   b'(high_free || distance<high_worst))begin\n     high_boxes[high_write_index]<={ymax,ymin,xmax,xmin};\n     high_distances[high_write_index]<=distance;high_valid[high_write_index]<=1;')]
+ for before,after in edits:
+  assert detector.count(before)==1,('Unexpected detector snapshot edit',before)
+  detector=detector.replace(before,after)
+ assert hashlib.sha256(detector).hexdigest()==old[detector_rel],'Detector changed beyond SCALE snapshot'
  for rel in ['td_project/camera_to_dsi_display.sdc','user_source/constraints_source/pin.adc']:
   base_bytes=subprocess.check_output(['git','show','a716eac:fpga/component_inspector/'+rel],cwd=repo)
   assert (project/rel).read_bytes().startswith(base_bytes),('Inherited pin/timing prefix changed',rel)
@@ -52,8 +67,8 @@ def main():
  assert '.vs(exp_vs),.de(exp_de)' in top and '.latest_source(latest_source_display)' in top
  selected=[];groups=[
   ('rl7_demo_units_r2_20261101','demo_rl7',3),('rl7_demo_extra_r1_20261101','demo_rl7',2),
-  ('rl7_demo_alarm_r1_20261101','demo_rl7',1),('rl7_demo_regression_r1_20261101','shift_alarm_v7',17),
-  ('rl7_demo_compat_r1_20261101',None,5)]
+  ('rl7_demo_alarm_r1_20261101','demo_rl7',1),('rl7_demo_regression_r3c_20261101','shift_alarm_v7',17),
+  ('rl7_demo_compat_r1_20261101',None,5),('rl7_demo_select_stage_r1_20261101','demo_rl7',1)]
  for name,fixture,count in groups:
   folder=tmp/name;proof=load(folder/'verification.json');assert proof['status']=='PASS' and len(proof['tests'])==count,name
   for n,d in proof['inputs'].items():assert source[n]==d and sha(folder/'inputs'/Path(n).name)==d,(name,n)
@@ -62,13 +77,13 @@ def main():
   for t in proof['tests']:
    log=folder/(t['name']+'.log');d=t.get('log_sha256',t.get('sha256'));assert sha(log)==d;passed(log)
    selected.append({'name':t['name'],'group':name,'log_sha256':d,'mode':'NEW_RUN'})
- native=tmp/'rl7_demo_native_r2_20261101';n=load(native/'verification.json');assert n['status']=='PASS'
+ native=tmp/'rl7_demo_native_r3b_20261101';n=load(native/'verification.json');assert n['status']=='PASS'
  for rel,d in n['inputs'].items():assert source[rel]==d and sha(native/'inputs/project'/rel)==d,rel
  for rel,d in n['extra_inputs'].items():assert sha(repo/'tests/demo_rl7'/Path(rel).name)==sha(native/'inputs/project'/rel)==d,rel
  assert sha(native/'console.log')==n['console_sha256'];passed(native/'console.log')
  text=(native/'console.log').read_text();assert 'PASS DEMO_NATIVE_LATENCY:' in text and 'OF=0 UF=0' in text
  selected.append({'name':n['name'],'group':native.name,'log_sha256':n['console_sha256'],'mode':'NEW_RUN','scope':'Actual12RAW/24display rasters plus matched raw-SOF/slot/post-OSD HDMI measurements; RAW does not reach parking line'})
- gate=tmp/'rl7_demo_camera_gate_r1_20261101';g=load(gate/'verification.json');assert g['status']=='PASS'
+ gate=tmp/'rl7_demo_camera_gate_r3b_20261101';g=load(gate/'verification.json');assert g['status']=='PASS'
  assert sha(work/'rl7_demo_camera_gate.v')==g['gate_netlist_sha256'] and g['cone_closure']['all_other_consumed_nets_have_selected_cell_drivers']
  for test in g['tests']:
   log=gate/(test['name']+'.log');assert sha(log)==test['log_sha256'];passed(log)
@@ -86,13 +101,13 @@ def main():
       p=(project/'sim'/token).resolve();rel=p.relative_to(project).as_posix();assert sha(p)==source[rel];compiled[rel]=source[rel]
   assert compiled,name
   legacy.append({'name':name,'group':'legacy','inputs':compiled,'compile_sha256':sha(folder/'compile.log'),'log_sha256':sha(folder/'console.log'),'mode':'NEW_RUN'})
- assert len(selected)==30 and len(legacy)==7 and len({t['name'] for t in selected})==30
- software={'status':'PASS_37_EXACT_SOURCE_CHECKS','selected':selected,'legacy':legacy,'source_files':637,
+ assert len(selected)==31 and len(legacy)==7 and len({t['name'] for t in selected})==31
+ software={'status':'PASS_38_EXACT_SOURCE_CHECKS','selected':selected,'legacy':legacy,'source_files':637,
   'scope':scope,'board_operated':False,'new_hardware_acceptance':False,'classification_or_cold_start_fixed':False,
   'actual_refill_actuator_implemented':False,'precision_1mm_acceptance':False,
   'measurement':'FPGA decoded RAW10 SOF -> actual first valid pixel after OSD at HDMI transmitter; excludes exposure-before-SOF and panel delay'}
  write(work/'demo_software_verification.json',software)
- if args.software_only:print(json.dumps({'status':software['status'],'checks':37,'source_files':637}));return
+ if args.software_only:print(json.dumps({'status':software['status'],'checks':38,'source_files':637}));return
  physical=load(work/'physical_verification.json');build=load(work/'build_result.json')
  assert physical['status']=='PASS_RL7_DEMO_ROUTED_50_BOUNDS_20_FIFO_GRAY_64_TIME_GRAY_KEYS_V2_C12'
  assert physical['max_delays_matched']==50 and physical['max_delays_ignored']==0 and physical['latency_gray_paths']==64
@@ -106,7 +121,7 @@ def main():
  for f,d in protected.items():assert sha(flashdir/f)==d,f
  name='R22_RL7_Demo_BuzzerLatency_V1_20261101';release=repo/'releases/rl7_demo_buzzer_latency_v1_20261101';archive=release.with_suffix('.zip');flash=flashdir/(name+'.bit')
  assert not release.exists() and not archive.exists() and not flash.exists()
- if args.check_only:print(json.dumps({'status':'READY_TO_PUBLISH','checks':37,'resources':physical['resources'],'timing_ns':physical['timing_ns'],'bit_sha256':sha(bit)},indent=2));return
+ if args.check_only:print(json.dumps({'status':'READY_TO_PUBLISH','checks':38,'resources':physical['resources'],'timing_ns':physical['timing_ns'],'bit_sha256':sha(bit)},indent=2));return
  release.mkdir(parents=True)
  for rel in source:copy(project/rel,release/'project'/rel)
  copy(bit,release/(name+'.bit'));copy(repo/'docs/RL7_DEMO_BUZZER_LATENCY.md',release/'FIELD_GUIDE.md')
@@ -138,12 +153,12 @@ def main():
  record={'version':name,'branch':subprocess.check_output(['git','branch','--show-current'],cwd=repo,text=True).strip(),
   'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),'baseline':'RL7 a716eac',
   'bit_sha256':sha(bit),'bit_bytes':bit.stat().st_size,'resources':physical['resources'],'slice_percent':physical['slice_percent'],'timing_ns':physical['timing_ns'],
-  'td_version':'6.2.168116','seed':build['seed'],'source_files':637,'hardware_dependencies':105,'selected_software_checks':37,'verification_reuse':'Exact compiled source/fixture hashes checked; R1 tests retained for unchanged RTL',
+  'td_version':'6.2.168116','seed':build['seed'],'source_files':637,'hardware_dependencies':105,'selected_software_checks':38,'verification_reuse':'Exact compiled source/fixture hashes checked; Unchanged-module tests retained by exact hashes; affected detector/native/core/camera checks rerun for SCALE snapshot',
   'buzzer':'C12/O_buzzer_n/LVCMOS33/PULLUP/active-low;100MHz;2kHz;200msON300msOFF;fifth-EMPTY latch',
-  'measurement':software['measurement'],'ui':'INSPECT RL7 DEMO; debug hidden; normalP=P-review; original classification/stop/keys unchanged',
+  'measurement':software['measurement'],'ui':'INSPECT RL7 DEMO; debug hidden; normalP=P-review; original classification predicates/stop/keys unchanged;16bit candidate snapshot in existing SCALE',
   'board_acceptance':'PENDING_HUMAN_LIVE_IMAGE_BUZZER_LATENCY_AND_STOP_RETEST','pushed':False}
  write(release/'RELEASE.json',record)
- (release/'README.md').write_text('RL7 demonstration candidate. Read FIELD_GUIDE.md. Original classifier/stop/keys unchanged; C12 buzzer and measured RAW-SOF to post-OSD HDMI pixel age/source.37 exact-source checks plus actual strict routed audit; human board acceptance pending. Never overwrite old RL7 or readonly Ethernet bits.\n')
+ (release/'README.md').write_text('RL7 demonstration candidate. Read FIELD_GUIDE.md. Original classifier/stop/keys unchanged; C12 buzzer and measured RAW-SOF to post-OSD HDMI pixel age/source.38 exact-source checks plus actual strict routed audit; human board acceptance pending. Never overwrite old RL7 or readonly Ethernet bits.\n')
  payload={p.relative_to(release).as_posix():{'bytes':p.stat().st_size,'sha256':sha(p)} for p in sorted(release.rglob('*')) if p.is_file()}
  write(release/'PAYLOAD_SHA256.json',payload)
  with zipfile.ZipFile(archive,'x',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
@@ -156,7 +171,7 @@ def main():
  copy(release/'FIELD_GUIDE.md',flashdir/(name+'_说明.md'));write(flashdir/(name+'_RELEASE.json'),record)
  copy(release/'preview/demo_rgb.png',flashdir/(name+'_界面预览.png'))
  receipt={'status':'DELIVERED_FOR_HUMAN_RETEST','release':str(release),'archive':str(archive),'archive_sha256':sha(archive),
-  'flash_copy':str(flash),'bit_sha256':sha(bit),'payload_count':len(payload),'selected_software_checks':37,'verification_reuse':'Exact compiled source/fixture hashes checked; R1 tests retained for unchanged RTL','protected_bits_unchanged':True,'board_operated':False}
+  'flash_copy':str(flash),'bit_sha256':sha(bit),'payload_count':len(payload),'selected_software_checks':38,'verification_reuse':'Exact compiled source/fixture hashes checked; Unchanged-module tests retained by exact hashes; affected detector/native/core/camera checks rerun for SCALE snapshot','protected_bits_unchanged':True,'board_operated':False}
  for f,d in protected.items():assert sha(flashdir/f)==d
  write(repo/'docs/RL7_DEMO_DELIVERY.json',receipt);print(json.dumps(receipt,indent=2))
 

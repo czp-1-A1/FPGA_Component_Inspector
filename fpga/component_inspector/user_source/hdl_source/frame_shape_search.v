@@ -346,6 +346,9 @@ wire high_lookup=MULTITHRESHOLD_EMPTY && small_pass && width_now==4 && height_no
  guarded_bright_empty && long5<=short7 && fg5>=area3 && fg10>area9 &&
  !sprocket_match && !covers_body;
 reg [2:0] high_write_index;reg [11:0] high_worst;reg high_free;integer hi;
+// Same selection, registered in existing SCALE before COMPARE; no extra cycle.
+// Region/high arrays remain stable between these phases; reset cancels work.
+reg [2:0] high_write_held;reg [11:0] high_worst_held;reg high_free_held;
 always @*begin
  high_write_index={candidate_region,2'b00};high_worst=0;high_free=0;
  for(hi=0;hi<4;hi=hi+1)begin
@@ -739,6 +742,7 @@ always @(posedge clk or negedge rst_n)begin
   pack_index<=0;pack_anchor<=0;pack_duplicate<=0;
   for(bi=0;bi<8;bi=bi+1)pointer_bank[bi]<=bi%4;
   high_valid<=0;high_index<=0;high_confirmed<=0;
+  high_write_held<=0;high_worst_held<=0;high_free_held<=0;
   held_valid<=0;held_x<=0;held_y<=0;held_found<=0;
   edge_feed_observed<=0;edge_feed_y[0]<=0;edge_feed_y[1]<=0;row_anchor_valid<=0;row_anchor_y[0]<=0;row_anchor_y[1]<=0;row_anchor_distance[0]<=4095;row_anchor_distance[1]<=4095;
   small_pass<=0;ready<=0;sample_new<=0;located<=0;state<=1;review_required<=0;legacy_objects<=0;legacy_region_objects<=0;recorder_storage<=0;foreground_count<=0;box_width<=0;box_height<=0;
@@ -833,6 +837,7 @@ always @(posedge clk or negedge rst_n)begin
    AREA_CALC:begin high_confirmed<=0;candidate_region<=region_now;candidate_allowed<=allowed_now;component_area<=width_now*height_now;
     long_side<=width_now>height_now ? width_now : height_now;short_side<=width_now<height_now ? width_now : height_now;phase<=SCALE;end
    SCALE:begin
+    high_write_held<=high_write_index;high_worst_held<=high_worst;high_free_held<=high_free;
     distance<=distance_now;
     fg20<={4'b0,component_count}*23'd20;area17<={4'b0,component_area}*23'd17;
     fg5<={4'b0,component_count}*23'd5;area3<={4'b0,component_area}*23'd3;
@@ -850,9 +855,9 @@ always @(posedge clk or negedge rst_n)begin
     end
     phase<=SCAN_REQ;
     if(high_shape && candidate_allowed && !border && component_count>=6 &&
-       width_now>=3 && height_now>=3 && (high_free || distance<high_worst))begin
-     high_boxes[high_write_index]<={ymax,ymin,xmax,xmin};
-     high_distances[high_write_index]<=distance;high_valid[high_write_index]<=1;
+       width_now>=3 && height_now>=3 && (high_free_held || distance<high_worst_held))begin
+     high_boxes[high_write_held]<={ymax,ymin,xmax,xmin};
+     high_distances[high_write_held]<=distance;high_valid[high_write_held]<=1;
     end
     if(candidate_allowed && (!REGIONS || candidate_state!=0 || small_pass) && !border && (component_count>=8 || (small_pass && empty_match && component_count>=6)) && width_now>=3 && height_now>=3)begin
      if(!small_pass)begin

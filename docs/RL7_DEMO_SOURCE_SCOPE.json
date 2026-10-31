@@ -1,7 +1,7 @@
 {
   "status": "PASS_RL7_SCOPE_INVARIANTS",
   "base_files": 636,
-  "unchanged": 627,
+  "unchanged": 626,
   "changed": [
     "td_project/camera_to_dsi_display.al",
     "td_project/camera_to_dsi_display.sdc",
@@ -11,9 +11,12 @@
     "user_source/hdl_source/design_top_wrapper.v",
     "user_source/hdl_source/isp/isp_top.v",
     "user_source/hdl_source/video_in.v",
-    "user_source/hdl_source/video_out.v"
+    "user_source/hdl_source/video_out.v",
+    "user_source/hdl_source/frame_shape_search.v"
   ],
   "new_module": "user_source/hdl_source/contest_latency_clock.v",
-  "classifier_counter_relay_controller_keys_camera_sources_unchanged": true,
-  "new_source_files": 637
+  "new_source_files": 637,
+  "counter_relay_controller_keys_camera_sources_unchanged": true,
+  "classifier_decision_predicates_unchanged": true,
+  "detector_timing_only": "Original first-free/last-tied-largest combinational selector unchanged; latch three outputs in existing SCALE; consume in COMPARE. No new states/cycles/thresholds/ranking changes."
 }
