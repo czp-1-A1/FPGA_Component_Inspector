@@ -13,6 +13,7 @@ for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
 env['TEMP']=env['TMP']=str(out);sim=Path('E:/Modelsim/win64')
 rtl=['pocket_relay_stop','pocket_relay_stop_v2','classified_pocket_counter','classified_count_pipeline','pocket_run_controls','status_cdc']
 benches=args.only or ['tb_relay_left_faults','tb_relay_left_transport','tb_pocket_relay_stop','tb_relay_numbered_pipeline','tb_relay_real_second']
+if 'tb_demo_alarm' in benches:rtl+=['contest_latency_clock']
 files=['user_source/hdl_source/'+n+'.v' for n in rtl]+['sim/'+n+'.sv' for n in (args.support or [])+benches]
 
 if args.osd or any(n in benches for n in ['tb_relay_left_pixels','tb_relay_left_osd','tb_relay_left_rgb','tb_relay_v3_osd','tb_relay_v3_rgb']):

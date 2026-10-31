@@ -1,6 +1,6 @@
 from pathlib import Path
 import argparse,hashlib,json,os,re,shutil,subprocess,winreg
-r=Path(__file__).resolve().parents[1];a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--v3',action='store_true');a.add_argument('--bench-dir',type=Path);a.add_argument('--bench');args=a.parse_args()
+r=Path(__file__).resolve().parents[1];a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--v3',action='store_true');a.add_argument('--bench-dir',type=Path);a.add_argument('--bench');a.add_argument('--demo-rl7',action='store_true');args=a.parse_args()
 bench=args.bench or ('tb_relay_v3_native' if args.v3 else 'tb_relay_left_native')
 p=(args.source or r/'fpga/component_inspector').resolve();out=args.out.resolve();out.mkdir(parents=True,exist_ok=False);env=dict(os.environ)
 for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
@@ -15,6 +15,8 @@ text=(p/'sim/run_modelsim.ps1').read_text(encoding='utf8');block=text.split('$is
 hdl=p/'user_source/hdl_source';ip=p/'user_source/ip_source';demosaic=hdl/'isp/demosaic_4x_2_0'
 files=[Path(t.replace('$demosaic',str(demosaic)).replace('$hdl',str(hdl)).replace('$ip',str(ip))).resolve() for t in re.findall(r'"([^"]+\.v)"',block)]
 files += [hdl/(n+'.v') for n in ['pocket_relay_stop','pocket_relay_stop_v2','count_record_view','image_correction','status_cdc','video_in','video_out']]
+if args.demo_rl7:
+ files += [hdl/(n+'.v') for n in ['contest_latency_clock','compact_inspector_osd','compact_ascii_rom','compact_cjk_rom','compact_template_rom','osd_logo_rom']]
 files += [p/'sim/reference/classified_pocket_counter_R9.v',p/('sim/'+bench+'.sv')]
 vendor=['common/al_map_basic.v','common/al_map_lut.v','common/al_map_adder.v','common/al_phy_glbl.v','ph1p/ph1p_logic_eram.v','ph1p/ph1p_phy_gsr.v','ph1p/ph1p_logic_bufg.v','ph1p/ph1p_phy_pll_v2.v','ph1p/ph1p_logic_hrio.v','ph1p/ph1p_phy_hr_pad.v']
 manifest={};extra_inputs={};frozen=[]

@@ -2,7 +2,9 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter DEMO_UI=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_CLEAN_UI=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+ input wire latency_new,latency_valid,input wire [15:0] latency_ms10,latency_frame_lag,
+ input wire [39:0] latency_source_bcd,
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
  input wire [7:0] wb_r,wb_b,roi_mean,roi_min,roi_max,
@@ -16,6 +18,7 @@ module compact_inspector_osd #(parameter FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_CLE
  input wire [255:0] live_record,frame_record,input wire eligible,
  output reg out_vs,out_hs,out_de,output reg [23:0] out_rgb
 );
+reg latency_ok_s;reg [15:0] latency_s,lag_s;reg [39:0] source_bcd_s;
 reg [63:0] relay_snapshot;reg [95:0] diagnostic_snapshot;reg [2:0] relay_mode_snapshot;
 function [7:0] relay_char;
  input [5:0] char_index;reg [383:0] text;
@@ -281,6 +284,13 @@ always @*begin
   26:next_number={9'd0,primary[55:49]};27:next_number={9'd0,primary[48:42]};
   28:next_number={3'd0,primary[68:56]};29:next_number=iw;30:next_number=ih;31:next_number=ec;
  endcase
+ if(DEMO_UI)begin
+  // Demo categories are disjoint: normal PRESENT = all PRESENT - REVIEW.
+  // Backend counters/events remain untouched.
+  if(fmt==1)next_number=live[75:67]>=live[93:85] ? live[75:67]-live[93:85] : 0;
+  if(fmt==23)next_number=latency_s;
+  if(fmt==24)next_number=lag_s;
+ end
  adjusted=bcd;
  if(bcd[3:0]>=5)adjusted[3:0]=bcd[3:0]+3;
  if(bcd[7:4]>=5)adjusted[7:4]=bcd[7:4]+3;
@@ -290,6 +300,7 @@ always @*begin
 end
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
+  latency_ok_s<=0;latency_s<=0;lag_s<=0;source_bcd_s<=0;
   relay_snapshot<=0;diagnostic_snapshot<=0;relay_mode_snapshot<=0;
   de_d<=0;x<=0;y<=0;page_s<=0;eligible_s<=0;show<=0;cal_s<=0;gray_s<=0;cfg_s<=0;tune_s<=0;pending_s<=0;
   mode_s<=0;wait_s<=0;live<=0;record<=0;obs<=0;cal<=0;primary<=0;np<=0;ne<=0;nu<=0;
@@ -301,6 +312,7 @@ always @(posedge clk or negedge rst_n)begin
   if(vs)begin x<=0;y<=0;end
   else if(de)x<=x+1'b1;else if(de_d)begin x<=0;y<=y+1'b1;end
   if(start)begin
+   if(DEMO_UI)begin latency_ok_s<=0;latency_s<=0;lag_s<=0;source_bcd_s<=0;end
    relay_snapshot<=relay_status;diagnostic_snapshot<=relay_diagnostic;relay_mode_snapshot<=relay_control_mode;
    page_s<=page;live<=live_record;record<=frame_record;obs<=objects;cal<=calibration_record;
    eligible_s<=eligible;cal_s<=calibration_valid;gray_s<=roi_valid;cfg_s<=cfg_done;tune_s<=wb_tune;pending_s<=wb_pending;
@@ -315,6 +327,12 @@ always @(posedge clk or negedge rst_n)begin
    fr<=frames;pub<=publish_diagnostic;diag<=diagnostics;mode_s<=view_mode;wait_s<=local_wait_reason;
    token_d<=0;write_cursor_d<=0;write_valid_d<=0;fmt<=0;step<=0;formatting<=1;feeding<=0;write_valid<=0;ready<=0;cursor<=0;
   end else begin
+   // A current-raster measurement is produced32 clocks after the real HDMI
+   // first pixel. Snapshot it before cache slots23/24 are formatted; row8
+   // displays this SAME raster's coherent source/latency tuple.
+   if(DEMO_UI && latency_new && formatting && fmt<23)begin
+    latency_ok_s<=latency_valid;latency_s<=latency_ms10;lag_s<=latency_frame_lag;source_bcd_s<=latency_source_bcd;
+   end
    if(formatting)begin
     if(step==0)begin number<=next_number;bcd<=0;step<=1;end
     else begin
@@ -332,6 +350,84 @@ always @(posedge clk or negedge rst_n)begin
   end
  end
 end
+
+// Human-facing demo text. Existing fonts, logo, boxes, pixel timing and
+// numeric formatter are retained. Debug templates remain available only in
+// explicit DEMO_UI=0 compatibility builds.
+function [7:0] demo_digit;input [4:0] slot;input [2:0] digit;
+ begin demo_digit="0"+((cache[slot]>>(digit*4))&4'hf);end
+endfunction
+function [7:0] demo_char;
+ input [2:0] ln;input [6:0] ci;
+ reg [511:0] text;reg [79:0] state_word;reg [6:0] k;
+ begin
+  demo_char=32;text=0;state_word="READY     ";k=0;
+  if(relay_snapshot[31:29]==4)state_word=five_empty_alarm ? "ALARM     " : "FAULT     ";
+  else if(relay_mode_snapshot==2)state_word="PAUSED    ";
+  else if(relay_mode_snapshot==3)state_word="MANUAL    ";
+  else if(relay_mode_snapshot==4)state_word="STOPPED   ";
+  else if(relay_mode_snapshot==1)state_word=relay_snapshot[31:29]==3 ? "HOLD 1S   " : "RUNNING   ";
+  case(ln)
+   0:begin
+    if(ci<16)begin text={"INSPECT RL7 DEMO",384'd0};demo_char=text[511-ci*8-:8];end
+    if(ci>=28 && ci<32)begin text={"FPS ",480'd0};demo_char=text[511-(ci-28)*8-:8];end
+    if(ci>=32 && ci<35)demo_char=demo_digit(16,34-ci);
+    if(ci>=37 && ci<46)begin text={"1280X720 ",440'd0};demo_char=text[511-(ci-37)*8-:8];end
+    if(ci>=78 && ci<86)begin text={"LATENCY ",448'd0};demo_char=text[511-(ci-78)*8-:8];end
+    if(ci>=86 && ci<90)demo_char=latency_ok_s ? demo_digit(23,90-ci) : "-";
+    if(ci==90)demo_char=".";
+    if(ci==91)demo_char=latency_ok_s ? demo_digit(23,0) : "-";
+    if(ci==93)demo_char="m";if(ci==94)demo_char="s";
+   end
+   1:begin
+    if(ci<6)begin text={"TOTAL ",464'd0};demo_char=text[511-ci*8-:8];end
+    if(ci>=6 && ci<9)demo_char=demo_digit(0,8-ci);
+    if(ci>=16 && ci<22)demo_char=class_char(2,0,ci-16);
+    if(ci>=24 && ci<27)demo_char=demo_digit(1,26-ci);
+    if(ci>=34 && ci<40)demo_char=class_char(3,0,ci-34);
+    if(ci>=42 && ci<45)demo_char=demo_digit(2,44-ci);
+    if(ci>=52 && ci<61)demo_char=class_char(2,1,ci-52);
+    if(ci>=63 && ci<66)demo_char=demo_digit(3,65-ci);
+    if(ci>=78 && ci<88)begin text={"FRAME LAG ",432'd0};demo_char=text[511-(ci-78)*8-:8];end
+    if(ci>=88 && ci<91)demo_char=latency_ok_s ? demo_digit(24,90-ci) : "-";
+    if(ci>=93 && ci<97)begin text={"SRC ",480'd0};demo_char=text[511-(ci-93)*8-:8];end
+    if(ci>=97 && ci<107)demo_char=latency_ok_s ? "0"+((source_bcd_s>>((106-ci)*4))&4'hf) : "-";
+   end
+   2:begin
+    if(ci<6)begin text={"STATE ",464'd0};demo_char=text[511-ci*8-:8];end
+    if(ci>=6 && ci<16)demo_char=state_word[79-(ci-6)*8-:8];
+    if(ci>=28 && ci<33)begin text={"LAST ",472'd0};demo_char=text[511-(ci-28)*8-:8];end
+    if(ci>=33 && ci<36)demo_char=demo_digit(5,35-ci);
+    if(ci>=78 && ci<99)begin text={"CAP SOF -> HDMI PIXEL",344'd0};demo_char=text[511-(ci-78)*8-:8];end
+    if(five_empty_alarm && ci<37)demo_char=alarm_char(ci);
+   end
+   3:begin
+    if(ci<15)begin text={"EMPTY IDS PAGE ",392'd0};demo_char=text[511-ci*8-:8];end
+    if(ci>=15 && ci<18)demo_char=demo_digit(17,17-ci);
+    if(ci>=24 && ci<72)begin
+     k=ci-24;
+     case(k/6)
+      0:if(k%6<3)demo_char=demo_digit(6,2-k%6);
+      1:if(k%6<3)demo_char=demo_digit(7,2-k%6);
+      2:if(k%6<3)demo_char=demo_digit(8,2-k%6);
+      3:if(k%6<3)demo_char=demo_digit(9,2-k%6);
+      4:if(k%6<3)demo_char=demo_digit(10,2-k%6);
+      5:if(k%6<3)demo_char=demo_digit(11,2-k%6);
+      6:if(k%6<3)demo_char=demo_digit(12,2-k%6);
+      7:if(k%6<3)demo_char=demo_digit(13,2-k%6);
+     endcase
+    end
+   end
+   4:begin
+    if(five_empty_alarm && ci<37)begin text={"5 EMPTY ALARM - K3 CLEAR OR K1 NEW RUN",208'd0};demo_char=text[511-ci*8-:8];end
+   end
+   5:begin
+    if(ci<47)begin text={"K1 START   K2 PAUSE/RESUME   K3 CLEAR   K4 STOP",136'd0};demo_char=text[511-ci*8-:8];end
+   end
+   6:if(ci<10)demo_char=state_word[79-ci*8-:8];
+  endcase
+ end
+endfunction
 
 reg [2:0] line;reg [9:0] plane_address;reg [7:0] code;
 reg [4:0] row,col;reg panel,guide,logo,repair_border;reg [23:0] ink;
@@ -361,11 +457,16 @@ always @*begin
    else row=31;
    plane_address={line,text_dx[9:3]};code=plane_q;col={2'd0,text_dx[2:0]};
    if(code[7])col={code[5:4],3'd0}+text_dx[2:0];
-   if(AUTO_RELAY && line==2 && text_dx[9:3]>=72)code=relay_char(text_dx[9:3]-72);
-   if(ADJACENT_V6 && line==6)code=relay_diag_char(text_dx[9:3]);
+   if(DEMO_UI)begin
+    code=demo_char(line,text_dx[9:3]);
+    col=code[7] ? {code[5:4],3'd0}+text_dx[2:0] : {2'd0,text_dx[2:0]};
+   end
+   if(!DEMO_UI && AUTO_RELAY && line==2 && text_dx[9:3]>=72)code=relay_char(text_dx[9:3]-72);
+   if(!DEMO_UI && ADJACENT_V6 && line==6)code=relay_diag_char(text_dx[9:3]);
    if(five_empty_alarm && line==2 && text_dx[9:3]<64)begin
     code=alarm_char(text_dx[9:3]);col={2'd0,text_dx[2:0]};ink=24'hff5050;
    end
+   if(DEMO_UI && line<=1 && text_dx[9:3]>=78)ink=24'hffd060;
    if(row==31)code=32;
    if(page_s && gap_id!=0 && (line==1 || line==2 || line==3))ink=24'hffe080;
   end
@@ -406,7 +507,7 @@ always @*begin
    if(ready && ob[75] && (!page_s || eligible_s && t/2==record[57]))begin
     if(((x==ob[41:31] || x==ob[30:20]) && y>=ob[19:10] && y<=ob[9:0]) ||
       ((y==ob[19:10] || y==ob[9:0]) && x>=ob[41:31] && x<=ob[30:20]))guide=1;
-    prefix=page_s && show && id!=0;
+    prefix=!DEMO_UI && page_s && show && id!=0;
     lx=ob[41:31]>WIDTH-112 ? WIDTH-112 : ob[41:31];
     ly=t%2==0 ? (ob[19:10]>=108 ? ob[19:10]-28 : 80) : (ob[9:0]<HEIGHT-124 ? ob[9:0]+4 : HEIGHT-120);
     rx=lx+(prefix ? 112 : 72);

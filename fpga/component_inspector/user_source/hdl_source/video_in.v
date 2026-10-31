@@ -1,5 +1,5 @@
 // A slot is published only after every packed word has reached the MC port.
-module video_in #(parameter WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,METADATA_REQUIRED=1,METADATA_WAIT_CYCLES=0,VIDEO_FIRST=0,WORD_BITS=($clog2(WIDTH*HEIGHT*3/16+1)<17 ? 17 : $clog2(WIDTH*HEIGHT*3/16+1)),DIAG_BITS=9+WORD_BITS)(
+module video_in #(parameter MEASURE_LATENCY=0,WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,METADATA_REQUIRED=1,METADATA_WAIT_CYCLES=0,VIDEO_FIRST=0,WORD_BITS=($clog2(WIDTH*HEIGHT*3/16+1)<17 ? 17 : $clog2(WIDTH*HEIGHT*3/16+1)),DIAG_BITS=9+WORD_BITS)(
  input wire I_rst_n,I_camera_clk,I_camera_frame_start,I_camera_valid,
  input wire [127:0] I_camera_data,input wire I_mipi_rx_error,
  input wire I_frame_good,I_frame_bad,
@@ -14,21 +14,26 @@ module video_in #(parameter WIDTH=1024,HEIGHT=600,METADATA=0,META_WIDTH=170,META
  output wire [127:0] O_ddr_user_wr_data,input wire I_ddr_user_ready,
  input wire [META_WIDTH-1:0] I_frame_metadata,input wire I_frame_metadata_ready,
  output reg [META_WIDTH-1:0] O_completed_metadata,
+ input wire [64:0] I_capture_info,output reg [64:0] O_completed_capture,
  output reg [DIAG_BITS-1:0] O_publish_diagnostic
 );
 reg [15:0] camera_epoch,writer_epoch;
-wire [META_WIDTH+16:0] metadata_receive;
+reg [64:0] camera_capture;
+wire [META_WIDTH+81:0] metadata_receive;
 generate if(METADATA) begin : metadata
- status_cdc #(.WIDTH(META_WIDTH+17)) crossing(
+ status_cdc #(.WIDTH(META_WIDTH+82)) crossing(
   .S_clk(I_camera_clk),.D_clk(I_ddr_clk),.rst_n(I_rst_n),
-  .S_data({camera_epoch,I_frame_metadata_ready,I_frame_metadata}),.D_data(metadata_receive));
+  .S_data({camera_capture,camera_epoch,I_frame_metadata_ready,I_frame_metadata}),.D_data(metadata_receive));
 end else begin : no_metadata
  assign metadata_receive=0;
 end endgenerate
 wire metadata_matches=!METADATA || (metadata_receive[META_WIDTH] && metadata_receive[META_WIDTH+16:META_WIDTH+1]==writer_epoch);
 always @(posedge I_camera_clk or negedge I_rst_n) begin
- if(!I_rst_n) camera_epoch<=0;
- else if(I_camera_frame_start) camera_epoch<=camera_epoch+1'b1;
+ if(!I_rst_n)begin camera_epoch<=0;camera_capture<=0;end
+ else if(I_camera_frame_start)begin
+  camera_epoch<=camera_epoch+1'b1;
+  camera_capture<=MEASURE_LATENCY ? I_capture_info : 65'd0;
+ end
 end
 localparam WORDS=WIDTH*HEIGHT*3/16;
 reg [3:0] extend_count;
@@ -123,7 +128,7 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
   frame_sync<=0;bad_sync<=0;done_sync<=0;good_sync<=0;
   metadata_wait<=0;S_video_in_wp<=0;frame_open<=0;published<=0;written<=0;late_metadata_pending<=0;
   S_ddr_wr_valid<=0;burst_left<=0;O_ddr_user_wr_en<=0;O_ddr_user_addr<=0;
-  O_completed_metadata<=0;writer_epoch<=0;O_completed_valid<=0;O_completed_rp<=0;O_capture_ok<=0;O_lost_frames<=0;
+  O_completed_capture<=0;O_completed_metadata<=0;writer_epoch<=0;O_completed_valid<=0;O_completed_rp<=0;O_capture_ok<=0;O_lost_frames<=0;
  end else begin
   frame_sync<={frame_sync[1:0],S_camera_frame_start_extend};
   bad_sync<={bad_sync[0],camera_bad};done_sync<={done_sync[0],camera_done};
@@ -150,6 +155,11 @@ always @(posedge I_ddr_clk or negedge I_rst_n) begin
   if(!VIDEO_FIRST && complete_frame && !metadata_matches && !metadata_timeout)metadata_wait<=metadata_wait+1'b1;
   if(complete_frame && (metadata_matches || (!METADATA_REQUIRED && (VIDEO_FIRST || metadata_timeout)))) begin
    O_completed_valid<=1;O_completed_rp<=S_video_in_wp;
+   // Timestamp is bound to the SAME writer epoch even if classifier metadata
+   // is absent/late. It never changes during a later same-slot result attach.
+   O_completed_capture<=MEASURE_LATENCY &&
+     metadata_receive[META_WIDTH+16:META_WIDTH+1]==writer_epoch ?
+     metadata_receive[META_WIDTH+81:META_WIDTH+17] : 65'd0;
    // Missing results must never inherit coordinates or classes from an old slot.
    O_completed_metadata<=metadata_matches ? metadata_receive[META_WIDTH-1:0] : {META_WIDTH{1'b0}};
    late_metadata_pending<=VIDEO_FIRST && !metadata_matches;

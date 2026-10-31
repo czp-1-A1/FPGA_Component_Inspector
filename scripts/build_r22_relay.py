@@ -5,7 +5,7 @@ import argparse,hashlib,json,os,re,shutil,subprocess,time
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--prepare-only',action='store_true')
- a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');args=a.parse_args()
+ a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--demo-rl7',action='store_true');args=a.parse_args()
  repo=Path(__file__).resolve().parents[1];src=args.source.resolve() if args.source else repo/'fpga/component_inspector';work=args.work.resolve()
  assert not work.exists(),'Refuse to overwrite an existing build'
  assert str(work).isascii() and ' ' not in str(work)
@@ -15,6 +15,9 @@ def main():
   names+=['user_source/hdl_source/pocket_relay_stop_v2.v']
   names+=['sim/'+n+'.sv' for n in ['tb_relay_left_transport','tb_relay_left_faults','tb_relay_left_pixels','tb_relay_left_osd','tb_relay_left_rgb','tb_relay_left_real_second','tb_relay_real_second','tb_relay_osd','tb_relay_queue']]
  if args.keys_v3:names+=['sim/'+n+'.sv' for n in ['tb_relay_left_native','tb_relay_v3_keys','tb_relay_v3_stop','tb_relay_v3_osd','tb_relay_v3_transport','tb_relay_v3_rgb','tb_relay_v3_real_second','tb_relay_v3_native']]
+ if args.demo_rl7:
+  assert args.keys_v3
+  names+=['user_source/hdl_source/contest_latency_clock.v']
  manifest={rel:sha(src/rel) for rel in names}
  changes={rel:{'baseline':baseline.get(rel),'candidate':manifest[rel]} for rel in names if baseline.get(rel)!=manifest[rel]}
  project=work/'project';project.mkdir(parents=True)

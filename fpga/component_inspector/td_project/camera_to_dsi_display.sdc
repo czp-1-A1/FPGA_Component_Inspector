@@ -112,3 +112,9 @@ set_max_delay -datapath_only 9.0 -from [get_regs {u_relay_display/ack}] -to [get
 # Registered slow electromechanical output: reserve 2ns for the external path.
 set_output_delay -clock [get_clocks {pll_clk_100m}] -max 2.0 [get_ports {O_relay_control}]
 set_output_delay -clock [get_clocks {pll_clk_100m}] -min 0.0 [get_ports {O_relay_control}]
+
+# Registered1us Gray time: both32-bit first-stage banks must settle within8ns.
+# Source changes at most once per1us; all64 actual physical Q paths are audited.
+set_max_delay -datapath_only 8.0 -from [get_regs {u_latency_clock/us_gray\[*\]}] -to [get_regs {u_latency_capture/gray_meta\[*\] u_latency_display/gray_meta\[*\]}]
+set_output_delay -clock [get_clocks {pll_clk_100m}] -max 2.0 [get_ports {O_buzzer_n}]
+set_output_delay -clock [get_clocks {pll_clk_100m}] -min 0.0 [get_ports {O_buzzer_n}]
