@@ -1,0 +1,68 @@
+{
+  "status": "REJECTED_AT_PLACEMENT_NO_FULL_ROUTE_STARTED",
+  "timestamp": "2026-10-31T13:07:56.190039+08:00",
+  "source_code_commit": "38408179255b6c49d20d776c948bc0c115977449",
+  "work": "E:\\2026FPGA\\.codex_tmp\\d3_congestion_high_r51_20261031",
+  "reason": "Estimated congestion improvement of 1.57/1.04 percentage points at top1/top5 is insufficient to justify 189 extra Slice (95.13% occupancy) and 0.123 ns less setup margin. A tradeoff-based decision, not proof the placement is unroutable.",
+  "slice_before_after": [
+    19994,
+    20183
+  ],
+  "slice_percent_before_after": [
+    94.24,
+    95.13
+  ],
+  "register_only_slices_before_after": [
+    1313,
+    1511
+  ],
+  "logic_lut_slices_before_after": [
+    14919,
+    14910
+  ],
+  "setup_wns_ns_before_after": [
+    0.349,
+    0.226
+  ],
+  "hold_wns_ns_before_after": [
+    -0.284,
+    -0.284
+  ],
+  "all_clock_groups_compared": 15,
+  "all_704_production_files_still_match": true,
+  "software_checks": 34,
+  "functions_removed": false,
+  "clocks_IO_SDC_changed": false,
+  "synthesis_rerun": false,
+  "unchanged_simulation_rerun": false,
+  "full_route_started": false,
+  "placement_job_exit_code": 0,
+  "placement_settings_restored": true,
+  "active_TD_CLI_jobs": 0,
+  "bit_generated_or_published": false,
+  "board_operated": false,
+  "retained_candidate": "R50 production sources; R51 remains an isolated physical experiment",
+  "protected_BIT_FLASH_sha256": {
+    "LATEST_READONLY.bit": "30d067cef0667893fe548ba04e423cd6618b76f119cb2e0ecf48b96ba6a5b20f",
+    "R22_RelayAuto_Left_V7_ShiftAlarm_20261028.bit": "3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750",
+    "R22_SingleStop_SecondRecognition_D2_20261029.bit": "1b2d3c1b0e279b53e8245fe8acd61db0ce6c69e37ae1ff3d9419fbab938803ae"
+  },
+  "evidence_sha256": {
+    "FIXED_NETLIST_EVALUATION.json": "6937c70e0393c8f135b6e7eabafbc8c59803f98e7d0e918aba20b9805ffe37eb",
+    "PHYSICAL_STRATEGY.json": "c850a771343cffb51ea4215b469ec99368e9191b9e69ee6e3876e730f6534b4e",
+    "EXACT_SYNTHESIS_REUSE.json": "e4078ef76237cce2a4ba9d3bfd00a71000710a5dab7487f518c77e5bf2900ce1",
+    "frozen_inputs.json": "7eac9e2e0fe534d4bc2741662908654190b600b724f3b7cab4a05d04cfa20dec",
+    "hardware_inputs.json": "f7f8f3b0b6cc43166390af5ef82ad87d1fdb15f6ffa16a1cfc94f48bcf2ae635",
+    "SOFTWARE_VERIFICATION.json": "69c7fdc1a9bc2df2d0957ea8511788d11a59e0b1d2e5179da0ccb994396c9cc7",
+    "PLACEMENT_RESULT.json": "077548f2a6d8c1d227f5c8b692e533d15611aefe903d0e66f6d16e060f189559",
+    "PLACEMENT_COMPARISON.json": "e6632e72d71ca065c64cc36aa823e47b712995d41a893bbea28ecb91d2093b03",
+    "STAGE_PLACE.json": "0485b6dc005e6642990b247f94b5fa99c329e815195cfeb6f1aed3336d5799c2",
+    "runs/phy_1/settings.cfg": "8135a2b401858e6cad4565382124d54d2426184c3320ccbf81f2bd374ea74016",
+    "runs/phy_1/placed_intermediate.area": "0b640665942345aa650cc4f1364521f888b7fe805aab24413661c78ef940cdfa",
+    "runs/phy_1/camera_to_dsi_display_place.timing": "73b8e99dc65e45e568b66ccb1a9016ab25123cabc3590e25bc6e7505e6da2936",
+    "runs/phy_1/camera_to_dsi_display_place.db": "a0d3a5124d42bd02087ad5c3b79111f1ddebccfa498d0e5b0f0a661899688c12",
+    "runs/phy_1/place_console.log": "56788777249f6aa4178c3b41e98962265e8481091d73371cf0ef392466dc5a9c",
+    "runs/syn_1/camera_to_dsi_display_gate.db": "1419fe9a7a56b04307c298ed8b2351237d2f72ddb9dbaf9bbb3f983f661e83a2"
+  },
+  "stage_receipt_scope_note": "seed_strategy_clocks_constraints_changed=false records no change by staged runner relative to prepared R51 settings; PHYSICAL_STRATEGY and FIXED_NETLIST_EVALUATION explicitly record Default to CongestionHigh versus R50."
+}
