@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-10-31T21:37:33.807715+08:00",
+  "script_sha256": "4c805b4529ef3aab4eb534727bf12ad1ab0830ff766ee59272733220779d2f25",
+  "cases": [
+    {
+      "case": "default",
+      "status": "PASS",
+      "watchdog_seconds": 7200,
+      "state": "BUILT_NEEDS_RESOURCE_TIMING_AND_IO_AUDIT",
+      "settings_restored": true,
+      "actual_td_started": false,
+      "fixture": "E:\\2026FPGA\\.codex_tmp\\d3_watchdog_cspqmdcb"
+    },
+    {
+      "case": "four_hour",
+      "status": "PASS",
+      "watchdog_seconds": 14400,
+      "state": "BUILT_NEEDS_RESOURCE_TIMING_AND_IO_AUDIT",
+      "settings_restored": true,
+      "actual_td_started": false,
+      "fixture": "E:\\2026FPGA\\.codex_tmp\\d3_watchdog_h0ovz74_"
+    },
+    {
+      "case": "timeout",
+      "status": "PASS",
+      "watchdog_seconds": 14400,
+      "state": "TIMED_OUT",
+      "settings_restored": true,
+      "actual_td_started": false,
+      "fixture": "E:\\2026FPGA\\.codex_tmp\\d3_watchdog_s7y6e4hv"
+    },
+    {
+      "case": "tool_failure",
+      "status": "PASS",
+      "watchdog_seconds": 14400,
+      "state": "TOOL_FAILED",
+      "settings_restored": true,
+      "actual_td_started": false,
+      "fixture": "E:\\2026FPGA\\.codex_tmp\\d3_watchdog_exjnb5x4"
+    }
+  ],
+  "scope": "Mock process lifecycle only; no hardware, no real TD or bit publication"
+}

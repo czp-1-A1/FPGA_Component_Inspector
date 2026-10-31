@@ -4,9 +4,12 @@ No changed seed, strategy, clock or constraint. Route consumes the exact saved
 placement DB, not a second placement. No programming or hardware operations.
 """
 from pathlib import Path
-import argparse,csv,hashlib,io,json,os,re,subprocess,time
+import argparse,csv,datetime,hashlib,io,json,os,re,subprocess,time
 
-a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--stage',choices=['place','route'],required=True);x=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--stage',choices=['place','route'],required=True)
+a.add_argument('--stage-timeout',type=int,help='Software watchdog seconds; default place=1800, route=7200. Does not change hardware timing.')
+x=a.parse_args()
+if x.stage_timeout is not None and not 60 <= x.stage_timeout <= 14400:a.error('--stage-timeout must be between 60 and 14400 seconds')
 w=x.work.resolve();run=w/'runs/phy_1';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 load=lambda p:json.loads(p.read_text())
 manifest=load(w/'frozen_inputs.json')
@@ -46,18 +49,35 @@ else:
  assert sha(db)==placed['placement_database_sha256'] and placed['source_manifest_sha256']==sha(w/'frozen_inputs.json')
  active=original.replace('set start_step opt_place','set start_step opt_route',1)
  script=run/'build.tcl';log=run/'console.log';result_file=w/'build_result.json';timeout=7200
-assert not log.exists() and not result_file.exists()
+if x.stage_timeout is not None:timeout=x.stage_timeout
+state_file=w/('RUN_STATE_'+x.stage.upper()+'.json')
+assert not log.exists() and not result_file.exists() and not state_file.exists()
 cfg.write_bytes(active.encode());started=time.monotonic();(w/'temp').mkdir(exist_ok=True)
 env=dict(os.environ);env['TEMP']=env['TMP']=str(w/'temp')
-stage_receipt={'stage':x.stage,'synthesis_mode':synthesis_mode,'original_settings_sha256':hashlib.sha256(original.encode()).hexdigest(),'active_settings_sha256':sha(cfg),'official_flow_sha256':sha(Path('E:/TD/doc/scripts/DefaultFlow.tcl')),'source_manifest_sha256':sha(w/'frozen_inputs.json'),'placement_database_before_sha256':sha(db) if db.exists() else None,'seed_strategy_clocks_constraints_changed':False,'board_operated':False}
+now=datetime.datetime.now().astimezone()
+stage_receipt={'stage':x.stage,'synthesis_mode':synthesis_mode,'original_settings_sha256':hashlib.sha256(original.encode()).hexdigest(),'active_settings_sha256':sha(cfg),'official_flow_sha256':sha(Path('E:/TD/doc/scripts/DefaultFlow.tcl')),'source_manifest_sha256':sha(w/'frozen_inputs.json'),'placement_database_before_sha256':sha(db) if db.exists() else None,'seed_strategy_clocks_constraints_changed':False,'board_operated':False,'timeout_seconds':timeout,'started_at':now.isoformat(),'deadline':(now+datetime.timedelta(seconds=timeout)).isoformat(),'runner_pid':os.getpid()}
 (w/('STAGE_'+x.stage.upper()+'.json')).write_text(json.dumps(stage_receipt,indent=2)+'\n')
+state={**stage_receipt,'status':'STARTING','resource_or_timing_acceptance':False}
+def save_state(**updates):
+ state.update(updates);pending=state_file.with_suffix('.tmp');pending.write_text(json.dumps(state,indent=2)+'\n');pending.replace(state_file)
+save_state()
 try:
  with log.open('w') as output:
-  p=subprocess.run(['E:/TD/bin/td_commands_prompt.exe'],input='source {'+script.name+'}\n',text=True,cwd=run,env=env,stdout=output,stderr=subprocess.STDOUT,timeout=timeout)
+  with subprocess.Popen(['E:/TD/bin/td_commands_prompt.exe'],stdin=subprocess.PIPE,text=True,cwd=run,env=env,stdout=output,stderr=subprocess.STDOUT) as p:
+   save_state(status='RUNNING',tool_pid=p.pid)
+   try:p.communicate(input='source {'+script.name+'}\n',timeout=timeout)
+   except subprocess.TimeoutExpired:
+    p.kill();p.communicate();save_state(status='TIMED_OUT',returncode=p.returncode);raise
+   save_state(status='TOOL_EXITED_NEEDS_VALIDATION',returncode=p.returncode)
+except BaseException as error:
+ save_state(status='TIMED_OUT' if isinstance(error,subprocess.TimeoutExpired) else 'RUNNER_FAILED',error_type=type(error).__name__,error=str(error))
+ raise
 finally:
  cfg.write_bytes(original.encode())
+ save_state(settings_restored_sha256=sha(cfg),seconds=round(time.monotonic()-started,1),finished_at=datetime.datetime.now().astimezone().isoformat(),console_sha256=sha(log) if log.exists() else None)
 text=log.read_text(errors='replace')
-assert p.returncode==0 and not re.search(r'(?mi)^\s*(?:ERROR|\w+-\d+\s*:\s*Error)',text),str(log)
+if p.returncode!=0 or re.search(r'(?mi)^\s*(?:ERROR|\w+-\d+\s*:\s*Error)',text):
+ save_state(status='TOOL_FAILED');raise AssertionError(str(log))
 for rel,d in manifest.items():assert sha(w/'project'/rel)==d,rel
 result={**stage_receipt,'seconds':round(time.monotonic()-started,1),'console_sha256':sha(log),'resource_or_timing_acceptance':False}
 if x.stage=='place':
@@ -66,4 +86,4 @@ if x.stage=='place':
 else:
  bit=run/'camera_to_dsi_display.bit';assert bit.is_file() and sha(db)==stage_receipt['placement_database_before_sha256']
  result.update(status='BUILT_NEEDS_RESOURCE_TIMING_AND_IO_AUDIT',bit=str(bit),bit_sha256=sha(bit),sources=704,seed=re.search(r'place seed (\d+)',original)[1],stages=[{'stage':'syn_1','mode':synthesis_mode,'source_build':reuse['source_work']},{'stage':'phy_1','mode':'SAVED_PLACEMENT_THEN_ROUTE','placement_receipt_sha256':sha(w/'PLACEMENT_RESULT.json'),'seconds':round(time.monotonic()-started+placed['seconds'],1),'console_sha256':sha(log)}])
-result_file.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
+result_file.write_text(json.dumps(result,indent=2)+'\n');save_state(status=result['status']);print(json.dumps(result),flush=True)
