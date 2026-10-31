@@ -146,8 +146,15 @@ if args.five_empty_v7:
  output_cells={p.rsplit('.',1)[0] for p in re.findall(r'^Begin Point\s*:\s*(\S+)',output_text,re.M)}
  assert capture_cells and output_cells and capture_cells<=output_cells,('Alarm capture is not V2 output FF cell',capture_cells,output_cells)
  assert re.search(r'net:\s+\S*controller/alarm_stop,',alarm_text), 'Actual alarm Q net missing'
- assert re.search(r'LUT\d+\s+\(reg\).*net:\s+O_relay_control(?:_dup_\d+)?,',alarm_text), 'Registered motor LUT/net missing'
- result['alarm_interlock_packed_cell_proof']={'capture_cells':sorted(capture_cells),'V2_output_launch_cells':sorted(output_cells),'actual_alarm_Q_and_registered_motor_LUT':True}
+ # TD can either combine the LUT and FF or place a separate LUT before
+ # the output FF. In both cases bind the REAL alarm Q, motor registered Q,
+ # identical capture/output-launch cell and Q net leading to V2.
+ registered_q=set(re.findall(r'^(?:reg|LUT\d+\s+\(reg\))\s+.*net:\s+(O_relay_control(?:_dup_\d+)?),',alarm_text,re.M))
+ assert registered_q and re.search(r'^LUT\d+\s+',alarm_text,re.M),'Registered motor LUT/FF Q missing'
+ for q in registered_q:
+  assert re.search(r'net:\s+'+re.escape(q)+r',',output_text),'Registered motor Q does not drive V2'
+ result['alarm_interlock_packed_cell_proof']={'capture_cells':sorted(capture_cells),'V2_output_launch_cells':sorted(output_cells),'actual_alarm_Q_and_registered_motor_LUT':True,
+  'registered_motor_Q_nets':sorted(registered_q),'LUT_and_register_combined':bool(re.search(r'LUT\d+\s+\(reg\)',alarm_text))}
  result['alarm_interlock_routed']=True
  result['status']='PASS_R22_RELAY_V7_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_4_KEYS_V2_ALARM_NO_LED'
 if args.demo_rl7:

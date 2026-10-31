@@ -76,7 +76,7 @@ def main():
   for n,d in fixtures.items():assert fixture and sha(repo/'tests'/fixture/n)==sha(folder/'inputs'/n)==d,(name,n)
   for t in proof['tests']:
    log=folder/(t['name']+'.log');d=t.get('log_sha256',t.get('sha256'));assert sha(log)==d;passed(log)
-   selected.append({'name':t['name'],'group':name,'log_sha256':d,'mode':'NEW_RUN'})
+   selected.append({'name':t['name'],'group':name,'log_sha256':d,'mode':('EXACT_UNCHANGED_MODULE_REUSE' if name in ['rl7_demo_units_r2_20261101','rl7_demo_extra_r1_20261101','rl7_demo_alarm_r1_20261101','rl7_demo_compat_r1_20261101'] else 'NEW_RUN_R3B')})
  native=tmp/'rl7_demo_native_r3b_20261101';n=load(native/'verification.json');assert n['status']=='PASS'
  for rel,d in n['inputs'].items():assert source[rel]==d and sha(native/'inputs/project'/rel)==d,rel
  for rel,d in n['extra_inputs'].items():assert sha(repo/'tests/demo_rl7'/Path(rel).name)==sha(native/'inputs/project'/rel)==d,rel
@@ -114,6 +114,7 @@ def main():
  assert physical['gray_bits_dominating']==20 and physical['control_mailbox_bits']==20 and physical['relay_display_declared_bits']==195
  assert physical['alarm_interlock_routed'] and physical['alarm_interlock_packed_cell_proof']['actual_alarm_Q_and_registered_motor_LUT']
  assert all(physical['timing_ns'][k]>=0 for k in ['SWNS','HWNS','STNS','HTNS'])
+ write(work/'verification_progress.json',{'status':'COMPLETE_38_SOURCE_CHECKS_AND_ROUTED_VERIFIED','completed_checks':38,'pending_checks':['human_board_acceptance'],'board_operated':False})
  bit=work/'runs/phy_1/camera_to_dsi_display.bit';assert sha(bit)==build['bit_sha256']==physical['bit_sha256']
  flashdir=Path('E:/2026FPGA/BIT_FLASH');protected={
   'LATEST_READONLY.bit':'30d067cef0667893fe548ba04e423cd6618b76f119cb2e0ecf48b96ba6a5b20f',
@@ -153,12 +154,13 @@ def main():
  record={'version':name,'branch':subprocess.check_output(['git','branch','--show-current'],cwd=repo,text=True).strip(),
   'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),'baseline':'RL7 a716eac',
   'bit_sha256':sha(bit),'bit_bytes':bit.stat().st_size,'resources':physical['resources'],'slice_percent':physical['slice_percent'],'timing_ns':physical['timing_ns'],
+  'baseline_rl7_slice':18972,'slice_delta_vs_rl7':physical['resources']['slice']-18972,'eram_delta_vs_rl7':physical['resources']['eram']-98,
   'td_version':'6.2.168116','seed':build['seed'],'source_files':637,'hardware_dependencies':105,'selected_software_checks':38,'verification_reuse':'Exact compiled source/fixture hashes checked; Unchanged-module tests retained by exact hashes; affected detector/native/core/camera checks rerun for SCALE snapshot',
   'buzzer':'C12/O_buzzer_n/LVCMOS33/PULLUP/active-low;100MHz;2kHz;200msON300msOFF;fifth-EMPTY latch',
   'measurement':software['measurement'],'ui':'INSPECT RL7 DEMO; debug hidden; normalP=P-review; original classification predicates/stop/keys unchanged;16bit candidate snapshot in existing SCALE',
   'board_acceptance':'PENDING_HUMAN_LIVE_IMAGE_BUZZER_LATENCY_AND_STOP_RETEST','pushed':False}
  write(release/'RELEASE.json',record)
- (release/'README.md').write_text('RL7 demonstration candidate. Read FIELD_GUIDE.md. Original classifier/stop/keys unchanged; C12 buzzer and measured RAW-SOF to post-OSD HDMI pixel age/source.38 exact-source checks plus actual strict routed audit; human board acceptance pending. Never overwrite old RL7 or readonly Ethernet bits.\n')
+ (release/'README.md').write_text('RL7 demonstration candidate. Read FIELD_GUIDE.md. Original classification rules/stop/keys unchanged; candidate selection snapshot in existing SCALE for timing. C12 buzzer and measured RAW-SOF to post-OSD HDMI pixel age/source.38 exact-source checks plus actual strict routed audit; human board acceptance pending. Never overwrite old RL7 or readonly Ethernet bits.\n')
  payload={p.relative_to(release).as_posix():{'bytes':p.stat().st_size,'sha256':sha(p)} for p in sorted(release.rglob('*')) if p.is_file()}
  write(release/'PAYLOAD_SHA256.json',payload)
  with zipfile.ZipFile(archive,'x',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
