@@ -1,0 +1,34 @@
+{
+  "status": "PASS_RAW_EDGE_DISPLAY_SOURCE_AND_TARGETED_CHECKS",
+  "baseline": "E:\\2026FPGA\\.codex_tmp\\d3_check_minimal_physical_r50_20261031",
+  "baseline_manifest_sha256": "7eac9e2e0fe534d4bc2741662908654190b600b724f3b7cab4a05d04cfa20dec",
+  "source_manifest_sha256": "7ee656e6c330be7c3a0fe9fac7944f90cfd770e311ab2f7fa29767ea4f70b804",
+  "changed_inputs": [
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/observation_controls.v",
+    "user_source/hdl_source/roi_sobel_view.v"
+  ],
+  "unchanged_inputs": 700,
+  "restored_normalized_sha256": {
+    "user_source/hdl_source/design_top_wrapper.v": "ee0fb375aacaea3391e9ccd30c43ac28c89243a7813238ba353ac3bdcf905e19",
+    "user_source/hdl_source/observation_controls.v": "d7c8a26e2f9954d2b4277753b1b35c730bd5a0cddfe762a947c5a5bb8e234451",
+    "user_source/hdl_source/isp/isp_top.v": "d8ff8708ae88940b7e1d94acb61ea47854f37e58fd2041e59417cde97ca37033",
+    "user_source/hdl_source/roi_sobel_view.v": "1074b79a116ecd9d8ad93f9f54f2a20d7b3633f1f54be86f0239263237408903"
+  },
+  "rewrite_helper_sha256": "9dd7ebdbe34366b5ef88c34b2bfe2900fc31612fac5c11bcc9d08a470df074d4",
+  "oracle_sha256": "fd26383c2f297974a06ad08eb56ffedbd9503a8bcaa99cdf8790cf635e0abcb2",
+  "targeted_checks": [
+    "tb_d3_pure_edge",
+    "tb_d3_pure_edge_wide",
+    "tb_d3_raw_edge_controls"
+  ],
+  "verification_directory": "D:\\CodexWork\\D3_RawEdge_Targeted_R55c_20261031",
+  "verification_sha256": "6d75770fcdf57545bfb0b4760c846ce296efb82e7507485f4c273a8bc2280e17",
+  "native_fixture_sha256": "1a931d29996995f392a0c2b687521cfd1f3bb1cdf186b691c5f3019bf1921dc8",
+  "empty_native_fixture_sha256": "c9a5da8d086e94827bff845b59fe5f93e76acfd7df2ffcd0a5fae5ee93b74782",
+  "authorized_visual_change": "RAW original pixels / white Sobel edges on black. SW2 selects mode0/2; SW1 ignored. Gray and colored-overlay display modes removed from production configuration.",
+  "preserved_behavior": "All gradient/feature values, fault guards, timing, row replay/credit and original R27B dual counting/parking bodies; 1-second hold, five-empty alarms and motor/keys unchanged. Legacy parameter0 still supports original four modes.",
+  "complete_software_or_physical_or_board_acceptance": false,
+  "production_modified": false
+}

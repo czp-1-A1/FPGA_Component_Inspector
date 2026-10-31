@@ -1,0 +1,707 @@
+{
+  "status": "RAW_EDGE_DISPLAY_PLACEMENT_COMPARISON_ONLY",
+  "source_relation": "AUTHORIZED_RAW_MONOCHROME_EDGE_DISPLAY_ONLY_700_OTHER_INPUTS_IDENTICAL",
+  "reference": {
+    "work": "E:\\2026FPGA\\.codex_tmp\\d3_check_minimal_physical_r50_20261031",
+    "resources": {
+      "slice": {
+        "used": 19994,
+        "total": 21216,
+        "percent": 94.24
+      },
+      "eram": {
+        "used": 105,
+        "total": 108,
+        "percent": 97.22
+      },
+      "dsp": {
+        "used": 31,
+        "total": 40,
+        "percent": 77.5
+      },
+      "pll": {
+        "used": 5,
+        "total": 6,
+        "percent": 83.33
+      }
+    },
+    "area_components": {
+      "logic_lut_slices": 14919,
+      "adder_slices": 3218,
+      "register_only_slices": 1313,
+      "distributed_ram_slices": 544,
+      "registers": 23105,
+      "lut6": 18681
+    },
+    "timing": {
+      "setup_wns_ns": 0.349,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": -0.284,
+      "hold_tns_ns": -82.542
+    },
+    "clock_groups": {
+      "pll_clk_100m": {
+        "clock_id": "clk0",
+        "period_ns": 10.0,
+        "setup_wns_ns": 0.349,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": -0.191,
+        "hold_tns_ns": -20.667,
+        "fanout": 6946,
+        "max_logic_level": 12
+      },
+      "u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk": {
+        "clock_id": "clk1",
+        "period_ns": 15.0,
+        "setup_wns_ns": 5.169,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": -0.284,
+        "hold_tns_ns": -51.316,
+        "fanout": 3656,
+        "max_logic_level": 11
+      },
+      "HDMI_PIXEL_CLK": {
+        "clock_id": "clk2",
+        "period_ns": 13.468,
+        "setup_wns_ns": 2.076,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.01,
+        "hold_tns_ns": 0.0,
+        "fanout": 1646,
+        "max_logic_level": 11
+      },
+      "MIPI_RX_BYTE_CLK": {
+        "clock_id": "clk3",
+        "period_ns": 8.888,
+        "setup_wns_ns": 2.377,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": -0.191,
+        "hold_tns_ns": -10.541,
+        "fanout": 1486,
+        "max_logic_level": 8
+      },
+      "sys_clk_50m": {
+        "clock_id": "clk4",
+        "period_ns": 20.0,
+        "setup_wns_ns": 15.346,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.051,
+        "hold_tns_ns": 0.0,
+        "fanout": 319,
+        "max_logic_level": 5
+      },
+      "pll_clk_24m": {
+        "clock_id": "clk5",
+        "period_ns": 41.538,
+        "setup_wns_ns": 32.767,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.051,
+        "hold_tns_ns": 0.0,
+        "fanout": 177,
+        "max_logic_level": 6
+      },
+      "HDMI_SERIAL_CLK": {
+        "clock_id": "clk6",
+        "period_ns": 2.693,
+        "setup_wns_ns": 1.089,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.054,
+        "hold_tns_ns": 0.0,
+        "fanout": 38,
+        "max_logic_level": 1
+      },
+      "u_ph1p35_324_ddr_wrapper/u_ddr2/mcu_clk": {
+        "clock_id": "clk7",
+        "period_ns": 39.374,
+        "setup_wns_ns": 32.484,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": -0.018,
+        "hold_tns_ns": -0.018,
+        "fanout": 30,
+        "max_logic_level": 7
+      },
+      "u_ph1p35_324_ddr_wrapper/u_ddr2/ctl_clk": {
+        "clock_id": "clk8",
+        "period_ns": 15.0,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 6,
+        "max_logic_level": 0
+      },
+      "u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk": {
+        "clock_id": "clk9",
+        "period_ns": 3.75,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 6,
+        "max_logic_level": 0
+      },
+      "u_hdmi_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]": {
+        "clock_id": "clk10",
+        "period_ns": 29.63,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 2,
+        "max_logic_level": 0
+      },
+      "mipi_rx_ck_pad": {
+        "clock_id": "clk11",
+        "period_ns": 2.222,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 1,
+        "max_logic_level": 0
+      },
+      "u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.tif_c16_in": {
+        "clock_id": "clk12",
+        "period_ns": 8.888,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 1,
+        "max_logic_level": 0
+      },
+      "u_ph1p35_324_ddr_wrapper/u_ddr2/ref_clk": {
+        "clock_id": "clk13",
+        "period_ns": 15.0,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 1,
+        "max_logic_level": 0
+      },
+      "u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.io_clk_pad_p": {
+        "clock_id": "clk14",
+        "period_ns": 2.222,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 0,
+        "max_logic_level": 0
+      }
+    },
+    "congestion_snapshots": [
+      {
+        "1": 271.89,
+        "5": 185.45,
+        "10": 150.56,
+        "15": 130.69
+      },
+      {
+        "1": 222.32,
+        "5": 151.45,
+        "10": 126.75,
+        "15": 112.82
+      },
+      {
+        "1": 279.29,
+        "5": 183.48,
+        "10": 149.92,
+        "15": 132.89
+      },
+      {
+        "1": 100.59,
+        "5": 91.63,
+        "10": 85.53,
+        "15": 81.27
+      },
+      {
+        "1": 99.73,
+        "5": 91.24,
+        "10": 85.25,
+        "15": 81.11
+      },
+      {
+        "1": 99.22,
+        "5": 91.16,
+        "10": 85.4,
+        "15": 81.3
+      },
+      {
+        "1": 93.33,
+        "5": 87.5,
+        "10": 83.62,
+        "15": 80.93
+      },
+      {
+        "1": 94.16,
+        "5": 87.7,
+        "10": 83.65,
+        "15": 80.86
+      },
+      {
+        "1": 97.48,
+        "5": 91.51,
+        "10": 87.48,
+        "15": 84.68
+      },
+      {
+        "1": 97.12,
+        "5": 90.07,
+        "10": 85.93,
+        "15": 83.01
+      },
+      {
+        "1": 97.12,
+        "5": 90.06,
+        "10": 86.01,
+        "15": 83.09
+      },
+      {
+        "1": 96.96,
+        "5": 90.13,
+        "10": 85.85,
+        "15": 82.94
+      },
+      {
+        "1": 96.96,
+        "5": 90.13,
+        "10": 85.85,
+        "15": 82.94
+      },
+      {
+        "1": 96.96,
+        "5": 90.14,
+        "10": 85.84,
+        "15": 82.9
+      },
+      {
+        "1": 96.96,
+        "5": 90.14,
+        "10": 85.83,
+        "15": 82.9
+      }
+    ],
+    "final_estimated_congestion": {
+      "1": 96.96,
+      "5": 90.14,
+      "10": 85.83,
+      "15": 82.9
+    },
+    "manifest_sha256": "7eac9e2e0fe534d4bc2741662908654190b600b724f3b7cab4a05d04cfa20dec",
+    "synthesis_database_sha256": "1419fe9a7a56b04307c298ed8b2351237d2f72ddb9dbaf9bbb3f983f661e83a2",
+    "placement_receipt_sha256": "28004e3f3a4800682372dba677e9e13e146310be21ff7e7685f180e2470926c4",
+    "place_log_sha256": "67b14f02e086996074d15d21317c5d845f7e756ec6dbea3645bcd187499008e9",
+    "timing_sha256": "dd9340abec589a60f300a8bb76061536bc531fc308206d650bec2c98b15d2e03"
+  },
+  "candidate": {
+    "work": "D:\\CodexWork\\D3_RawEdge_R55_20261031",
+    "resources": {
+      "slice": {
+        "used": 19777,
+        "total": 21216,
+        "percent": 93.22
+      },
+      "eram": {
+        "used": 100,
+        "total": 108,
+        "percent": 92.59
+      },
+      "dsp": {
+        "used": 31,
+        "total": 40,
+        "percent": 77.5
+      },
+      "pll": {
+        "used": 5,
+        "total": 6,
+        "percent": 83.33
+      }
+    },
+    "area_components": {
+      "logic_lut_slices": 14687,
+      "adder_slices": 3218,
+      "register_only_slices": 1328,
+      "distributed_ram_slices": 544,
+      "registers": 22688,
+      "lut6": 18449
+    },
+    "timing": {
+      "setup_wns_ns": 0.807,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": -0.281,
+      "hold_tns_ns": -76.166
+    },
+    "clock_groups": {
+      "pll_clk_100m": {
+        "clock_id": "clk0",
+        "period_ns": 10.0,
+        "setup_wns_ns": 0.807,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": -0.196,
+        "hold_tns_ns": -17.438,
+        "fanout": 6697,
+        "max_logic_level": 12
+      },
+      "u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk": {
+        "clock_id": "clk1",
+        "period_ns": 15.0,
+        "setup_wns_ns": 5.926,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": -0.281,
+        "hold_tns_ns": -48.457,
+        "fanout": 3635,
+        "max_logic_level": 11
+      },
+      "HDMI_PIXEL_CLK": {
+        "clock_id": "clk2",
+        "period_ns": 13.468,
+        "setup_wns_ns": 1.843,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": -0.012,
+        "hold_tns_ns": -0.015,
+        "fanout": 1642,
+        "max_logic_level": 11
+      },
+      "MIPI_RX_BYTE_CLK": {
+        "clock_id": "clk3",
+        "period_ns": 8.888,
+        "setup_wns_ns": 2.27,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": -0.2,
+        "hold_tns_ns": -10.256,
+        "fanout": 1483,
+        "max_logic_level": 8
+      },
+      "sys_clk_50m": {
+        "clock_id": "clk4",
+        "period_ns": 20.0,
+        "setup_wns_ns": 13.186,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.048,
+        "hold_tns_ns": 0.0,
+        "fanout": 317,
+        "max_logic_level": 6
+      },
+      "pll_clk_24m": {
+        "clock_id": "clk5",
+        "period_ns": 41.538,
+        "setup_wns_ns": 36.353,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.037,
+        "hold_tns_ns": 0.0,
+        "fanout": 169,
+        "max_logic_level": 6
+      },
+      "HDMI_SERIAL_CLK": {
+        "clock_id": "clk6",
+        "period_ns": 2.693,
+        "setup_wns_ns": 1.247,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.048,
+        "hold_tns_ns": 0.0,
+        "fanout": 41,
+        "max_logic_level": 1
+      },
+      "u_ph1p35_324_ddr_wrapper/u_ddr2/mcu_clk": {
+        "clock_id": "clk7",
+        "period_ns": 39.374,
+        "setup_wns_ns": 32.025,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.019,
+        "hold_tns_ns": 0.0,
+        "fanout": 28,
+        "max_logic_level": 7
+      },
+      "u_ph1p35_324_ddr_wrapper/u_ddr2/ctl_clk": {
+        "clock_id": "clk8",
+        "period_ns": 15.0,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 6,
+        "max_logic_level": 0
+      },
+      "u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk": {
+        "clock_id": "clk9",
+        "period_ns": 3.75,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 6,
+        "max_logic_level": 0
+      },
+      "u_hdmi_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]": {
+        "clock_id": "clk10",
+        "period_ns": 29.63,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 2,
+        "max_logic_level": 0
+      },
+      "mipi_rx_ck_pad": {
+        "clock_id": "clk11",
+        "period_ns": 2.222,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 1,
+        "max_logic_level": 0
+      },
+      "u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.tif_c16_in": {
+        "clock_id": "clk12",
+        "period_ns": 8.888,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 1,
+        "max_logic_level": 0
+      },
+      "u_ph1p35_324_ddr_wrapper/u_ddr2/ref_clk": {
+        "clock_id": "clk13",
+        "period_ns": 15.0,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 1,
+        "max_logic_level": 0
+      },
+      "u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.io_clk_pad_p": {
+        "clock_id": "clk14",
+        "period_ns": 2.222,
+        "setup_wns_ns": 0.0,
+        "setup_tns_ns": 0.0,
+        "hold_wns_ns": 0.0,
+        "hold_tns_ns": 0.0,
+        "fanout": 0,
+        "max_logic_level": 0
+      }
+    },
+    "congestion_snapshots": [
+      {
+        "1": 288.32,
+        "5": 191.81,
+        "10": 154.9,
+        "15": 133.58
+      },
+      {
+        "1": 200.76,
+        "5": 149.08,
+        "10": 127.3,
+        "15": 114.27
+      },
+      {
+        "1": 256.75,
+        "5": 181.04,
+        "10": 152.27,
+        "15": 135.94
+      },
+      {
+        "1": 100.11,
+        "5": 92.29,
+        "10": 86.84,
+        "15": 82.93
+      },
+      {
+        "1": 99.51,
+        "5": 91.54,
+        "10": 86.42,
+        "15": 82.59
+      },
+      {
+        "1": 100.1,
+        "5": 91.42,
+        "10": 86.22,
+        "15": 82.35
+      },
+      {
+        "1": 97.12,
+        "5": 90.04,
+        "10": 85.57,
+        "15": 82.53
+      },
+      {
+        "1": 95.88,
+        "5": 89.38,
+        "10": 85.27,
+        "15": 82.32
+      },
+      {
+        "1": 98.11,
+        "5": 92.7,
+        "10": 89.1,
+        "15": 86.3
+      },
+      {
+        "1": 96.71,
+        "5": 91.39,
+        "10": 87.38,
+        "15": 84.55
+      },
+      {
+        "1": 96.63,
+        "5": 91.46,
+        "10": 87.47,
+        "15": 84.64
+      },
+      {
+        "1": 96.79,
+        "5": 91.54,
+        "10": 87.56,
+        "15": 84.72
+      },
+      {
+        "1": 96.79,
+        "5": 91.54,
+        "10": 87.56,
+        "15": 84.72
+      },
+      {
+        "1": 96.79,
+        "5": 91.54,
+        "10": 87.56,
+        "15": 84.72
+      },
+      {
+        "1": 96.71,
+        "5": 91.51,
+        "10": 87.57,
+        "15": 84.71
+      }
+    ],
+    "final_estimated_congestion": {
+      "1": 96.71,
+      "5": 91.51,
+      "10": 87.57,
+      "15": 84.71
+    },
+    "manifest_sha256": "7ee656e6c330be7c3a0fe9fac7944f90cfd770e311ab2f7fa29767ea4f70b804",
+    "synthesis_database_sha256": "54a65c2c59dba632e09107a2759e873049b5d5219384185c4e82f0054af8b6b7",
+    "placement_receipt_sha256": "4ad528144685576bfd4db2e8a8fb5906b902c48d7a24f4c00fe9e8eb42355542",
+    "place_log_sha256": "c7e4935d9b0c5b54e0a29066d865e499dab15a29302f7011c00d2c3fb05f7e51",
+    "timing_sha256": "1feaa54c0a401fd3a4c92a372f153956cd17dc4b95fc4359fc8200f8a0c1b9c4"
+  },
+  "slice_delta": -217,
+  "area_component_deltas": {
+    "logic_lut_slices": -232,
+    "adder_slices": 0,
+    "register_only_slices": 15,
+    "distributed_ram_slices": 0,
+    "registers": -417,
+    "lut6": -232
+  },
+  "estimated_congestion_delta_percentage_points": {
+    "1": -0.25,
+    "5": 1.37,
+    "10": 1.74,
+    "15": 1.81
+  },
+  "timing_delta_ns": {
+    "setup_wns_ns": 0.458,
+    "setup_tns_ns": 0.0,
+    "hold_wns_ns": 0.003,
+    "hold_tns_ns": 6.376
+  },
+  "clock_group_deltas_ns": {
+    "pll_clk_100m": {
+      "setup_wns_ns": 0.458,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": -0.005,
+      "hold_tns_ns": 3.229
+    },
+    "u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk": {
+      "setup_wns_ns": 0.757,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": 0.003,
+      "hold_tns_ns": 2.859
+    },
+    "HDMI_PIXEL_CLK": {
+      "setup_wns_ns": -0.233,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": -0.022,
+      "hold_tns_ns": -0.015
+    },
+    "MIPI_RX_BYTE_CLK": {
+      "setup_wns_ns": -0.107,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": -0.009,
+      "hold_tns_ns": 0.285
+    },
+    "sys_clk_50m": {
+      "setup_wns_ns": -2.16,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": -0.003,
+      "hold_tns_ns": 0.0
+    },
+    "pll_clk_24m": {
+      "setup_wns_ns": 3.586,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": -0.014,
+      "hold_tns_ns": 0.0
+    },
+    "HDMI_SERIAL_CLK": {
+      "setup_wns_ns": 0.158,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": -0.006,
+      "hold_tns_ns": 0.0
+    },
+    "u_ph1p35_324_ddr_wrapper/u_ddr2/mcu_clk": {
+      "setup_wns_ns": -0.459,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": 0.037,
+      "hold_tns_ns": 0.018
+    },
+    "u_ph1p35_324_ddr_wrapper/u_ddr2/ctl_clk": {
+      "setup_wns_ns": 0.0,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": 0.0,
+      "hold_tns_ns": 0.0
+    },
+    "u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk": {
+      "setup_wns_ns": 0.0,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": 0.0,
+      "hold_tns_ns": 0.0
+    },
+    "u_hdmi_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]": {
+      "setup_wns_ns": 0.0,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": 0.0,
+      "hold_tns_ns": 0.0
+    },
+    "mipi_rx_ck_pad": {
+      "setup_wns_ns": 0.0,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": 0.0,
+      "hold_tns_ns": 0.0
+    },
+    "u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.tif_c16_in": {
+      "setup_wns_ns": 0.0,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": 0.0,
+      "hold_tns_ns": 0.0
+    },
+    "u_ph1p35_324_ddr_wrapper/u_ddr2/ref_clk": {
+      "setup_wns_ns": 0.0,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": 0.0,
+      "hold_tns_ns": 0.0
+    },
+    "u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.io_clk_pad_p": {
+      "setup_wns_ns": 0.0,
+      "setup_tns_ns": 0.0,
+      "hold_wns_ns": 0.0,
+      "hold_tns_ns": 0.0
+    }
+  },
+  "routed_timing_or_routability_proven": false,
+  "deliverable_bit": false
+}

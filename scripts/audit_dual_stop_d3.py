@@ -94,6 +94,14 @@ if args.dual_stop_d3 and (work/'ID_RAM_SYNTHESIS_PROOF.json').is_file():
  assert storage['gate_database_sha256']==sha(work/'runs/syn_1/camera_to_dsi_display_gate.db')
  assert storage['netlist_sha256']==sha(work/'d3_camera_gate.v') and len(storage['cells'])==2
  expected_eram=105
+if args.dual_stop_d3 and (work/'RAW_EDGE_DISPLAY_PROOF.json').is_file():
+ render=json.loads((work/'RAW_EDGE_SYNTHESIS_PROOF.json').read_text())
+ assert render['status']=='PASS_ACTUAL_SYNTHESIS_RAW_EDGE_FOUR_GRAY_NO_RGB_CACHE'
+ assert render['gate_database_sha256']==sha(work/'runs/syn_1/camera_to_dsi_display_gate.db')
+ assert render['netlist_sha256']==sha(work/'d3_camera_gate.v')
+ assert render['total_eram_cells']==100 and render['sobel_eram_cells']==4 and render['rgb_background_cells']==0
+ assert 'ENABLE_AUTO_RELAY=1,RAW_EDGE_ONLY=1,' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text()
+ expected_eram=100
 assert resources['slice']<=21216 and resources['eram']==expected_eram and resources['dsp']==expected_dsp and resources['pll']==5
 if args.left_v2 or args.keys_v3:
  assert args.dual_stop_d3 or 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')

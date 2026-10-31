@@ -77,10 +77,27 @@ def main():
     variants = parser.add_mutually_exclusive_group()
     variants.add_argument('--fss-reference-preparation', action='store_true')
     variants.add_argument('--slot-valid-storage', action='store_true')
+    variants.add_argument('--raw-edge-display', action='store_true')
     args = parser.parse_args()
     before, after = read_placement(args.reference.resolve()), read_placement(args.work.resolve())
     source_relation = 'IDENTICAL_SOURCE_AND_SYNTHESIS_DB'
-    if args.fss_reference_preparation or args.slot_valid_storage:
+    if args.raw_edge_display:
+        from d3_raw_edge_rewrite import FILES, rewrite
+        baseline_manifest = json.loads((args.reference / 'frozen_inputs.json').read_text())
+        candidate_manifest = json.loads((args.work / 'frozen_inputs.json').read_text())
+        expected = {'user_source/hdl_source/' + name for name in FILES}
+        assert set(baseline_manifest) == set(candidate_manifest)
+        assert {name for name in baseline_manifest if baseline_manifest[name] != candidate_manifest[name]} == expected
+        proof = json.loads((args.work / 'RAW_EDGE_DISPLAY_PROOF.json').read_text())
+        assert proof['status'] == 'PASS_RAW_EDGE_DISPLAY_SOURCE_AND_TARGETED_CHECKS'
+        assert proof['baseline_manifest_sha256'] == before['manifest_sha256']
+        assert proof['source_manifest_sha256'] == after['manifest_sha256']
+        assert proof['rewrite_helper_sha256'] == sha(Path(__file__).with_name('d3_raw_edge_rewrite.py'))
+        for name in FILES:
+            rel = 'user_source/hdl_source/' + name
+            assert rewrite(name, (args.work/'project'/rel).read_text(), inverse=True) == (args.reference/'project'/rel).read_text()
+        source_relation = 'AUTHORIZED_RAW_MONOCHROME_EDGE_DISPLAY_ONLY_700_OTHER_INPUTS_IDENTICAL'
+    elif args.fss_reference_preparation or args.slot_valid_storage:
         if args.slot_valid_storage:
             from d3_slot_valid_storage_rewrite import restore
             proof_name = 'SLOT_VALID_STORAGE_PROOF.json'
@@ -110,7 +127,7 @@ def main():
         assert group['period_ns'] == old['period_ns']
         clock_delta[name] = {key: round(group[key] - old[key], 6) for key in
                              ['setup_wns_ns', 'setup_tns_ns', 'hold_wns_ns', 'hold_tns_ns']}
-    result = {'status': 'EQUIVALENT_SLOT_VALID_PLACEMENT_COMPARISON_ONLY' if args.slot_valid_storage else 'EQUIVALENT_FSS_PLACEMENT_COMPARISON_ONLY' if args.fss_reference_preparation else 'SAME_NETLIST_PLACEMENT_COMPARISON_ONLY',
+    result = {'status': 'RAW_EDGE_DISPLAY_PLACEMENT_COMPARISON_ONLY' if args.raw_edge_display else 'EQUIVALENT_SLOT_VALID_PLACEMENT_COMPARISON_ONLY' if args.slot_valid_storage else 'EQUIVALENT_FSS_PLACEMENT_COMPARISON_ONLY' if args.fss_reference_preparation else 'SAME_NETLIST_PLACEMENT_COMPARISON_ONLY',
               'source_relation': source_relation,
               'reference': before, 'candidate': after,
               'slice_delta': after['resources']['slice']['used'] - before['resources']['slice']['used'],

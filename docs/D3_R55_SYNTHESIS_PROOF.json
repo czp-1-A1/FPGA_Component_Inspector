@@ -1,0 +1,34 @@
+{
+  "status": "PASS_ACTUAL_SYNTHESIS_RAW_EDGE_FOUR_GRAY_NO_RGB_CACHE",
+  "gate_database_sha256": "54a65c2c59dba632e09107a2759e873049b5d5219384185c4e82f0054af8b6b7",
+  "netlist_sha256": "26d841ae2d64610950947fe29d11ca9f6984fe25491c23d0b74d782f68bd58ed",
+  "source_manifest_sha256": "7ee656e6c330be7c3a0fe9fac7944f90cfd770e311ab2f7fa29767ea4f70b804",
+  "total_eram_cells": 100,
+  "sobel_eram_cells": 4,
+  "rgb_background_cells": 0,
+  "expected_preserved_gray_banks": 4,
+  "eram_delta_vs_r50": -5,
+  "cells": [
+    {
+      "name": "\\u_isp_top/u_roi_sobel_view/ramread0_syn_23",
+      "widthA": "\"40\"",
+      "widthB": "\"40\""
+    },
+    {
+      "name": "\\u_isp_top/u_roi_sobel_view/ramread1_syn_23",
+      "widthA": "\"40\"",
+      "widthB": "\"40\""
+    },
+    {
+      "name": "\\u_isp_top/u_roi_sobel_view/ramread2_syn_23",
+      "widthA": "\"40\"",
+      "widthB": "\"40\""
+    },
+    {
+      "name": "\\u_isp_top/u_roi_sobel_view/ramread3_syn_23",
+      "widthA": "\"40\"",
+      "widthB": "\"40\""
+    }
+  ],
+  "scope": "Actual full synthesized netlist and SYN area, not source-only dead-code inference. Functional scheduling/gradients/precision and rendered pixels proven by independent simulations. No routed timing or hardware acceptance."
+}

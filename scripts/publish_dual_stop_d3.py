@@ -9,7 +9,8 @@ def main():
     repo=Path(__file__).resolve().parents[1];w=args.work.resolve();p=w/'project';tmp=Path('E:/2026FPGA/.codex_tmp')
     software=verify(w,require_production=True,suite_map=load(w/'SUITE_MAP.json'))
     assert software['selected_checks']==software['expected_checks']
-    assert (software['selected_checks'],software['profile']) in [(33,'lossless-v5'),(34,'lossless-v6-check-prepare'),(36,'lossless-v7-slot-valid')]
+    assert (software['selected_checks'],software['profile']) in [(33,'lossless-v5'),(34,'lossless-v6-check-prepare'),(36,'lossless-v7-slot-valid'),(37,'raw-monochrome-edge-v1')]
+    raw_edge=software['profile']=='raw-monochrome-edge-v1'
     source=load(w/'frozen_inputs.json');assert len(source)==704
     assert len(load(w/'hardware_inputs.json'))==107
     git_source_audit(repo,source)
@@ -24,7 +25,7 @@ def main():
     assert physical['frame_metadata_bits']==1143 and physical['count_record_bits']==512
     assert physical['alarm_interlock_packed_cell_proof']['actual_alarm_Q_and_registered_motor_LUT']
     assert all(physical['timing_ns'][k]>=0 for k in ['SWNS','HWNS','STNS','HTNS'])
-    assert physical['resources']['slice']<=21216 and physical['resources']['eram']==105 and physical['resources']['dsp']==31
+    assert physical['resources']['slice']<=21216 and physical['resources']['eram']==(100 if raw_edge else 105) and physical['resources']['dsp']==31
     bit=w/'runs/phy_1/camera_to_dsi_display.bit';assert sha(bit)==build['bit_sha256']==physical['bit_sha256']
     flash_root=Path('E:/2026FPGA/BIT_FLASH')
     protected={
@@ -32,7 +33,8 @@ def main():
         'R22_RelayAuto_Left_V7_ShiftAlarm_20261028.bit':'3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750',
         'R22_SingleStop_SecondRecognition_D2_20261029.bit':'1b2d3c1b0e279b53e8245fe8acd61db0ce6c69e37ae1ff3d9419fbab938803ae'}
     for name,d in protected.items():assert sha(flash_root/name)==d
-    name='R27B_DualCount_DualStop_D3_Slice_20261031';release=repo/'releases/r27b_dual_count_dual_stop_d3_slice_20261031';archive=release.with_suffix('.zip');flash=flash_root/(name+'.bit')
+    name='R27B_DualCount_DualStop_D3_RawEdge_R55_20261031' if raw_edge else 'R27B_DualCount_DualStop_D3_Slice_20261031'
+    release=repo/('releases/r27b_dual_count_dual_stop_d3_rawedge_r55_20261031' if raw_edge else 'releases/r27b_dual_count_dual_stop_d3_slice_20261031');archive=release.with_suffix('.zip');flash=flash_root/(name+'.bit')
     assert not release.exists() and not archive.exists() and not flash.exists()
     receipt={'version':name,'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),
         'branch':subprocess.check_output(['git','branch','--show-current'],cwd=repo,text=True).strip(),'pushed':False,
@@ -48,6 +50,7 @@ def main():
         'board_acceptance':'PENDING_HUMAN_TWO_LANE_RECOGNITION_COUNT_PARKING_TEST','hardware_operated':False,
         'limits':'Existing white3528 recipe; no arbitrary-speed, optical recall, actual nozzle/refill or +/-1mm claim. Real RAW checks use permit=0; separate candidate-stream tests exercise parking.'}
     strategy=load(w/'BUILD_STRATEGY.json') if (w/'BUILD_STRATEGY.json').is_file() else {'strategy':'Default'}
+    receipt['display_profile']='RAW / monochrome white-on-black edge; SW2 selects; SW1 ignored. Recognition grayscale/local-edge algorithms retained.' if raw_edge else 'Four original display modes'
     receipt['synthesis_strategy']=strategy
     physical_strategy=load(w/'PHYSICAL_STRATEGY.json') if (w/'PHYSICAL_STRATEGY.json').is_file() else {'strategy':'Default'}
     receipt['physical_strategy']=physical_strategy
@@ -58,7 +61,7 @@ def main():
     write(release/'SOURCE_SHA256.json',source)
     for name0 in ['frozen_inputs.json','hardware_inputs.json','baseline_delta.json','build_result.json','physical_verification.json','SOFTWARE_VERIFICATION.json']:
         copy(w/name0,release/'build'/name0)
-    for name0 in ['EXACT_SYNTHESIS_REUSE.json','BUILD_STRATEGY.json','PHYSICAL_STRATEGY.json','CAMERA_EXPORT.json','CHECK_PROFILE.json','SUITE_MAP.json','OBSERVER_PROOF.json','FONT_SYNTHESIS_PROOF.json','ID_RAM_SYNTHESIS_PROOF.json','CHECK_PREPARE_MATH_PROOF.json','SLOT_VALID_STORAGE_PROOF.json','PLACEMENT_RESULT.json','STAGE_PLACE.json','STAGE_ROUTE.json','SOURCE_INVARIANTS.json','PRODUCTION_ADOPTION.json']:
+    for name0 in ['EXACT_SYNTHESIS_REUSE.json','BUILD_STRATEGY.json','PHYSICAL_STRATEGY.json','CAMERA_EXPORT.json','CHECK_PROFILE.json','SUITE_MAP.json','OBSERVER_PROOF.json','FONT_SYNTHESIS_PROOF.json','ID_RAM_SYNTHESIS_PROOF.json','CHECK_PREPARE_MATH_PROOF.json','SLOT_VALID_STORAGE_PROOF.json','RAW_EDGE_DISPLAY_PROOF.json','RAW_EDGE_SYNTHESIS_PROOF.json','PLACEMENT_COMPARISON.json','PLACEMENT_RESULT.json','STAGE_PLACE.json','STAGE_ROUTE.json','SOURCE_INVARIANTS.json','PRODUCTION_ADOPTION.json']:
         if (w/name0).is_file():copy(w/name0,release/'build'/name0)
     if 'official_file' in strategy:copy(Path(strategy['official_file']),release/'build/official_strategy_ph1.json')
     camera_work=w if (w/'CAMERA_EXPORT.json').is_file() else tmp/'d3_dual_stop_build_r11_resource_opt_20261030'
@@ -86,6 +89,7 @@ def main():
         'D3_DISTANCE_BOUNDS.json','D3_OBSERVED_COUNTER_PROOF.json','D3_RANK_REFERENCE.json','D3_RESIZE_REFERENCE.json','D3_LOSSLESS_OPTIMIZATION.json','R27B_D3_IMPORT.json','R27B_ANALYSIS_REPLAY_VERIFICATION.json',
         'D3_SLICE_CODE_REVIEW_20261031.md','D3_SLICE_CODE_REVIEW_20261031_EVIDENCE.json','D3_ID_RAM_PORT_EXTRACTION.json','D3_SLICE_EXECUTION_20261031.md','D3_CHECK_PREPARE_20261031.md']
     if (w/'SLOT_VALID_STORAGE_PROOF.json').is_file():docs+=['D3_R53_ACTUAL_SLICE_PACKING_AUDIT.md','D3_R54_SLOT_VALID_STORAGE.md']
+    if raw_edge:docs+=['D3_RAW_EDGE_R55_FIELD_GUIDE.md','D3_RAW_EDGE_R55_IMPLEMENTATION.md']
     for name0 in docs:copy(repo/'docs'/name0,release/'docs'/name0)
     comparison=load(repo/'docs/D3_RESOURCE_ANALYSIS.json');comparison_index={}
     for label,row in comparison['reports'].items():
@@ -93,12 +97,13 @@ def main():
         target=release/'resource_comparison'/(label+'.area');copy(f,target)
         comparison_index[label]={'file':target.relative_to(release).as_posix(),'sha256':sha(target),'original_path':str(f)}
     write(release/'resource_comparison/REPORTS.json',comparison_index)
-    copy(repo/'docs/R27B_DUAL_STOP_D3_FIELD_GUIDE.md',release/'FIELD_GUIDE.md')
+    copy(repo/'docs'/('D3_RAW_EDGE_R55_FIELD_GUIDE.md' if raw_edge else 'R27B_DUAL_STOP_D3_FIELD_GUIDE.md'),release/'FIELD_GUIDE.md')
     scripts=['build_r22_relay.py','reuse_d3_synthesis.py','run_d3_prepared.py','audit_dual_stop_d3.py','relay_left_checks.py','relay_left_native_check.py',
         'check_camera_gain_fix.py','export_d3_camera.py','verify_d3_checks.py','publish_dual_stop_d3.py','publish_r22_shift_alarm_v7.py',
         'check_d3_distance_bounds.py','check_d3_observed_counter.py','report_d3_resources.py','verify_d3_full_candidate.py','check_d3_synthesis_storage.py','probe_d3_slice_stage.py','make_d3_id_ram_equivalence.py',
         'd3_check_prepare_rewrite.py','probe_d3_check_prepare.py','check_d3_check_prepare_math.py','run_d3_staged_physical.py','run_d3_prepared_synthesis.py',
         'd3_slot_valid_storage_rewrite.py','probe_d3_slot_valid_storage.py','check_d3_slot_valid_storage.py','compare_d3_placements.py','d3_fss_ref_prepare_rewrite.py']
+    if raw_edge:scripts+=['d3_raw_edge_rewrite.py','probe_d3_raw_edge.py','check_d3_raw_edge.py','check_d3_raw_edge_synthesis.py','audit_d3_slice_packing.py']
     for name0 in scripts:copy(repo/'scripts'/name0,release/'scripts'/name0)
     rejected=tmp/'d3_dual_stop_build_r12_local_banks_20261030'
     copy(rejected/'REJECTED_RESOURCE.json',release/'diagnostics/rejected_local_bank_unroll/REJECTED_RESOURCE.json')

@@ -21,10 +21,14 @@ def verify(work,require_production=False,suite_map=None):
     for rel,d in hardware.items():assert sha(project/rel)==d,rel
     reference=read(TMP/'d3_dual_stop_build_r11_resource_opt_20261030/frozen_inputs.json')
     assert set(reference)==set(source)
+    raw_edge = (work/'RAW_EDGE_DISPLAY_PROOF.json').is_file()
     assert {n for n,d in source.items() if reference[n]!=d}=={
         'user_source/hdl_source/'+n+'.v' for n in [
         'frame_shape_search','compact_inspector_osd','rgb_resize_2_3',
-        'roi_sobel_view','observed_classified_pocket_counter']}
+        'roi_sobel_view','observed_classified_pocket_counter']} | ({
+        'user_source/hdl_source/design_top_wrapper.v',
+        'user_source/hdl_source/observation_controls.v',
+        'user_source/hdl_source/isp/isp_top.v'} if raw_edge else set())
     assert source['user_source/hdl_source/classified_pocket_counter.v']=='67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c'
     top=(project/'user_source/hdl_source/design_top_wrapper.v').read_text()
     fixture=ROOT/'tests/dual_stop_d3'
@@ -107,6 +111,34 @@ def verify(work,require_production=False,suite_map=None):
         assert all(v['write_count_address_bits']==v['independent_read_address_bits']==9 for v in storage['cells'])
         evidence[str(work/'ID_RAM_SYNTHESIS_PROOF.json')]=sha(work/'ID_RAM_SYNTHESIS_PROOF.json')
     slot_valid = (work/'SLOT_VALID_STORAGE_PROOF.json').is_file()
+    assert not (raw_edge and slot_valid), 'Do not combine unreviewed display/storage trials'
+    if raw_edge:
+        from d3_raw_edge_rewrite import FILES, rewrite
+        display=read(work/'RAW_EDGE_DISPLAY_PROOF.json')
+        baseline=Path(display['baseline']);old_source=read(baseline/'frozen_inputs.json')
+        expected={'user_source/hdl_source/'+name for name in FILES}
+        assert display['status']=='PASS_RAW_EDGE_DISPLAY_SOURCE_AND_TARGETED_CHECKS'
+        assert display['baseline_manifest_sha256']==sha(baseline/'frozen_inputs.json')
+        assert display['source_manifest_sha256']==sha(work/'frozen_inputs.json') and display['unchanged_inputs']==700
+        assert set(old_source)==set(source) and {n for n in source if source[n]!=old_source[n]}==expected
+        assert display['rewrite_helper_sha256']==sha(ROOT/'scripts/d3_raw_edge_rewrite.py')
+        for name in FILES:
+            rel='user_source/hdl_source/'+name;original=baseline/'project'/rel
+            assert sha(original)==old_source[rel]
+            assert rewrite(name,(project/rel).read_text(),inverse=True)==original.read_text()
+            assert hashlib.sha256(original.read_text().encode()).hexdigest()==display['restored_normalized_sha256'][rel]
+        assert 'ENABLE_AUTO_RELAY=1,RAW_EDGE_ONLY=1,' in top
+        assert 'observation_controls #(.RAW_EDGE_ONLY(RAW_EDGE_ONLY))' in top
+        assert 'isp_top #(.RAW_EDGE_ONLY(RAW_EDGE_ONLY),' in top
+        assert display['oracle_sha256']==sha(fixture/'r50_reference_roi_sobel_view.sv')
+        assert display['native_fixture_sha256']==sha(fixture/'tb_d3_raw_edge_native.sv')
+        assert display['empty_native_fixture_sha256']==sha(fixture/'tb_d3_raw_edge_empty_native.sv')
+        mapping_proof=read(work/'RAW_EDGE_SYNTHESIS_PROOF.json')
+        assert mapping_proof['status']=='PASS_ACTUAL_SYNTHESIS_RAW_EDGE_FOUR_GRAY_NO_RGB_CACHE'
+        assert mapping_proof['gate_database_sha256']==export['gate_database_sha256'] and mapping_proof['netlist_sha256']==export['netlist_sha256']
+        assert mapping_proof['sobel_eram_cells']==4 and mapping_proof['rgb_background_cells']==0
+        evidence[str(work/'RAW_EDGE_DISPLAY_PROOF.json')]=sha(work/'RAW_EDGE_DISPLAY_PROOF.json')
+        evidence[str(work/'RAW_EDGE_SYNTHESIS_PROOF.json')]=sha(work/'RAW_EDGE_SYNTHESIS_PROOF.json')
     if slot_valid:
         from d3_slot_valid_storage_rewrite import restore
         slot = read(work/'SLOT_VALID_STORAGE_PROOF.json')
@@ -140,10 +172,14 @@ def verify(work,require_production=False,suite_map=None):
     if suite_map is not None:required.add('tb_d3_id_ram')
     if check_prepare:required.add('tb_d3_check_prepare')
     if slot_valid:required|={'tb_d3_slot_valid_storage','tb_d3_slot_valid_pixels'}
-    expected_count=(33 if suite_map is not None else 32)+int(check_prepare)+2*int(slot_valid)
+    if raw_edge:
+        required-={'tb_d3_native','tb_d3_empty_native'}
+        required|={'tb_d3_raw_edge_native','tb_d3_raw_edge_empty_native','tb_d3_raw_edge_controls','tb_d3_pure_edge','tb_d3_pure_edge_wide'}
+    expected_count=(33 if suite_map is not None else 32)+int(check_prepare)+2*int(slot_valid)+3*int(raw_edge)
     assert len(selected)==len(required)==expected_count and {t['name'] for t in selected}==required
     if slot_valid:assert suite_map is not None and check_prepare and observer['check_prepare_variant']=='minimal'
-    result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','profile':'lossless-v7-slot-valid' if slot_valid else 'lossless-v6-check-prepare' if check_prepare else 'lossless-v5' if suite_map is not None else 'lossless-v4','selected':selected,
+    if raw_edge:assert suite_map is not None and check_prepare and observer['check_prepare_variant']=='minimal'
+    result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','profile':'raw-monochrome-edge-v1' if raw_edge else 'lossless-v7-slot-valid' if slot_valid else 'lossless-v6-check-prepare' if check_prepare else 'lossless-v5' if suite_map is not None else 'lossless-v4','selected':selected,
         'selected_checks':expected_count,'expected_checks':expected_count,'inputs_manifest_sha256':sha(work/'frozen_inputs.json'),
         'evidence':evidence,'production_source_match_required':require_production,
         'hardware_acceptance':False,'resource_or_timing_acceptance':False}
