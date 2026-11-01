@@ -1,5 +1,5 @@
 module isp_top #(
-    parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
+    parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,RAW_EDGE_ONLY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
     parameter AUTO_RELAY=0,RELAY_TARGET_X=152,RELAY_ADVANCE_PX=32,RELAY_TOL_PX=80,
     parameter PRESENT_TRACE=0,
@@ -263,7 +263,7 @@ end else begin : unscaled_processing
  assign post_rgb=native_rgb;assign post_x=native_x;assign post_y=native_y;
  assign scale_bad=0;
 end endgenerate
-roi_sobel_view #(.CACHE_ADDRESS_XOR(RESULT_RECORDER),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.X0(USE_SEARCH ? 0 : MULTI_POCKETS ? 96 : 256),.X1(USE_SEARCH ? WIDTH : MULTI_POCKETS ? 928 : 768),.Y0(USE_SEARCH ? 0 : 172),.Y1(USE_SEARCH ? HEIGHT : MULTI_POCKETS ? 464 : 428),.DYNAMIC_ROI(TRACKING),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
+roi_sobel_view #(.RAW_EDGE_ONLY(RAW_EDGE_ONLY),.CACHE_ADDRESS_XOR(RESULT_RECORDER),.WIDTH(WIDTH),.HEIGHT(HEIGHT),.X0(USE_SEARCH ? 0 : MULTI_POCKETS ? 96 : 256),.X1(USE_SEARCH ? WIDTH : MULTI_POCKETS ? 928 : 768),.Y0(USE_SEARCH ? 0 : 172),.Y1(USE_SEARCH ? HEIGHT : MULTI_POCKETS ? 464 : 428),.DYNAMIC_ROI(TRACKING),.CORE_X0(ROI_X0),.CORE_X1(ROI_X1),.CORE_Y0(ROI_Y0),.CORE_Y1(ROI_Y1)) u_roi_sobel_view(
  .dynamic_x0(track_x0),.dynamic_x1(track_x1),.dynamic_y0(track_y0),.dynamic_y1(track_y1),
  .clk(post_clk),.rst_n(I_rst_n),.pixel_valid(post_valid),
  .pixel_sof(post_sof),.pixel_last(post_last),.early_sof(post_early),

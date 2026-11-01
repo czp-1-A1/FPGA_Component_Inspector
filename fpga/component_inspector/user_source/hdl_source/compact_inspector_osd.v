@@ -2,7 +2,7 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter AUTO_RELAY=0,RELAY_TARGET_X=152,RELAY_TOL_PX=80,DUAL_REGION_COUNT=0,PRESENT_TRACE=0,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter ESSENTIAL_UI=0,AUTO_RELAY=0,RELAY_TARGET_X=152,RELAY_TOL_PX=80,DUAL_REGION_COUNT=0,PRESENT_TRACE=0,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
  input wire [127:0] relay_status,input wire [2:0] relay_mode,input wire relay_motor,
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
@@ -34,9 +34,10 @@ reg [15:0] number,next_number;reg [19:0] bcd,adjusted;
 reg formatting,feeding,write_valid,ready;
 // One shared geometry calculator runs in the existing frame preparation time.
 // Data comes only from the atomic snapshot; ready masks all four writes.
-reg [2:0] label_prepare;
+reg [2:0] label_prepare;reg [3:0] label_eligible,label_recovered;
 reg [10:0] label_left[0:3],label_right[0:3],label_bottom[0:3];
 reg [9:0] label_top[0:3];reg [3:0] label_prefix;
+wire [8:0] frame_gap=!REPORT_NUMBER_GAPS ? 9'd0 : record[57] ? record[102:94] : record[120:112];
 wire [75:0] prep_ob=obs[label_prepare[1:0]*76+:76];
 wire [8:0] prep_id=DUAL_REGION_COUNT && label_prepare[1] ?
  record2[94+label_prepare[1:0]*9+:9] : record[94+label_prepare[1:0]*9+:9];
@@ -53,6 +54,8 @@ always @(posedge clk or negedge rst_n)begin
   label_top[label_prepare[1:0]]<=prep_top;
   label_bottom[label_prepare[1:0]]<={1'b0,prep_top}+11'd24;
   label_prefix[label_prepare[1:0]]<=prep_prefix;
+  label_eligible[label_prepare[1:0]]<=prep_ob[75] && (!page_s || eligible_s && (DUAL_REGION_COUNT || label_prepare[1]==record[57]));
+  label_recovered[label_prepare[1:0]]<=frame_gap!=0 && prep_id>=frame_gap;
   label_prepare<=label_prepare+1'b1;
  end
 end
@@ -91,11 +94,10 @@ reg [19:0] plane_q;
 wire [9:0] shared_read_address=(feeding || write_valid) ? {5'd28,token[7:3]} : plane_next_address;
 always @(posedge clk)plane_q<=plane[shared_read_address];
 
-compact_template_rom #(.DUAL_REGION_COUNT(DUAL_REGION_COUNT),.PRESENT_TRACE(PRESENT_TRACE),.BUILD_R22(BUILD_R22),.EMPTY_TRACE(EMPTY_TRACE),.BUILD_R20(BUILD_R20),.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
+compact_template_rom #(.ESSENTIAL_UI(ESSENTIAL_UI),.DUAL_REGION_COUNT(DUAL_REGION_COUNT),.PRESENT_TRACE(PRESENT_TRACE),.BUILD_R22(BUILD_R22),.EMPTY_TRACE(EMPTY_TRACE),.BUILD_R20(BUILD_R20),.BUILD_R19(BUILD_R19),.BUILD_R18(BUILD_R18),.BUILD_R17(BUILD_R17),.REVIEW_PROBE(REVIEW_PROBE)) template_font(clk,{page_s,cursor},token);
 // R15 production suppresses numbering-confidence UI only; classification
 // colours and LOST/HOLD/CHECK state protection remain active.
 wire [8:0] gap_id=!REPORT_NUMBER_GAPS ? 9'd0 : live[57] ? live[102:94] : live[120:112];
-wire [8:0] frame_gap=!REPORT_NUMBER_GAPS ? 9'd0 : record[57] ? record[102:94] : record[120:112];
 function [2:0] observations;
  input [303:0] data;input [1:0] kind;integer t;
  begin observations=0;for(t=0;t<4;t=t+1)
@@ -191,7 +193,20 @@ function [7:0] special_char;
  input [4:0] slot;input [2:0] pos;reg [127:0] message;
  begin
   special_char=32;message="IDS UNCONFIRMED ";
-  case(slot)
+  if(ESSENTIAL_UI)begin
+   case(slot)
+    1:special_char=state_char(pos,live[50:48]);
+    2:special_char=state_char(pos,live2[50:48]);
+    3,4:begin
+     if(relay_s[28:25]==15 || relay_s[92:89]==15)message="ALARM FIVE EMPTY";
+     else if(relay_s[28:25]!=0 || relay_s[92:89]!=0)message="ALARM K3 CLEAR  ";
+     else if(relay_mode_s==2)message="PAUSED K2 RESUME";
+     else if(relay_motor_s)message="MOTOR RUNNING   ";
+     else message="READY K1 START  ";
+     special_char=slot==3 ? message[64+pos*8+:8] : message[pos*8+:8];
+    end
+   endcase
+  end else case(slot)
    1:special_char=state_char(pos,live[50:48]);
    2:special_char=hexchar(live[54:51]);
    3:special_char=!live[55] ? "?" : live[56] ? "R" : "L";
@@ -217,12 +232,12 @@ function [7:0] special_char;
   endcase
  end
 endfunction
-wire [31:0] hexadecimal=hexvalue(token_d[7:3]);
+wire [31:0] hexadecimal=ESSENTIAL_UI ? 32'd0 : hexvalue(token_d[7:3]);
 always @*begin
  case(token_d[9:8])
   0:decoded=token_d[7:0];
-  1:decoded=token_d[7:3]==20 && gap_id==0 && !(DUAL_REGION_COUNT && page_s) ? 8'd32 : "0"+((plane_q>>(token_d[2:0]*4))&4'hf);
-  2:decoded=hexchar(hexadecimal>>(token_d[2:0]*4));
+  1:decoded=!ESSENTIAL_UI && token_d[7:3]==20 && gap_id==0 && !(DUAL_REGION_COUNT && page_s) ? 8'd32 : "0"+((plane_q>>(token_d[2:0]*4))&4'hf);
+  2:decoded=ESSENTIAL_UI ? 8'd32 : hexchar(hexadecimal>>(token_d[2:0]*4));
   default:decoded=special_char(token_d[7:3],token_d[2:0]);
  endcase
  next_number=0;
@@ -264,6 +279,30 @@ always @*begin
   34:next_number={10'd0,relay_s[63:58]};35:next_number={7'd0,relay_s[20:12]};
   36:next_number={10'd0,relay_s[127:122]};37:next_number={7'd0,relay_s[84:76]};
  endcase
+ if(ESSENTIAL_UI)begin
+  next_number=0;
+  case(fmt)
+   0:next_number={7'd0,live[66:58]};1:next_number={7'd0,live[75:67]};
+   2:next_number={7'd0,live[84:76]};3:next_number={7'd0,live[93:85]};
+   4:next_number={7'd0,live[210:202]};5:next_number={10'd0,live[222:217]}+1'b1;
+   6:next_number={7'd0,live[130+:9]};7:next_number={7'd0,live[139+:9]};
+   8:next_number={7'd0,live[148+:9]};9:next_number={7'd0,live[157+:9]};
+   10:next_number={7'd0,live[166+:9]};11:next_number={7'd0,live[175+:9]};
+   12:next_number={7'd0,live[184+:9]};13:next_number={7'd0,live[193+:9]};
+   14:next_number=fp;15:next_number=iw;16:next_number=ih;
+   17:next_number={10'd0,live2[222:217]}+1'b1;
+   18:next_number={7'd0,live2[66:58]};19:next_number={7'd0,live2[75:67]};
+   20:next_number={7'd0,live2[84:76]};21:next_number={7'd0,live2[93:85]};
+   22:next_number={7'd0,live2[210:202]};
+   23:next_number={7'd0,live2[130+:9]};24:next_number={7'd0,live2[139+:9]};
+   25:next_number={7'd0,live2[148+:9]};26:next_number={7'd0,live2[157+:9]};
+   27:next_number={7'd0,live2[166+:9]};28:next_number={7'd0,live2[175+:9]};
+   29:next_number={7'd0,live2[184+:9]};30:next_number={7'd0,live2[193+:9]};
+   31:next_number={7'd0,record[57] ? record[112+:9] : record[94+:9]};
+   32:next_number={7'd0,record[57] ? record[121+:9] : record[103+:9]};
+   33:next_number={7'd0,record2[112+:9]};34:next_number={7'd0,record2[121+:9]};
+  endcase
+ end
  adjusted=bcd;
  if(bcd[3:0]>=5)adjusted[3:0]=bcd[3:0]+3;
  if(bcd[7:4]>=5)adjusted[7:4]=bcd[7:4]+3;
@@ -294,7 +333,9 @@ always @(posedge clk or negedge rst_n)begin
    show2<=eligible && input_record2[223] && input_record2[47:32]==input_live2[47:32] &&
     (input_record2[50:48]==1 || input_record2[50:48]==2 || input_record2[50:48]==5) &&
     (input_live2[50:48]==1 || input_live2[50:48]==2 || input_live2[50:48]==5);
-   ex<=exposure;ga<=gain;fp<=fps;iw<=width;ih<=height;wr<={8'd0,wb_r};wb<={8'd0,wb_b};
+   fp<=fps;iw<=width;ih<=height;
+   ex<=ESSENTIAL_UI ? 0 : exposure;ga<=ESSENTIAL_UI ? 0 : gain;
+   wr<=ESSENTIAL_UI ? 0 : {8'd0,wb_r};wb<=ESSENTIAL_UI ? 0 : {8'd0,wb_b};
    gm<=roi_valid ? {8'd0,roi_mean} : 0;gn<=roi_valid ? {8'd0,roi_min} : 0;gx<=roi_valid ? {8'd0,roi_max} : 0;ec<={3'd0,edge_count};
    primary<=frame_record[57] ? (objects[227] ? objects[227:152] : objects[303:228]) : (objects[75] ? objects[75:0] : objects[151:76]);
    np<=observations(objects,2);ne<=observations(objects,3);nu<=observations(objects,1);
@@ -307,6 +348,13 @@ always @(posedge clk or negedge rst_n)begin
     else begin
      number<={number[14:0],1'b0};bcd<={adjusted[18:0],number[15]};
      if(step==16)begin
+      if(ESSENTIAL_UI)begin
+       if(fmt==31)label_bcd0<={adjusted[18:0],number[15]};
+       if(fmt==32)label_bcd1<={adjusted[18:0],number[15]};
+       if(fmt==33)label_bcd2<={adjusted[18:0],number[15]};
+       if(fmt==34)label_bcd3<={adjusted[18:0],number[15]};
+       step<=0;
+      end else begin
       if(fmt==18)label_bcd0<={adjusted[18:0],number[15]};
       if(fmt==19)label_bcd1<={adjusted[18:0],number[15]};step<=0;
       if(fmt==32)label_bcd2<={adjusted[18:0],number[15]};
@@ -315,7 +363,8 @@ always @(posedge clk or negedge rst_n)begin
        34:relay_q0<={adjusted[6:0],number[15]};35:relay_id0<={adjusted[10:0],number[15]};
        36:relay_q1<={adjusted[6:0],number[15]};37:relay_id1<={adjusted[10:0],number[15]};
       endcase
-      if(fmt==(AUTO_RELAY ? 37 : DUAL_REGION_COUNT && page_s ? 33 : 31))begin formatting<=0;feeding<=1;cursor<=0;end else fmt<=fmt+1'b1;
+      end
+      if(fmt==(ESSENTIAL_UI ? 34 : AUTO_RELAY ? 37 : DUAL_REGION_COUNT && page_s ? 33 : 31))begin formatting<=0;feeding<=1;cursor<=0;end else fmt<=fmt+1'b1;
      end else step<=step+1'b1;
     end
    end
@@ -376,20 +425,21 @@ always @*begin
    if(code[7])col={code[5:4],3'd0}+text_dx[2:0];
    if(row==31)code=32;
    if(page_s && gap_id!=0 && (line==1 || line==2 || line==3))ink=24'hffe080;
+   if(ESSENTIAL_UI && line==6 && (relay_s[28:25]!=0 || relay_s[92:89]!=0))ink=24'hff7060;
   end
  end else begin
   guide=(((x==WIDTH*5/16 || x==WIDTH*11/16-1) && ((y>=HEIGHT/3 && y<HEIGHT*5/9)||(y>=HEIGHT*3/5 && y<HEIGHT*5/6))) ||
    ((y==HEIGHT/3 || y==HEIGHT*5/9-1 || y==HEIGHT*3/5 || y==HEIGHT*5/6-1) && x>=WIDTH*5/16 && x<WIDTH*11/16)) && (x[3] || y[3]);
   if(x==WIDTH/2 && y[2] && ((y>=HEIGHT/3 && y<HEIGHT*5/9 && (!page_s || DUAL_REGION_COUNT || !record[57])) ||
    (y>=HEIGHT*3/5 && y<HEIGHT*5/6 && (!page_s || DUAL_REGION_COUNT || record[57]))))guide=1;
-  if(trace_cross0 || trace_cross1)guide=1;
+  if(!ESSENTIAL_UI && (trace_cross0 || trace_cross1))guide=1;
   // Bounds retain the original four parallel hit tests and last-hit priority.
   // Only the winning label needs glyph/decimal/colour formatting on this pixel.
   for(t=0;t<4;t=t+1)begin
    ob=obs[t*76+:76];id=0;
    if(page_s && (DUAL_REGION_COUNT || t/2==record[57]))
     id=DUAL_REGION_COUNT && t>=2 ? record2[94+t*9+:9] : record[94+t*9+:9];
-   if(ready && ob[75] && (!page_s || eligible_s && (DUAL_REGION_COUNT || t/2==record[57])))begin
+   if(ready && (ESSENTIAL_UI ? label_eligible[t] : ob[75] && (!page_s || eligible_s && (DUAL_REGION_COUNT || t/2==record[57]))))begin
     if(((x==ob[41:31] || x==ob[30:20]) && y>=ob[19:10] && y<=ob[9:0]) ||
       ((y==ob[19:10] || y==ob[9:0]) && x>=ob[41:31] && x<=ob[30:20]))guide=1;
     if(x>=label_left[t] && x<label_right[t] && y>=label_top[t] && y<label_bottom[t])begin label_hit=1;label_slot=t;end
@@ -406,7 +456,7 @@ always @*begin
    prefix=label_prefix[label_slot];
    lx=label_left[label_slot];ly=label_top[label_slot];
    panel=1;row=y-ly;glyph_cell=(x-lx)>>3;col=(x-lx)&7;
-   if(prefix && glyph_cell<4)code=glyph_cell==0 ? (frame_gap!=0 && id>=frame_gap ? "R" : "N") : "0"+((id_bcd>>((3-glyph_cell)*4))&4'hf);
+   if(prefix && glyph_cell<4)code=glyph_cell==0 ? (ESSENTIAL_UI ? (label_recovered[label_slot] ? "R" : "N") : (frame_gap!=0 && id>=frame_gap ? "R" : "N")) : "0"+((id_bcd>>((3-glyph_cell)*4))&4'hf);
    else if(prefix && glyph_cell==4)code=32;
    else code=class_char(ob[74:73],ob[74:73]==2 && ob[72:69]!=0,prefix ? glyph_cell-5 : glyph_cell);
    if(code[7])col={code[5:4],3'd0}+((x-lx)&7);
@@ -418,16 +468,16 @@ always @*begin
     ((y==HEIGHT/3 || y==HEIGHT*5/9-1 || y==HEIGHT*3/5 || y==HEIGHT*5/6-1) && x[3])) &&
    x>=RELAY_TARGET_X-RELAY_TOL_PX && x<=RELAY_TARGET_X+RELAY_TOL_PX &&
    ((y>=HEIGHT/3 && y<HEIGHT*5/9) || (y>=HEIGHT*3/5 && y<HEIGHT*5/6));
-  if(ready && x>=1080 && x<1280 && ((y>=32 && y<48) || (y>=56 && y<72)))begin
+  if(!ESSENTIAL_UI && ready && x>=1080 && x<1280 && ((y>=32 && y<48) || (y>=56 && y<72)))begin
    panel=1;logo=0;row=y>=56 ? y-56 : y-32;col=(x-1080)&7;
    code=relay_char((x-1080)>>3,y>=56,y>=56 ? relay_s[127:64] : relay_s[63:0],relay_mode_s,relay_motor_s,y>=56 ? relay_q1 : relay_q0,y>=56 ? relay_id1 : relay_id0);
    ink=(y>=56 ? relay_s[92:89] : relay_s[28:25])!=0 ? 24'hff7060 : 24'h70ffdd;
   end
-  if(ready && x>=136 && x<344 && y>=80 && y<96 &&
+  if(!ESSENTIAL_UI && ready && x>=136 && x<344 && y>=80 && y<96 &&
    (relay_s[28:25]==15 || relay_s[92:89]==15))begin
    panel=1;logo=0;row=y-80;col=(x-136)&7;code=alarm_char((x-136)>>3);ink=24'hff4040;
   end
-  if(ready && x>=136 && x<208 && y>=8 && y<24)begin
+  if(!ESSENTIAL_UI && ready && x>=136 && x<208 && y>=8 && y<24)begin
    panel=1;logo=0;row=y-8;col=(x-136)&7;
    case((x-136)>>3)0:code="D";1:code="3";2:code="+";3:code="R";4:code="2";5:code="7";6:code="B";default:code=32;endcase
   end

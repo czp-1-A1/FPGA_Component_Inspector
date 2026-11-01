@@ -4,7 +4,7 @@ module roi_sobel_view #(
  parameter DYNAMIC_ROI=0,WIDTH=1024,HEIGHT=600,
  parameter X0=256,X1=768,Y0=172,Y1=428,
  parameter CORE_X0=472,CORE_X1=552,CORE_Y0=260,CORE_Y1=340,
- parameter EDGE_THRESHOLD=80,CACHE_ADDRESS_XOR=0
+ parameter EDGE_THRESHOLD=80,CACHE_ADDRESS_XOR=0,RAW_EDGE_ONLY=0
 )(
  input wire clk,rst_n,input wire pixel_valid,pixel_sof,pixel_last,early_sof,
  input wire [95:0] rgb,input wire [1:0] mode,input wire invalidate,
@@ -91,6 +91,9 @@ end endgenerate
 // write_row >= read_y+3 already aborts before any valid read/output.
 // Middle-row RGB therefore needs only three rows; top/mid/bottom gray keeps
 // four rows because its oldest required row is read_y-1.
+// R55_COLOR_CACHE_BEGIN
+wire [95:0] middle_rgb;
+generate if(!RAW_EDGE_ONLY)begin : color_cache
 localparam RGB_WORDS=3*BEATS,RGB_BITS=$clog2(RGB_WORDS);
 reg [1:0] rgb_write_bank,rgb_read_bank;
 always @(posedge clk or negedge rst_n)begin
@@ -109,6 +112,11 @@ always @(posedge clk)begin
   rgb_memory[rgb_write_address]<=rgb ^ cache_write_mask;
  rgb_read_q<=rgb_memory[rgb_read_address];
 end
+assign middle_rgb=rgb_read_q ^ cache_read_mask;
+end else begin : no_color_cache
+ assign middle_rgb=96'd0;
+end endgenerate
+// R55_COLOR_CACHE_END
 wire [31:0] gray_q [0:3];
 genvar bank;
 generate for(bank=0;bank<4;bank=bank+1)begin : line_bank
@@ -127,7 +135,6 @@ reg [31:0] top2,mid2,bot2;
 reg [95:0] rgb2,rgb3,rgb4;
 wire [1:0] top_bank=y1[1:0]-2'd1;
 wire [1:0] bottom_bank=y1[1:0]+2'd1;
-wire [95:0] middle_rgb=rgb_read_q ^ cache_read_mask;
 function [7:0] gray;
  input [23:0] color;reg [9:0] s;
  begin s={2'd0,color[23:16]}+{1'd0,color[15:8],1'b0}+{2'd0,color[7:0]};gray=s[9:2];end
@@ -271,12 +278,20 @@ always @(posedge clk or negedge rst_n) begin
   end
   if(early_sof || frame_bad || cache_overrun) begin out_valid<=0;out_last<=0;end
   for(lane=0;lane<4;lane=lane+1) begin
+   // R55_EDGE_OUTPUT_BEGIN
+   if(RAW_EDGE_ONLY)begin
+    if(!(pixel_sof ? mode[1] : frame_mode[1]))
+     out_rgb[95-lane*24-:24]<=rgb[95-lane*24-:24];
+    else out_rgb[95-lane*24-:24]<=!bypass_tail && inside4[lane] && neighborhood4[lane] && edges[lane] ? 24'hffffff : 24'h000000;
+   end else begin : legacy_output
    if(!(pixel_sof ? mode[1] : frame_mode[1]) || bypass_tail)
     out_rgb[95-lane*24-:24]<=(pixel_sof ? mode[0] : frame_mode[0]) &&
      write_address*4+lane>=X0 && write_address*4+lane<X1 && write_row>=Y0 && write_row<Y1 ?
       {3{gray(rgb[95-lane*24-:24])}} : rgb[95-lane*24-:24];
    else out_rgb[95-lane*24-:24]<=inside4[lane] && mode4[1] && neighborhood4[lane] && edges[lane] ? 24'hffae64 :
     inside4[lane] && mode4[0] ? {3{gray(rgb4[95-lane*24-:24])}} : rgb4[95-lane*24-:24];
+   end
+   // R55_EDGE_OUTPUT_END
   end
   count_valid<=v4;
   beat_pixels<=({2'd0,selected[0]}+{2'd0,selected[1]})+({2'd0,selected[2]}+{2'd0,selected[3]});

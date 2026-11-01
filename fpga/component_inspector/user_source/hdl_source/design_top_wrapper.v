@@ -1,7 +1,7 @@
 
 
 module design_top_wrapper #(parameter INPUT_WIDTH=1920,INPUT_HEIGHT=1080,VIDEO_WIDTH=1280,VIDEO_HEIGHT=720,ENABLE_REGIONS=1,ENABLE_CALIBRATION=1,
- parameter ENABLE_AUTO_RELAY=1,RELAY_TARGET_X=152,RELAY_ADVANCE_PX=32,RELAY_TOL_PX=80,
+ parameter ENABLE_AUTO_RELAY=1,ESSENTIAL_UI=1,RAW_EDGE_ONLY=1,RELAY_TARGET_X=152,RELAY_ADVANCE_PX=32,RELAY_TOL_PX=80,
  parameter ENABLE_DUAL_REGION_COUNT=1,ENABLE_PRESENT_TRACE=1,ENABLE_LOCAL_EDGE_ASSIST=1,ENABLE_EMPTY_TRACE=1,ENABLE_ROBUST_EMPTY_CONTEXT=1,ENABLE_ROBUST_SMALL_EMPTY=1,ENABLE_STANDING_REVIEW=1,ENABLE_PRESENT_SURFACE=1,ENABLE_REVIEW_PROBE=0,REPORT_NUMBER_GAPS=0,ENABLE_CLASSIFIED_COUNT=1,ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,ENABLE_SHAPE_MODEL=1,ENABLE_LOCAL_SEARCH=1) (
     input wire        I_sys_clk,
     input wire        I_rst_n,
@@ -636,7 +636,7 @@ wire [1:0] roi_class_state;
 wire [27:0] roi_display_record;
 wire [114:0] observation_record;
 wire [17:0] observation_request,observation_receive,observation_display;
-observation_controls u_observation_controls(
+observation_controls #(.RAW_EDGE_ONLY(RAW_EDGE_ONLY)) u_observation_controls(
  .clk(I_sys_clk),.rst_n(S_rst_n),.switches(I_switch),.request(observation_request));
 status_cdc #(.WIDTH(18)) u_observation_receive(
  .S_clk(I_sys_clk),.D_clk(S_csi_rx_clk),.rst_n(S_rst_n),
@@ -703,15 +703,30 @@ always @(posedge S_process_clk or negedge S_rst_n)
  if(!S_rst_n)motor_output<=0;
  else motor_output<=ENABLE_AUTO_RELAY && !relay_alarm && (relay_mode==3 || (relay_auto && !relay_paused && relay_feed));
 assign O_relay_control=motor_output;
-status_cdc #(.WIDTH(324)) u_relay_display(
+// R56 relay display cone begin: keep original SDC instance binding.
+localparam RELAY_UI_BITS=ESSENTIAL_UI ? 12 : 324;
+wire [RELAY_UI_BITS-1:0] relay_ui_snapshot;
+wire [323:0] relay_ui_source=ESSENTIAL_UI ?
+ {312'd0,motor_output,relay_mode,relay_status[92:89],relay_status[28:25]} :
+ {motor_output,relay_mode,relay_diagnostic,relay_status};
+status_cdc #(.WIDTH(RELAY_UI_BITS)) u_relay_display(
  .S_clk(S_process_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
- .S_data({motor_output,relay_mode,relay_diagnostic,relay_status}),
- .D_data({relay_display_motor,relay_display_mode,relay_display_diagnostic,relay_display_status}));
+ .S_data(relay_ui_source[RELAY_UI_BITS-1:0]),.D_data(relay_ui_snapshot));
+generate if(ESSENTIAL_UI)begin : essential_relay_ui
+ assign relay_display_motor=relay_ui_snapshot[11];
+ assign relay_display_mode=relay_ui_snapshot[10:8];
+ assign relay_display_status={35'd0,relay_ui_snapshot[7:4],25'd0,35'd0,relay_ui_snapshot[3:0],25'd0};
+ assign relay_display_diagnostic=0;
+end else begin : legacy_relay_ui
+ assign {relay_display_motor,relay_display_mode,relay_display_diagnostic,relay_display_status}=relay_ui_snapshot;
+end endgenerate
+// R56 relay display cone end.
+
 wire camera_metadata_ready;
 wire [15:0] lost_frames,overflow_frames,underflow_frames;
 localparam PUBLISH_BITS=9+$clog2(VIDEO_WIDTH*VIDEO_HEIGHT*3/16+1);
 wire [PUBLISH_BITS-1:0] publish_diagnostic,publish_display;
-isp_top #(.AUTO_RELAY(ENABLE_AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_ADVANCE_PX(RELAY_ADVANCE_PX),.RELAY_TOL_PX(RELAY_TOL_PX),.DUAL_REGION_COUNT(DUAL_REGION_COUNT),.PRESENT_TRACE(ENABLE_PRESENT_TRACE),.LOCAL_EDGE_ASSIST(ENABLE_LOCAL_EDGE_ASSIST),.EMPTY_TRACE(ENABLE_EMPTY_TRACE),.ROBUST_EMPTY_CONTEXT(ENABLE_ROBUST_EMPTY_CONTEXT),.ROBUST_SMALL_EMPTY(ENABLE_ROBUST_SMALL_EMPTY),.STANDING_REVIEW(ENABLE_STANDING_REVIEW),.SURFACE_REVIEW(ENABLE_PRESENT_SURFACE),.REVIEW_PROBE(ENABLE_REVIEW_PROBE && CALIBRATION_MODE),.CLASSIFIED_COUNT(CLASSIFIED_COUNT),.RESULT_RECORDER(CLASSIFIED_COUNT),.LOCAL_RECOVERY(CLASSIFIED_COUNT),.MULTITHRESHOLD_EMPTY(CLASSIFIED_COUNT),.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.SCALE_DISPLAY(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
+isp_top #(.RAW_EDGE_ONLY(RAW_EDGE_ONLY),.AUTO_RELAY(ENABLE_AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_ADVANCE_PX(RELAY_ADVANCE_PX),.RELAY_TOL_PX(RELAY_TOL_PX),.DUAL_REGION_COUNT(DUAL_REGION_COUNT),.PRESENT_TRACE(ENABLE_PRESENT_TRACE),.LOCAL_EDGE_ASSIST(ENABLE_LOCAL_EDGE_ASSIST),.EMPTY_TRACE(ENABLE_EMPTY_TRACE),.ROBUST_EMPTY_CONTEXT(ENABLE_ROBUST_EMPTY_CONTEXT),.ROBUST_SMALL_EMPTY(ENABLE_ROBUST_SMALL_EMPTY),.STANDING_REVIEW(ENABLE_STANDING_REVIEW),.SURFACE_REVIEW(ENABLE_PRESENT_SURFACE),.REVIEW_PROBE(ENABLE_REVIEW_PROBE && CALIBRATION_MODE),.CLASSIFIED_COUNT(CLASSIFIED_COUNT),.RESULT_RECORDER(CLASSIFIED_COUNT),.LOCAL_RECOVERY(CLASSIFIED_COUNT),.MULTITHRESHOLD_EMPTY(CLASSIFIED_COUNT),.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.SCALE_DISPLAY(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
 .processing_clk(S_process_clk),
 .relay_permit(relay_auto),.relay_pause(relay_paused),.actual_motor_running(motor_output),.relay_feed(relay_feed),.relay_alarm(relay_alarm),.relay_status(relay_status),.relay_diagnostic(relay_diagnostic),
 .count_command(count_process_command),.count_live(count_live_raw),
@@ -901,10 +916,17 @@ isp_top #(.AUTO_RELAY(ENABLE_AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_
         .width(mon_width),.height(mon_height),.fps(mon_fps),.lane_errors(mon_lane),
         .format_errors(mon_format),.gap_seconds(mon_gap),.frames(mon_frames),.uptime(mon_seconds));
     wire [159:0] mon_display;
-    status_cdc #(.WIDTH(160)) u_monitor_display(
-        .S_clk(I_sys_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
-        .S_data({mon_width,mon_height,mon_fps,mon_lane,mon_format,mon_gap,mon_frames,mon_seconds}),
-        .D_data(mon_display));
+    // R56 monitor display cone begin: keep original SDC instance binding.
+    localparam MONITOR_UI_BITS=ESSENTIAL_UI ? 48 : 160;
+    wire [MONITOR_UI_BITS-1:0] monitor_ui_snapshot;
+    wire [159:0] monitor_ui_source=ESSENTIAL_UI ? {112'd0,mon_width,mon_height,mon_fps} :
+     {mon_width,mon_height,mon_fps,mon_lane,mon_format,mon_gap,mon_frames,mon_seconds};
+    status_cdc #(.WIDTH(MONITOR_UI_BITS)) u_monitor_display(
+     .S_clk(I_sys_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+     .S_data(monitor_ui_source[MONITOR_UI_BITS-1:0]),.D_data(monitor_ui_snapshot));
+    assign mon_display=ESSENTIAL_UI ? {monitor_ui_snapshot[47:0],112'd0} : monitor_ui_snapshot;
+    // R56 monitor display cone end.
+
     wire [81:0] cam_display;
     status_cdc #(.WIDTH(82)) u_camera_display(
         .S_clk(S_24m_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
@@ -925,19 +947,23 @@ isp_top #(.AUTO_RELAY(ENABLE_AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_
         .S_clk(S_process_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
         .S_data(observation_record),.D_data(latest_observation_data));
     wire [16:0] transport_display;
-    status_cdc #(.WIDTH(PUBLISH_BITS)) u_publish_display(
-     .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
-     .S_data(publish_diagnostic),.D_data(publish_display));
     wire [83:0] overflow_display;
-    wire [31:0] wb_process;
-    status_cdc #(.WIDTH(32)) u_wb_process(
-     .S_clk(S_csi_rx_clk),.D_clk(S_process_clk),.rst_n(S_rst_n),.S_data(wb_active),.D_data(wb_process));
     status_cdc #(.WIDTH(17)) u_transport_display(
      .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
      .S_data({capture_ok,lost_frames}),.D_data(transport_display));
+    generate if(ESSENTIAL_UI)begin : essential_diagnostics_ui
+     assign publish_display=0;assign overflow_display=0;
+    end else begin : legacy_diagnostics_ui
+    status_cdc #(.WIDTH(PUBLISH_BITS)) u_publish_display(
+     .S_clk(S_ddr_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
+     .S_data(publish_diagnostic),.D_data(publish_display));
+    wire [31:0] wb_process;
+    status_cdc #(.WIDTH(32)) u_wb_process(
+     .S_clk(S_csi_rx_clk),.D_clk(S_process_clk),.rst_n(S_rst_n),.S_data(wb_active),.D_data(wb_process));
     status_cdc #(.WIDTH(84)) u_overflow_display(
      .S_clk(S_process_clk),.D_clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
      .S_data({wb_process,video_diagnostics,overflow_frames}),.D_data(overflow_display));
+    end endgenerate
     wire transport_ok=transport_display[16] && display_ok;
     wire tracking_fresh;
     tracking_frame_age u_tracking_age(.clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),.valid(active_frame_display[FRAME_META_WIDTH+2]),.slot(active_frame_display[FRAME_META_WIDTH+1:FRAME_META_WIDTH]),.fresh(tracking_fresh));
@@ -993,7 +1019,7 @@ isp_top #(.AUTO_RELAY(ENABLE_AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_
     generate if(CLASSIFIED_COUNT)begin assign count_display_frame=active_frame_display[ORIGINAL_META_WIDTH+:COUNT_BITS];
     end else begin assign count_display_frame=0;end endgenerate
     wire any_pocket_valid=display_pockets[63] || display_pockets[148] || display_pockets[233] || display_pockets[318];
-    classified_dual_page_osd #(.AUTO_RELAY(ENABLE_AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_TOL_PX(RELAY_TOL_PX),.DUAL_REGION_COUNT(DUAL_REGION_COUNT),.PRESENT_TRACE(ENABLE_PRESENT_TRACE),.BUILD_R22(ENABLE_LOCAL_EDGE_ASSIST),.EMPTY_TRACE(ENABLE_EMPTY_TRACE),.BUILD_R20(1),.BUILD_R19(1),.BUILD_R18(1),.BUILD_R17(ENABLE_PRESENT_SURFACE),.REVIEW_PROBE(ENABLE_REVIEW_PROBE && CALIBRATION_MODE),.REPORT_NUMBER_GAPS(REPORT_NUMBER_GAPS),.COMPACT_UI(CLASSIFIED_COUNT),.CLASSIFIED_COUNT(CLASSIFIED_COUNT),.RESULT_RECORDER(CLASSIFIED_COUNT),.LOCAL_RECOVERY(CLASSIFIED_COUNT),.MULTITHRESHOLD_EMPTY(CLASSIFIED_COUNT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.DIAG_BITS(PUBLISH_BITS),.RESOLUTION_V11(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.FRAME_OBJECTS(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
+    classified_dual_page_osd #(.ESSENTIAL_UI(ESSENTIAL_UI),.AUTO_RELAY(ENABLE_AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_TOL_PX(RELAY_TOL_PX),.DUAL_REGION_COUNT(DUAL_REGION_COUNT),.PRESENT_TRACE(ENABLE_PRESENT_TRACE),.BUILD_R22(ENABLE_LOCAL_EDGE_ASSIST),.EMPTY_TRACE(ENABLE_EMPTY_TRACE),.BUILD_R20(1),.BUILD_R19(1),.BUILD_R18(1),.BUILD_R17(ENABLE_PRESENT_SURFACE),.REVIEW_PROBE(ENABLE_REVIEW_PROBE && CALIBRATION_MODE),.REPORT_NUMBER_GAPS(REPORT_NUMBER_GAPS),.COMPACT_UI(CLASSIFIED_COUNT),.CLASSIFIED_COUNT(CLASSIFIED_COUNT),.RESULT_RECORDER(CLASSIFIED_COUNT),.LOCAL_RECOVERY(CLASSIFIED_COUNT),.MULTITHRESHOLD_EMPTY(CLASSIFIED_COUNT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.DIAG_BITS(PUBLISH_BITS),.RESOLUTION_V11(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.FRAME_OBJECTS(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.CLASS_THRESHOLD(CLASS_THRESHOLD),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.ROI_X0(ROI_X0),.ROI_X1(ROI_X1),.ROI_Y0(ROI_Y0),.ROI_Y1(ROI_Y1),
  .SAMPLE_X0(SAMPLE_X0),.SAMPLE_X1(SAMPLE_X1),.SAMPLE_Y0(SAMPLE_Y0),.SAMPLE_Y1(SAMPLE_Y1)) u_experiment_osd(
         .clk(S_hdmi_pixel_clk),.rst_n(S_rst_n),
         .relay_status(relay_display_status),.relay_mode(relay_display_mode),.relay_motor(relay_display_motor),

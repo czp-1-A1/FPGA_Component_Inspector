@@ -1,3 +1,11 @@
+# D3 R56d FINAL PHYSICAL PASS; exact7sources adopted; publication pending (2026-11-01 22:35, current)
+
+- Fullroute COMPLETED22:03:19 in402.8sec, originalTD60136/runner57588 gone,settings0a89restored. FinalRoutedBothSlowFast SWNS+.039,HWNS+.020,TNS0. Actual18337Slice86.43%,100ERAM31DSP5PLL. bitSHA d8f24295bdf3ae4fbc53e3e8ac23c4be0b5d82587809a15594268606deae530e,1789539bytes. Do NOT rerunroute/SYN/simulation.
+- Strictaudit session39617 CLOSEDPASS. Status PASS_D3_ESSENTIAL_UI_DUAL_COUNT_PARK_ROUTED_40_ACTIVE_9_REMOVED_UI_BOUNDS_20_GRAY_9_MAILBOXES_4_KEYS_V2_TWO_ALARMS. 40active0ignored,9exactremovedUIbounds, original49sourceaccounted,Gray20,9mainmailboxgroups,4keys/SW3,V2registered/twoalarmactualsameFFproof allPASS. NewCODEaudithelperalreadyhandledcompiledout9withoutrelaxingSDC.
+- Adopted EXACT7frozenfiles toproduction afterall704 wereR50; backup work/production_before_R56. All704nowmatch4e75manifest. require-production41PASS; docsD3_R56_SOFTWARE_VERIFICATION updatedTRUE. NeedCOMMITexact7sourcebytes+docs, git_source_audit all704HEAD blobs, publisher --check-only thenpublish once. OldADC/SDC/R27B untouched. No hardware/push/subagents/goals.
+- Packageplannednewname R27B_DualCount_DualStop_D3_EssentialUI_R56_20261101. Publishercreatesversionedreleasezip and BIT_FLASHbit/guide/receipt, verifiesallzipPayloadSHA/source/3protectedbits. Afterpublishoptionalcopyzip E:/2026FPGA/DELIVERIES identicalSHA, verifyall704archiveinputs,bitSHAmatcheswork/release/BIT_FLASH. UpdatedFIELD_GUIDE/IMPLEMENTATION nowstatefinalPASS+PENDINGHIL.
+- Automationr56-30 stillACTIVE while publicationhandled; deleteviaapp BEFORE finalnotification, recorddeleted inAUTOMATION/CHECK_HISTORY. LatestdeveloperrequiresheartbeatfinalnonemptyNOTIFYXML withartifactbitlink. Finalbrief: succeeded18337/86.43%,setup+.039hold+.020,41PASS,bitfixedpath,askuserfirstverifyimage/twolanesparking; HILpending.
+
 # D3 R56d FULL ROUTE ACTIVE: TD60136 / runner57588 (2026-11-01 21:56, current)
 
 - One fullroute now RUNNING D:/CodexWork/D3_EssentialUI_R56d_20261101 from exactsavedplace0875662e andmanifest4e75a67f. Hidden detachedrunner57588/TD60136 verifiedparent, started2026-11-01T21:56:36+08:00,14400sec deadline2026-11-02T01:56:36+08:00. RUN_STATE_ROUTE.json/LAUNCH_PROCESS.json durable. Native/unit/camera/allother jobs closed. Do NOT start secondtrial.
