@@ -56,11 +56,11 @@ def main():
  assert '.alarm(relay_alarm),.O_buzzer_n(O_buzzer_n)' in top and '.capture_info(active_frame_display[FRAME_META_WIDTH+67:FRAME_META_WIDTH+3])' in top
  assert '.vs(exp_vs),.de(exp_de)' in top and '.latest_source(latest_source_display)' in top
  selected=[];groups=[
-  ('rl7_alarm_roles_v3_contracts_r4_20261101','rl7_alarm_roles_v3',3),
-  ('rl7_alarm_roles_v3_units_r1_20261101','demo_rl7',3),('rl7_alarm_roles_v3_extra_r1_20261101','demo_rl7',2),
-  ('rl7_alarm_roles_v3_regression_r1_20261101','shift_alarm_v7',17),
-  ('rl7_alarm_roles_v3_empty_rgb_r1_20261101','rl7_alarm_roles_v3',1),
-  ('rl7_alarm_roles_v3_font_r1_20261101','ui_opt_v2',1)]
+  ('rl7_alarm_roles_v3_contracts_r5_20261101','rl7_alarm_roles_v3',3),
+  ('rl7_alarm_roles_v3_units_r2_20261101','demo_rl7',3),('rl7_alarm_roles_v3_extra_r2_20261101','demo_rl7',2),
+  ('rl7_alarm_roles_v3_regression_r2_20261101','shift_alarm_v7',17),
+  ('rl7_alarm_roles_v3_empty_rgb_r2_20261101','rl7_alarm_roles_v3',1),
+  ('rl7_alarm_roles_v3_font_r2_20261101','ui_opt_v2',1)]
  for name,fixture,count in groups:
   folder=tmp/name;proof=load(folder/'verification.json');assert proof['status']=='PASS' and len(proof['tests'])==count,name
   for n,d in proof['inputs'].items():assert source[n]==d and sha(folder/'inputs'/Path(n).name)==d,(name,n)
@@ -69,7 +69,7 @@ def main():
   for t in proof['tests']:
    log=folder/(t['name']+'.log');d=t.get('log_sha256',t.get('sha256'));assert sha(log)==d;passed(log)
    selected.append({'name':t['name'],'group':name,'log_sha256':d,'mode':('EXACT_UNCHANGED_MODULE_REUSE' if name in ['rl7_demo_alarm_r1_20261101','rl7_demo_compat_r1_20261101'] else 'NEW_RUN_ALARM_ROLES_V3')})
- gate=tmp/'rl7_alarm_roles_v3_camera_gate_r1_20261101';g=load(gate/'verification.json');assert g['status']=='PASS'
+ gate=tmp/'rl7_alarm_roles_v3_camera_gate_r2_20261101';g=load(gate/'verification.json');assert g['status']=='PASS'
  assert sha(work/'rl7_demo_camera_gate.v')==g['gate_netlist_sha256'] and g['cone_closure']['all_other_consumed_nets_have_selected_cell_drivers']
  for test in g['tests']:
   log=gate/(test['name']+'.log');assert sha(log)==test['log_sha256'];passed(log)
@@ -137,7 +137,7 @@ def main():
   if p.is_file() and rel.parts[0] not in ['project','temp'] and (p.suffix.lower() in ['.json','.log','.tcl','.cfg','.rpt','.timing','.area','.txt','.prj','.db','.v','.sv'] or p.name=='verify_relay_physical.py'):
    copy(p,release/'build'/rel)
  for n in ['demo_rgb.png']:
-  if (tmp/'rl7_alarm_roles_v3_units_r1_20261101'/n).exists():copy(tmp/'rl7_alarm_roles_v3_units_r1_20261101'/n,release/'preview'/n)
+  if (tmp/'rl7_alarm_roles_v3_units_r2_20261101'/n).exists():copy(tmp/'rl7_alarm_roles_v3_units_r2_20261101'/n,release/'preview'/n)
  # Retain the original classification boundaries without claiming they were repaired.
  oldrel=Path('E:/2026FPGA/HANDOFF/RL7_20261031/release')
  copy(oldrel/'WEAK_NATIVE_BOUNDARY.json',release/'WEAK_NATIVE_BOUNDARY.json')

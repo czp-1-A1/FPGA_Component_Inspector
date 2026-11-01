@@ -298,12 +298,25 @@ always @*begin
  if(bcd[15:12]>=5)adjusted[15:12]=bcd[15:12]+3;
  if(bcd[19:16]>=5)adjusted[19:16]=bcd[19:16]+3;
 end
+// Demo labels represent the taught pocket row. Unknown off-row contours
+// (including phase-eroded feed holes) are not inspected component labels.
+// Confirmed PRESENT/review and EMPTY stay visible at every row; no counter
+// or classifier record is altered by this presentation-only role filter.
+function label_role_allowed;input [75:0] value;reg [10:0] twice_y;
+ begin
+  twice_y={1'b0,value[19:10]}+value[9:0];
+  label_role_allowed=!DEMO_UI || !RELAY_LEFT_LAYOUT || value[74:73]>=2 ||
+   (value[74:73]==1 && twice_y>=HEIGHT/3+HEIGHT*5/9-32 && twice_y<=HEIGHT/3+HEIGHT*5/9+32);
+ end
+endfunction
+// The role bit is captured atomically with its object, outside the pixel path.
+reg [3:0] label_roles;integer role_slot;
 always @(posedge clk or negedge rst_n)begin
  if(!rst_n)begin
   latency_ok_s<=0;latency_s<=0;lag_s<=0;source_bcd_s<=0;
   relay_snapshot<=0;diagnostic_snapshot<=0;relay_mode_snapshot<=0;
   de_d<=0;x<=0;y<=0;page_s<=0;eligible_s<=0;show<=0;cal_s<=0;gray_s<=0;cfg_s<=0;tune_s<=0;pending_s<=0;
-  mode_s<=0;wait_s<=0;live<=0;record<=0;obs<=0;cal<=0;primary<=0;np<=0;ne<=0;nu<=0;
+  mode_s<=0;wait_s<=0;live<=0;record<=0;obs<=0;label_roles<=0;cal<=0;primary<=0;np<=0;ne<=0;nu<=0;
   ex<=0;ga<=0;fp<=0;iw<=0;ih<=0;wr<=0;wb<=0;gm<=0;gn<=0;gx<=0;ec<=0;
   le<=0;fe<=0;ie<=0;gp<=0;ofl<=0;ufl<=0;lost<=0;fr<=0;pub<=0;diag<=0;
   token_d<=0;write_cursor_d<=0;write_valid_d<=0;fmt<=0;step<=0;number<=0;bcd<=0;formatting<=0;feeding<=0;write_valid<=0;ready<=0;cursor<=0;write_cursor<=0;
@@ -315,6 +328,7 @@ always @(posedge clk or negedge rst_n)begin
    if(DEMO_UI)begin latency_ok_s<=0;latency_s<=0;lag_s<=0;source_bcd_s<=0;end
    relay_snapshot<=relay_status;diagnostic_snapshot<=relay_diagnostic;relay_mode_snapshot<=relay_control_mode;
    page_s<=page;live<=live_record;record<=frame_record;obs<=objects;cal<=calibration_record;
+   for(role_slot=0;role_slot<4;role_slot=role_slot+1)label_roles[role_slot]<=label_role_allowed(objects[role_slot*76+:76]);
    eligible_s<=eligible;cal_s<=calibration_valid;gray_s<=roi_valid;cfg_s<=cfg_done;tune_s<=wb_tune;pending_s<=wb_pending;
    show<=eligible && frame_record[47:32]==live_record[47:32] &&
     (frame_record[50:48]==1 || frame_record[50:48]==2 || frame_record[50:48]==5) &&
@@ -431,17 +445,6 @@ endfunction
 
 reg [2:0] line;reg [9:0] plane_address;reg [7:0] code;
 reg [4:0] row,col;reg panel,guide,logo,repair_border;reg [23:0] ink;
-// Demo labels represent the taught pocket row. Unknown off-row contours
-// (including phase-eroded feed holes) are not inspected component labels.
-// Confirmed PRESENT/review and EMPTY stay visible at every row; no counter
-// or classifier record is altered by this presentation-only role filter.
-function label_role_allowed;input [75:0] value;reg [10:0] twice_y;
- begin
-  twice_y={1'b0,value[19:10]}+value[9:0];
-  label_role_allowed=!DEMO_UI || !RELAY_LEFT_LAYOUT || value[74:73]>=2 ||
-   (value[74:73]==1 && twice_y>=HEIGHT/3+HEIGHT*5/9-32 && twice_y<=HEIGHT/3+HEIGHT*5/9+32);
- end
-endfunction
 reg [75:0] ob;reg [8:0] id;reg [19:0] id_bcd;
 reg [10:0] lx,rx;reg [9:0] ly;reg [3:0] glyph_cell;
 wire trace_cross0=EMPTY_TRACE && cal_s && cal[63] &&
@@ -521,7 +524,7 @@ always @*begin
    if(page_s && t/2==record[57])begin
     id=record[94+t*9+:9];id_bcd=t%2==0 ? label_bcd0 : label_bcd1;
    end
-   if(ready && ob[75] && label_role_allowed(ob) && (!page_s || eligible_s && t/2==record[57]))begin
+   if(ready && ob[75] && label_roles[t] && (!page_s || eligible_s && t/2==record[57]))begin
     if(((x==ob[41:31] || x==ob[30:20]) && y>=ob[19:10] && y<=ob[9:0]) ||
       ((y==ob[19:10] || y==ob[9:0]) && x>=ob[41:31] && x<=ob[30:20]))guide=1;
     prefix=!DEMO_UI && page_s && show && id!=0;

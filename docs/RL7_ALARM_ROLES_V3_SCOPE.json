@@ -4,14 +4,15 @@
   "production_changes": {
     "pocket_relay_stop_v2.v": {
       "before": "90b29dfa9a45b132e191bfc0a459f894cbed5ffc7a85a9c5bb5fc5eb37cb7520",
-      "after": "8f400e5994e401425b6650e5b7b486d55be844995d286c6ade484920e7eb981f"
+      "after": "53a7961982b706d6b1c14466ac9fa69a5b6a4a2e1387de6f22e5b60fbcfafc7c"
     },
     "compact_inspector_osd.v": {
       "before": "711cc68ab3a91793f5398b6b2e7f2a080493ac2303ce549352a032e7f459f732",
-      "after": "0b5660d3080ec8104df6c8a821ef110cb82250da1c735f1e1325fb2d9e6217c5"
+      "after": "afc59f376671f47332bb867a910a83447fad36a66da2537cca9d5ee2f8c63174"
     }
   },
   "classifier_thresholds_counter_camera_latency_fonts_pin_sdc_changed": false,
   "role_display_contract": "DEMO+LEFT: hide kind0; hide kind1 outside taught pocket-row centre320+-16. All kind2/3 and in-row kind1 remain visible. Counter inputs untouched.",
-  "alarm_contract": "Strict contiguous same-RUN main-ledger events. E increments, P/review resets; invalid ID/RUN/kind disarms until explicit newRUN. Local transport fault cannot mask fifth; stopped motor remains interlocked."
+  "alarm_contract": "Strict contiguous same-RUN main-ledger events. E increments, P/review resets; invalid ID/RUN/kind disarms until explicit newRUN. Local transport fault cannot mask fifth; stopped motor remains interlocked.",
+  "implementation_refinement": "R1 physical timeout/congestion: reuse the existing global history prefix instead of a duplicate ordinal; snapshot role bits atomically with objects, preserving the same pixel contract and three clocks."
 }
