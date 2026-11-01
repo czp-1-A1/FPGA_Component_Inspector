@@ -1,0 +1,51 @@
+{
+  "baseline_source_commit": "22b1531d9c376d5e66825a92a0882060e0f9056a",
+  "baseline_head": "1b8a097f9dd7d7dee2783e9dcbcf43986f7650f4",
+  "baseline_bit_sha256": "48a30fb244f145f1874b36c92e01a74edeafdbd8f3628396a815d58ca558153f",
+  "user_truth": {
+    "prefix_total": 29,
+    "prefix_normal": 22,
+    "prefix_empty": 6,
+    "prefix_review": 1,
+    "tail_total": 7,
+    "tail_empty": 7,
+    "same_format_aligned": true
+  },
+  "full_traverse_truth": {
+    "total": 36,
+    "normal": 22,
+    "empty": 13,
+    "review": 1
+  },
+  "correct_5E_alarm_if_motor_stops": {
+    "event_id": 34,
+    "normal": 22,
+    "empty": 11,
+    "review": 1,
+    "unseen_tail_pockets": 2
+  },
+  "field_video": {
+    "path": "C:\\Users\\Li47\\xwechat_files\\wxid_6pvtdn08y85a22_111d\\msg\\video\\2026-11\\842fdf839cb7732fbce1f734d295812a.mp4",
+    "sha256": "1c86564aec54b2eca5c6b6d42b699d98e7db4bb5219c757ee173c0645739a445",
+    "phone_fps": 30,
+    "duration_s": 15.77,
+    "native_sensor_pixels": false
+  },
+  "video_verified": {
+    "final": [
+      33,
+      21,
+      10,
+      2
+    ],
+    "new_tail_empty_ids": [
+      30,
+      31,
+      32,
+      33
+    ],
+    "extra_review_before_tail": true,
+    "all_empty_labels_on_upper_feed_row_proven": false,
+    "interpretation": "Only4 E events are visible in the appended7-pocket segment. In sampled frames E boxes lie on lower pocket centre dots. Earlier extra review occurs before the empty tail. Weak upper-hole misclassification is separately proven by synthetic RGB, not asserted as the unique video cause."
+  }
+}

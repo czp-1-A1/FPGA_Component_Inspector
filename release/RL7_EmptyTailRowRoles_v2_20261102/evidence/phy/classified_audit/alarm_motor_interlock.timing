@@ -1,0 +1,175 @@
+Created by          : Tang Dynasty v6.2.178840
+                    : Copyright (c) 2012-2025 Anlogic Inc.
+Generated           : Mon Nov  2 06:34:53 2026
+
+Top Model           : design_top_wrapper
+Device              : PH1P35MDG324
+Speed               : 3
+STA coverage        : 93.49%
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     pll_clk_100m -> pll_clk_100m
+Type           :     Self
+From Clock     :     pll_clk_100m
+To Clock       :     pll_clk_100m
+Min Period     :     2.678ns
+Fmax           :     373.413MHz
+
+Statistics:
+Max            : SWNS      7.322ns, STNS      0.000ns,         0 Viol Endpoints,         1 Total Endpoints,         1 Paths Analyzed
+Min            : HWNS      0.597ns, HTNS      0.000ns,         0 Viol Endpoints,         1 Total Endpoints,         1 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 7.322ns
+Begin Point         : u_isp_top/classified_counting$left_station$controller/alarm_latched_reg_syn_7.clk (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : motor_output_reg_syn_3.ima (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 10.000ns { pll_clk_100m rising@10.000ns - pll_clk_100m rising@0.000ns }
+Data Path Delay     : 2.366ns (cell 0.496ns (20%), net 1.870ns (80%))
+Clock Skew          : 0.127ns
+Logic Level         : 1 ( LUT5=1 )
+Max Fanout          : 18
+Clock Uncertainty   : 0.121ns (sdc uncertainty: 0.000ns, default uncertainty: 0.121ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.810          0.810          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.684          1.494          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.115          1.609          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -1.607          0.002          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.801          0.803          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.016          0.819          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.387          1.206          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(8)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkin
+SCLK                x023y059z1          0.079          1.285          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkout
+net (fo=1294)                           0.634          1.919          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$left_station$controller/alarm_latched_reg_syn_7.clk
+launch edge                             0.000    r     1.919               
+--------------------------------------------------------------------  ---------------
+clk2q               x016y060z3          0.126    f     2.045          pin: u_isp_top/classified_counting$left_station$controller/alarm_latched_reg_syn_7.oqa
+net (fo=18)                             0.956          3.001          net: u_isp_top/classified_counting$left_station$controller/alarm_stop,  ../../project/user_source/hdl_source/pocket_relay_stop_v2.v(23)
+                                                                      pin: u_input_monitor/rx_mailbox/D_data_reg[10]_syn_2.ic
+LUT5                x022y057z7          0.283    r     3.284       1  pin: u_input_monitor/rx_mailbox/D_data_reg[10]_syn_2.ofb
+net (fo=1)                              0.914          4.198          net: motor_output_n,  NOFILE(0)
+                                                                      pin: motor_output_reg_syn_3.ima
+reg                 x030y048z7          0.087    r     4.285          net: O_relay_control_dup_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(9)
+--------------------------------------------------------------------  ---------------
+Arrival                                                4.285               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.745          0.745          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.629          1.374          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.099          1.473          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -1.378          0.095          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.687          0.782          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.014          0.796          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.330          1.126          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(8)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x023y059z12         0.068          1.194          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=1379)                           0.552          1.746          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: motor_output_reg_syn_3.clk
+capture edge                           10.000    r    11.746               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064         11.682               
+clock uncertainty                      -0.121         11.561               
+clock pessimism                         0.046         11.607               
+--------------------------------------------------------------------  ---------------
+Required                                              11.607               
+--------------------------------------------------------------------  ---------------
+Slack                                                  7.322               
+
+
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 0.597ns
+Begin Point         : u_isp_top/classified_counting$left_station$controller/alarm_latched_reg_syn_7.clk (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : motor_output_reg_syn_3.ima (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast_m40c
+Budget              : 0.000ns { pll_clk_100m rising@0.000ns - pll_clk_100m rising@0.000ns }
+Data Path Delay     : 0.742ns (cell 0.171ns (23%), net 0.571ns (77%))
+Clock Skew          : 0.033ns
+Logic Level         : 1 ( LUT5=1 )
+Max Fanout          : 18
+Clock Uncertainty   : 0.100ns (sdc uncertainty: 0.000ns, default uncertainty: 0.100ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.810          0.810          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.257          1.067          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.040          1.107          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -0.601          0.506          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.301          0.807          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.006          0.813          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.143          0.956          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(8)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkin
+SCLK                x023y059z1          0.025          0.981          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkout
+net (fo=1294)                           0.219          1.200          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$left_station$controller/alarm_latched_reg_syn_7.clk
+launch edge                             0.000    r     1.200               
+--------------------------------------------------------------------  ---------------
+clk2q               x016y060z3          0.062    f     1.262          pin: u_isp_top/classified_counting$left_station$controller/alarm_latched_reg_syn_7.oqa
+net (fo=18)                             0.290          1.552          net: u_isp_top/classified_counting$left_station$controller/alarm_stop,  ../../project/user_source/hdl_source/pocket_relay_stop_v2.v(23)
+                                                                      pin: u_input_monitor/rx_mailbox/D_data_reg[10]_syn_2.ic
+LUT5                x022y057z7          0.080    f     1.632       1  pin: u_input_monitor/rx_mailbox/D_data_reg[10]_syn_2.ofb
+net (fo=1)                              0.281          1.913          net: motor_output_n,  NOFILE(0)
+                                                                      pin: motor_output_reg_syn_3.ima
+reg                 x030y048z7          0.029    f     1.942          net: O_relay_control_dup_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(9)
+--------------------------------------------------------------------  ---------------
+Arrival                                                1.942               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.915          0.915          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.290          1.205          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.043          1.248          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -0.654          0.594          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.326          0.920          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.007          0.927          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.152          1.079          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(8)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_r_bk1.clkin
+SCLK                x023y059z12         0.030          1.109          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_r_bk1.clkout
+net (fo=1379)                           0.243          1.352          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_r_bk1_sclk_outnet,  NOFILE(0)
+                                                                      pin: motor_output_reg_syn_3.clk
+capture edge                            0.000    r     1.352               
+--------------------------------------------------------------------  ---------------
+hold                                    0.012          1.364               
+clock uncertainty                       0.100          1.464               
+clock pessimism                        -0.119          1.345               
+--------------------------------------------------------------------  ---------------
+Required                                               1.345               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.597               
+
+
+
+
+
+
+
+
+
+
+
+

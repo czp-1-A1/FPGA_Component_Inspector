@@ -1,0 +1,44 @@
+from pathlib import Path
+import hashlib,json,subprocess,datetime
+root=Path(__file__).resolve().parent;repo=Path('D:/CodexWork/erole_fix_20261102')
+video=Path('C:/Users/Li47/xwechat_files/wxid_6pvtdn08y85a22_111d/msg/video/2026-11/842fdf839cb7732fbce1f734d295812a.mp4')
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+facts={'baseline_source_commit':'22b1531d9c376d5e66825a92a0882060e0f9056a','baseline_head':'1b8a097f9dd7d7dee2783e9dcbcf43986f7650f4',
+ 'baseline_bit_sha256':'48a30fb244f145f1874b36c92e01a74edeafdbd8f3628396a815d58ca558153f',
+ 'user_truth':{'prefix_total':29,'prefix_normal':22,'prefix_empty':6,'prefix_review':1,'tail_total':7,'tail_empty':7,'same_format_aligned':True},
+ 'full_traverse_truth':{'total':36,'normal':22,'empty':13,'review':1},
+ 'correct_5E_alarm_if_motor_stops':{'event_id':34,'normal':22,'empty':11,'review':1,'unseen_tail_pockets':2},
+ 'field_video':{'path':str(video),'sha256':sha(video),'phone_fps':30,'duration_s':15.77,'native_sensor_pixels':False},
+ 'video_verified':{'final':[33,21,10,2],'new_tail_empty_ids':[30,31,32,33],
+  'extra_review_before_tail':True,'all_empty_labels_on_upper_feed_row_proven':False,
+  'interpretation':'Only4 E events are visible in the appended7-pocket segment. In sampled frames E boxes lie on lower pocket centre dots. Earlier extra review occurs before the empty tail. Weak upper-hole misclassification is separately proven by synthetic RGB, not asserted as the unique video cause.'}}
+(root/'field_facts.json').write_text(json.dumps(facts,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+comparison={}
+for old_i,new_i,name in [(0,2,'feed_roles'),(1,3,'aperture_quantization')]:
+ old=json.loads((root/f'run_r{old_i}/diagnostic.json').read_text())['cases'];new=json.loads((root/f'run_r{new_i}/diagnostic.json').read_text())['cases']
+ comparison[name]={'cases':len(old),'old_wrong_feed':sum(bool(x['feed_E'] or x['feed_P']) for x in old),'new_wrong_feed':sum(bool(x['feed_E'] or x['feed_P']) for x in new),
+  'previous_positive_regressions':[x['case'] for x,y in zip(old,new) if x['pocket_E']>y['pocket_E']],
+  'pocket_improvements':[x['case'] for x,y in zip(old,new) if x['pocket_E']<y['pocket_E']],
+  'retained_unclassified_cases':[x['case'] for x in new if not x['pocket_E']]}
+ assert not comparison[name]['previous_positive_regressions']
+(root/'probe_comparison.json').write_text(json.dumps(comparison,indent=2)+'\n')
+block='''<!-- EMPTY_TAIL_ROLE_20261102_BEGIN -->
+## 29穴后接7全空穴：视频取证与孔角色原型（2026-11-02）
+
+- 目标/断点：用户确认同规格同中心线，烧录组合版48a30fb2；原29真值22有件/6空/1复核，新增7全空。全部通过的分类目标36/22/13/1；若第5追加E正常停车，正确触发号34、空数11，余2穴未过线不能虚计。当前底层原型82组合检查完成，尚无新bit/路由/实板通过。
+- 基线/分支：旧交付与远端原样保留；源22b1531d、回执1b8a097。新工作树D:/CodexWork/erole_fix_20261102，codex/rl7-empty-aperture-role-20261102，HEAD1b8a097，未提交/推送，原工作树干净。分析/不可变输入/日志在D:/CodexWork/empty_tail_role_20261102，无子代理。
+- 现场证据：842fdf839cb7732fbce1f734d295812a.mp4，SHA1c86564aec54b2eca5c6b6d42b699d98e7db4bb5219c757ee173c0645739a445，15.77s/手机30FPS/1280x720，不是传感器像素。视频尾段新增空号030..033仅4E，故5E不触发与实际输入一致。额外复核在进入全空段前已发生；所选帧空框多在下排穴内亮点，不能把本片直接定为上排孔已计E。field_facts.json/32抽帧和3接触表保留。
+- 已复现：原18生产RTL冻结frozen_r0/run_r0的42真RGB角色组合，有2组弱小上排8px/灰95定位孔被判E且真空穴降未知；frozen_r1/run_r1另40组真空孔尺寸/亮度/2x2相位，6px亮孔双奇相位无当前P时漏E、有P时有E。均合成诊断，非现场原像素回放；不能把全部灰95/尺寸不足边界说成已通过。
+- 改动：仅frame_shape_search/isp_top/top三源；新POCKET_ROW_ROLES顶层1、内部默认0保留旧模式。用当前源帧真实有件或单独上排定位孔证明穴排；行外孔禁止E，弱小定位孔按位置角色剔除并可提供下排参考；全空时允许此参考取代当前有件参考以识别量化实心小孔。原阈值/后续Sobel暗背景证据、计数/停车/独立5E报警/四键/视频/SDC不改，未新增RAM/跨域。
+- 原型证据：新frozen_r2/run_r2、frozen_r3/run_r3共82组合，错误上排E/P从2降0，全部旧正例保留，恢复1个无P的6px亮孔相位漏检。probe_comparison.json。仍12组极弱/尺寸边界未知，不降低目标当PASS；当前只原型，原生RAW与真实运动/闭环/物理尚未跑。
+- 下一条具体操作：新增真实RGB的29(22P+6E+1R)转7E运动验收，角色不混淆、完整分类36及第5尾E应在34号报警分开验证；不同尺寸/相位/孔距与原P负例冻结后修实际失败。通过再跑当前参数原生RAW/旧控制、完整原SDC seed1综合路由与全CDC/V2/C12审计，成功后桌面新名bit/全包/说明/SHA并按授权新独立分支上传。不得只隐藏UI或把UNKNOWN当E，不改原视频/旧答案，不声称现场修复。
+- 进程/设备：四组诊断ModelSim已退出；下一批按实际命令核PID。无TD/烧录/JTAG/Flash/板卡/用户GUI操作，不重启旧成功构建，其他聊天/r12不动。定时继续仍用既有每日05:45，未另建轮询。
+<!-- EMPTY_TAIL_ROLE_20261102_END -->'''
+for p in [repo/'AGENTS.md',Path('C:/Users/Li47/Desktop/aa/AGENTS.md')]:
+ text=p.read_text(encoding='utf8');a='<!-- EMPTY_TAIL_ROLE_20261102_BEGIN -->';b='<!-- EMPTY_TAIL_ROLE_20261102_END -->'
+ if a in text:i=text.index(a);j=text.index(b,i)+len(b);text=text[:i]+block+text[j:]
+ else:text=block+'\n\n'+text if p.parent==repo else text+'\n\n'+block+'\n'
+ p.write_text(text,encoding='utf8')
+record=repo/'开发实施/验收记录/20261102_C_全空尾段角色_轮次1.md';record.parent.mkdir(parents=True,exist_ok=True)
+record.write_text('# 全空尾段角色：不可变基线与原型诊断\n\n'+block+'\n\n原视频、旧/新全部42+40输入/日志和字段比较以独立分析根field_facts.json、probe_comparison.json及frozen_r0..r3/run_r0..r3为准。旧失败保留，未边测边改生产或答案。\n',encoding='utf8')
+print('Recorded video truth,82 diagnostics and exact next step; no new bit')

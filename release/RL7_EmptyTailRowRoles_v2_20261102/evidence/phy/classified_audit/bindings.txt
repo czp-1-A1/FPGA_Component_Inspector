@@ -1,0 +1,100 @@
+GRAY_BIND write 0 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[0]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[0]}
+GRAY_BIND write 1 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[1]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[1]}
+GRAY_BIND write 2 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[2]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[2]}
+GRAY_BIND write 3 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[3]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[3]}
+GRAY_BIND write 4 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[4]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[4]}
+GRAY_BIND write 5 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[5]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[5]}
+GRAY_BIND write 6 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[6]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[6]}
+GRAY_BIND write 7 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[7]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[7]}
+GRAY_BIND write 8 SOURCE {u_isp_top/continuous_processing$bridge/write_gray[8]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[8]}
+GRAY_BIND write 9 SOURCE {u_isp_top/continuous_processing$bridge/write_bin[9]} DESTINATION {u_isp_top/continuous_processing$bridge/write_gray_sync1[9]}
+GRAY_BIND read 0 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[0]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[0]}
+GRAY_BIND read 1 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[1]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[1]}
+GRAY_BIND read 2 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[2]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[2]}
+GRAY_BIND read 3 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[3]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[3]}
+GRAY_BIND read 4 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[4]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[4]}
+GRAY_BIND read 5 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[5]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[5]}
+GRAY_BIND read 6 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[6]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[6]}
+GRAY_BIND read 7 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[7]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[7]}
+GRAY_BIND read 8 SOURCE {u_isp_top/continuous_processing$bridge/read_gray[8]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[8]}
+GRAY_BIND read 9 SOURCE {u_isp_top/continuous_processing$bridge/read_bin[9]} DESTINATION {u_isp_top/continuous_processing$bridge/read_gray_sync1[9]}
+COUNT_CDC_BIND u_count_command payload SOURCE_COUNT 40 DESTINATION_COUNT 40
+COUNT_CDC_BIND u_count_command request SOURCE_COUNT 1 DESTINATION_COUNT 1
+COUNT_CDC_BIND u_count_command acknowledge SOURCE_COUNT 1 DESTINATION_COUNT 1
+COUNT_CDC_BIND u_count_live_display payload SOURCE_COUNT 370 DESTINATION_COUNT 370
+COUNT_CDC_BIND u_count_live_display request SOURCE_COUNT 1 DESTINATION_COUNT 1
+COUNT_CDC_BIND u_count_live_display acknowledge SOURCE_COUNT 1 DESTINATION_COUNT 1
+COUNT_CDC_BIND u_relay_display payload SOURCE_COUNT 127 DESTINATION_COUNT 84
+COUNT_CDC_BIND u_relay_display request SOURCE_COUNT 1 DESTINATION_COUNT 1
+COUNT_CDC_BIND u_relay_display acknowledge SOURCE_COUNT 1 DESTINATION_COUNT 1
+SW3_SYNC FIRST_COUNT 1 SECOND_COUNT 1 ALL_COUNT 2
+SW3_SYNC FIRST {count_controls$controls/sw_sync[0]} SECOND {count_controls$controls/sw_sync[1]} THROUGH {count_controls$controls/sw_sync[0]}
+KEY_SYNC 0 FIRST_COUNT 1 SECOND_COUNT 1 Q_COUNT 1
+KEY_SYNC 1 FIRST_COUNT 1 SECOND_COUNT 1 Q_COUNT 1
+KEY_SYNC 2 FIRST_COUNT 1 SECOND_COUNT 1 Q_COUNT 1
+KEY_SYNC 3 FIRST_COUNT 1 SECOND_COUNT 1 Q_COUNT 1
+V7_ALARM_MOTOR SOURCE_COUNT 1 DESTINATION_COUNT 1
+LATENCY_GRAY u_latency_capture 0 SOURCE {latency_gray_us[0]} THROUGH {latency_gray_us[0]} DESTINATION {u_latency_capture/gray_meta[0]}
+LATENCY_GRAY u_latency_capture 1 SOURCE {latency_gray_us[1]} THROUGH {latency_gray_us[1]} DESTINATION {u_latency_capture/gray_meta[1]}
+LATENCY_GRAY u_latency_capture 2 SOURCE {latency_gray_us[2]} THROUGH {latency_gray_us[2]} DESTINATION {u_latency_capture/gray_meta[2]}
+LATENCY_GRAY u_latency_capture 3 SOURCE {latency_gray_us[3]} THROUGH {latency_gray_us[3]} DESTINATION {u_latency_capture/gray_meta[3]}
+LATENCY_GRAY u_latency_capture 4 SOURCE {latency_gray_us[4]} THROUGH {latency_gray_us[4]} DESTINATION {u_latency_capture/gray_meta[4]}
+LATENCY_GRAY u_latency_capture 5 SOURCE {latency_gray_us[5]} THROUGH {latency_gray_us[5]} DESTINATION {u_latency_capture/gray_meta[5]}
+LATENCY_GRAY u_latency_capture 6 SOURCE {latency_gray_us[6]} THROUGH {latency_gray_us[6]} DESTINATION {u_latency_capture/gray_meta[6]}
+LATENCY_GRAY u_latency_capture 7 SOURCE {latency_gray_us[7]} THROUGH {latency_gray_us[7]} DESTINATION {u_latency_capture/gray_meta[7]}
+LATENCY_GRAY u_latency_capture 8 SOURCE {latency_gray_us[8]} THROUGH {latency_gray_us[8]} DESTINATION {u_latency_capture/gray_meta[8]}
+LATENCY_GRAY u_latency_capture 9 SOURCE {latency_gray_us[9]} THROUGH {latency_gray_us[9]} DESTINATION {u_latency_capture/gray_meta[9]}
+LATENCY_GRAY u_latency_capture 10 SOURCE {latency_gray_us[10]} THROUGH {latency_gray_us[10]} DESTINATION {u_latency_capture/gray_meta[10]}
+LATENCY_GRAY u_latency_capture 11 SOURCE {latency_gray_us[11]} THROUGH {latency_gray_us[11]} DESTINATION {u_latency_capture/gray_meta[11]}
+LATENCY_GRAY u_latency_capture 12 SOURCE {latency_gray_us[12]} THROUGH {latency_gray_us[12]} DESTINATION {u_latency_capture/gray_meta[12]}
+LATENCY_GRAY u_latency_capture 13 SOURCE {latency_gray_us[13]} THROUGH {latency_gray_us[13]} DESTINATION {u_latency_capture/gray_meta[13]}
+LATENCY_GRAY u_latency_capture 14 SOURCE {latency_gray_us[14]} THROUGH {latency_gray_us[14]} DESTINATION {u_latency_capture/gray_meta[14]}
+LATENCY_GRAY u_latency_capture 15 SOURCE {latency_gray_us[15]} THROUGH {latency_gray_us[15]} DESTINATION {u_latency_capture/gray_meta[15]}
+LATENCY_GRAY u_latency_capture 16 SOURCE {latency_gray_us[16]} THROUGH {latency_gray_us[16]} DESTINATION {u_latency_capture/gray_meta[16]}
+LATENCY_GRAY u_latency_capture 17 SOURCE {latency_gray_us[17]} THROUGH {latency_gray_us[17]} DESTINATION {u_latency_capture/gray_meta[17]}
+LATENCY_GRAY u_latency_capture 18 SOURCE {latency_gray_us[18]} THROUGH {latency_gray_us[18]} DESTINATION {u_latency_capture/gray_meta[18]}
+LATENCY_GRAY u_latency_capture 19 SOURCE {latency_gray_us[19]} THROUGH {latency_gray_us[19]} DESTINATION {u_latency_capture/gray_meta[19]}
+LATENCY_GRAY u_latency_capture 20 SOURCE {latency_gray_us[20]} THROUGH {latency_gray_us[20]} DESTINATION {u_latency_capture/gray_meta[20]}
+LATENCY_GRAY u_latency_capture 21 SOURCE {latency_gray_us[21]} THROUGH {latency_gray_us[21]} DESTINATION {u_latency_capture/gray_meta[21]}
+LATENCY_GRAY u_latency_capture 22 SOURCE {latency_gray_us[22]} THROUGH {latency_gray_us[22]} DESTINATION {u_latency_capture/gray_meta[22]}
+LATENCY_GRAY u_latency_capture 23 SOURCE {latency_gray_us[23]} THROUGH {latency_gray_us[23]} DESTINATION {u_latency_capture/gray_meta[23]}
+LATENCY_GRAY u_latency_capture 24 SOURCE {latency_gray_us[24]} THROUGH {latency_gray_us[24]} DESTINATION {u_latency_capture/gray_meta[24]}
+LATENCY_GRAY u_latency_capture 25 SOURCE {latency_gray_us[25]} THROUGH {latency_gray_us[25]} DESTINATION {u_latency_capture/gray_meta[25]}
+LATENCY_GRAY u_latency_capture 26 SOURCE {latency_gray_us[26]} THROUGH {latency_gray_us[26]} DESTINATION {u_latency_capture/gray_meta[26]}
+LATENCY_GRAY u_latency_capture 27 SOURCE {latency_gray_us[27]} THROUGH {latency_gray_us[27]} DESTINATION {u_latency_capture/gray_meta[27]}
+LATENCY_GRAY u_latency_capture 28 SOURCE {latency_gray_us[28]} THROUGH {latency_gray_us[28]} DESTINATION {u_latency_capture/gray_meta[28]}
+LATENCY_GRAY u_latency_capture 29 SOURCE {latency_gray_us[29]} THROUGH {latency_gray_us[29]} DESTINATION {u_latency_capture/gray_meta[29]}
+LATENCY_GRAY u_latency_capture 30 SOURCE {latency_gray_us[30]} THROUGH {latency_gray_us[30]} DESTINATION {u_latency_capture/gray_meta[30]}
+LATENCY_GRAY u_latency_capture 31 SOURCE {u_latency_clock/us_binary[31]} THROUGH {u_latency_clock/us_binary[31]} DESTINATION {u_latency_capture/gray_meta[31]}
+LATENCY_GRAY u_latency_display 0 SOURCE {latency_gray_us[0]} THROUGH {latency_gray_us[0]} DESTINATION {u_latency_display/gray_meta[0]}
+LATENCY_GRAY u_latency_display 1 SOURCE {latency_gray_us[1]} THROUGH {latency_gray_us[1]} DESTINATION {u_latency_display/gray_meta[1]}
+LATENCY_GRAY u_latency_display 2 SOURCE {latency_gray_us[2]} THROUGH {latency_gray_us[2]} DESTINATION {u_latency_display/gray_meta[2]}
+LATENCY_GRAY u_latency_display 3 SOURCE {latency_gray_us[3]} THROUGH {latency_gray_us[3]} DESTINATION {u_latency_display/gray_meta[3]}
+LATENCY_GRAY u_latency_display 4 SOURCE {latency_gray_us[4]} THROUGH {latency_gray_us[4]} DESTINATION {u_latency_display/gray_meta[4]}
+LATENCY_GRAY u_latency_display 5 SOURCE {latency_gray_us[5]} THROUGH {latency_gray_us[5]} DESTINATION {u_latency_display/gray_meta[5]}
+LATENCY_GRAY u_latency_display 6 SOURCE {latency_gray_us[6]} THROUGH {latency_gray_us[6]} DESTINATION {u_latency_display/gray_meta[6]}
+LATENCY_GRAY u_latency_display 7 SOURCE {latency_gray_us[7]} THROUGH {latency_gray_us[7]} DESTINATION {u_latency_display/gray_meta[7]}
+LATENCY_GRAY u_latency_display 8 SOURCE {latency_gray_us[8]} THROUGH {latency_gray_us[8]} DESTINATION {u_latency_display/gray_meta[8]}
+LATENCY_GRAY u_latency_display 9 SOURCE {latency_gray_us[9]} THROUGH {latency_gray_us[9]} DESTINATION {u_latency_display/gray_meta[9]}
+LATENCY_GRAY u_latency_display 10 SOURCE {latency_gray_us[10]} THROUGH {latency_gray_us[10]} DESTINATION {u_latency_display/gray_meta[10]}
+LATENCY_GRAY u_latency_display 11 SOURCE {latency_gray_us[11]} THROUGH {latency_gray_us[11]} DESTINATION {u_latency_display/gray_meta[11]}
+LATENCY_GRAY u_latency_display 12 SOURCE {latency_gray_us[12]} THROUGH {latency_gray_us[12]} DESTINATION {u_latency_display/gray_meta[12]}
+LATENCY_GRAY u_latency_display 13 SOURCE {latency_gray_us[13]} THROUGH {latency_gray_us[13]} DESTINATION {u_latency_display/gray_meta[13]}
+LATENCY_GRAY u_latency_display 14 SOURCE {latency_gray_us[14]} THROUGH {latency_gray_us[14]} DESTINATION {u_latency_display/gray_meta[14]}
+LATENCY_GRAY u_latency_display 15 SOURCE {latency_gray_us[15]} THROUGH {latency_gray_us[15]} DESTINATION {u_latency_display/gray_meta[15]}
+LATENCY_GRAY u_latency_display 16 SOURCE {latency_gray_us[16]} THROUGH {latency_gray_us[16]} DESTINATION {u_latency_display/gray_meta[16]}
+LATENCY_GRAY u_latency_display 17 SOURCE {latency_gray_us[17]} THROUGH {latency_gray_us[17]} DESTINATION {u_latency_display/gray_meta[17]}
+LATENCY_GRAY u_latency_display 18 SOURCE {latency_gray_us[18]} THROUGH {latency_gray_us[18]} DESTINATION {u_latency_display/gray_meta[18]}
+LATENCY_GRAY u_latency_display 19 SOURCE {latency_gray_us[19]} THROUGH {latency_gray_us[19]} DESTINATION {u_latency_display/gray_meta[19]}
+LATENCY_GRAY u_latency_display 20 SOURCE {latency_gray_us[20]} THROUGH {latency_gray_us[20]} DESTINATION {u_latency_display/gray_meta[20]}
+LATENCY_GRAY u_latency_display 21 SOURCE {latency_gray_us[21]} THROUGH {latency_gray_us[21]} DESTINATION {u_latency_display/gray_meta[21]}
+LATENCY_GRAY u_latency_display 22 SOURCE {latency_gray_us[22]} THROUGH {latency_gray_us[22]} DESTINATION {u_latency_display/gray_meta[22]}
+LATENCY_GRAY u_latency_display 23 SOURCE {latency_gray_us[23]} THROUGH {latency_gray_us[23]} DESTINATION {u_latency_display/gray_meta[23]}
+LATENCY_GRAY u_latency_display 24 SOURCE {latency_gray_us[24]} THROUGH {latency_gray_us[24]} DESTINATION {u_latency_display/gray_meta[24]}
+LATENCY_GRAY u_latency_display 25 SOURCE {latency_gray_us[25]} THROUGH {latency_gray_us[25]} DESTINATION {u_latency_display/gray_meta[25]}
+LATENCY_GRAY u_latency_display 26 SOURCE {latency_gray_us[26]} THROUGH {latency_gray_us[26]} DESTINATION {u_latency_display/gray_meta[26]}
+LATENCY_GRAY u_latency_display 27 SOURCE {latency_gray_us[27]} THROUGH {latency_gray_us[27]} DESTINATION {u_latency_display/gray_meta[27]}
+LATENCY_GRAY u_latency_display 28 SOURCE {latency_gray_us[28]} THROUGH {latency_gray_us[28]} DESTINATION {u_latency_display/gray_meta[28]}
+LATENCY_GRAY u_latency_display 29 SOURCE {latency_gray_us[29]} THROUGH {latency_gray_us[29]} DESTINATION {u_latency_display/gray_meta[29]}
+LATENCY_GRAY u_latency_display 30 SOURCE {latency_gray_us[30]} THROUGH {latency_gray_us[30]} DESTINATION {u_latency_display/gray_meta[30]}
+LATENCY_GRAY u_latency_display 31 SOURCE {u_latency_clock/us_binary[31]} THROUGH {u_latency_clock/us_binary[31]} DESTINATION {u_latency_display/gray_meta[31]}

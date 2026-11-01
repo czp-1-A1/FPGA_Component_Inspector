@@ -1,0 +1,25 @@
+{
+  "status": "REVIEWED_NO_FURTHER_FEATURE_ADDITION",
+  "baseline_commit": "1b8a097f9dd7d7dee2783e9dcbcf43986f7650f4",
+  "actual_slice": 18851,
+  "available_slice": 21216,
+  "slice_percent": 88.852753,
+  "remaining_slice": 2365,
+  "resources": {
+    "slice": 18851,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "timing_ns": {
+    "SWNS": 0.035,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "baseline_slice": 18903,
+  "same_td_version": "6.2.178840",
+  "seed": 1,
+  "assessment": "Review required above the AGENTS80% advisory line. This changes only current-frame shape/row role evidence using existing registers; no new ROI, RAM array, CDC, pixel backpressure, divider, DSP or PLL. Retain inherited device-capacity and full routed timing/CDC/output acceptance. Original SDC/pins/seed1 unchanged; no further feature addition. Native video and physical timing are independently measured, never inferred from synthesis area.",
+  "board_operated": false
+}

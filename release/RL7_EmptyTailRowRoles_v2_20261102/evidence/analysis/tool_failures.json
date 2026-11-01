@@ -1,0 +1,13 @@
+{
+  "status": "TOOL_ENCODING_FAILURE_NOT_RTL_FAILURE",
+  "attempts": [
+    {
+      "path": "stop_r0",
+      "reason": "Python default GBK read of UTF8 top raised UnicodeDecodeError before freezing/compiling; rerun original script with PYTHONUTF8=1 to stop_r1, actual20940+65+27PASS."
+    },
+    {
+      "path": "prepare_candidate.py initial",
+      "reason": "Same UTF8/GBK read after baseline/native derivative creation; rerun under PYTHONUTF8=1 and same derivation, no RTL or expected result changed."
+    }
+  ]
+}

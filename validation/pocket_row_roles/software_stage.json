@@ -1,0 +1,31 @@
+{
+  "status": "PASS_ELEVEN_SOFTWARE_CONTRACTS_PENDING_FINAL_NATIVE_PHYSICAL",
+  "production_inputs_sha256": "f2b80ce4c9aaa8c38687f6f8daa7a16488710f07d838d643cefc67bbe5f9d1ba",
+  "groups": {
+    "stop_r1": {
+      "status": "PASS",
+      "proof_sha256": "2c5cf5e8cb2448d6462a925f12a96d917cacebada9f433effaf10c7bc36b1324",
+      "tests": 3
+    },
+    "second_r0": {
+      "status": "PASS",
+      "proof_sha256": "cc24d61cc8fe06e37b6e1509be60f541179ad071dacc7fd8a15e6319b81a5fc5",
+      "tests": 1
+    },
+    "alarm_r1": {
+      "status": "PASS",
+      "proof_sha256": "b31283a0104d941659ced98bc24f46fdb3f5449c49ed982ab2b40eb71083cb20",
+      "tests": 3
+    },
+    "contracts_r1": {
+      "status": "PASS",
+      "proof_sha256": "931bd7e52ebf15b1adc8efdc1d11abf5e96f65f45ed85571f397155705893432",
+      "tests": 4
+    }
+  },
+  "contracts": 11,
+  "static82_comparison_sha256": "02138ab240fc6583de82b04604f17630550d1a25ba8b98a49a2767fbc203df24",
+  "old_boundary_failure_retained": true,
+  "old_controller_second_reused_only_after_exact_runtime_input_sha256_match": true,
+  "board_operated": false
+}

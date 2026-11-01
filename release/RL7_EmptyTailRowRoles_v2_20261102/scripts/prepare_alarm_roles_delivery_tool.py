@@ -1,0 +1,26 @@
+"""Adapt the already verified delivery workflow to the V3 baseline and proofs."""
+from pathlib import Path
+repo=Path(__file__).resolve().parents[1]
+old=Path('D:/CodexWork/empty_only_stop_20261101/scripts/package_empty_only_stop.py').read_text()
+s=old.replace('empty_only_stop_20261101','rl7_alarm_roles_empty_only_20261102')
+s=s.replace('RL7_EmptyOnlyStop_v1_20261101','RL7_AlarmRolesV3_EmptyOnlyStop_v1_20261102')
+s=s.replace('_build_r1','_build_r0').replace('_checks_r1','_checks_r0').replace('_second_r1','_second_r0')
+s=s.replace('836746581f04d16bf4023ee8b4899fdad65080da','904a2bb053a9e679b3f50378ca3163a55698b20e')
+s=s.replace('codex/rl7-demo-ui-opt-v2','codex/rl7-v3-alarm-roles')
+s=s.replace('原SDC/seed2','原SDC/seed1').replace('2026-11-01','2026-11-02')
+s=s.replace('new20916','new20940').replace('新20916','新20940')
+s=s.replace("Path('D:/CodexWork/rl7_alarm_roles_empty_only_20261102_native_r0')]","Path('D:/CodexWork/rl7_alarm_roles_empty_only_20261102_native_r0'),Path('D:/CodexWork/rl7_alarm_roles_empty_only_20261102_roles_r0')]")
+s=s.replace("for test in proof.get('tests',[]):\n  log=folder/(test['bench']+'.log');assert sha(log)==test['log_sha256'];selected.append(test)","for fixture,d in proof.get('fixtures',{}).items():assert sha(repo/'tests/rl7_alarm_roles_v3'/fixture)==d\n for test in proof.get('tests',[]):\n  bench=test.get('bench',test.get('name'));log=folder/(bench+'.log');assert sha(log)==test['log_sha256'];selected.append(test)")
+s=s.replace('assert len(selected)==5','assert len(selected)==9')
+s=s.replace("native_log=(groups[-1]/'console.log')","native_log=(groups[2]/'console.log')")
+s=s.replace("repo/'tests/demo_rl7']:","repo/'tests/demo_rl7',repo/'tests/rl7_alarm_roles_v3']:")
+s=s.replace("repo/'docs/EMPTY_ONLY_STOP_20261101.md'","repo/'docs/ALARM_ROLES_EMPTY_ONLY_20261102.md'")
+s=s.replace("20261101_C_仅空穴停车_轮次1.md","20261102_C_AlarmRolesV3仅空穴停车_轮次1.md")
+s=s.replace("['git','show','HEAD:fpga/component_inspector/'+rel]","['git','show','904a2bb053a9e679b3f50378ca3163a55698b20e:fpga/component_inspector/'+rel]")
+s=s.replace('PASS_CURRENT_SOURCE_FIVE_SOFTWARE_CONTRACTS_AND_ROUTED_AUDIT','PASS_CURRENT_SOURCE_NINE_SOFTWARE_CONTRACTS_AND_ROUTED_AUDIT')
+s=s.replace("'software_tests':5","'software_tests':9")
+s=s.replace('软件：新20940检查','保留V3独立报警账本、无效序列使观察器失效规则和送料孔标签过滤，首次异常上下文保留。\n\n软件：新20940检查')
+s=s.replace('全部本轮实际运行；未重跑远端全部40合同。','另有V3原报警/标签边界/无P全空RGB四合同。全部本轮实际运行；未重跑基线全部35合同。')
+assert 'empty_only_stop_20261101' not in s and 'software_tests\':5' not in s
+p=repo/'scripts/package_alarm_roles_empty_only.py';assert not p.exists();p.write_text(s)
+print('Prepared V3 delivery tool:9 actual tests,904a2bb0 baseline, desktop V3-specific files')

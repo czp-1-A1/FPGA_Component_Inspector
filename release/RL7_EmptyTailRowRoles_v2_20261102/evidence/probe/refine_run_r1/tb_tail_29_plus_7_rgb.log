@@ -1,0 +1,131 @@
+Reading D:/modeltech64_10.5/tcl/vsim/pref.tcl
+
+# 10.5
+
+# vsim -c -onfinish stop work.tb_tail_29_plus_7_rgb -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 06:16:43 on Nov 02,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2685) [TFMPC] - Too few port connections for 'main'.  Expected 48, found 30.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_y'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_x'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_valid'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_run'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_y'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_x'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_id'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_new'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_radius'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_diagnostic'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_detector_id'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_detector_diagnostic'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'stop_stationary'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2685) [TFMPC] - Too few port connections for 'station'.  Expected 48, found 38.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2718) [TFMPC] - Missing connection for port 'stop_current_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2718) [TFMPC] - Missing connection for port 'stop_bad_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2718) [TFMPC] - Missing connection for port 'stop_good_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2718) [TFMPC] - Missing connection for port 'stop_clear'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2718) [TFMPC] - Missing connection for port 'stop_begin'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(25): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2685) [TFMPC] - Too few port connections for 'detector'.  Expected 39, found 24.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'probe_ready'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'probe_record'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'region_objects'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'objects'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\refine_phase_r1\tb_tail_29_plus_7_rgb.sv(34): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_tail_29_plus_7_rgb(fast)
+# Loading work.classified_count_pipeline(fast)
+# Loading work.classified_count_pipeline(fast__1)
+# Loading work.frame_shape_search(fast)
+# Loading work.pocket_relay_stop_v2(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# TAIL_EVENT id=1 kind=2 reason=0 source=17 lead=631
+# RGB frame20 lead583 main1 local0 Q0 S1 F0
+# TAIL_EVENT id=2 kind=2 reason=b source=21 lead=567
+# TAIL_EVENT id=3 kind=3 reason=0 source=25 lead=503
+# TAIL_EVENT id=4 kind=2 reason=0 source=29 lead=439
+# TAIL_EVENT id=5 kind=2 reason=0 source=33 lead=375
+# TAIL_EVENT id=6 kind=2 reason=0 source=37 lead=311
+# RGB frame40 lead263 main6 local0 Q3 S1 F0
+# TAIL_EVENT id=7 kind=2 reason=0 source=41 lead=247
+# TAIL_EVENT id=8 kind=2 reason=0 source=45 lead=183
+# TAIL_EVENT id=9 kind=3 reason=0 source=49 lead=119
+# TAIL_EVENT id=10 kind=2 reason=0 source=53 lead=55
+# TAIL_EVENT id=11 kind=2 reason=0 source=57 lead=-9
+# RGB frame60 lead-57 main11 local5 Q3 S2 F0
+# TAIL_EVENT id=12 kind=2 reason=0 source=61 lead=-73
+# TAIL_EVENT id=13 kind=2 reason=0 source=65 lead=-137
+# TAIL_EVENT id=14 kind=2 reason=0 source=69 lead=-201
+# TAIL_EVENT id=15 kind=2 reason=0 source=73 lead=-265
+# TAIL_EVENT id=16 kind=2 reason=0 source=77 lead=-329
+# RGB frame80 lead-377 main16 local10 Q3 S1 F6
+# TAIL_EVENT id=17 kind=3 reason=0 source=81 lead=-393
+# TAIL_EVENT id=18 kind=3 reason=0 source=85 lead=-457
+# TAIL_EVENT id=19 kind=2 reason=0 source=89 lead=-521
+# TAIL_EVENT id=20 kind=2 reason=0 source=93 lead=-585
+# TAIL_EVENT id=21 kind=2 reason=0 source=97 lead=-649
+# RGB frame100 lead-697 main21 local15 Q3 S1 F6
+# TAIL_EVENT id=22 kind=3 reason=0 source=101 lead=-713
+# TAIL_EVENT id=23 kind=2 reason=0 source=105 lead=-777
+# TAIL_EVENT id=24 kind=2 reason=0 source=109 lead=-841
+# TAIL_EVENT id=25 kind=2 reason=0 source=113 lead=-905
+# TAIL_EVENT id=26 kind=2 reason=0 source=117 lead=-969
+# RGB frame120 lead-1017 main26 local20 Q3 S1 F6
+# TAIL_EVENT id=27 kind=2 reason=0 source=121 lead=-1033
+# TAIL_EVENT id=28 kind=3 reason=0 source=125 lead=-1097
+# TAIL_EVENT id=29 kind=2 reason=0 source=129 lead=-1161
+# TAIL_EVENT id=30 kind=3 reason=0 source=135 lead=-1257
+# TAIL_EVENT id=31 kind=3 reason=0 source=139 lead=-1321
+# RGB frame140 lead-1337 main31 local25 Q3 S1 F6
+# TAIL_EVENT id=32 kind=3 reason=0 source=143 lead=-1385
+# TAIL_EVENT id=33 kind=3 reason=0 source=147 lead=-1449
+# TAIL_EVENT id=34 kind=3 reason=0 source=151 lead=-1513
+# TAIL_ALARM total=34 present=23 empty=11 review=1 feed=0
+# TAIL_EVENT id=35 kind=3 reason=0 source=155 lead=-1577
+# TAIL_EVENT id=36 kind=3 reason=0 source=159 lead=-1641
+# RGB frame160 lead-1657 main36 local30 Q3 S4 Ff
+# TAIL_FINAL total=36 present=23 empty=13 review=1 events=36 kind_errors=0 alarm_id=34 review_events=1
+# PASS TAIL 29+7 RGB: 171 full1280x720 source frames, synthetic22normal/6E/1review then7E; full36/22normal/13E/1review; alarm34; external motion after alarm explicitly separate from motor closed loop
+# ** Note: $finish    : D:/CodexWork/empty_tail_role_20261102/refine_phase_r1/tb_tail_29_plus_7_rgb.sv(136)
+#    Time: 632700150 ns  Iteration: 1  Instance: /tb_tail_29_plus_7_rgb
+# Break at D:/CodexWork/empty_tail_role_20261102/refine_phase_r1/tb_tail_29_plus_7_rgb.sv line 136
+# Stopped at D:/CodexWork/empty_tail_role_20261102/refine_phase_r1/tb_tail_29_plus_7_rgb.sv line 136
+#  quit -code 0
+# End time: 06:17:44 on Nov 02,2026, Elapsed time: 0:01:01
+# Errors: 0, Warnings: 46

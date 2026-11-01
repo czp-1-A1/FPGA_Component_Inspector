@@ -1,0 +1,830 @@
+{
+  "status": "PASS_RL7_UIOPT_V2_ROUTED_50_BOUNDS_20_FIFO_GRAY_64_TIME_GRAY_KEYS_V2_C12",
+  "timing_ns": {
+    "SWNS": 0.035,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "explicit_max_delays_matched": 48,
+  "vendor_max_delays_matched": 2,
+  "max_delays_matched": 50,
+  "physical_alias_continuations": 10,
+  "max_delays_ignored": 0,
+  "gray_bits_dominating": 20,
+  "gray_selected_physical_paths": 20,
+  "gray_exact_q_proof": {
+    "status": "PASS_TWENTY_DISTINCT_ACTUAL_GRAY_Q_WIRES_8NS_AND_ALL_SELECTED_PATHS_DOMINATE",
+    "logical_sources": 20,
+    "logical_destinations": 20,
+    "required_gray_wires": 20,
+    "selected_physical_paths": 20,
+    "additional_conservative_physical_paths": 0,
+    "physical_paths_dominated": 20,
+    "physical_paths_shadowed": 0,
+    "physical_paths_ignored": 0,
+    "wires": [
+      {
+        "direction": "write",
+        "bit": 0,
+        "source": "u_isp_top/continuous_processing$bridge/write_gray[0]",
+        "through": "u_isp_top/continuous_processing$bridge/write_gray[0]",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[0]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 6.903
+      },
+      {
+        "direction": "write",
+        "bit": 1,
+        "source": "u_isp_top/continuous_processing$bridge/write_gray[1]",
+        "through": "u_isp_top/continuous_processing$bridge/write_gray[1]",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[1]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.187
+      },
+      {
+        "direction": "write",
+        "bit": 2,
+        "source": "u_isp_top/continuous_processing$bridge/write_gray[2]",
+        "through": "u_isp_top/continuous_processing$bridge/write_gray[2]",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[2]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.04
+      },
+      {
+        "direction": "write",
+        "bit": 3,
+        "source": "u_isp_top/continuous_processing$bridge/write_gray[3]",
+        "through": "u_isp_top/continuous_processing$bridge/write_gray[3]",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[3]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.12
+      },
+      {
+        "direction": "write",
+        "bit": 4,
+        "source": "u_isp_top/continuous_processing$bridge/write_gray[4]",
+        "through": "u_isp_top/continuous_processing$bridge/write_gray[4]",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[4]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 6.913
+      },
+      {
+        "direction": "write",
+        "bit": 5,
+        "source": "u_isp_top/continuous_processing$bridge/write_gray[5]",
+        "through": "u_isp_top/continuous_processing$bridge/write_gray[5]",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[5]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 6.544
+      },
+      {
+        "direction": "write",
+        "bit": 6,
+        "source": "u_isp_top/continuous_processing$bridge/write_gray[6]",
+        "through": "u_isp_top/continuous_processing$bridge/write_gray[6]",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[6]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.179
+      },
+      {
+        "direction": "write",
+        "bit": 7,
+        "source": "u_isp_top/continuous_processing$bridge/write_gray[7]",
+        "through": "u_isp_top/continuous_processing$bridge/write_gray[7]",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[7]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.027
+      },
+      {
+        "direction": "write",
+        "bit": 8,
+        "source": "u_isp_top/continuous_processing$bridge/write_gray[8]",
+        "through": "u_isp_top/continuous_processing$bridge/write_gray[8]",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[8]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.269
+      },
+      {
+        "direction": "write",
+        "bit": 9,
+        "source": "u_isp_top/continuous_processing$bridge/write_bin[9]",
+        "through": "u_isp_top/continuous_processing$bridge/write_bin[9]",
+        "destination": "u_isp_top/continuous_processing$bridge/write_gray_sync1[9]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.249
+      },
+      {
+        "direction": "read",
+        "bit": 0,
+        "source": "u_isp_top/continuous_processing$bridge/read_gray[0]",
+        "through": "u_isp_top/continuous_processing$bridge/read_gray[0]",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[0]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 6.658
+      },
+      {
+        "direction": "read",
+        "bit": 1,
+        "source": "u_isp_top/continuous_processing$bridge/read_gray[1]",
+        "through": "u_isp_top/continuous_processing$bridge/read_gray[1]",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[1]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 6.981
+      },
+      {
+        "direction": "read",
+        "bit": 2,
+        "source": "u_isp_top/continuous_processing$bridge/read_gray[2]",
+        "through": "u_isp_top/continuous_processing$bridge/read_gray[2]",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[2]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.332
+      },
+      {
+        "direction": "read",
+        "bit": 3,
+        "source": "u_isp_top/continuous_processing$bridge/read_gray[3]",
+        "through": "u_isp_top/continuous_processing$bridge/read_gray[3]",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[3]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 6.359
+      },
+      {
+        "direction": "read",
+        "bit": 4,
+        "source": "u_isp_top/continuous_processing$bridge/read_gray[4]",
+        "through": "u_isp_top/continuous_processing$bridge/read_gray[4]",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[4]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.206
+      },
+      {
+        "direction": "read",
+        "bit": 5,
+        "source": "u_isp_top/continuous_processing$bridge/read_gray[5]",
+        "through": "u_isp_top/continuous_processing$bridge/read_gray[5]",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[5]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.041
+      },
+      {
+        "direction": "read",
+        "bit": 6,
+        "source": "u_isp_top/continuous_processing$bridge/read_gray[6]",
+        "through": "u_isp_top/continuous_processing$bridge/read_gray[6]",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[6]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.131
+      },
+      {
+        "direction": "read",
+        "bit": 7,
+        "source": "u_isp_top/continuous_processing$bridge/read_gray[7]",
+        "through": "u_isp_top/continuous_processing$bridge/read_gray[7]",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[7]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 6.842
+      },
+      {
+        "direction": "read",
+        "bit": 8,
+        "source": "u_isp_top/continuous_processing$bridge/read_gray[8]",
+        "through": "u_isp_top/continuous_processing$bridge/read_gray[8]",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[8]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 6.763
+      },
+      {
+        "direction": "read",
+        "bit": 9,
+        "source": "u_isp_top/continuous_processing$bridge/read_bin[9]",
+        "through": "u_isp_top/continuous_processing$bridge/read_bin[9]",
+        "destination": "u_isp_top/continuous_processing$bridge/read_gray_sync1[9]",
+        "budget_ns": 8.0,
+        "minimum_slack_ns": 7.304
+      }
+    ],
+    "evidence": {
+      "gray_packing_audit\\gray_q_write_0.timing": "e5f176386c995902e2e0642b18e21c89e784a07c58ba347c8e4f8bb9a2b53812",
+      "gray_packing_audit\\gray_q_write_1.timing": "9f3a41d430562bc0424812d3f017e261cb13455830aeb15bd7a31af321395c25",
+      "gray_packing_audit\\gray_q_write_2.timing": "95977552dcb1b0873d5387bc458725ef2b0eedbf3ef2855b46b9fd66d3240db4",
+      "gray_packing_audit\\gray_q_write_3.timing": "34f3b99d13b531b9af0825523337e5bfb95f4c8ab648fa711f801e5ac4fbddb0",
+      "gray_packing_audit\\gray_q_write_4.timing": "f822141ba4052793e0503e53fc54c5fc820325df45ec70ace333b3bb6a644f56",
+      "gray_packing_audit\\gray_q_write_5.timing": "f8b4dac9433294db07cea4305d0b49f784a81804a35279ec882cfce3f220cba8",
+      "gray_packing_audit\\gray_q_write_6.timing": "f08bb43e42e2632687e106c6a12382334201f5bc5c007276676d3119c1186a4e",
+      "gray_packing_audit\\gray_q_write_7.timing": "d189533029dffdeeca5dd4877c9d1fe2e4e866b744f78c1fbd9eded5c286975a",
+      "gray_packing_audit\\gray_q_write_8.timing": "17ebe9c5f6c589ca9210dfedfd63f8dc7fe042b0cfecc04088ad7984993d3eda",
+      "gray_packing_audit\\gray_q_write_9.timing": "c31691c68197644af3e549acbac819ce44e904bde1e2144dc2f4d79e95fa9cf3",
+      "gray_packing_audit\\gray_q_read_0.timing": "e17e1d9edea0790150a403b911d10d2cb10190e0885ca2f66b47a3cd0214f5b4",
+      "gray_packing_audit\\gray_q_read_1.timing": "589a9e9cb41dfe3e0e8fb114c4ec177326dcf0fa72c2e01dd396979330c9dd35",
+      "gray_packing_audit\\gray_q_read_2.timing": "8e14c8ce5ec735f64bd8e38ffe6ab2a97e526c12a09228063ad562516a5f9e2a",
+      "gray_packing_audit\\gray_q_read_3.timing": "f2efdc3b73e17f85a66e47bc38bf1d94c632d5225512b571327d7e1f269f91e5",
+      "gray_packing_audit\\gray_q_read_4.timing": "b627fb10ea60511cc40bad3bc9891bad1fac211ab1e675d1368ac68bafad3eca",
+      "gray_packing_audit\\gray_q_read_5.timing": "41e39f69293491e148cc07dc0023ca8ef5609f59f3480bd776ee1e071a224aca",
+      "gray_packing_audit\\gray_q_read_6.timing": "8f6593e586dc9d1eb20dce54e3ed013699e6e1bd9c6b3ad1fd010308b546be19",
+      "gray_packing_audit\\gray_q_read_7.timing": "97a726c9c7634bf99024992ab5b8117636cef183da45425c436affeee274a41a",
+      "gray_packing_audit\\gray_q_read_8.timing": "58036b6d563b3d0150e914d514740f1a8fb0f3424b56752840eac3846ab302f3",
+      "gray_packing_audit\\gray_q_read_9.timing": "479ec7941675d64c2d8aa1031c5165d04f30b1e230fd23de0a9ee38a788ca000",
+      "gray_packing_audit\\bindings.txt": "ed407b5493b81e5b8250d62a515a1fdcb88b5010192c0f2eee2eb7121a1ea2e0",
+      "gray_packing_audit\\all_selected.timing": "42188c846754120b66c9acbb87f1ac0da015e1a04ef744efc0c9dfc03d57be23"
+    },
+    "note": "No constraints, thresholds, clock periods, seeds or routed hardware changed. Physical path cardinality may exceed logical wire count due dual-FF packing."
+  },
+  "new_mailbox_groups": 9,
+  "evidence": {
+    "classified_audit\\gray_write_0.timing": "997b64ab25fce5d0d567e835c001725d98ffca4a17d41b25cf3103b438725c11",
+    "classified_audit\\gray_fanout_write_0.timing": "f80a5be896bcb7f9ad4a1ebb9845165879aadec6e970c7851433214124e64bab",
+    "classified_audit\\gray_write_1.timing": "715cf24b0eea370df8e43ac5db96b19e0fea9f847f6b272723c91ee78fe7545f",
+    "classified_audit\\gray_fanout_write_1.timing": "44eb89358189e7647cd3c89e25caa06ba2242568d2870936d91c63c51f52335b",
+    "classified_audit\\gray_write_2.timing": "c107470a68af8ca132d12241a7c225d47376cc965dc358d448e1b7bb7c80640f",
+    "classified_audit\\gray_fanout_write_2.timing": "44eb89358189e7647cd3c89e25caa06ba2242568d2870936d91c63c51f52335b",
+    "classified_audit\\gray_write_3.timing": "88091e4caf541a2d8cf1a430b0724e2c65028e7ec994684d4eb72a8a84b0ba3d",
+    "classified_audit\\gray_fanout_write_3.timing": "6b39ffa3879aa89167f9d7569217f901da0b7ab28ce0411e08fac39501e6c46f",
+    "classified_audit\\gray_write_4.timing": "21bb3a51a5deb0bc2bcbdad83cbdd2e3d5114e675fab8b4745ce300e6d5935f9",
+    "classified_audit\\gray_fanout_write_4.timing": "63e678be9d292db1a23a9f8002363bd7a86a9f7bb24c7655a13a8039d275c76d",
+    "classified_audit\\gray_write_5.timing": "12ad671b1bb049c00adb67c111704f83a89c824649960b0534aef1d595112102",
+    "classified_audit\\gray_fanout_write_5.timing": "44d83682a0f15d61b88278a69f3bbc194a83b231169da41efbbacd8726574794",
+    "classified_audit\\gray_write_6.timing": "6a6119911534bcb3ca86d679e5f80b57ee7558cdc414a296ca1e1372c3929b39",
+    "classified_audit\\gray_fanout_write_6.timing": "f80a5be896bcb7f9ad4a1ebb9845165879aadec6e970c7851433214124e64bab",
+    "classified_audit\\gray_write_7.timing": "6b466474561a02f9ba8565418fb32465df5df671bbdbb6616dd74898d144ab32",
+    "classified_audit\\gray_fanout_write_7.timing": "e1a47cd869ed8d1a6c5b5caf0ef7daacc63335ab1fb7214961260a7ac0135fa8",
+    "classified_audit\\gray_write_8.timing": "16aa268824e8d2f01be5b52c5a46a7550ced602781d41a21636fa6883e915a2f",
+    "classified_audit\\gray_fanout_write_8.timing": "339a8e7503470189e3a4f9e13b640ac9b8dced1009b0225a93db97f7db6abfbf",
+    "classified_audit\\gray_write_9.timing": "efd9a71392387ee1c36685940d1eff5e7a2c31cad74fc4ef60d6ddb8cb8d657c",
+    "classified_audit\\gray_fanout_write_9.timing": "8bcb646296ecb0fd42e3feb6f3964f5b8d5c88be6b452112175ef16dca29cf0d",
+    "classified_audit\\gray_read_0.timing": "f1879b35a0404b5c89e4c627b93c2f9cd0dc7fcffd7b61d7d88b9ed30476bff6",
+    "classified_audit\\gray_fanout_read_0.timing": "9aec395c874535919ed3ec787d5b6f824a5c97725b7b4461c296edd30dd0e17b",
+    "classified_audit\\gray_read_1.timing": "0dd0686309359521ee1bb672492c8d0d89da46f35f3214eeac8849e5204431d1",
+    "classified_audit\\gray_fanout_read_1.timing": "ce3d07ce716d7a579ee196900035a86ec186e9075eea77d64eb79b9b3a916d1c",
+    "classified_audit\\gray_read_2.timing": "e0e10ee4cdd93ba6c42fe09507789db4a763885cf403b47bf3d133e58401aea6",
+    "classified_audit\\gray_fanout_read_2.timing": "a2256a6b30b4497d6a27b00505817e55805c0939bcad329a67ca5c8bf43e1fc2",
+    "classified_audit\\gray_read_3.timing": "ae12a0118d0d6c2ca6b84dcba0e0f8f2554997ecedba126142577a231ffbc94f",
+    "classified_audit\\gray_fanout_read_3.timing": "a8cffff263a8c2005765865291b1835e0fe2f37dc0922e381fd94bf677ecde53",
+    "classified_audit\\gray_read_4.timing": "4aac0310f265cdc24e6e91c2be1f7c69b2c24820421bc039e3bb467d9f0df23c",
+    "classified_audit\\gray_fanout_read_4.timing": "774b62521952acfc43de1ea329f779b51f92961f5689955eb33ceed9a4911910",
+    "classified_audit\\gray_read_5.timing": "ef4c64e0f18983bd419e29d76c7c75758713acaaf07a7005533e6b763a8b34c9",
+    "classified_audit\\gray_fanout_read_5.timing": "da6ad6c9ccca2b44735347d7e781739b16ce6a75c5aa4ac3f46f554dcb83a815",
+    "classified_audit\\gray_read_6.timing": "193bb216ac65591a5514a38edcb46efeccf98a61bf811b2d68de653a425f7793",
+    "classified_audit\\gray_fanout_read_6.timing": "a8cffff263a8c2005765865291b1835e0fe2f37dc0922e381fd94bf677ecde53",
+    "classified_audit\\gray_read_7.timing": "3f501e727c239e636b433727199701272b01477595c53e6e2182a422d8430eba",
+    "classified_audit\\gray_fanout_read_7.timing": "da6ad6c9ccca2b44735347d7e781739b16ce6a75c5aa4ac3f46f554dcb83a815",
+    "classified_audit\\gray_read_8.timing": "9ef956476c772b83280ef7a1cbaa7c184ac462a38c6e172285827a587faa3d68",
+    "classified_audit\\gray_fanout_read_8.timing": "85808cc8d1dd6b4fa5618045e6ded4e3ed5508eef75c02bdfe875fc92e929342",
+    "classified_audit\\gray_read_9.timing": "ff6e19e531ba3ed00637f5b104baae3a2e1d15c42d28ea7d5a5749de8acb8ab3",
+    "classified_audit\\gray_fanout_read_9.timing": "56ab04eeb78057cc9a7b3dbb9dea9603879dc5a21cb323ebde1d8105eede7955",
+    "classified_audit\\u_count_command_payload.timing": "9d54e80370234e8f7057bb23f1ac2e16b6a7cadf5a4d9e2c5857db276adab33b",
+    "classified_audit\\u_count_command_request.timing": "08bed3eaa5e241260fe12d6efb7995c3da023c8d8f508514a135dfa415eb3a20",
+    "classified_audit\\u_count_command_acknowledge.timing": "28621bca75d2bfe4d5d2398f3c9b70ad09d05db8cd781cb0080db443646ca964",
+    "classified_audit\\u_count_live_display_payload.timing": "d069255d2ae3c3d9df58a3abcb2810a097c7c8b7d7ffb9d57acaf07194299555",
+    "classified_audit\\u_count_live_display_request.timing": "bc0b206095671c1b0e0919a3852e33a77b58f122c85e917a41cc2e7b6e6ef006",
+    "classified_audit\\u_count_live_display_acknowledge.timing": "4a8a7a95037006a8f840a3ff825b549d1324484e9aa54582cea4589f9baa09d0",
+    "classified_audit\\u_relay_display_payload.timing": "39034ea3f9fdfe1008ad394cab3c3bc6ff1c6824275d1869484ded65a5371052",
+    "classified_audit\\u_relay_display_request.timing": "bc0b206095671c1b0e0919a3852e33a77b58f122c85e917a41cc2e7b6e6ef006",
+    "classified_audit\\u_relay_display_acknowledge.timing": "4a8a7a95037006a8f840a3ff825b549d1324484e9aa54582cea4589f9baa09d0",
+    "classified_audit\\sw3_sync.timing": "d9340ff9e8ef89a22408edd68b011350320ff4bdec48e9122023878815d90669",
+    "classified_audit\\sw3_sync_fanout.timing": "d9340ff9e8ef89a22408edd68b011350320ff4bdec48e9122023878815d90669",
+    "classified_audit\\routed_summary.timing": "0b2388e1ca84fb832ebb085d19b0ddda1f18741978a551c7f59018d5e5c60dec",
+    "classified_audit\\exceptions.timing": "cccc902414447a666d94b890be2eed441d82fcf344b717b989413d12363067ba",
+    "classified_audit\\constraint_coverage.txt": "79c6cb869cd48c7bc50d6cb21880baf6a9d6b0db887390381ce0677f024940b3",
+    "classified_audit\\clocks.txt": "b8c9adfe522c39840ad51c3803cae56558f6bc1d00054f4bb9c47b5df06d7e82",
+    "classified_audit\\bindings.txt": "2daa69bdf09ece36de8ef5499e36cdf5791257e02a00c4878378c8dea1da2ff1"
+  },
+  "physical_count": "HUMAN_BOARD_ACCEPTANCE_NOT_ASSERTED",
+  "resources": {
+    "slice": 18851,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 88.85275,
+  "slice_delta_vs_r22": -165,
+  "extra_relay_checks": {
+    "relay_output.timing": {
+      "sha256": "e78cd24caa97570d1b8b15b3c5725920cc81ec3b612fdaf4c808f503a9234056",
+      "minimum_slack_ns": 1.084
+    },
+    "alarm_motor_interlock.timing": {
+      "sha256": "91815de665aac0fec8f2827ca6b5520437517118af5d5541ba04caa2948915f8",
+      "minimum_slack_ns": 0.597
+    },
+    "buzzer_output.timing": {
+      "sha256": "83e901cddea4a96e79121e4ded98e59416885f56a1f4d4f5abb71b870aefeb5a",
+      "minimum_slack_ns": 0.134
+    },
+    "alarm_buzzer.timing": {
+      "sha256": "e31f60ee86aa84b13f3d0e9984d51f60a08e081af089313cb8032669472c4b9f",
+      "minimum_slack_ns": 0.142
+    },
+    "key_0_sync.timing": {
+      "sha256": "5650d4b50db4cc9d4532162d7d64efa91d048880e0c19003488265921200297b",
+      "minimum_slack_ns": 0.178
+    },
+    "key_0_fanout.timing": {
+      "sha256": "5650d4b50db4cc9d4532162d7d64efa91d048880e0c19003488265921200297b",
+      "minimum_slack_ns": 0.178
+    },
+    "key_1_sync.timing": {
+      "sha256": "1b6b87a8eee1cf5bd37da343ba779a1ad4757b258d01849dd94626947a8588e4",
+      "minimum_slack_ns": 0.206
+    },
+    "key_1_fanout.timing": {
+      "sha256": "1b6b87a8eee1cf5bd37da343ba779a1ad4757b258d01849dd94626947a8588e4",
+      "minimum_slack_ns": 0.206
+    },
+    "key_2_sync.timing": {
+      "sha256": "0e423ef19e4dc9a72bfc82ecd20fbbebe29e8c74a41f105e904bf45c2f82f66c",
+      "minimum_slack_ns": 0.104
+    },
+    "key_2_fanout.timing": {
+      "sha256": "0e423ef19e4dc9a72bfc82ecd20fbbebe29e8c74a41f105e904bf45c2f82f66c",
+      "minimum_slack_ns": 0.104
+    },
+    "key_3_sync.timing": {
+      "sha256": "824de0dcce3a7e8ffe67b61d8ba67f9ab6f0aa11b7e15d18a35126f79cbd114a",
+      "minimum_slack_ns": 0.104
+    },
+    "key_3_fanout.timing": {
+      "sha256": "824de0dcce3a7e8ffe67b61d8ba67f9ab6f0aa11b7e15d18a35126f79cbd114a",
+      "minimum_slack_ns": 0.104
+    }
+  },
+  "bit_sha256": "8821707ba5a14105582829856b39526332cda69321c952b21f9d2a53a8826ea6",
+  "baseline_physical_verifier_sha256": "b9d1011c436b76b9414256b679bf6ddf82376f188952d8b1a3781f5907290c5a",
+  "adapted_physical_verifier_sha256": "e7ca10e67e9c765d63d80161e7765cead115e1d3f3d25aef282dc3c56563b830",
+  "board_acceptance": false,
+  "layout": "left refill / right count; ERAM98/DSP30; fixed camera gain40 removes SC500GainTbl ROM (V2 gain_tbl1ERAM, V3 gain_tbl0); classifier and kind history retained",
+  "control_mailbox_bits": 20,
+  "relay_output_registered": true,
+  "relay_display_declared_bits": 195,
+  "alarm_interlock_packed_cell_proof": {
+    "capture_cells": [
+      "motor_output_reg_syn_3"
+    ],
+    "V2_output_launch_cells": [
+      "motor_output_reg_syn_3"
+    ],
+    "actual_alarm_Q_and_registered_motor_LUT": true,
+    "registered_motor_Q_nets": [
+      "O_relay_control_dup_3"
+    ],
+    "LUT_and_register_combined": false
+  },
+  "alarm_interlock_routed": true,
+  "latency_gray_actual_q_paths": [
+    {
+      "bank": "u_latency_capture",
+      "bit": 0,
+      "sha256": "8965735ed0a7e7df15d8ef5433a461160dea06f89c8a4659de5fc30504b2bfbf",
+      "minimum_slack_ns": 7.509,
+      "binding": "LATENCY_GRAY u_latency_capture 0 SOURCE {latency_gray_us[0]} THROUGH {latency_gray_us[0]} DESTINATION {u_latency_capture/gray_meta[0]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 1,
+      "sha256": "ad519b557aa7f9f8519f7cccb3288617b517259e178ec70a211898a88b7b920e",
+      "minimum_slack_ns": 7.435,
+      "binding": "LATENCY_GRAY u_latency_capture 1 SOURCE {latency_gray_us[1]} THROUGH {latency_gray_us[1]} DESTINATION {u_latency_capture/gray_meta[1]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 2,
+      "sha256": "8b494c10f86a26836ad948b127709081b23d14e42427215220d8719baebdb960",
+      "minimum_slack_ns": 7.142,
+      "binding": "LATENCY_GRAY u_latency_capture 2 SOURCE {latency_gray_us[2]} THROUGH {latency_gray_us[2]} DESTINATION {u_latency_capture/gray_meta[2]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 3,
+      "sha256": "40dc8377edc7a38dd4c3e0b9fb7dee106da5a8340cce9e1ec77a4bec44bab6f5",
+      "minimum_slack_ns": 7.324,
+      "binding": "LATENCY_GRAY u_latency_capture 3 SOURCE {latency_gray_us[3]} THROUGH {latency_gray_us[3]} DESTINATION {u_latency_capture/gray_meta[3]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 4,
+      "sha256": "c678567f1569f56ac8b2325361c8519da2d7111ab0bc899a9ae925980feb9045",
+      "minimum_slack_ns": 7.236,
+      "binding": "LATENCY_GRAY u_latency_capture 4 SOURCE {latency_gray_us[4]} THROUGH {latency_gray_us[4]} DESTINATION {u_latency_capture/gray_meta[4]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 5,
+      "sha256": "bde3d66a2b11c9552f91be4240a35f501a8b59035d36b5a090ea49fa057efb68",
+      "minimum_slack_ns": 7.33,
+      "binding": "LATENCY_GRAY u_latency_capture 5 SOURCE {latency_gray_us[5]} THROUGH {latency_gray_us[5]} DESTINATION {u_latency_capture/gray_meta[5]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 6,
+      "sha256": "92036b207cf8ecc4a1647e280a3ee869ace966edf21c4f15f9469f5e9958ce2b",
+      "minimum_slack_ns": 7.379,
+      "binding": "LATENCY_GRAY u_latency_capture 6 SOURCE {latency_gray_us[6]} THROUGH {latency_gray_us[6]} DESTINATION {u_latency_capture/gray_meta[6]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 7,
+      "sha256": "a07c68ed5c3b29351c0220de4bfbdab9855c93d4ab92cd7b83f6550b70813885",
+      "minimum_slack_ns": 6.964,
+      "binding": "LATENCY_GRAY u_latency_capture 7 SOURCE {latency_gray_us[7]} THROUGH {latency_gray_us[7]} DESTINATION {u_latency_capture/gray_meta[7]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 8,
+      "sha256": "faf3633edaf7b987e2ceff2a524dbe3c92a4319186934e5639e307f1141ed276",
+      "minimum_slack_ns": 7.366,
+      "binding": "LATENCY_GRAY u_latency_capture 8 SOURCE {latency_gray_us[8]} THROUGH {latency_gray_us[8]} DESTINATION {u_latency_capture/gray_meta[8]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 9,
+      "sha256": "17ec586b8ab4992ef90e50294d9bfda95199a57343808cbc2b2743023e64d3ae",
+      "minimum_slack_ns": 6.663,
+      "binding": "LATENCY_GRAY u_latency_capture 9 SOURCE {latency_gray_us[9]} THROUGH {latency_gray_us[9]} DESTINATION {u_latency_capture/gray_meta[9]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 10,
+      "sha256": "a206842418c8d3d4855cf56e6f6fadef62909963020550ab0f70458799b346db",
+      "minimum_slack_ns": 7.291,
+      "binding": "LATENCY_GRAY u_latency_capture 10 SOURCE {latency_gray_us[10]} THROUGH {latency_gray_us[10]} DESTINATION {u_latency_capture/gray_meta[10]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 11,
+      "sha256": "84180631152643cd376427073ceec3ba36271fe56406ae8b09626752d5b6a138",
+      "minimum_slack_ns": 7.401,
+      "binding": "LATENCY_GRAY u_latency_capture 11 SOURCE {latency_gray_us[11]} THROUGH {latency_gray_us[11]} DESTINATION {u_latency_capture/gray_meta[11]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 12,
+      "sha256": "2f0f460dd6be2e3fe26d30efe616e7fdc8e93bac95101a4c0184b17a53194011",
+      "minimum_slack_ns": 7.108,
+      "binding": "LATENCY_GRAY u_latency_capture 12 SOURCE {latency_gray_us[12]} THROUGH {latency_gray_us[12]} DESTINATION {u_latency_capture/gray_meta[12]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 13,
+      "sha256": "a71c583d7749d8a3c0a5563c87c4edd8c2bc0437b59c14b98132bb79a5afacf0",
+      "minimum_slack_ns": 7.403,
+      "binding": "LATENCY_GRAY u_latency_capture 13 SOURCE {latency_gray_us[13]} THROUGH {latency_gray_us[13]} DESTINATION {u_latency_capture/gray_meta[13]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 14,
+      "sha256": "f3a0116f7999420ed048c262c1c406fc16f14fa5daa8ae1a90bd366865ec539b",
+      "minimum_slack_ns": 7.293,
+      "binding": "LATENCY_GRAY u_latency_capture 14 SOURCE {latency_gray_us[14]} THROUGH {latency_gray_us[14]} DESTINATION {u_latency_capture/gray_meta[14]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 15,
+      "sha256": "d8b1fffd767d1ada2f4fe1497fe2e522d1b4944bde704588c8fff312b4984f18",
+      "minimum_slack_ns": 7.491,
+      "binding": "LATENCY_GRAY u_latency_capture 15 SOURCE {latency_gray_us[15]} THROUGH {latency_gray_us[15]} DESTINATION {u_latency_capture/gray_meta[15]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 16,
+      "sha256": "b85f49c726f4152fe309c2e6a7670825e105bd1deefdeb33f69685eaecb61e0f",
+      "minimum_slack_ns": 7.41,
+      "binding": "LATENCY_GRAY u_latency_capture 16 SOURCE {latency_gray_us[16]} THROUGH {latency_gray_us[16]} DESTINATION {u_latency_capture/gray_meta[16]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 17,
+      "sha256": "cfd6868106f07434cb3b871173e1f3ee5efcfa11e229fd2062635ab3e664cfcc",
+      "minimum_slack_ns": 7.522,
+      "binding": "LATENCY_GRAY u_latency_capture 17 SOURCE {latency_gray_us[17]} THROUGH {latency_gray_us[17]} DESTINATION {u_latency_capture/gray_meta[17]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 18,
+      "sha256": "1f371f12db989f70e6941fbd3e914d840b2c20cae6dc1495b5c82222235a0a0f",
+      "minimum_slack_ns": 7.281,
+      "binding": "LATENCY_GRAY u_latency_capture 18 SOURCE {latency_gray_us[18]} THROUGH {latency_gray_us[18]} DESTINATION {u_latency_capture/gray_meta[18]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 19,
+      "sha256": "1df1213e5cf411aa24800acd7bafcba12a9efc37416ce042835fa0515cfe0593",
+      "minimum_slack_ns": 7.384,
+      "binding": "LATENCY_GRAY u_latency_capture 19 SOURCE {latency_gray_us[19]} THROUGH {latency_gray_us[19]} DESTINATION {u_latency_capture/gray_meta[19]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 20,
+      "sha256": "4f933f6c33928180954392820a0de9dc94ec2de3481d273200c49324eb3e0c07",
+      "minimum_slack_ns": 7.184,
+      "binding": "LATENCY_GRAY u_latency_capture 20 SOURCE {latency_gray_us[20]} THROUGH {latency_gray_us[20]} DESTINATION {u_latency_capture/gray_meta[20]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 21,
+      "sha256": "04d8e6f5599fb81f465b1a30e6acf8ed3fb343ff8a932e341c82b33dd8a5fa13",
+      "minimum_slack_ns": 7.194,
+      "binding": "LATENCY_GRAY u_latency_capture 21 SOURCE {latency_gray_us[21]} THROUGH {latency_gray_us[21]} DESTINATION {u_latency_capture/gray_meta[21]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 22,
+      "sha256": "c2f4e1c1f1d3751427235108bc1287bf320ac80729a78799a6868f44d5baafc7",
+      "minimum_slack_ns": 6.871,
+      "binding": "LATENCY_GRAY u_latency_capture 22 SOURCE {latency_gray_us[22]} THROUGH {latency_gray_us[22]} DESTINATION {u_latency_capture/gray_meta[22]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 23,
+      "sha256": "55be420d1eddab26c995904ade4041d5b7a358af0f81c6c604c5589fcd628bc9",
+      "minimum_slack_ns": 7.369,
+      "binding": "LATENCY_GRAY u_latency_capture 23 SOURCE {latency_gray_us[23]} THROUGH {latency_gray_us[23]} DESTINATION {u_latency_capture/gray_meta[23]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 24,
+      "sha256": "10e7591f71a9799c4bd6eae9d7ba429f548b3f1299ea335004e4973d9ebd81a1",
+      "minimum_slack_ns": 7.013,
+      "binding": "LATENCY_GRAY u_latency_capture 24 SOURCE {latency_gray_us[24]} THROUGH {latency_gray_us[24]} DESTINATION {u_latency_capture/gray_meta[24]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 25,
+      "sha256": "433369f441d690da1f30abb7d077c5ed1cf59c84ac8e3d980c24586810832588",
+      "minimum_slack_ns": 7.409,
+      "binding": "LATENCY_GRAY u_latency_capture 25 SOURCE {latency_gray_us[25]} THROUGH {latency_gray_us[25]} DESTINATION {u_latency_capture/gray_meta[25]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 26,
+      "sha256": "306f4f6b778e7134b16a618934e28b18045bfac902e749dcd0260ee193a9c4f4",
+      "minimum_slack_ns": 7.266,
+      "binding": "LATENCY_GRAY u_latency_capture 26 SOURCE {latency_gray_us[26]} THROUGH {latency_gray_us[26]} DESTINATION {u_latency_capture/gray_meta[26]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 27,
+      "sha256": "92e42ebda9831de3518a17ee96b0cdd09bfe9922c6eb3c1086bfecfcfb885473",
+      "minimum_slack_ns": 6.976,
+      "binding": "LATENCY_GRAY u_latency_capture 27 SOURCE {latency_gray_us[27]} THROUGH {latency_gray_us[27]} DESTINATION {u_latency_capture/gray_meta[27]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 28,
+      "sha256": "e1cde0ebc8dbe21a03f8184d2a193f29ca1a1f8cbbd335dc87fd3b472a5a877e",
+      "minimum_slack_ns": 7.106,
+      "binding": "LATENCY_GRAY u_latency_capture 28 SOURCE {latency_gray_us[28]} THROUGH {latency_gray_us[28]} DESTINATION {u_latency_capture/gray_meta[28]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 29,
+      "sha256": "8ca5eaafb2d8b4756f3d97812d0f709b70be75151303ccc0d3d48bafbd28a0d4",
+      "minimum_slack_ns": 6.482,
+      "binding": "LATENCY_GRAY u_latency_capture 29 SOURCE {latency_gray_us[29]} THROUGH {latency_gray_us[29]} DESTINATION {u_latency_capture/gray_meta[29]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 30,
+      "sha256": "fd9812a17e571b01418b21b17509f62c1ccf1b68243797d75bb27f47f7206fd8",
+      "minimum_slack_ns": 6.838,
+      "binding": "LATENCY_GRAY u_latency_capture 30 SOURCE {latency_gray_us[30]} THROUGH {latency_gray_us[30]} DESTINATION {u_latency_capture/gray_meta[30]}"
+    },
+    {
+      "bank": "u_latency_capture",
+      "bit": 31,
+      "sha256": "78db3b6cd633517601c9705a5b8a1d9da755447628811bee75cf5539469c261c",
+      "minimum_slack_ns": 7.095,
+      "binding": "LATENCY_GRAY u_latency_capture 31 SOURCE {u_latency_clock/us_binary[31]} THROUGH {u_latency_clock/us_binary[31]} DESTINATION {u_latency_capture/gray_meta[31]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 0,
+      "sha256": "5862fcd2746d07c23da28fdcef761f52a7c072f4a84803c37e7fa512071af534",
+      "minimum_slack_ns": 7.316,
+      "binding": "LATENCY_GRAY u_latency_display 0 SOURCE {latency_gray_us[0]} THROUGH {latency_gray_us[0]} DESTINATION {u_latency_display/gray_meta[0]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 1,
+      "sha256": "36d4613c9e4eca8609ec692610cebbebec3677288c2488683b5b64ce5124bee8",
+      "minimum_slack_ns": 7.219,
+      "binding": "LATENCY_GRAY u_latency_display 1 SOURCE {latency_gray_us[1]} THROUGH {latency_gray_us[1]} DESTINATION {u_latency_display/gray_meta[1]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 2,
+      "sha256": "a2e667d4dd68565844f0e9dba03e2473519734ca042013619f7330307a735875",
+      "minimum_slack_ns": 7.415,
+      "binding": "LATENCY_GRAY u_latency_display 2 SOURCE {latency_gray_us[2]} THROUGH {latency_gray_us[2]} DESTINATION {u_latency_display/gray_meta[2]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 3,
+      "sha256": "5ad3648bf550dfc68642d0a4d5b59ac70340937b4290bb03653751926113ec76",
+      "minimum_slack_ns": 7.042,
+      "binding": "LATENCY_GRAY u_latency_display 3 SOURCE {latency_gray_us[3]} THROUGH {latency_gray_us[3]} DESTINATION {u_latency_display/gray_meta[3]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 4,
+      "sha256": "e302c39962f0764911f162cd7d15d1ca13eac81b395dfbe0eda0a7338d97650e",
+      "minimum_slack_ns": 7.404,
+      "binding": "LATENCY_GRAY u_latency_display 4 SOURCE {latency_gray_us[4]} THROUGH {latency_gray_us[4]} DESTINATION {u_latency_display/gray_meta[4]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 5,
+      "sha256": "b0e33b8b32602ffbb5d0617ad97080a7b525105d636213e4788fbb728f51cc95",
+      "minimum_slack_ns": 7.285,
+      "binding": "LATENCY_GRAY u_latency_display 5 SOURCE {latency_gray_us[5]} THROUGH {latency_gray_us[5]} DESTINATION {u_latency_display/gray_meta[5]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 6,
+      "sha256": "40fbc977c48cb6ce15aa6c864a15f169224a23c753b00fdcc6b6c44ed84149cc",
+      "minimum_slack_ns": 6.86,
+      "binding": "LATENCY_GRAY u_latency_display 6 SOURCE {latency_gray_us[6]} THROUGH {latency_gray_us[6]} DESTINATION {u_latency_display/gray_meta[6]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 7,
+      "sha256": "e21ee07ee0f6edcfe6899426ba3b37ff2d99e9d4c4229e3a1728610caff3baca",
+      "minimum_slack_ns": 7.26,
+      "binding": "LATENCY_GRAY u_latency_display 7 SOURCE {latency_gray_us[7]} THROUGH {latency_gray_us[7]} DESTINATION {u_latency_display/gray_meta[7]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 8,
+      "sha256": "468e4758126ced787d2a243116705716b493091128a549f32e6fccbca65909c7",
+      "minimum_slack_ns": 7.185,
+      "binding": "LATENCY_GRAY u_latency_display 8 SOURCE {latency_gray_us[8]} THROUGH {latency_gray_us[8]} DESTINATION {u_latency_display/gray_meta[8]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 9,
+      "sha256": "1cf2d12ec3208bf7f42dd024ecdc172bd433c731d6de24e51fe52c1f07a955a5",
+      "minimum_slack_ns": 7.114,
+      "binding": "LATENCY_GRAY u_latency_display 9 SOURCE {latency_gray_us[9]} THROUGH {latency_gray_us[9]} DESTINATION {u_latency_display/gray_meta[9]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 10,
+      "sha256": "6aaf7d95934dacdbd244ac9f854d9eb79c22fb6c8b00eef651b21a56be88f915",
+      "minimum_slack_ns": 7.26,
+      "binding": "LATENCY_GRAY u_latency_display 10 SOURCE {latency_gray_us[10]} THROUGH {latency_gray_us[10]} DESTINATION {u_latency_display/gray_meta[10]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 11,
+      "sha256": "e1d57f71eb540869d79d2f985f83dca726fe19bd30c16604654e0398023aab2a",
+      "minimum_slack_ns": 7.101,
+      "binding": "LATENCY_GRAY u_latency_display 11 SOURCE {latency_gray_us[11]} THROUGH {latency_gray_us[11]} DESTINATION {u_latency_display/gray_meta[11]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 12,
+      "sha256": "c7ee413d93b0ed5119ee0c8ae3f119b3988a532ea5d4bc337094f17e6eaff4dc",
+      "minimum_slack_ns": 7.495,
+      "binding": "LATENCY_GRAY u_latency_display 12 SOURCE {latency_gray_us[12]} THROUGH {latency_gray_us[12]} DESTINATION {u_latency_display/gray_meta[12]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 13,
+      "sha256": "bec92893f1cb1d713efa6bf4610fa5ea4f5a9785808c2ff81d88967c2d0dce0d",
+      "minimum_slack_ns": 7.198,
+      "binding": "LATENCY_GRAY u_latency_display 13 SOURCE {latency_gray_us[13]} THROUGH {latency_gray_us[13]} DESTINATION {u_latency_display/gray_meta[13]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 14,
+      "sha256": "0d97a8bc521af5751245b94d196f807e4d2150a8729d02cb42edfc182e7b4529",
+      "minimum_slack_ns": 7.399,
+      "binding": "LATENCY_GRAY u_latency_display 14 SOURCE {latency_gray_us[14]} THROUGH {latency_gray_us[14]} DESTINATION {u_latency_display/gray_meta[14]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 15,
+      "sha256": "f15ccd12d04aa26bcea4068fbb40d17eaf7c71f44cf650cdf8cac4d46fdc3032",
+      "minimum_slack_ns": 7.413,
+      "binding": "LATENCY_GRAY u_latency_display 15 SOURCE {latency_gray_us[15]} THROUGH {latency_gray_us[15]} DESTINATION {u_latency_display/gray_meta[15]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 16,
+      "sha256": "16eecf690daa467fa2eda971fd91fa325a3fb4066f27f3b3c68a1e64cd30ebcd",
+      "minimum_slack_ns": 7.115,
+      "binding": "LATENCY_GRAY u_latency_display 16 SOURCE {latency_gray_us[16]} THROUGH {latency_gray_us[16]} DESTINATION {u_latency_display/gray_meta[16]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 17,
+      "sha256": "2ed2e9556f303684ce1f6441fc20c6cf5814bce93e77ac2d3ad1782214f980e8",
+      "minimum_slack_ns": 7.327,
+      "binding": "LATENCY_GRAY u_latency_display 17 SOURCE {latency_gray_us[17]} THROUGH {latency_gray_us[17]} DESTINATION {u_latency_display/gray_meta[17]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 18,
+      "sha256": "bc89aa0b9369d5290029b7558de9951e4fdb68138038133168c28759ef421fd7",
+      "minimum_slack_ns": 6.991,
+      "binding": "LATENCY_GRAY u_latency_display 18 SOURCE {latency_gray_us[18]} THROUGH {latency_gray_us[18]} DESTINATION {u_latency_display/gray_meta[18]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 19,
+      "sha256": "f75704c2ef39ea2a7ab103f872d9004b89ad6f46c633b10b80bd4a419bb0f595",
+      "minimum_slack_ns": 7.394,
+      "binding": "LATENCY_GRAY u_latency_display 19 SOURCE {latency_gray_us[19]} THROUGH {latency_gray_us[19]} DESTINATION {u_latency_display/gray_meta[19]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 20,
+      "sha256": "5cd3893fcc66b2e1555cd46fb4afcb3c70d26ca3bdca0b4ae89f7020534b6f92",
+      "minimum_slack_ns": 7.322,
+      "binding": "LATENCY_GRAY u_latency_display 20 SOURCE {latency_gray_us[20]} THROUGH {latency_gray_us[20]} DESTINATION {u_latency_display/gray_meta[20]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 21,
+      "sha256": "d0091f626bcb688d6c8166559557ac9c5a5bc76d407293e895b639f8d23fca85",
+      "minimum_slack_ns": 7.088,
+      "binding": "LATENCY_GRAY u_latency_display 21 SOURCE {latency_gray_us[21]} THROUGH {latency_gray_us[21]} DESTINATION {u_latency_display/gray_meta[21]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 22,
+      "sha256": "37a33413f1a2bdd8dfd2ed72573b203690087b0146876f1ce152fa80bf6efd4b",
+      "minimum_slack_ns": 7.147,
+      "binding": "LATENCY_GRAY u_latency_display 22 SOURCE {latency_gray_us[22]} THROUGH {latency_gray_us[22]} DESTINATION {u_latency_display/gray_meta[22]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 23,
+      "sha256": "f43df0c3165d799f53ff168b012c3cf9c807ab4d01a3114b4a2a081b055f1b0a",
+      "minimum_slack_ns": 7.422,
+      "binding": "LATENCY_GRAY u_latency_display 23 SOURCE {latency_gray_us[23]} THROUGH {latency_gray_us[23]} DESTINATION {u_latency_display/gray_meta[23]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 24,
+      "sha256": "3f35a6063d48c0d6cff2290b1c170df7baae63a18153e394d31c1a2253e62472",
+      "minimum_slack_ns": 7.5,
+      "binding": "LATENCY_GRAY u_latency_display 24 SOURCE {latency_gray_us[24]} THROUGH {latency_gray_us[24]} DESTINATION {u_latency_display/gray_meta[24]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 25,
+      "sha256": "bb2acc28ab83162dd105f46730db411138ed87916ac2a615fd697ff1a76806cf",
+      "minimum_slack_ns": 7.393,
+      "binding": "LATENCY_GRAY u_latency_display 25 SOURCE {latency_gray_us[25]} THROUGH {latency_gray_us[25]} DESTINATION {u_latency_display/gray_meta[25]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 26,
+      "sha256": "d0559ce8d734b529b6228d45b6b1733f842c100fc0e2d998964aaa6e262566af",
+      "minimum_slack_ns": 7.091,
+      "binding": "LATENCY_GRAY u_latency_display 26 SOURCE {latency_gray_us[26]} THROUGH {latency_gray_us[26]} DESTINATION {u_latency_display/gray_meta[26]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 27,
+      "sha256": "f6f4564771ab456bdddbef958bb4679f209b7cd3803d559086cf89b44130172a",
+      "minimum_slack_ns": 7.376,
+      "binding": "LATENCY_GRAY u_latency_display 27 SOURCE {latency_gray_us[27]} THROUGH {latency_gray_us[27]} DESTINATION {u_latency_display/gray_meta[27]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 28,
+      "sha256": "aaf3806229570cbecc95862a10691837a630a7200ce230068cb894b14bde79b7",
+      "minimum_slack_ns": 7.504,
+      "binding": "LATENCY_GRAY u_latency_display 28 SOURCE {latency_gray_us[28]} THROUGH {latency_gray_us[28]} DESTINATION {u_latency_display/gray_meta[28]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 29,
+      "sha256": "3c77108d656a9d1bf45288e2f7764883aedc9eb58c317fb0b4ff6fc945481ff6",
+      "minimum_slack_ns": 6.616,
+      "binding": "LATENCY_GRAY u_latency_display 29 SOURCE {latency_gray_us[29]} THROUGH {latency_gray_us[29]} DESTINATION {u_latency_display/gray_meta[29]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 30,
+      "sha256": "aff9d58bfe93d47df400958052e2922f41ed28c008de84e1316da680518e51d7",
+      "minimum_slack_ns": 7.101,
+      "binding": "LATENCY_GRAY u_latency_display 30 SOURCE {latency_gray_us[30]} THROUGH {latency_gray_us[30]} DESTINATION {u_latency_display/gray_meta[30]}"
+    },
+    {
+      "bank": "u_latency_display",
+      "bit": 31,
+      "sha256": "e7aea1742b736f030c2fc7349c921f8969a5eb146174c286f76430f7d30038fd",
+      "minimum_slack_ns": 6.913,
+      "binding": "LATENCY_GRAY u_latency_display 31 SOURCE {u_latency_clock/us_binary[31]} THROUGH {u_latency_clock/us_binary[31]} DESTINATION {u_latency_display/gray_meta[31]}"
+    }
+  ],
+  "latency_gray_paths": 64,
+  "active_frame_display_declared_bits": 955,
+  "buzzer_pin": "C12 LVCMOS33 PULLUP active-low",
+  "demo_ui": true,
+  "inherited_explicit_bounds_preserved": 47,
+  "shared_font_eram": 1
+}

@@ -1,0 +1,174 @@
+# vsim -c -onfinish stop work.tb_tail_aperture_sweep -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 05:47:33 on Nov 02,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2685) [TFMPC] - Too few port connections for 'main'.  Expected 48, found 29.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_y'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_x'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_valid'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_run'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_y'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_x'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_id'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_position_new'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_search_radius'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_diagnostic'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_detector_id'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_detector_diagnostic'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'stop_stationary'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(18): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2685) [TFMPC] - Too few port connections for 'station'.  Expected 48, found 38.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'stop_current_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'stop_bad_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'stop_good_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'stop_clear'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'stop_begin'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'event_reason'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'event_frame'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'live_record'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'record_ready'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(26): (vopt-2718) [TFMPC] - Missing connection for port 'frame_record'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2685) [TFMPC] - Too few port connections for 'detector'.  Expected 39, found 24.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'probe_ready'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'probe_record'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'region_objects'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'objects'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: D:\CodexWork\empty_tail_role_20261102\frozen_r1\tb_tail_aperture_sweep.sv(35): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# //  ModelSim SE-64 10.5 Feb 13 2016 
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_tail_aperture_sweep(fast)
+# Loading work.classified_count_pipeline(fast)
+# Loading work.classified_count_pipeline(fast__1)
+# Loading work.frame_shape_search(fast)
+# Loading work.pocket_relay_stop_v2(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# ROLE_CASE case=0 body=0 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=6 pocket_gray=95 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_CASE case=1 body=0 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=6 pocket_gray=95 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_RECORD case=2 slot=0 kind=3 y=320 x0=694 x1=706
+# ROLE_CASE case=2 body=0 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=6 pocket_gray=180 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=3 slot=0 kind=1 y=321 x0=696 x1=706
+# ROLE_CASE case=3 body=0 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=6 pocket_gray=180 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_RECORD case=4 slot=0 kind=3 y=320 x0=694 x1=706
+# ROLE_CASE case=4 body=0 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=8 pocket_gray=95 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_CASE case=5 body=0 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=8 pocket_gray=95 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_RECORD case=6 slot=0 kind=3 y=320 x0=694 x1=706
+# ROLE_CASE case=6 body=0 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=8 pocket_gray=180 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=7 slot=0 kind=3 y=321 x0=694 x1=708
+# ROLE_CASE case=7 body=0 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=8 pocket_gray=180 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_CASE case=8 body=0 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=10 pocket_gray=95 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# RGB frame20 lead870 main0 local0 Q0 S1 F0
+# ROLE_CASE case=9 body=0 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=10 pocket_gray=95 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_RECORD case=10 slot=0 kind=3 y=320 x0=692 x1=708
+# ROLE_CASE case=10 body=0 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=10 pocket_gray=180 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=11 slot=0 kind=3 y=321 x0=694 x1=708
+# ROLE_CASE case=11 body=0 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=10 pocket_gray=180 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=12 slot=0 kind=3 y=320 x0=692 x1=708
+# ROLE_CASE case=12 body=0 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=12 pocket_gray=95 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=13 slot=0 kind=3 y=321 x0=694 x1=708
+# ROLE_CASE case=13 body=0 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=12 pocket_gray=95 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=14 slot=0 kind=3 y=320 x0=692 x1=708
+# ROLE_CASE case=14 body=0 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=12 pocket_gray=180 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=15 slot=0 kind=3 y=321 x0=692 x1=710
+# ROLE_CASE case=15 body=0 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=12 pocket_gray=180 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=16 slot=0 kind=3 y=320 x0=692 x1=708
+# ROLE_CASE case=16 body=0 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=14 pocket_gray=95 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_CASE case=17 body=0 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=14 pocket_gray=95 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_RECORD case=18 slot=0 kind=3 y=320 x0=690 x1=710
+# ROLE_CASE case=18 body=0 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=14 pocket_gray=180 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# RGB frame40 lead870 main0 local0 Q0 S1 F0
+# ROLE_RECORD case=19 slot=0 kind=3 y=321 x0=692 x1=710
+# ROLE_CASE case=19 body=0 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=14 pocket_gray=180 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=20 slot=0 kind=2 y=320 x0=740 x1=780
+# ROLE_CASE case=20 body=1 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=6 pocket_gray=95 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_RECORD case=21 slot=0 kind=2 y=321 x0=740 x1=780
+# ROLE_CASE case=21 body=1 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=6 pocket_gray=95 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_RECORD case=22 slot=0 kind=3 y=320 x0=694 x1=706
+# ROLE_RECORD case=22 slot=1 kind=2 y=320 x0=740 x1=780
+# ROLE_CASE case=22 body=1 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=6 pocket_gray=180 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=23 slot=0 kind=3 y=321 x0=696 x1=706
+# ROLE_RECORD case=23 slot=1 kind=2 y=321 x0=740 x1=780
+# ROLE_CASE case=23 body=1 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=6 pocket_gray=180 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=24 slot=0 kind=3 y=320 x0=694 x1=706
+# ROLE_RECORD case=24 slot=1 kind=2 y=320 x0=740 x1=780
+# ROLE_CASE case=24 body=1 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=8 pocket_gray=95 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=25 slot=0 kind=2 y=321 x0=740 x1=780
+# ROLE_CASE case=25 body=1 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=8 pocket_gray=95 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_RECORD case=26 slot=0 kind=3 y=320 x0=694 x1=706
+# ROLE_RECORD case=26 slot=1 kind=2 y=320 x0=740 x1=780
+# ROLE_CASE case=26 body=1 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=8 pocket_gray=180 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=27 slot=0 kind=3 y=321 x0=694 x1=708
+# ROLE_RECORD case=27 slot=1 kind=2 y=321 x0=740 x1=780
+# ROLE_CASE case=27 body=1 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=8 pocket_gray=180 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=28 slot=0 kind=2 y=320 x0=740 x1=780
+# ROLE_CASE case=28 body=1 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=10 pocket_gray=95 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# RGB frame60 lead870 main0 local0 Q0 S1 F0
+# ROLE_RECORD case=29 slot=0 kind=2 y=321 x0=740 x1=780
+# ROLE_CASE case=29 body=1 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=10 pocket_gray=95 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_RECORD case=30 slot=0 kind=3 y=320 x0=692 x1=708
+# ROLE_RECORD case=30 slot=1 kind=2 y=320 x0=740 x1=780
+# ROLE_CASE case=30 body=1 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=10 pocket_gray=180 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=31 slot=0 kind=3 y=321 x0=694 x1=708
+# ROLE_RECORD case=31 slot=1 kind=2 y=321 x0=740 x1=780
+# ROLE_CASE case=31 body=1 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=10 pocket_gray=180 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=32 slot=0 kind=3 y=320 x0=692 x1=708
+# ROLE_RECORD case=32 slot=1 kind=2 y=320 x0=740 x1=780
+# ROLE_CASE case=32 body=1 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=12 pocket_gray=95 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=33 slot=0 kind=3 y=321 x0=694 x1=708
+# ROLE_RECORD case=33 slot=1 kind=2 y=321 x0=740 x1=780
+# ROLE_CASE case=33 body=1 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=12 pocket_gray=95 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=34 slot=0 kind=3 y=320 x0=692 x1=708
+# ROLE_RECORD case=34 slot=1 kind=2 y=320 x0=740 x1=780
+# ROLE_CASE case=34 body=1 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=12 pocket_gray=180 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=35 slot=0 kind=3 y=321 x0=692 x1=710
+# ROLE_RECORD case=35 slot=1 kind=2 y=321 x0=740 x1=780
+# ROLE_CASE case=35 body=1 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=12 pocket_gray=180 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=36 slot=0 kind=3 y=320 x0=692 x1=708
+# ROLE_RECORD case=36 slot=1 kind=2 y=320 x0=740 x1=780
+# ROLE_CASE case=36 body=1 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=14 pocket_gray=95 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# ROLE_RECORD case=37 slot=0 kind=2 y=321 x0=740 x1=780
+# ROLE_CASE case=37 body=1 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=14 pocket_gray=95 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=0
+# ROLE_RECORD case=38 slot=0 kind=3 y=320 x0=690 x1=710
+# ROLE_RECORD case=38 slot=1 kind=2 y=320 x0=740 x1=780
+# ROLE_CASE case=38 body=1 pocket_y=320 feed_y=280 feed_w=16 feed_gray=180 pocket_w=14 pocket_gray=180 xyphase=0 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# RGB frame80 lead870 main0 local0 Q0 S1 F0
+# ROLE_RECORD case=39 slot=0 kind=3 y=321 x0=692 x1=710
+# ROLE_RECORD case=39 slot=1 kind=2 y=321 x0=740 x1=780
+# ROLE_CASE case=39 body=1 pocket_y=321 feed_y=281 feed_w=16 feed_gray=180 pocket_w=14 pocket_gray=180 xyphase=1 feed_E=0 feed_P=0 feed_U=0 pocket_E=1
+# DIAG_SWEEP_COMPLETE cases=40 cases_with_wrong_feed_target=0; true aperture-size sweep, not field replay
+# ** Note: $finish    : D:/CodexWork/empty_tail_role_20261102/frozen_r1/tb_tail_aperture_sweep.sv(119)
+#    Time: 296006 us  Iteration: 1  Instance: /tb_tail_aperture_sweep
+# Break at D:/CodexWork/empty_tail_role_20261102/frozen_r1/tb_tail_aperture_sweep.sv line 119
+# Stopped at D:/CodexWork/empty_tail_role_20261102/frozen_r1/tb_tail_aperture_sweep.sv line 119
+#  quit -code 0
+# End time: 05:47:58 on Nov 02,2026, Elapsed time: 0:00:25
+# Errors: 0, Warnings: 47

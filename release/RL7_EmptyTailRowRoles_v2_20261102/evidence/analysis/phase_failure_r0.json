@@ -1,0 +1,12 @@
+{
+  "status": "FAIL_RETAINED_CANDIDATE_R0_NOT_DELIVERABLE",
+  "bench": "tb_pocket_row_phases",
+  "case": 7,
+  "expected_E": 1,
+  "actual_E": 0,
+  "old_expectations_unchanged": true,
+  "trace": "small_pass1 feed3x3 count9 bright0 circular0; actual lower7x7 count37 has no feed row",
+  "failure_log_sha256": "04e785086bcda5871ea4d45e90de3d22ad6f9b3f23f42b2818dec3480b35bead",
+  "independent_refinement": "refine_phase_r1/refine_run_r1",
+  "old_native_and_build": "running frozen r0, cannot substitute for final r1"
+}
