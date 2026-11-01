@@ -1,0 +1,389 @@
+Created by          : Tang Dynasty v6.2.168116
+                    : Copyright (c) 2012-2025 Anlogic Inc.
+Generated           : Mon Nov  2 01:42:20 2026
+
+Top Model           : design_top_wrapper
+Device              : PH1P35MDG324
+Speed               : 3
+STA coverage        : 93.75%
+
+----------------------------------------------------------------------------------------------------
+Path Group     :     pll_clk_100m -> pll_clk_100m
+Type           :     Self
+From Clock     :     pll_clk_100m
+To Clock       :     pll_clk_100m
+Min Period     :     2.215ns
+Fmax           :     451.467MHz
+
+Statistics:
+Max            : SWNS      7.785ns, STNS      0.000ns,         0 Viol Endpoints,         2 Total Endpoints,         2 Paths Analyzed
+Min            : HWNS      0.451ns, HTNS      0.000ns,         0 Viol Endpoints,         2 Total Endpoints,         2 Paths Analyzed
+----------------------------------------------------------------------------------------------------
+
+Max Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 7.785ns
+Begin Point         : u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/alarm_latched_reg_syn_6.clk (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.ib (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 10.000ns { pll_clk_100m rising@10.000ns - pll_clk_100m rising@0.000ns }
+Data Path Delay     : 1.962ns (cell 0.852ns (43%), net 1.110ns (57%))
+Clock Skew          : 0.093ns
+Logic Level         : 2 ( LUT4=2 )
+Max Fanout          : 2
+Clock Uncertainty   : 0.096ns (sdc uncertainty: 0.000ns, default uncertainty: 0.096ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.810          0.810          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.684          1.494          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.115          1.609          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -1.607          0.002          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.801          0.803          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.016          0.819          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.387          1.206          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(10)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkin
+SCLK                x023y059z1          0.079          1.285          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkout
+net (fo=1557)                           0.653          1.938          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/alarm_latched_reg_syn_6.clk
+launch edge                             0.000    r     1.938               
+--------------------------------------------------------------------  ---------------
+clk2q               x011y062z0          0.137    r     2.075          pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/alarm_latched_reg_syn_6.oqb
+net (fo=2)                              0.671          2.746          net: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/alarm_stop,  ../../project/user_source/hdl_source/pocket_relay_stop_v2.v(24)
+                                                                      pin: u_relay_display/payload_reg[9]_syn_2.id
+LUT4                x011y063z6          0.266    f     3.012       1  pin: u_relay_display/payload_reg[9]_syn_2.ofa
+net (fo=1)                              0.439          3.451          net: motor_output_n_syn_2,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.ib
+LUT4 (reg)          x012y058z6          0.449    r     3.900       2  net: O_relay_control_dup_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(9)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.900               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.745          0.745          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.629          1.374          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.099          1.473          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -1.378          0.095          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.687          0.782          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.014          0.796          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.332          1.128          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(10)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkin
+SCLK                x023y059z1          0.068          1.196          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkout
+net (fo=1557)                           0.553          1.749          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.clk
+capture edge                           10.000    r    11.749               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064         11.685               
+clock uncertainty                      -0.096         11.589               
+clock pessimism                         0.096         11.685               
+--------------------------------------------------------------------  ---------------
+Required                                              11.685               
+--------------------------------------------------------------------  ---------------
+Slack                                                  7.785               
+
+Slack               : 8.038ns
+Begin Point         : u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd_reg[0]_syn_5.clk (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.ib (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : setup
+Process             : slow_m40c
+Budget              : 10.000ns { pll_clk_100m rising@10.000ns - pll_clk_100m rising@0.000ns }
+Data Path Delay     : 1.709ns (cell 1.062ns (62%), net 0.647ns (38%))
+Clock Skew          : 0.093ns
+Logic Level         : 2 ( LUT4=2 )
+Max Fanout          : 2
+Clock Uncertainty   : 0.096ns (sdc uncertainty: 0.000ns, default uncertainty: 0.096ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.810          0.810          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.684          1.494          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.115          1.609          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -1.607          0.002          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.801          0.803          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.016          0.819          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.387          1.206          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(10)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkin
+SCLK                x023y059z1          0.079          1.285          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkout
+net (fo=1557)                           0.653          1.938          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd_reg[0]_syn_5.clk
+launch edge                             0.000    r     1.938               
+--------------------------------------------------------------------  ---------------
+clk2q               x011y063z3          0.126    f     2.064          pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd_reg[0]_syn_5.oqa
+net (fo=2)                              0.208          2.272          net: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/alarm_stop,  ../../project/user_source/hdl_source/pocket_relay_stop_v2.v(24)
+                                                                      pin: u_relay_display/payload_reg[9]_syn_2.ib
+LUT4                x011y063z6          0.487    r     2.759       1  pin: u_relay_display/payload_reg[9]_syn_2.ofa
+net (fo=1)                              0.439          3.198          net: motor_output_n_syn_2,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.ib
+LUT4 (reg)          x012y058z6          0.449    r     3.647       2  net: O_relay_control_dup_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(9)
+--------------------------------------------------------------------  ---------------
+Arrival                                                3.647               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.745          0.745          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.629          1.374          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.099          1.473          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -1.378          0.095          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.687          0.782          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.014          0.796          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.332          1.128          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(10)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkin
+SCLK                x023y059z1          0.068          1.196          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkout
+net (fo=1557)                           0.553          1.749          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.clk
+capture edge                           10.000    r    11.749               
+--------------------------------------------------------------------  ---------------
+setup                                  -0.064         11.685               
+clock uncertainty                      -0.096         11.589               
+clock pessimism                         0.096         11.685               
+--------------------------------------------------------------------  ---------------
+Required                                              11.685               
+--------------------------------------------------------------------  ---------------
+Slack                                                  8.038               
+
+
+
+Min Paths
+----------------------------------------------------------------------------------------------------
+Slack               : 0.451ns
+Begin Point         : u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd_reg[0]_syn_5.clk (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.ib (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast_m40c
+Budget              : 0.000ns { pll_clk_100m rising@0.000ns - pll_clk_100m rising@0.000ns }
+Data Path Delay     : 0.532ns (cell 0.330ns (62%), net 0.202ns (38%))
+Clock Skew          : 0.019ns
+Logic Level         : 2 ( LUT4=2 )
+Max Fanout          : 2
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.810          0.810          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.257          1.067          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.040          1.107          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -0.601          0.506          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.301          0.807          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.006          0.813          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.143          0.956          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(10)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkin
+SCLK                x023y059z1          0.025          0.981          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkout
+net (fo=1557)                           0.225          1.206          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd_reg[0]_syn_5.clk
+launch edge                             0.000    r     1.206               
+--------------------------------------------------------------------  ---------------
+clk2q               x011y063z3          0.062    f     1.268          pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/rd_reg[0]_syn_5.oqa
+net (fo=2)                              0.058          1.326          net: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/alarm_stop,  ../../project/user_source/hdl_source/pocket_relay_stop_v2.v(24)
+                                                                      pin: u_relay_display/payload_reg[9]_syn_2.ib
+LUT4                x011y063z6          0.141    f     1.467       1  pin: u_relay_display/payload_reg[9]_syn_2.ofa
+net (fo=1)                              0.144          1.611          net: motor_output_n_syn_2,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.ib
+LUT4 (reg)          x012y058z6          0.127    f     1.738       2  net: O_relay_control_dup_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(9)
+--------------------------------------------------------------------  ---------------
+Arrival                                                1.738               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.915          0.915          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.290          1.205          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.043          1.248          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -0.654          0.594          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.326          0.920          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.007          0.927          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.155          1.082          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(10)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkin
+SCLK                x023y059z1          0.030          1.112          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkout
+net (fo=1557)                           0.245          1.357          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.clk
+capture edge                            0.000    r     1.357               
+--------------------------------------------------------------------  ---------------
+hold                                    0.012          1.369               
+clock uncertainty                       0.050          1.419               
+clock pessimism                        -0.132          1.287               
+--------------------------------------------------------------------  ---------------
+Required                                               1.287               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.451               
+
+Slack               : 0.524ns
+Begin Point         : u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/alarm_latched_reg_syn_6.clk (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+End Point           : u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.ib (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })
+Check Type          : hold
+Process             : fast_m40c
+Budget              : 0.000ns { pll_clk_100m rising@0.000ns - pll_clk_100m rising@0.000ns }
+Data Path Delay     : 0.605ns (cell 0.264ns (43%), net 0.341ns (57%))
+Clock Skew          : 0.019ns
+Logic Level         : 2 ( LUT4=2 )
+Max Fanout          : 2
+Clock Uncertainty   : 0.050ns (sdc uncertainty: 0.000ns, default uncertainty: 0.050ns)
+
+Delay Type          Location             Incr           Path   Level  Netlist Info
+--------------------------------------------------------------------  ---------------
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.810          0.810          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.257          1.067          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.040          1.107          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -0.601          0.506          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.301          0.807          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.006          0.813          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.143          0.956          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(10)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkin
+SCLK                x023y059z1          0.025          0.981          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkout
+net (fo=1557)                           0.225          1.206          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/alarm_latched_reg_syn_6.clk
+launch edge                             0.000    r     1.206               
+--------------------------------------------------------------------  ---------------
+clk2q               x011y062z0          0.065    r     1.271          pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/alarm_latched_reg_syn_6.oqb
+net (fo=2)                              0.197          1.468          net: u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[1]$controller/alarm_stop,  ../../project/user_source/hdl_source/pocket_relay_stop_v2.v(24)
+                                                                      pin: u_relay_display/payload_reg[9]_syn_2.id
+LUT4                x011y063z6          0.072    f     1.540       1  pin: u_relay_display/payload_reg[9]_syn_2.ofa
+net (fo=1)                              0.144          1.684          net: motor_output_n_syn_2,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.ib
+LUT4 (reg)          x012y058z6          0.127    f     1.811       2  net: O_relay_control_dup_3,  ../../project/user_source/hdl_source/design_top_wrapper.v(9)
+--------------------------------------------------------------------  ---------------
+Arrival                                                1.811               
+
+source latency                          0.000          0.000               
+port                C4                  0.000          0.000          pin: I_sys_clk
+hierarchy                               0.000          0.000          pin: I_sys_clk_syn_7.ipad
+HDIO                x033y078            0.915          0.915          pin: I_sys_clk_syn_7.sg09_di
+HDIO                x033y078            0.290          1.205          pin: I_sys_clk_syn_7.di
+net (fo=4)          x043y040            0.043          1.248          net: I_sys_clk_dup_6,  ../../project/user_source/hdl_source/design_top_wrapper.v(6)
+                                                                      pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.refclk
+PLL                 x043y040           -0.654          0.594          pin: u_PLL/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]
+net (fo=1)                              0.326          0.920          net: u_PLL/clk0_buf,  ../../project/user_source/ip_source/PLL/PLL.v(32)
+                                                                      pin: u_PLL/bufg_feedback.clkin[0]
+GCLK                x023y039z16         0.007          0.927          pin: u_PLL/bufg_feedback.clkout
+net (fo=4)                              0.155          1.082          net: u_isp_top/processing_clk,  ../../project/user_source/hdl_source/isp/isp_top.v(10)
+                                                                      pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkin
+SCLK                x023y059z1          0.030          1.112          pin: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2.clkout
+net (fo=1557)                           0.245          1.357          net: u_PLL/bufg_feedback_auto_created_sclk_s_1_l_bk2_sclk_outnet,  NOFILE(0)
+                                                                      pin: u_isp_top/classified_counting$dual_regions$dual_parking$parking/tracker/position_new_reg[1]_syn_2.clk
+capture edge                            0.000    r     1.357               
+--------------------------------------------------------------------  ---------------
+hold                                    0.012          1.369               
+clock uncertainty                       0.050          1.419               
+clock pessimism                        -0.132          1.287               
+--------------------------------------------------------------------  ---------------
+Required                                               1.287               
+--------------------------------------------------------------------  ---------------
+Slack                                                  0.524               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

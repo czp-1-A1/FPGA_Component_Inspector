@@ -1,0 +1,80 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish stop work.tb_d3_case0 -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 00:53:36 on Nov 02,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\dual_lane_parking.v(42): (vopt-2685) [TFMPC] - Too few port connections for 'controller'.  Expected 47, found 44.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\dual_lane_parking.v(42): (vopt-2718) [TFMPC] - Missing connection for port 'stationary_hint'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\dual_lane_parking.v(42): (vopt-2718) [TFMPC] - Missing connection for port 'fault'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\dual_lane_parking.v(42): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\dual_lane_parking.v(42): (vopt-2685) [TFMPC] - Too few port connections for 'controller'.  Expected 47, found 44.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\dual_lane_parking.v(42): (vopt-2718) [TFMPC] - Missing connection for port 'stationary_hint'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\dual_lane_parking.v(42): (vopt-2718) [TFMPC] - Missing connection for port 'fault'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\dual_lane_parking.v(42): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2685) [TFMPC] - Too few port connections for 'reference_counter'.  Expected 40, found 22.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_uncertainty'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_total'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_dr'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_dv'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_state'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_frame'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_run'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_bad'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_good'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_clear'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_start'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_seed_y'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_seed_x'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_radius'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_dx'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_seed_valid'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_motion_valid'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(39): (vopt-2718) [TFMPC] - Missing connection for port 'parking_snapshot'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(55): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 45, found 40.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(55): (vopt-2718) [TFMPC] - Missing connection for port 'hold_radius'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(55): (vopt-2718) [TFMPC] - Missing connection for port 'hold_y'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(55): (vopt-2718) [TFMPC] - Missing connection for port 'hold_x'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(55): (vopt-2718) [TFMPC] - Missing connection for port 'hold_empty_only'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(55): (vopt-2718) [TFMPC] - Missing connection for port 'hold_valid'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(167): (vopt-2576) [BSOB] - Bit-select into 'dut.lane_alarm' is out of bounds.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_parking_controls_b\inputs\d3_transport_case.sv(167): (vopt-2576) [BSOB] - Bit-select into 'dut.lane_alarm' is out of bounds.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_d3_case0(fast)
+# Loading work.dual_region_count_pipeline(fast)
+# Loading work.classified_count_pipeline(fast)
+# Loading work.dual_region_count_pipeline(fast__1)
+# Loading work.classified_count_pipeline(fast__1)
+# Loading work.dual_lane_parking(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# D3_DONE lane0 id2 frame116 displacement696 Q2
+# D3_DONE lane0 id3 frame155 displacement776 Q1
+# D3_DONE lane1 id3 frame188 displacement808 Q1
+# D3_DONE lane0 id4 frame223 displacement856 Q0
+# D3_DONE lane1 id5 frame265 displacement968 Q0
+# PASS D3 CASE0: 265 frames, independent IDs6/6, full-second holds3/2, shared motor resume, both queues empty
+# ** Note: $finish    : D:/FpgaWork/r28_field_20261102/r57_parking_controls_b/inputs/d3_transport_case.sv(193)
+#    Time: 10600212 us  Iteration: 1  Instance: /tb_d3_case0/test
+# Break at D:/FpgaWork/r28_field_20261102/r57_parking_controls_b/inputs/d3_transport_case.sv line 193
+# Stopped at D:/FpgaWork/r28_field_20261102/r57_parking_controls_b/inputs/d3_transport_case.sv line 193
+#  quit -code 0
+# End time: 00:54:35 on Nov 02,2026, Elapsed time: 0:00:59
+# Errors: 0, Warnings: 35

@@ -62,7 +62,11 @@ generate if(DUAL_STOP)assign station_objects=ready ? recorder_storage[608+:608] 
 else assign station_objects=0;endgenerate
 reg [1:0] occupied_pending;assign transport_occupied=occupied_pending;
  localparam XB=$clog2(W),YB=$clog2(H),QB=XB+YB;
-reg [7:0] mask [0:WORDS-1];reg [QB-1:0] queue [0:1023];
+// A queue node holds all newly reached lanes in one packed mask word.
+// Closure within four lanes preserves four-connectivity, counts and geometry.
+localparam WORD_FLOOD=DUAL_STOP && SPARSE_ROW_SCAN;
+localparam QUEUE_BITS=QB+(WORD_FLOOD ? 2 : 0);
+reg [7:0] mask [0:WORDS-1];reg [QUEUE_BITS-1:0] queue [0:1023];
 reg [17:0] pair_line [0:WIDTH/4-1];reg [17:0] pair_q,pair_d;
 reg [10:0] x_d;reg [9:0] y_d;reg accept_d;
 wire [9:0] gray_sum [0:3];
@@ -153,7 +157,7 @@ wire active_ignored=small_pass ? small_ignored : ignored_q;
 wire mask_we=(cap_write || (mem_write && !small_pass)) && !invalidate && !frame_start;
 wire [15:0] mask_wa=cap_write ? cap_addr : mem_write_addr;
 wire [7:0] mask_wd=cap_write ? cap_data : mem_data;
-reg [9:0] q_read,q_write_addr;reg [QB-1:0] q_data,q_q;reg q_write;
+reg [9:0] q_read,q_write_addr;reg [QUEUE_BITS-1:0] q_data,q_q;reg q_write;
 // Independent synchronous capture/read-modify-write port; processing starts
 // after capture completes. Infer RAM, never reset the arrays.
 always @(posedge clk)begin
@@ -250,13 +254,43 @@ reg [XB-1:0] sx,cx,nx,xmin,xmax;reg [YB-1:0] sy,cy,ny,ymin,ymax;
 reg [1:0] direction;
 assign processed_body_we=phase==BODY_ACCOUNTED && !small_pass && PLACEMENT_REVIEW;
 assign processed_body_addr=address(nx,ny);
-wire neighbor_foreground=mem_q[nx[1:0]] && !active_ignored;
+reg [3:0] current_lanes;reg [2:0] bright_count;
+function [3:0] lane_closure;
+ input [3:0] foreground,seeds;reg [3:0] reached;integer k;
+ begin
+  reached=foreground & seeds;
+  for(k=0;k<3;k=k+1)reached=reached | (foreground & ((reached<<1)|(reached>>1)));
+  lane_closure=reached;
+ end
+endfunction
+function [2:0] lanes_count;
+ input [3:0] lanes;
+ begin lanes_count={2'd0,lanes[0]}+lanes[1]+lanes[2]+lanes[3];end
+endfunction
+function [1:0] first_lane;
+ input [3:0] lanes;begin first_lane=lanes[0] ? 0 : lanes[1] ? 1 : lanes[2] ? 2 : 3;end
+endfunction
+function [1:0] last_lane;
+ input [3:0] lanes;begin last_lane=lanes[3] ? 3 : lanes[2] ? 2 : lanes[1] ? 1 : 0;end
+endfunction
+function [QUEUE_BITS-1:0] queue_node;
+ input [XB-1:0] ax;input [YB-1:0] ay;input [3:0] lanes;
+ begin queue_node=WORD_FLOOD ? {ay,ax[XB-1:2],lanes} : {ay,ax};end
+endfunction
+wire [3:0] seed_lanes=WORD_FLOOD ? lane_closure(mem_q[3:0],4'b1<<nx[1:0]) : 4'b1<<nx[1:0];
+wire [3:0] neighbor_seeds=direction==0 ? 4'b1000 : direction==1 ? 4'b0001 : current_lanes;
+wire [3:0] next_lanes=WORD_FLOOD ? lane_closure(mem_q[3:0],neighbor_seeds) : 4'b1<<nx[1:0];
+wire neighbor_foreground=(WORD_FLOOD ? |next_lanes : mem_q[nx[1:0]]) && !active_ignored;
+wire [XB-1:0] seed_left=(nx & ~3)+first_lane(seed_lanes),seed_right=(nx & ~3)+last_lane(seed_lanes);
+wire [XB-1:0] next_left=(nx & ~3)+first_lane(next_lanes),next_right=(nx & ~3)+last_lane(next_lanes);
+wire [3:0] next_bright={1'b0,bright_count}+lanes_count(next_lanes & ~high_q[7:4]);
+wire [XB-1:0] popped_x=WORD_FLOOD ? {q_q[XB+1:4],2'b00} : q_q[XB-1:0];
+wire [YB-1:0] popped_y=WORD_FLOOD ? q_q>>(XB+2) : q_q>>XB;
 reg [9:0] q_head,q_tail;reg [10:0] q_count;
 reg [17:0] component_count;reg border;
 // Same-position field RAW samples reached five threshold cells (A20).
 // Count >100 cells from the unchanged dark plane, saturating at6; a wholly
 // bright small object still cannot become EMPTY. This is a trial bound.
-reg [2:0] bright_count;
 reg [17:0] component_area;
 wire [83:0] region_bounds;wire [31:0] region_models;
 wire [239:0] region_recipes;wire [1:0] region_supported;
@@ -686,8 +720,8 @@ reg [9:0] trial_x,trial_y;reg neighbor_ok;
 always @*begin
  trial_x={1'b0,cx};trial_y={1'b0,cy};neighbor_ok=1;
  case(direction)
-  0:begin trial_x={1'b0,cx}-1'b1;neighbor_ok=cx!=0;end
-  1:begin trial_x={1'b0,cx}+1'b1;neighbor_ok=cx<W-1;end
+  0:begin trial_x={1'b0,cx}-1'b1;neighbor_ok=cx!=0 && (!WORD_FLOOD || current_lanes[0]);end
+  1:begin trial_x={1'b0,cx}+(WORD_FLOOD ? 4 : 1);neighbor_ok=WORD_FLOOD ? cx<W-4 && current_lanes[3] : cx<W-1;end
   2:begin trial_y={1'b0,cy}-1'b1;neighbor_ok=cy!=0;end
   3:begin trial_y={1'b0,cy}+1'b1;neighbor_ok=cy<H-1;end
  endcase
@@ -789,7 +823,7 @@ always @(posedge clk or negedge rst_n)begin
   box_x0<=0;box_x1<=0;box_y0<=0;box_y1<=0;seen<=0;cap_count<=0;capture_foreground<=0;phase<=IDLE;
   mem_addr<=0;mem_write_addr<=0;mem_data<=0;mem_write<=0;q_read<=0;q_write_addr<=0;q_data<=0;q_write<=0;
   candidate_region<=0;candidate_allowed<=0;distance<=0;scan_region<=0;sx<=0;sy<=0;cx<=0;cy<=0;nx<=0;ny<=0;xmin<=0;xmax<=0;ymin<=0;ymax<=0;direction<=0;
-  q_head<=0;q_tail<=0;q_count<=0;component_count<=0;bright_count<=0;border<=0;component_area<=0;long_side<=0;short_side<=0;fg20<=0;area17<=0;fg5<=0;area3<=0;fg10<=0;area9<=0;fg4<=0;long20<=0;short21<=0;short31<=0;long5<=0;short7<=0;short9<=0;
+  current_lanes<=0;q_head<=0;q_tail<=0;q_count<=0;component_count<=0;bright_count<=0;border<=0;component_area<=0;long_side<=0;short_side<=0;fg20<=0;area17<=0;fg5<=0;area3<=0;fg10<=0;area9<=0;fg4<=0;long20<=0;short21<=0;short31<=0;long5<=0;short7<=0;short9<=0;
   for(bi=0;bi<SLOTS;bi=bi+1)begin
    found_bank[bi]<=0;distance_bank[bi]<=4095;count_bank[bi]<=0;xmin_bank[bi]<=0;xmax_bank[bi]<=0;
    ymin_bank[bi]<=0;ymax_bank[bi]<=0;state_bank[bi]<=1;reason_bank[bi]<=0;weak_bank[bi]<=0;dark_bank[bi]<=0;
@@ -832,20 +866,23 @@ always @(posedge clk or negedge rst_n)begin
     end else advance_scan;
    end
    SEED_MARK:begin
-    mem_write_addr<=mem_addr;mem_data<=mem_q & ~(8'b1<<nx[1:0]);mem_write<=1;
-    xmin<=nx;xmax<=nx;ymin<=sy;ymax<=sy;component_count<=1;bright_count<=!high_q[4+nx[1:0]];border<=nx==0 || nx==W-1 || sy==0 || sy==H-1;
-    q_write_addr<=0;q_data<={sy,nx};q_write<=1;q_head<=0;q_tail<=1;q_count<=1;phase<=POP_REQ;
+    mem_write_addr<=mem_addr;mem_data<=mem_q & {4'hf,~seed_lanes};mem_write<=1;
+    xmin<=WORD_FLOOD ? seed_left : nx;xmax<=WORD_FLOOD ? seed_right : nx;ymin<=sy;ymax<=sy;
+    component_count<=WORD_FLOOD ? lanes_count(seed_lanes) : 1;
+    bright_count<=WORD_FLOOD ? lanes_count(seed_lanes & ~high_q[7:4]) : !high_q[4+nx[1:0]];
+    border<=(WORD_FLOOD ? seed_left==0 || seed_right==W-1 : nx==0 || nx==W-1) || sy==0 || sy==H-1;
+    q_write_addr<=0;q_data<=queue_node(nx,sy,seed_lanes);q_write<=1;q_head<=0;q_tail<=1;q_count<=1;phase<=POP_REQ;
    end
    POP_REQ:begin q_read<=q_head;phase<=POP_WAIT;end
    POP_WAIT:phase<=POP_VALUE;
    POP_VALUE:begin
-    cx<=q_q[XB-1:0];cy<=q_q[QB-1:XB];q_head<=q_head+1'b1;q_count<=q_count-1'b1;direction<=0;
+    cx<=popped_x;cy<=popped_y;current_lanes<=q_q[3:0];q_head<=q_head+1'b1;q_count<=q_count-1'b1;direction<=0;
     // The queue word is already registered. Issue its first neighbour read
     // here instead of spending a cycle copying the same coordinates first.
     if(SPARSE_ROW_SCAN)begin
-     nx<=q_q[XB-1:0]-1'b1;ny<=q_q[QB-1:XB];
-     mem_addr<=address(q_q[XB-1:0]-1'b1,q_q[QB-1:XB]);
-     phase<=q_q[XB-1:0]!=0 ? NEIGH_WAIT : NEIGH_NEXT;
+     nx<=popped_x-1'b1;ny<=popped_y;
+     mem_addr<=address(popped_x-1'b1,popped_y);
+     phase<=popped_x!=0 && (!WORD_FLOOD || q_q[0]) ? NEIGH_WAIT : NEIGH_NEXT;
     end else phase<=NEIGH_REQ;
    end
    NEIGH_REQ:begin
@@ -858,12 +895,15 @@ always @(posedge clk or negedge rst_n)begin
     if(neighbor_foreground)begin
      if(q_count==1024 || component_count==W*H)begin ready<=1;sample_new<=1;state<=1;located<=0;phase<=FINISHED;end
      else begin
-      mem_write_addr<=mem_addr;mem_data<=mem_q & ~(8'b1<<nx[1:0]);mem_write<=1;
-      q_write_addr<=q_tail;q_data<={ny,nx};q_write<=1;q_tail<=q_tail+1'b1;q_count<=q_count+1'b1;
-      component_count<=component_count+1'b1;
-      if(!high_q[4+nx[1:0]] && bright_count<6)bright_count<=bright_count+1'b1;
-      if(nx<xmin)xmin<=nx;if(nx>xmax)xmax<=nx;if(ny<ymin)ymin<=ny;if(ny>ymax)ymax<=ny;
-      if(nx==0 || nx==W-1 || ny==0 || ny==H-1)border<=1;
+      mem_write_addr<=mem_addr;mem_data<=mem_q & {4'hf,~next_lanes};mem_write<=1;
+      q_write_addr<=q_tail;q_data<=queue_node(nx,ny,next_lanes);q_write<=1;q_tail<=q_tail+1'b1;q_count<=q_count+1'b1;
+      component_count<=component_count+(WORD_FLOOD ? lanes_count(next_lanes) : 1'b1);
+      if(WORD_FLOOD)bright_count<=next_bright>=6 ? 3'd6 : next_bright[2:0];
+      else if(!high_q[4+nx[1:0]] && bright_count<6)bright_count<=bright_count+1'b1;
+      if(WORD_FLOOD)begin if(next_left<xmin)xmin<=next_left;if(next_right>xmax)xmax<=next_right;end
+      else begin if(nx<xmin)xmin<=nx;if(nx>xmax)xmax<=nx;end
+      if(ny<ymin)ymin<=ny;if(ny>ymax)ymax<=ny;
+      if((WORD_FLOOD ? next_left==0 || next_right==W-1 : nx==0 || nx==W-1) || ny==0 || ny==H-1)border<=1;
      end
     end
     if(!(neighbor_foreground && (q_count==1024 || component_count==W*H)))begin
@@ -877,7 +917,7 @@ always @(posedge clk or negedge rst_n)begin
       direction<=direction+1'b1;
       // Issue the next read now; the preceding mark has its own write address.
       case(direction)
-       0:begin nx<=cx+1'b1;ny<=cy;mem_addr<=address(cx+1'b1,cy);phase<=cx<W-1 ? NEIGH_WAIT : NEIGH_NEXT;end
+       0:begin nx<=cx+(WORD_FLOOD ? 4 : 1);ny<=cy;mem_addr<=address(cx+(WORD_FLOOD ? 4 : 1),cy);phase<=(WORD_FLOOD ? cx<W-4 && current_lanes[3] : cx<W-1) ? NEIGH_WAIT : NEIGH_NEXT;end
        1:begin nx<=cx;ny<=cy-1'b1;mem_addr<=address(cx,cy-1'b1);phase<=cy!=0 ? NEIGH_WAIT : NEIGH_NEXT;end
        2:begin nx<=cx;ny<=cy+1'b1;mem_addr<=address(cx,cy+1'b1);phase<=cy<H-1 ? NEIGH_WAIT : NEIGH_NEXT;end
       endcase

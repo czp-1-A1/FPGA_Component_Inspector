@@ -1,0 +1,107 @@
+"""Freeze R22+automatic relay sources, derive TD descriptors, build without flashing."""
+from pathlib import Path
+import argparse,hashlib,json,os,re,shutil,subprocess,time
+
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def main():
+ a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--prepare-only',action='store_true')
+ a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--baseline-label',default='a1cceaa');a.add_argument('--extra-source',nargs='*',default=[]);a.add_argument('--synthesis-only',action='store_true');a.add_argument('--synthesis-strategy',choices=['Default','AreaOptimizeMedium','AreaOptimizeHigh'],default='Default');a.add_argument('--physical-strategy',choices=['Default','CongestionHigh','CongestionMedium','TimingUltra','MacroTiming'],default='Default');a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--recognition-only',action='store_true');a.add_argument('--seed',type=int,default=2);a.add_argument('--stage-timeout',type=int,default=2400);args=a.parse_args()
+ repo=Path(__file__).resolve().parents[1];src=args.source.resolve() if args.source else repo/'fpga/component_inspector';work=args.work.resolve()
+ assert not work.exists(),'Refuse to overwrite an existing build'
+ assert str(work).isascii() and ' ' not in str(work)
+ baseline_path=args.baseline_manifest or repo/'releases/r22_20261027/frozen_inputs.json'
+ baseline=json.loads(baseline_path.read_text())
+ names=list(baseline)+['user_source/hdl_source/pocket_relay_stop.v','sim/tb_pocket_relay_stop.sv','sim/tb_relay_numbered_pipeline.sv']
+ if args.left_v2 or args.keys_v3:
+  names+=['user_source/hdl_source/pocket_relay_stop_v2.v']
+  names+=['sim/'+n+'.sv' for n in ['tb_relay_left_transport','tb_relay_left_faults','tb_relay_left_pixels','tb_relay_left_osd','tb_relay_left_rgb','tb_relay_left_real_second','tb_relay_real_second','tb_relay_osd','tb_relay_queue']]
+ if args.keys_v3:names+=['sim/'+n+'.sv' for n in ['tb_relay_left_native','tb_relay_v3_keys','tb_relay_v3_stop','tb_relay_v3_osd','tb_relay_v3_transport','tb_relay_v3_rgb','tb_relay_v3_real_second','tb_relay_v3_native']]
+ if args.recognition_only:
+  assert args.keys_v3
+  names+=['td_project/camera_to_dsi_recognition.sdc']
+ names+=args.extra_source
+ manifest={rel:sha(src/rel) for rel in names}
+ changes={rel:{'baseline':baseline.get(rel),'candidate':manifest[rel]} for rel in names if baseline.get(rel)!=manifest[rel]}
+ project=work/'project';project.mkdir(parents=True)
+ for rel in names:
+  target=project/rel;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(src/rel,target)
+ (work/'frozen_inputs.json').write_text(json.dumps(manifest,indent=2)+'\n')
+ (work/'baseline_delta.json').write_text(json.dumps({'baseline_commit':args.baseline_label,'baseline_manifest_sha256':sha(baseline_path),'changes':changes},indent=2)+'\n')
+ td=args.td.resolve();flow=td/'doc/scripts/DefaultFlow.tcl';assert flow.is_file()
+ strategy_params=[]
+ if args.synthesis_strategy!='Default':
+  official_path=td/'doc/strategies/official_strategy_ph1.json';official=json.loads(official_path.read_text())
+  strategy=official[args.synthesis_strategy];assert strategy['is_syn']=='syn'
+  strategy_params=strategy['params'];assert all(x['step'] in ['rtl','gate'] and all(re.fullmatch(r'[A-Za-z0-9_]+',str(x[k])) for k in ['step','param','val']) for x in strategy_params)
+  (work/'BUILD_STRATEGY.json').write_text(json.dumps({'strategy':args.synthesis_strategy,'official_file':str(official_path),'official_file_sha256':sha(official_path),'parameters':strategy_params,'constraints_changed':False,'source_manifest_sha256':sha(work/'frozen_inputs.json')},indent=2)+'\n')
+ physical_params=[]
+ if args.physical_strategy!='Default':
+  official_path=td/'doc/strategies/official_strategy_ph1.json';official=json.loads(official_path.read_text())
+  strategy=official[args.physical_strategy];assert strategy['is_syn']=='phy'
+  physical_params=strategy['params'];assert all(x['step'] in ['place','route'] and all(re.fullmatch(r'[A-Za-z0-9_.]+',str(x[k])) for k in ['step','param','val']) for x in physical_params)
+  (work/'PHYSICAL_STRATEGY.json').write_text(json.dumps({'strategy':args.physical_strategy,'official_file':str(official_path),'official_file_sha256':sha(official_path),'parameters':physical_params,'constraints_changed':False,'seed':args.seed,'source_manifest_sha256':sha(work/'frozen_inputs.json')},indent=2)+'\n')
+ entry=project/'td_project/camera_to_dsi_display.al';text=entry.read_text()
+ deps={}
+ for rel in re.findall(r'<File Path="([^"]+)"',text):
+  p=(entry.parent/rel).resolve();deps[p.relative_to(project).as_posix()]=sha(p)
+ for rel in ['user_source/hdl_source/ph1p35_ddr/ddr2/src/adc/ddr2.adc','user_source/hdl_source/ph1p35_ddr/ddr2/src/sdc/ddr2.sdc','user_source/ip_source/w128_d512_fifo/w128_d512_fifo.tcl']:
+  deps[rel]=sha(project/rel)
+ if args.recognition_only:deps['td_project/camera_to_dsi_recognition.sdc']=sha(project/'td_project/camera_to_dsi_recognition.sdc')
+ (work/'hardware_inputs.json').write_text(json.dumps(deps,indent=2)+'\n')
+ for stage in ['syn_1','phy_1']:
+  run=work/'runs'/stage;run.mkdir(parents=True)
+  prj=re.sub(r'(<Project\b[^>]*\bPath=")[^"]*',lambda m:m[1]+run.as_posix(),text,count=1)
+  prj=re.sub(r'<File Path="([^"]+)"',lambda m:'<File Path="'+Path(os.path.relpath((entry.parent/m[1]).resolve(),run)).as_posix()+'"',prj)
+  (run/'camera_to_dsi_display.prj').write_text(prj,encoding='utf8')
+  cfg='''set ADCList {"../../../user_source/constraints_source/pin.adc"}
+set IpADCList { ddr2 ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/adc/ddr2.adc }
+set IpSDCList { ddr2 ../../../user_source/hdl_source/ph1p35_ddr/ddr2/src/sdc/ddr2.sdc w128_d512_fifo ../../../user_source/ip_source/w128_d512_fifo/w128_d512_fifo.tcl }
+set SDCList {"../../camera_to_dsi_display.sdc"}
+set area_option -packarea
+set device_name ph1_35p.db
+set package_name PH1P35MDG324
+set prj_name camera_to_dsi_display
+set speed 3
+set top_model_name design_top_wrapper
+'''
+  if stage=='syn_1':
+   cfg+='set start_step read_design\nset end_step opt_gate\nset run_type syn\n'
+   if strategy_params:cfg+='set synWildParams {'+' '.join(x['step']+' '+x['param']+' '+str(x['val']) for x in strategy_params)+'}\n'
+  else:cfg+='''set arr_filter false
+set phyWildParams {place seed 2 place logic_level_opt on place opt_timing high place effort high place fix_hold on}
+set drHoldFix on
+set parent ../syn_1
+set start_step opt_place
+set end_step bitgen
+set run_type phy
+'''
+  cfg=cfg.replace('../../../user_source',Path(os.path.relpath(project/'user_source',run)).as_posix())
+  active_sdc='camera_to_dsi_recognition.sdc' if args.recognition_only else 'camera_to_dsi_display.sdc'
+  cfg=cfg.replace('../../camera_to_dsi_display.sdc',Path(os.path.relpath(entry.parent/active_sdc,run)).as_posix())
+  cfg=cfg.replace('place seed 2 ','place seed '+str(args.seed)+' ')
+  if stage=='phy_1' and physical_params:cfg+='set phyWildParams [concat $phyWildParams {'+' '.join(x['step']+' '+x['param']+' '+str(x['val']) for x in physical_params)+'}]\n'
+  (run/'settings.cfg').write_text(cfg)
+  commands='if {[catch {\nsource {'+flow.as_posix()+'}\ncheck_timing -file constraint_coverage.txt -verbose\n'
+  if stage=='phy_1':commands+='report_timing_summary -file final_timing.rpt\nreport_area -io_info -file final.area\n'
+  commands+='} reason]} {puts stderr $reason; exit 1}\nexit 0\n'
+  (run/'build.tcl').write_text(commands)
+ print(json.dumps({'status':'FROZEN','project':str(project),'sources':len(manifest),'hardware_dependencies':len(deps),'delta_files':len(changes),'seed':args.seed}),flush=True)
+ if args.prepare_only:return
+ env=dict(os.environ);(work/'temp').mkdir();env['TEMP']=env['TMP']=str(work/'temp')
+ stages=[]
+ for stage in (['syn_1'] if args.synthesis_only else ['syn_1','phy_1']):
+  run=work/'runs'/stage;started=time.monotonic()
+  with (run/'console.log').open('w',encoding='utf8') as log:
+   r=subprocess.run([str(td/'bin/td_commands_prompt.exe')],input='source {build.tcl}\n',text=True,cwd=run,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=args.stage_timeout)
+  txt=(run/'console.log').read_text(errors='replace')
+  assert r.returncode==0 and not re.search(r'(?mi)^\s*(?:ERROR|\w+-\d+\s*:\s*Error)',txt),(stage,str(run/'console.log'))
+  stages.append({'stage':stage,'seconds':round(time.monotonic()-started,1),'console_sha256':sha(run/'console.log')})
+  print(json.dumps(stages[-1]),flush=True)
+ if args.synthesis_only:
+  result={'status':'SYNTHESIS_ONLY_NOT_ROUTED_NOT_DELIVERABLE','sources':len(manifest),'stages':stages,'seed':args.seed,'board_operated':False}
+  (work/'synthesis_result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True);return
+ bit=work/'runs/phy_1/camera_to_dsi_display.bit';assert bit.is_file()
+ for rel,digest in manifest.items():assert sha(project/rel)==digest and sha(src/rel)==digest,rel
+ result={'status':'BUILT_NEEDS_RESOURCE_TIMING_AND_IO_AUDIT','bit':str(bit),'bit_sha256':sha(bit),'sources':len(manifest),'stages':stages,'seed':args.seed,'board_operated':False}
+ (work/'build_result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
+if __name__=='__main__':main()

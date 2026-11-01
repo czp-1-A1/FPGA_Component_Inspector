@@ -1,0 +1,152 @@
+{
+  "status": "DIAGNOSTIC_REPRODUCED_R56_DENSE_DUAL_LOAD_AND_UI_ROW_CLIPPING",
+  "baseline_commit": "fd794186da46b5914bb6faed817fc1d2da0e903b",
+  "baseline_zip_sha256": "35bb0313a3879780cfd007249e503d93160869725cf122c1d027baed466eb028",
+  "baseline_sources_unchanged": 704,
+  "processing_clock_MHz": 100,
+  "scenes": [
+    {
+      "scene": 0,
+      "cycles": 66170,
+      "microseconds": 661.7,
+      "main_candidates": [
+        4,
+        0
+      ],
+      "station_candidates": [
+        0,
+        0
+      ]
+    },
+    {
+      "scene": 1,
+      "cycles": 66170,
+      "microseconds": 661.7,
+      "main_candidates": [
+        0,
+        4
+      ],
+      "station_candidates": [
+        0,
+        0
+      ]
+    },
+    {
+      "scene": 2,
+      "cycles": 130992,
+      "microseconds": 1309.92,
+      "main_candidates": [
+        4,
+        4
+      ],
+      "station_candidates": [
+        0,
+        0
+      ]
+    },
+    {
+      "scene": 3,
+      "cycles": 105321,
+      "microseconds": 1053.21,
+      "main_candidates": [
+        4,
+        0
+      ],
+      "station_candidates": [
+        4,
+        0
+      ]
+    },
+    {
+      "scene": 4,
+      "cycles": 105321,
+      "microseconds": 1053.21,
+      "main_candidates": [
+        0,
+        4
+      ],
+      "station_candidates": [
+        0,
+        4
+      ]
+    },
+    {
+      "scene": 5,
+      "cycles": 209294,
+      "microseconds": 2092.94,
+      "main_candidates": [
+        4,
+        4
+      ],
+      "station_candidates": [
+        4,
+        4
+      ]
+    },
+    {
+      "scene": 6,
+      "cycles": 97773,
+      "microseconds": 977.73,
+      "main_candidates": [
+        4,
+        0
+      ],
+      "station_candidates": [
+        4,
+        0
+      ]
+    },
+    {
+      "scene": 7,
+      "cycles": 97773,
+      "microseconds": 977.73,
+      "main_candidates": [
+        0,
+        4
+      ],
+      "station_candidates": [
+        0,
+        4
+      ]
+    },
+    {
+      "scene": 8,
+      "cycles": 194198,
+      "microseconds": 1941.98,
+      "main_candidates": [
+        4,
+        4
+      ],
+      "station_candidates": [
+        4,
+        4
+      ]
+    }
+  ],
+  "fixture_sha256": "6f8945e936f9eaa76f1510c7262b92c42336786318ef1cedaf8336ef582471c8",
+  "rtl_sha256": {
+    "frame_shape_search": "e031d235d78b1bfbd271f33718d064d15c0eeb80f55b3cd6f938dacd358813a4",
+    "local_edge_surface_check": "3b2aefe5c91d30cdcf0a507099292225e54224a70f59e4ef7512a29ee996b196",
+    "inspection_region_config": "0dc8e575d3999f333ede961af1ad56d4b9cc9c63bbcaaa80724fac8a4158b4ae",
+    "empty_candidate_probe": "b49c6b60396b5940ddef6db4f0e0d297ef8fd01cc7c3deebd6cdecfc43e1462c",
+    "present_surface_check": "fdf6a014295862be953de39755e2259fcb89283a161a3530ad9d71fca23deabc",
+    "present_review_probe": "8e2c7bcc41f9738f469f544841abeae1a28c2cd4feec2e3551e7c8f151449077"
+  },
+  "console_sha256": "8e6bd8488f5e5948a2f877c2b0029f0b7916a099da23a7610bc7b9aa78817826",
+  "scope": "Actual original R56 detector RTL on synthetic PPC4 RGB scenes. No internal force/deposit. Not native phone-video RAW replay or completed end-to-end frame-deadline test. Overrun follows from measured workload versus the prior native model budget; exact field trigger not yet proved.",
+  "ui": {
+    "second_statistics_line": 2,
+    "line_y": [
+      56,
+      72
+    ],
+    "available_rows": 16,
+    "chinese_glyph_rows": 24,
+    "lost_source_glyph_rows": [
+      16,
+      24
+    ]
+  },
+  "production_modified": false,
+  "new_bit_generated": false
+}

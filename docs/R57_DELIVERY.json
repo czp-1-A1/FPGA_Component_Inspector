@@ -1,0 +1,35 @@
+{
+  "status": "PASS_R57_SOFTWARE_AND_ROUTED_AUDITS_HUMAN_PENDING",
+  "version": "R57_DenseDual_SmallUI_20261102_796c5216",
+  "baseline_commit": "fd794186da46b5914bb6faed817fc1d2da0e903b",
+  "bit": "R57_DenseDual_SmallUI_20261102_796c5216.bit",
+  "bit_sha256": "796c5216dae90fe10cd74d9f798104a818644bbfd54ca6b2f29fb585b900d020",
+  "source_files": 704,
+  "source_manifest_sha256": "f39adfcacd516b8b2550e757d5623e99e5a9736371f110a25ee5aba754b56f73",
+  "changed_files": [
+    "user_source/hdl_source/compact_inspector_osd.v",
+    "user_source/hdl_source/compact_template_rom.v",
+    "user_source/hdl_source/frame_shape_search.v"
+  ],
+  "actual_tests": 21,
+  "timing_ns": {
+    "SWNS": 0.048,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "resources": {
+    "slice": 18135,
+    "eram": 101,
+    "dsp": 31,
+    "pll": 5
+  },
+  "board_acceptance": "HUMAN_PENDING",
+  "hardware_operated": false,
+  "publication_branch": "r57-dense-dual-small-ui-20261102",
+  "publication_tag": "r57-dense-dual-small-ui-20261102-release",
+  "release_url": "https://github.com/czp-1-A1/FPGA_Component_Inspector/releases/tag/r57-dense-dual-small-ui-20261102-release",
+  "local_package_bytes_preserved": true,
+  "package_creation_github_uploaded": false,
+  "publication_scope": "Dedicated R57 branch and prerelease; no main merge"
+}

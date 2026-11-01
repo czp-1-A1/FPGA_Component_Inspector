@@ -1,0 +1,38 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -L anlogic_sim -onfinish stop work.tb_r57_ui anlogic_sim.glbl anlogic_sim.PH1P_PHY_GSR -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 00:48:47 on Nov 02,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_r57_ui(fast)
+# Loading anlogic_sim.PH1P_PHY_ERAM_V2(fast)
+# Loading anlogic_sim.glbl(fast)
+# Loading anlogic_sim.PH1P_PHY_GSR(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# PASS R57 SMALL UI: independent totals, empty lists, four IDs, one-region loss/stale-run masking, atomic snapshots, three complete rasters, two amber windows, essential fields, removed debug/right header, Chinese glyphs and atomic relay status
+# ** Note: $finish    : D:/FpgaWork/r28_field_20261102/r57_ui_a/inputs/tb_r57_ui.sv(94)
+#    Time: 27908040 ns  Iteration: 1  Instance: /tb_r57_ui
+# Break at D:/FpgaWork/r28_field_20261102/r57_ui_a/inputs/tb_r57_ui.sv line 94
+# Stopped at D:/FpgaWork/r28_field_20261102/r57_ui_a/inputs/tb_r57_ui.sv line 94
+#  quit -code 0
+# End time: 00:49:14 on Nov 02,2026, Elapsed time: 0:00:27
+# Errors: 0, Warnings: 0

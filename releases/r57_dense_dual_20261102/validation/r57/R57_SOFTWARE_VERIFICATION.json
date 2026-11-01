@@ -1,0 +1,143 @@
+{
+  "status": "PASS_R57_21_ACTUAL_TESTS_DENSE_NATIVE_DIFFERENTIAL_AND_UI_PIXELS",
+  "baseline_commit": "fd794186da46b5914bb6faed817fc1d2da0e903b",
+  "source_manifest_sha256": "f39adfcacd516b8b2550e757d5623e99e5a9736371f110a25ee5aba754b56f73",
+  "source_files": 704,
+  "changed_files": [
+    "user_source/hdl_source/compact_inspector_osd.v",
+    "user_source/hdl_source/compact_template_rom.v",
+    "user_source/hdl_source/frame_shape_search.v"
+  ],
+  "unchanged_files": 701,
+  "actual_tests": 21,
+  "historical_pass_reused": 0,
+  "tests": [
+    {
+      "name": "tb_r57_budget",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_budget_b",
+      "log_sha256": "e887d1795628a74d6c6c065ed17e4a16fd2267aeb2c486bdbf059c2a995f8e73"
+    },
+    {
+      "name": "tb_d3_rank_pixels",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_rank",
+      "log_sha256": "ce78faf9f66946a5699b9d99ac6f6e74ec645b662ea5a55127ce79e32580026b"
+    },
+    {
+      "name": "tb_r57_ui",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_ui_a",
+      "log_sha256": "1e7ce6a8508aea702c90b309cfd6cd049d7fa33c150cd0f8f804f66dd150fc19"
+    },
+    {
+      "name": "tb_d3_case0",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "064e34d205e3058881e3269063ab04af00fd0cf2d3aa6003f4cef381b8c82cba"
+    },
+    {
+      "name": "tb_d3_case1",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "2f12216ed374142e937de775b547051d85866783cf311df4650069501bc9a8d7"
+    },
+    {
+      "name": "tb_d3_case2",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "5f524ecd634f36dd2a28aefb74c5458271b4894f5b0af8ec4623f7d7ebc9e9e6"
+    },
+    {
+      "name": "tb_d3_case3",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "cb9bc4fd47067933aa9ab2f77879c21aa069e01351247a931435ebc123f8f4ad"
+    },
+    {
+      "name": "tb_d3_case4",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "ac0dfafc986c7811edc6db6f258e56daeb24ec5430bf1a993d58782abee43911"
+    },
+    {
+      "name": "tb_d3_case5",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "fbce357e4096b627d83dc97fb6610611ed03e1edcd8a609743769bef33ca881c"
+    },
+    {
+      "name": "tb_d3_case6",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "5071366e0d54bffb6c29b8f398d86fa28c0bd51ac3bbaa6d834bc389c0192bd5"
+    },
+    {
+      "name": "tb_d3_case7",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "f8b3fc75d171e35ae1b0819000613d8338ebbc326e14fc61268794cfc36ab750"
+    },
+    {
+      "name": "tb_d3_case8",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "700bc5d89e6bdcd647bcaf2cfcd8835e942fae6e65414b9928a8dd1e1445d9e3"
+    },
+    {
+      "name": "tb_d3_case9",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "082157f534bd6cc6bc5cf8a819d048e86eea5142a50520fb2ebea05c0b633371"
+    },
+    {
+      "name": "tb_d3_case10",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "cf780c5db2d442b5a7ef870fe23701a3c984359ed0b914cef7dab3176f309999"
+    },
+    {
+      "name": "tb_d3_case11",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "ba5cb2ee930c0389b9b190359d416b069466a2943f7f7482fdcabd86d79e8363"
+    },
+    {
+      "name": "tb_d3_alarm_control",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_parking_controls_b",
+      "log_sha256": "7c5bc7533502baedb0d8b68f13752548ccfe39e22b6c8092702e51684576b3f9"
+    },
+    {
+      "name": "tb_d3_osd",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_legacy_ui",
+      "log_sha256": "21762b09cc4d8fca0790ceef2ee74305b36ba51ee0fe945a283cb1973c945ad2"
+    },
+    {
+      "name": "tb_d3_osd_equivalence",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_legacy_ui",
+      "log_sha256": "7000e508590aea341f837ee069e04b46093570f3010eed197f3a4c9bafda958b"
+    },
+    {
+      "name": "tb_d3_osd_overlap",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_legacy_ui",
+      "log_sha256": "e0a4a99c56136be635af3fa4067d8ab3ee41a875d939eeed16927683b7edcef2"
+    },
+    {
+      "name": "tb_r57_closure",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_closure_final",
+      "log_sha256": "5ea6ad5398459c7c325f19c9eb57701987bcdd58365ced4be81bdfc965893e5b"
+    },
+    {
+      "name": "tb_r57_dense_native",
+      "directory": "D:\\FpgaWork\\r28_field_20261102\\r57_dense_native_a",
+      "log_sha256": "a29131b0343783b0481f7ff17901e91d43ebba7226393e4195c578553a96d175"
+    }
+  ],
+  "negative_R56_native_control_sha256": "cc1b50a27a8b7dc9bfd223c95d16c59f535cbe899aca5da127611d6fe38a3e3e",
+  "negative_control_expected_failure": true,
+  "dense_native_accept_after_proof_ns": [
+    527490.0,
+    1042210.0
+  ],
+  "max_dense_detector_cycles": 99050,
+  "independent_UI_pixels": {
+    "status": "PASS_INDEPENDENT_R57_UI_RGB_PIXELS_AND_COMPLETE_SECOND_LANE_CJK",
+    "compared_pixels": 540672,
+    "rasters": 3,
+    "second_lane_glyph_rows": 112,
+    "expected_glyph_rows": 112,
+    "font": "16x16 CJK / original8x16 ASCII",
+    "source": "Actual vendor-font RTL simulation RGB dumps, independent font/template reference",
+    "preview_sha256": "62f88ced121d85a8181268ee41605b6b80a1d84d36fcfc3887e14b599d8ff8ec"
+  },
+  "reference_R56_detector_restored_sha256": "e031d235d78b1bfbd271f33718d064d15c0eeb80f55b3cd6f938dacd358813a4",
+  "constraints_unchanged": true,
+  "original_counter_sha256": "67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c",
+  "board_acceptance": "HUMAN_PENDING",
+  "physical_verification": "PENDING"
+}

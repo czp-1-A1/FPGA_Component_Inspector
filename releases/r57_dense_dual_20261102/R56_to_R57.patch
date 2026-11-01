@@ -1,0 +1,573 @@
+--- a/user_source/hdl_source/compact_inspector_osd.v
++++ b/user_source/hdl_source/compact_inspector_osd.v
+@@ -50,9 +50,9 @@
+  else if(start)label_prepare<=0;
+  else if(label_prepare<4)begin
+   label_left[label_prepare[1:0]]<=prep_left;
+-  label_right[label_prepare[1:0]]<=prep_left+(prep_prefix ? 11'd112 : 11'd72);
++  label_right[label_prepare[1:0]]<=prep_left+(ESSENTIAL_UI ? (prep_prefix ? 11'd88 : 11'd48) : (prep_prefix ? 11'd112 : 11'd72));
+   label_top[label_prepare[1:0]]<=prep_top;
+-  label_bottom[label_prepare[1:0]]<={1'b0,prep_top}+11'd24;
++  label_bottom[label_prepare[1:0]]<={1'b0,prep_top}+(ESSENTIAL_UI ? 11'd16 : 11'd24);
+   label_prefix[label_prepare[1:0]]<=prep_prefix;
+   label_eligible[label_prepare[1:0]]<=prep_ob[75] && (!page_s || eligible_s && (DUAL_REGION_COUNT || label_prepare[1]==record[57]));
+   label_recovered[label_prepare[1:0]]<=frame_gap!=0 && prep_id>=frame_gap;
+@@ -125,9 +125,15 @@
+  reg [2:0] glyph;reg [1:0] offset;
+  begin
+   glyph=0;offset=0;
+-  if(glyph_cell<3)begin offset=glyph_cell;glyph=kind==3 ? 3 : kind==2 && !review ? 1 : 5;end
+-  else if(glyph_cell<6)begin offset=glyph_cell-3;glyph=kind==3 ? 4 : kind==2 && !review ? 2 : 6;end
+-  else if(glyph_cell<9 && (kind!=2 && kind!=3 || review))begin offset=glyph_cell-6;glyph=7;end
++  if(ESSENTIAL_UI)begin
++   if(glyph_cell<2)begin offset=glyph_cell;glyph=kind==3 ? 3 : kind==2 && !review ? 1 : 5;end
++   else if(glyph_cell<4)begin offset=glyph_cell-2;glyph=kind==3 ? 4 : kind==2 && !review ? 2 : 6;end
++   else if(glyph_cell<6 && (kind!=2 && kind!=3 || review))begin offset=glyph_cell-4;glyph=7;end
++  end else begin
++   if(glyph_cell<3)begin offset=glyph_cell;glyph=kind==3 ? 3 : kind==2 && !review ? 1 : 5;end
++   else if(glyph_cell<6)begin offset=glyph_cell-3;glyph=kind==3 ? 4 : kind==2 && !review ? 2 : 6;end
++   else if(glyph_cell<9 && (kind!=2 && kind!=3 || review))begin offset=glyph_cell-6;glyph=7;end
++  end
+   class_char=glyph==0 ? 8'd32 : (8'h80 | {2'd0,offset,4'd0} | {5'd0,glyph});
+  end
+ endfunction
+@@ -490,7 +496,7 @@
+ 
+ osd_logo_rom anlogic_logo(clk,logo_address,logo_pixel);
+ reg [1:0] vp,hp,dp,pp,lp,cp;reg [4:0] c0,c1;
+-compact_shared_font_rom shared_font(clk,cp[0],ascii_address,cjk_address,c0,font_pixel);
++compact_shared_font_rom #(.SMALL_CJK(ESSENTIAL_UI)) shared_font(clk,cp[0],ascii_address,cjk_address,c0,font_pixel);
+ reg [23:0] rgb0,rgb1,ink0,ink1;
+ wire text_ink=font_pixel;
+ always @(posedge clk or negedge rst_n)begin
+@@ -509,19 +515,19 @@
+ end
+ endmodule
+ 
+-module compact_shared_font_rom(
++module compact_shared_font_rom #(parameter SMALL_CJK=0)(
+  input wire clk,cjk,input wire [10:0] ascii_address,input wire [7:0] cjk_address,
+  input wire [4:0] column,output wire pixel);
+  wire [6:0] ac=ascii_address[10:4];wire [3:0] ar=ascii_address[3:0];
+  wire [2:0] cc=cjk_address[7:5];wire [4:0] cr=cjk_address[4:0];
+  wire av=ac>=32 && ac<=126 && column<8;
+- wire cv=cc>=1 && cr<24 && column<24;
++ wire cv=cc>=1 && cr<(SMALL_CJK ? 16 : 24) && column<(SMALL_CJK ? 16 : 24);
+  wire [6:0] ascii_index=ac-7'd32;
+  wire [2:0] chinese_index=cc-3'd1;
+  wire [10:0] ai={ascii_index,ar};
+  wire [10:0] char_offset={2'd0,chinese_index,6'd0}+{5'd0,chinese_index,3'd0};
+  wire [10:0] row_offset={5'd0,cr,1'b0}+{6'd0,cr};
+- wire [10:0] ci=11'd1520+char_offset+row_offset+{9'd0,column[4:3]};
++ wire [10:0] ci=SMALL_CJK ? 11'd1520+{3'd0,chinese_index,5'd0}+{5'd0,cr,1'b0}+{10'd0,column[3]} : 11'd1520+char_offset+row_offset+{9'd0,column[4:3]};
+  wire [13:0] address={cjk ? ci : ai,3'b000};
+  wire [15:0] raw;reg valid_q;reg [2:0] column_q;
+  always @(posedge clk)begin valid_q<=cjk ? cv : av;column_q<=column[2:0];end
+@@ -530,70 +536,70 @@
+   .DATA_WIDTH_A("10"),.DATA_WIDTH_B("10"),.MODE("DP20K"),
+   .REGMODE_A("NOREG"),.REGMODE_B("NOREG"),.GSR("DISABLE"),
+   .CSA0("1"),.CSA1("1"),.CSA2("1"),.CSB0("0"),.CSB1("0"),.CSB2("0"),
+-  .INIT_00(256'h0000001818001018181818181800000000000000000000000000000000000000),
+-  .INIT_01(256'h0000000068282cfe24247f2424000000000000000000000000002c2c2c000000),
+-  .INIT_02(256'h000000ce4a2a3e101868d4d662000000000030107c16161e3c7858683c080000),
+-  .INIT_03(256'h000000000000000000001818180000000000007a4ecede7230686c6c38000000),
+-  .INIT_04(256'h000020301808080c0c0c08081830200000000408181030202020301018080400),
+-  .INIT_05(256'h0000000000181818fe181818000000000000000000000010543c3c5410000000),
+-  .INIT_06(256'h0000000000000000003c00000000000000000000000030181818000000000000),
+-  .INIT_07(256'h00000040602030101018080c0406000000000000000000181800000000000000),
+-  .INIT_08(256'h000000007e1818181818587818000000000000003c6446625a4e46663c000000),
+-  .INIT_09(256'h00000000780406063c0c040478000000000000007e6030180c04044438000000),
+-  .INIT_0A(256'h00000000780406067c6060607c000000000000000c0cfe4c6c2c3c1c0c000000),
+-  .INIT_0B(256'h0000000020301018080c04067e000000000000003c664242667c60301c000000),
+-  .INIT_0C(256'h00000000780c063e664646643c000000000000003c66466e3c6446663c000000),
+-  .INIT_0D(256'h0000000030181818000000181800000000000000001818000000181800000000),
+-  .INIT_0E(256'h00000000000000007e007e000000000000000000040c106060100c0400000000),
+-  .INIT_0F(256'h00000010100010180404040c38000000000000002030180c0c18302000000000),
+-  .INIT_10(256'h00000000c3c27e6664242c381800000000003844c0beaaabafbddf4342261c00),
+-  .INIT_11(256'h000000003c624040404040623c000000000000007c4646467c4446467c000000),
+-  .INIT_12(256'h000000007e6060607c6060607e00000000000000784c4642424246467c000000),
+-  .INIT_13(256'h000000003e6242c2cec040623c00000000000000606060607c6060607e000000),
+-  .INIT_14(256'h000000007e181818181818187e00000000000000424242427e42424242000000),
+-  .INIT_15(256'h00000000464c48707050484c4600000000000000384c0404040404047c000000),
+-  .INIT_16(256'h00000000c2c2c2d2daea626646000000000000007e6060606060606060000000),
+-  .INIT_17(256'h000000003c6642c2c2c242663c0000000000000046464e4a5252726262000000),
+-  .INIT_18(256'h0000000f183c6642c2c2c242663c0000000000004040407c464646467c000000),
+-  .INIT_19(256'h000000007c0606063c6040603c000000000000004646444c784446447c000000),
+-  .INIT_1A(256'h000000003c6642424242424242000000000000001818181818181818fe000000),
+-  .INIT_1B(256'h0000000066666a5a5adac2c2c20000000000000018383c24646646c2c3000000),
+-  .INIT_1C(256'h0000000018181818382c6446c300000000000000c2662c3818382c6446000000),
+-  .INIT_1D(256'h00003c30303030303030303030303c00000000007e60201010080c047e000000),
+-  .INIT_1E(256'h000038080808080808080808080838000000000604040c081810302020600000),
+-  .INIT_1F(256'h00000000000000ff000000000000000000000000000000000046243818000000),
+-  .INIT_20(256'h00000000007e46663e06463c0000000000000000000000000000001020000000),
+-  .INIT_21(256'h00000000003e60604060201e000000000000007c64464242667c404040000000),
+-  .INIT_22(256'h00000000003e60407e46663c000000000000003e6e464646663e060606000000),
+-  .INIT_23(256'h0000007c46427e40786446643e0000000000001010101010fe1010180e000000),
+-  .INIT_24(256'h0000007e1818181818780018180000000000004646464646667c404040000000),
+-  .INIT_25(256'h000000666c7870786c66606060000000000078080c0c0c0c0c0c0c7c000c0c00),
+-  .INIT_26(256'h0000000000dadadadadadaf6000000000000007e181818181818181878000000),
+-  .INIT_27(256'h00000000003c66424242663c0000000000000000004646464646665c00000000),
+-  .INIT_28(256'h0000000606063e6e464646663e0000000000004040407c64464242665c000000),
+-  .INIT_29(256'h00000000007c06063c60603c0000000000000000006060606062767c00000000),
+-  .INIT_2A(256'h00000000003e6e464646464600000000000000001e3030303030fe3030000000),
+-  .INIT_2B(256'h0000000000666e5a5adac2c200000000000000000018382c2464464200000000),
+-  .INIT_2C(256'h000000e0301018382824644642000000000000000046643c1838246600000000),
+-  .INIT_2D(256'h00000c18101010106010101010180c0000000000007e20301008047c00000000),
+-  .INIT_2E(256'h00007018181818080e0818181818700000181818181818181818181818181800),
+-  .INIT_2F(256'h7ffeff7f00c00000c0000060000000000000000000000000ce5a720000000000),
+-  .INIT_30(256'h300006300046f0ffe7f0ff7730003e30001ef0ff0ff0ff07000003008003fcff),
+-  .INIT_31(256'h3106800106000000000000c00706e00706300006300006f0ff07f0ff07300006),
+-  .INIT_32(256'h598001d88081f880817980c13880c138fcff18fc7f1880610c80710c80310e80),
+-  .INIT_33(256'h000000800118800118800118800118800118800118800118800118feff19feff),
+-  .INIT_34(256'h000ec0810780c3030c82600c0060fcff7ffcff7f001800003000003000000000),
+-  .INIT_35(256'h7f003800003800003800003800003800e0ff0ff0ff1f0c00601c007038003cf0),
+-  .INIT_36(256'h0c0060fcff7ffcff7f001800001800003000003000000000000000fcff7ffcff),
+-  .INIT_37(256'h000cc0000ec001068001038003030083030083010087010086010c06600c0060),
+-  .INIT_38(256'h38fcff1c00030c0003060003060000000000000c00601e007038003870001ce0),
+-  .INIT_39(256'h606058fcfff9feff79600038000018fcff1dfeff0d0003460003e6000370f8ff),
+-  .INIT_3A(256'h0006000006000000000000c00718e00f18600018601018603818603018606018),
+-  .INIT_3B(256'h0ff0ff0f30000830000cf0ff0f300048f0ff6ff0ff3f000038fcff1ffcff0f00),
+-  .INIT_3C(256'h0000001c003cfe813fe0ff01003e4080e770e08119f0000ff0ff07008003f0ff),
+-  .INIT_3D(256'h7f3e60301c70181c301c1c000c7ffefffffeff0c80010c00030c00030c000000),
+-  .INIT_3E(256'h0c1c3c0c380e0cf0c30ce0e10ce0780c701ccc300ecc18076c8c033dccff3fe0),
+-  .INIT_3F(256'h00000000000000000000000000000000000000000000000000000004600c0e70)
++  .INIT_00(SMALL_CJK ? 256'h0000001818001018181818181800000000000000000000000000000000000000 : 256'h0000001818001018181818181800000000000000000000000000000000000000),
++  .INIT_01(SMALL_CJK ? 256'h0000000068282cfe24247f2424000000000000000000000000002c2c2c000000 : 256'h0000000068282cfe24247f2424000000000000000000000000002c2c2c000000),
++  .INIT_02(SMALL_CJK ? 256'h000000ce4a2a3e101868d4d662000000000030107c16161e3c7858683c080000 : 256'h000000ce4a2a3e101868d4d662000000000030107c16161e3c7858683c080000),
++  .INIT_03(SMALL_CJK ? 256'h000000000000000000001818180000000000007a4ecede7230686c6c38000000 : 256'h000000000000000000001818180000000000007a4ecede7230686c6c38000000),
++  .INIT_04(SMALL_CJK ? 256'h000020301808080c0c0c08081830200000000408181030202020301018080400 : 256'h000020301808080c0c0c08081830200000000408181030202020301018080400),
++  .INIT_05(SMALL_CJK ? 256'h0000000000181818fe181818000000000000000000000010543c3c5410000000 : 256'h0000000000181818fe181818000000000000000000000010543c3c5410000000),
++  .INIT_06(SMALL_CJK ? 256'h0000000000000000003c00000000000000000000000030181818000000000000 : 256'h0000000000000000003c00000000000000000000000030181818000000000000),
++  .INIT_07(SMALL_CJK ? 256'h00000040602030101018080c0406000000000000000000181800000000000000 : 256'h00000040602030101018080c0406000000000000000000181800000000000000),
++  .INIT_08(SMALL_CJK ? 256'h000000007e1818181818587818000000000000003c6446625a4e46663c000000 : 256'h000000007e1818181818587818000000000000003c6446625a4e46663c000000),
++  .INIT_09(SMALL_CJK ? 256'h00000000780406063c0c040478000000000000007e6030180c04044438000000 : 256'h00000000780406063c0c040478000000000000007e6030180c04044438000000),
++  .INIT_0A(SMALL_CJK ? 256'h00000000780406067c6060607c000000000000000c0cfe4c6c2c3c1c0c000000 : 256'h00000000780406067c6060607c000000000000000c0cfe4c6c2c3c1c0c000000),
++  .INIT_0B(SMALL_CJK ? 256'h0000000020301018080c04067e000000000000003c664242667c60301c000000 : 256'h0000000020301018080c04067e000000000000003c664242667c60301c000000),
++  .INIT_0C(SMALL_CJK ? 256'h00000000780c063e664646643c000000000000003c66466e3c6446663c000000 : 256'h00000000780c063e664646643c000000000000003c66466e3c6446663c000000),
++  .INIT_0D(SMALL_CJK ? 256'h0000000030181818000000181800000000000000001818000000181800000000 : 256'h0000000030181818000000181800000000000000001818000000181800000000),
++  .INIT_0E(SMALL_CJK ? 256'h00000000000000007e007e000000000000000000040c106060100c0400000000 : 256'h00000000000000007e007e000000000000000000040c106060100c0400000000),
++  .INIT_0F(SMALL_CJK ? 256'h00000010100010180404040c38000000000000002030180c0c18302000000000 : 256'h00000010100010180404040c38000000000000002030180c0c18302000000000),
++  .INIT_10(SMALL_CJK ? 256'h00000000c3c27e6664242c381800000000003844c0beaaabafbddf4342261c00 : 256'h00000000c3c27e6664242c381800000000003844c0beaaabafbddf4342261c00),
++  .INIT_11(SMALL_CJK ? 256'h000000003c624040404040623c000000000000007c4646467c4446467c000000 : 256'h000000003c624040404040623c000000000000007c4646467c4446467c000000),
++  .INIT_12(SMALL_CJK ? 256'h000000007e6060607c6060607e00000000000000784c4642424246467c000000 : 256'h000000007e6060607c6060607e00000000000000784c4642424246467c000000),
++  .INIT_13(SMALL_CJK ? 256'h000000003e6242c2cec040623c00000000000000606060607c6060607e000000 : 256'h000000003e6242c2cec040623c00000000000000606060607c6060607e000000),
++  .INIT_14(SMALL_CJK ? 256'h000000007e181818181818187e00000000000000424242427e42424242000000 : 256'h000000007e181818181818187e00000000000000424242427e42424242000000),
++  .INIT_15(SMALL_CJK ? 256'h00000000464c48707050484c4600000000000000384c0404040404047c000000 : 256'h00000000464c48707050484c4600000000000000384c0404040404047c000000),
++  .INIT_16(SMALL_CJK ? 256'h00000000c2c2c2d2daea626646000000000000007e6060606060606060000000 : 256'h00000000c2c2c2d2daea626646000000000000007e6060606060606060000000),
++  .INIT_17(SMALL_CJK ? 256'h000000003c6642c2c2c242663c0000000000000046464e4a5252726262000000 : 256'h000000003c6642c2c2c242663c0000000000000046464e4a5252726262000000),
++  .INIT_18(SMALL_CJK ? 256'h0000000f183c6642c2c2c242663c0000000000004040407c464646467c000000 : 256'h0000000f183c6642c2c2c242663c0000000000004040407c464646467c000000),
++  .INIT_19(SMALL_CJK ? 256'h000000007c0606063c6040603c000000000000004646444c784446447c000000 : 256'h000000007c0606063c6040603c000000000000004646444c784446447c000000),
++  .INIT_1A(SMALL_CJK ? 256'h000000003c6642424242424242000000000000001818181818181818fe000000 : 256'h000000003c6642424242424242000000000000001818181818181818fe000000),
++  .INIT_1B(SMALL_CJK ? 256'h0000000066666a5a5adac2c2c20000000000000018383c24646646c2c3000000 : 256'h0000000066666a5a5adac2c2c20000000000000018383c24646646c2c3000000),
++  .INIT_1C(SMALL_CJK ? 256'h0000000018181818382c6446c300000000000000c2662c3818382c6446000000 : 256'h0000000018181818382c6446c300000000000000c2662c3818382c6446000000),
++  .INIT_1D(SMALL_CJK ? 256'h00003c30303030303030303030303c00000000007e60201010080c047e000000 : 256'h00003c30303030303030303030303c00000000007e60201010080c047e000000),
++  .INIT_1E(SMALL_CJK ? 256'h000038080808080808080808080838000000000604040c081810302020600000 : 256'h000038080808080808080808080838000000000604040c081810302020600000),
++  .INIT_1F(SMALL_CJK ? 256'h00000000000000ff000000000000000000000000000000000046243818000000 : 256'h00000000000000ff000000000000000000000000000000000046243818000000),
++  .INIT_20(SMALL_CJK ? 256'h00000000007e46663e06463c0000000000000000000000000000001020000000 : 256'h00000000007e46663e06463c0000000000000000000000000000001020000000),
++  .INIT_21(SMALL_CJK ? 256'h00000000003e60604060201e000000000000007c64464242667c404040000000 : 256'h00000000003e60604060201e000000000000007c64464242667c404040000000),
++  .INIT_22(SMALL_CJK ? 256'h00000000003e60407e46663c000000000000003e6e464646663e060606000000 : 256'h00000000003e60407e46663c000000000000003e6e464646663e060606000000),
++  .INIT_23(SMALL_CJK ? 256'h0000007c46427e40786446643e0000000000001010101010fe1010180e000000 : 256'h0000007c46427e40786446643e0000000000001010101010fe1010180e000000),
++  .INIT_24(SMALL_CJK ? 256'h0000007e1818181818780018180000000000004646464646667c404040000000 : 256'h0000007e1818181818780018180000000000004646464646667c404040000000),
++  .INIT_25(SMALL_CJK ? 256'h000000666c7870786c66606060000000000078080c0c0c0c0c0c0c7c000c0c00 : 256'h000000666c7870786c66606060000000000078080c0c0c0c0c0c0c7c000c0c00),
++  .INIT_26(SMALL_CJK ? 256'h0000000000dadadadadadaf6000000000000007e181818181818181878000000 : 256'h0000000000dadadadadadaf6000000000000007e181818181818181878000000),
++  .INIT_27(SMALL_CJK ? 256'h00000000003c66424242663c0000000000000000004646464646665c00000000 : 256'h00000000003c66424242663c0000000000000000004646464646665c00000000),
++  .INIT_28(SMALL_CJK ? 256'h0000000606063e6e464646663e0000000000004040407c64464242665c000000 : 256'h0000000606063e6e464646663e0000000000004040407c64464242665c000000),
++  .INIT_29(SMALL_CJK ? 256'h00000000007c06063c60603c0000000000000000006060606062767c00000000 : 256'h00000000007c06063c60603c0000000000000000006060606062767c00000000),
++  .INIT_2A(SMALL_CJK ? 256'h00000000003e6e464646464600000000000000001e3030303030fe3030000000 : 256'h00000000003e6e464646464600000000000000001e3030303030fe3030000000),
++  .INIT_2B(SMALL_CJK ? 256'h0000000000666e5a5adac2c200000000000000000018382c2464464200000000 : 256'h0000000000666e5a5adac2c200000000000000000018382c2464464200000000),
++  .INIT_2C(SMALL_CJK ? 256'h000000e0301018382824644642000000000000000046643c1838246600000000 : 256'h000000e0301018382824644642000000000000000046643c1838246600000000),
++  .INIT_2D(SMALL_CJK ? 256'h00000c18101010106010101010180c0000000000007e20301008047c00000000 : 256'h00000c18101010106010101010180c0000000000007e20301008047c00000000),
++  .INIT_2E(SMALL_CJK ? 256'h00007018181818080e0818181818700000181818181818181818181818181800 : 256'h00007018181818080e0818181818700000181818181818181818181818181800),
++  .INIT_2F(SMALL_CJK ? 256'h0c140c0cfc0700060002fe3f000100010000000000000000ce5a720000000000 : 256'h7ffeff7f00c00000c0000060000000000000000000000000ce5a720000000000),
++  .INIT_30(SMALL_CJK ? 256'h201020542076fc3320322013200820080000000018040c040c04fc070c44fc67 : 256'h300006300046f0ffe7f0ff7730003e30001ef0ff0ff0ff07000003008003fcff),
++  .INIT_31(SMALL_CJK ? 256'h04200e30380c26240620fe3f800180010000000020102010201020102010fe17 : 256'h3106800106000000000000c00706e00706300006300006f0ff07f0ff07300006),
++  .INIT_32(SMALL_CJK ? 256'h6004400404200420fc3f00018001000100000000fe7f8001800180018001f81f : 256'h598001d88081f880817980c13880c138fcff18fc7f1880610c80710c80310e80),
++  .INIT_33(SMALL_CJK ? 256'h08300810fe0b604c6020fc13601860080000000006600c30181010183008200c : 256'h000000800118800118800118800118800118800118800118800118feff19feff),
++  .INIT_34(SMALL_CJK ? 256'hf80f0808f80f0868f83f0018fc0f00040000001038101810881088110850fe77 : 256'h000ec0810780c3030c82600c0060fcff7ffcff7f001800003000003000000000),
++  .INIT_35(SMALL_CJK ? 256'h343df8318810407c407cfe1130102010000002207e7fc0016033301cf80f0004 : 256'h7f003800003800003800003800003800e0ff0ff0ff1f0c00601c007038003cf0),
++  .INIT_36(SMALL_CJK ? 256'h00000000000000000000000000000000000000008213e6103c109813ccd06474 : 256'h0c0060fcff7ffcff7f001800001800003000003000000000000000fcff7ffcff),
++  .INIT_37(SMALL_CJK ? 256'h0000000000000000000000000000000000000000000000000000000000000000 : 256'h000cc0000ec001068001038003030083030083010087010086010c06600c0060),
++  .INIT_38(SMALL_CJK ? 256'h0000000000000000000000000000000000000000000000000000000000000000 : 256'h38fcff1c00030c0003060003060000000000000c00601e007038003870001ce0),
++  .INIT_39(SMALL_CJK ? 256'h0000000000000000000000000000000000000000000000000000000000000000 : 256'h606058fcfff9feff79600038000018fcff1dfeff0d0003460003e6000370f8ff),
++  .INIT_3A(SMALL_CJK ? 256'h0000000000000000000000000000000000000000000000000000000000000000 : 256'h0006000006000000000000c00718e00f18600018601018603818603018606018),
++  .INIT_3B(SMALL_CJK ? 256'h0000000000000000000000000000000000000000000000000000000000000000 : 256'h0ff0ff0f30000830000cf0ff0f300048f0ff6ff0ff3f000038fcff1ffcff0f00),
++  .INIT_3C(SMALL_CJK ? 256'h0000000000000000000000000000000000000000000000000000000000000000 : 256'h0000001c003cfe813fe0ff01003e4080e770e08119f0000ff0ff07008003f0ff),
++  .INIT_3D(SMALL_CJK ? 256'h0000000000000000000000000000000000000000000000000000000000000000 : 256'h7f3e60301c70181c301c1c000c7ffefffffeff0c80010c00030c00030c000000),
++  .INIT_3E(SMALL_CJK ? 256'h0000000000000000000000000000000000000000000000000000000000000000 : 256'h0c1c3c0c380e0cf0c30ce0e10ce0780c701ccc300ecc18076c8c033dccff3fe0),
++  .INIT_3F(SMALL_CJK ? 256'h0000000000000000000000000000000000000000000000000000000000000000 : 256'h00000000000000000000000000000000000000000000000000000004600c0e70)
+  ) font_bits(
+   .dia(16'd0),.dia_extra(4'd0),.csa(3'b111),.addra(address),.ocea(1'b1),.clka(clk),.wea(1'b0),.orsta(1'b0),
+   .dib(16'd0),.dib_extra(4'd0),.csb(3'b000),.addrb(14'd0),.oceb(1'b0),.clkb(clk),.web(1'b0),.orstb(1'b0),
+--- a/user_source/hdl_source/compact_template_rom.v
++++ b/user_source/hdl_source/compact_template_rom.v
+@@ -15,22 +15,22 @@
+  memory[9]=10'h033;memory[1033]=10'h033;
+  memory[11]=10'h052;memory[1035]=10'h052;
+  memory[12]=10'h035;memory[1036]=10'h035;
+- memory[13]=10'h036;memory[1037]=10'h036;
+- memory[22]=10'h046;memory[1046]=10'h046;
+- memory[23]=10'h050;memory[1047]=10'h050;
+- memory[24]=10'h053;memory[1048]=10'h053;
+- memory[26]=10'h172;memory[1050]=10'h172;
+- memory[27]=10'h171;memory[1051]=10'h171;
+- memory[28]=10'h170;memory[1052]=10'h170;
+- memory[35]=10'h17b;memory[1059]=10'h17b;
+- memory[36]=10'h17a;memory[1060]=10'h17a;
+- memory[37]=10'h179;memory[1061]=10'h179;
+- memory[38]=10'h178;memory[1062]=10'h178;
+- memory[39]=10'h078;memory[1063]=10'h078;
+- memory[40]=10'h183;memory[1064]=10'h183;
+- memory[41]=10'h182;memory[1065]=10'h182;
+- memory[42]=10'h181;memory[1066]=10'h181;
+- memory[43]=10'h180;memory[1067]=10'h180;
++ memory[13]=10'h037;memory[1037]=10'h037;
++ memory[23]=10'h046;memory[1047]=10'h046;
++ memory[24]=10'h050;memory[1048]=10'h050;
++ memory[25]=10'h053;memory[1049]=10'h053;
++ memory[27]=10'h172;memory[1051]=10'h172;
++ memory[28]=10'h171;memory[1052]=10'h171;
++ memory[29]=10'h170;memory[1053]=10'h170;
++ memory[36]=10'h17b;memory[1060]=10'h17b;
++ memory[37]=10'h17a;memory[1061]=10'h17a;
++ memory[38]=10'h179;memory[1062]=10'h179;
++ memory[39]=10'h178;memory[1063]=10'h178;
++ memory[40]=10'h078;memory[1064]=10'h078;
++ memory[41]=10'h183;memory[1065]=10'h183;
++ memory[42]=10'h182;memory[1066]=10'h182;
++ memory[43]=10'h181;memory[1067]=10'h181;
++ memory[44]=10'h180;memory[1068]=10'h180;
+  memory[128]=10'h04c;memory[1152]=10'h04c;
+  memory[129]=10'h031;memory[1153]=10'h031;
+  memory[131]=10'h054;memory[1155]=10'h054;
+@@ -41,51 +41,44 @@
+  memory[137]=10'h102;memory[1161]=10'h102;
+  memory[138]=10'h101;memory[1162]=10'h101;
+  memory[139]=10'h100;memory[1163]=10'h100;
+- memory[144]=10'h081;memory[1168]=10'h081;
+- memory[145]=10'h091;memory[1169]=10'h091;
+- memory[146]=10'h0a1;memory[1170]=10'h0a1;
+- memory[147]=10'h082;memory[1171]=10'h082;
+- memory[148]=10'h092;memory[1172]=10'h092;
+- memory[149]=10'h0a2;memory[1173]=10'h0a2;
+- memory[151]=10'h10a;memory[1175]=10'h10a;
+- memory[152]=10'h109;memory[1176]=10'h109;
+- memory[153]=10'h108;memory[1177]=10'h108;
+- memory[158]=10'h083;memory[1182]=10'h083;
+- memory[159]=10'h093;memory[1183]=10'h093;
+- memory[160]=10'h0a3;memory[1184]=10'h0a3;
+- memory[161]=10'h084;memory[1185]=10'h084;
+- memory[162]=10'h094;memory[1186]=10'h094;
+- memory[163]=10'h0a4;memory[1187]=10'h0a4;
+- memory[165]=10'h112;memory[1189]=10'h112;
+- memory[166]=10'h111;memory[1190]=10'h111;
+- memory[167]=10'h110;memory[1191]=10'h110;
+- memory[172]=10'h085;memory[1196]=10'h085;
+- memory[173]=10'h095;memory[1197]=10'h095;
+- memory[174]=10'h0a5;memory[1198]=10'h0a5;
+- memory[175]=10'h086;memory[1199]=10'h086;
+- memory[176]=10'h096;memory[1200]=10'h096;
+- memory[177]=10'h0a6;memory[1201]=10'h0a6;
+- memory[178]=10'h087;memory[1202]=10'h087;
+- memory[179]=10'h097;memory[1203]=10'h097;
+- memory[180]=10'h0a7;memory[1204]=10'h0a7;
+- memory[182]=10'h11a;memory[1206]=10'h11a;
+- memory[183]=10'h119;memory[1207]=10'h119;
+- memory[184]=10'h118;memory[1208]=10'h118;
+- memory[189]=10'h04c;memory[1213]=10'h04c;
+- memory[190]=10'h041;memory[1214]=10'h041;
+- memory[191]=10'h053;memory[1215]=10'h053;
+- memory[192]=10'h054;memory[1216]=10'h054;
+- memory[194]=10'h122;memory[1218]=10'h122;
+- memory[195]=10'h121;memory[1219]=10'h121;
+- memory[196]=10'h120;memory[1220]=10'h120;
+- memory[203]=10'h30f;memory[1227]=10'h30f;
+- memory[204]=10'h30e;memory[1228]=10'h30e;
+- memory[205]=10'h30d;memory[1229]=10'h30d;
+- memory[206]=10'h30c;memory[1230]=10'h30c;
+- memory[207]=10'h30b;memory[1231]=10'h30b;
+- memory[208]=10'h30a;memory[1232]=10'h30a;
+- memory[209]=10'h309;memory[1233]=10'h309;
+- memory[210]=10'h308;memory[1234]=10'h308;
++ memory[142]=10'h081;memory[1166]=10'h081;
++ memory[143]=10'h091;memory[1167]=10'h091;
++ memory[144]=10'h082;memory[1168]=10'h082;
++ memory[145]=10'h092;memory[1169]=10'h092;
++ memory[147]=10'h10a;memory[1171]=10'h10a;
++ memory[148]=10'h109;memory[1172]=10'h109;
++ memory[149]=10'h108;memory[1173]=10'h108;
++ memory[152]=10'h083;memory[1176]=10'h083;
++ memory[153]=10'h093;memory[1177]=10'h093;
++ memory[154]=10'h084;memory[1178]=10'h084;
++ memory[155]=10'h094;memory[1179]=10'h094;
++ memory[157]=10'h112;memory[1181]=10'h112;
++ memory[158]=10'h111;memory[1182]=10'h111;
++ memory[159]=10'h110;memory[1183]=10'h110;
++ memory[162]=10'h085;memory[1186]=10'h085;
++ memory[163]=10'h095;memory[1187]=10'h095;
++ memory[164]=10'h086;memory[1188]=10'h086;
++ memory[165]=10'h096;memory[1189]=10'h096;
++ memory[166]=10'h087;memory[1190]=10'h087;
++ memory[167]=10'h097;memory[1191]=10'h097;
++ memory[169]=10'h11a;memory[1193]=10'h11a;
++ memory[170]=10'h119;memory[1194]=10'h119;
++ memory[171]=10'h118;memory[1195]=10'h118;
++ memory[174]=10'h04c;memory[1198]=10'h04c;
++ memory[175]=10'h041;memory[1199]=10'h041;
++ memory[176]=10'h053;memory[1200]=10'h053;
++ memory[177]=10'h054;memory[1201]=10'h054;
++ memory[179]=10'h122;memory[1203]=10'h122;
++ memory[180]=10'h121;memory[1204]=10'h121;
++ memory[181]=10'h120;memory[1205]=10'h120;
++ memory[184]=10'h30f;memory[1208]=10'h30f;
++ memory[185]=10'h30e;memory[1209]=10'h30e;
++ memory[186]=10'h30d;memory[1210]=10'h30d;
++ memory[187]=10'h30c;memory[1211]=10'h30c;
++ memory[188]=10'h30b;memory[1212]=10'h30b;
++ memory[189]=10'h30a;memory[1213]=10'h30a;
++ memory[190]=10'h309;memory[1214]=10'h309;
++ memory[191]=10'h308;memory[1215]=10'h308;
+  memory[256]=10'h04c;memory[1280]=10'h04c;
+  memory[257]=10'h032;memory[1281]=10'h032;
+  memory[259]=10'h054;memory[1283]=10'h054;
+@@ -96,51 +89,44 @@
+  memory[265]=10'h192;memory[1289]=10'h192;
+  memory[266]=10'h191;memory[1290]=10'h191;
+  memory[267]=10'h190;memory[1291]=10'h190;
+- memory[272]=10'h081;memory[1296]=10'h081;
+- memory[273]=10'h091;memory[1297]=10'h091;
+- memory[274]=10'h0a1;memory[1298]=10'h0a1;
+- memory[275]=10'h082;memory[1299]=10'h082;
+- memory[276]=10'h092;memory[1300]=10'h092;
+- memory[277]=10'h0a2;memory[1301]=10'h0a2;
+- memory[279]=10'h19a;memory[1303]=10'h19a;
+- memory[280]=10'h199;memory[1304]=10'h199;
+- memory[281]=10'h198;memory[1305]=10'h198;
+- memory[286]=10'h083;memory[1310]=10'h083;
+- memory[287]=10'h093;memory[1311]=10'h093;
+- memory[288]=10'h0a3;memory[1312]=10'h0a3;
+- memory[289]=10'h084;memory[1313]=10'h084;
+- memory[290]=10'h094;memory[1314]=10'h094;
+- memory[291]=10'h0a4;memory[1315]=10'h0a4;
+- memory[293]=10'h1a2;memory[1317]=10'h1a2;
+- memory[294]=10'h1a1;memory[1318]=10'h1a1;
+- memory[295]=10'h1a0;memory[1319]=10'h1a0;
+- memory[300]=10'h085;memory[1324]=10'h085;
+- memory[301]=10'h095;memory[1325]=10'h095;
+- memory[302]=10'h0a5;memory[1326]=10'h0a5;
+- memory[303]=10'h086;memory[1327]=10'h086;
+- memory[304]=10'h096;memory[1328]=10'h096;
+- memory[305]=10'h0a6;memory[1329]=10'h0a6;
+- memory[306]=10'h087;memory[1330]=10'h087;
+- memory[307]=10'h097;memory[1331]=10'h097;
+- memory[308]=10'h0a7;memory[1332]=10'h0a7;
+- memory[310]=10'h1aa;memory[1334]=10'h1aa;
+- memory[311]=10'h1a9;memory[1335]=10'h1a9;
+- memory[312]=10'h1a8;memory[1336]=10'h1a8;
+- memory[317]=10'h04c;memory[1341]=10'h04c;
+- memory[318]=10'h041;memory[1342]=10'h041;
+- memory[319]=10'h053;memory[1343]=10'h053;
+- memory[320]=10'h054;memory[1344]=10'h054;
+- memory[322]=10'h1b2;memory[1346]=10'h1b2;
+- memory[323]=10'h1b1;memory[1347]=10'h1b1;
+- memory[324]=10'h1b0;memory[1348]=10'h1b0;
+- memory[331]=10'h317;memory[1355]=10'h317;
+- memory[332]=10'h316;memory[1356]=10'h316;
+- memory[333]=10'h315;memory[1357]=10'h315;
+- memory[334]=10'h314;memory[1358]=10'h314;
+- memory[335]=10'h313;memory[1359]=10'h313;
+- memory[336]=10'h312;memory[1360]=10'h312;
+- memory[337]=10'h311;memory[1361]=10'h311;
+- memory[338]=10'h310;memory[1362]=10'h310;
++ memory[270]=10'h081;memory[1294]=10'h081;
++ memory[271]=10'h091;memory[1295]=10'h091;
++ memory[272]=10'h082;memory[1296]=10'h082;
++ memory[273]=10'h092;memory[1297]=10'h092;
++ memory[275]=10'h19a;memory[1299]=10'h19a;
++ memory[276]=10'h199;memory[1300]=10'h199;
++ memory[277]=10'h198;memory[1301]=10'h198;
++ memory[280]=10'h083;memory[1304]=10'h083;
++ memory[281]=10'h093;memory[1305]=10'h093;
++ memory[282]=10'h084;memory[1306]=10'h084;
++ memory[283]=10'h094;memory[1307]=10'h094;
++ memory[285]=10'h1a2;memory[1309]=10'h1a2;
++ memory[286]=10'h1a1;memory[1310]=10'h1a1;
++ memory[287]=10'h1a0;memory[1311]=10'h1a0;
++ memory[290]=10'h085;memory[1314]=10'h085;
++ memory[291]=10'h095;memory[1315]=10'h095;
++ memory[292]=10'h086;memory[1316]=10'h086;
++ memory[293]=10'h096;memory[1317]=10'h096;
++ memory[294]=10'h087;memory[1318]=10'h087;
++ memory[295]=10'h097;memory[1319]=10'h097;
++ memory[297]=10'h1aa;memory[1321]=10'h1aa;
++ memory[298]=10'h1a9;memory[1322]=10'h1a9;
++ memory[299]=10'h1a8;memory[1323]=10'h1a8;
++ memory[302]=10'h04c;memory[1326]=10'h04c;
++ memory[303]=10'h041;memory[1327]=10'h041;
++ memory[304]=10'h053;memory[1328]=10'h053;
++ memory[305]=10'h054;memory[1329]=10'h054;
++ memory[307]=10'h1b2;memory[1331]=10'h1b2;
++ memory[308]=10'h1b1;memory[1332]=10'h1b1;
++ memory[309]=10'h1b0;memory[1333]=10'h1b0;
++ memory[312]=10'h317;memory[1336]=10'h317;
++ memory[313]=10'h316;memory[1337]=10'h316;
++ memory[314]=10'h315;memory[1338]=10'h315;
++ memory[315]=10'h314;memory[1339]=10'h314;
++ memory[316]=10'h313;memory[1340]=10'h313;
++ memory[317]=10'h312;memory[1341]=10'h312;
++ memory[318]=10'h311;memory[1342]=10'h311;
++ memory[319]=10'h310;memory[1343]=10'h310;
+  memory[384]=10'h04c;memory[1408]=10'h04c;
+  memory[385]=10'h031;memory[1409]=10'h031;
+  memory[387]=10'h045;memory[1411]=10'h045;
+--- a/user_source/hdl_source/frame_shape_search.v
++++ b/user_source/hdl_source/frame_shape_search.v
+@@ -62,7 +62,11 @@
+ else assign station_objects=0;endgenerate
+ reg [1:0] occupied_pending;assign transport_occupied=occupied_pending;
+  localparam XB=$clog2(W),YB=$clog2(H),QB=XB+YB;
+-reg [7:0] mask [0:WORDS-1];reg [QB-1:0] queue [0:1023];
++// A queue node holds all newly reached lanes in one packed mask word.
++// Closure within four lanes preserves four-connectivity, counts and geometry.
++localparam WORD_FLOOD=DUAL_STOP && SPARSE_ROW_SCAN;
++localparam QUEUE_BITS=QB+(WORD_FLOOD ? 2 : 0);
++reg [7:0] mask [0:WORDS-1];reg [QUEUE_BITS-1:0] queue [0:1023];
+ reg [17:0] pair_line [0:WIDTH/4-1];reg [17:0] pair_q,pair_d;
+ reg [10:0] x_d;reg [9:0] y_d;reg accept_d;
+ wire [9:0] gray_sum [0:3];
+@@ -153,7 +157,7 @@
+ wire mask_we=(cap_write || (mem_write && !small_pass)) && !invalidate && !frame_start;
+ wire [15:0] mask_wa=cap_write ? cap_addr : mem_write_addr;
+ wire [7:0] mask_wd=cap_write ? cap_data : mem_data;
+-reg [9:0] q_read,q_write_addr;reg [QB-1:0] q_data,q_q;reg q_write;
++reg [9:0] q_read,q_write_addr;reg [QUEUE_BITS-1:0] q_data,q_q;reg q_write;
+ // Independent synchronous capture/read-modify-write port; processing starts
+ // after capture completes. Infer RAM, never reset the arrays.
+ always @(posedge clk)begin
+@@ -250,13 +254,43 @@
+ reg [1:0] direction;
+ assign processed_body_we=phase==BODY_ACCOUNTED && !small_pass && PLACEMENT_REVIEW;
+ assign processed_body_addr=address(nx,ny);
+-wire neighbor_foreground=mem_q[nx[1:0]] && !active_ignored;
++reg [3:0] current_lanes;reg [2:0] bright_count;
++function [3:0] lane_closure;
++ input [3:0] foreground,seeds;reg [3:0] reached;integer k;
++ begin
++  reached=foreground & seeds;
++  for(k=0;k<3;k=k+1)reached=reached | (foreground & ((reached<<1)|(reached>>1)));
++  lane_closure=reached;
++ end
++endfunction
++function [2:0] lanes_count;
++ input [3:0] lanes;
++ begin lanes_count={2'd0,lanes[0]}+lanes[1]+lanes[2]+lanes[3];end
++endfunction
++function [1:0] first_lane;
++ input [3:0] lanes;begin first_lane=lanes[0] ? 0 : lanes[1] ? 1 : lanes[2] ? 2 : 3;end
++endfunction
++function [1:0] last_lane;
++ input [3:0] lanes;begin last_lane=lanes[3] ? 3 : lanes[2] ? 2 : lanes[1] ? 1 : 0;end
++endfunction
++function [QUEUE_BITS-1:0] queue_node;
++ input [XB-1:0] ax;input [YB-1:0] ay;input [3:0] lanes;
++ begin queue_node=WORD_FLOOD ? {ay,ax[XB-1:2],lanes} : {ay,ax};end
++endfunction
++wire [3:0] seed_lanes=WORD_FLOOD ? lane_closure(mem_q[3:0],4'b1<<nx[1:0]) : 4'b1<<nx[1:0];
++wire [3:0] neighbor_seeds=direction==0 ? 4'b1000 : direction==1 ? 4'b0001 : current_lanes;
++wire [3:0] next_lanes=WORD_FLOOD ? lane_closure(mem_q[3:0],neighbor_seeds) : 4'b1<<nx[1:0];
++wire neighbor_foreground=(WORD_FLOOD ? |next_lanes : mem_q[nx[1:0]]) && !active_ignored;
++wire [XB-1:0] seed_left=(nx & ~3)+first_lane(seed_lanes),seed_right=(nx & ~3)+last_lane(seed_lanes);
++wire [XB-1:0] next_left=(nx & ~3)+first_lane(next_lanes),next_right=(nx & ~3)+last_lane(next_lanes);
++wire [3:0] next_bright={1'b0,bright_count}+lanes_count(next_lanes & ~high_q[7:4]);
++wire [XB-1:0] popped_x=WORD_FLOOD ? {q_q[XB+1:4],2'b00} : q_q[XB-1:0];
++wire [YB-1:0] popped_y=WORD_FLOOD ? q_q>>(XB+2) : q_q>>XB;
+ reg [9:0] q_head,q_tail;reg [10:0] q_count;
+ reg [17:0] component_count;reg border;
+ // Same-position field RAW samples reached five threshold cells (A20).
+ // Count >100 cells from the unchanged dark plane, saturating at6; a wholly
+ // bright small object still cannot become EMPTY. This is a trial bound.
+-reg [2:0] bright_count;
+ reg [17:0] component_area;
+ wire [83:0] region_bounds;wire [31:0] region_models;
+ wire [239:0] region_recipes;wire [1:0] region_supported;
+@@ -686,8 +720,8 @@
+ always @*begin
+  trial_x={1'b0,cx};trial_y={1'b0,cy};neighbor_ok=1;
+  case(direction)
+-  0:begin trial_x={1'b0,cx}-1'b1;neighbor_ok=cx!=0;end
+-  1:begin trial_x={1'b0,cx}+1'b1;neighbor_ok=cx<W-1;end
++  0:begin trial_x={1'b0,cx}-1'b1;neighbor_ok=cx!=0 && (!WORD_FLOOD || current_lanes[0]);end
++  1:begin trial_x={1'b0,cx}+(WORD_FLOOD ? 4 : 1);neighbor_ok=WORD_FLOOD ? cx<W-4 && current_lanes[3] : cx<W-1;end
+   2:begin trial_y={1'b0,cy}-1'b1;neighbor_ok=cy!=0;end
+   3:begin trial_y={1'b0,cy}+1'b1;neighbor_ok=cy<H-1;end
+  endcase
+@@ -789,7 +823,7 @@
+   box_x0<=0;box_x1<=0;box_y0<=0;box_y1<=0;seen<=0;cap_count<=0;capture_foreground<=0;phase<=IDLE;
+   mem_addr<=0;mem_write_addr<=0;mem_data<=0;mem_write<=0;q_read<=0;q_write_addr<=0;q_data<=0;q_write<=0;
+   candidate_region<=0;candidate_allowed<=0;distance<=0;scan_region<=0;sx<=0;sy<=0;cx<=0;cy<=0;nx<=0;ny<=0;xmin<=0;xmax<=0;ymin<=0;ymax<=0;direction<=0;
+-  q_head<=0;q_tail<=0;q_count<=0;component_count<=0;bright_count<=0;border<=0;component_area<=0;long_side<=0;short_side<=0;fg20<=0;area17<=0;fg5<=0;area3<=0;fg10<=0;area9<=0;fg4<=0;long20<=0;short21<=0;short31<=0;long5<=0;short7<=0;short9<=0;
++  current_lanes<=0;q_head<=0;q_tail<=0;q_count<=0;component_count<=0;bright_count<=0;border<=0;component_area<=0;long_side<=0;short_side<=0;fg20<=0;area17<=0;fg5<=0;area3<=0;fg10<=0;area9<=0;fg4<=0;long20<=0;short21<=0;short31<=0;long5<=0;short7<=0;short9<=0;
+   for(bi=0;bi<SLOTS;bi=bi+1)begin
+    found_bank[bi]<=0;distance_bank[bi]<=4095;count_bank[bi]<=0;xmin_bank[bi]<=0;xmax_bank[bi]<=0;
+    ymin_bank[bi]<=0;ymax_bank[bi]<=0;state_bank[bi]<=1;reason_bank[bi]<=0;weak_bank[bi]<=0;dark_bank[bi]<=0;
+@@ -832,20 +866,23 @@
+     end else advance_scan;
+    end
+    SEED_MARK:begin
+-    mem_write_addr<=mem_addr;mem_data<=mem_q & ~(8'b1<<nx[1:0]);mem_write<=1;
+-    xmin<=nx;xmax<=nx;ymin<=sy;ymax<=sy;component_count<=1;bright_count<=!high_q[4+nx[1:0]];border<=nx==0 || nx==W-1 || sy==0 || sy==H-1;
+-    q_write_addr<=0;q_data<={sy,nx};q_write<=1;q_head<=0;q_tail<=1;q_count<=1;phase<=POP_REQ;
++    mem_write_addr<=mem_addr;mem_data<=mem_q & {4'hf,~seed_lanes};mem_write<=1;
++    xmin<=WORD_FLOOD ? seed_left : nx;xmax<=WORD_FLOOD ? seed_right : nx;ymin<=sy;ymax<=sy;
++    component_count<=WORD_FLOOD ? lanes_count(seed_lanes) : 1;
++    bright_count<=WORD_FLOOD ? lanes_count(seed_lanes & ~high_q[7:4]) : !high_q[4+nx[1:0]];
++    border<=(WORD_FLOOD ? seed_left==0 || seed_right==W-1 : nx==0 || nx==W-1) || sy==0 || sy==H-1;
++    q_write_addr<=0;q_data<=queue_node(nx,sy,seed_lanes);q_write<=1;q_head<=0;q_tail<=1;q_count<=1;phase<=POP_REQ;
+    end
+    POP_REQ:begin q_read<=q_head;phase<=POP_WAIT;end
+    POP_WAIT:phase<=POP_VALUE;
+    POP_VALUE:begin
+-    cx<=q_q[XB-1:0];cy<=q_q[QB-1:XB];q_head<=q_head+1'b1;q_count<=q_count-1'b1;direction<=0;
++    cx<=popped_x;cy<=popped_y;current_lanes<=q_q[3:0];q_head<=q_head+1'b1;q_count<=q_count-1'b1;direction<=0;
+     // The queue word is already registered. Issue its first neighbour read
+     // here instead of spending a cycle copying the same coordinates first.
+     if(SPARSE_ROW_SCAN)begin
+-     nx<=q_q[XB-1:0]-1'b1;ny<=q_q[QB-1:XB];
+-     mem_addr<=address(q_q[XB-1:0]-1'b1,q_q[QB-1:XB]);
+-     phase<=q_q[XB-1:0]!=0 ? NEIGH_WAIT : NEIGH_NEXT;
++     nx<=popped_x-1'b1;ny<=popped_y;
++     mem_addr<=address(popped_x-1'b1,popped_y);
++     phase<=popped_x!=0 && (!WORD_FLOOD || q_q[0]) ? NEIGH_WAIT : NEIGH_NEXT;
+     end else phase<=NEIGH_REQ;
+    end
+    NEIGH_REQ:begin
+@@ -858,12 +895,15 @@
+     if(neighbor_foreground)begin
+      if(q_count==1024 || component_count==W*H)begin ready<=1;sample_new<=1;state<=1;located<=0;phase<=FINISHED;end
+      else begin
+-      mem_write_addr<=mem_addr;mem_data<=mem_q & ~(8'b1<<nx[1:0]);mem_write<=1;
+-      q_write_addr<=q_tail;q_data<={ny,nx};q_write<=1;q_tail<=q_tail+1'b1;q_count<=q_count+1'b1;
+-      component_count<=component_count+1'b1;
+-      if(!high_q[4+nx[1:0]] && bright_count<6)bright_count<=bright_count+1'b1;
+-      if(nx<xmin)xmin<=nx;if(nx>xmax)xmax<=nx;if(ny<ymin)ymin<=ny;if(ny>ymax)ymax<=ny;
+-      if(nx==0 || nx==W-1 || ny==0 || ny==H-1)border<=1;
++      mem_write_addr<=mem_addr;mem_data<=mem_q & {4'hf,~next_lanes};mem_write<=1;
++      q_write_addr<=q_tail;q_data<=queue_node(nx,ny,next_lanes);q_write<=1;q_tail<=q_tail+1'b1;q_count<=q_count+1'b1;
++      component_count<=component_count+(WORD_FLOOD ? lanes_count(next_lanes) : 1'b1);
++      if(WORD_FLOOD)bright_count<=next_bright>=6 ? 3'd6 : next_bright[2:0];
++      else if(!high_q[4+nx[1:0]] && bright_count<6)bright_count<=bright_count+1'b1;
++      if(WORD_FLOOD)begin if(next_left<xmin)xmin<=next_left;if(next_right>xmax)xmax<=next_right;end
++      else begin if(nx<xmin)xmin<=nx;if(nx>xmax)xmax<=nx;end
++      if(ny<ymin)ymin<=ny;if(ny>ymax)ymax<=ny;
++      if((WORD_FLOOD ? next_left==0 || next_right==W-1 : nx==0 || nx==W-1) || ny==0 || ny==H-1)border<=1;
+      end
+     end
+     if(!(neighbor_foreground && (q_count==1024 || component_count==W*H)))begin
+@@ -877,7 +917,7 @@
+       direction<=direction+1'b1;
+       // Issue the next read now; the preceding mark has its own write address.
+       case(direction)
+-       0:begin nx<=cx+1'b1;ny<=cy;mem_addr<=address(cx+1'b1,cy);phase<=cx<W-1 ? NEIGH_WAIT : NEIGH_NEXT;end
++       0:begin nx<=cx+(WORD_FLOOD ? 4 : 1);ny<=cy;mem_addr<=address(cx+(WORD_FLOOD ? 4 : 1),cy);phase<=(WORD_FLOOD ? cx<W-4 && current_lanes[3] : cx<W-1) ? NEIGH_WAIT : NEIGH_NEXT;end
+        1:begin nx<=cx;ny<=cy-1'b1;mem_addr<=address(cx,cy-1'b1);phase<=cy!=0 ? NEIGH_WAIT : NEIGH_NEXT;end
+        2:begin nx<=cx;ny<=cy+1'b1;mem_addr<=address(cx,cy+1'b1);phase<=cy<H-1 ? NEIGH_WAIT : NEIGH_NEXT;end
+       endcase

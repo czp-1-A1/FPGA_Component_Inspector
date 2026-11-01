@@ -1,3 +1,9 @@
+# R57 validated delivery; GitHub publication authorized (2026-11-02, current)
+
+User explicitly requested uploading the completed R57. Base fd794186; exactly three validated production files updated, all 704 frozen inputs preserved. Current entry docs/R57_DELIVERY.md; snapshot releases/r57_dense_dual_20261102. Software 21 actual tests and strict Routed audit PASS; bit SHA796c5216dae90fe10cd74d9f798104a818644bbfd54ca6b2f29fb585b900d020. Board acceptance HUMAN_PENDING. Publish only the dedicated R57 branch/tag/assets; no main merge or hardware operation authorized. Do not rebuild or edit validated HDL for publication bookkeeping. Historical active/no-push entries below are superseded by current user upload instruction.
+
+---
+
 # D3 R56 DELIVERED; final Routed PASS; automation DELETED (2026-11-01, current)
 
 - R56d essential UI completed and DELIVERED. Final Routed Both Slow/Fast setup +0.039ns, hold +0.020ns, both TNS 0; 18337/21216 Slice (86.43%), 100ERAM/31DSP/5PLL. Software exact41 require-production PASS; strict physical audit PASS with 40 active bounds and exact9 removed display-only bounds accounted from49 source bounds. Do not claim49 active matches.

@@ -1,0 +1,52 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 2019.2
+
+# vsim -c -onfinish stop work.tb_r57_closure -do "onerror {quit -code 3}; onbreak {quit -code 2}; run -all; quit -code 0" 
+# Start time: 01:18:05 on Nov 02,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 40, found 25.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'probe_ready'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'probe_record'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'transport_occupied'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'empty_probe'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'objects'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'review_required'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_y1'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_y0'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_x1'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_x0'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_height'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'box_width'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'foreground_count'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'state'.
+# ** Warning: D:\FpgaWork\r28_field_20261102\r57_closure_final\inputs\tb_r57_closure.sv(9): (vopt-2718) [TFMPC] - Missing connection for port 'located'.
+# //  ModelSim SE-64 2019.2 Apr 17 2019
+# //
+# //  Copyright 1991-2019 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_r57_closure(fast)
+# Loading work.frame_shape_search(fast)
+# onerror {quit -code 3}
+#  Warning: onerror command for use within macro
+#  onbreak {quit -code 2}
+#  Warning: onbreak command for use within macro
+#  run -all
+# PASS R57_CLOSURE: all256 foreground/seed graphs vs independent BFS, exact area count and left/right bounds
+# ** Note: $finish    : D:/FpgaWork/r28_field_20261102/r57_closure_final/inputs/tb_r57_closure.sv(32)
+#    Time: 0 ps  Iteration: 0  Instance: /tb_r57_closure
+# Break at D:/FpgaWork/r28_field_20261102/r57_closure_final/inputs/tb_r57_closure.sv line 32
+# Stopped at D:/FpgaWork/r28_field_20261102/r57_closure_final/inputs/tb_r57_closure.sv line 32
+#  quit -code 0
+# End time: 01:18:08 on Nov 02,2026, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 16
