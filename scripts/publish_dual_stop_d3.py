@@ -99,10 +99,25 @@ def main():
     if (w/'SLOT_VALID_STORAGE_PROOF.json').is_file():docs+=['D3_R53_ACTUAL_SLICE_PACKING_AUDIT.md','D3_R54_SLOT_VALID_STORAGE.md']
     if raw_edge:docs+=['D3_RAW_EDGE_R55_FIELD_GUIDE.md','D3_RAW_EDGE_R55_IMPLEMENTATION.md']
     if essential_ui:docs+=['D3_ESSENTIAL_UI_R56_FIELD_GUIDE.md','D3_ESSENTIAL_UI_R56_IMPLEMENTATION.md']
+    if essential_ui:
+        docs=['D3_ESSENTIAL_UI_R56_FIELD_GUIDE.md','D3_ESSENTIAL_UI_R56_IMPLEMENTATION.md',
+              'D3_DISTANCE_BOUNDS.json','D3_ID_RAM_PORT_EXTRACTION.json','D3_OBSERVED_COUNTER_PROOF.json',
+              'D3_RANK_REFERENCE.json','D3_RESIZE_REFERENCE.json','R27B_D3_IMPORT.json',
+              'R27B_ANALYSIS_REPLAY_VERIFICATION.json','D3_RAW_EDGE_R55_IMPLEMENTATION.md',
+              'D3_R56_PLACEMENT_COMPARISON.json','D3_R56_PHYSICAL_VERIFICATION.json',
+              'D3_R56_SOFTWARE_VERIFICATION.json','D3_R56_PRODUCTION_ADOPTION.json']
     for name0 in docs:copy(repo/'docs'/name0,release/'docs'/name0)
-    comparison=load(repo/'docs/D3_RESOURCE_ANALYSIS.json');comparison_index={}
-    for label,row in comparison['reports'].items():
-        f=Path(row['path']);assert sha(f)==row['sha256']
+    comparison_index={}
+    if essential_ui:
+        reference=Path(load(w/'ESSENTIAL_UI_PROOF.json')['reference'])
+        comparisons=[('R55_placed',reference/'runs/phy_1/placed_intermediate.area',load(reference/'PLACEMENT_RESULT.json')['area_sha256']),
+                     ('R56_placed',w/'runs/phy_1/placed_intermediate.area',load(w/'PLACEMENT_RESULT.json')['area_sha256']),
+                     ('R56_routed',w/'runs/phy_1/final.area',sha(w/'runs/phy_1/final.area'))]
+    else:
+        comparison=load(repo/'docs/D3_RESOURCE_ANALYSIS.json')
+        comparisons=[(label,Path(row['path']),row['sha256']) for label,row in comparison['reports'].items()]
+    for label,f,digest in comparisons:
+        assert sha(f)==digest
         target=release/'resource_comparison'/(label+'.area');copy(f,target)
         comparison_index[label]={'file':target.relative_to(release).as_posix(),'sha256':sha(target),'original_path':str(f)}
     write(release/'resource_comparison/REPORTS.json',comparison_index)
@@ -115,11 +130,12 @@ def main():
     if raw_edge:scripts+=['d3_raw_edge_rewrite.py','probe_d3_raw_edge.py','check_d3_raw_edge.py','check_d3_raw_edge_synthesis.py','audit_d3_slice_packing.py']
     if essential_ui:scripts+=['probe_d3_essential_ui.py','check_d3_essential_ui.py','verify_d3_essential_sdc.py','seal_d3_completed_native.py']
     for name0 in scripts:copy(repo/'scripts'/name0,release/'scripts'/name0)
-    rejected=tmp/'d3_dual_stop_build_r12_local_banks_20261030'
-    copy(rejected/'REJECTED_RESOURCE.json',release/'diagnostics/rejected_local_bank_unroll/REJECTED_RESOURCE.json')
-    for stage in ['syn_1','phy_1']:
-        for f in (rejected/'runs'/stage).iterdir():
-            if f.is_file() and f.suffix in ['.log','.area','.timing']:copy(f,release/'diagnostics/rejected_local_bank_unroll'/stage/f.name)
+    if not essential_ui:
+        rejected=tmp/'d3_dual_stop_build_r12_local_banks_20261030'
+        copy(rejected/'REJECTED_RESOURCE.json',release/'diagnostics/rejected_local_bank_unroll/REJECTED_RESOURCE.json')
+        for stage in ['syn_1','phy_1']:
+            for f in (rejected/'runs'/stage).iterdir():
+                if f.is_file() and f.suffix in ['.log','.area','.timing']:copy(f,release/'diagnostics/rejected_local_bank_unroll'/stage/f.name)
     write(release/'VERIFICATION.json',{'status':'PASS_EXACT_INPUT_SIMULATION_AND_STRICT_ROUTED_AUDIT',
         'software':software,'physical':physical,'hardware_acceptance':False})
     write(release/'RELEASE.json',receipt);copy(bit,release/(name+'.bit'))
