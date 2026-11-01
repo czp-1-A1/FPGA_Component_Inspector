@@ -33,7 +33,7 @@ block=f'''<!-- EMPTY_TAIL_ROLE_20261102_BEGIN -->
 - 物理：638源/106依赖冻结D:/CodexWork/erole_build_r1_20261102，delta恰3，原SDC/引脚/seed1。{phy}
 - 桌面交付：{desktop}
 - 下一条具体操作：未完成软件/物理先检查实际进程与proof，不重复成功构建，不边测边改；全部通过才交付/普通推送独立分支并远端下载核验。已交付则由人同一冻结镜像SRAM下载复测原29及拼接7空，期待34号/空11五连停车，记录全上下栏/空号/视频；前段额外复核仍须现场确认，不能声称已修现场所有误判。
-- 进程/设备：完成情况以当前proof为准，未完成时仅本聊天ModelSim原生链/TD构建审计；软件均PASS且physical存在则本轮验证已退出。既有TD GUI不动；无板卡/JTAG/Flash/用户GUI操作。定时继续沿用既有每日05:45，其他聊天/r12不动。
+- 进程/设备：完成情况以当前proof为准，未完成时仅本聊天ModelSim原生链/TD构建审计；软件均PASS且physical存在则本轮验证已退出。既有TD GUI不动；无板卡/JTAG/Flash/用户GUI操作。本轮定时继续已结束，等待人反馈实板；其他聊天/r12不动。
 - 提交/推送：{publ} 不合并主分支。远端源码/bit/ZIP及全部载荷独立下载核验才称同步，发布最终HEAD以桌面GitHub回执为准。
 <!-- EMPTY_TAIL_ROLE_20261102_END -->'''
 for p in [repo/'AGENTS.md',Path('C:/Users/Li47/Desktop/aa/AGENTS.md')]:

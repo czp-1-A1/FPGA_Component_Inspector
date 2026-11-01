@@ -1,8 +1,8 @@
 <!-- EMPTY_TAIL_ROLE_20261102_BEGIN -->
 ## 29穴后接7全空穴：当前帧孔角色修复（2026-11-02）
 
-- 目标/断点：已同步源码、bit、完整包；远端独立下载逐SHA核验，待人实板。用户同规格同中心线、原29真值正常22/空6/复核1，追加7全空；全部外部经过目标36/22/13/1；正确第5追加E停在34号/空11，余2未经过不能虚计。现场实板尚未验收。
-- 分支/基线：D:/CodexWork/erole_fix_20261102，codex/rl7-empty-aperture-role-20261102，HEAD 7cab32a8bbad271db7bc4b4080a087aebbfba70f；基线1b8a097/源22b1531d/旧bit48a30fb2，旧交付/原V3和其他分支不动。分析D:/CodexWork/empty_tail_role_20261102；单实现端、无子代理。
+- 目标/断点：已交付桌面并上传独立分支，638源与1562载荷远端下载核验通过，定时继续已结束，待人同镜像实板。用户同规格同中心线、原29真值正常22/空6/复核1，追加7全空；全部外部经过目标36/22/13/1；正确第5追加E停在34号/空11，余2未经过不能虚计。现场实板尚未验收。
+- 分支/基线：D:/CodexWork/erole_fix_20261102，codex/rl7-empty-aperture-role-20261102，HEAD 36c9bb8dba9a51e51545539154b02f89fe77fb74；基线1b8a097/源22b1531d/旧bit48a30fb2，旧交付/原V3和其他分支不动。分析D:/CodexWork/empty_tail_role_20261102；单实现端、无子代理。
 - 改动：生产仅frame_shape_search/isp_top/top三源，POCKET_ROW_ROLES顶层1/内部默认0；当前源帧上排定位孔或真实有件辅助下排小空穴，排除上排孔、保留原局部亮暗/形状/Sobel证据；不预测、不复用旧行、不把未知/复核当E。635/638其余源与原停车器/独立5E账本/四键/OSD字体/相机视频/SDC引脚字节不变。新增tests/pocket_row_roles及5个工作脚本、说明和验收记录。
 - 现场取证：用户视频842fdf839cb7732fbce1f734d295812a.mp4 SHA1c86564aec54b2eca5c6b6d42b699d98e7db4bb5219c757ee173c0645739a445，15.77s/手机30FPS，非传感器像素。最终33/21/10/2，尾段新增030..033仅4E，额外复核在尾段前；所选框在下排穴内亮点，不能称视频已证明上排误计E。field_facts.json与完整原视频/抽帧保留。
 - 旧失败/新证据：旧42+40静态完整RGB复现上排弱8px灰95误E与6px亮孔双奇相位无P漏E；新82组合上排误E/P 2→0、旧正例全部保留，40空孔扫描仍12组未知、42角色扫描另6组行界/孔形边界未知。相同171完整1280×720合成29+7运动，旧RTL仅31/23P/8E/1R且不报警，新完整36/23P/13E/1R且34号报警feed0；P含复核，正常22。输入报警后由外部推进，是完整分类观察器，独立67帧7小空穴电机反馈闭环在5E停车并保持；13帧当前证据/取消/复位/缺孔/错行/暗穴负例PASS。245655对36形状独立像素参考PASS；合成前29穴排列不是用户逐穴真值。旧失败/草稿未运行r0r1/编码工具失败分别保留。
@@ -11,7 +11,7 @@
 - 物理：638源/106依赖冻结D:/CodexWork/erole_build_r1_20261102，delta恰3，原SDC/引脚/seed1。Routed seed1 Slice18851/21216、ERAM98/108、DSP30/40、PLL5/6；setup+0.035ns/hold+0.020ns/双TNS0；50maxdelay匹配忽略0、20FIFO Gray/64时间Gray/控制邮箱按键/实际V2 C12完整审计PASS，资源>80%复核在validation/pocket_row_roles/resource_review.json。
 - 桌面交付：新交付C:\Users\Li47\Desktop\RL7_EmptyTailRowRoles_v2_20261102.bit，SHA256 8821707ba5a14105582829856b39526332cda69321c952b21f9d2a53a8826ea6；完整包C:\Users\Li47\Desktop\RL7_EmptyTailRowRoles_v2_20261102_full.zip，SHA256 ef37fe6ad582d5f6871d54eb778451a31fac7c69b226e7b7c9dfb5636a908d09，说明/散列/回执同前缀，1562载荷/638生产输入全部ZIP恢复与桌面逐SHA及portable准备PASS；旧v1 SHA48a30fb2原样保留。
 - 下一条具体操作：未完成软件/物理先检查实际进程与proof，不重复成功构建，不边测边改；全部通过才交付/普通推送独立分支并远端下载核验。已交付则由人同一冻结镜像SRAM下载复测原29及拼接7空，期待34号/空11五连停车，记录全上下栏/空号/视频；前段额外复核仍须现场确认，不能声称已修现场所有误判。
-- 进程/设备：完成情况以当前proof为准，未完成时仅本聊天ModelSim原生链/TD构建审计；软件均PASS且physical存在则本轮验证已退出。既有TD GUI不动；无板卡/JTAG/Flash/用户GUI操作。定时继续沿用既有每日05:45，其他聊天/r12不动。
+- 进程/设备：完成情况以当前proof为准，未完成时仅本聊天ModelSim原生链/TD构建审计；软件均PASS且physical存在则本轮验证已退出。既有TD GUI不动；无板卡/JTAG/Flash/用户GUI操作。本轮定时继续已结束，等待人反馈实板；其他聊天/r12不动。
 - 提交/推送：{"stage": "COMPLETE_REMOTE_SOURCE_BIT_ZIP_INDEPENDENTLY_VERIFIED", "source_commit": "7cab32a8bbad271db7bc4b4080a087aebbfba70f", "committed": true, "pushed": true, "remote_verified": true} 不合并主分支。远端源码/bit/ZIP及全部载荷独立下载核验才称同步，发布最终HEAD以桌面GitHub回执为准。
 <!-- EMPTY_TAIL_ROLE_20261102_END -->
 
