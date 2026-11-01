@@ -15,7 +15,7 @@ if(ESSENTIAL_UI)begin
  memory[9]=10'h033;memory[1033]=10'h033;
  memory[11]=10'h052;memory[1035]=10'h052;
  memory[12]=10'h035;memory[1036]=10'h035;
- memory[13]=10'h038;memory[1037]=10'h038;
+ memory[13]=10'h039;memory[1037]=10'h039;
  memory[23]=10'h046;memory[1047]=10'h046;
  memory[24]=10'h050;memory[1048]=10'h050;
  memory[25]=10'h053;memory[1049]=10'h053;
