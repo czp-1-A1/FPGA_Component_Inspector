@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "inputs": {
+    "user_source/hdl_source/contest_latency_clock.v": "b4aeb9aacbb57ccf9aae474a8a4bd078fdfba49a08919d47d85cb15abcdbd229",
+    "user_source/hdl_source/compact_inspector_osd.v": "afc59f376671f47332bb867a910a83447fad36a66da2537cca9d5ee2f8c63174",
+    "user_source/hdl_source/rl7_shared_font_rom.v": "4118d5ed2820af58224eba43cc008c8058a25da7cc3500479bfdec71bfc8c220",
+    "user_source/hdl_source/compact_ascii_rom.v": "101c4b7fd9ba7781057d5919eec743403566bfa2f37ef95049fc0efdbe6fbb99",
+    "user_source/hdl_source/compact_cjk_rom.v": "1f9130ad604aec03e716eca7d2581c767eb22c31c241d089f23cad3424cfe4fd",
+    "user_source/hdl_source/compact_template_rom.v": "f64f1138b64aa502beefe690385fdb368c4072acd7555fd27122c3892d086ee5",
+    "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1"
+  },
+  "fixtures": {
+    "compact_inspector_osd_label_only.v": "a77095fd8674bf1d5da602923589fdab8474fcba4e90a376c41655e147187878",
+    "compact_inspector_osd_v1_ref.v": "422a598013baf1e06009392cac696f2ed2d5a275a14e4e74e47a6fa0301ae8db",
+    "tb_uiopt_font.sv": "86976086a80d8f73f7ad8c81469dd5bdea5da1be56c464ba685db9cd21b45afe",
+    "tb_uiopt_pixels.sv": "833f11a145c55cf607da05232a5511a87ca1c961096f05327477ae26ec993638"
+  },
+  "tests": [
+    {
+      "name": "tb_uiopt_font",
+      "log_sha256": "93dc7be4c6f370aa9e2f4bf0def0129eb1b4c7aed7a280669485e501b32d766d"
+    }
+  ],
+  "board_operated": false
+}

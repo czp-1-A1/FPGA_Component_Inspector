@@ -1,0 +1,1 @@
+RL7 AlarmRoles V3 candidate based on UIOpt V2. Read FIELD_GUIDE.md. Independent five-empty alarm and filtered noncomponent labels; unchanged classifier thresholds/counter/parking/keys/latency/fonts.35 fresh checks including all-empty RGB; strict final routed audit. Human board acceptance pending. Previous bits retained.

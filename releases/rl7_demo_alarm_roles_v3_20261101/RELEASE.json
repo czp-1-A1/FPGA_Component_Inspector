@@ -1,0 +1,35 @@
+{
+  "version": "R22_RL7_Demo_AlarmRoles_V3_20261101",
+  "branch": "codex/rl7-v3-alarm-roles",
+  "source_commit": "3ab59ff7ccc3f0163bfaa3aca345880a321e8769",
+  "baseline": "RL7 Demo UIOpt V2 83674658 (production61829cd8)",
+  "bit_sha256": "4c744f3335e0a385032a693477ff9c4b877481f61318ccab7b314c35e8b236e4",
+  "bit_bytes": 1789539,
+  "resources": {
+    "slice": 19131,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 90.17251,
+  "timing_ns": {
+    "SWNS": 0.014,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "baseline_uiopt_v2_slice": 19036,
+  "slice_delta_vs_uiopt_v2": 95,
+  "eram_delta_vs_uiopt_v2": 0,
+  "td_version": "6.2.168116",
+  "seed": 1,
+  "source_files": 638,
+  "hardware_dependencies": 106,
+  "selected_software_checks": 35,
+  "verification_reuse": "35 fresh exact-source checks; all-empty-head RGB and alarm/fault collisions added; native RAW rerun not counted, unchanged input/DDR/time logic verified by SHA and focused latency/pixel/camera checks",
+  "buzzer": "C12/O_buzzer_n/LVCMOS33/PULLUP/active-low;100MHz;2kHz;200msON300msOFF;fifth-EMPTY latch",
+  "measurement": "FPGA decoded RAW10 SOF -> actual first valid pixel after OSD at HDMI transmitter; excludes exposure-before-SOF and panel delay",
+  "ui": "DEMO filters kind0 and off-pocket-row unknown kind1 labels; confirmed P/review/E preserved; strict independent global five-empty guard survives local faults; original thresholds/counter/parking/latency/keys unchanged",
+  "board_acceptance": "PENDING_HUMAN_LIVE_IMAGE_BUZZER_LATENCY_AND_STOP_RETEST",
+  "pushed": false
+}

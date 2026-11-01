@@ -1,0 +1,29 @@
+{
+  "status": "PASS_35_SOURCE_CHECKS_AND_STRICT_ROUTED_FOR_HUMAN_RETEST",
+  "source_checkpoint": "3dfa6cd5",
+  "baseline": "UIOpt V2 83674658",
+  "source_files": 638,
+  "hardware_dependencies": 106,
+  "software_checks": 35,
+  "resources": {
+    "slice": 19131,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "timing_ns": {
+    "SWNS": 0.014,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "bit_sha256": "4c744f3335e0a385032a693477ff9c4b877481f61318ccab7b314c35e8b236e4",
+  "changed_source_files": 2,
+  "other_v2_sources_sha_unchanged": 636,
+  "board_operated": false,
+  "pushed": false,
+  "native_raw_full_replay_counted": false,
+  "hardware_acceptance": "PENDING_HUMAN_RETEST",
+  "field_fault_code_known": false,
+  "classification_thresholds_and_cold_start_fixed": false
+}

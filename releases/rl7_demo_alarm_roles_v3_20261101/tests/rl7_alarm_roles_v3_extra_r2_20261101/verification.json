@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "inputs": {
+    "user_source/hdl_source/contest_latency_clock.v": "b4aeb9aacbb57ccf9aae474a8a4bd078fdfba49a08919d47d85cb15abcdbd229",
+    "user_source/hdl_source/compact_inspector_osd.v": "afc59f376671f47332bb867a910a83447fad36a66da2537cca9d5ee2f8c63174",
+    "user_source/hdl_source/compact_ascii_rom.v": "101c4b7fd9ba7781057d5919eec743403566bfa2f37ef95049fc0efdbe6fbb99",
+    "user_source/hdl_source/compact_cjk_rom.v": "1f9130ad604aec03e716eca7d2581c767eb22c31c241d089f23cad3424cfe4fd",
+    "user_source/hdl_source/compact_template_rom.v": "f64f1138b64aa502beefe690385fdb368c4072acd7555fd27122c3892d086ee5",
+    "user_source/hdl_source/osd_logo_rom.v": "fe3dd47d486b9c39b155d8a7c583870584a8e0e14de18e3aba73d2082acaa4f1",
+    "user_source/hdl_source/rl7_shared_font_rom.v": "4118d5ed2820af58224eba43cc008c8058a25da7cc3500479bfdec71bfc8c220"
+  },
+  "fixtures": {
+    "tb_demo_osd_missing.sv": "19e3c5e0111dfadb8113a034f4aba310a726c3b6863ecc36761c481a8bb8ad80",
+    "tb_demo_buzzer_real.sv": "1a78832421752bce72c7a237fc111fe29867b2702c34267cb41a6ec5fdf174f3"
+  },
+  "tests": [
+    {
+      "name": "tb_demo_osd_missing",
+      "log_sha256": "8d9d0d2656269e4349ec4d54df9335381ad95d366c763c68297a50ed94c6afba"
+    },
+    {
+      "name": "tb_demo_buzzer_real",
+      "log_sha256": "ee3eb27aa83496c3f547eeccf2850081c78bd9241b70f174768f99931a24caa4"
+    }
+  ],
+  "board_operated": false
+}

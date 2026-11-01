@@ -1,0 +1,70 @@
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+Start time: 19:17:16 on Nov 01,2026
+vlog -sv -work work E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\extracted_production_motor.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_one.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_two.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_four.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_eight_alarm.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_variable.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_fast.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_missing.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_return.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_wrong_kind.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_transport.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_real_second.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_position_control.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_osd.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_rgb.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_five_alarm.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_alarm_control.sv E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_rgb_five_alarm.sv 
+-- Compiling module extracted_production_motor
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_one
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_two.sv(1)
+** at inputs/tb_v7_transport.sv(2): (vlog-2275) 'tb_v7_transport' already exists and will be overwritten.
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_two
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_four.sv(1)
+** at inputs/tb_v7_transport.sv(2): (vlog-2275) 'tb_v7_transport' already exists and will be overwritten.
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_four
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_eight_alarm.sv(1)
+** at inputs/tb_v7_transport.sv(2): (vlog-2275) 'tb_v7_transport' already exists and will be overwritten.
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_eight_alarm
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_variable.sv(1)
+** at inputs/tb_v7_transport.sv(2): (vlog-2275) 'tb_v7_transport' already exists and will be overwritten.
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_variable
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_fast.sv(1)
+** at inputs/tb_v7_transport.sv(2): (vlog-2275) 'tb_v7_transport' already exists and will be overwritten.
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_fast
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_missing.sv(1)
+** at inputs/tb_v7_transport.sv(2): (vlog-2275) 'tb_v7_transport' already exists and will be overwritten.
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_missing
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_return.sv(1)
+** at inputs/tb_v7_transport.sv(2): (vlog-2275) 'tb_v7_transport' already exists and will be overwritten.
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_return
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_wrong_kind.sv(1)
+** at inputs/tb_v7_transport.sv(2): (vlog-2275) 'tb_v7_transport' already exists and will be overwritten.
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_wrong_kind
+** Warning: E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_transport.sv(2): (vlog-2275) 'tb_v7_transport' already exists and will be overwritten.
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_real_second
+-- Compiling module tb_v7_position_control
+-- Compiling module tb_v7_osd
+-- Compiling module tb_v7_rgb
+** Warning: ** while parsing file included at E:\2026FPGA\.codex_tmp\rl7_alarm_roles_v3_regression_r2_20261101\inputs\tb_v7_five_alarm.sv(1)
+** at inputs/tb_v7_transport.sv(2): (vlog-2275) 'tb_v7_transport' already exists and will be overwritten.
+-- Compiling module tb_v7_transport
+-- Compiling module tb_v7_five_alarm
+-- Compiling module tb_v7_alarm_control
+-- Compiling module tb_v7_rgb_five_alarm
+
+Top level modules:
+	tb_v7_one
+	tb_v7_two
+	tb_v7_four
+	tb_v7_eight_alarm
+	tb_v7_variable
+	tb_v7_fast
+	tb_v7_missing
+	tb_v7_return
+	tb_v7_wrong_kind
+	tb_v7_real_second
+	tb_v7_position_control
+	tb_v7_osd
+	tb_v7_rgb
+	tb_v7_five_alarm
+	tb_v7_alarm_control
+	tb_v7_rgb_five_alarm
+End time: 19:17:16 on Nov 01,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 10
