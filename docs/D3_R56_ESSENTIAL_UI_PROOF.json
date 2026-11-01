@@ -1,0 +1,75 @@
+{
+  "status": "PASS_ESSENTIAL_UI_SOURCE_AND_TARGETED_SIMULATIONS_NOT_PHYSICAL_ACCEPTANCE",
+  "reference": "D:\\CodexWork\\D3_RawEdge_R55_4h_20261031",
+  "reference_manifest_sha256": "7ee656e6c330be7c3a0fe9fac7944f90cfd770e311ab2f7fa29767ea4f70b804",
+  "source_manifest_sha256": "4e75a67f4adb2c4524a111765e9046c78f3b6d254fc6873af30ef22132c686a3",
+  "changed_inputs": [
+    "user_source/hdl_source/classified_dual_page_osd.v",
+    "user_source/hdl_source/compact_inspector_osd.v",
+    "user_source/hdl_source/compact_template_rom.v",
+    "user_source/hdl_source/design_top_wrapper.v"
+  ],
+  "unchanged_inputs": 700,
+  "rewrite_helper_sha256": "28a16eb138c544b58a100c5e166e94d01b53d7bedb5fa548229fafb6f99d2620",
+  "tests": [
+    {
+      "name": "tb_d3_essential_ui",
+      "directory": "D:\\CodexWork\\D3_EssentialUI_Targeted_R56c_20261101",
+      "log_sha256": "19fc12e2deb074983268b69051708e0e851c9674b37c9db8a23ec5bf2fda63a6"
+    },
+    {
+      "name": "tb_d3_essential_overlap",
+      "directory": "D:\\CodexWork\\D3_EssentialUI_Targeted_R56c_20261101",
+      "log_sha256": "1d9829990247ed6e7b5148a1ed66b0ea3e75716411cf6dd840436e3f01145087"
+    },
+    {
+      "name": "tb_d3_essential_cdc",
+      "directory": "D:\\CodexWork\\D3_EssentialUI_CDC_R56d_20261101",
+      "log_sha256": "237928db0d9f98ad89579927fe75ca6d282b5b62672d7cb22176554d958c2259"
+    },
+    {
+      "name": "tb_d3_osd",
+      "directory": "D:\\CodexWork\\D3_EssentialUI_Legacy_R56_20261101",
+      "log_sha256": "23eb45ba61b493e028be26a455e303a990f2b51327d81c4381d23ff7269fd1e6"
+    },
+    {
+      "name": "tb_d3_osd_equivalence",
+      "directory": "D:\\CodexWork\\D3_EssentialUI_Legacy_R56_20261101",
+      "log_sha256": "a0ef1cae5eae4ee935e10858104d11afe1735421a44ae6610411eaa0386fa7cf"
+    },
+    {
+      "name": "tb_d3_osd_overlap",
+      "directory": "D:\\CodexWork\\D3_EssentialUI_Legacy_R56_20261101",
+      "log_sha256": "1b0cc072a64713e852188491da6483e3aaaeb6199eda34f8fb176ebca147e827"
+    },
+    {
+      "name": "tb_d3_shared_font",
+      "directory": "D:\\CodexWork\\D3_EssentialUI_Font_R56_20261101",
+      "log_sha256": "d6e4304688dc52afcd14813f477b4b57ec8e432efa7736f2a7e1498b3353c6a9"
+    },
+    {
+      "name": "tb_d3_essential_fields",
+      "directory": "D:\\CodexWork\\D3_EssentialUI_Fields_R56_20261101",
+      "log_sha256": "b36a7130c407bafacd78218e115b009808a2a6a0a77a61d7bc6fb16c267079a5"
+    }
+  ],
+  "proof_receipts": {
+    "D:\\CodexWork\\D3_EssentialUI_Targeted_R56c_20261101": "bf5eaf3ea6fe8f903544ff459419a499fef47378c371ded6c1cc8802ec018525",
+    "D:\\CodexWork\\D3_EssentialUI_CDC_R56d_20261101": "14754af9771af4f410d4af137649e58ed6bfa291df62a20910223486f372168e",
+    "D:\\CodexWork\\D3_EssentialUI_Legacy_R56_20261101": "69595de143303d539aeea5b806c52b03c944e17fc2c66a0f97cfc4a7f9d28546",
+    "D:\\CodexWork\\D3_EssentialUI_Font_R56_20261101": "85b9e75042e68be1ee8f85117584ea1693681b289de3ce37f4413fbf3c637615",
+    "D:\\CodexWork\\D3_EssentialUI_Fields_R56_20261101": "b0bb979aa41095b957f6703c452f99e74e6d1f6730042cee3098cc1d0af3ad0f"
+  },
+  "selected_checks": 8,
+  "fonts_unchanged": true,
+  "original_R27B_counter_unchanged": true,
+  "actual_top_display_cones_extracted": true,
+  "core_motor_and_metadata_views_unchanged": true,
+  "retained_cdc_fields_cycle_exact": true,
+  "pixel_pipeline_clocks": 3,
+  "authorized_change": "Essential dual counts/IDs/state/keys/boxes and RAW/EDGE. Debug pages/diagnostic text and display-only mailboxes removed; frame-cache eligibility/N-R. Legacy parameter0 remains pixel-equivalent.",
+  "scope": "Eight current-source targeted checks; not a full native, route, timing or board verdict.",
+  "production_modified": false,
+  "hardware_operated": false,
+  "deliverable_bit": false
+}

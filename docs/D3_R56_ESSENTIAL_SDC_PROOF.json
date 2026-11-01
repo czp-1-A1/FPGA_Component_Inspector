@@ -1,0 +1,30 @@
+{
+  "status": "PASS_SOURCE_SDC_UNCHANGED_ONLY_NINE_REMOVED_UI_BOUNDS_INVALID_NOT_ROUTED_ACCEPTANCE",
+  "sdc_sha256": "91894d2b7829dabe36d32c8f433fdf8e0eef9a8a13c4619e72c584dcf59e1ea4",
+  "coverage_sha256": "f587a538e4facf928be79cd725139d5d39a0a06aadb7535645816751ec27930c",
+  "coverage_file": "D:\\CodexWork\\D3_EssentialUI_R56d_20261101\\runs\\phy_1\\placement_constraint_coverage.txt",
+  "explicit_declared": 47,
+  "compiled_out_display_only": 9,
+  "retained_explicit": 38,
+  "inherited_vendor_expected": 2,
+  "retained_total_expected": 40,
+  "original_total_accounted": 49,
+  "removed_mailboxes": [
+    "u_overflow_display",
+    "u_publish_display",
+    "u_wb_process"
+  ],
+  "compiled_out_commands": [
+    "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/payload*}] -to [get_regs {u_overflow_display/D_data*}]",
+    "set_max_delay -datapath_only 19.0 -from [get_regs {u_overflow_display/req}] -to [get_regs {u_overflow_display/req_sync[0]}]",
+    "set_max_delay -datapath_only 8.0 -from [get_regs {u_overflow_display/ack}] -to [get_regs {u_overflow_display/ack_sync[0]}]",
+    "set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/payload*}] -to [get_regs {u_publish_display/D_data*}]",
+    "set_max_delay -datapath_only 19.0 -from [get_regs {u_publish_display/req}] -to [get_regs {u_publish_display/req_sync[0]}]",
+    "set_max_delay -datapath_only 14.0 -from [get_regs {u_publish_display/ack}] -to [get_regs {u_publish_display/ack_sync[0]}]",
+    "set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/payload*}] -to [get_regs {u_wb_process/D_data*}]",
+    "set_max_delay -datapath_only 9.0 -from [get_regs {u_wb_process/req}] -to [get_regs {u_wb_process/req_sync[0]}]",
+    "set_max_delay -datapath_only 8.0 -from [get_regs {u_wb_process/ack}] -to [get_regs {u_wb_process/ack_sync[0]}]"
+  ],
+  "remaining_constraints_relaxed": false,
+  "routed_acceptance": false
+}

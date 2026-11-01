@@ -22,13 +22,16 @@ def verify(work,require_production=False,suite_map=None):
     reference=read(TMP/'d3_dual_stop_build_r11_resource_opt_20261030/frozen_inputs.json')
     assert set(reference)==set(source)
     raw_edge = (work/'RAW_EDGE_DISPLAY_PROOF.json').is_file()
+    essential_ui = (work/'ESSENTIAL_UI_PROOF.json').is_file()
     assert {n for n,d in source.items() if reference[n]!=d}=={
         'user_source/hdl_source/'+n+'.v' for n in [
         'frame_shape_search','compact_inspector_osd','rgb_resize_2_3',
         'roi_sobel_view','observed_classified_pocket_counter']} | ({
         'user_source/hdl_source/design_top_wrapper.v',
         'user_source/hdl_source/observation_controls.v',
-        'user_source/hdl_source/isp/isp_top.v'} if raw_edge else set())
+        'user_source/hdl_source/isp/isp_top.v'} if raw_edge else set()) | ({
+        'user_source/hdl_source/classified_dual_page_osd.v',
+        'user_source/hdl_source/compact_template_rom.v'} if essential_ui else set())
     assert source['user_source/hdl_source/classified_pocket_counter.v']=='67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c'
     top=(project/'user_source/hdl_source/design_top_wrapper.v').read_text()
     fixture=ROOT/'tests/dual_stop_d3'
@@ -58,6 +61,8 @@ def verify(work,require_production=False,suite_map=None):
         for rel,d in vendor.items():assert sha(folder/'inputs/vendor'/rel)==d,(folder,rel)
         for test in p['tests']:
             passed(folder/(test['name']+'.log'),test['sha256'])
+            if essential_ui and any(t['name']==test['name'] for t in selected):
+                continue # Both receipts/inputs/logs above verified; count unique tests once.
             selected.append({'name':test['name'],'folder':str(folder),'log_sha256':test['sha256'],'mode':'EXACT_COMPILED_SOURCE_AND_FIXTURE_MATCH'})
         evidence[str(folder/'verification.json')]=sha(folder/'verification.json')
     native_groups=[TMP/'d3_lossless_native_r8_20261030',TMP/'d3_lossless_empty_native_r8_20261030']
@@ -112,6 +117,25 @@ def verify(work,require_production=False,suite_map=None):
         evidence[str(work/'ID_RAM_SYNTHESIS_PROOF.json')]=sha(work/'ID_RAM_SYNTHESIS_PROOF.json')
     slot_valid = (work/'SLOT_VALID_STORAGE_PROOF.json').is_file()
     assert not (raw_edge and slot_valid), 'Do not combine unreviewed display/storage trials'
+    raw_project=project;raw_source=source;raw_work=work
+    if essential_ui:
+        from probe_d3_essential_ui import rewrite as ui_rewrite
+        ui=read(work/'ESSENTIAL_UI_PROOF.json')
+        assert raw_edge and not slot_valid and suite_map is not None and suite_map['essential_ui']
+        assert ui['status']=='PASS_ESSENTIAL_UI_SOURCE_AND_TARGETED_SIMULATIONS_NOT_PHYSICAL_ACCEPTANCE'
+        assert ui['source_manifest_sha256']==sha(work/'frozen_inputs.json') and ui['selected_checks']==8
+        assert ui['rewrite_helper_sha256']==sha(ROOT/'scripts/probe_d3_essential_ui.py')
+        raw_work=Path(ui['reference']);raw_project=raw_work/'project';raw_source=read(raw_work/'frozen_inputs.json')
+        assert ui['reference_manifest_sha256']==sha(raw_work/'frozen_inputs.json')
+        names=['design_top_wrapper.v','classified_dual_page_osd.v','compact_template_rom.v','compact_inspector_osd.v']
+        assert set(source)==set(raw_source) and {n for n in source if source[n]!=raw_source[n]}=={'user_source/hdl_source/'+n for n in names}
+        for n in names:
+            rel='user_source/hdl_source/'+n
+            assert sha(raw_project/rel)==raw_source[rel]
+            assert ui_rewrite(n,(raw_project/rel).read_text())==(project/rel).read_text()
+        assert 'ENABLE_AUTO_RELAY=1,ESSENTIAL_UI=1,RAW_EDGE_ONLY=1,' in top
+        for path,digest in ui['proof_receipts'].items():assert sha(Path(path)/'verification.json')==digest
+        evidence[str(work/'ESSENTIAL_UI_PROOF.json')]=sha(work/'ESSENTIAL_UI_PROOF.json')
     if raw_edge:
         from d3_raw_edge_rewrite import FILES, rewrite
         display=read(work/'RAW_EDGE_DISPLAY_PROOF.json')
@@ -119,15 +143,15 @@ def verify(work,require_production=False,suite_map=None):
         expected={'user_source/hdl_source/'+name for name in FILES}
         assert display['status']=='PASS_RAW_EDGE_DISPLAY_SOURCE_AND_TARGETED_CHECKS'
         assert display['baseline_manifest_sha256']==sha(baseline/'frozen_inputs.json')
-        assert display['source_manifest_sha256']==sha(work/'frozen_inputs.json') and display['unchanged_inputs']==700
-        assert set(old_source)==set(source) and {n for n in source if source[n]!=old_source[n]}==expected
+        assert display['source_manifest_sha256']==sha(raw_work/'frozen_inputs.json') and display['unchanged_inputs']==700
+        assert set(old_source)==set(raw_source) and {n for n in raw_source if raw_source[n]!=old_source[n]}==expected
         assert display['rewrite_helper_sha256']==sha(ROOT/'scripts/d3_raw_edge_rewrite.py')
         for name in FILES:
             rel='user_source/hdl_source/'+name;original=baseline/'project'/rel
             assert sha(original)==old_source[rel]
-            assert rewrite(name,(project/rel).read_text(),inverse=True)==original.read_text()
+            assert rewrite(name,(raw_project/rel).read_text(),inverse=True)==original.read_text()
             assert hashlib.sha256(original.read_text().encode()).hexdigest()==display['restored_normalized_sha256'][rel]
-        assert 'ENABLE_AUTO_RELAY=1,RAW_EDGE_ONLY=1,' in top
+        assert 'ENABLE_AUTO_RELAY=1,RAW_EDGE_ONLY=1,' in (raw_project/'user_source/hdl_source/design_top_wrapper.v').read_text()
         assert 'observation_controls #(.RAW_EDGE_ONLY(RAW_EDGE_ONLY))' in top
         assert 'isp_top #(.RAW_EDGE_ONLY(RAW_EDGE_ONLY),' in top
         assert display['oracle_sha256']==sha(fixture/'r50_reference_roi_sobel_view.sv')
@@ -175,11 +199,12 @@ def verify(work,require_production=False,suite_map=None):
     if raw_edge:
         required-={'tb_d3_native','tb_d3_empty_native'}
         required|={'tb_d3_raw_edge_native','tb_d3_raw_edge_empty_native','tb_d3_raw_edge_controls','tb_d3_pure_edge','tb_d3_pure_edge_wide'}
-    expected_count=(33 if suite_map is not None else 32)+int(check_prepare)+2*int(slot_valid)+3*int(raw_edge)
+    if essential_ui:required|={'tb_d3_essential_ui','tb_d3_essential_overlap','tb_d3_essential_cdc','tb_d3_essential_fields'}
+    expected_count=(33 if suite_map is not None else 32)+int(check_prepare)+2*int(slot_valid)+3*int(raw_edge)+4*int(essential_ui)
     assert len(selected)==len(required)==expected_count and {t['name'] for t in selected}==required
     if slot_valid:assert suite_map is not None and check_prepare and observer['check_prepare_variant']=='minimal'
     if raw_edge:assert suite_map is not None and check_prepare and observer['check_prepare_variant']=='minimal'
-    result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','profile':'raw-monochrome-edge-v1' if raw_edge else 'lossless-v7-slot-valid' if slot_valid else 'lossless-v6-check-prepare' if check_prepare else 'lossless-v5' if suite_map is not None else 'lossless-v4','selected':selected,
+    result={'status':'PASS_D3_EXACT_INPUT_SOFTWARE_CHECKS_ONLY','profile':'essential-ui-v1' if essential_ui else 'raw-monochrome-edge-v1' if raw_edge else 'lossless-v7-slot-valid' if slot_valid else 'lossless-v6-check-prepare' if check_prepare else 'lossless-v5' if suite_map is not None else 'lossless-v4','selected':selected,
         'selected_checks':expected_count,'expected_checks':expected_count,'inputs_manifest_sha256':sha(work/'frozen_inputs.json'),
         'evidence':evidence,'production_source_match_required':require_production,
         'hardware_acceptance':False,'resource_or_timing_acceptance':False}

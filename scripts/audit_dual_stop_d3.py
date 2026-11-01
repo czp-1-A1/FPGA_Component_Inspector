@@ -5,6 +5,13 @@ import argparse,hashlib,json,os,re,subprocess,sys
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--adjacent-v6',action='store_true');a.add_argument('--five-empty-v7',action='store_true');a.add_argument('--second-lane-d2',action='store_true');a.add_argument('--dual-stop-d3',action='store_true',required=True);args=a.parse_args()
 work=args.work.resolve();project=work/'project';tools=project/'tools';env=dict(os.environ)
+essential_ui=(work/'ESSENTIAL_UI_PROOF.json').is_file()
+if essential_ui:
+ from verify_d3_essential_sdc import verify_coverage,removed_ui_bounds
+ ui_proof=json.loads((work/'ESSENTIAL_UI_PROOF.json').read_text())
+ assert ui_proof['status']=='PASS_ESSENTIAL_UI_SOURCE_AND_TARGETED_SIMULATIONS_NOT_PHYSICAL_ACCEPTANCE' and ui_proof['selected_checks']==8
+ assert ui_proof['source_manifest_sha256']==sha(work/'frozen_inputs.json')
+ assert sha(project/'td_project/camera_to_dsi_display.sdc')==sha(Path(ui_proof['reference'])/'project/td_project/camera_to_dsi_display.sdc')
 env['TEMP']=env['TMP']=str(work/'temp')
 audit_names=['classified_audit_routed.tcl','classified_audit_gray_packing.tcl']
 for name in audit_names:
@@ -55,6 +62,16 @@ updated=original.replace('len(expected) == 44 and len(set(expected)) == 44','len
 updated=updated.replace('len(observed) == 46','len(observed) == 49')
 updated=updated.replace("for box in ['u_count_command', 'u_count_live_display']:","for box in ['u_count_command', 'u_count_live_display', 'u_relay_display']:")
 updated=updated.replace("'new_mailbox_groups': 6","'new_mailbox_groups': 9")
+if essential_ui:
+ anchor="    assert len(expected) == 47 and len(set(expected)) == 47, 'Unexpected current SDC contract'"
+ assert updated.count(anchor)==1
+ updated=updated.replace(anchor,anchor+"\n    from verify_d3_essential_sdc import removed_ui_bounds, verify_coverage\n    declared_explicit=list(expected)\n    removed_ui=removed_ui_bounds(sdc)\n    expected=[s for s in expected if s not in removed_ui]\n    assert len(expected)==38",1)
+ anchor='    missing = set(expected) - set(observed)'
+ assert updated.count(anchor)==1
+ updated=updated.replace(anchor,"    removed_observed={s:observed.pop(s) for s in removed_ui if s in observed}\n    assert all(v[0]==0 for v in removed_observed.values()), 'Removed UI constraint still has physical paths'\n"+anchor,1)
+ updated=updated.replace('len(observed) == 49','len(observed) == 40')
+ updated=updated.replace("['no clock', 'clock definition', 'invalid constraint', 'combinational loops',","['no clock', 'clock definition', 'combinational loops',",1)
+ updated=updated.replace("    coverage = text(audit / 'constraint_coverage.txt')","    coverage = text(audit / 'constraint_coverage.txt')\n    verify_coverage(coverage,sdc)",1)
 target=work/'verify_relay_physical.py';target.write_text(updated)
 sys.path.insert(0,str(tools));namespace={'__name__':'relay_audit_verifier','__file__':str(target)}
 exec(compile(updated,str(target),'exec'),namespace)
@@ -100,13 +117,16 @@ if args.dual_stop_d3 and (work/'RAW_EDGE_DISPLAY_PROOF.json').is_file():
  assert render['gate_database_sha256']==sha(work/'runs/syn_1/camera_to_dsi_display_gate.db')
  assert render['netlist_sha256']==sha(work/'d3_camera_gate.v')
  assert render['total_eram_cells']==100 and render['sobel_eram_cells']==4 and render['rgb_background_cells']==0
- assert 'ENABLE_AUTO_RELAY=1,RAW_EDGE_ONLY=1,' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text()
+ assert ('ENABLE_AUTO_RELAY=1,ESSENTIAL_UI=1,RAW_EDGE_ONLY=1,' if essential_ui else 'ENABLE_AUTO_RELAY=1,RAW_EDGE_ONLY=1,') in (project/'user_source/hdl_source/design_top_wrapper.v').read_text()
  expected_eram=100
 assert resources['slice']<=21216 and resources['eram']==expected_eram and resources['dsp']==expected_dsp and resources['pll']==5
 if args.left_v2 or args.keys_v3:
  assert args.dual_stop_d3 or 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
  width=324 if args.dual_stop_d3 else 163 if args.adjacent_v6 else 64
- assert f'.WIDTH({width})) u_relay_display' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
+ if essential_ui:
+  assert 'localparam RELAY_UI_BITS=ESSENTIAL_UI ? 12 : 324;' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text()
+  assert '.WIDTH(RELAY_UI_BITS)) u_relay_display' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text()
+ else:assert f'.WIDTH({width})) u_relay_display' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
 source=json.loads((work/'frozen_inputs.json').read_text())
 for name,digest in source.items():assert sha(project/name)==digest,('Frozen source changed',name)
 result.update({'status':'PASS_R22_RELAY_ROUTED_ALL_49_BOUNDS_20_GRAY_9_MAILBOX_GROUPS_SW3_V2_NO_LED',
@@ -171,5 +191,11 @@ result.update({'status':'PASS_D3_R27B_DUAL_COUNT_PARK_ROUTED_49_BOUNDS_20_GRAY_9
  'layout':'R27B two right count ROIs; two left measured refill windows72..232; each lane global-ID queue; one motor; full1000ms; per-lane fifth EMPTY alarm',
  'main_counter_sha256':sha(project/'user_source/hdl_source/classified_pocket_counter.v')})
 assert result['main_counter_sha256']=='67dfbdd7f139eb275decc48d6fd19e64965679ad352b3a291a0675a09401394c'
+if essential_ui:
+ removed=verify_coverage((folder/'constraint_coverage.txt').read_text(),(project/'td_project/camera_to_dsi_display.sdc').read_text())
+ result.update(status='PASS_D3_ESSENTIAL_UI_DUAL_COUNT_PARK_ROUTED_40_ACTIVE_9_REMOVED_UI_BOUNDS_20_GRAY_9_MAILBOXES_4_KEYS_V2_TWO_ALARMS',
+  relay_display_declared_bits=12,source_explicit_bounds=47,compiled_out_display_only_bounds=9,
+  active_explicit_bounds=38,inherited_vendor_bounds=2,original_49_source_bounds_accounted=True,
+  compiled_out_constraints=removed,all_remaining_timing_budgets_unchanged=True)
 (work/'physical_verification.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({k:result[k] for k in ['status','timing_ns','resources','slice_delta_vs_r22','max_delays_matched','max_delays_ignored','gray_bits_dominating']},indent=2),flush=True)
