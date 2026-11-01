@@ -7,6 +7,7 @@ ap=argparse.ArgumentParser()
 ap.add_argument('--out',type=Path,required=True)
 ap.add_argument('--source',type=Path,default=repo/'fpga/component_inspector')
 ap.add_argument('--only',nargs='+',default=['tb_demo_buzzer','tb_demo_latency','tb_demo_osd'])
+ap.add_argument('--ui-opt-v2',action='store_true')
 args=ap.parse_args();src=args.source.resolve();out=args.out.resolve()
 out.mkdir(parents=True,exist_ok=False);sealed=out/'inputs';sealed.mkdir()
 env=dict(os.environ);env['TEMP']=env['TMP']=str(out)
@@ -19,6 +20,7 @@ for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
    except OSError:pass
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 names=['contest_latency_clock','compact_inspector_osd','compact_ascii_rom','compact_cjk_rom','compact_template_rom','osd_logo_rom']
+if args.ui_opt_v2:names+=['rl7_shared_font_rom']
 inputs={};fixtures={};files=[]
 for name in names:
  rel='user_source/hdl_source/'+name+'.v';p=src/rel;dest=sealed/(name+'.v')

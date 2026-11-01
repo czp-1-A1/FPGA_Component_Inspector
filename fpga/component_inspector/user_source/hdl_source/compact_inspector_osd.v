@@ -440,10 +440,16 @@ wire trace_cross1=EMPTY_TRACE && cal_s && cal[127] &&
  ((x==cal[126:116] && y+4>=cal[115:106] && y<=cal[115:106]+4) ||
   (y==cal[115:106] && x+4>=cal[126:116] && x<=cal[126:116]+4));
 reg prefix;integer t;
+// Four hit tests retain last-hit priority; decode the selected label once.
+reg label_hit,label_prefix,label_review;reg [1:0] label_kind;
+reg [8:0] label_id;reg [19:0] label_digits;
+reg [10:0] label_x;reg [9:0] label_y;
 wire [10:0] text_dx=x-11'd136;
 always @*begin
  line=0;plane_address=0;code=32;row=0;col=0;panel=0;guide=0;logo=0;repair_border=0;ink=24'h70ffdd;
  ob=0;id=0;id_bcd=0;lx=0;rx=0;ly=0;glyph_cell=0;prefix=0;
+ label_hit=0;label_prefix=0;label_review=0;label_kind=0;
+ label_id=0;label_digits=0;label_x=0;label_y=0;
  if(y<80 || y>=HEIGHT-96)begin
   panel=1;logo=x>=16 && x<112 && y>=8 && y<72;
   if(x>=136 && x<1160 && ready)begin
@@ -512,13 +518,18 @@ always @*begin
     ly=t%2==0 ? (ob[19:10]>=108 ? ob[19:10]-28 : 80) : (ob[9:0]<HEIGHT-124 ? ob[9:0]+4 : HEIGHT-120);
     rx=lx+(prefix ? 112 : 72);
     if(x>=lx && x<rx && y>=ly && y<ly+24)begin
-     panel=1;row=y-ly;glyph_cell=(x-lx)>>3;col=(x-lx)&7;
-     if(prefix && glyph_cell<4)code=glyph_cell==0 ? (frame_gap!=0 && id>=frame_gap ? "R" : "N") : "0"+((id_bcd>>((3-glyph_cell)*4))&4'hf);
-     else if(prefix && glyph_cell==4)code=32;
-     else code=class_char(ob[74:73],ob[74:73]==2 && ob[72:69]!=0,prefix ? glyph_cell-5 : glyph_cell);
-     if(code[7])col={code[5:4],3'd0}+((x-lx)&7);
-     ink=ob[74:73]==3 ? 24'hffe080 : ob[74:73]==2 && ob[72:69]==0 ? 24'h70ffdd : 24'hffb070;
+     label_hit=1;label_prefix=prefix;label_kind=ob[74:73];
+     label_review=ob[74:73]==2 && ob[72:69]!=0;
+     label_id=id;label_digits=id_bcd;label_x=lx;label_y=ly;
     end
+   end
+   if(label_hit)begin
+    panel=1;row=y-label_y;glyph_cell=(x-label_x)>>3;col=(x-label_x)&7;
+    if(label_prefix && glyph_cell<4)code=glyph_cell==0 ? (frame_gap!=0 && label_id>=frame_gap ? "R" : "N") : "0"+((label_digits>>((3-glyph_cell)*4))&4'hf);
+    else if(label_prefix && glyph_cell==4)code=32;
+    else code=class_char(label_kind,label_review,label_prefix ? glyph_cell-5 : glyph_cell);
+    if(code[7])col={code[5:4],3'd0}+((x-label_x)&7);
+    ink=label_kind==3 ? 24'hffe080 : label_kind==2 && !label_review ? 24'h70ffdd : 24'hffb070;
    end
   end
  end
@@ -526,10 +537,14 @@ end
 reg [10:0] ascii_address;reg [7:0] cjk_address;reg [12:0] logo_address;
 wire [7:0] ascii_bits;wire [23:0] cjk_bits;wire [1:0] logo_pixel;
 wire [5:0] logo_y=y-10'd8;wire [6:0] logo_x=x-11'd16;
-compact_ascii_rom ascii_font(clk,ascii_address,ascii_bits);
-compact_cjk_rom cjk_font(clk,cjk_address,cjk_bits);
-osd_logo_rom anlogic_logo(clk,logo_address,logo_pixel);
-reg [1:0] vp,hp,dp,pp,lp,cp;reg [4:0] c0,c1;
+reg [1:0] vp,hp,dp,pp,lp,cp;
+generate if(DEMO_UI)begin : shared_font
+ rl7_shared_font_rom font(clk,ascii_address,cjk_address,cp[0],ascii_bits,cjk_bits);
+end else begin : legacy_fonts
+ compact_ascii_rom ascii_font(clk,ascii_address,ascii_bits);
+ compact_cjk_rom cjk_font(clk,cjk_address,cjk_bits);
+end endgenerate
+osd_logo_rom anlogic_logo(clk,logo_address,logo_pixel);reg [4:0] c0,c1;
 reg [23:0] rgb0,rgb1,ink0,ink1;
 wire text_ink=cp[1] ? c1<24 && cjk_bits[23-c1] : c1<8 && ascii_bits[7-c1];
 always @(posedge clk or negedge rst_n)begin

@@ -5,7 +5,7 @@ import argparse,hashlib,json,os,re,shutil,subprocess,time
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--prepare-only',action='store_true')
- a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--demo-rl7',action='store_true');a.add_argument('--seed',type=int,default=2);a.add_argument('--stage-timeout',type=int,default=2400);a.add_argument('--reuse-synthesis',type=Path);args=a.parse_args()
+ a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--demo-rl7',action='store_true');a.add_argument('--ui-opt-v2',action='store_true');a.add_argument('--seed',type=int,default=2);a.add_argument('--stage-timeout',type=int,default=2400);a.add_argument('--reuse-synthesis',type=Path);args=a.parse_args()
  assert 1<=args.seed<=1000 and 600<=args.stage_timeout<=7200
  repo=Path(__file__).resolve().parents[1];src=args.source.resolve() if args.source else repo/'fpga/component_inspector';work=args.work.resolve()
  assert not work.exists(),'Refuse to overwrite an existing build'
@@ -19,6 +19,9 @@ def main():
  if args.demo_rl7:
   assert args.keys_v3
   names+=['user_source/hdl_source/contest_latency_clock.v']
+ if args.ui_opt_v2:
+  assert args.demo_rl7
+  names+=['user_source/hdl_source/rl7_shared_font_rom.v']
  manifest={rel:sha(src/rel) for rel in names}
  changes={rel:{'baseline':baseline.get(rel),'candidate':manifest[rel]} for rel in names if baseline.get(rel)!=manifest[rel]}
  project=work/'project';project.mkdir(parents=True)

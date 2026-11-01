@@ -1,7 +1,7 @@
 from pathlib import Path
 import argparse,hashlib,json,os,re,shutil,subprocess,winreg
 r=Path(__file__).resolve().parents[1]
-a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--only',nargs='+');a.add_argument('--support',nargs='+');a.add_argument('--bench-dir',type=Path);a.add_argument('--osd',action='store_true');args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--only',nargs='+');a.add_argument('--support',nargs='+');a.add_argument('--bench-dir',type=Path);a.add_argument('--osd',action='store_true');a.add_argument('--ui-opt-v2',action='store_true');args=a.parse_args()
 p=args.source or r/'fpga/component_inspector';out=args.out.resolve();out.mkdir(parents=True,exist_ok=False);env=dict(os.environ)
 for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
  if not env.get(key):
@@ -19,6 +19,8 @@ files=['user_source/hdl_source/'+n+'.v' for n in rtl]+['sim/'+n+'.sv' for n in (
 if args.osd or any(n in benches for n in ['tb_relay_left_pixels','tb_relay_left_osd','tb_relay_left_rgb','tb_relay_v3_osd','tb_relay_v3_rgb']):
  rtl+=['inspection_region_config','empty_candidate_probe','present_surface_check','local_edge_surface_check','present_review_probe','frame_shape_search','compact_ascii_rom','compact_cjk_rom','compact_template_rom','osd_logo_rom','compact_inspector_osd']
  files=['user_source/hdl_source/'+n+'.v' for n in rtl]+['sim/'+n+'.sv' for n in (args.support or [])+benches]
+if args.ui_opt_v2:
+ rtl+=['rl7_shared_font_rom'];files=['user_source/hdl_source/'+n+'.v' for n in rtl]+['sim/'+n+'.sv' for n in (args.support or [])+benches]
 sealed=out/'inputs';sealed.mkdir();manifest={};extra_inputs={}
 for rel in files:
  external=args.bench_dir is not None and rel.startswith('sim/')

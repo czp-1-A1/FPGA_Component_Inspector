@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,hashlib,json,os,re,subprocess,sys
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--adjacent-v6',action='store_true');a.add_argument('--five-empty-v7',action='store_true');a.add_argument('--demo-rl7',action='store_true');args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--adjacent-v6',action='store_true');a.add_argument('--five-empty-v7',action='store_true');a.add_argument('--demo-rl7',action='store_true');a.add_argument('--ui-opt-v2',action='store_true');args=a.parse_args()
 work=args.work.resolve();project=work/'project';tools=project/'tools';env=dict(os.environ)
 env['TEMP']=env['TMP']=str(work/'temp')
 audit_names=['classified_audit_routed.tcl','classified_audit_gray_packing.tcl']
@@ -108,7 +108,7 @@ area=(work/'runs/phy_1/final.area').read_text()
 assert re.search(r'O_relay_control\s+OUTPUT\s+V2\s+LVCMOS33\s+HDIO\s+4\s+PULLDOWN',area)
 assert 'O_led' not in area
 resources={key:int(re.search(r'^#'+key+r'\s+(\d+)',area,re.M)[1]) for key in ['slice','eram','dsp','pll']}
-expected_eram,expected_dsp=(99,30) if args.demo_rl7 else (98,30) if args.keys_v3 else (99,30) if args.left_v2 else (101,27)
+expected_eram,expected_dsp=(98 if args.ui_opt_v2 else 99,30) if args.demo_rl7 else (98,30) if args.keys_v3 else (99,30) if args.left_v2 else (101,27)
 assert resources['slice']<=21216 and resources['eram']==expected_eram and resources['dsp']==expected_dsp and resources['pll']==5
 if args.left_v2 or args.keys_v3:
  assert 'RELAY_LEFT_LAYOUT=1' in (project/'user_source/hdl_source/design_top_wrapper.v').read_text(encoding='utf8')
@@ -186,5 +186,10 @@ if args.demo_rl7:
  result['active_frame_display_declared_bits']=955
  result['buzzer_pin']='C12 LVCMOS33 PULLUP active-low';result['demo_ui']=True
  result['inherited_explicit_bounds_preserved']=47
+if args.ui_opt_v2:
+ assert args.demo_rl7
+ assert 'rl7_shared_font_rom' in area and 'compact_ascii_rom' not in area and 'compact_cjk_rom' not in area
+ result['status']='PASS_RL7_UIOPT_V2_ROUTED_50_BOUNDS_20_FIFO_GRAY_64_TIME_GRAY_KEYS_V2_C12'
+ result['shared_font_eram']=1
 (work/'physical_verification.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({k:result[k] for k in ['status','timing_ns','resources','slice_delta_vs_r22','max_delays_matched','max_delays_ignored','gray_bits_dominating']},indent=2),flush=True)

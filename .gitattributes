@@ -71,3 +71,10 @@ fpga/component_inspector/** -text
 /scripts/run_rl7_demo_checks.py -text
 /scripts/publish_rl7_demo.py -text
 /releases/rl7_demo_buzzer_latency_v1_20261101/** -text
+
+# RL7 display-only optimization: preserve golden and release bytes.
+/tests/ui_opt_v2/** -text
+/scripts/prepare_rl7_ui_opt_v2.py -text
+/scripts/run_rl7_ui_opt_v2_checks.py -text
+/scripts/publish_rl7_ui_opt_v2.py -text
+/releases/rl7_demo_ui_opt_v2_20261101/** -text
