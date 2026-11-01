@@ -1,0 +1,39 @@
+{
+  "status": "PASS_ACTUAL_SYNTHESIS_FONT_2_TO_1_ERAM_99_TO98_BRIDGE4_UNCHANGED",
+  "netlists": {
+    "v1": {
+      "netlist_sha256": "4116300a7a837062740a5cb5ef2544f78b687b802f5725f405f33f6b1b51869a",
+      "total_eram": 99,
+      "bridge_eram": 4,
+      "font_eram": 2,
+      "font_cells": [
+        "\\u_experiment_osd/compact_page$render/ascii_font/ramread0_syn_23",
+        "\\u_experiment_osd/compact_page$render/cjk_font/ramread0_syn_24"
+      ],
+      "bridge_cells": [
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_107",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_148",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_25",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_66"
+      ]
+    },
+    "demo": {
+      "netlist_sha256": "9ec3bf8f9cb28a5c6e26cf52ca7ff820d7ab677a9e68b3bc6b62003d8891836f",
+      "total_eram": 98,
+      "bridge_eram": 4,
+      "font_eram": 1,
+      "font_cells": [
+        "\\u_experiment_osd/compact_page$render/shared_font$font/ramread0_syn_23"
+      ],
+      "bridge_cells": [
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_107",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_148",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_25",
+        "\\u_isp_top/continuous_processing$bridge/ramread0_syn_66"
+      ]
+    }
+  },
+  "all95_ascii_and7_cjk_preserved": true,
+  "pixel_pipeline_clocks": 3,
+  "new_frame_buffer_added": false
+}

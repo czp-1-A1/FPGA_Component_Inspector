@@ -1,0 +1,1 @@
+RL7 demonstration candidate. Read FIELD_GUIDE.md. Original Demo V1 behavior and three-clock RGB retained; shared label decoder plus full95-ASCII/seven-CJK single font ROM. C12 buzzer and measured RAW-SOF to post-OSD HDMI pixel age/source.40 exact-source checks plus actual strict routed audit; human board acceptance pending. Never overwrite old RL7 or readonly Ethernet bits.

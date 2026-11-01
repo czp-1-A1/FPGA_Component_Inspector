@@ -1,0 +1,35 @@
+{
+  "version": "R22_RL7_Demo_UIOpt_V2_20261101",
+  "branch": "codex/rl7-demo-ui-opt-v2",
+  "source_commit": "99cc5f452ea2c4dd2f265e9f7011165a0d5183c5",
+  "baseline": "RL7 Demo V1 137c159f9efe77d163d90752f0cb1dd3d2b124a9",
+  "bit_sha256": "242b9597a6f1fe045dd9c732e56d7ab9320badce9226dcc2c3b67d5ca5593ac5",
+  "bit_bytes": 1789539,
+  "resources": {
+    "slice": 19036,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "slice_percent": 89.72474,
+  "timing_ns": {
+    "SWNS": 0.106,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "baseline_demo_v1_slice": 19076,
+  "slice_delta_vs_demo_v1": -40,
+  "eram_delta_vs_demo_v1": -1,
+  "td_version": "6.2.168116",
+  "seed": 2,
+  "source_files": 638,
+  "hardware_dependencies": 106,
+  "selected_software_checks": 40,
+  "verification_reuse": "Exact compiled source/fixture hashes checked; Unchanged alarm/control tests retained by exact hashes; UI/font/RGB/native/core/camera checks rerun for display-only optimization",
+  "buzzer": "C12/O_buzzer_n/LVCMOS33/PULLUP/active-low;100MHz;2kHz;200msON300msOFF;fifth-EMPTY latch",
+  "measurement": "FPGA decoded RAW10 SOF -> actual first valid pixel after OSD at HDMI transmitter; excludes exposure-before-SOF and panel delay",
+  "ui": "Pixel-equivalent to Demo V1; label decoder shared; all95 printable ASCII/seven CJK packed; original latency semantics/classifier/stop/keys unchanged",
+  "board_acceptance": "PENDING_HUMAN_LIVE_IMAGE_BUZZER_LATENCY_AND_STOP_RETEST",
+  "pushed": false
+}

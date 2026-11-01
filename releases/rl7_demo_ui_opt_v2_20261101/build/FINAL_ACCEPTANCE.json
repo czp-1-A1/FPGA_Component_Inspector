@@ -1,0 +1,48 @@
+{
+  "status": "PASS_40_CHECKS_AND_STRICT_ROUTED_UIOPT_V2_FOR_HUMAN_RETEST",
+  "work": "E:\\2026FPGA\\.codex_tmp\\rl7_uiopt_build_r2_20261101",
+  "source_checkpoint": "61829cd8",
+  "source_files": 638,
+  "hardware_dependencies": 106,
+  "software_checks": 40,
+  "resources": {
+    "slice": 19036,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "baseline_v1_resources": {
+    "slice": 19076,
+    "eram": 99,
+    "dsp": 30,
+    "pll": 5
+  },
+  "timing_ns": {
+    "SWNS": 0.106,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "bit_sha256": "242b9597a6f1fe045dd9c732e56d7ab9320badce9226dcc2c3b67d5ca5593ac5",
+  "physical_audit": "PASS_RL7_UIOPT_V2_ROUTED_50_BOUNDS_20_FIFO_GRAY_64_TIME_GRAY_KEYS_V2_C12",
+  "seed": 2,
+  "synthesis": "EXACT_R1_SYNTHESIS_REUSE",
+  "rejected_r1": {
+    "SWNS_ns": -0.081,
+    "STNS_ns": -0.746,
+    "published": false
+  },
+  "changed_existing": [
+    "td_project/camera_to_dsi_display.al",
+    "user_source/hdl_source/compact_inspector_osd.v"
+  ],
+  "new_source": "user_source/hdl_source/rl7_shared_font_rom.v",
+  "other_v1_sources_sha_unchanged": 635,
+  "backup": "E:/2026FPGA/BACKUP/RL7_Demo_V1_Before_UIOpt_20261101_092600",
+  "board_operated": false,
+  "pushed": false,
+  "remaining": [
+    "human live video/buzzer/latency/parking regression"
+  ],
+  "classification_cold_start_and_review_change_deferred": true
+}
