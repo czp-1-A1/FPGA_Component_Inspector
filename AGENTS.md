@@ -1,3 +1,10 @@
+# D3 R56d FULL ROUTE ACTIVE: TD60136 / runner57588 (2026-11-01 21:56, current)
+
+- One fullroute now RUNNING D:/CodexWork/D3_EssentialUI_R56d_20261101 from exactsavedplace0875662e andmanifest4e75a67f. Hidden detachedrunner57588/TD60136 verifiedparent, started2026-11-01T21:56:36+08:00,14400sec deadline2026-11-02T01:56:36+08:00. RUN_STATE_ROUTE.json/LAUNCH_PROCESS.json durable. Native/unit/camera/allother jobs closed. Do NOT start secondtrial.
+- Automation r56-30 ACTIVE EVERY30min inTHISchat. Onhealthyunchanged DONT_NOTIFY(XML heartbeatformat),appendCHECK_HISTORY. Oncomplete/failure/timeout/actionneededNOTIFY; deleteautomationafterterminal. Promptfullyrecordsstrictaudit40active+9removedUIboundaccounting and41software, no HIL/push/agents/goals. Work/AUTOMATION.json anddocs/D3_R56_ROUTE_LAUNCH.json.
+- Exact41 softwarePASS,actualplaced18337/86.43%,save1440vsR55,100ERAM31DSP5PLL,setup+.550/hold-.264 onlyPLACED. Do NOTcallfinalpassorcopybitbeforestrictRoutedbothcorners/TNS0/Gray20/9mailbox/keySW3/V2twoalarm/SDC40active9removed audit. Allotherproofdetailsnextheader.
+- Tooling/docs/tests checkpoint9d342ad9 committed locally, NOproductionHDLadoption/push. Publicationguard proved --check-only refusesunadoptedcurrentR50 source andleaves41receiptunchanged. Eventual adoptEXACT7frozenfilesvsR50 onlyafterfullpass,Gitall704match+requireproduction41+publisherstrict. All3protectedBIT_FLASH unchanged. Code/helper/source hashesfrozen; do not change them whilejobruns.
+
 # D3 R56d essential UI: 41checksPASS; actual18337Slice; one route authorized next (2026-11-01 21:45, current)
 
 - User EXECUTE authorized essential UI plan/image cut. Canonical build D:/CodexWork/D3_EssentialUI_R56d_20261101, source Source_R56d/project. Earlier c layout discarded due SDC hierarchy rebinding; d fixes root u_relay_display/u_monitor_display names, no SDC/clock/IO edits. ONLY4files changed vsR55,700same; production704 stillR50. No hardware/push/subagents/goals.
