@@ -1,6 +1,6 @@
 from pathlib import Path
 import argparse,hashlib,json,os,re,shutil,subprocess,winreg
-r=Path(__file__).resolve().parents[1];a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--v3',action='store_true');a.add_argument('--bench-dir',type=Path);a.add_argument('--bench');a.add_argument('--demo-rl7',action='store_true');a.add_argument('--ui-opt-v2',action='store_true');args=a.parse_args()
+r=Path(__file__).resolve().parents[1];a=argparse.ArgumentParser();a.add_argument('--out',type=Path,required=True);a.add_argument('--source',type=Path);a.add_argument('--v3',action='store_true');a.add_argument('--bench-dir',type=Path);a.add_argument('--bench');a.add_argument('--demo-rl7',action='store_true');a.add_argument('--ui-opt-v2',action='store_true');a.add_argument('--modelsim',type=Path,default=Path('E:/Modelsim/win64'));a.add_argument('--td-sim',type=Path,default=Path('E:/TD/sim_release'));args=a.parse_args()
 bench=args.bench or ('tb_relay_v3_native' if args.v3 else 'tb_relay_left_native')
 p=(args.source or r/'fpga/component_inspector').resolve();out=args.out.resolve();out.mkdir(parents=True,exist_ok=False);env=dict(os.environ)
 for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
@@ -10,7 +10,7 @@ for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
     with winreg.OpenKey(hive,location) as k:env[key]=winreg.QueryValueEx(k,key)[0]
     break
    except OSError:pass
-env['TEMP']=env['TMP']=str(out);sim=Path('E:/Modelsim/win64');td=Path('E:/TD/sim_release')
+env['TEMP']=env['TMP']=str(out);sim=args.modelsim;td=args.td_sim
 text=(p/'sim/run_modelsim.ps1').read_text(encoding='utf8');block=text.split('$ispSources = @(',1)[1].split('    $tests = @(',1)[0]
 hdl=p/'user_source/hdl_source';ip=p/'user_source/ip_source';demosaic=hdl/'isp/demosaic_4x_2_0'
 files=[Path(t.replace('$demosaic',str(demosaic)).replace('$hdl',str(hdl)).replace('$ip',str(ip))).resolve() for t in re.findall(r'"([^"]+\.v)"',block)]

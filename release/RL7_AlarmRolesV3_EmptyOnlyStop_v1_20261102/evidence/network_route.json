@@ -1,0 +1,13 @@
+{
+  "status": "PASS_AUTHENTICATED_DRY_RUN_NO_REMOTE_WRITE",
+  "host": "github.com",
+  "local_dns_ipv4": "20.205.243.166",
+  "local_dns_route_result": "TCP connection failed after21s on repeated dry-run checks",
+  "alternate_ipv4": "4.228.31.150",
+  "alternate_dns_source": "https://dns.google/resolve?name=github.com&type=A",
+  "per_command_config": "http.curloptResolve=github.com:443:4.228.31.150",
+  "result": "Authenticated git push --dry-run succeeded for the new branch; no branch was created by this preflight.",
+  "tls_hostname_and_certificate_verification": "UNMODIFIED",
+  "system_hosts_dns_or_global_git_config_modified": false,
+  "credentials_recorded": false
+}

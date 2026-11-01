@@ -5,6 +5,7 @@ repo=Path(__file__).resolve().parents[1]
 ap=argparse.ArgumentParser();ap.add_argument('--out',type=Path,required=True)
 ap.add_argument('--source',type=Path,default=repo/'fpga/component_inspector')
 ap.add_argument('--only',nargs='+',default=['tb_alarm_fault_guard','tb_demo_alarm','tb_alarm_roles_pixels'])
+ap.add_argument('--modelsim',type=Path,default=Path('E:/Modelsim/win64'))
 args=ap.parse_args();src=args.source.resolve();out=args.out.resolve();out.mkdir(parents=True,exist_ok=False)
 sealed=out/'inputs';sealed.mkdir();env=dict(os.environ);env['TEMP']=env['TMP']=str(out)
 for key in ['MGLS_LICENSE_FILE','LM_LICENSE_FILE']:
@@ -25,7 +26,7 @@ folder=repo/'tests/rl7_alarm_roles_v3'
 for p in sorted(folder.iterdir()):
  if p.suffix in ['.v','.sv']:
   q=sealed/p.name;shutil.copy2(p,q);fixtures[p.name]=sha(q);files.append(q)
-sim=Path('E:/Modelsim/win64')
+sim=args.modelsim
 def run(tool,argv,name,timeout=1200):
  with (out/name).open('w',encoding='utf-8') as log:
   res=subprocess.run([str(sim/(tool+'.exe')),*map(str,argv)],cwd=out,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=timeout)

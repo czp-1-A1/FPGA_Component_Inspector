@@ -1,0 +1,23 @@
+Location         : D:\CodexWork\rl7_alarm_roles_empty_only_20261102_build_r0\runs\syn_1
+Running with     : Tang Dynasty v6.2.178840
+                   Copyright (c) 2012-2025 Anlogic Inc.
+Top Model        : design_top_wrapper
+Device           : PH1P35MDG324
+Speed            : 3
+
+Timing Mode      : basic
+Setup            : WNS -3955ps  TNS -1101768ps  NUM_FEPS   703
+Hold             : WNS   114ps  TNS        0ps  NUM_FEPS     0
+
+Flow Statistics  :
+---------------------------------------------------------------------------------------------------
+     command     |  #calls  |  wall time   |  cpu time(s)  |  used memory(mb)  |  peak memory(mb)  
+---------------------------------------------------------------------------------------------------
+  optimize_gate  |    1     |  1m45s(58%)  |   104(58%)    |       1790        |       1790        
+  optimize_rtl   |    1     |  1m15s(41%)  |    74(41%)    |       1481        |       1644        
+  import_device  |    1     |    1s(0%)    |     1(0%)     |        332        |        332        
+    read_adc     |    1     |    0s(0%)    |     0(0%)     |       1173        |       1174        
+    read_sdc     |    3     |    0s(0%)    |     0(0%)     |       1168        |       1174        
+---------------------------------------------------------------------------------------------------
+      total      |    7     |     3m1s     |      179      |       1790        |       1790        
+---------------------------------------------------------------------------------------------------

@@ -1,0 +1,104 @@
+-----------------------------------------------------------
+| QoR metrics               |         value               |
+-----------------------------------------------------------
+| Timing                    |                             |
+|     Setup WNS             |        -3955                |
+|     Setup TNS             |     -1101768                |
+|     Num of violated S-EP  |          703                |
+|     Hold WNS              |          114                |
+|     Hold TNS              |            0                |
+|     Num of violated H-EP  |            0                |
+-----------------------------------------------------------
+| Utilization               |                             |
+|     #registers            |        21311                |
+|     #luts                 |        21096                |
+|     #lut1                 |          168                |
+|     #lut1(~A)             |          168                |
+|     #slices               |         5350                |
+|     slices percentage     |       25.22%                |
+|     #RAMs                 |           98                |
+|     #DSPs                 |           30                |
+|     #f7mux                |        1.18%                |
+|     #MACROs               |          611                |
+|     #insts in MACRO       |         5577                |
+-----------------------------------------------------------
+| kept_net                  |                             |
+|     #syn_keep             |         2414                |
+|     #keep_hier            |          868                |
+|     #dont_touch           |            4                |
+|     #mark_debug           |            0                |
+|     #max_fanout_keep      |            0                |
+|     #async_reg            |          142                |
+-----------------------------------------------------------
+| Top 10% datanet fanout#   |        43.04                |
+| dff(single fanout)->dff   |         5875                |
+| dff(single fanout)->dram  |          129                |
+-----------------------------------------------------------
+| Over-quota path num*      |                             |
+|     pll_clk_100m          |          232                |
+|     Total Number          |          232                |
+|     Total Exceed Level    |          359                |
+|     Worst Level Slack     |           -3                |
+-----------------------------------------------------------
+| Rent**                    |                             |
+|     u_active_frame_display|         0.80                |
+|     u_video_out           |         0.79                |
+|     u_video_in            |         0.74                |
+-----------------------------------------------------------
+Note*: Over-quota path shows the over-path-level-threshold path number of each clock.
+       The clock will not be shown if no path is with path level over the threshold.
+       The threshold is defined as worst path_margin / 800ps.
+Note**: Rent shows the rent exponent value of the modules whose rent value exceeds the threshold.
+        Only modules under top are reported, and the threshold is defined as 0.7.
+
+Over-quota Path Details
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     Clock      |  Index  |  Budget(Period)  |  Level(Quota)  |                                   Cell Type List                                    |  Reason  |  Slack  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  pll_clk_100m  |    1    |   9924(10000)    |     15(13)     |  SEQ,LUT6,LUT5,ADDER,ADDER,LUT3,ADDER,ADDER,LUT3,LUT5,LUT4,LUT3,LUT2,LUT6,LUT6,SEQ  |  normal  |  -2176  
+                |    2    |   9924(10000)    |     15(13)     |  SEQ,LUT6,LUT5,ADDER,ADDER,LUT3,ADDER,ADDER,LUT3,LUT5,LUT4,LUT3,LUT2,LUT6,LUT6,SEQ  |  normal  |  -2176  
+                |    3    |   9924(10000)    |     15(13)     |  SEQ,LUT6,LUT5,ADDER,ADDER,LUT3,ADDER,ADDER,LUT3,LUT5,LUT4,LUT3,LUT2,LUT6,LUT6,SEQ  |  normal  |  -2176  
+                |    4    |   9924(10000)    |     15(13)     |  SEQ,LUT6,LUT5,ADDER,ADDER,LUT3,ADDER,ADDER,LUT3,LUT5,LUT4,LUT3,LUT2,LUT6,LUT6,SEQ  |  normal  |  -2176  
+                |    5    |   9924(10000)    |     15(13)     |  SEQ,LUT6,LUT5,ADDER,ADDER,LUT3,ADDER,ADDER,LUT3,LUT5,LUT4,LUT3,LUT2,LUT6,LUT6,SEQ  |  normal  |  -2176  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Note: Table only show top 5 paths for each clock group in default
+
+Logic Level Distribution
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Clock                                                                                               |  Period             |  0      |  1     |  2     |  3     |  4     |  5     |  6     |  7     |  8    |  9    |  10   |  11   |  12   |  13   |  14  |  15
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  HDMI_PIXEL_CLK                                                                                      |  13.468ns (74MHz)   |  2092   |  1264  |  1211  |  314   |  99    |  325   |  174   |  120   |  43   |  56   |  138  |  16   |  1    |  1    |  1   |  0
+  HDMI_SERIAL_CLK                                                                                     |  2.693ns (371MHz)   |  74     |  38    |  0     |  0     |  0     |  0     |  0     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  MIPI_RX_BYTE_CLK                                                                                    |  8.888ns (112MHz)   |  2434   |  990   |  709   |  560   |  138   |  221   |  170   |  15    |  2    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  mipi_rx_ck_pad                                                                                      |  2.222ns (450MHz)   |  0      |  0     |  0     |  0     |  0     |  0     |  0     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  pll_clk_100m                                                                                        |  10.000ns (100MHz)  |  3073   |  3864  |  1994  |  1724  |  2498  |  1612  |  1161  |  1062  |  474  |  179  |  530  |  300  |  206  |  131  |  69  |  29
+  pll_clk_24m                                                                                         |  41.538ns (24MHz)   |  122    |  112   |  79    |  22    |  75    |  33    |  3     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  sys_clk_50m                                                                                         |  20.000ns (50MHz)   |  404    |  263   |  44    |  142   |  64    |  33    |  0     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  u_hdmi_pll/u_ref/ph1p_phy_pll_wrapper_25a56e5ce2f9_Inst/u_PH1P_PHY_PLL.clkc[0]                      |  29.630ns (33MHz)   |  0      |  0     |  0     |  0     |  0     |  0     |  0     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.io_clk_pad_p  |  2.222ns (450MHz)   |  0      |  0     |  0     |  0     |  0     |  0     |  0     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.tif_c16_in    |  8.888ns (112MHz)   |  0      |  0     |  0     |  0     |  0     |  0     |  0     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  u_ph1p35_324_ddr_wrapper/u_ddr2/ctl_clk                                                             |  15.000ns (66MHz)   |  0      |  0     |  0     |  0     |  0     |  0     |  0     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  u_ph1p35_324_ddr_wrapper/u_ddr2/ddr_clk                                                             |  3.750ns (266MHz)   |  0      |  0     |  0     |  0     |  0     |  0     |  0     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  u_ph1p35_324_ddr_wrapper/u_ddr2/mcu_clk                                                             |  39.374ns (25MHz)   |  56     |  15    |  4     |  255   |  2     |  7     |  0     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  u_ph1p35_324_ddr_wrapper/u_ddr2/ref_clk                                                             |  15.000ns (66MHz)   |  0      |  0     |  0     |  0     |  0     |  0     |  0     |  0     |  0    |  0    |  0    |  0    |  0    |  0    |  0   |  0
+  u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk                                                             |  15.000ns (66MHz)   |  5297   |  2853  |  826   |  920   |  1306  |  591   |  1308  |  92    |  213  |  48   |  119  |  1    |  0    |  0    |  0   |  0
+  Total                                                                                               |  NA                 |  13552  |  9399  |  4867  |  3937  |  4182  |  2822  |  2816  |  1289  |  732  |  283  |  787  |  317  |  207  |  132  |  70  |  29
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Hierarchical Rent Exponent Report
++-----------------------------------------------------------------------------------------------+
+|Inst                       |Model                       |Rent     |Cell     |Pin     |Term     |
++-----------------------------------------------------------------------------------------------+
+|top                        |design_top_wrapper          |0.19     |54146    |249062  |35       |
+|  u_active_frame_display   |status_cdc_3                |0.80     |1179     |4706    |1175     |
+|  u_video_out              |video_out_38                |0.79     |1582     |6465    |1420     |
+|  u_video_in               |video_in_37                 |0.74     |3438     |12991   |1567     |
+|  u_experiment_osd         |classified_dual_page_osd_11 |0.66     |3759     |18099   |1117     |
+|  u_isp_top                |isp_top_17                  |0.53     |27353    |137178  |1114     |
+|  u_ph1p35_324_ddr_wrapper |ph1p35_324_ddr_wrapper_29   |0.47     |9979     |45014   |332      |
++-----------------------------------------------------------------------------------------------+
+Note: Cell represents total number of cells inside module; Pin represents total number of pins
+      which have net connection inside module; Term represents total number of PIs and POs of module.
+      Rent represents the relationship between number of terms and number of cells in module.
+      A module with higher rent corresponds to highly connected logic and strong connectivity with others.
+Report gate stage QoR done.
+

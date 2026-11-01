@@ -1,0 +1,6 @@
+{
+  "status": "PRECOMMIT_STAGING_REJECTED_NO_COMMIT_OR_PUSH",
+  "cause": "Canonical release/validation paths are outside the clone sparse cone",
+  "correction": "Use explicit git add --sparse for the already enumerated task paths. Resume only after verifying base HEAD and every partially staged path belongs to this task. No index reset, unrelated staging or artifact changes.",
+  "baseline_head_unchanged": "904a2bb053a9e679b3f50378ca3163a55698b20e"
+}

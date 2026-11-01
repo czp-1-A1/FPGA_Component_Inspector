@@ -1,0 +1,3 @@
+# R17 P02 classification on tested R16
+
+Only P02 surface/probe and same-frame waits/diagnostic UI are ported. R16 indexed geometry, candidate ordering, counter/pipeline/local recovery, exact gray cache, synchronous text prefetch, controls and SDC are retained. New indexed surface requests use the existing REF_BOX read result; weak-source flags follow the same logical record moves. Feature defaults on in production; module defaults off keep R16 legacy contracts. Production labels DETECT R17/COUNT R17; logo/Chinese/two-page/count information retained. C temporary builds authorized by user2026-10-25. Not yet tested or delivered.

@@ -79,6 +79,19 @@ fpga/component_inspector/** -text
 /scripts/publish_rl7_ui_opt_v2.py -text
 /releases/rl7_demo_ui_opt_v2_20261101/** -text
 
+# AlarmRoles V3 stop-policy source, fixtures and immutable delivery bytes.
+/tests/empty_only_stop/** -text
+/validation/** -text
+/docs/ALARM_ROLES_EMPTY_ONLY_20261102.md -text
+/scripts/*empty_only*.py -text
+/scripts/prepare_alarm_roles_delivery_tool.py -text
+/scripts/check_rl7_alarm_roles_v3.py -text
+/scripts/audit_r22_relay.py -text
+/scripts/build_r22_relay.py -text
+/scripts/relay_left_native_check.py -text
+/release/RL7_AlarmRolesV3_EmptyOnlyStop_v1_20261102/** -text
+/release/RL7_AlarmRolesV3_EmptyOnlyStop_v1_20261102_full.zip -text
+
 /tests/rl7_alarm_roles_v3/** -text
 /scripts/check_rl7_alarm_roles_v3.py -text
 /scripts/publish_rl7_alarm_roles_v3.py -text

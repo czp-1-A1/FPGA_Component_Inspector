@@ -5,7 +5,7 @@ import argparse,hashlib,json,os,re,shutil,subprocess,time
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--prepare-only',action='store_true')
- a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--demo-rl7',action='store_true');a.add_argument('--ui-opt-v2',action='store_true');a.add_argument('--seed',type=int,default=2);a.add_argument('--stage-timeout',type=int,default=2400);a.add_argument('--reuse-synthesis',type=Path);args=a.parse_args()
+ a.add_argument('--source',type=Path);a.add_argument('--baseline-manifest',type=Path);a.add_argument('--baseline-commit',default='a1cceaa');a.add_argument('--td',type=Path,default=Path('E:/TD'));a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--demo-rl7',action='store_true');a.add_argument('--ui-opt-v2',action='store_true');a.add_argument('--seed',type=int,default=2);a.add_argument('--stage-timeout',type=int,default=2400);a.add_argument('--reuse-synthesis',type=Path);args=a.parse_args()
  assert 1<=args.seed<=1000 and 600<=args.stage_timeout<=7200
  repo=Path(__file__).resolve().parents[1];src=args.source.resolve() if args.source else repo/'fpga/component_inspector';work=args.work.resolve()
  assert not work.exists(),'Refuse to overwrite an existing build'
@@ -28,8 +28,10 @@ def main():
  for rel in names:
   target=project/rel;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(src/rel,target)
  (work/'frozen_inputs.json').write_text(json.dumps(manifest,indent=2)+'\n')
- (work/'baseline_delta.json').write_text(json.dumps({'baseline_commit':'a1cceaa','baseline_manifest_sha256':'8e81b47dcd40d88b461aae525e946d5c41bd175691bc66f896b9dc34989541bf','changes':changes},indent=2)+'\n')
- td=args.td.resolve();flow=td/'doc/scripts/DefaultFlow.tcl';assert flow.is_file()
+ (work/'baseline_delta.json').write_text(json.dumps({'baseline_commit':args.baseline_commit,'baseline_manifest_sha256':sha(args.baseline_manifest or repo/'releases/r22_20261027/frozen_inputs.json'),'changes':changes},indent=2)+'\n')
+ td=args.td.resolve();flow=td/'doc/scripts/DefaultFlow.tcl'
+ if not flow.is_file():flow=td/'scripts/DefaultFlow.tcl'
+ assert flow.is_file()
  entry=project/'td_project/camera_to_dsi_display.al';text=entry.read_text()
  deps={}
  for rel in re.findall(r'<File Path="([^"]+)"',text):

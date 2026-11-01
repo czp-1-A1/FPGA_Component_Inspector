@@ -1,3 +1,17 @@
+<!-- ALARM_ROLES_EMPTY_ONLY_20261102_BEGIN -->
+## RL7 AlarmRoles V3合入仅空穴停车（2026-11-02）
+
+- 目标/断点：用户指定904a2bb0而非旧UIOptV2；当前完整交付校验通过，准备提交和上传本次独立分支。沿用此前上传授权，完成后同步本次独立分支，不合并主分支。
+- 分支/基线：D:/CodexWork/rl7_alarm_roles_empty_only_20261102，codex/rl7-alarm-roles-empty-only-20261102，基线904a2bb053a9e679b3f50378ca3163a55698b20e，远端codex/rl7-v3-alarm-roles。旧empty_only_stop_20261101及其桌面bit/ZIP不改；旧版上传中断前仅只读核对，未提交/推送。单实现端，无子代理。
+- 改动文件：top/isp_top/pocket_relay_stop_v2三生产源，635/638其余源逐SHA同904，尤其V3 compact_inspector_osd/独立alarm_tracking及全局账本、相机/视频/计数/SDC/引脚保留。运行异常只记原因并FEED，取消停止式REACQUIRE；不弹未完成队列、不伪造完成。第5合法EMPTY仍优先停车/蜂鸣，FIRST上下文不被报警覆盖；人工暂停停止清零/正常一秒保持不改。
+- 验证/证据：{'targeted': 'PASS', 'second': 'PASS', 'roles': 'PASS', 'native': 'PASS', 'physical': 'PASS_RL7_UIOPT_V2_ROUTED_50_BOUNDS_20_FIFO_GRAY_64_TIME_GRAY_KEYS_V2_C12'}。新增20940检查含V3先局部LOST/不确定/签名错/段错但前4E不停、合法5E停且保留首错；旧65控制/27按键兼容。最终全部运行输入/日志SHA在各proof及validation，原V3合同/全空RGB/标签像素亦实际重跑；原生RAW/真实100MHz一秒及原SDC seed1物理单独核验，不冒用旧通过。
+- 未决/下一条：已完成验证，进行交付/远端核验或等待人固定同一冻结镜像实板。识别失锁本身未修，继续送料不等于仍准确定位空穴，未获现场验证。
+- 运行/设备：本轮仿真/TD/审计已退出，仅交付或Git核验；无板卡/JTAG/Flash/用户GUI操作，无新增定时，其他聊天进程不动。
+- 提交/推送：{'stage': 'READY_TO_COMMIT', 'baseline_commit': '904a2bb053a9e679b3f50378ca3163a55698b20e', 'branch': 'codex/rl7-alarm-roles-empty-only-20261102', 'repository': 'https://github.com/czp-1-A1/FPGA_Component_Inspector.git', 'committed': False, 'pushed': False, 'board_operated': False, 'updated': '2026-11-02T00:58:45.777222+08:00'}；实物未测，不能称实板通过。
+- 桌面交付：C:\Users\Li47\Desktop\RL7_AlarmRolesV3_EmptyOnlyStop_v1_20261102.bit；SHA256 48a30fb244f145f1874b36c92e01a74edeafdbd8f3628396a815d58ca558153f；完整ZIP C:\Users\Li47\Desktop\RL7_AlarmRolesV3_EmptyOnlyStop_v1_20261102_full.zip。
+
+<!-- ALARM_ROLES_EMPTY_ONLY_20261102_END -->
+
 # RL7 AlarmRoles V3 delivered and integrity verified (2026-11-01)
 
 - Latest user field defect: all-empty tape shows feed-hole review labels, fifthEMPTY genericFAULT/no beeper; mixedP+E usually no feed-hole label. User asked baseline: explicitly answered previous delivered UIOptV2/83674658, newbranch codex/rl7-v3-alarm-roles. All old4bits protected (V2/V1/RL7/readonly); rollbacktag backup/rl7-uiopt-v2-before-alarmroles-20261101. No hardware/push/subagents or D3 edits.

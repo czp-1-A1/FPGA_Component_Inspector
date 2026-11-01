@@ -1,0 +1,201 @@
+<!-- ALARM_ROLES_EMPTY_ONLY_20261102_BEGIN -->
+## RL7 AlarmRoles V3合入仅空穴停车（2026-11-02）
+
+- 目标/断点：用户指定904a2bb0而非旧UIOptV2；当前全部9项软件合同、12RAW视频和实际路由审计通过；正在独立封包/桌面校验。沿用此前上传授权，完成后同步本次独立分支，不合并主分支。
+- 分支/基线：D:/CodexWork/rl7_alarm_roles_empty_only_20261102，codex/rl7-alarm-roles-empty-only-20261102，基线904a2bb053a9e679b3f50378ca3163a55698b20e，远端codex/rl7-v3-alarm-roles。旧empty_only_stop_20261101及其桌面bit/ZIP不改；旧版上传中断前仅只读核对，未提交/推送。单实现端，无子代理。
+- 改动文件：top/isp_top/pocket_relay_stop_v2三生产源，635/638其余源逐SHA同904，尤其V3 compact_inspector_osd/独立alarm_tracking及全局账本、相机/视频/计数/SDC/引脚保留。运行异常只记原因并FEED，取消停止式REACQUIRE；不弹未完成队列、不伪造完成。第5合法EMPTY仍优先停车/蜂鸣，FIRST上下文不被报警覆盖；人工暂停停止清零/正常一秒保持不改。
+- 验证/证据：{'targeted': 'PASS', 'second': 'PASS', 'roles': 'PASS', 'native': 'PASS', 'physical': 'PASS_RL7_UIOPT_V2_ROUTED_50_BOUNDS_20_FIFO_GRAY_64_TIME_GRAY_KEYS_V2_C12'}。新增20940检查含V3先局部LOST/不确定/签名错/段错但前4E不停、合法5E停且保留首错；旧65控制/27按键兼容。最终全部运行输入/日志SHA在各proof及validation，原V3合同/全空RGB/标签像素亦实际重跑；原生RAW/真实100MHz一秒及原SDC seed1物理单独核验，不冒用旧通过。
+- 未决/下一条：已完成验证，进行交付/远端核验或等待人固定同一冻结镜像实板。识别失锁本身未修，继续送料不等于仍准确定位空穴，未获现场验证。
+- 运行/设备：本轮仿真/TD/审计已退出，仅交付或Git核验；无板卡/JTAG/Flash/用户GUI操作，无新增定时，其他聊天进程不动。
+- 提交/推送：尚未提交/推送，暂存0；实物未测，不能称实板通过。
+
+<!-- ALARM_ROLES_EMPTY_ONLY_20261102_END -->
+
+# RL7 AlarmRoles V3 delivered and integrity verified (2026-11-01)
+
+- Latest user field defect: all-empty tape shows feed-hole review labels, fifthEMPTY genericFAULT/no beeper; mixedP+E usually no feed-hole label. User asked baseline: explicitly answered previous delivered UIOptV2/83674658, newbranch codex/rl7-v3-alarm-roles. All old4bits protected (V2/V1/RL7/readonly); rollbacktag backup/rl7-uiopt-v2-before-alarmroles-20261101. No hardware/push/subagents or D3 edits.
+- Production checkpoint3dfa6cd5, source638/deps106. ONLY pocket_relay_stop_v2.v and compact_inspector_osd.v changed; other636 files byte-identicalV2. Independent strict sameRUN main-ledger alarm E++/Preset/invalid event disarms; localFAULT cannot suppress validfifth, first priorfault context retained. Demo label filter kind0 and off-row unknownkind1 outsidecentre320+-16; all confirmed2/3 and in-row unknown kept. Classification thresholds/counter/parking/latency/fonts/pin/SDC unchanged. Back/cold/reviewbody issues remain deferred.
+- Actual fieldv1 reaches total5/E5 thenFAULT~6.53s; v2 starts/endsFAULT with5/E5; actualFcode hidden, do not invent. Original RTL reproduces suppression by localLOST/uncertainty/signature/priorfault. ConstructedRGB feed16x14 removed, eroded12x12 createskind1Y280, ignoredbycounter but oldOSD saysreview; not actualsensorreplay. Full analysis docs/RL7_ALARM_ROLES_V3_FIELD_ANALYSIS.md; original frozen evidence in work/field_evidence.
+- ALL35 fresh source-bound checks PASS: contracts_r5(3: alarmcollisions+originalalarm21+18full720p16588800pixels/66355200referencepairs with exact303.5/304/336/336.5 boundaries), regression17, no-P all-emptyRGB1, demoUnits3+extra2(100MHz500msrealbeeper), core7, font1(all67840), camera1(actual301cellcone2x126writes modeledACK). Native fullRAW rerun NOT counted. All corresponding ModelSim sessions closed. Early contracts_r1 failed SVcompile keyword(matches); runner splitV/SV fixed. r2 proof rejected fixture mid-run; r3 freshpass; r4 expandedhalf-pixelboundariespass. Publisher initiallyreadr4 proof beforecompletion and rejected; final software-onlyPASS35. No failed tests counted.
+- Build E:/2026FPGA/.codex_tmp/rl7_alarm_roles_v3_build_r2_20261101 seed1, final actual Slice19131/21216, ERAM98,DSP30,PLL5; SWNS+0.014/HWNS+0.020/TNS0. BitSHA4c744f3335e0a385032a693477ff9c4b877481f61318ccab7b314c35e8b236e4. Strict audit PASS_RL7_UIOPT_V2_ROUTED_50_BOUNDS_20_FIFO_GRAY_64_TIME_GRAY_KEYS_V2_C12 (V2 sharedfont98 profile, currentV3actualDB):50matched/noignored,20FIFO/64timeGray/9mailboxes/20control/195relay/C12/V2/actualalarmQ->registeredmotor. docs/RL7_ALARM_ROLES_V3_PHYSICAL_VERIFICATION.json. SYNmemory98,font1,bridge4 actualproof; allsourceSHAfrozen.
+- Published release releases/rl7_demo_alarm_roles_v3_20261101 and ZIP,1019 payloads+manifest,ZIP SHA34037977d08d2e0b0ec64052b8f1eb1977026c281d1ca2a2c10444c270401cde; source publication3ab59ff7, production3dfa6cd5, branch codex/rl7-v3-alarm-roles, notpushed. NewBIT_FLASH/R22_RL7_Demo_AlarmRoles_V3_20261101.bit SHA4c744f3335e0a385032a693477ff9c4b877481f61318ccab7b314c35e8b236e4 matches actualR2build/release/flash, plusguide/JSON/freshpreview. Protected4bits unchanged. R1 timeout and pre-refinement snapshots retained; R2 equivalent sharedprefix/framecachedroles implementation is accepted. All our sessions closed, no hardware actions.
+- Final independent audit PASS_FINAL_GIT_ZIP_BACKUP_AND_FLASH_HASH_IDENTITY in docs/RL7_ALARM_ROLES_V3_GIT_AUDIT.json. Verified2297rawGit blobs/current638+publication638+all1020releasefiles+ZIP; all1019payloads/ZIPCRC/SHA/build-release-flash and sidecar identity, backup6/originals/rollbacktags/protected4bits unchanged. Artifact commitfacbbce59fe3b91ad383080a254d72782f199565, source publication3ab59ff7, production3dfa6cd5. Frozen published ZIP unchanged. No more builds/tests needed; all our sessionsclosed, no hardware/push. Human all-empty5 redALARM/beeper/K3 and normal1-3 stop-resume/label retest remains pending. Back/cold/normal-review classifier issue deferred; do not claim actualfieldFcode known.
+
+
+# RL7 UIOpt V2 delivered and integrity verified (2026-11-01 10:36)
+
+- Latest user authorized backup then optimize current Demo V1 after learning V3. Backup completed: E:/2026FPGA/BACKUP/RL7_Demo_V1_Before_UIOpt_20261101_092600 (original bit/sidecars/full ZIP/Git source ZIP, 637 source SHA and CRC verified); rollback tag backup/rl7-demo-v1-ui-opt-20261101_092600. Keep original V1 c25af6..., original RL7 3b1c6..., readonly R2 30d067... immutable.
+- Worktree D:/CodexWork/FPGA_RL7_Demo_20261101, branch codex/rl7-demo-ui-opt-v2, production checkpoint61829cd8. Only compact_inspector_osd.v/project AL changed, new rl7_shared_font_rom.v; all other635 V1 files byte-identical. Full95 printable ASCII/seven CJK retained, one512x32 syncROM, shared label decoding after last-hit selection; original three-clock RGB exact. Classifier/counter/controller/camera/latency32bit1us+32bitframeage/buzzer/controls/ADC/SDC unchanged. Cold-start/back/review issues remain deferred; single ROI stays.
+- ALL40 source-bound checks PASS, all our ModelSim sessions CLOSED. Includes new 67840 font reads, 16 full720p/58982400 V1 pixel pair comparisons, native12RAW24rasters22940496pixels/25actual SOF-slot-postOSD measurements; actual camera299-cell cone2x126IIC writes (modeled ACK only), 17 RL7 regressions/core7/real100MHz buzzer and hold. Reuse only exact unchanged alarm1/compat5 input hashes. docs/RL7_UIOPT_V2_SOFTWARE_VERIFICATION.json.
+- R1 seed1 final19027Slice/98ERAM/DSP30/PLL5 but SWNS-.081/STNS-.746 failed; NEVER publish its edc540...bit (TEMP only). R2 exact same SYNDB41736a... reused with physical seed2, strict638source/106deps equality proof SYNTHESIS_REUSE.json. No source/clock/constraint adjustment. R1 failed reports retained under R2/prior_failed_r1, no failedbit in release.
+- R2 actual final PASS: 19036Slice/21216=89.72% (-40 vsV119076),98ERAM (-1),DSP30/PLL5 unchanged; SWNS+.106ns/HWNS+.020ns/bothTNS0. Strict actual routed audit PASS_RL7_UIOPT_V2_ROUTED_50_BOUNDS_20_FIFO_GRAY_64_TIME_GRAY_KEYS_V2_C12; 50 matched/noignored, 20oldFIFO/64timeGray Q, mailboxes/control20/status195, actual alarmQ->registeredmotor->V2 and C12. docs/RL7_UIOPT_V2_PHYSICAL_VERIFICATION.json. R2 build83844/audit70902 CLOSED, all our tools complete, no hardware/push/subagents or D3 edits.
+- Published immutable release releases/rl7_demo_ui_opt_v2_20261101 and ZIP (1014 payloads plus manifest), ZIP SHA bfeabaf1548605036535e629635b580ea9f71d7c76417b3847ef36dc08676df8. Source publication commit99cc5f45, production checkpoint61829cd8, branch codex/rl7-demo-ui-opt-v2; not pushed. docs/RL7_UIOPT_V2_DELIVERY.json contains receipt. Build E:/2026FPGA/.codex_tmp/rl7_uiopt_build_r2_20261101; all our sessions closed.
+- New bit E:/2026FPGA/BIT_FLASH/R22_RL7_Demo_UIOpt_V2_20261101.bit, SHA242b9597a6f1fe045dd9c732e56d7ab9320badce9226dcc2c3b67d5ca5593ac5 matches build/release; same-prefix guide/RELEASE/preview copied. Old3protected bits SHA unchanged. Human live image/buzzer/latency/stop testing remains pending, no physical actions performed.
+- Final independent integrity PASS: docs/RL7_UIOPT_V2_GIT_AUDIT.json verifies 2292 raw Git blobs (638 current +638 recorded source-commit +1015 release +ZIP), all1014 payloads/ZIP CRC, source/build/release/flash bit SHA and sidecars, six backup files/originals and rollback tag, three protected bits. Artifact commit5315fe1f85d5bfe24c9c606bececc56064ba4cbd, source publication99cc5f45. Published ZIP remains frozen. Final report links backup/newbit/guide with actual resources; no new authorized work pending beyond user board retest. No hardware/push/dualROI/classification changes.
+
+
+# RL7 demo delivered for human retest (2026-11-01 02:28)
+
+- Delivered new bit E:/2026FPGA/BIT_FLASH/R22_RL7_Demo_BuzzerLatency_V1_20261101.bit, SHA c25af6efc844f7d01e81d70d102ffeb4c08f04f476654c25c91c74b818ffd626; actual R3b build/release/flashcopy equal. Version V1 based originalRL7 a716eac, source checkpoint d8f495681c771457574d173707374d93b2a25d6c,branch codex/rl7-demo-buzzer-latency, no push/board actions.
+- Features C12/O_buzzer_n/LVCMOS33/PULLUP/activeLOW silentreset,100MHz2kHz200msON300msOFF from existing5EMPTY latch; actual decoded RAW SOF->postOSD first valid HDMI transmitter pixel time/source ID, no FPS formula/exposure-beforeSOF/panel delay; demoUI hidesdebug, keeps truthfulreview label. K1..K4/SW3/parking/rules unchanged. Only detector timing snapshot16bits in existingSCALE beforeCOMPARE, no added state/cycle; strict inversepatch goldenSHA and73728actual write testsPASS. Coldstart/back/normal-review issue DEFERRED.
+- Final actual19076Slice/21216=89.91% (+104vsoldRL7),ERAM99/108,DSP30/40,PLL5/6; SWNS+.050ns/HWNS+.020ns/TNS0.Bothcorners. All38exact-source software +50bounds/noignored/20oldFIFOGray/64timeGray/9mailboxes/20controls/195relay/C12/V2/alarminterlock strictaudit PASS. Native12RAW24rasters22940496pixelsOFUF0+25time/source matches, actual camera308cone2x126IICwrites simulatedACK only. Humanliveimage/beeper/latency/parking retest remains.
+- Release releases/rl7_demo_buzzer_latency_v1_20261101 plus ZIP,993payloadfiles(+PAYLOAD manifest). ZIP SHA fdfb4da6261818af2b6fe880da66671ce88665da4f83044152ef92958981cc49. Fieldguide/RELEASE/PAYLOAD/SOURCE/VERIFICATION/MEMORY/physical reports/source+scripts+fixtures allincluded; BIT_FLASH sameprefix _说明.md/_RELEASE.json/_界面预览.png. docs/RL7_DEMO_DELIVERY.json and finalGitreceipt trackintegrity. OriginalRL7 SHA3b1c6...a1750,READONLYR2 SHA30d067...b20f andoldhandoff untouched.
+- All our build/native/regression/core/camera/audit sessions closed. No more builds/tests needed; no hardware/push/subagents/automation. OtherD3worktree/processes nevertouched. EarlyfailedR1/R2 timing,abortedR3start,missingfixturefirstregression and corrected layout-only audit assumption honestly preserved; no failedbit delivered. Nextuserstep burnnewbit, check liveimage/currentSRC latency,normal1-3holes, fifthEMPTY sound/stop andK3quiet. Do not claim actualrefill/±1mm or coldstability fixed.
+
+# RL7 demo final verified; publication in progress (2026-11-01 02:26)
+
+- R3b E:/2026FPGA/.codex_tmp/rl7_demo_build_r3b_20261101 COMPLETE. Source637/105, SYN275.3s, PHY1181.7s, seed1. Actual final bit SHA c25af6efc844f7d01e81d70d102ffeb4c08f04f476654c25c91c74b818ffd626. Slice19076/21216=89.91% (+104 vs oldRL7), ERAM99(+1),DSP30,PLL5. Routed bothcornersSWNS+.050/HWNS+.020/TNS0. All50bounds/noignore/old20FIFOGray/new64timeGray/9mailboxes/20controlbits/195relay/V2/C12/noLED/alarm FF interlock PASS. All38exactsource software PASS incl native12RAW/24rasters/22940496pixels/OFUF0/25actualtime-source matches. Userboard accept PENDING, nohardware/push.
+- Physical audit first rejected stale assumed LUT(reg) structure; actual alarmQ->separate LUT5->motor FF Q O_relay_control_dup_3->V2 was verified same capture/outputlaunch cell motor_output_reg_syn_3. Auditor now accepts combined or separate ONLY with actualQ/LUT/registeredQ/sharedcapturelaunch/net-to-V2 evidence; no slack/constraints relaxed. Rerun84840 CLOSED/PASS. NewGray aliases proven. Other task sessions all closed, aborted58079closed1; no D3 actions.
+- Current publisher --software-only PASS38, copied docs/RL7_DEMO_SOFTWARE_VERIFICATION.json; physical copied docs/RL7_DEMO_PHYSICAL_VERIFICATION.json. Guide actualversion/SHA/resources written. Source strict snapshot inversepatch restores golden detector SHA. All original classifier predicates/statecycles retained, snapshot16FF in existingSCALE only; classification/back/cold issue remains DEFERRED. Actual camera cone308cells2x126 PASS, modeledACK only.
+- Next: commit current known source/docs/scripts; publisher --check-only then publish R3b. Release name releases/rl7_demo_buzzer_latency_v1_20261101, source/release/BIT_FLASH SHA c25...d626; root/bitFlashREADONLY+oldRL7 SHA protected inpublisher. Then force-stage --sparse exactnewrelease+ZIP, commit andverifyrawGitall637/payload/ZIP/flash plus finalGitreceipt. Update this status to delivered withactualpaths/ZIPsha/commit. No new build/tests needed after successful finalchecks.
+
+# RL7 demo active handoff (2026-11-01 02:06)
+
+- Production frozen R3b source commit 9ef434e88994460de96032df4163cb8acd66a350,637files/105deps; current worktree D:/CodexWork/FPGA_RL7_Demo_20261101. Current user ONLY wants C12 builtin buzzer+real RAW-SOF->postOSD first HDMI pixel latency+clean demo; classification/back/cold-start deferred.
+- Session32749: build R3b E:/2026FPGA/.codex_tmp/rl7_demo_build_r3b_20261101; SYN275.3sPASS, PHY now placing/routing, seed1, all original+new50constraints untouched. Must await actual final setup/hold and read-only strict audit before publishing any bit. No physical board actions.
+- Session72434: native_r3b actual source12RAW/24HDMI/25source-time comparisons, still running (aboutframe3 at02:04, ~21minute expected whole sim). Regression_r3c session49557 now verification.jsonPASS17 (correct original support extracted_production_motor); core7 R3b/project/sim/modelsim_work session81972CLOSED/PASS; camera_gate_r3b session31750CLOSED/PASS actual308cell cone2resetsx126packets. New actual production tb_demo_select_stage73728casesPASS in rl7_demo_select_stage_r1_20261101 (source-stage forced bench); full 16FF retained in actual R3bSYN.
+- 37/38source-bound checks currentlyPASS, one native pending; verification_progress.json honest pending. Unchanged old groups unit3_r2/extra2_r1/alarm1_r1/compat5_r1 hashes all equal R3b. New affected17regression_r3c/core7/native_r3b/camera_r3b +selector1. Publisher now strict38,scope10changed/626unchanged; detector inverse-patch MUST restore golden RL7SHA. Only original selector results latched in existing SCALE and read in COMPARE, no new state/cycle/threshold/ranking. Balanced-tree prototype is NOT applied, NEVER select its proof as production.
+- R1failed-1.270ns/R2failed-.552ns bits remain TEMP ONLY; R3 first startup editLFguard failed beforewrite and unchanged-SYN stopped exactPID43524; aborted R3 folder excluded. Regression_r3b first run omitted support, failed at alarm test; r3c full17PASS selected instead. Work/PRIOR_ATTEMPTS.json and prior_failed_r1/r2 reports preserve rejections, no failedbit packaged.
+- New actual R3b gate export full file work/rl7_demo_camera_gate.v, memory proof docs updated to its SHA (99ERAM total /4bridge; old98/3, no fullframe added). New actual camera cone308cells (oldR1 305; no camera source edits), closed three external modeledinputs; not opticalreadback.
+- After nativePASS: run scripts/publish_rl7_demo.py --work R3b --software-only; copy its demo_software_verification.json over docs/RL7_DEMO_SOFTWARE_VERIFICATION.json (currently oldR1 receipt37, must replace final). Fresh core7 already inR3b, don't copy old logs. Commit relevant source/docs/scripts before publisher requires637GitHEADraw equality.
+- After finalphysical: scripts/audit_r22_relay.py --keys-v3 --adjacent-v6 --five-empty-v7 --demo-rl7 --work R3b. Strict50bounds/noignored/old20FIFOGray/new64timeGray actualQ/9mailboxes/20controls/195relay/V2/C12/noLED/alarm interlock/setuphold>=0. NewGray actual bit0..30 Q aliases latency_gray_us,bit31 us_binary[31]; auditor already adapted by exact source/Q binding, no weakened constraints. It was tested read-only on rejectedR1 only, no R3b physical audit yet.
+- Publisher --check-only then real publish onlystrictPASS. Planned release releases/rl7_demo_buzzer_latency_v1_20261101,bit E:/2026FPGA/BIT_FLASH/R22_RL7_Demo_BuzzerLatency_V1_20261101.bit plusguide/JSON/preview. ZIPCRC/payload/source/copySHA and protectedoldRL7/R2 checks insidepublisher. Then git add --sparse -f exactreleasepath+ZIP, commit, rawGitblobauditall637+payload/ZIPaftercommit andfinalreceipt; updateAGENTScurrentresult. DO NOT push or touch D3/oldhandsoff/READONLY bit.
+
+# RL7 demo R3b: targeted timing pipeline (2026-11-01 01:55,current)
+
+- R2 seed1 same source finished FAIL: SWNS-.552/STNS-21.038, HWNS+.020/HTNS0, bit94f0222c...TEMP ONLY. Original worst candidate_region -> high_boxes RAMWE14levels; old controller/distance_bank paths ~-.53ns. No further random seed loop.
+- ONLY extra production change frame_shape_search.v: original high_write_index/high_worst/high_free combinational loop BYTE UNCHANGED, register16bits in existing SCALE and consume COMPARE. AREA_CALC sets region; SCALE then COMPARE(or cover states for small_pass); high arrays stable meanwhile; frame/invalidate cancel work. No added state/cycle/ranking/threshold change. Diff10 files/626unchanged+newmodule,637/105total; other predicates/counter/controller/keys/camera unchanged.
+- R3 first edit hit LF/CRLF protection assertion BEFORE disk write, then shell accidentally started unchanged R3 SYN. Stopped only own Python43524/direct TD child. R3 folder preserved as aborted; NEVER select. Actual R3b uses corrected LF-preserving patch, E:/2026FPGA/.codex_tmp/rl7_demo_build_r3b_20261101, fresh SYN, seed1, unchanged SDC. Need38checks incl actual held-selector property + rerun affected17/core7/native/camera; reuse only unchanged unit3/extra2/alarm1/compat5 exact hashes. Prior balanced-tree prototype74kPASS is NOT applied, NOT selected proof.
+- Publisher/scope/guide must now reflect timing-only detector source change; no false classifier-source-unchanged claim. Original50bounds/20FIFOGray/64timeGray/9mailbox/20controls/195relay/C12/V2/final setuphold allPASS beforeBIT_FLASH. Preserve R1/R2 failed reports, notbits, in accepted release. ProtectedRL7/R2 bits/handoff untouched; no hardware/push/subagents.
+
+# RL7 demo R2: same-source timing closure (2026-11-01 01:25, current)
+
+- User requested actual RL7 buzzer/delay/demo bit. R1 complete route FAIL SWNS-1.270/STNS-54.612/HWNS-.030/HTNS-.030. R1 bit8e7cc5e2... exists ONLY in temporary work, NOT published. Worst real10ns path is original detector candidate_region -> high_distances prefix max -> high-box RAM write (14levels/10.973ns); hold failure HDMI pixel->serial serializer. It is NOT new8nsGray constraint or fake C12 output budget; leave all constraints unchanged.
+- Preserve exact637production source/105hardware/37PASS checks (all compiled inputs and fixtures bind currentGit1885fac7); classifier/counter/stop/keys unchanged. Next R2 changes ONLY physical seed2->1 from the exact R1 synthesis DB, no new SYN, RTL, pin, clock, SDC or strategy change. Necessary standard timing-closure retry, authorized within current implementation; do not touch D3 job/worktree.
+- scripts/build_r22_relay.py now --seed/--stage-timeout/--reuse-synthesis with strict all637/all105 and gateDBSHA equality. R2 path E:/2026FPGA/.codex_tmp/rl7_demo_build_r2_20261101, stage timeout3600. Copy actual gate export and core7logs for exact reuse; do not mislabel new synthesis or rerun unchanged21minute native. Actual R1SYN305cell camera2x126 passes, new time/header uses one extra bridge ERAM: old3/new4, total98->99, docs/RL7_DEMO_MEMORY_PROOF.json proves actual macro names. Physical auditor expects99 ONLY demo profile, original profiles unchanged.
+- Keep R1 failed final reports and bit excluded from delivery. Final accepted build must meet all50max bounds/old20Gray/new64Q paths/9mailbox groups/20bit controls/195bit relay packet/V2/C12/setuphold>=0. Publisher refuses absent physical PASS, verifies637HEAD raw blobs and37compiled inputs before any BIT_FLASH copy. OldRL7/R2 bits and handoff immutable.
+
+# RL7 demo / buzzer / real latency (2026-11-01, current scope)
+
+- User explicitly authorized implementation from RL7 only: board buzzer C12 / O_buzzer_n / LVCMOS33 / active-low / silent reset /2kHz200msON300msOFF, driven by existing fifth-EMPTY alarm latch; real capture-SOF to actual HDMI first-valid-pixel timing plus matched source ID/frame lag; clean demonstration UI. Classification/back-face/normal-review/cold-start issues are DEFERRED. Do not change classifier/counter/stop decisions or K1..K4/SW3 semantics.
+- Worktree D:/CodexWork/FPGA_RL7_Demo_20261101, branch codex/rl7-demo-buzzer-latency from a716eac. Keep original advanced D3 worktree/processes untouched. New implementation/build permitted by latest user; historical RL7 no-new-build notes below superseded only for this scope. No hardware, push, subagents or goals.
+- Preserve BIT_FLASH original V7 SHA3b1c6ebc...a1750 and protected readonly R2 SHA30d067ce...b20f. New bit must use a separate clear name, copied to BIT_FLASH with SHA equal release/source. Never edit immutable RL7 release/HANDOFF snapshot.
+- Initial changes: contest_latency_clock.v (1us registered Gray time, capture/display measurement/BCD and contest_buzzer); top/isp/video_in/video_out capture tuple bound independently of late classifier metadata; same128bit bridge via unused33 header bits; existing payload mailboxes extended, original lower fields retained. Demo text in compact OSD leaf defaultoff; production DEMO_UI1. One additional8ns Gray max-delay for all64 first-stage paths and C12 pin/output delay; original49 constraints/proofs remain required.
+- Must verify current-source unit/envelope/measurement wrap/repeat/invalid/source-ID/OSD exact pixels, actual video slot timestamp association and full native RAW cadence/metadata/OFUF, original control/transport/alarm/real1s/core regression, actual synthesized camera startup cone, all original CDC +64 new Gray Q paths/actual buzzer output reset and routed setup/hold/resource signoff before release. No FPS-derived latency or fabricated side-standing category.
+- Current source FROZEN at E:/2026FPGA/.codex_tmp/rl7_demo_build_r1_20261101 (637/105), SYN PASS209s, PHY routing active (session19920). Do not edit production sources while native/build are running. Software37/37 exact-source PASS (demo_software_verification.json; Git637 raw blobs PASS): demo3units_r2, extra2including real100MHz500ms, integratedalarm1, RL7 regression17, compat5, core7 and actual305cell camera2resetx126. Native_r2 session84466 CLOSED/PASS00:59:51 (21m10s),12RAW/24exactrasters/22940496pixels/OFUF0 plus25 actual RAW-SOF/slot/postOSD HDMI measurements; no RAW parking claim. Initial fixtures units_r1 string-slice and native_r1 forward-declaration compile errors preserved and excluded, no RTL changed by fixes. Physical audit extended to50 bounds, original20Gray+64timeGray/C12; not yet executed. Physical r1 currently stage2.5 rerouting, no final bit or routed signoff. New source checkpoint1885fac7, no push. Full field guide docs/RL7_DEMO_BUZZER_LATENCY.md.
+
+# RL7 已交付（2026-10-28，当前入口）
+
+- 用户要求补件区稍左移、连续5个空穴报警停机。已交付E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V7_ShiftAlarm_20261028.bit，SHA3b1c6ebc6a67c0e791827eba011e7890bdcc850b41a3eadf02cd9a3fb24a1750，构建/发布原件/烧录副本一致。源码e037c9b（生产功能1d43470），分支codex/r22-left-shift-five-empty-v7，未推送。旧RL6/RL5/以太网R2保持。
+- 窗口72..232、目标152、触发184（提前32），整体左移8px/宽160。FIVE_EMPTY_V7顶层1；按同RUN合法主计数序号累计EMPTY，PRESENT打断。第5个当拍锁存FF报警/送料关闭并禁止同拍弹队，保留待处理队列；顶部红字ALARM 5 EMPTY - MOTOR STOP - K3 CLEAR。K2/手动不能绕过；K3清零停止或明确K1/SW3新RUN才复位。保持单排、J2 pin1/V2高有效/板载5V、无LED和蜂鸣器新引脚。正常1~4空穴保持完整1秒，RL6一次500ms停机找回保留。
+- E:/2026FPGA/.codex_tmp/r22_shift_alarm_v7_build_r1_20261028完成636源/104硬件依赖构建；5生产源修改、631源与RL6逐SHA相同。Slice18972/21216=89.42%、ERAM98/108、DSP30/40、PLL5/6；SWNS+.001ns/HWNS+.020ns/双TNS0，严格49最大延迟无忽略/20实际Gray/9邮箱/四键+SW3/V2无LED审计PASS。报警Q经实际alarm_stop网→电机注册LUT→V2输出同物理捕获单元已核；TD把该单元命名为station/counter/event_valid_reg_syn_3，不能只凭名字误认信号，证据physical_verification.json/alarm_interlock_packed_cell_proof。
+- 全31项新选定检查PASS：final_units_r2的13、alarm_control_r2的1（21断言，实际顶层motor代码体逐字核对）、final_rgb_r3的2（206帧3保持+真实100MHz100000000周期1秒）、rgb_alarm_r1的1（75完整RGB帧P+5E、第5确认停机）、compat_r1的5、核心回归7、native_r1的1（12RAW/24精确显示，V7启用，未到停车线）、camera_gate_r1的1（实际305单元相机锥/2复位x126写入，非实物读回）。最终输入SHA逐项与冻结源/夹具一致；早期r1/r2夹具错误日志保留但不选PASS。
+- 原件releases/r22_relay_shift_alarm_v7_20261028及相邻ZIP，1110载荷，ZIP SHA171f2e1004a973ba308d202fc0079b925c5840f37275fc69a41890802c22473c。docs/R22_SHIFT_ALARM_V7_DELIVERY.json回执；最终Git字节审计docs/R22_SHIFT_ALARM_V7_GIT_AUDIT.json以实际结果为准。BIT_FLASH同前缀_说明.md/_RELEASE.json包含操作/来源/资源。旧失败边界单独封存，不算新PASS。两段RL6现场视频及依据在docs/R22_V7_FIELD_ANALYSIS.md/.json，不能作为RL7实板验收。
+- 所有TD/ModelSim工作已结束，无烧录/接线/电机动作，无子代理，不启动额外构建或自动跟进。下一步用户保持原接线，烧RL7确认T098/A020，先原普通/慢速三连，再4/5/6连和4空+有件+4空；4连继续、第5确认应报警，录上下两行后再K3清。新停点/五连报警/实物重复性待验收，无吸嘴握手/±1mm达标声明。主计数既有高速/弱RAW280漏检边界未修；不允许改编号/类别/上游gap保护假装通过。
+
+# RL7 实施记录（以下为交付前过程，以本节以上结果为准）
+
+- 用户新视频105ebf…为普通速度、930403…慢速，均RL6，最终S1F0Q00。普通速度2/3/4/11/16号保持X137/185/235/139/131，第三穴距右界240仅5px。用户要求补件区略左移、连续5空穴直接报警停机，已授权实施，无需再问确认。证据docs/R22_V7_FIELD_ANALYSIS.md/.json、docs/evidence/r22_rl6_shift_20261028（旧RL6实测，不能当RL7硬件通过）。
+- 工作目录D:/CodexWork/FPGA_R22_Relay_20261027，分支codex/r22-left-shift-five-empty-v7，从1a82896起。生产只改5份：top/isp/relay_controller/dual_OSD/compact_OSD，主计数器/检测分类/ADC/SDC/相机源与RL6相同。FIVE_EMPTY_V7顶层默认1，叶模块默认0兼容。窗口72..232、目标152、提前32、触发184，整体左移8px/宽160，左ROI仍64..447留8px边。单排不恢复双ROI，原J2 pin1/V2高有效、板载5V、无LED。
+- 五连报警按同RUN连续主计数编号的合法EMPTY事件累计；PRESENT打断，不按队列深度/图像帧数。第五个当拍锁存alarm_stop并fail15（上方S4 FF），保留队列含第五个、禁止同拍HOLD弹队。顶部红字ALARM 5 EMPTY - MOTOR STOP - K3 CLEAR。顶层实际motor_output再受!relay_alarm约束，K4后K2手动也不能绕过；K3清零停止或明确K1/SW3新RUN才重置报警和连续段。正常1~4穴仍逐个完整1秒，RL6一次500ms停机找回保留。
+- 生产已冻结E:/2026FPGA/.codex_tmp/r22_shift_alarm_v7_build_r1_20261028（636源/104硬件依赖），SYN完成、PHY进行中，禁止修改冻结RTL。原生RAW V7/tol80/target152回放进行中，未到停车线，不混称RAW停车通过。相机实际305单元综合网表2复位x126串行写入已PASS。尚无新bit交付，旧RL6/RL5/只读R2保持。
+- 最终拟选31项：final_units_r2的13项（31控制断言、移框/红字/两栅格、1~4连继续、5/8连在第5触发、回归/负例/变速）；alarm_control_r1的1项19断言（4+P+4/队列8不报，第5报，实际顶层motor寄存器代码体提取并逐字检查，K2/手动禁绕过、K3/新RUN、同拍HOLD冲突、错ID/RUN、暂停中第5）；RGB三连+实际100MHz1秒2项final_rgb_r3重跑中；RGB五连1项75完整帧已PASS；兼容5项+核心7项PASS；native1进行中；camera_gate1 PASS。r1真实秒夹具.*漏声明alarm_stop、r2夹具仍旧192触发，均为测试加载/激励错误；已改为输出声明及184/152，失败日志保留但不得当PASS。生产源未因此重构。
+- scripts/publish_r22_shift_alarm_v7.py与audit_r22_relay.py --keys-v3 --adjacent-v6 --five-empty-v7准备中，严格49最大延迟/20Gray/9邮箱/四键+SW3/V2无LED外，新增alarm_latched到motor_output实际FF布线路径审计。5变动/631不变、全部636Git blob、31项冻结输入SHA、CRC/ZIP/发布payload及BIT_FLASH副本SHA必须核。拟名R22_RelayAuto_Left_V7_ShiftAlarm_20261028.bit；尚未发布。
+- 继承弱RAW280/高速40pitch24step主计数失败/上游gap保护；高速失败是旧RL5/V6对照，不是本版新测或PASS，主计数/分类源未动。无吸嘴/实际补件/±1mm硬件验收。本轮仅文件/仿真/构建，没有烧录/接线/继电器/电机操作；无子代理，保留原未跟踪产物。
+
+# RL6 交付记录（2026-10-28，以下为前版）
+
+- 已生成独立交付E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V6_Adjacent_20261028.bit，SHA7a6c18f56d90f0b2743d544a55bb4167882f4dbb930095b847f4372355ff20bd，与实际构建/发布原件一致；源码ec53ab4（生产功能cc0d804），未推送。原件releases/r22_relay_adjacent_v6_20261028及相邻ZIP，ZIP SHAa79eeadf1bd20bdec9e09579af4e1ec0dc86a7c463efcbf591a9263102f60001，1086载荷/636源/104硬件依赖。docs/R22_ADJACENT_V6_DELIVERY.json为回执；BIT_FLASH同前缀_说明.md/_RELEASE.json含操作和资源来源。旧RL5/以太网R2保持。最终Git字节审计记录在docs/R22_ADJACENT_V6_GIT_AUDIT.json，是否通过以该回执为准。
+- 当前分支codex/r22-adjacent-reacquire-v6，基线1972dea；工作目录D:/CodexWork/FPGA_R22_Relay_20261027。实施已获授权，不停在方案。新增8份生产源修改：停机交接下一队首、待处理EMPTY身份保留/停车提示限制、一次500ms电机关断重定位、同帧来源与候选/关联冻结诊断、RL6底部诊断和163bit显示邮箱。核心主计数、分类判据、相机增益修复、ADC/SDC原件保持。仍单排右数左补、窗口80..240/触发192/完整1000ms；无LED、V2高有效/板载5V。
+- 生产冻结于E:/2026FPGA/.codex_tmp/r22_adjacent_v6_build_r1_20261028，636源/104硬件依赖；完整构建及严格审计完成，bit SHA7a6c18f56d90f0b2743d544a55bb4167882f4dbb930095b847f4372355ff20bd。Slice18672/21216=88.01%、ERAM98、DSP30、PLL5，SWNS+.001/HWNS+.020/双TNS0，49bound无忽略/20Gray/9邮箱/四键+SW3/V2无LED通过。不得改冻结源或已交付bit。目标独立名R22_RelayAuto_Left_V6_Adjacent_20261028.bit，不提前声称实板成功。
+- 29项全新选定检查完成：12项final_units_r2（1/2/3/5/8连空穴、变速3/4/6/快10px帧、跨S2/S7连续7帧丢失后返回、持续缺失/错类别负例、23控制检查、2栅格106诊断字符），final_rgb2（RGB205帧3保持+163bit邮箱76次完整交付），final_second1（实际100MHz/100000000周期1秒），final_compat5，native1（V6/tol80、12RAW/24精确显示，未到停车线，不混称RAW停车通过），camera_gate1（实际307单元相机锥/2复位x126笔串行写入、非光学读回），7核心回归。全部输入SHA与冻结源一致；原r1修正前夹具不选最终证据。
+- 额外高速压力40px穴距/突然24px帧出现主计数ID5类别顺序错误，第一次停车前，RL5与V6同输入同错误/同frame14/lead580；不是新停车逻辑引入，但不能声称任意高速。E:/2026FPGA/.codex_tmp/r22_v6_highspeed_boundary_20261028保存两版输入与失败日志，发布单独归档，绝不算通过；不放松编号/类别断言掩盖错误。
+- scripts/publish_r22_adjacent_v6.py已核全部29项新选定检查/实际布线审计/636源码Git原始字节才发布，包含源码、报告、完整相机综合网表和旧拒绝负例/当前高速失败对照。docs/R22_ADJACENT_V6_FIELD_GUIDE.md包含S6/S7动作、底部RD解码、复测方法。原上游gap保护仍在，不允许用预测位置/错编号/错类别或跳过队首假装成功。
+- 下一步用户保持原接线，烧RL6，先固定中低速空跑三连穴，拍完整上方RL6及底部RD；Q归零并继续送料才算连续成功。相邻穴在宽框内可连续停数秒但N逐个切换/Q递减；出现S7继续拍2秒，S4后拍3秒且不要先K3清诊断。无需用户自己解码。实物三连停车、不同速度重复性、光学画面及真实补件未验收，不声称±1mm。全部TD/ModelSim任务已结束，无额外构建/自动跟进。
+- 只有本地文件/仿真/构建动作，没有烧录、接线、电机或继电器操作；无子代理。完成时须复制bit到E:/2026FPGA/BIT_FLASH并核SHA，写资源/来源，保持LATEST_READONLY.bit SHA30d067cef0667893fe548ba04e423cd6618b76f119cb2e0ecf48b96ba6a5b20f。用户实测三连复现仍待进行。
+
+# 最新三连空穴诊断（2026-10-28，以下为实施前分析记录）
+
+- 新视频按上传序号：2a08…双连、a045…单穴、c6d4…三连，均RL5。单/双连最终S1F0Q00；三连2号约6.4sS3→7.4s队首3，3号7.5sS2/7.6sS3→8.6s队首4；4号8.8sS2X190、8.9s最后X145，9.1sS4F6/Q2/L6，余4和11号。用户说第二次不动，按编号实际前2/3均完成保持，卡在4号。用户已确认三连全程未操作/调速/碰料/遮挡/补件。
+- 直接原因仍是150ms同ID位置未更新并锁定。145是最后测量且在80..240内；不能当故障时当前位置。队列容量32、本段只用4，右侧编号/入队已完成；不要把问题归为容量或继电器必须更换。
+- 原始检测是否消失、四候选裁剪/±12预测保留失效、实际关联失败、上游gap阻止发布目前无法凭OSD唯一确定。先加同帧冻结诊断再针对性修。提议保留所有待处理身份、停车时限制旧速度预测漂移、增加下一队首交接（已在宽框内不盲目重启电机）、电机关闭时有界同ID重定位并重新完整保持；不得绕过上轮已失败的排序保护或用旧坐标完成。
+- 本轮只有视频抽帧/源码读取/诊断文档；生产RTL未变，未启动构建、未生成新bit，旧RL5保留。证据E:/2026FPGA/.codex_tmp/r22_rl5_adjacent_field_20261028；持久选帧docs/evidence/r22_rl5_adjacent_20261028；完整分析docs/R22_RL5_ADJACENT_FIELD_ANALYSIS.md及JSON。下一步按用户后续指示实施诊断/相邻目标交接，当前不自动开始更大改造。
+
+# 当前 RL5 跟踪/显示整理（2026-10-28，优先读取）
+
+- 当前分支 codex/r22-brake-track-clean-ui，从 bcf29a4(RL4封存)开始。用户新视频8696…最后S4/F6，N004/Q02，最后有效X185在80..240内；PTS约5.333s S2→5.500s S4，未进入S3。用户确认未调速/碰料/补件；X185/V1不是故障时的新测量。
+- 已复现并修复一个明确缺陷：STOP_POSITION左站不能按普通已计数轨迹规则提前回收当前query。四实际目标、同一漏检帧，旧RL4报F6；新源漏检1/2帧后同ID返回并完成三次完整1秒。持续缺失/不同类别仍F6，不增大150ms、不假造位置、不改控制器。
+- 可见UI简化为右计数框+左黄80..240验收框+实际结果小框/分类；内部左ROI64..447/线256/目标160/触发192仍计算，只隐藏多余边线和特征十字。RELAY_CLEAN_UI=1生产默认，参数0保留旧显示，版本RL5。相机修复、按键、ADC/SDC、V2管脚无修改，仍单排，不恢复双排。
+- 新用例tests/brake_track。r22_brake_faults_r2四例、clean_osd_r2、wide_r1四例、compat_r1五例和冻结工程七旧核心目前已PASS；原生RAW r22_brake_native_r1与完整TD r22_brake_clean_build_r1均已完成并PASS。门级相机启动r22_brake_camera_gate_r1已PASS 2复位x126笔。636源/104依赖已冻结，实际Slice18475/21216=87.08%、ERAM98/108、DSP30/40、PLL5/6；SWNS0.000/HWNS+.020ns、双TNS0。49最大延迟无忽略/20Gray/9邮箱/20bit命令/4键+SW3/V2无LED原审计PASS。bit SHA b88610ad095d5ee6b30444c542faa24bd65e21ed0c1f8ffc4a41484aa87c95ba，已封存并复制BIT_FLASH。不能称已过实板。
+- 新现场证据/负对照/未解决压力失败在E:/2026FPGA/.codex_tmp/r22_rl4_f6_field_20261028，docs/R22_TRACKCLEAN_FIELD_ANALYSIS.json及FIELD_GUIDE.md记录。六目标候选压力场景还有上游未编号目标被裁剪产生gap_open从而抑制当前位置的边界；旧失败和修复后的该失败均保留，不算PASS，不宣称视频根因已完全复现或全部F6解决。旧弱RAW280边界不变。
+- 已交付E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V5_TrackClean_20261028.bit，SHA b88610ad095d5ee6b30444c542faa24bd65e21ed0c1f8ffc4a41484aa87c95ba，与实际r1构建/发布原件相同；源码4fd5e86（功能07d95bd），未推送。scripts/publish_r22_trackclean.py已核23项全新选定检查+49最大延迟等原审计，完整release为releases/r22_relay_trackclean_v5_20261028及相邻ZIP，ZIP SHA4cef640f6dbd0745cc56e00924ad4dffcee29c06d529104f752c72559b75e194，1070载荷；全部1072个发布/ZIP索引路径及636源提交blob逐SHA核对通过，见docs/R22_TRACKCLEAN_GIT_AUDIT.json；不覆盖旧RL4/CamFix/V3/V2或只读R2。后续同速度同料带复测两穴，若仍F6采集左候选/排序，不能通过放松关联假装完成。
+- 独立实验曾尝试跨上游gap发布实际队首位置并延长远端保留；虽六目标正例通过，删除上游目标的负例出现后续目标接错编号，因此已拒绝且未合入生产/bit，失败输入位于field_evidence/negative_and_boundary/rejected_station_gap_prototype。生产仍保留原gap保护。
+- 本轮只有文件/仿真/构建操作，无烧录、继电器/电机或接线操作；无子代理。全部TD/ModelSim任务均已结束；不启动额外构建。
+
+# R22 左补件继电器 V3 接续入口（2026-10-27，已交付）
+
+## 当前宽窗口联调（2026-10-28，最新用户要求优先）
+
+- 已交付RL4：E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V4_Wide_20261028.bit，SHA b5cc8c89b11da9895eb5406075ebcf76cd35f64c2f422a8cfe9e687e0add1e7b，与实际r1构建/发布原件相同；源码13724c3，分支codex/r22-wide-stop-window，未推送。
+- r1构建/18项全新选定检查/真实布线审计均已结束并PASS：宽窗口65断言/7终点同RUN连续保持、真实双计数器变速582帧3保持+暂停继续+6SW3+单K3、宽框2完整栅格/颜色/94字符/3拍、生产100MHz整100000000周期1秒、5兼容检查、7旧核心回归、原生12 RAW/24精确显示、相机实际综合网表2复位x126笔串行写入。原生回放是默认tol8兼容性且未到停车线；宽tol80由专门控制/传送/显示测试验证，不混称原生RAW停车通过。
+- 636冻结源/104硬件依赖，633源与CamFix相同；资源Slice18156/21216=85.58%、ERAM98/108、DSP30/40、PLL5/6；SWNS+.001ns/HWNS+.020ns/双TNS0。49最大延迟无忽略、20实际Gray、9邮箱、20bit命令、SW3/四键同步fanout、V2注册输出/无LED审计PASS。
+- 完整原件releases/r22_relay_wide_v4_20261028及相邻ZIP；ZIP SHA2b99c5bdb238de6cffbbf2c0a29d3b10b3450c997c977c15ab484d54f78363df；987载荷、源码、实测截图/逐时状态图、所有新测试日志、布线报告、重构脚本已封存，BIT_FLASH同前缀_说明.md/_RELEASE.json。旧CamFix/V3/V2/以太网R2保持。
+- 下一步用户以不同速度复测RL4，录像拍到至少两个空穴完整S1→S2→S3→S1，或出现F码后再拍3秒；先看宽框内停点能否连续处理，不以±1mm验收。若出现其他F码按现场原因处理，不能自动跳过错编号/丢目标装作成功。所有TD/ModelSim已结束；助手无实板/电机/烧录操作。
+
+- 用户提供六段混合快慢速度视频，明确要求先尽量放宽补件范围，让多数情况停车1秒后继续下一穴；这项授权取代下文旧的“不放宽窗口”阶段限制。仍保持单排ROI，暂不恢复双ROI；宽窗口不宣称±1毫米精准补件已验收。
+- 已逐帧抽取六段视频状态，末尾均S4/F8，按上传顺序停点X=131/137/145/169/139/121，均落在原152..168之外。第4段先在X157完成S3→S1，再在下一空穴X169报F8。不是因为一次完成后没有重新按键。
+- 当前分支codex/r22-wide-stop-window，从0090662(含相机修复)开始。生产改动仅design_top_wrapper.v的默认RELAY_TOL_PX=80、传到显示的同名参数、classified_dual_page_osd.v和compact_inspector_osd.v；控制器/编号/分类/相机/引脚/SDC未改。
+- 新验收窗口80..240（目标160±80），对比原±8宽10倍；保留触发192、提前32、稳定确认及完整1000ms保持，再弹出同一队首并继续。窗口边界距左检测边64/二次编号线256各16px，不能再扩大到检测边缘而丢失可靠定位。显示RL4及琥珀色虚线窗口；不是新增检测ROI。
+- E:/2026FPGA/.codex_tmp/r22_wide_stop_field_20261028保存六视频SHA/元数据/每0.333秒状态图；范围覆盖已观测7个停点，不能称新版实板7/7已通过。先只处理已确认的F8窗口问题，保留错编号、图像中断、定位丢失等故障，不自动丢弃异常装作补件完成。
+- 完整构建E:/2026FPGA/.codex_tmp/r22_wide_stop_build_r1_20261028已完成，冻结636源/104硬件依赖，TD/ModelSim软件操作；无烧录/电机/接线动作，无子代理。旧CamFix/V3/V2/以太网R2不覆盖。
+
+## 当前黑图回归排查（2026-10-28，优先读取）
+
+- 已交付独立修正版E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V3_CamFix_20261028.bit，SHA2c06e667cbf89039a63e9d788f5d1d07f72b195e23532ca1ae1d03336019677f；与实际r2构建/发布原件相同。源码提交701ea18，分支codex/r22-v3-camera-gain-fix，尚未推送。
+- 完整r2构建已结束；严格49最大延迟/20实际Gray/9邮箱/20bit命令/SW3+四键同步fanout/V2输出/无LED审计全部PASS。Slice18171/21216=85.65%，ERAM98/108、DSP30/40、PLL5/6；SWNS+.002ns、HWNS+.020ns、TNS0。原V3/V2/只读R2保留。
+- 发布原件releases/r22_relay_v3_camfix_20261028及相邻ZIP；ZIP SHA812de97fee80b7f65991cc391f859391cab2a73127c298d4bb63a3903b2be133。636源/104硬件依赖、986载荷、3项新相机检查+17项逐编译输入SHA复用检查均归档。只改一份生产源，其余635源不变；Slice打包数量不能独立证明功能删减，综合总单元旧49858→新49886（类型重映射/物理打包不同），不冒称整个综合网表除6单元外逐项相同。
+- 下一步由用户先保持送料停止、不按K1确认实时画面更新，再测试运行键和停车；实板光学图像仍待确认。所有TD/ModelSim已结束，无硬件操作，不启动双ROI改造。
+
+- 用户已同接线来回烧录确认：V2实时图像正常、V3仅OSD/ROI正常而相机底图黑；不能视为正常待机，CFG/FPS不是有效图像验收证据。
+- 当前分支codex/r22-v3-camera-gain-fix，从119c276开始。仅生产源SC500GainTbl.v改为三个范围的同步译码，保持74有效表项/其余0/一拍延迟/原复位脚行为；tests/camera_gain_fix及scripts/check_camera_gain_fix.py新增真实串行总线检查。仍须实板确认图像。
+- 第一次仅改case默认分支未解决综合网表错误，r1构建已停止并保留。完整构建E:/2026FPGA/.codex_tmp/r22_v3_camfix_build_r2_20261028已完成，冻结636源/104硬件依赖，635源逐SHA与V3一致。旧V3/V2/只读R2均不覆盖。
+- 诊断E:/2026FPGA/.codex_tmp/v3_camera_black_20261028：旧V3实际综合网表相机锥回放曝光正确，但gain0338成为0000；已完成V2阳性对照(0338)及V3全部消费网驱动闭合检查，外部仅时钟/复位/SDA。修正r2实际综合网表305单元，两次复位的全部126笔串行写入均匹配正常V2，见r22_camfix_gate_r3_20261028；同一检查对旧V3在第125笔明确失败(0800而非0803)，见r22_camfix_old_v3_negative_r2_20261028。仅模拟ACK从机，不是传感器实物读回。
+- 新RTL检查r22_camfix_rtl_20261028通过全部128地址x两种复位脚电平/相反地址顺序与原始表的等价性，以及两次复位x126完整I2C写入。独立小模块原case/default均正确0338，不能泛称所有ROM常量化都错。新检查初次gate运行因厂商Verilog模型在SV模式下缺timescale而加载失败；已分开编译并明确timescale，失败原件保留，未改期望结果。
+- 既有RAW/17项测试未覆盖真实相机初始化串行总线，不能据其PASS判定此次黑图已解决；需补充启动I2C/实际综合网表验证和完整时序资源审计。本轮无烧录、电机或接线操作；保持单排布局/按键/引脚/停车参数。
+
+## 最新用户决定（2026-10-28，优先于此前双ROI恢复建议）
+
+- 用户明确：先由其把当前单排ROI跑稳定，再进行双ROI恢复；当前不启动双ROI改造或扩大检测布局。
+- 当前阶段保持V3单排料道的右计数、左补件定位布局，集中验证识别/编号、按键暂停继续、精准停车、完整1秒保持和恢复；仍需实板数据，不提前宣称稳定或±1毫米已达标。
+- 用户确认单排稳定后，再恢复原上下两块检测ROI并单独安排补件定位，重新评估缓存、资源和时序；不把当前布局误称为原双区功能全部保留。
+- 本次仅记录阶段顺序，未修改RTL、按键、引脚、参数或任何已交付bit，也没有新仿真、构建、烧录或电机操作。下一步等待用户提供V3实测结果，再依据状态行、稳定X及速度分组分析。
+
+## 约定
+
+- 用户要求工程成功优先、先分析再修；人做实物操作/真值，助手做源码/仿真/构建/分析。本轮无实板/JTAG/Flash/电机动作，无子代理，不覆盖其他人的改动。
+- 每个交付bit保留发布原件，额外复制E:/2026FPGA/BIT_FLASH并核SHA。只读R2 LATEST_READONLY.bit SHA30d067cef0667893fe548ba04e423cd6618b76f119cb2e0ecf48b96ba6a5b20f保持，不能因日期新而替换。旧R22/V1/V2都保留。
+- 继电器板载5V、3.3V HIGH直触发，无NPN；右J2第1脚=V2，第11脚5V/第12脚GND。原ADC/SDC未改，集成版无LED。
+- 原R22分类/编号/中文/Logo保持。用户最新明确把四键用于运行控制，所以自动版原曝光/增益/WB按键让位；默认曝光1092、增益40。无证据不把软件/像素/原生RAW/实板混作通过。
+
+## 分支与交付
+
+- 工作区D:/CodexWork/FPGA_R22_Relay_20261027，分支codex/r22-relay-controls-v3，源码提交a79ac7c，父V2 e51cb15，原R22a1cceaa。最后发布归档提交以git log为准；未推送。旧E盘R19/独立诊断不改。
+- 正式bit E:/2026FPGA/BIT_FLASH/R22_RelayAuto_Left_V3_20261027.bit，SHA9ca7905cf147cfc6d8d770738b03416e2a43601b3b8a1315f46bbf43edfd267e，与release/实际r2构建相同。
+- 完整原件releases/r22_relay_left_v3_20261027及相邻ZIP，ZIP SHAf154216670ae80643ed2f43467aac54fb875b89aa54e39b7106efdab4ff12329；636完整冻结源、928载荷逐SHA/ZIP CRC已核。BIT_FLASH同前缀_说明.md/_RELEASE.json/_BOUNDARY.json。docs/R22_RELAY_V3_DELIVERY.json/FINAL_AUDIT.json保存回执。全部928发布载荷、ZIP及636源码的Git索引字节已逐SHA核对，见docs/R22_RELAY_V3_GIT_AUDIT.json。
+- TD r2 E:/2026FPGA/.codex_tmp/r22_relay_v3_build_r2_20261027，636源/104硬件依赖，TD6.2.168116 seed2；Slice18538/21216=87.38%，ERAM98/108、DSP30/40、PLL5/6；setup0.000/hold+.018/TNS0。49最大延迟/20实际Gray Q/9组邮箱/SW3+4键同步fanout/20bit命令/V2输出/无LED均实际审计PASS。ERAM比V2少1来自固定增益40的SC500GainTbl常量化，层级已对比，不是删识别缓存。
+
+## 原因及当前行为
+
+- 新现场视频1c37c718…共9s/270帧/30fps，SHA5d3609e76a87bc90b7889f9bf637b556d9d58ed222d26c531202d90e924b1bfd。3.2sS2F0X171、3.4s稳定X143、4.4sS4F8；目标160/窗口152..168，停偏17px，1200ms合格等待超时，未进S3。不同于V1F6丢位置。文档docs/R22_RELAY_V3_FIELD_ANALYSIS.json；视频状态序列图在release/field_evidence。
+- K1单击新RUN/计数+自动送料，重新编号并重置旧队列；K3单击清零并停止；K4停止保留结果；SW3上停下新RUN，每轮无需K3+K4。原V2队列非空拒绝新RUN的FA限制仅在明确新RUN操作时解除，故障本身不丢旧队列。
+- K2按用户选择暂停/继续当前自动流程，保留编号和队列；待机可手动电机启停。暂停仍采样/检查关联，冻结到站和停车等待，HOLD恢复后重新位置确认并完整1秒。按住键仅一次，释放才可重触发，上电按住不启动。
+- 20bit{mode,17bitcommand}同一稳定邮箱避免RUN/许可不同步；注册V2输出；OSD版本RL3。右向左，主计数640/左站256/目标160/提前32/触发192/窗口±8px。首次K1须首穴在右约X800、左侧无未编号料，否则FC；继续原RUN用K2。
+- 用户说速度可能调整。固定提前32仅根据此次视频的标定初值，不是速度自适应；组内固定速度，每个速度分组测5次。没有反向纠偏、吸嘴或补件完成握手；填料/遮挡会改变原E关联，先空跑停车/确认/保持/恢复。
+
+## 最终验证及未决
+
+- 17项选定实际PASS：final_unit5、final_closed4、final_native1、legacy7。路径均E:/2026FPGA/.codex_tmp/r22_relay_v3_final_*_20261027。27键检查、65控制检查、实际双计数器585帧/六SW3重开/保留队首暂停、处理RGB202帧3保持、V3和V2兼容两个100MHz100000000周期完整1秒。原生12RAW10帧/24精确显示栅格/4ID P2E2/到站前队列等待；RAW没到停车线，不能称RAW停车闭环。旧7回归实际从r2冻结工程运行，不拿V2旧数目充本版。
+- 原R22弱RAW280孔漏检边界未修，报告随新发布；原始失败/逐位回放在V2完整发布保存。V3分类及主编号相关源逐SHA对比V2相同，不把失败算PASS。
+- 尚需人实测：每个固定速度5次，完整RL3状态行、稳定X、S3→S1和停车后至少3秒；六SW3轮次、K3单清零、K2计数/队列保留；载带平面尺子标定像素/mm，再判±1mm。实板停车重复性/保持、板载5V负载和真实补料尚未正式验收。
+- 当前全部TD/ModelSim结束、无硬件操作或自动跟进。下一步收新bit现场视频，按稳定X与速度标定advance，不放宽窗口掩盖停偏。发布为校准候选，不冒称工程实板完成。
+- 原未跟踪calibration*.txt/compact*.hex/region_cadence*.pgm及scripts/__pycache__为产物，勿stage全部或删除。releases稀疏路径用git add --sparse；保留-text原始字节并核Git索引SHA。

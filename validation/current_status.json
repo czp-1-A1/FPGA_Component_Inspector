@@ -1,0 +1,53 @@
+{
+  "phase": "完整交付校验通过，准备提交和上传本次独立分支",
+  "baseline_commit": "904a2bb053a9e679b3f50378ca3163a55698b20e",
+  "branch": "codex/rl7-alarm-roles-empty-only-20261102",
+  "proofs": {
+    "targeted": "PASS",
+    "second": "PASS",
+    "roles": "PASS",
+    "native": "PASS",
+    "physical": "PASS_RL7_UIOPT_V2_ROUTED_50_BOUNDS_20_FIFO_GRAY_64_TIME_GRAY_KEYS_V2_C12"
+  },
+  "delivery": {
+    "status": "DELIVERED_CURRENT_SOURCE_AUDITED_CANDIDATE_NOT_BOARD_ACCEPTED",
+    "desktop_bit": "C:\\Users\\Li47\\Desktop\\RL7_AlarmRolesV3_EmptyOnlyStop_v1_20261102.bit",
+    "bit_sha256": "48a30fb244f145f1874b36c92e01a74edeafdbd8f3628396a815d58ca558153f",
+    "desktop_zip": "C:\\Users\\Li47\\Desktop\\RL7_AlarmRolesV3_EmptyOnlyStop_v1_20261102_full.zip",
+    "zip_sha256": "18561a4c85dfe8e84e9b7db37b6f619cf63ae5a3226fa310a512986f50a00200",
+    "guide": "C:\\Users\\Li47\\Desktop\\RL7_AlarmRolesV3_EmptyOnlyStop_v1_20261102_烧录与验收.md",
+    "sources": 638,
+    "payload_files": 1091,
+    "software_tests": 9,
+    "physical": {
+      "slice": 18903,
+      "eram": 98,
+      "dsp": 30,
+      "pll": 5
+    },
+    "timing_ns": {
+      "SWNS": 0.1,
+      "HWNS": 0.02,
+      "STNS": 0.0,
+      "HTNS": 0.0
+    },
+    "independent_unzip_all_sha256": true,
+    "portable_preparation_pass": true,
+    "desktop_all_zip_payload_verified": true,
+    "board_operated": false,
+    "committed": false,
+    "pushed": false
+  },
+  "upload": {
+    "stage": "READY_TO_COMMIT",
+    "baseline_commit": "904a2bb053a9e679b3f50378ca3163a55698b20e",
+    "branch": "codex/rl7-alarm-roles-empty-only-20261102",
+    "repository": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
+    "committed": false,
+    "pushed": false,
+    "board_operated": false,
+    "updated": "2026-11-02T00:58:45.777222+08:00"
+  },
+  "board_operated": false,
+  "updated": "2026-11-02T00:58:45.883245+08:00"
+}

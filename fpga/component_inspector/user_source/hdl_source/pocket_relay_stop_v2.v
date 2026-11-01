@@ -1,7 +1,7 @@
 // Left station uses a second REAL ordered gate count. Global IDs are bound
 // only after a proved clear transport startup; predicted search is not position.
 module pocket_relay_stop_v2 #(
- parameter FIVE_EMPTY_V7=0,ADJACENT_V6=0,REACQUIRE_MS=500,RESTART_NEW_RUN=0,CLK_HZ=100000000,TARGET_X=160,ADVANCE_PX=16,POSITION_TOL_PX=8,
+ parameter EMPTY_ONLY_STOP=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,REACQUIRE_MS=500,RESTART_NEW_RUN=0,CLK_HZ=100000000,TARGET_X=160,ADVANCE_PX=16,POSITION_TOL_PX=8,
  parameter STILL_PX=2,HOLD_MS=1000,STALE_MS=150,STOP_TIMEOUT_MS=1200,
  parameter ARRIVAL_TIMEOUT_MS=15000,QUEUE_DEPTH=32
 )(
@@ -97,8 +97,19 @@ module pocket_relay_stop_v2 #(
  task fail;input [3:0] why;begin
   state<=FAULT;fault<=why;feed_command<=0;capture_context(3,why);
  end endtask
+ // Production policy: tracking/association failures remain diagnostic only.
+ // Keep the unresolved queue and never report a completed refill on failure.
+ // Explicit stop/pause/start guards and the fifth-EMPTY latch remain separate.
+ task runtime_fault;input [3:0] why;begin
+  if(EMPTY_ONLY_STOP)begin
+   state<=FEED;fault<=why;feed_command<=1;
+   phase_ms<=0;stable<=0;have_position<=0;
+   if(!frozen_diagnostic[95])capture_context(3,why);
+  end else fail(why);
+ end endtask
  task relocate;input [2:0] cause;begin
-  if(retry_used)fail(6);
+  if(EMPTY_ONLY_STOP)runtime_fault(6);
+  else if(retry_used)fail(6);
   else begin
    state<=REACQUIRE;fault<=6;feed_command<=0;phase_ms<=0;stable<=0;have_position<=0;
    retry_used<=1;capture_context(cause,6);
@@ -178,28 +189,32 @@ module pocket_relay_stop_v2 #(
      default:begin end
     endcase
     if(count==0 && push)begin have_position<=0;have_source<=0;position_age<=0;arrival_ms<=0;last_x<=0;end
-    if(fifth_empty)begin alarm_latched<=1;fail(15);end
-    else if(counter_fault)fail(1);
-    else if(tick && frame_age>=STALE_MS-1 && !good_frame)fail(2);
-    else if(wrong_direction)fail(3);
-    else if(global_event_bad || signature_bad)fail(4);
-    else if(push && count==QUEUE_DEPTH)fail(5);
-    else if(uncertain)fail(13);
-    else if(prefix_bad || local_event_bad)fail(11);
-    else if(count!=0 && have_source && tick && position_age>=STALE_MS-1 && !measured && state!=REACQUIRE)begin
-     if(ADJACENT_V6)relocate(1);else fail(6);
+    if(fifth_empty)begin
+     alarm_latched<=1;
+     if(EMPTY_ONLY_STOP && frozen_diagnostic[95])begin state<=FAULT;fault<=15;feed_command<=0;end
+     else fail(15);
     end
-    else if(!paused && count!=0 && !have_source && tick && arrival_ms>=ARRIVAL_TIMEOUT_MS-1 && !measured)fail(14);
+    else if(counter_fault)runtime_fault(1);
+    else if(tick && frame_age>=STALE_MS-1 && !good_frame)runtime_fault(2);
+    else if(wrong_direction)runtime_fault(3);
+    else if(global_event_bad || signature_bad)runtime_fault(4);
+    else if(push && count==QUEUE_DEPTH)runtime_fault(5);
+    else if(uncertain)runtime_fault(13);
+    else if(prefix_bad || local_event_bad)runtime_fault(11);
+    else if(count!=0 && have_source && tick && position_age>=STALE_MS-1 && !measured && state!=REACQUIRE)begin
+     if(ADJACENT_V6)relocate(1);else runtime_fault(6);
+    end
+    else if(!paused && count!=0 && !have_source && tick && arrival_ms>=ARRIVAL_TIMEOUT_MS-1 && !measured)runtime_fault(14);
     else if(paused && state!=FEED)begin
      stable<=0;have_position<=0;phase_ms<=0;
      if(state==HOLD)state<=SETTLE;
     end else case(state)
      ALIGN:if(good_frame)begin
-      if(transport_occupied || counter_total!=0 || station_total!=0)fail(12);
+      if(transport_occupied || counter_total!=0 || station_total!=0)runtime_fault(12);
       else begin state<=FEED;feed_command<=1;end
      end
      FEED:if(measured)begin
-      if(position_x<TARGET_X-POSITION_TOL_PX)fail(7);
+      if(position_x<TARGET_X-POSITION_TOL_PX)runtime_fault(7);
       else if(position_x<=TARGET_X+ADVANCE_PX)begin
        state<=SETTLE;feed_command<=0;phase_ms<=0;stable<=0;have_position<=0;
       end
@@ -211,13 +226,13 @@ module pocket_relay_stop_v2 #(
         else stable<=stable+1'b1;
        end else stable<=within_x ? 1 : 0;
       end
-      if(tick && phase_ms>=STOP_TIMEOUT_MS-1)fail(8);
+      if(tick && phase_ms>=STOP_TIMEOUT_MS-1)runtime_fault(8);
      end
-     HOLD:if(measured && (!within_x || !at_anchor))fail(9);
+     HOLD:if(measured && (!within_x || !at_anchor))runtime_fault(9);
      NEXT:if(ADJACENT_V6)begin
       // A new head gets a fresh measurement BEFORE any motor restart.
       if(measured)begin
-       if(position_x<TARGET_X-POSITION_TOL_PX)fail(7);
+       if(position_x<TARGET_X-POSITION_TOL_PX)runtime_fault(7);
        else if(within_x)begin state<=SETTLE;phase_ms<=0;stable<=0;have_position<=0;end
        else begin state<=FEED;feed_command<=1;end
       end else if(good_frame && station_total<query_id)begin state<=FEED;feed_command<=1;end
@@ -227,14 +242,14 @@ module pocket_relay_stop_v2 #(
       // Motor remains OFF. Three independent, current same-ID measurements
       // must be stable; HOLD is then restarted in full, never inherited.
       if(measured)begin
-       if(position_x<TARGET_X-POSITION_TOL_PX)fail(7);
+       if(position_x<TARGET_X-POSITION_TOL_PX)runtime_fault(7);
        else if(nearby && stable==2)begin
         fault<=0;phase_ms<=0;stable<=0;have_position<=0;
         if(within_x)state<=SETTLE;
         else begin state<=FEED;feed_command<=1;end
        end else stable<=nearby ? stable+1'b1 : 1;
       end
-      if(tick && phase_ms>=REACQUIRE_MS-1)fail(6);
+      if(tick && phase_ms>=REACQUIRE_MS-1)runtime_fault(6);
      end
      default:begin end
     endcase

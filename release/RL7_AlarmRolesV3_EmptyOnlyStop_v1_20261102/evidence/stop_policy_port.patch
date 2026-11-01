@@ -1,0 +1,150 @@
+diff --git a/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v b/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v
+index f19f70c..62a872d 100644
+--- a/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v
++++ b/fpga/component_inspector/user_source/hdl_source/design_top_wrapper.v
+@@ -1,7 +1,7 @@
+ 
+ 
+ module design_top_wrapper #(parameter INPUT_WIDTH=1920,INPUT_HEIGHT=1080,VIDEO_WIDTH=1280,VIDEO_HEIGHT=720,ENABLE_REGIONS=1,ENABLE_CALIBRATION=1,
+- parameter DEMO_UI=1,FIVE_EMPTY_V7=1,ADJACENT_V6=1,RELAY_CLEAN_UI=1,RELAY_LEFT_LAYOUT=1,ENABLE_AUTO_RELAY=1,RELAY_TARGET_X=152,RELAY_ADVANCE_PX=32,RELAY_TOL_PX=80,
++ parameter EMPTY_ONLY_STOP=1,DEMO_UI=1,FIVE_EMPTY_V7=1,ADJACENT_V6=1,RELAY_CLEAN_UI=1,RELAY_LEFT_LAYOUT=1,ENABLE_AUTO_RELAY=1,RELAY_TARGET_X=152,RELAY_ADVANCE_PX=32,RELAY_TOL_PX=80,
+  parameter ENABLE_LOCAL_EDGE_ASSIST=1,ENABLE_EMPTY_TRACE=1,ENABLE_ROBUST_EMPTY_CONTEXT=1,ENABLE_ROBUST_SMALL_EMPTY=1,ENABLE_STANDING_REVIEW=1,ENABLE_PRESENT_SURFACE=1,ENABLE_REVIEW_PROBE=0,REPORT_NUMBER_GAPS=0,ENABLE_CLASSIFIED_COUNT=1,ENABLE_TRACKING=0,ENABLE_MULTI_POCKETS=0,ENABLE_SHAPE_MODEL=1,ENABLE_LOCAL_SEARCH=1) (
+     input wire        I_sys_clk,
+     input wire        I_rst_n,
+@@ -723,7 +723,7 @@ wire camera_metadata_ready;
+ wire [15:0] lost_frames,overflow_frames,underflow_frames;
+ localparam PUBLISH_BITS=9+$clog2(VIDEO_WIDTH*VIDEO_HEIGHT*3/16+1);
+ wire [PUBLISH_BITS-1:0] publish_diagnostic,publish_display;
+-isp_top #(.MEASURE_LATENCY(DEMO_UI),.FIVE_EMPTY_V7(FIVE_EMPTY_V7),.ADJACENT_V6(ADJACENT_V6),.RELAY_KEYS_V3(ENABLE_AUTO_RELAY),.RELAY_LEFT_LAYOUT(RELAY_LEFT_LAYOUT),.AUTO_RELAY(ENABLE_AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_ADVANCE_PX(RELAY_ADVANCE_PX),.RELAY_TOL_PX(RELAY_TOL_PX),.LOCAL_EDGE_ASSIST(ENABLE_LOCAL_EDGE_ASSIST),.EMPTY_TRACE(ENABLE_EMPTY_TRACE),.ROBUST_EMPTY_CONTEXT(ENABLE_ROBUST_EMPTY_CONTEXT),.ROBUST_SMALL_EMPTY(ENABLE_ROBUST_SMALL_EMPTY),.STANDING_REVIEW(ENABLE_STANDING_REVIEW),.SURFACE_REVIEW(ENABLE_PRESENT_SURFACE),.REVIEW_PROBE(ENABLE_REVIEW_PROBE && CALIBRATION_MODE),.CLASSIFIED_COUNT(CLASSIFIED_COUNT),.RESULT_RECORDER(CLASSIFIED_COUNT),.LOCAL_RECOVERY(CLASSIFIED_COUNT),.MULTITHRESHOLD_EMPTY(CLASSIFIED_COUNT),.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.SCALE_DISPLAY(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
++isp_top #(.EMPTY_ONLY_STOP(EMPTY_ONLY_STOP),.MEASURE_LATENCY(DEMO_UI),.FIVE_EMPTY_V7(FIVE_EMPTY_V7),.ADJACENT_V6(ADJACENT_V6),.RELAY_KEYS_V3(ENABLE_AUTO_RELAY),.RELAY_LEFT_LAYOUT(RELAY_LEFT_LAYOUT),.AUTO_RELAY(ENABLE_AUTO_RELAY),.RELAY_TARGET_X(RELAY_TARGET_X),.RELAY_ADVANCE_PX(RELAY_ADVANCE_PX),.RELAY_TOL_PX(RELAY_TOL_PX),.LOCAL_EDGE_ASSIST(ENABLE_LOCAL_EDGE_ASSIST),.EMPTY_TRACE(ENABLE_EMPTY_TRACE),.ROBUST_EMPTY_CONTEXT(ENABLE_ROBUST_EMPTY_CONTEXT),.ROBUST_SMALL_EMPTY(ENABLE_ROBUST_SMALL_EMPTY),.STANDING_REVIEW(ENABLE_STANDING_REVIEW),.SURFACE_REVIEW(ENABLE_PRESENT_SURFACE),.REVIEW_PROBE(ENABLE_REVIEW_PROBE && CALIBRATION_MODE),.CLASSIFIED_COUNT(CLASSIFIED_COUNT),.RESULT_RECORDER(CLASSIFIED_COUNT),.LOCAL_RECOVERY(CLASSIFIED_COUNT),.MULTITHRESHOLD_EMPTY(CLASSIFIED_COUNT),.INPUT_WIDTH(INPUT_WIDTH),.INPUT_HEIGHT(INPUT_HEIGHT),.WIDTH(VIDEO_WIDTH),.HEIGHT(VIDEO_HEIGHT),.SCALE_DISPLAY(1),.REGIONS(REGION_MODE),.CALIBRATION(CALIBRATION_MODE),.ASYNC_PROCESSING(LOCAL_SEARCH),.LOCAL_SEARCH(LOCAL_SEARCH),.SHAPE_MODEL(ENABLE_SHAPE_MODEL && !ENABLE_TRACKING && !MULTI_POCKETS),.DIRECT_DETECTION(!ENABLE_TRACKING),.MULTI_POCKETS(MULTI_POCKETS),.TRACKING(ENABLE_TRACKING),.HOLE_Y(380),.LATE_HOLE(1),.ROI_X0(SAMPLE_X0),.ROI_X1(SAMPLE_X1),.ROI_Y0(SAMPLE_Y0),.ROI_Y1(SAMPLE_Y1)) u_isp_top (
+ .processing_clk(S_process_clk),
+ .capture_time_us(capture_time_us),.capture_time_valid(capture_time_valid),
+ .capture_info(source_capture),.latest_source_frame(latest_source_frame),
+diff --git a/fpga/component_inspector/user_source/hdl_source/isp/isp_top.v b/fpga/component_inspector/user_source/hdl_source/isp/isp_top.v
+index f766f13..d12861c 100644
+--- a/fpga/component_inspector/user_source/hdl_source/isp/isp_top.v
++++ b/fpga/component_inspector/user_source/hdl_source/isp/isp_top.v
+@@ -2,7 +2,7 @@ module isp_top #(
+     parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,
+     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
+     parameter HOLE_Y=220,LATE_HOLE=0,MULTI_POCKETS=0,REGIONS=0,CALIBRATION=0,LOCAL_EDGE_ASSIST=0,EMPTY_TRACE=0,ROBUST_EMPTY_CONTEXT=0,ROBUST_SMALL_EMPTY=0,STANDING_REVIEW=0,SURFACE_REVIEW=0,REVIEW_PROBE=0,CLASSIFIED_COUNT=0,RESULT_RECORDER=0,LOCAL_RECOVERY=0,MULTITHRESHOLD_EMPTY=0,
+-    parameter MEASURE_LATENCY=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,
++    parameter EMPTY_ONLY_STOP=0,MEASURE_LATENCY=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,RELAY_KEYS_V3=0,RELAY_LEFT_LAYOUT=0,AUTO_RELAY=0,RELAY_TARGET_X=760,RELAY_ADVANCE_PX=24,RELAY_TOL_PX=8,
+     parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+256*CLASSIFIED_COUNT
+ ) (
+     input processing_clk,
+@@ -353,7 +353,7 @@ generate if(CLASSIFIED_COUNT)begin : classified_counting
+   assign repair_hold_id=search_valid ? stop_query : 9'd0;
+   assign repair_hold_radius=search_valid ? search_radius : 6'd12;assign repair_empty_only=search_valid;
+   assign repair_hold_valid=search_valid || lead_valid;assign repair_hold_x=search_valid ? search_x : lead_x;assign repair_hold_y=search_valid ? search_y : lead_y;
+-  pocket_relay_stop_v2 #(.FIVE_EMPTY_V7(FIVE_EMPTY_V7),.ADJACENT_V6(ADJACENT_V6),.RESTART_NEW_RUN(RELAY_KEYS_V3),.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
++  pocket_relay_stop_v2 #(.EMPTY_ONLY_STOP(EMPTY_ONLY_STOP),.FIVE_EMPTY_V7(FIVE_EMPTY_V7),.ADJACENT_V6(ADJACENT_V6),.RESTART_NEW_RUN(RELAY_KEYS_V3),.TARGET_X(RELAY_TARGET_X),.ADVANCE_PX(RELAY_ADVANCE_PX),.POSITION_TOL_PX(RELAY_TOL_PX)) controller(
+    .clk(post_clk),.rst_n(I_rst_n),.permit(relay_permit),.pause(RELAY_KEYS_V3 && relay_pause),.start_run(stop_begin),.clear_run(stop_clear),
+    .good_frame(stop_good),.bad_frame(stop_bad),.transport_occupied(transport_occupied),.current_frame(stop_frame),
+    .counter_run(stop_run),.counter_state(stop_state),.direction_valid(stop_dv),.direction_right(stop_dr),
+diff --git a/fpga/component_inspector/user_source/hdl_source/pocket_relay_stop_v2.v b/fpga/component_inspector/user_source/hdl_source/pocket_relay_stop_v2.v
+index d5c4326..cb7961a 100644
+--- a/fpga/component_inspector/user_source/hdl_source/pocket_relay_stop_v2.v
++++ b/fpga/component_inspector/user_source/hdl_source/pocket_relay_stop_v2.v
+@@ -1,7 +1,7 @@
+ // Left station uses a second REAL ordered gate count. Global IDs are bound
+ // only after a proved clear transport startup; predicted search is not position.
+ module pocket_relay_stop_v2 #(
+- parameter FIVE_EMPTY_V7=0,ADJACENT_V6=0,REACQUIRE_MS=500,RESTART_NEW_RUN=0,CLK_HZ=100000000,TARGET_X=160,ADVANCE_PX=16,POSITION_TOL_PX=8,
++ parameter EMPTY_ONLY_STOP=0,FIVE_EMPTY_V7=0,ADJACENT_V6=0,REACQUIRE_MS=500,RESTART_NEW_RUN=0,CLK_HZ=100000000,TARGET_X=160,ADVANCE_PX=16,POSITION_TOL_PX=8,
+  parameter STILL_PX=2,HOLD_MS=1000,STALE_MS=150,STOP_TIMEOUT_MS=1200,
+  parameter ARRIVAL_TIMEOUT_MS=15000,QUEUE_DEPTH=32
+ )(
+@@ -94,8 +94,18 @@ module pocket_relay_stop_v2 #(
+  task fail;input [3:0] why;begin
+   state<=FAULT;fault<=why;feed_command<=0;capture_context(3,why);
+  end endtask
++ // Production policy: tracking/association failures remain diagnostic only.
++ // Keep the unresolved queue and never report a completed refill on failure.
++ // Explicit stop/pause/start guards and the fifth-EMPTY latch remain separate.
++ task runtime_fault;input [3:0] why;begin
++  if(EMPTY_ONLY_STOP)begin
++   state<=FEED;fault<=why;feed_command<=1;
++   phase_ms<=0;stable<=0;have_position<=0;capture_context(3,why);
++  end else fail(why);
++ end endtask
+  task relocate;input [2:0] cause;begin
+-  if(retry_used)fail(6);
++  if(EMPTY_ONLY_STOP)runtime_fault(6);
++  else if(retry_used)fail(6);
+   else begin
+    state<=REACQUIRE;fault<=6;feed_command<=0;phase_ms<=0;stable<=0;have_position<=0;
+    retry_used<=1;capture_context(cause,6);
+@@ -165,27 +175,27 @@ module pocket_relay_stop_v2 #(
+     endcase
+     if(count==0 && push)begin have_position<=0;have_source<=0;position_age<=0;arrival_ms<=0;last_x<=0;end
+     if(fifth_empty)begin alarm_latched<=1;fail(15);end
+-    else if(counter_fault)fail(1);
+-    else if(tick && frame_age>=STALE_MS-1 && !good_frame)fail(2);
+-    else if(wrong_direction)fail(3);
+-    else if(global_event_bad || signature_bad)fail(4);
+-    else if(push && count==QUEUE_DEPTH)fail(5);
+-    else if(uncertain)fail(13);
+-    else if(prefix_bad || local_event_bad)fail(11);
++    else if(counter_fault)runtime_fault(1);
++    else if(tick && frame_age>=STALE_MS-1 && !good_frame)runtime_fault(2);
++    else if(wrong_direction)runtime_fault(3);
++    else if(global_event_bad || signature_bad)runtime_fault(4);
++    else if(push && count==QUEUE_DEPTH)runtime_fault(5);
++    else if(uncertain)runtime_fault(13);
++    else if(prefix_bad || local_event_bad)runtime_fault(11);
+     else if(count!=0 && have_source && tick && position_age>=STALE_MS-1 && !measured && state!=REACQUIRE)begin
+-     if(ADJACENT_V6)relocate(1);else fail(6);
++     if(ADJACENT_V6)relocate(1);else runtime_fault(6);
+     end
+-    else if(!paused && count!=0 && !have_source && tick && arrival_ms>=ARRIVAL_TIMEOUT_MS-1 && !measured)fail(14);
++    else if(!paused && count!=0 && !have_source && tick && arrival_ms>=ARRIVAL_TIMEOUT_MS-1 && !measured)runtime_fault(14);
+     else if(paused && state!=FEED)begin
+      stable<=0;have_position<=0;phase_ms<=0;
+      if(state==HOLD)state<=SETTLE;
+     end else case(state)
+      ALIGN:if(good_frame)begin
+-      if(transport_occupied || counter_total!=0 || station_total!=0)fail(12);
++      if(transport_occupied || counter_total!=0 || station_total!=0)runtime_fault(12);
+       else begin state<=FEED;feed_command<=1;end
+      end
+      FEED:if(measured)begin
+-      if(position_x<TARGET_X-POSITION_TOL_PX)fail(7);
++      if(position_x<TARGET_X-POSITION_TOL_PX)runtime_fault(7);
+       else if(position_x<=TARGET_X+ADVANCE_PX)begin
+        state<=SETTLE;feed_command<=0;phase_ms<=0;stable<=0;have_position<=0;
+       end
+@@ -197,13 +207,13 @@ module pocket_relay_stop_v2 #(
+         else stable<=stable+1'b1;
+        end else stable<=within_x ? 1 : 0;
+       end
+-      if(tick && phase_ms>=STOP_TIMEOUT_MS-1)fail(8);
++      if(tick && phase_ms>=STOP_TIMEOUT_MS-1)runtime_fault(8);
+      end
+-     HOLD:if(measured && (!within_x || !at_anchor))fail(9);
++     HOLD:if(measured && (!within_x || !at_anchor))runtime_fault(9);
+      NEXT:if(ADJACENT_V6)begin
+       // A new head gets a fresh measurement BEFORE any motor restart.
+       if(measured)begin
+-       if(position_x<TARGET_X-POSITION_TOL_PX)fail(7);
++       if(position_x<TARGET_X-POSITION_TOL_PX)runtime_fault(7);
+        else if(within_x)begin state<=SETTLE;phase_ms<=0;stable<=0;have_position<=0;end
+        else begin state<=FEED;feed_command<=1;end
+       end else if(good_frame && station_total<query_id)begin state<=FEED;feed_command<=1;end
+@@ -213,14 +223,14 @@ module pocket_relay_stop_v2 #(
+       // Motor remains OFF. Three independent, current same-ID measurements
+       // must be stable; HOLD is then restarted in full, never inherited.
+       if(measured)begin
+-       if(position_x<TARGET_X-POSITION_TOL_PX)fail(7);
++       if(position_x<TARGET_X-POSITION_TOL_PX)runtime_fault(7);
+        else if(nearby && stable==2)begin
+         fault<=0;phase_ms<=0;stable<=0;have_position<=0;
+         if(within_x)state<=SETTLE;
+         else begin state<=FEED;feed_command<=1;end
+        end else stable<=nearby ? stable+1'b1 : 1;
+       end
+-      if(tick && phase_ms>=REACQUIRE_MS-1)fail(6);
++      if(tick && phase_ms>=REACQUIRE_MS-1)runtime_fault(6);
+      end
+      default:begin end
+     endcase

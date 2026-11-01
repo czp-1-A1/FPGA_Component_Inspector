@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,hashlib,json,os,re,subprocess,sys
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--adjacent-v6',action='store_true');a.add_argument('--five-empty-v7',action='store_true');a.add_argument('--demo-rl7',action='store_true');a.add_argument('--ui-opt-v2',action='store_true');args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('--work',type=Path,required=True);a.add_argument('--left-v2',action='store_true');a.add_argument('--keys-v3',action='store_true');a.add_argument('--adjacent-v6',action='store_true');a.add_argument('--five-empty-v7',action='store_true');a.add_argument('--demo-rl7',action='store_true');a.add_argument('--ui-opt-v2',action='store_true');a.add_argument('--td',type=Path,default=Path('E:/TD'));args=a.parse_args()
 work=args.work.resolve();project=work/'project';tools=project/'tools';env=dict(os.environ)
 env['TEMP']=env['TMP']=str(work/'temp')
 audit_names=['classified_audit_routed.tcl','classified_audit_gray_packing.tcl']
@@ -65,7 +65,7 @@ report_timing_path -from $alarm_regs -to $buzzer_regs -ep_num 4096 -path_num 2 -
 close $bind_fd''')
  target=work/name;target.write_text(text)
  with (work/(name+'.log')).open('w',encoding='utf8') as log:
-  result=subprocess.run(['E:/TD/bin/td_commands_prompt.exe'],input='source {'+target.as_posix()+'}\n',text=True,cwd=project,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=600)
+  result=subprocess.run([str(args.td/'bin/td_commands_prompt.exe')],input='source {'+target.as_posix()+'}\n',text=True,cwd=project,env=env,stdout=log,stderr=subprocess.STDOUT,timeout=600)
  assert result.returncode==0,(name,str(work/(name+'.log')))
  print('Generated read-only routed reports: '+name,flush=True)
 

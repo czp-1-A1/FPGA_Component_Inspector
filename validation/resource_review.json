@@ -1,0 +1,26 @@
+{
+  "status": "REVIEWED_NO_FURTHER_FEATURE_ADDITION",
+  "baseline_commit": "904a2bb053a9e679b3f50378ca3163a55698b20e",
+  "actual_slice": 18903,
+  "available_slice": 21216,
+  "slice_percent": 89.097851,
+  "remaining_slice": 2313,
+  "resources": {
+    "slice": 18903,
+    "eram": 98,
+    "dsp": 30,
+    "pll": 5
+  },
+  "timing_ns": {
+    "SWNS": 0.1,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "baseline_slice": 19131,
+  "current_td": "6.2.178840",
+  "baseline_td": "6.2.168116",
+  "seed": 1,
+  "assessment": "Retain inherited V3 device-capacity and full routed timing/CDC/output gates. This task changes only stop policy: no new ROI/detector/camera feature, RAM/DSP/PLL. Above AGENTS80% advisory line requires this review and no further feature addition. Do not attribute cross-TD area difference solely to the3 source changes. Original SDC/pin bytes and seed1 preserved.",
+  "board_operated": false
+}
