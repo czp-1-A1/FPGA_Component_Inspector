@@ -15,6 +15,8 @@
 
 K1开启新RUN并计数；K2暂停/继续当前自动流程并保留队列，待机时可手动电机启停；K3单键清零、停止、解除报警并静音；K4停止且保留结果。SW3上停、下开启新RUN。五连ALARM期间K2/K4不能使电机重新运行，K3或明确K1新RUN才解除报警。新RUN之前保持计数区域上游起步、补件区无未编号的旧料。
 
+编号监视复用已有的全局有效编号前缀；标签角色在帧开始时与候选一并锁存，避免逐像素重复计算。首轮物理构建在一小时内未收敛而超时，没有生成bit；第二轮采用上述等价简化，重新执行本轮全部检查。
+
 ## 本次验证
 
 35项源码绑定检查：报警碰撞/原报警控制/完整像素规则3项、原RL7控制与RGB17项、无前导有件的全空穴RGB1项、演示蜂鸣/延迟/界面3项、无效延迟显示及真实100MHz蜂鸣2项、核心7项、全字库1项、实际综合网表相机串行总线1项。另保留两种定位孔尺寸的RGB角色分析和原版失败复现日志。相机ACK为模型，不宣称光学实物读回。
@@ -34,7 +36,7 @@ K1开启新RUN并计数；K2暂停/继续当前自动流程并保留队列，待
 ## 重建
 
 ```powershell
-python scripts/build_r22_relay.py --keys-v3 --demo-rl7 --ui-opt-v2 --seed 2 --stage-timeout 3600 --source project --baseline-manifest baseline/r22_frozen_inputs.json --work E:/FPGA_WORK/RL7_ALARM_ROLES_V3 --td E:/TD
+python scripts/build_r22_relay.py --keys-v3 --demo-rl7 --ui-opt-v2 --seed 1 --stage-timeout 7200 --source project --baseline-manifest baseline/r22_frozen_inputs.json --work E:/FPGA_WORK/RL7_ALARM_ROLES_V3 --td E:/TD
 python scripts/audit_r22_relay.py --keys-v3 --adjacent-v6 --five-empty-v7 --demo-rl7 --ui-opt-v2 --work E:/FPGA_WORK/RL7_ALARM_ROLES_V3
 ```
 
