@@ -56,7 +56,7 @@ def main():
  assert '.alarm(relay_alarm),.O_buzzer_n(O_buzzer_n)' in top and '.capture_info(active_frame_display[FRAME_META_WIDTH+67:FRAME_META_WIDTH+3])' in top
  assert '.vs(exp_vs),.de(exp_de)' in top and '.latest_source(latest_source_display)' in top
  selected=[];groups=[
-  ('rl7_alarm_roles_v3_contracts_r3_20261101','rl7_alarm_roles_v3',3),
+  ('rl7_alarm_roles_v3_contracts_r4_20261101','rl7_alarm_roles_v3',3),
   ('rl7_alarm_roles_v3_units_r1_20261101','demo_rl7',3),('rl7_alarm_roles_v3_extra_r1_20261101','demo_rl7',2),
   ('rl7_alarm_roles_v3_regression_r1_20261101','shift_alarm_v7',17),
   ('rl7_alarm_roles_v3_empty_rgb_r1_20261101','rl7_alarm_roles_v3',1),

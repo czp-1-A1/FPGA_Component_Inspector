@@ -7,8 +7,8 @@ module tb_alarm_roles_pixels;
  always @*begin
   expected_objects=objects;
   for(role_i=0;role_i<4;role_i=role_i+1)begin
-   role=objects[role_i*76+:76];role_y=(integer'(role[19:10])+integer'(role[9:0]))/2;
-   if(role[74:73]==0 || (role[74:73]==1 && (role_y<304 || role_y>336)))expected_objects[role_i*76+75]=0;
+   role=objects[role_i*76+:76];role_y=integer'(role[19:10])+integer'(role[9:0]);
+   if(role[74:73]==0 || (role[74:73]==1 && (role_y<608 || role_y>672)))expected_objects[role_i*76+75]=0;
   end
  end
  reg[303:0]unused_roles=0;reg[255:0]live=0,record=0;reg[63:0]relay=0;reg[2:0]mode=1;
@@ -81,6 +81,12 @@ end endgenerate
    5:begin for(i=0;i<4;i=i+1)record[94+i*9+:9]=511-i;latency_ms10=65535;latency_frame_lag=65535;latency_source_bcd=40'h4294967295;end
    6:begin eligible=0;record[47:32]=8;latency_valid=0;end
    7:begin relay[31:29]=4;relay[28:25]=15;mode=2;end
+   8:begin
+    objects[75:0]=obj(1,0,200,220,303,304);
+    objects[151:76]=obj(1,0,400,420,304,304);
+    objects[227:152]=obj(1,0,600,620,336,336);
+    objects[303:228]=obj(1,0,800,820,336,337);
+   end
   endcase
  end endtask
  task picture;begin
@@ -99,12 +105,12 @@ end endgenerate
  end endtask
  initial begin
   ticks(5);rst_n=1;ticks(5);
-  for(scene=0;scene<8;scene=scene+1)begin
+  for(scene=0;scene<9;scene=scene+1)begin
    for(which_page=0;which_page<2;which_page=which_page+1)begin page=which_page;setup_scene;picture;end
    $display("UIOPT_SCENE %0d two pages compared",scene);
   end
-  if(pixels!=14745600 || comparisons!=58982400)$fatal(1,"coverage mismatch pixels%0d pairs%0d",pixels,comparisons);
-  $display("PASS ALARM_ROLES_PIXELS: 16 complete720p rasters14745600pixels;58982400 expected-role-filter vs originalV1 pixel comparisons across legacy/demo modes;four labels,overlap,edge/IDs/missing/invalid/alarm;exactRGB/DE/HS/VS");$finish;
+  if(pixels!=16588800 || comparisons!=66355200)$fatal(1,"coverage mismatch pixels%0d pairs%0d",pixels,comparisons);
+  $display("PASS ALARM_ROLES_PIXELS: 18 complete720p rasters16588800pixels;66355200 expected-role-filter vs originalV1 pixel comparisons across legacy/demo modes;four labels,overlap,edge/IDs/missing/invalid/alarm;exactRGB/DE/HS/VS");$finish;
  end
  initial begin #400000000;$fatal(1,"pixel equivalence timeout");end
 endmodule
