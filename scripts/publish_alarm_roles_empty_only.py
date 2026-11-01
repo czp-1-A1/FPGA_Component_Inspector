@@ -6,9 +6,10 @@ branch='codex/rl7-alarm-roles-empty-only-20261102';url='https://github.com/czp-1
 name='RL7_AlarmRolesV3_EmptyOnlyStop_v1_20261102';release=repo/'release'/name
 verify=Path('D:/CodexWork/rl7_alarm_roles_empty_only_remote_20261102')
 env=dict(os.environ);env['GIT_TERMINAL_PROMPT']='0'
-env['GIT_CONFIG_COUNT']='4';env['GIT_CONFIG_KEY_0']='http.proxy';env['GIT_CONFIG_VALUE_0']=''
-env['GIT_CONFIG_KEY_1']='https.proxy';env['GIT_CONFIG_VALUE_1']='';env['GIT_CONFIG_KEY_2']='credential.interactive';env['GIT_CONFIG_VALUE_2']='false'
-env['GIT_CONFIG_KEY_3']='http.curloptResolve';env['GIT_CONFIG_VALUE_3']='github.com:443:4.228.31.150'
+env['GIT_CONFIG_COUNT']='5';env['GIT_CONFIG_KEY_0']='http.proxy';env['GIT_CONFIG_VALUE_0']='http://127.0.0.1:7897'
+env['GIT_CONFIG_KEY_1']='https.proxy';env['GIT_CONFIG_VALUE_1']='http://127.0.0.1:7897';env['GIT_CONFIG_KEY_2']='credential.interactive';env['GIT_CONFIG_VALUE_2']='false'
+env['GIT_CONFIG_KEY_3']='http.version';env['GIT_CONFIG_VALUE_3']='HTTP/1.1'
+env['GIT_CONFIG_KEY_4']='http.postBuffer';env['GIT_CONFIG_VALUE_4']='524288000'
 def sha(p):
  h=hashlib.sha256()
  with p.open('rb') as f:

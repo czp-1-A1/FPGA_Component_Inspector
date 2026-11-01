@@ -1,10 +1,19 @@
 {
-  "stage": "READY_TO_COMMIT",
+  "stage": "COMPLETE_REMOTE_SOURCE_BIT_ZIP_INDEPENDENTLY_VERIFIED",
   "baseline_commit": "904a2bb053a9e679b3f50378ca3163a55698b20e",
   "branch": "codex/rl7-alarm-roles-empty-only-20261102",
   "repository": "https://github.com/czp-1-A1/FPGA_Component_Inspector.git",
-  "committed": false,
-  "pushed": false,
+  "committed": true,
+  "pushed": true,
   "board_operated": false,
-  "updated": "2026-11-02T00:58:45.777222+08:00"
+  "updated": "2026-11-02T00:58:45.777222+08:00",
+  "source_commit": "22b1531d9c376d5e66825a92a0882060e0f9056a",
+  "indexed_source_payload_zip_sha256_count": 1731,
+  "last_transport_error": "git ls-remote: fatal: unable to access 'https://github.com/czp-1-A1/FPGA_Component_Inspector.git/': Failed to connect to github.com:443 after 21073 ms: Could not connect to server\n",
+  "attempt": 1,
+  "remote_source_head": "22b1531d9c376d5e66825a92a0882060e0f9056a",
+  "remote_verified": true,
+  "view_branch": "https://github.com/czp-1-A1/FPGA_Component_Inspector/tree/codex/rl7-alarm-roles-empty-only-20261102",
+  "verified_payloads": 1091,
+  "transport": "Per-command HTTP1.1 with non-chunked buffer; normal TLS unchanged"
 }
