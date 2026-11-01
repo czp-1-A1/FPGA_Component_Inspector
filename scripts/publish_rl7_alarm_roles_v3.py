@@ -134,7 +134,7 @@ def main():
   copy(repo/'scripts'/n,release/'scripts'/n)
  for p in work.rglob('*'):
   rel=p.relative_to(work)
-  if p.is_file() and rel.parts[0] not in ['project','temp'] and (p.suffix.lower() in ['.json','.log','.tcl','.cfg','.rpt','.timing','.area','.txt','.prj','.db','.v'] or p.name=='verify_relay_physical.py'):
+  if p.is_file() and rel.parts[0] not in ['project','temp'] and (p.suffix.lower() in ['.json','.log','.tcl','.cfg','.rpt','.timing','.area','.txt','.prj','.db','.v','.sv'] or p.name=='verify_relay_physical.py'):
    copy(p,release/'build'/rel)
  for n in ['demo_rgb.png']:
   if (tmp/'rl7_alarm_roles_v3_units_r1_20261101'/n).exists():copy(tmp/'rl7_alarm_roles_v3_units_r1_20261101'/n,release/'preview'/n)
