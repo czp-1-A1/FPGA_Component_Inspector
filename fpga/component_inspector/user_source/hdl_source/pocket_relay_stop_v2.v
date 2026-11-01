@@ -26,6 +26,7 @@ module pocket_relay_stop_v2 #(
  // Unconnected pause preserves legacy benches; production drives a real 0/1.
  wire paused=(pause===1'b1);
  reg feed_command;reg [2:0] empty_streak;reg alarm_latched;
+ reg alarm_tracking;reg [8:0] alarm_last_id;
  assign alarm_stop=FIVE_EMPTY_V7 && alarm_latched;
  assign feed_enable=feed_command && !paused && !alarm_stop;
  localparam IDLE=0,FEED=1,SETTLE=2,HOLD=3,FAULT=4,ALIGN=5,NEXT=6,REACQUIRE=7;
@@ -76,8 +77,12 @@ module pocket_relay_stop_v2 #(
  wire healthy=!counter_fault && !wrong_direction && !uncertain && !prefix_bad &&
   !global_event_bad && !local_event_bad && !signature_bad && !(push && count==QUEUE_DEPTH);
  // Only proved, ordered GLOBAL IDs count; repeated frames and queue depth do not.
- wire fifth_empty=FIVE_EMPTY_V7 && active && state!=FAULT && event_valid && !global_event_bad &&
-  event_kind==3 && empty_streak==4 && healthy;
+ // The global event ledger, not local station health, owns this alarm.
+ // Duplicate/skipped/wrong-RUN events disarm the watcher until explicit newRUN.
+ wire alarm_event_bad=event_run!=active_run || event_id!=alarm_last_id+9'd1 ||
+  event_id==0 || event_id>300 || event_kind<2;
+ wire fifth_empty=FIVE_EMPTY_V7 && active && alarm_tracking && permit && event_valid &&
+  !alarm_event_bad && event_kind==3 && empty_streak==4;
  wire pop=!fifth_empty && active && !paused && state==HOLD && healthy && tick && phase_ms==HOLD_MS-1 &&
   position_age<STALE_MS-1 && frame_age<STALE_MS-1 && permit &&
   !(measured && (!within_x || !at_anchor));
@@ -103,7 +108,7 @@ module pocket_relay_stop_v2 #(
  end endtask
  always @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
-   empty_streak<=0;alarm_latched<=0;
+   empty_streak<=0;alarm_latched<=0;alarm_tracking<=0;alarm_last_id<=0;
    state<=IDLE;fault<=0;feed_command<=0;active<=0;active_run<=0;rd<=0;wr<=0;count<=0;last_empty<=0;
    divider<=0;frame_age<=0;position_age<=0;phase_ms<=0;arrival_ms<=0;last_x<=0;last_y<=0;
    anchor_x<=0;anchor_y<=0;stable<=0;have_position<=0;have_source<=0;last_position_frame<=0;cycle_done<=0;
@@ -111,6 +116,13 @@ module pocket_relay_stop_v2 #(
    history_total<=0;verified_total<=0;verify_id<=0;verify_pending<=0;expected_kind<=0;observed_kind<=0;
   end else begin
    verify_pending<=0;
+   if(FIVE_EMPTY_V7 && active && permit && alarm_tracking && event_valid && !clear_run && !start_run)begin
+    if(alarm_event_bad)begin alarm_tracking<=0;empty_streak<=0;end
+    else begin
+     alarm_last_id<=event_id;
+     empty_streak<=event_kind==3 ? (empty_streak<5 ? empty_streak+1'b1 : 3'd5) : 3'd0;
+    end
+   end
    cycle_done<=0;divider<=tick ? 0 : divider+1'b1;
    if(tick)begin
     if(frame_age!=255)frame_age<=frame_age+1'b1;
@@ -124,7 +136,7 @@ module pocket_relay_stop_v2 #(
     last_x<=position_x;last_y<=position_y;have_position<=1;
    end
    if(clear_run)begin
-    empty_streak<=0;alarm_latched<=0;
+    empty_streak<=0;alarm_latched<=0;alarm_tracking<=0;alarm_last_id<=0;
     retry_used<=0;frozen_diagnostic<=0;frozen_head<=0;
     active<=0;state<=IDLE;fault<=0;feed_command<=0;rd<=0;wr<=0;count<=0;last_empty<=0;
     have_position<=0;have_source<=0;arrival_ms<=0;
@@ -133,7 +145,7 @@ module pocket_relay_stop_v2 #(
     if(count!=0 && !RESTART_NEW_RUN)begin active<=0;fail(10);end
     else if(!PARAM_OK || !permit)begin active<=0;fail(11);end
     else begin
-     empty_streak<=0;alarm_latched<=0;
+     empty_streak<=0;alarm_latched<=0;alarm_tracking<=1;alarm_last_id<=0;
      retry_used<=0;frozen_diagnostic<=0;frozen_head<=0;
      active<=1;state<=ALIGN;fault<=0;feed_command<=0;active_run<=counter_run+16'd1;
      last_empty<=0;rd<=0;wr<=0;count<=0;frame_age<=0;position_age<=0;phase_ms<=0;arrival_ms<=0;
@@ -141,10 +153,12 @@ module pocket_relay_stop_v2 #(
      history_total<=0;verified_total<=0;verify_pending<=0;
     end
    end else if(!permit)begin active<=0;feed_command<=0;if(state!=FAULT)state<=IDLE;end
-   else if(active && state!=FAULT)begin
+   else if(active && state==FAULT && fifth_empty)begin
+    // Keep the first transport fault context while promoting the visible alarm.
+    alarm_latched<=1;fault<=15;feed_command<=0;
+   end else if(active && state!=FAULT)begin
     if(event_valid && !global_event_bad)begin
      kind_history[event_id-9'd1]<=event_kind;history_total<=event_id;
-     if(FIVE_EMPTY_V7)empty_streak<=event_kind==3 ? (empty_streak<5 ? empty_streak+1'b1 : 3'd5) : 3'd0;
     end
     if(station_event_valid && !local_event_bad)begin
      expected_kind<=kind_history[station_event_id-9'd1];observed_kind<=station_event_kind;

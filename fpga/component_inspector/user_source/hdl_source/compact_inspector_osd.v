@@ -431,6 +431,17 @@ endfunction
 
 reg [2:0] line;reg [9:0] plane_address;reg [7:0] code;
 reg [4:0] row,col;reg panel,guide,logo,repair_border;reg [23:0] ink;
+// Demo labels represent the taught pocket row. Unknown off-row contours
+// (including phase-eroded feed holes) are not inspected component labels.
+// Confirmed PRESENT/review and EMPTY stay visible at every row; no counter
+// or classifier record is altered by this presentation-only role filter.
+function label_role_allowed;input [75:0] value;reg [10:0] twice_y;
+ begin
+  twice_y={1'b0,value[19:10]}+value[9:0];
+  label_role_allowed=!DEMO_UI || !RELAY_LEFT_LAYOUT || value[74:73]>=2 ||
+   (value[74:73]==1 && twice_y>=HEIGHT/3+HEIGHT*5/9-32 && twice_y<=HEIGHT/3+HEIGHT*5/9+32);
+ end
+endfunction
 reg [75:0] ob;reg [8:0] id;reg [19:0] id_bcd;
 reg [10:0] lx,rx;reg [9:0] ly;reg [3:0] glyph_cell;
 wire trace_cross0=EMPTY_TRACE && cal_s && cal[63] &&
@@ -510,7 +521,7 @@ always @*begin
    if(page_s && t/2==record[57])begin
     id=record[94+t*9+:9];id_bcd=t%2==0 ? label_bcd0 : label_bcd1;
    end
-   if(ready && ob[75] && (!page_s || eligible_s && t/2==record[57]))begin
+   if(ready && ob[75] && label_role_allowed(ob) && (!page_s || eligible_s && t/2==record[57]))begin
     if(((x==ob[41:31] || x==ob[30:20]) && y>=ob[19:10] && y<=ob[9:0]) ||
       ((y==ob[19:10] || y==ob[9:0]) && x>=ob[41:31] && x<=ob[30:20]))guide=1;
     prefix=!DEMO_UI && page_s && show && id!=0;
