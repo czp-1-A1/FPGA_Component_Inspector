@@ -1,7 +1,7 @@
 {
-  "phase": "桌面bit、完整包与说明已独立恢复逐SHA校验，准备提交上传独立分支",
+  "phase": "已同步源码、bit、完整包；远端独立下载逐SHA核验，待人实板",
   "branch": "codex/rl7-empty-aperture-role-20261102",
-  "head": "1b8a097f9dd7d7dee2783e9dcbcf43986f7650f4",
+  "head": "7cab32a8bbad271db7bc4b4080a087aebbfba70f",
   "baseline_commit": "1b8a097f9dd7d7dee2783e9dcbcf43986f7650f4",
   "analysis": "D:\\CodexWork\\empty_tail_role_20261102",
   "build": "D:\\CodexWork\\erole_build_r1_20261102",
@@ -872,6 +872,16 @@
     "committed": false,
     "pushed": false
   },
-  "upload": null,
+  "upload": {
+    "stage": "COMPLETE_REMOTE_SOURCE_BIT_ZIP_INDEPENDENTLY_VERIFIED",
+    "baseline_commit": "1b8a097f9dd7d7dee2783e9dcbcf43986f7650f4",
+    "branch": "codex/rl7-empty-aperture-role-20261102",
+    "committed": true,
+    "pushed": true,
+    "board_operated": false,
+    "source_commit": "7cab32a8bbad271db7bc4b4080a087aebbfba70f",
+    "indexed_source_payload_zip_sha256_count": 2202,
+    "remote_verified": true
+  },
   "board_operated": false
 }
