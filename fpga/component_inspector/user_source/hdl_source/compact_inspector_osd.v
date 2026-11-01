@@ -2,7 +2,8 @@
 // one sequential decimal formatter. No classifier or recorder decisions here.
 // The text plane is complete before row8. Snapshot is the first active pixel,
 // after DDR metadata has settled. RGB/DE/HS/VS have the original three clocks.
-module compact_inspector_osd #(parameter ESSENTIAL_UI=0,AUTO_RELAY=0,RELAY_TARGET_X=152,RELAY_TOL_PX=80,DUAL_REGION_COUNT=0,PRESENT_TRACE=0,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+module compact_inspector_osd #(parameter MEASURE_LATENCY=0,ESSENTIAL_UI=0,AUTO_RELAY=0,RELAY_TARGET_X=152,RELAY_TOL_PX=80,DUAL_REGION_COUNT=0,PRESENT_TRACE=0,BUILD_R22=0,EMPTY_TRACE=0,BUILD_R20=0,BUILD_R19=0,BUILD_R18=0,BUILD_R17=0,REVIEW_PROBE=0,WIDTH=1280,HEIGHT=720,DIAG_BITS=27,ENABLE=1,REPORT_NUMBER_GAPS=1)(
+ input wire latency_new,latency_valid,input wire [19:0] latency_bcd,input wire [11:0] lag_bcd,input wire [39:0] source_bcd,
  input wire [127:0] relay_status,input wire [2:0] relay_mode,input wire relay_motor,
  input wire clk,rst_n,vs,hs,de,input wire [23:0] rgb,input wire page,
  input wire [15:0] exposure,gain,fps,width,height,
@@ -18,6 +19,30 @@ module compact_inspector_osd #(parameter ESSENTIAL_UI=0,AUTO_RELAY=0,RELAY_TARGE
 );
 reg de_d;reg [10:0] x;reg [9:0] y;
 wire start=de && !de_d && y==0;
+reg latency_valid_s;reg [19:0] latency_bcd_s;reg [11:0] lag_bcd_s;reg [39:0] source_bcd_s;
+always @(posedge clk or negedge rst_n)begin
+ if(!rst_n)begin latency_valid_s<=0;latency_bcd_s<=0;lag_bcd_s<=0;source_bcd_s<=0;end
+ else if(vs || start)latency_valid_s<=0;
+ else if(MEASURE_LATENCY && latency_new)begin
+  latency_valid_s<=latency_valid;latency_bcd_s<=latency_bcd;lag_bcd_s<=lag_bcd;source_bcd_s<=source_bcd;
+ end
+end
+// Both lines use the existing8x16 ASCII ROM at2x scale, without another font RAM.
+function [7:0] latency_char;
+ input [4:0] char_pos;input source_line;reg [175:0] message;reg [3:0] digit;
+ begin
+  message=source_line ? "SRC                   " : "LAT ----.-ms  LAG ---f";
+  latency_char=char_pos<22 ? message[(21-char_pos)*8+:8] : 8'd32;digit=0;
+  if(source_line && char_pos>=4 && char_pos<14)begin
+   digit=(source_bcd_s>>((13-char_pos)*4))&4'hf;latency_char=latency_valid_s ? "0"+digit : "-";
+  end else if(!source_line && ((char_pos>=4 && char_pos<=7) || char_pos==9))begin
+   digit=char_pos==9 ? latency_bcd_s[3:0] : (latency_bcd_s>>((8-char_pos)*4))&4'hf;
+   latency_char=latency_valid_s ? "0"+digit : "-";
+  end else if(!source_line && char_pos>=18 && char_pos<=20)begin
+   digit=(lag_bcd_s>>((20-char_pos)*4))&4'hf;latency_char=latency_valid_s ? "0"+digit : "-";
+  end
+ end
+endfunction
 reg [7:0] relay_q0,relay_q1;reg [11:0] relay_id0,relay_id1;
 reg [127:0] relay_s;reg [2:0] relay_mode_s;reg relay_motor_s;
 reg page_s,eligible_s,show,cal_s,gray_s,cfg_s,tune_s,pending_s;
@@ -413,6 +438,7 @@ wire trace_cross1=!PRESENT_TRACE && EMPTY_TRACE && cal_s && cal[127] &&
   (y==cal[115:106] && x+4>=cal[126:116] && x<=cal[126:116]+4));
 reg prefix;integer t;reg label_hit;reg [1:0] label_slot;
 wire [10:0] text_dx=x-11'd136;
+wire [10:0] latency_dx=x-(WIDTH-384);
 always @*begin
  line=0;plane_address=0;code=32;row=0;col=0;panel=0;guide=0;logo=0;ink=24'h70ffdd;
  ob=0;id=0;id_bcd=0;lx=0;rx=0;ly=0;glyph_cell=0;prefix=0;repair_border=0;label_hit=0;label_slot=0;
@@ -468,6 +494,10 @@ always @*begin
    if(code[7])col={code[5:4],3'd0}+((x-lx)&7);
    ink=ob[74:73]==3 ? 24'hffe080 : ob[74:73]==2 && ob[72:69]==0 ? 24'h70ffdd : 24'hffb070;
   end
+ end
+ if(MEASURE_LATENCY && x>=WIDTH-384 && x<WIDTH-16 && y>=8 && y<72)begin
+  panel=1;logo=0;row=(y>=40 ? y-40 : y-8)>>1;col={2'd0,latency_dx[3:1]};
+  code=latency_char(latency_dx[8:4],y>=40);ink=y>=40 ? 24'hff80df : 24'h40c8ff;
  end
  if(AUTO_RELAY)begin
   repair_border=(((x==RELAY_TARGET_X-RELAY_TOL_PX || x==RELAY_TARGET_X+RELAY_TOL_PX) && y[3]) ||

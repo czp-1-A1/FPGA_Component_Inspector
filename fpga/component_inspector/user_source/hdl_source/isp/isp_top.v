@@ -1,5 +1,5 @@
 module isp_top #(
-    parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,RAW_EDGE_ONLY=0,
+    parameter INPUT_WIDTH=1024,INPUT_HEIGHT=600,WIDTH=INPUT_WIDTH,HEIGHT=INPUT_HEIGHT,SCALE_DISPLAY=0,MEASURE_LATENCY=0,RAW_EDGE_ONLY=0,
     parameter ASYNC_PROCESSING=0,TRACKING=0,DIRECT_DETECTION=0,SHAPE_MODEL=0,LOCAL_SEARCH=0,ROI_X0=472,ROI_X1=552,ROI_Y0=260,ROI_Y1=340,
     parameter AUTO_RELAY=0,RELAY_TARGET_X=152,RELAY_ADVANCE_PX=32,RELAY_TOL_PX=80,
     parameter PRESENT_TRACE=0,
@@ -8,6 +8,8 @@ module isp_top #(
     parameter META_WIDTH=178+340*MULTI_POCKETS+(172+152*REGIONS)*LOCAL_SEARCH+129*CALIBRATION+COUNT_BITS*CLASSIFIED_COUNT
 ) (
     input processing_clk,
+    input [31:0] capture_time_us,input capture_time_valid,
+    output [64:0] capture_info,output [31:0] latest_source_frame,
     input relay_permit,relay_pause,actual_motor_running,output relay_feed,relay_alarm,
     output [127:0] relay_status,output [191:0] relay_diagnostic,
     input [16:0] count_command,output [COUNT_BITS-1:0] count_live,
@@ -195,6 +197,7 @@ wire post_start,native_early,native_valid,native_sof,native_last,native_accept,n
 wire [95:0] native_rgb;wire [3:0] post_native_fault;
 wire [10:0] native_x;wire [$clog2(INPUT_HEIGHT+1)-1:0] native_y;
 wire [17:0] post_tag;wire [31:0] post_wb,post_config;
+wire [31:0] post_capture_us;wire post_capture_valid;
 generate if(ASYNC_PROCESSING)begin : continuous_processing
  reg cancel_d;reg [3:0] fault_d;
  always @(posedge axi4s_video_aclk or negedge I_rst_n)begin
@@ -204,7 +207,7 @@ generate if(ASYNC_PROCESSING)begin : continuous_processing
  wire [127:0] received;wire received_valid;
  wire send_event=raw_start || (awb_O_tuser && !frame_input_closed) || source_pixel_valid || roi_commit ||
   native_cancel!=cancel_d || native_video_fault!=fault_d;
- wire [115:0] payload=raw_start ? {33'd0,image_config,wb_request,observation_request,config_ok} : {20'd0,awb_O_tdata};
+ wire [115:0] payload=raw_start ? {(MEASURE_LATENCY ? {capture_time_valid,capture_time_us} : 33'd0),image_config,wb_request,observation_request,config_ok} : {20'd0,awb_O_tdata};
  frame_process_bridge bridge(.source_clk(axi4s_video_aclk),.process_clk(processing_clk),.rst_n(I_rst_n),
   .source_data({raw_start,(awb_O_tuser && !frame_input_closed),source_pixel_valid,source_pixel_sof,awb_O_tlast,
    roi_accept,roi_commit,native_cancel,native_video_fault,payload}),.source_valid(send_event),
@@ -212,6 +215,7 @@ generate if(ASYNC_PROCESSING)begin : continuous_processing
  assign {post_start,native_early,native_valid,native_sof,native_last,native_accept,native_commit,post_cancel,post_native_fault}=
   received_valid ? received[127:116] : 12'd0;
  assign native_rgb=received[95:0];
+ assign post_capture_us=received[114:83];assign post_capture_valid=received[115];
  reg [17:0] tag;reg [31:0] wb,cfg;
  reg [10:0] x;reg [$clog2(INPUT_HEIGHT+1)-1:0] y;
  always @(posedge processing_clk or negedge I_rst_n)begin
@@ -229,12 +233,26 @@ generate if(ASYNC_PROCESSING)begin : continuous_processing
  assign post_wb=post_start ? received[50:19] : wb;
  assign post_config=post_start ? received[82:51] : cfg;
 end else begin : native_processing
+ assign post_capture_us=capture_time_us;assign post_capture_valid=capture_time_valid;
  assign post_start=raw_start;assign native_early=awb_O_tuser && !frame_input_closed;
  assign native_valid=source_pixel_valid;assign native_sof=source_pixel_sof;assign native_last=awb_O_tlast;
  assign native_accept=roi_accept;assign native_commit=roi_commit;assign post_cancel=native_cancel;assign post_overflow=0;
  assign native_rgb=awb_O_tdata;assign post_native_fault=native_video_fault;
  assign native_x=roi_x;assign native_y=roi_y;assign post_tag=observation_tag;assign post_wb=wb_frame_request;assign post_config=image_config;
 end endgenerate
+
+// This sequence counts actual native SOF packets crossing the existing bridge,
+// including bad/canceled source frames. A displayed frame keeps its own stamp.
+reg [31:0] capture_sequence;reg [64:0] capture_tuple;
+always @(posedge post_clk or negedge I_rst_n)begin
+ if(!I_rst_n)begin capture_sequence<=0;capture_tuple<=0;end
+ else if(post_start && MEASURE_LATENCY)begin
+  capture_sequence<=capture_sequence+1'b1;
+  capture_tuple<={post_capture_valid,capture_sequence+32'd1,post_capture_us};
+ end
+end
+assign capture_info=MEASURE_LATENCY ? capture_tuple : 65'd0;
+assign latest_source_frame=MEASURE_LATENCY ? capture_sequence : 32'd0;
 
 wire post_early,post_valid,post_sof,post_last,post_accept,post_commit;
 wire [95:0] post_rgb;wire [10:0] post_x;wire [9:0] post_y;

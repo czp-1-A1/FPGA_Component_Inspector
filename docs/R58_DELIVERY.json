@@ -1,0 +1,42 @@
+{
+  "status": "PASS_R58_SOFTWARE_AND_ROUTED_AUDITS_HUMAN_PENDING",
+  "version": "R58_Buzzer_Latency_Dual_20261102_eebefd74",
+  "baseline_commit": "02b18c34d5a723a5de2f17496705dec524b52be3",
+  "bit": "R58_Buzzer_Latency_Dual_20261102_eebefd74.bit",
+  "bit_sha256": "eebefd741fe06c5322b11b83a882198c9929e95e698d723e2e7f2a16ff59e821",
+  "source_files": 705,
+  "source_manifest_sha256": "e3ad081542bb94b3b53a401fd0b2fb0d82401f00fe14cf1e9fb79116ec71c4e6",
+  "changed_files": [
+    "td_project/camera_to_dsi_display.al",
+    "td_project/camera_to_dsi_display.sdc",
+    "user_source/constraints_source/pin.adc",
+    "user_source/hdl_source/classified_dual_page_osd.v",
+    "user_source/hdl_source/compact_inspector_osd.v",
+    "user_source/hdl_source/compact_template_rom.v",
+    "user_source/hdl_source/contest_latency_clock.v",
+    "user_source/hdl_source/design_top_wrapper.v",
+    "user_source/hdl_source/dual_lane_parking.v",
+    "user_source/hdl_source/isp/isp_top.v",
+    "user_source/hdl_source/pocket_relay_stop_v2.v",
+    "user_source/hdl_source/video_in.v",
+    "user_source/hdl_source/video_out.v"
+  ],
+  "exact_source_tests": 25,
+  "new_candidate_b_tests": 20,
+  "same_source_r58_a_tests_retained": 5,
+  "timing_ns": {
+    "SWNS": 0.105,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "resources": {
+    "slice": 18901,
+    "eram": 102,
+    "dsp": 31,
+    "pll": 5
+  },
+  "board_acceptance": "HUMAN_PENDING",
+  "hardware_operated": false,
+  "github_uploaded_at_packaging": false
+}

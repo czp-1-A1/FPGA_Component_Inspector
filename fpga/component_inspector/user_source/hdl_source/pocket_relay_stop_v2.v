@@ -6,7 +6,7 @@ module pocket_relay_stop_v2 #(
  parameter ARRIVAL_TIMEOUT_MS=15000,QUEUE_DEPTH=32
 )(
  input wire external_hold,
- input wire clk,rst_n,permit,pause,start_run,clear_run,good_frame,bad_frame,transport_occupied,
+ input wire clk,rst_n,permit,pause,start_run,clear_run,good_frame,bad_frame,local_position_fault,transport_occupied,
  input wire [31:0] current_frame,input wire [15:0] counter_run,station_run,
  input wire [2:0] counter_state,station_state,
  input wire direction_valid,direction_right,station_dv,station_dr,
@@ -83,16 +83,17 @@ module pocket_relay_stop_v2 #(
   {1'b0,position_y}+STILL_PX>=last_y && position_y<=last_y+STILL_PX;
  wire at_anchor={1'b0,position_x}+STILL_PX>=anchor_x && position_x<=anchor_x+STILL_PX &&
   {1'b0,position_y}+STILL_PX>=anchor_y && position_y<=anchor_y+STILL_PX;
+ wire local_fault=DIRECT_GLOBAL_TRACK && local_position_fault;
  wire counter_fault=bad_frame || counter_state==3 || counter_state==4 || counter_state==6 ||
   (!DIRECT_GLOBAL_TRACK && (station_state==3 || station_state==4 || station_state==6));
  wire wrong_direction=(direction_valid && direction_right) || (!DIRECT_GLOBAL_TRACK && station_dv && station_dr);
  wire uncertain=counter_uncertainty!=0 || (!DIRECT_GLOBAL_TRACK && station_uncertainty!=0);
  wire prefix_bad=counter_run!=active_run || (!DIRECT_GLOBAL_TRACK && (station_run!=active_run || station_total>counter_total));
- wire healthy=!counter_fault && !wrong_direction && !uncertain && !prefix_bad &&
+ wire healthy=!counter_fault && !local_fault && !wrong_direction && !uncertain && !prefix_bad &&
   !global_event_bad && !local_event_bad && !signature_bad && !(push && count==QUEUE_DEPTH);
  // Only proved, ordered GLOBAL IDs count; repeated frames and queue depth do not.
  wire fifth_empty=FIVE_EMPTY_V7 && active && state!=FAULT && event_valid && !global_event_bad &&
-  event_kind==3 && empty_streak==4 && healthy;
+  event_kind==3 && empty_streak==4 && !counter_fault && !wrong_direction && !uncertain && !prefix_bad;
  wire pop=!fifth_empty && active && !paused && state==HOLD && healthy && tick && phase_ms==HOLD_MS-1 &&
   position_age<STALE_MS-1 && frame_age<STALE_MS-1 && permit &&
   !(measured && (!within_x || !at_anchor));
@@ -180,7 +181,7 @@ module pocket_relay_stop_v2 #(
     endcase
     if(count==0 && push)begin have_position<=0;have_source<=0;position_age<=0;arrival_ms<=0;last_x<=0;end
     if(fifth_empty)begin alarm_latched<=1;fail(15);end
-    else if(counter_fault)fail(1);
+    else if(counter_fault || local_fault)fail(1);
     else if(tick && frame_age>=STALE_MS-1 && !good_frame)fail(2);
     else if(wrong_direction)fail(3);
     else if(global_event_bad || signature_bad)fail(4);

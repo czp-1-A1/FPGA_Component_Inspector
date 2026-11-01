@@ -32,3 +32,6 @@ set_pin_assignment { I_count_start_switch } { LOCATION = E11; IOSTANDARD = LVCMO
 
 # Active HIGH feed permission, right J2 pin1; no diagnostic LEDs.
 set_pin_assignment { O_relay_control } { LOCATION = V2; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 4; PULLTYPE = PULLDOWN; }
+
+# Board buzzer, active low; SW5 must connect it.
+set_pin_assignment { O_buzzer_n } { LOCATION = C12; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 4; PULLTYPE = PULLUP; }

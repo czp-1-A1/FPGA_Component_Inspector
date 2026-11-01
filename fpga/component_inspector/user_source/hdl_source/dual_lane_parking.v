@@ -42,7 +42,7 @@ module dual_lane_parking #(
    .CLK_HZ(CLK_HZ),.TARGET_X(TARGET_X),.ADVANCE_PX(ADVANCE_PX),.POSITION_TOL_PX(TOL_PX),.HOLD_MS(HOLD_MS)) controller(
    .clk(clk),.rst_n(rst_n),.permit(permit),.pause(pause),.external_hold(!actual_motor_running),
    .start_run(main_start[lane]),.clear_run(main_clear[lane]),
-   .good_frame(main_good[lane]),.bad_frame(main_bad[lane] || position_fault[lane]),.transport_occupied(transport_occupied[lane]),
+   .good_frame(main_good[lane]),.bad_frame(main_bad[lane]),.local_position_fault(position_fault[lane]),.transport_occupied(transport_occupied[lane]),
    .current_frame(main_frame[lane*32+:32]),.counter_run(main_run[lane*16+:16]),
    .counter_state(main_state[lane*3+:3]),.direction_valid(main_dv[lane]),.direction_right(main_dr[lane]),
    .counter_total(main_total[lane*9+:9]),.counter_uncertainty(main_uncertainty[lane*9+:9]),

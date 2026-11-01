@@ -112,3 +112,11 @@ set_max_delay -datapath_only 9.0 -from [get_regs {u_relay_display/ack}] -to [get
 # Registered slow electromechanical output: reserve 2ns for the external path.
 set_output_delay -clock [get_clocks {pll_clk_100m}] -max 2.0 [get_ports {O_relay_control}]
 set_output_delay -clock [get_clocks {pll_clk_100m}] -min 0.0 [get_ports {O_relay_control}]
+
+# R58 registered Gray microsecond time: both Q-to-first-stage crossings bounded.
+set_max_delay -datapath_only 8.0 -from [get_regs {u_latency_clock/us_gray\[*\] u_latency_clock/us_binary\[31\]}] -to [get_regs {u_latency_capture/gray_meta\[*\] u_latency_display/gray_meta\[*\]}]
+set_max_delay -datapath_only 19.0 -from [get_regs {u_latency_source_display/payload*}] -to [get_regs {u_latency_source_display/D_data*}]
+set_max_delay -datapath_only 19.0 -from [get_regs {u_latency_source_display/req}] -to [get_regs {u_latency_source_display/req_sync[0]}]
+set_max_delay -datapath_only 9.0 -from [get_regs {u_latency_source_display/ack}] -to [get_regs {u_latency_source_display/ack_sync[0]}]
+set_output_delay -clock [get_clocks {pll_clk_100m}] -max 2.0 [get_ports {O_buzzer_n}]
+set_output_delay -clock [get_clocks {pll_clk_100m}] -min 0.0 [get_ports {O_buzzer_n}]
