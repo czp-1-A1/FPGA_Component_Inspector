@@ -16,7 +16,22 @@
 
 ## 验证与实际资源
 
-目标为Slice低于V1的19076、ERAM99降到98，DSP30/PLL5保持；最终以RELEASE.json及build/physical_verification.json为准，不能以综合估算代替最终布线。
+最终布线资源与已备份的Demo V1对比：
+
+| 项目 | Demo V1 | UIOpt V2 | 变化 |
+| --- | ---: | ---: | ---: |
+| Slice | 19076 / 21216（89.91%） | 19036 / 21216（89.72%） | -40 |
+| ERAM | 99 / 108 | 98 / 108 | -1 |
+| DSP | 30 / 40 | 30 / 40 | 0 |
+| PLL | 5 / 6 | 5 / 6 | 0 |
+| 建立裕量 SWNS | +0.050 ns | +0.106 ns | 均通过 |
+| 保持裕量 HWNS | +0.020 ns | +0.020 ns | 均通过 |
+
+V2双TNS均为0，实际50条最大延迟全部匹配、无忽略。这里只声明这次实际降低40 Slice和1 ERAM，不沿用学习包不同基线的节省数字。
+
+第一次seed1布线得到19027 Slice，但SWNS=-0.081 ns，已拒绝发布，失败报告保留在build/prior_failed_r1。交付版以同一份综合数据库只改物理布局seed为2，源文件、引脚、SDC和时钟预算完全不变；SYNTHESIS_REUSE.json记录逐项校验。TD最终完整布线及独立物理审计通过，未使用放宽约束的方法消除违例。
+
+交付bit SHA-256：242b9597a6f1fe045dd9c732e56d7ab9320badce9226dcc2c3b67d5ca5593ac5。实际构建、完整发布包与BIT_FLASH副本须保持同一SHA。
 
 新验证包括：67840次同步字模读（所有地址与65536次交错切换）；16幅完整720p/14745600源像素，在旧/演示两种模式下对标签共享中间版和最终版作58982400次V1逐像素RGB/控制对照。覆盖四标签、重叠、边界、最大/缺失编号、资格、无效延迟、报警和中途输入变化。
 
@@ -35,7 +50,7 @@ K1新RUN，K2暂停/继续保留队列（待机可手动电机启停），K3清�
 ## 重建
 
 ```powershell
-python scripts/build_r22_relay.py --keys-v3 --demo-rl7 --ui-opt-v2 --seed 1 --stage-timeout 3600 --source project --baseline-manifest baseline/r22_frozen_inputs.json --work E:/FPGA_WORK/RL7_UIOPT_BUILD --td E:/TD
+python scripts/build_r22_relay.py --keys-v3 --demo-rl7 --ui-opt-v2 --seed 2 --stage-timeout 3600 --source project --baseline-manifest baseline/r22_frozen_inputs.json --work E:/FPGA_WORK/RL7_UIOPT_BUILD --td E:/TD
 python scripts/audit_r22_relay.py --keys-v3 --adjacent-v6 --five-empty-v7 --demo-rl7 --ui-opt-v2 --work E:/FPGA_WORK/RL7_UIOPT_BUILD
 ```
 
