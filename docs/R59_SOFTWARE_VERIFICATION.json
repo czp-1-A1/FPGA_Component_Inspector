@@ -1,0 +1,114 @@
+{
+  "status": "PASS_R59_30_EXACT_SOURCE_TESTS_FOUR_VIEWS_BUZZER_TRUE_LATENCY_UI",
+  "actual_tests": 30,
+  "historical_pass_reused": 0,
+  "unbound_historical_pass_reused": 0,
+  "retained_exact_R58_tests": 20,
+  "source_files": 705,
+  "source_manifest_sha256": "b7bd52a7e0ee5cb6f459d02db11a028ec714179290b9c87ab2b94d2ad809f4ca",
+  "baseline_R58_manifest_sha256": "e3ad081542bb94b3b53a401fd0b2fb0d82401f00fe14cf1e9fb79116ec71c4e6",
+  "changed_files": [
+    "user_source/hdl_source/compact_inspector_osd.v",
+    "user_source/hdl_source/compact_template_rom.v",
+    "user_source/hdl_source/design_top_wrapper.v"
+  ],
+  "groups": [
+    {
+      "group": "r58_leaves_b",
+      "folder": "D:\\FpgaWork\\r58_field_20261102\\r58_leaves_b",
+      "tests": 3,
+      "receipt_sha256": "6468f64435165533240985a5dbb8c3418740ca447915f534a2f5cd71c255f77c"
+    },
+    {
+      "group": "r58_parking_b",
+      "folder": "D:\\FpgaWork\\r58_field_20261102\\r58_parking_b",
+      "tests": 13,
+      "receipt_sha256": "8dc2347475ca0c8e60494e7bec6eac76418e3c5cdd578dcd777bf32d632242bd"
+    },
+    {
+      "group": "r58_alarm_buzzer_b",
+      "folder": "D:\\FpgaWork\\r58_field_20261102\\r58_alarm_buzzer_b",
+      "tests": 1,
+      "receipt_sha256": "88616a5bcb4c507ba92fa5f36f4961167b300194f902d23340b1ca1bc0b48448"
+    },
+    {
+      "group": "r58_production_alarm_b",
+      "folder": "D:\\FpgaWork\\r58_field_20261102\\r58_production_alarm_b",
+      "tests": 1,
+      "receipt_sha256": "a53e800388807d0e5a39b22ede789104d61f6482974394c9b007761d120bc9ae"
+    },
+    {
+      "group": "r58_expiry_a",
+      "folder": "D:\\FpgaWork\\r58_field_20261102\\r58_expiry_a",
+      "tests": 1,
+      "receipt_sha256": "fd63bae54ce396a3574e46c87ce1262c8b7a11e81f376c35fd47c70956e3443d"
+    },
+    {
+      "group": "ui_c",
+      "folder": "D:\\FpgaWork\\r59_field_20261102\\ui_c",
+      "tests": 1,
+      "receipt_sha256": "26d1d58185f2eb12110c8af11c7d57fc884175fe3747e61c7530da55c6eb6b89"
+    },
+    {
+      "group": "legacy_ui_b",
+      "folder": "D:\\FpgaWork\\r59_field_20261102\\legacy_ui_b",
+      "tests": 3,
+      "receipt_sha256": "b916dba9381ea2383a016be619e50b4a99a4b150a20a9f78e369e648a818b099"
+    },
+    {
+      "group": "four_view_pixels_b",
+      "folder": "D:\\FpgaWork\\r59_field_20261102\\four_view_pixels_b",
+      "tests": 2,
+      "receipt_sha256": "f50927f1e203dd15b557fa2d2079e3a245586e15ba1ecf7bf2ebef05c4de31b2"
+    },
+    {
+      "group": "four_view_controls",
+      "folder": "D:\\FpgaWork\\r59_field_20261102\\four_view_controls",
+      "tests": 1,
+      "receipt_sha256": "795b101c8a7a5753e9343dab3f0718cba8f870c9091a271bdd16967199a89aa5"
+    },
+    {
+      "group": "latency_char_candidate_a",
+      "folder": "D:\\FpgaWork\\r59_field_20261102\\latency_char_candidate_a",
+      "tests": 1,
+      "receipt_sha256": "1e29668719e13d83ade03340d63c05eb13c922829bbe1320068c3bb9ec8c75a8"
+    },
+    {
+      "group": "r58_native_b",
+      "folder": "D:\\FpgaWork\\r58_field_20261102\\r58_native_b",
+      "tests": 1,
+      "receipt_sha256": "ef696f8a5ef67e63f2e57a013ae5b5bede7210bab0e05770f4f9f4f06af0331c"
+    },
+    {
+      "group": "frame_chain_c",
+      "folder": "D:\\FpgaWork\\r59_field_20261102\\frame_chain_c",
+      "tests": 1,
+      "receipt_sha256": "85bc175e936110d95f891722625cf14123149c090ac92841a2cb53f444dbd2d7"
+    },
+    {
+      "group": "four_modes_native_b",
+      "folder": "D:\\FpgaWork\\r59_field_20261102\\four_modes_native_b",
+      "tests": 1,
+      "receipt_sha256": "90b5fd2824f6a5861b7914be7a79919348517595e4fff05964b013765b9bd806"
+    }
+  ],
+  "independent_UI_pixels": {
+    "status": "PASS_INDEPENDENT_R59_UI_RGB_PIXELS_AND_COMPLETE_SECOND_LANE_CJK",
+    "compared_pixels": 560640,
+    "rasters": 3,
+    "second_lane_glyph_rows": 112,
+    "expected_glyph_rows": 112,
+    "font": "16x16 CJK; upper-right16x32 scaled ASCII",
+    "source": "Actual vendor-font RTL simulation RGB dumps, independent font/template reference",
+    "preview_sha256": "2043b0cd9934774a06c5032a97690eecadc436b51a194ef6ea9d551cfd83d1d7"
+  },
+  "original_SDC_commands_preserved": true,
+  "SDC_and_ADC_byte_exact_R58": true,
+  "views": [
+    "RAW",
+    "GRAY",
+    "RGB+orange edges",
+    "GRAY+orange edges"
+  ],
+  "board_acceptance": "HUMAN_PENDING"
+}

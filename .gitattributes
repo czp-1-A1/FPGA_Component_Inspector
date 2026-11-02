@@ -95,3 +95,9 @@ fpga/component_inspector/** -text
 # R57 exact validated source and evidence bytes.
 /releases/r57_dense_dual_20261102/** -text
 /docs/R57_* -text
+
+# Preserve R59 frozen validation/runtime bytes.
+/tests/r59_four_views/** -text
+/scripts/r59/** -text
+/docs/R59* -text
+/docs/R58_BASELINE_SHA256.json -text

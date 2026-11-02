@@ -1,0 +1,119 @@
+{
+  "scope": "Actual final Routed/Both Slow and Fast",
+  "timing_ns": {
+    "SWNS": 0.057,
+    "HWNS": 0.02,
+    "STNS": 0.0,
+    "HTNS": 0.0
+  },
+  "resources": {
+    "slice": 18938,
+    "eram": 107,
+    "dsp": 31,
+    "pll": 5
+  },
+  "critical_paths": {
+    "pll_clk_100m -> pll_clk_100m": {
+      "Slack": "0.100ns",
+      "Begin Point": "u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/last_x_reg[7]_syn_2.clk (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "u_isp_top/classified_counting$dual_regions$dual_parking$parking/lanes[0]$controller/state_reg[7]_syn_2.ceb (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "Data Path Delay": "9.590ns (cell 2.478ns (25%), net 7.112ns (75%))",
+      "Logic Level": "6 ( LUT6=3  unknown=1  LUT5=1  LUT3=1 )"
+    },
+    "u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk -> u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk": {
+      "Slack": "12.611ns",
+      "Begin Point": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy/dx_byte[1]$dx_byte_used$u_ddrphy_dx_byte_wrapper/u_ddrphy_byte.ctl_rdata_vld (rising edge triggered by clock u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk  { rise@0.000000ns  fall@7.500000ns  period=15.000000 })",
+      "End Point": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_phy2mc_fifo/i_vld_r_reg[1]_syn_2.imf (rising edge triggered by clock u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk  { rise@0.000000ns  fall@7.500000ns  period=15.000000 })",
+      "Data Path Delay": "2.071ns (cell 0.977ns (47%), net 1.094ns (53%))",
+      "Logic Level": "1 ( LUT2=1 )"
+    },
+    "MIPI_RX_BYTE_CLK -> MIPI_RX_BYTE_CLK": {
+      "Slack": "0.697ns",
+      "Begin Point": "u_isp_top/u_awb/valid_d1_reg_syn_3.clk (rising edge triggered by clock MIPI_RX_BYTE_CLK  { rise@0.000000ns  fall@4.444000ns  period=8.888000 })",
+      "End Point": "u_isp_top/u_awb/mult5_syn_169.mult_p[44] (rising edge triggered by clock MIPI_RX_BYTE_CLK  { rise@0.000000ns  fall@4.444000ns  period=8.888000 })",
+      "Data Path Delay": "7.836ns (cell 2.288ns (29%), net 5.548ns (71%))",
+      "Logic Level": "2 ( LUT4=1  DSPMULT=1 )"
+    },
+    "HDMI_PIXEL_CLK -> HDMI_PIXEL_CLK": {
+      "Slack": "0.620ns",
+      "Begin Point": "u_experiment_osd/compact_page$render/y_reg[2]_syn_2.clk (rising edge triggered by clock HDMI_PIXEL_CLK  { rise@0.000000ns  fall@6.734000ns  period=13.468000 })",
+      "End Point": "u_experiment_osd/compact_page$render/rgb0_reg[17]_syn_2.ib (rising edge triggered by clock HDMI_PIXEL_CLK  { rise@0.000000ns  fall@6.734000ns  period=13.468000 })",
+      "Data Path Delay": "12.530ns (cell 2.787ns (22%), net 9.743ns (78%))",
+      "Logic Level": "7 ( LUT4=3  LUT6=2  LUT5=1  LUT3=1 )"
+    },
+    "sys_clk_50m -> sys_clk_50m": {
+      "Slack": "11.664ns",
+      "Begin Point": "u_observation_controls/candidate_reg[1]_syn_2.clk (rising edge triggered by clock sys_clk_50m  { rise@0.000000ns  fall@10.000000ns  period=20.000000 })",
+      "End Point": "u_observation_controls/add1_syn_100.ceb (rising edge triggered by clock sys_clk_50m  { rise@0.000000ns  fall@10.000000ns  period=20.000000 })",
+      "Data Path Delay": "8.147ns (cell 1.577ns (19%), net 6.570ns (81%))",
+      "Logic Level": "4 ( LUT5=2  LUT4=1  LUT3=1 )"
+    },
+    "pll_clk_24m -> pll_clk_24m": {
+      "Slack": "34.079ns",
+      "Begin Point": "count_controls$controls/debounce_reg[30]_syn_5.clk (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })",
+      "End Point": "count_controls$controls/add4_syn_102.ceb (rising edge triggered by clock pll_clk_24m  { rise@0.000000ns  fall@20.768999ns  period=41.537998 })",
+      "Data Path Delay": "7.067ns (cell 1.920ns (27%), net 5.147ns (73%))",
+      "Logic Level": "5 ( LUT5=2  LUT4=2  LUT2=1 )"
+    },
+    "HDMI_SERIAL_CLK -> HDMI_SERIAL_CLK": {
+      "Slack": "0.964ns",
+      "Begin Point": "u_hdmi_tx/u_phy/u3_lane_lvds_8_1/g_local_pad_reset$pad_reset_reg_syn_3.clk (rising edge triggered by clock HDMI_SERIAL_CLK  { rise@0.000000ns  fall@1.346000ns  period=2.693000 })",
+      "End Point": "O_tmds_ch2_p_syn_2.rst (rising edge triggered by clock HDMI_SERIAL_CLK  { rise@0.000000ns  fall@1.346000ns  period=2.693000 })",
+      "Data Path Delay": "0.977ns (cell 0.137ns (14%), net 0.840ns (86%))",
+      "Logic Level": "0"
+    },
+    "u_ph1p35_324_ddr_wrapper/u_ddr2/mcu_clk -> u_ph1p35_324_ddr_wrapper/u_ddr2/mcu_clk": {
+      "Slack": "34.827ns",
+      "Begin Point": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy/dx_byte[1]$dx_byte_used$u_ddrphy_dx_byte_wrapper/u_ddrphy_byte.apb_prdy (rising edge triggered by clock u_ph1p35_324_ddr_wrapper/u_ddr2/mcu_clk  { rise@0.000000ns  fall@19.687000ns  period=39.374001 })",
+      "End Point": "u_ph1p35_324_ddr_wrapper/u_ddr2/ph1p_ddrmc_wrapper/ph1p_ddrmc_top/u_ddr_phy/u_ddrphy_top/u_ddrphy_init/psel_r_reg_syn_31.ia (rising edge triggered by clock u_ph1p35_324_ddr_wrapper/u_ddr2/mcu_clk  { rise@0.000000ns  fall@19.687000ns  period=39.374001 })",
+      "Data Path Delay": "4.113ns (cell 1.630ns (39%), net 2.483ns (61%))",
+      "Logic Level": "3 ( LUT6=3 )"
+    },
+    "HDMI_PIXEL_CLK -> HDMI_SERIAL_CLK": {
+      "Slack": "0.057ns",
+      "Begin Point": "u_hdmi_tx/u_blue/symbol_reg[1]_syn_2.clk (rising edge triggered by clock HDMI_PIXEL_CLK  { rise@0.000000ns  fall@6.734000ns  period=13.468000 })",
+      "End Point": "u_hdmi_tx/u_phy/u0_lane_lvds_8_1/S_shift_data_reg[9]_syn_2.id (rising edge triggered by clock HDMI_SERIAL_CLK  { rise@0.000000ns  fall@1.346000ns  period=2.693000 })",
+      "Data Path Delay": "2.116ns (cell 0.348ns (16%), net 1.768ns (84%))",
+      "Logic Level": "1 ( LUT5=1 )"
+    },
+    "HDMI_SERIAL_CLK -> HDMI_PIXEL_CLK": {
+      "Slack": "1.411ns",
+      "Begin Point": "u_hdmi_tx/phy_reset_sync_reg[0]_syn_2.clk (rising edge triggered by clock HDMI_SERIAL_CLK  { rise@0.000000ns  fall@1.346000ns  period=2.693000 })",
+      "End Point": "u_hdmi_tx/u_phy/u0_lane_lvds_8_1/S_odd_even_reg_syn_3.asr (rising edge triggered by clock HDMI_PIXEL_CLK  { rise@0.000000ns  fall@6.734000ns  period=13.468000 })",
+      "Data Path Delay": "0.777ns (cell 0.137ns (17%), net 0.640ns (83%))",
+      "Logic Level": "0"
+    },
+    "u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.tif_c16_in -> MIPI_RX_BYTE_CLK": {
+      "Slack": "3.748ns",
+      "Begin Point": "u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.o_l1_hs_rx_data[6] (falling edge triggered by clock u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/u_PH1P_LOGIC_DPHY_MIPI_RX.tif_c16_in  { rise@0.000000ns  fall@4.444000ns  period=8.888000 })",
+      "End Point": "u_mipi_dphy_rx_ph1p_mipiio_wrapper/u_ph1p_mipiio_rx_wrapper/S_l1_hs_rx_data_1d_reg[6]_syn_2.ima (rising edge triggered by clock MIPI_RX_BYTE_CLK  { rise@0.000000ns  fall@4.444000ns  period=8.888000 })",
+      "Data Path Delay": "2.167ns (cell 0.241ns (11%), net 1.926ns (89%))",
+      "Logic Level": "0"
+    },
+    "set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 9.700": {
+      "Slack": "8.458ns",
+      "Begin Point": "u_video_in/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/wr_to_rd_cross_inst/primary_addr_gray_reg_reg[6]_syn_2.clk (rising edge triggered by clock pll_clk_100m  { rise@0.000000ns  fall@5.000000ns  period=10.000000 })",
+      "End Point": "u_video_in/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/wr_to_rd_cross_inst/sync_r1_reg[3]_syn_2.ima (rising edge triggered by clock u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk  { rise@0.000000ns  fall@7.500000ns  period=15.000000 })",
+      "Data Path Delay": "1.178ns (cell 0.224ns (19%), net 0.954ns (81%))",
+      "Logic Level": "0"
+    },
+    "set_max_delay -from [get_regs -nowarn {*/primary_addr_gray_reg[*]}] -to [get_regs -nowarn {*/sync_r1[*]}] -datapath_only 13.168": {
+      "Slack": "11.671ns",
+      "Begin Point": "u_video_out/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/wr_to_rd_cross_inst/primary_addr_gray_reg_reg[5]_syn_2.clk (rising edge triggered by clock u_ph1p35_324_ddr_wrapper/u_ddr2/usr_clk  { rise@0.000000ns  fall@7.500000ns  period=15.000000 })",
+      "End Point": "u_video_out/U_w128_d512_fifo/soft_fifo_al_4057d6b76aa6_Inst/wr_to_rd_cross_inst/sync_r1_reg[3]_syn_2.ima (rising edge triggered by clock HDMI_PIXEL_CLK  { rise@0.000000ns  fall@6.734000ns  period=13.468000 })",
+      "Data Path Delay": "1.433ns (cell 0.213ns (14%), net 1.220ns (86%))",
+      "Logic Level": "0"
+    }
+  },
+  "report_sha256": "b2710d02448770dbcb2f5dec8ddc6fc64937a28b853bacb946a6eb75cbe77ef7",
+  "bit_sha256": "5eda000253ebd82bd69582c3d75e35be41f7c61d660af4e9cf15d499feb0cc8f",
+  "source_manifest_sha256": "b7bd52a7e0ee5cb6f459d02db11a028ec714179290b9c87ab2b94d2ad809f4ca",
+  "worst_reported_setup_path": {
+    "path_group": "HDMI_PIXEL_CLK -> HDMI_SERIAL_CLK",
+    "Slack": "0.057ns",
+    "Begin Point": "u_hdmi_tx/u_blue/symbol_reg[1]_syn_2.clk (rising edge triggered by clock HDMI_PIXEL_CLK  { rise@0.000000ns  fall@6.734000ns  period=13.468000 })",
+    "End Point": "u_hdmi_tx/u_phy/u0_lane_lvds_8_1/S_shift_data_reg[9]_syn_2.id (rising edge triggered by clock HDMI_SERIAL_CLK  { rise@0.000000ns  fall@1.346000ns  period=2.693000 })",
+    "Data Path Delay": "2.116ns (cell 0.348ns (16%), net 1.768ns (84%))",
+    "Logic Level": "1 ( LUT5=1 )"
+  }
+}

@@ -29,18 +29,34 @@ always @(posedge clk or negedge rst_n)begin
 end
 // Both lines use the existing8x16 ASCII ROM at2x scale, without another font RAM.
 function [7:0] latency_char;
- input [4:0] char_pos;input source_line;reg [175:0] message;reg [3:0] digit;
+ input [4:0] char_pos;input source_line;reg [3:0] digit;reg numeric;
  begin
-  message=source_line ? "SRC                   " : "LAT ----.-ms  LAG ---f";
-  latency_char=char_pos<22 ? message[(21-char_pos)*8+:8] : 8'd32;digit=0;
-  if(source_line && char_pos>=4 && char_pos<14)begin
-   digit=(source_bcd_s>>((13-char_pos)*4))&4'hf;latency_char=latency_valid_s ? "0"+digit : "-";
-  end else if(!source_line && ((char_pos>=4 && char_pos<=7) || char_pos==9))begin
-   digit=char_pos==9 ? latency_bcd_s[3:0] : (latency_bcd_s>>((8-char_pos)*4))&4'hf;
-   latency_char=latency_valid_s ? "0"+digit : "-";
-  end else if(!source_line && char_pos>=18 && char_pos<=20)begin
-   digit=(lag_bcd_s>>((20-char_pos)*4))&4'hf;latency_char=latency_valid_s ? "0"+digit : "-";
-  end
+  digit=0;numeric=1;latency_char=8'd32;
+  // Select the nibble/label first; both lines share one ASCII conversion.
+  case(char_pos)
+   0:begin numeric=0;latency_char=source_line ? "S" : "L";end
+   1:begin numeric=0;latency_char=source_line ? "R" : "A";end
+   2:begin numeric=0;latency_char=source_line ? "C" : "T";end
+   4:digit=source_line ? source_bcd_s[39:36] : latency_bcd_s[19:16];
+   5:digit=source_line ? source_bcd_s[35:32] : latency_bcd_s[15:12];
+   6:digit=source_line ? source_bcd_s[31:28] : latency_bcd_s[11:8];
+   7:digit=source_line ? source_bcd_s[27:24] : latency_bcd_s[7:4];
+   8:begin digit=source_bcd_s[23:20];numeric=source_line;latency_char=".";end
+   9:digit=source_line ? source_bcd_s[19:16] : latency_bcd_s[3:0];
+   10:begin digit=source_bcd_s[15:12];numeric=source_line;latency_char="m";end
+   11:begin digit=source_bcd_s[11:8];numeric=source_line;latency_char="s";end
+   12:begin digit=source_bcd_s[7:4];numeric=source_line;end
+   13:begin digit=source_bcd_s[3:0];numeric=source_line;end
+   14:begin numeric=0;latency_char=source_line ? 8'd32 : "L";end
+   15:begin numeric=0;latency_char=source_line ? 8'd32 : "A";end
+   16:begin numeric=0;latency_char=source_line ? 8'd32 : "G";end
+   18:begin digit=lag_bcd_s[11:8];numeric=!source_line;end
+   19:begin digit=lag_bcd_s[7:4];numeric=!source_line;end
+   20:begin digit=lag_bcd_s[3:0];numeric=!source_line;end
+   21:begin numeric=0;latency_char=source_line ? 8'd32 : "f";end
+   default:numeric=0;
+  endcase
+  if(numeric)latency_char=latency_valid_s ? {4'h3,digit} : "-";
  end
 endfunction
 reg [7:0] relay_q0,relay_q1;reg [11:0] relay_id0,relay_id1;
